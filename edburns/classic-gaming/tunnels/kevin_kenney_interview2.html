@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Tunnels of Doom: An Interview with Kevin Kenney, Part II</title>
+    <LINK rel="stylesheet" type="text/css" href="basic.css" title="basic">
+    <link rel="shortcut icon" href="../../favicon.ico" ></link>
+  </head>
+
+  <body>
+    <h1>Tunnels of Doom: An Interview with Kevin Kenney, Part II</h1>
+
+<H2><A NAME="tod_questions">Part II:</A> Tunnels of Doom and Programmer Questions</H2>
+
+<P><I><B>EB:</B> Where did you get the idea for the game? </I></P>
+
+<P><B>KK:</B> ToD?  D&D in college, Alkabeth, Wizardry, Infocom... The
+other games [Hunt the Wumpus, A-Maze-Ing] were items that were partially
+completed, and had been put on the shelf: I pulled them off the shelf
+and came up with the ways to make them into viable stand-alone products.
+(A-maze-ing, Hunt the Wumpus, and Blasto originally were planned to be
+combined as a single 6K cartridge, without most of each game's
+features.)
+</P>
+
+
+<P><I><B>EB:</B> Can you take us through the whole process of building
+Tunnels of Doom?  How many people worked on it?  Was ToD the first game
+to use a 3D gaming display, as in Quake?  How much time from conception
+to shipping was required for Tunnels of Doom?  </I></P>
+
+<P><B>KK:</B> Total time: 18 months, mainly by me (except for testing).
+Alkabeth or Wizardry on the Apple or Tandy might have been there with
+vector-style graphics first, but I colored in the walls and randomly
+built the dungeon.
+</P>
+
+<P><I><B>EB:</B> So you were working full time on ToD during that time?
+</I></P>
+
+<P><B>KK:</B>I'm unsure.  There we're probably firefights and minor
+tasks throughout the period, and I think it overlapped my work with
+TIRK. [See below]
+ </P>
+
+<P><I><B>EB:</B> What do you feel is the reason it took that long? </I></P>
+
+<P><B>KK:</B> I was designing it as well as programming it, shooting
+high, and trying to get the things I wanted into it.  I think it took
+over a month to design and balance the maze digging routines.  Then
+there was extensive testing and review by the artistic types in Dallas.
+</P>
+
+<P><I><B>EB:</B> Yeah, the production design of ToD is really great.
+Did you know it would take that long when you started?  </I></P>
+
+<P><B>KK:</B> Close.  At the start, I probably expected six months, but
+as my desired features list grew, so did the project.
+</P>
+
+<P><I><B>EB:</B> Ah, the creepy feature creature strikes again!  Did you
+do the game in a breadth first or depth first implementation?  That is,
+did you start out with a little bit of bootstrapping to make the basic
+app runnable, and then add features; or did you code for a long time,
+and *then* run the game?  </I></P>
+
+<P><B>KK:</B> By your definitions, I've always worked 'breadth first'
+I'd argue the term.  Development was one section at a time: Data
+structures (continually expanding), base graphics, dungeon digger, '3D'
+graphics engine & movement, dungeon stocker, game save/load, combat,
+'magic' items, graphics effects.  Expansion, polishing, and tweaking of
+'completed' sections continued as needed.
+</P>
+
+<P><I><B>EB:</B> How much does time does each aspect of the game
+take?</I></P>
+
+<P><B>KK:</B> Polishing and balancing, in parallel to testing, takes the
+largest chunk.  Hard to find bugs seem to take forever.  The graphics
+and music back then were simple enough to not take particularly long.
+</P>
+
+
+<P><I><B>EB:</B> Did you do your own scheduling and milestone setting
+for the development of the game?  If so, do you remember what were some
+of the milestones </I></P>
+
+<P><B>KK:</B> The milestones were the section beaks above, and I did
+have scheduling control (better termed 'targeting').  The only drop-dead
+dates were for CES's, and the school (for educational products) and Xmas
+shopping starts.  Though I'm a poor scheduler (too optimistic), I make
+up for it by being able to lower the targets for products as a drop-dead
+date approaches, in order to provide a good salable product when
+desired.  ToD was a bit of an exception to this, since making it fit in
+30k took a bit of work.  Some things that we're locked into it to get it
+out were the requirement for precisely two stairwells between floors,
+and hand combat damage being locked in at 2 points.
+</P>
+
+<P>(CES: Consumer Electronics show, in Vegas in Jan, Chicago in June,
+occurring to this day.  Before E3, they included video game systems.  An
+unrelated CES story: The year before I got to TI, CES still had adult
+video vendors on the same floor as the mainstream exhibits.  (They later
+went to a separate hall, and then a separate show.)  The TI booth had
+access problems (though a captive audience for demos) due to an
+adjoining booth having signings by Marilyn Chambers's)
+</P>
+
+<P><I><B>EB:</B> Who came up with the default names of the characters:
+Forrestal Grimm, Eric Seablade, and Mauve d'Orm Mul mean?  Are there any
+stories behind these names?  What does Mauve d'Orm Mul mean anyway?
+</I></P>
+
+<P><B>KK:</B>Marketing in Dallas I believe, with the names
+representative of the characters' colors.  Mauve = purple.
+ </P>
+
+<P><I><B>EB:</B> Who composed the <A HREF="sounds/">excellent music</A>?
+</I></P>
+
+<P><B>KK:</B> <A NAME="TOD_MUSIC">I'm not sure</A>.  They had a musician
+on staff in Dallas [Probably Hank Mishkoff, see <A HREF="hank_mishkoff_interview.html">interview</A>], who probably did the main theme, which I may have
+tweaked.  There's one note we didn't agree on in the theme: he won.  I
+did most of the music for the smaller games, including the slowly
+speeding theme for The Attack.  Being unschooled in such things, my
+attempts at sound effects sometimes got comical.  I tried an attenuating
+tone for an implosion song for the eggs hatching in The Attack, and
+ended up with Christmas chimes...
+</P>
+
+<P><I><B>EB:</B> The TI produced games had excellent documentation.  I
+even recall seeing some marketing material from TI that listed quality
+documentation as a selling point.  How much contact did you as the game
+author have with the people who wrote the manuals for your games?
+</I></P>
+
+<P><B>KK:</B> A reasonable amount.  They too were in Dallas, but spent
+time with me to learn the game, and then always sent the manuals my way
+for revision, and usually took whatever suggestions I had.
+</P>
+
+<!-- Photo Caption With Right Vertical Spacer -->
+<TABLE ALIGN="LEFT" WIDTH="250" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+<TR><TD BGCOLOR="#DDDDDD">
+<img src="images/tod-title-screen.jpg" width="250" height="172" border="1">
+</TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+<TR><TD>
+<B>Above: The title Screen for Tunnels of Doom
+</B></TD></TR>
+</TABLE>
+
+<P><I><B>EB:</B> When I was preparing the banner for the title page of
+this site, I got up close and personal with your title screen for ToD.
+Getting down to a pixel level, I could see your graphics talents in each
+of the letters.  My favorite is the S.  I also like the F.  Are there
+any stories behind the title letters or the title screen?  </I></P>
+
+
+<P><B>KK:</B> The F was a nod to Wumpus, and I think I was running out
+of characters, which led to the repetitive T.  The Outer Limits
+(original series) episode <A HREF="http://www.homevideos.com/outerlimits/olr14.htm">'The Zanti Misfits'</A> may have inspired the L.
+The rest were just the sort of things to be found in the dungeon.
+</P>
+
+<P>A technical Graphics note, of possible use to the emulator writers,
+and a good example of thinking flexibly.  The 99/4a had a 'bitmapped'
+graphics mode, that used 3 banks of 256 8x8 characters, one for each
+third of the screen (vertically).  A similarly-sized set of banks of
+color data allowed you to have 2 colors per line of a character instead
+of 2 colors per character. Using this mode used up most of the space
+used for data by most programs, including ToD.  The idea was to use each
+character once on the screen, sequentially.  Sega realized that if you
+loaded each bank with the same characters, you could use any character
+anywhere on the screen (as you would in a non-bitmapped game) and get
+the extra colors for a relatively minor increase in program space.  They
+used this approach for Zaxxon.
+</P>
+
+<P><I><B>EB:</B> Does Tunnels of Doom have any Easter eggs or secrets?
+If so, how does the player expose them?  </I></P>
+
+<P><B>KK:</B> Nope.  No room for eggs there.  Near the end, I was
+limiting game features to make it all fit in 30K.  (+15K database)
+</P>
+
+<P><I><B>EB:</B> What was your development environment back then? </I></P>
+
+<P><B>KK:</B> Mainframe via monochrome terminals downloading into
+water-heater sized emulators.  The emulators had displays for viewing
+memory and setting breakpoints manually.  An interpreted in-house
+language called GPL was used, though pure assembly was being phased in
+for the latter arcade games.
+ </P>
+
+<P><I><B>EB:</B> What about code re-use?  Did the programmers share
+code?  </I></P>
+
+<P><B>KK:</B> Libraries were developed from people’s code, and saw some
+reuse.  Then again, GPL gave us a lot of our standard needs.
+</P>
+
+<P><I><B>EB:</B> Did you use a source code control system?  If so, how
+was it to use?  </I></P>
+
+<P><B>KK:</B> 	Yes, on the mainframe.  It wasn’t particularly onerous.
+</P>
+
+<P><I><B>EB:</B> What was your debugging process?  Did you have a source
+level debugger?  </I></P>
+
+<P><B>KK:</B> Originally, a keypad on the water heater to look at the
+current address and view or modify memory locations, shown via 7-segment
+LEDs.  A source debugger was developed during my time there, but it took
+a bit of preparation, so for simpler bugs the keypad/LED was
+occasionally used. </P>
+
+<P><I><B>EB:</B> What makes a good video game for you? </I></P>
+
+<P><B>KK:</B> Fun, and play balance.  A reasonable learning curve
+allowing you to get fairly far into a game.  The ability to save
+frequently.</P>
+
+<P><I><B>EB:</B> What do you think of today's home video games? </I></P>
+
+<P><B>KK:</B> I'm mainly into 3D shooters, survival horror, and some
+RPG.  The recent game I play most: Diablo II with LoD.  An earlier game
+I still play: Empire Deluxe.  I don't have the time for the longer RPGs,
+or games that only let you save if you complete a mission.  I never got
+into sports or real-time strategy titles.  Loved Serious Sam.</P>
+
+<P>There's a lot of good stuff in today's, but too often the rush to the
+door shows.  (Pool of Radiance, anyone?)  I probably buy 5x the amount
+of games I'll ever get around to playing.  (Also books, DVD's, board
+games, etc.)  I'm still a solitary player: too many sharks online,
+though I was in the Diablo II beta.</P>
+
+<P><I><B>EB:</B> What are you doing now?  Are you working on any games
+now?</I></P>
+
+<P><B>KK:</B> I went from chemical instrumentation, to modem and audio
+drivers for Windows at Rockwell, to PC diagnostics, to embedded systems
+now, with some management duties along the way.  There's enough good,
+young, and cheaper game programmer's out there now, there's little way
+for me to get back into it.  Then there's the boom/bust cycles, the way
+most of the work is in translation between systems, and the frequent
+manager that doesn't have a clue.  I could see myself as a manager, or
+going core and utility algorithms, though I'd also like to get back into
+scientific programming someday.</P>
+
+<P>Also, I finally got to apologize to Steve Jackson at an E3 a couple
+of years ago.  You see, I mentioned to my boss one day that there was
+this non-computer game already called Car Wars</P>
+
+<P>(To those that may not know, for years all the items for Steve Jackson's
+Games tabletop Car Wars products had to have a disclaimer on them about
+not being associated with out product because of this.)</P>
+
+<P><I><B>EB:</B> Did you work on TI Car Wars? </I></P>
+
+<P><B>KK:</B> This was another game by the guy that did Munch Man and TI
+Invaders (and Parsec). [Jim Dramis] I think my role was limited to
+testing and possibly making suggestions. </P>
+
+<P><I><B>EB:</B> I'm going to add a section on <A HREF="emulation.html">how to use
+MESS to play ToD on your PC</A>.  How do you feel about emulators
+for classic games?  </I></P>
+
+<P><B>KK:</B> I'm generally anti-piracy, but have few problems
+personally if a game's out of print.
+</P>
+
+<H2>Footnotes</H2>
+
+<CODE><PRE>
+[1] Giant List of Classic Game Programmers <A HREF="http://dadgum.com/giantlist/list.html">http://dadgum.com/giantlist/list.html</A>
+[2] TI Timeline <A HREF="http://www.homecomputercentral.com/TImeline/default.html">http://www.homecomputercentral.com/TImeline/default.html</A>
+</PRE></CODE>
+
+[ <A HREF="kevin_kenney_interview.html">Part I</A> ] [ <A HREF="index.html">home</A> ] <BR>
+
+    <hr>
+    Copyright 2002 Ed Burns
+    <address><a href="mailto:Ed Burns <ed.burns@sun.com>"></a></address>
+<!-- Created: Mon Jan 14 13:17:02 Pacific Standard Time 2002 -->
+<!-- hhmts start -->
+Last modified: Sun Jul 31 10:12:32 Eastern Daylight Time 2005
+<!-- hhmts end -->
+  </body>
+</html>

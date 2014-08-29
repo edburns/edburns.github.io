@@ -1,0 +1,131 @@
+
+  Edward J. Burns
+
+edburns@acm.org <mailto:edburns@acm.org>
+URL: <http://purl.oclc.org/NET/edburns/resume> PDF <edburns.pdf>, MSWord
+<edburns.doc>, Star Office <edburns.sxw> and ASCII <edburns.txt> format
+available
+
+Address information <address.html>
+
+------------------------------------------------------------------------
+
+
+      *OBJECTIVE*
+
+Put my experience and education to work in a creatively challenging
+organization dedicated to producing world-class software through
+efficient application of software engineering practices.
+
+
+      *EXPERIENCE*
+
+Sun Microsystems:
+
+      10/02 - present, /Senior Staff Engineer/, Santa Clara, CA
+
+    * Help lead a team of industry experts from leading companies such
+      as IBM, BEA, Sun, and Oracle in developing the specification for
+      JavaServer Faces <http://www.jcp.org/jsr/detail/252.jsp> (JSF).
+    * Pioneered techniques for using JSF and AJAX together.
+    * Co-author of upcoming book /JavaServer Faces: The Complete
+      Reference <http://purl.oclc.org/NET/jsfbook/>/.
+    * Frequent Java.Net Blogger <http://weblogs.java.net/blog/edburns/>
+
+      09/01 - 05/04, /Staff Engineer/, Santa Clara, CA
+
+    * Team leader for JavaServer Faces web application framework
+      <http://java.sun.com/javaee/javaserverfaces/> since early days of
+      project. Leveraged extreme programming concepts to lead a three
+      person team in tackling an ambitious, highly visible, project on
+      an aggressive schedule.
+
+      1/97 - 8/01, /Staff Engineer/, Santa Clara, CA
+
+    * Lead engineer for Java integration <http://www.mozilla.org/oji/>
+      in the Netscape 6 web browser. Netscape 6 is several million lines
+      of open source code <http://www.mozilla.org/hacking/>. Deep
+      knowledge of C++, Win32 internals, XPCOM, GNU/Linux, JNI, and Java.
+    * Designed and implemented an open source Java API to web browsing
+      functionality
+      <http://www.mozilla.org/projects/blackwood/webclient/>. The API
+      has implementations rooted in Netscape 6, ICE, and Internet
+      Explorer. Several customers are using the webclient API in their
+      custom products. The API also ships standard with Netscape 6.01
+      for Solaris.
+    * Was instrumental in conceiving and implementing a grass-roots CASE
+      tool to gather software requirements. Utilized XML, XSL and
+      servlet technologies to provide a web front end.
+    * Lead engineer for front end of 100% Pure Java multi-dimensional
+      spreadsheet application. 
+
+Silicon Graphics: 6/95-1/97, /Core Engineer for Web Authoring Tool/,
+Mountain View, CA
+
+    * Collaborated on a self-started two person team to design,
+      implement and maintain a C++ web transport library. Drove the
+      library from inception through two major releases. This library
+      provides the foundation for SGI's web applications and ships on
+      every SGI computer since IRIX 6.2.
+    * Integrated the web transport library into CosmoCreate
+      <http://www.sgi.com/software/cosmo/create.html> to enable viewing
+      and authoring pages over the web. This provided experience in
+      extending legacy code well past initial requirements. 
+
+National Center for Supercomputing Applications: 8/94-6/95, /Developer
+for Mosaic for X/, Champaign, IL
+
+    * Implemented enabling features for browsing and posting to the
+      Common Client Interface (CCI
+      <http://www.ncsa.uiuc.edu/SDG/Software/XMosaic/CCI/cci-spec.html>)
+      library. Added Perl interface to CCI
+      <http://www.ncsa.uiuc.edu/SDG/Software/XMosaic/CCI/cci-perl.html>,
+      enabling perl programs to become web active.
+    * Conceived and implemented WebCast
+      <http://archive.ncsa.uiuc.edu/SDG/Software/XMosaic/CCI/webcast.html>,
+      a collaborative muticast (MBONE) program that enables sharing of
+      web pages between Mosaic’s all over the world using the CCI and
+      the reliable Multicast Protocol (RMP) library. 
+
+International Business Machines: 1/92-5/94, /Networking Systems
+division/, Research Triangle Park, NC
+
+    * Contributed to CallPath
+      <http://www-3.ibm.com/software/speech/enterprise/ep_6.html> Server
+      digital telephony software for AIX and OS/2.
+    * Designed and implemented OS/2 based CASE system for automated
+      System Testing. 
+
+
+      *EDUCATION*
+
+University of Illinois at Urbana-Champaign, College of Engineering Co-Op
+program, Computer Science Curriculum. Bachelor of Science in Computer
+Science with International minor in Germanic Studies, emphasis on
+computer music. *Degree Date: Spring 95*. GPA: 4.3/5.0
+
+
+      *PROGRAMMING LANGUAGES; TOOLS; RELATED COURSES*
+
+Java, AJAX, SOA, JNI, C++, C, Perl, UML, XSL, XML, SOAP, J2EE, Struts,
+CSS, HTML, CGI, SQL, JavaScript, Objective C, Fortran, Assembly, LISP,
+Rexx; COM, Emacs, Purify, gdb, dbx, performance analyzers, test driven
+development; Software Engineering, Operating Systems, Distributed
+Networks, Sun Certified Java 2 Architect
+
+
+      *REFERENCES*
+
+Craig McClanahan <craig.mcclanahan@sun.com
+<mailto:craig.mcclanahan@sun.com>>, Web tools Architect
+George Drapeau <george.drapeau@sun.com <mailto:george.drapeau@sun.com>>,
+Engineering Manager, Sun Microsystems
+Cynthia Kay <ckay@ingenuity.com
+<mailto:ckay@ingenuity.com?Subject=Reference for Ed Burns>>, VP of
+Engineering, Ingenuity, Inc.
+------------------------------------------------------------------------
+
+Last modified: Wed 22 March 22:07:51 Pacific Standard Time 2006
+
+The Resumé of Ed Burns / edburns@acm.org <mailto:edburns@acm.org>
+

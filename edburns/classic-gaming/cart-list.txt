@@ -1,0 +1,246 @@
+----------------------------------------------------
+ATARI VCS/2600 games - programmers list
+L - Limited release P - Prototype NR - not released
+AA - Atari Age magazine
+CCW - Children's Computer Workshop
+SSI - Sculptured Software, Inc.
+ 
+ 
+2601 ? Combat  Joe Decuir, Larry Wagner
+2602 ? Air-Sea Battle  Larry Kaplan
+2603 ? Star Ship  Bob Whitehead
+2604 ? Space War
+2605 ? Outlaw  David Crane
+2606 ? Slot Racers  Warren Robinett
+2607 ? Canyon Bomber  David Crane
+2608 ? Super Breakout ('81 L - Sears) Nick Turner?  Carol Shaw & Carla Meninsky?
+2609 ? Defender  Bob Polaro
+2610 ? Warlords  Carla Meninsky
+2611 ? INDY 500  Carla Meninsky (and Dave Kaemmer?)
+2612 ? Street Racer  Larry Kaplan
+2613 ? Adventure  Warren Robinett
+2614 ? Steeplechase (L - Sears)  Jim Huether
+2615 ? Demons to Diamonds  Nick Turner
+2616 ? Championship (Pele's) Soccer Steve Wright
+2617 ? Backgammon
+2618  ? 3-D Tic-Tac-Toe  Carol Shaw
+2619  ? Stellar Track (L - Sears)  Rob Zdybel
+2620 ? BASIC Programming  Warren Robinett
+2621 ? Video Olympics  Joe Decuir
+2622 ? Breakout  Brad Stewart
+2623 ? Home Run  Bob Whitehead
+2624 ? Basketball  Alan Miller
+2625 ? Football  Bob Whitehead
+2626 ? Miniature Golf
+2627 ? Human Cannonball
+2628 ? Bowling  Larry Kaplan
+2629 ? Sky Diver  Jim Huether
+2630  ? Circus ATARI
+2631 ? Superman  John Dunn
+2632 ? Space Invaders  Rick Mauer
+2633 ? Night Driver  Rob Fulop
+2634 ? Golf
+2635 ? Maze Craze  Rick Mauer
+2636 ? Video Checkers  Carol Shaw
+2637 ? Dodge 'Em  Carla Meninsky
+2638 ? Missile Command  Rob Fulop
+2639 ? Othello  Ed Logg
+2640 ? RealSports Baseball  Joseph Tung
+2641 ? Surround  Alan Miller
+2642 ? Hunt & Score/Game of Concen. Alan Miller (Jim Huether have any involvement?)
+2643 ? Code Breaker
+2644 ? Flag Capture  Jim Huether
+2645 ? Video Chess  Larry Wagner and Bob Whitehead
+2646 ? Pac-Man  Tod Frye
+2647 ? Submarine Commander (L-Sears)
+2648  ? Video Pinball  Bob G. Smith
+2649 ? Asteroids  Brad Stewart
+2650 ? Berzerk  Dan Hitchens
+2651 ? Black Jack  Bob Whitehead
+2652 ? Casino  Bob Whitehead
+2653 ? Slot Machine  David Crane
+2654 ? Haunted House  Steve Wright
+2655 ? Yar's Revenge  Howard Scott Warshaw
+2656 ? Swordquest Earthworld
+2657 ? Swordquest Fireworld  Tod Frye
+2658 ? Math Gran Prix  Suki Lee
+2659 ? Raiders of the Lost Ark  Howard Scott Warshaw
+2660 ? Star Raiders  Carla Meninsky (programmer), Douglas Neubauer (designer)
+2661 ? BASIC Math/Fun with Numbers
+2662  ? Hangman  Alan Miller
+2663 ? Road Runner  Bob Polaro
+2664 ? Brain Games  Larry Kaplan
+2665 ? Frog Pond
+2666 ? RealSports Volleyball  Bob Polaro
+2667 ? RealSports Soccer
+2668 ? RealSports Football  Rob Zdybel
+2669 ? Vanguard
+2670 ? ATARI Video Cube [L - AA]
+2671 ? Swordquest Waterworld [L]
+2672 ? Swordquest Airworld
+2673 ? Phoenix
+2674 ? E.T.    Howard Scott Warshaw
+2675 ? Ms. Pac-Man
+2676 ? Centipede
+2677 ? Dig Dug
+2678 ? Dukes of Hazzard [P]  Mark R. Hahn
+2679 ? RealSports Basketball [L]
+2680 ? RealSports Tennis
+2681 ? Battlezone
+2682 ? Krull    Dave Staugas
+2683 ? Crazy Climber [L - AA]  Alex Leavens
+2684 ? Galaxian
+2685 ? Gravitar [L - AA]
+2686 ? Quadrun [L - AA]  Steve Woita
+2687 ? Tempest [P]  Carla Meninsky
+2688 ? Jungle Hunt
+2689 ? Kangaroo
+2690 ? Pengo [L]  Mark R. Hahn (programmer), Andrew Fuchs & Jeff Gusman (audio), Courtney Gramer
+2691 ? Joust
+2692 ? Moon Patrol
+2693 ? Food Fight [NR]
+2694 ? Pole Position
+2695 ? Xevious [P]  Tod Frye
+2696 ? Asterix (PAL)  Steve Woita
+2697 ? Mario Brothers
+2698 ? Rubik's Cube
+2699 ? Taz    Steve Woita
+26100    *not used*
+26101 ? Oscar's Trash Race (CCW)          Preston Stuart (graphics designer) 26102 ? Cookie Monster Munch (CCW) Gary Stark, Preston Stuart (graphics designer)
+26103 ? Alpha Beam with Ernie (CCW)  Preston Stuart (graphics designer) 26104 ? Big Bird's Egg Catch (CCW) Preston Stuart (graphics designer) 26105 ? 3-D Asteroids [P]
+26106 ? Grover's Music Maker (CCW)[P] Preston Stuart (graphics designer) 26107 ? Snow White [P]
+26108 ? Donald Duck's Speedboat Race [P]
+26109 ? Sorcerer's Apprentice  Peter C. Niday
+26110 ? Crystal Castles  Peter C. Niday (designer), Michael Kosaka (graphics), Robert Vieira (audio)
+26111 ? Snoopy & the Red Baron Nick Turner
+26112 ? Good Luck, Charlie Brown [P]
+26113 ? Miss Piggy's Wedding [P]
+26114 ? Pigs in Space  Bill Aspromonte (designer- did "Pastaroids"), John Russell, Rob Zdybel
+26115 ? Dumbo's Flying Circus [P]
+26116 ? Galaga [NR]
+26117 ? Obelix    Suki Lee (designer/programmer), Dave Jolly (graphics), Andrew Fuchs & Jeff Gusman (audio)
+26118 ? Millipede  Dave Staugas (designer), Andrew Fuchs & Robert Vieira (audio), Jerome Domurat (graphics)
+26119 ? Saboteur [P]  Howard Scott Warshaw
+26120 ? Stargate/Defender II  Bill Aspromonte (designer), Andrew Fuchs (audio)
+26121 ? Zookeeper [NR]
+26122 ? Sinistar [P]
+26123 ? Jr. Pac-Man
+26124 ? Choplifter! [P]
+26125 ? Track & Field
+26126 ? Elevator Action [NR]
+26127 ? Gremlins  Scott Smith (designer), Mimi Nyden (animation), Robert Vieira (audio)
+26128 ? Boing (First Star) [NR]  Alex Leavens & Shirley Russell 26129 ? Midnight Magic
+26130 ? Honker Bonker [P]
+26131 ? Monstercise  (CCW) [P]
+26132 ? Garfield [P]  Steve Woita
+26133 ? The A-Team [P]  Howard Scott Warshaw  (did changes?)
+26134 ? The Last Starfighter [NR]
+26135 ? RealSports Boxing (Absolute)
+26136 ? Solaris  Douglas Neubauer
+26137 ? Peek-A-Boo [P]
+26138 ? Super Soccer [NR]
+26139 ? Crossbow (Absolute)
+26140 ? Desert Falcon  Bob Polaro
+26141 ? Super Stunt Cycle (PAL) [NR]
+26142 ? Crack'd [NR]
+26143 ? Donkey Kong (Coleco)    Gary Kitchen
+26144 ? Donkey Kong Jr. (Coleco)
+26145 ? Venture (Coleco)
+26146 ? Mousetrap (Coleco)
+26147 ? Frogger (Parker Brothers) [NR]
+26148  ? Turbo (Coleco) [NR]
+26149 ? Zaxxon (Coleco) [NR]
+26150 ? Q*bert (Parker Brothers)
+26151 ? Dark Chambers (SSI)        John Palevich
+26152 ? Super Baseball
+26153 ? Thunderfox (PAL) [NR]
+25154 ? Super Football  Douglas Neubauer
+26155 ? Sprintmaster  Bob Polaro
+26156 ?
+26157 ?
+26158 ? Surround II [NR]
+26159 ? Double Dunk
+26160 ?
+26161 ?
+26162 ? Fatal Run (PAL - SSI)  Steve Aguirre
+26163 ? 31 in 1 Game Cart (PAL)
+26164 ?
+26165 ? Jinks [P]
+26166 ?
+26167 ? Street Fight [NR]
+26168 ? Off the Wall (Axlon)
+26169 ? Shooting Arcade (Axlon) [P] Tod Frye
+26170 ? Secret Quest (Axlon)  Nolan Bushnell (designer), Steve DeFrisco (programmer)
+26171 ? Motorodeo (Axlon)  Steve DeFrisco
+26172 ? Xenophobe
+26173 ?
+26174 ?
+26175 ?
+26176 ? Radar Lock  Douglas Neubauer
+26177 ? Ikari Warriors
+26178 ? Saving Mary (Axlon) [P] Tod Frye
+26179 ?
+26180 ?
+26181 ?
+26182 ?
+26183 ? Sentinel  David Lubar
+26184 ? White Water Madness [NR]
+26185  ?
+26186 ?
+26187 ?
+26188 ?
+26189 ?
+26190 ? BMX Airmaster (TNT/SSI) Adam Clayton
+26191 ?
+26192 ? Klax    Steve DeFrisco
+ 
+ 
+ 
+Prototypes with unknown CX #'s:
+ 
+ Aquaventure
+? Ball Blazer    Tod Frye
+ Bionic Breakthrough
+ Bugs Bunny  Bob Polaro
+ Combat II
+? Elk Attack    Mark R. Hahn
+ Holey Moley  Bob Polaro
+ Polo    Carol Shaw
+? Rabbit Transit (Starpath) Brian McGhie
+? Stunt Cycle/Dukes of Hazzard Bob Polaro
+? Swordquest Earthworld S.E. [L]  (possibly doesn't have a CX #) ? Swordquest Fireworld S.E. [L]    (possibly doesn't have a CX #) ? Telepathy
+? The Adventures of Max (Axlon)  Nolan Bushnell (designer )  This was at least started, possibly near finished?
+? Wizard    Chris Crawford
+ 
+ 
+ 
+Titles of unknown status:
+ 
+Androman robot system
+Bobby's Cosmic Adventure (Telegames?)
+Cavern of Mars
+Challenger (had rights)
+Cloak & Dagger (Saboteur?)
+Dr. Strangepork (Pigs in Space?)
+Dungeon, Dungeon Masters (Telegames?  Another name for Venture?) Ernie's Magic Shapes (same as 400/800 version?)
+Fail-Safe (5200 Countermeasure?  Based on 1964 cold war movie?)
+Foxbat - air combat/war strategy game ('Foxbat' is the name of the Russian Mig-25 fighter plane)
+Mickey Mouse (Sorcerer's Apprentice?)
+Nebulus
+Preppie (actually 26135?)
+Qix (actually 26156?)
+Rally-X (had rights.  Started?)
+RealSports Driving (became Pole Position?)
+Robotron 2084
+Rodeo (P - by Carol Shaw.  Precursor to Stampede?)
+Round-Up (had rights)
+Satmar
+Sea Sentinel
+Slapshot (hockey game?)
+Sport Goofy (like 5200 version?)
+Superman 2
+Superman 3
+Tetris
+"war game"???  CX26156??
+
+SHL, Dragonstomper

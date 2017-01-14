@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/edburns
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://ridingthecrest.com
+  * I am edburns (https://keybase.io/edburns) on keybase.
+  * I have a public key with fingerprint 18D5 D56A A8DA 4FED 0111  17CF 9990 AA06 6071 390F
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "18d5d56aa8da4fed011117cf9990aa066071390f",
+            "host": "keybase.io",
+            "key_id": "9990aa066071390f",
+            "uid": "6b75ff504bc10f10688b8b8c98ec2900",
+            "username": "edburns"
+        },
+        "service": {
+            "hostname": "ridingthecrest.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1414000714,
+    "expire_in": 157680000,
+    "prev": "455ecc76ec2dd62dc50c361bff276a599c132aa0c70ae3fba6b64a378d9368db",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v1.1.3
+Comment: https://keybase.io/crypto
+
+yMHqAnicbVFrSBRRGF1fmy7awzKLiGi2RNHkzu48VyEoIxLJQhGFYJ3Hnd1pc2ac
+md18ZEI/ChFDoR+ZJRlBllrYk4jCXmhqYZIbSA8I0XIlNKglMOyO2L/u/XG55zvn
+fOfe70VKnM0R0956w15Zza6JGRn4FbSV7p8vrMd4VazFPPVYAC4fkqz4oK7psmJi
+HgxnRFIkKY5jRI6QoAhwtGhBYlkWcBygKEDjbhZIWA7mVw1LgWx4zoC5soowdPHK
+IkL/ww8uFyieJiWJBAQv4EDCAcUwPNoCy0DBxQJgEQ2oK1wVRGwo8kFdMbCGHAyB
+IVmAVmSr8wpBl0WU3/RDQYeGmSuoVchA01VTFdRjqO43Tc1jyc1azeIfh7x3xcnL
+y4olRoIQ1A1ZVTAPjpiCKVvWOIETAKD4RA4GazRZh17ZYpA0xSAcWG1gCFkSJAkF
+gaZQflGkXKJAAsFN4bwkuWiKI1lWwN0u9BcCDTjolniO4imCc9OMyLopRuQx623V
+iop5UCeT8yFLQ/YpnBnUIdbwbOBIvC3GYbMnxFrjszmS1v4b6pPNq5YO//neiM9M
+n2p2yq9bc281ndO16W2NE0lDLTVpN7e+2+5qfzj9vutzZ0ZULTR8pVeGiYVUInt1
+iriwY3ZsPrWuqOteb6A6fXzDnRP7EhtDBenRLZo+OTMaW/dtU1Zb8ZLn1a5wVWbx
+8O6Ct1dHIgfLvvoO1WVO7iwxEwqDZNGbisHo5dsPAvamdbK/I8N7vcfc+DxclDfV
+kr33gOPCz/K5tubEngh1unNoML7mg9w/uzh2N601oaxkoteUXmY6y3/3RcLanO+M
+f9geSc4qXXp0cbzjaB/c87jjR3QxeSqvO9T/MbD+/Nn8p85LPZ9U9Yvz/milKysu
+JXytIv9kyeRfibUXGw==
+=e3aS
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/edburns
+
+==================================================================

@@ -3,10 +3,10 @@
 <channel>
         <title>Jekyll Bootstrap</title>
         <description>Jekyll Bootstrap - Name Lastname</description>
-        <link>http://username.github.io</link>
-        <atom:link href="http://username.github.io/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Fri, 10 Feb 2017 09:00:20 -0500</lastBuildDate>
-        <pubDate>Fri, 10 Feb 2017 09:00:20 -0500</pubDate>
+        <link>http://ridingthecrest.com/scratch/20170210-jekyll</link>
+        <atom:link href="http://ridingthecrest.com/scratch/20170210-jekyll/rss.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Sat, 11 Feb 2017 09:59:43 -0500</lastBuildDate>
+        <pubDate>Sat, 11 Feb 2017 09:59:43 -0500</pubDate>
         <ttl>60</ttl>
 
 
@@ -15,8 +15,8 @@
                 <description>
 &lt;p&gt;This is my first post.&lt;/p&gt;
 </description>
-                <link>http://username.github.io/personal/2017/02/10/hello-20170210</link>
-                <guid>http://username.github.io/personal/2017/02/10/hello-20170210</guid>
+                <link>http://ridingthecrest.com/scratch/20170210-jekyll/personal/2017/02/10/hello-20170210</link>
+                <guid>http://ridingthecrest.com/scratch/20170210-jekyll/personal/2017/02/10/hello-20170210</guid>
                 <pubDate>Fri, 10 Feb 2017 00:00:00 -0500</pubDate>
         </item>
 
@@ -438,8 +438,8 @@ As noted, our main programming constraint is the fact that our API is limited to
 &lt;p&gt;Please take a look at &lt;a href=&quot;&quot;&gt;&lt;/a&gt;
 or jump right into &lt;a href=&quot;&quot;&gt;Usage&lt;/a&gt; if you’d like.&lt;/p&gt;
 </description>
-                <link>http://username.github.io/lessons/2011/12/29/jekyll-introduction</link>
-                <guid>http://username.github.io/lessons/2011/12/29/jekyll-introduction</guid>
+                <link>http://ridingthecrest.com/scratch/20170210-jekyll/lessons/2011/12/29/jekyll-introduction</link>
+                <guid>http://ridingthecrest.com/scratch/20170210-jekyll/lessons/2011/12/29/jekyll-introduction</guid>
                 <pubDate>Thu, 29 Dec 2011 00:00:00 -0500</pubDate>
         </item>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>Jekyll Bootstrap</title>
- <link href="http://username.github.io/atom.xml" rel="self"/>
- <link href="http://username.github.io"/>
- <updated>2017-02-10T09:00:20-05:00</updated>
- <id>http://username.github.io</id>
+ <link href="http://ridingthecrest.com/scratch/20170210-jekyll/atom.xml" rel="self"/>
+ <link href="http://ridingthecrest.com/scratch/20170210-jekyll"/>
+ <updated>2017-02-11T09:59:43-05:00</updated>
+ <id>http://ridingthecrest.com/scratch/20170210-jekyll</id>
  <author>
    <name>Name Lastname</name>
    <email>blah@email.test</email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Hello 20170210</title>
-   <link href="http://username.github.io/personal/2017/02/10/hello-20170210"/>
+   <link href="http://ridingthecrest.com/scratch/20170210-jekyll/personal/2017/02/10/hello-20170210"/>
    <updated>2017-02-10T00:00:00-05:00</updated>
-   <id>http://username.github.io/personal/2017/02/10/hello-20170210</id>
+   <id>http://ridingthecrest.com/scratch/20170210-jekyll/personal/2017/02/10/hello-20170210</id>
    <content type="html">
 &lt;p&gt;This is my first post.&lt;/p&gt;
 </content>
@@ -24,9 +24,9 @@
  
  <entry>
    <title>Jekyll Introduction</title>
-   <link href="http://username.github.io/lessons/2011/12/29/jekyll-introduction"/>
+   <link href="http://ridingthecrest.com/scratch/20170210-jekyll/lessons/2011/12/29/jekyll-introduction"/>
    <updated>2011-12-29T00:00:00-05:00</updated>
-   <id>http://username.github.io/lessons/2011/12/29/jekyll-introduction</id>
+   <id>http://ridingthecrest.com/scratch/20170210-jekyll/lessons/2011/12/29/jekyll-introduction</id>
    <content type="html">
 &lt;p&gt;This Jekyll introduction will outline specifically  what Jekyll is and why you would want to use it.
 Directly following the intro we’ll learn exactly &lt;em&gt;how&lt;/em&gt; Jekyll does what it does.&lt;/p&gt;

@@ -6,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Ed Burns Blog</title>
-  <meta name="description" content="Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.">
+  <title>TSSJS - Tapestry Blog</title>
+  <meta name="description" content="&amp;nbsp; Tapestry Overview">
 
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <!--[if IE]>
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <![endif]-->
   <link rel="stylesheet" href="/blog/assets/main.css">
-  <link rel="canonical" href="/blog/">
+  <link rel="canonical" href="/blog/2005/03/04/tssjs-tapestry.html">
   <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
   
   
@@ -63,148 +63,120 @@
     <main class="page-content" aria-label="Content">
       <div class="jekyll-wrapper">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">TSSJS - Tapestry Blog</h1>
+    <p class="post-meta"><time datetime="2005-03-04T06:39:00-05:00" itemprop="datePublished">Mar 4, 2005</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="jive-rendered-content"><pre>&nbsp; Tapestry Overview
+
+&nbsp;&nbsp;&nbsp; Component-based
+
+&nbsp;&nbsp;&nbsp; Minimizes java coding
+
+&nbsp;&nbsp;&nbsp; Developer Focused
+
+&nbsp; Benefits
+
+&nbsp;&nbsp;&nbsp; Simplified, readable HTML
+
+&nbsp;&nbsp;&nbsp; True separation of MVC
+
+&nbsp;&nbsp;&nbsp; minimal java coding
+
+&nbsp;&nbsp;&nbsp; Great I18N
+ 
+&nbsp;&nbsp;&nbsp; Great developer feedback (fix)
+
+&nbsp;&nbsp;&nbsp; True component reuse
+
+&nbsp; Simple Forms
+
+&nbsp;&nbsp;&nbsp; Login page
+
+&nbsp; WAR layout
+
+&nbsp;&nbsp;&nbsp; Page is three:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HTML file, the view
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Java Code
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; XML file that tie two together
+
+&nbsp; Start with Plain HTML
+
+&nbsp;&nbsp;&nbsp; Mark tags as components by giving them the jwcid attrs.&nbsp; There is a
+&nbsp;&nbsp;&nbsp; standard set of components that can be bound to html elements
+
+&nbsp;&nbsp;&nbsp; OGNL does the value binding with the value attribute.
+
+&nbsp; Create the XML part.&nbsp; 
+
+&nbsp;&nbsp;&nbsp; Identifies the java class
+
+&nbsp;&nbsp;&nbsp; (problem) three artifacts for the page
+
+&nbsp; Create the Java Part
+
+&nbsp; Q.1 Is there a scoped namespace facility?
+
+&nbsp; Listeners are constrained to be a certain type.&nbsp; 
+
+&nbsp; Q.2 Are there any other kinds of listeners?
+
+&nbsp; Has the concept of an active page.
+
+&nbsp; Validation
+
+&nbsp;&nbsp;&nbsp; Error message is per page.&nbsp; Can there be per-component error
+&nbsp;&nbsp;&nbsp; messages? Yes.&nbsp; He mentions lots of things that can be done with the
+&nbsp;&nbsp;&nbsp; implementation.&nbsp; More components.&nbsp; 
+
+&nbsp;&nbsp;&nbsp; Client side validation, is easy to do.&nbsp; Just turn it on.
+
+&nbsp; Has conditional tags.&nbsp; This is done by having &lt;span&gt; with id
+
+&nbsp; (copy) When displaying the error page:
+
+&nbsp;&nbsp;&nbsp; Line precise error message
+
+&nbsp;&nbsp;&nbsp; Display evey possible piece of info you have.&nbsp; Query params, system
+&nbsp;&nbsp;&nbsp; properties, etc.&nbsp; 
+
+&nbsp;&nbsp;&nbsp; Only do this during development.
+
+&nbsp; The incorrect page pooling problem shouldn't happen
+ 
+&nbsp; Q.3: Are all beans defined in .page files?&nbsp; Can you have app session,
+&nbsp; scoped beans?
+
+&nbsp; Mega Components
+
+&nbsp;&nbsp;&nbsp; Table Component
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; They have per-cell renderer.
+
+&nbsp;&nbsp;&nbsp; Palette: does some AJAX stuff
+
+&nbsp; Principles
+
+&nbsp;&nbsp;&nbsp; Simplicity
+
+&nbsp;&nbsp;&nbsp; Consistency
+
+&nbsp;&nbsp;&nbsp; Efficiency
+
+&nbsp;&nbsp;&nbsp; Feedback
+</pre></div>
+
+  </div>
+
   
-  
-
-
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Feb 11, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/blog/jekyll/update/2017/02/11/welcome-to-jekyll.html">Welcome to Jekyll!</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Apr 14, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/04/14/javaserver-faces-12-and-javaserver-pages-21-public-review-specifications-available.html">JavaServer Faces 1.2 and JavaServer Pages 2.1 Public Review Specifications available Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 21, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/21/c-ease-use-never-heard-it.html">C++ Ease of use, never heard of it. Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 14, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/14/all-hail-tdd.html">All Hail TDD! Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 10, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/10/questions-suns-head-software.html">Questions for Sun&#39;s head of Software Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 8, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/08/article-thoughts-dick-grimess-net-farewell.html">Article Thoughts - Dick Grimes&#39;s .NET Farewell Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 5, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/05/tssjs-gregor-hohpe-soa-same-old-architecture.html">TSSJS - Gregor Hohpe - SOA Same Old Architecture? Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 5, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/05/tssjs-keynote-panel.html">TSSJS - Keynote Panel Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 4, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/04/tssjs-tapestry.html">TSSJS - Tapestry Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 4, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/04/tssjs-rod-johnson-keynote.html">TSSJS Rod Johnson Keynote Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 3, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/03/tssjs-rod-johnson-why-j2ee-projects-fail.html">TSSJS Rod Johnson - Why J2EE projects Fail Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 3, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/03/tssjs-ajax-ben-and-dion.html">TSSJS - AJAX with Ben and Dion Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 3, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/03/tssjs-caesars-palace-party-notes.html">TSSJS Caesar&#39;s Palace Party notes Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Aug 30, 2004</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2004/08/30/introducing-jayashri-visvanathan.html">Introducing Jayashri Visvanathan Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Aug 18, 2004</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2004/08/18/lets-learn-about-ourfaces.html">Let&#39;s learn about ourfaces Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 28, 2004</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2004/06/28/welcome-javaserver-tm-faces-implementation-project.html">Welcome to the JavaServer (TM) Faces Implementation Project! Blog</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/blog/feed.xml">via RSS</a></p>
-
-</div>
+</article>
 
       </div>
       </div>

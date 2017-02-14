@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-11T12:05:58-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-14T11:52:31-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="/blog/jekyll/update/2017/02/11/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2017-02-11T10:16:45-05:00</published><updated>2017-02-11T10:16:45-05:00</updated><id>/blog/jekyll/update/2017/02/11/welcome-to-jekyll</id><content type="html" xml:base="/blog/jekyll/update/2017/02/11/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
@@ -11,4 +11,492 @@
 &lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">JavaServer Faces 1.2 and JavaServer Pages 2.1 Public Review Specifications available Blog</title><link href="/blog/2005/04/14/javaserver-faces-12-and-javaserver-pages-21-public-review-specifications-available.html" rel="alternate" type="text/html" title="JavaServer Faces 1.2 and JavaServer Pages 2.1 Public Review Specifications available Blog" /><published>2005-04-14T12:12:00-04:00</published><updated>2005-04-14T12:12:00-04:00</updated><id>/blog/2005/04/14/javaserver-faces-12-and-javaserver-pages-21-public-review-specifications-available</id><content type="html" xml:base="/blog/2005/04/14/javaserver-faces-12-and-javaserver-pages-21-public-review-specifications-available.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;I'm pleased to announce the availability of the Public Review revisions of the next release of the JavaServer&lt;sup&gt;TM&lt;/sup&gt; Faces and Pages specifications. The Faces spec may be downloaded from &amp;lt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.jcp.org/en/jsr/detail?id=252&quot; rel=&quot;nofollow&quot;&gt;http://www.jcp.org/en/jsr/detail?id=252&lt;/a&gt;&amp;gt; and the Pages spec may be downloaded from &amp;lt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.jcp.org/en/jsr/detail?id=245&quot; rel=&quot;nofollow&quot;&gt;http://www.jcp.org/en/jsr/detail?id=245&lt;/a&gt;&amp;gt;&lt;i&gt;We really want feedback!&lt;/i&gt; &lt;strong&gt;Please use our &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://forum.java.sun.com/thread.jspa?threadID=617376&amp;amp;tstart=0&quot; rel=&quot;nofollow&quot;&gt;Forum&lt;/a&gt; to share your thoughts on the specs&lt;/strong&gt;. Or you may send feedback to the comments alias for &lt;a class=&quot;jive-link-email-small&quot; href=&quot;mailto:jsr-252-comments@jcp.org&quot;&gt;Faces&lt;/a&gt; or &lt;a class=&quot;jive-link-email-small&quot; href=&quot;mailto:jsr-245-comments@jcp.org&quot;&gt;JSP&lt;/a&gt; (&lt;a class=&quot;jive-link-email-small&quot; href=&quot;mailto:jsr-252-comments@jcp.org&quot;&gt;jsr-252-comments@jcp.org&lt;/a&gt; and &lt;a class=&quot;jive-link-email-small&quot; href=&quot;mailto:jsr-245-comments@jcp.org&quot;&gt;jsr-245-comments@jcp.org&lt;/a&gt;respectively) .&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;In
+ this entry, I link to a comprehensive high level outline of the changes
+ to the spec since the 1.1 release of the Faces spec. I've decided 
+include changes present in the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://jcp.org/aboutJava/communityprocess/edr/jsr252/index.html&quot; rel=&quot;nofollow&quot;&gt;December Early Draft Release&lt;/a&gt;
+ as well as the current release for completeness. Keep in mind this is a
+ high level outline, for details, I encourage you to read the relevant 
+sections of the spec itself.&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;Before we get to the outline, here is a brief summary of the main changes:&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Unified EL&lt;/p&gt;&lt;p&gt;The
+ expression language used in Faces, which was inspired by the expression
+ language used in JSTL and JSP, has been generalized and extracted into 
+its own top level &lt;code&gt;javax.el&lt;/code&gt; package. The EL is agnostic of 
+the technology hosting it, such as JSP or Faces, and is intended to be 
+generally useful in the same way one can use OGNL in a variety of 
+applications. Faces now has deprecated its internal EL in favor of using
+ the Unified EL.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;New Tree Creation and Content Interweaving Model for Faces applications that use JSP&lt;/p&gt;&lt;p&gt;While
+ it is perfectly acceptable to use Faces without using JSP, many people 
+find their productivity increases when using these two technologies 
+together. Unfortunately, as amply documented by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.onjava.com/pub/a/onjava/2004/06/09/jsf.html&quot; rel=&quot;nofollow&quot;&gt;Hans Bergsten in his article at onjava.com&lt;/a&gt;,
+ there were some integration cases that didn't work as expected. By 
+changing the specification of the implementation of the Faces 
+ViewHandler for JSP, as well as changing the JSP custom tag base class 
+used by all Faces component tags, these problems have all been resolved.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Integration with JSTL&lt;/p&gt;&lt;p&gt;Another long standing problem was in using JSTL's&lt;code&gt;&amp;lt;c:forEach&amp;gt;&lt;/code&gt;
+ tag to contain Faces input components. Because JSP has no notion of a 
+postback, it was not possible to apply the values correctly to the 
+nested input components on postback. By introducing some new concepts 
+into the EL, it is now possible to fully use &lt;code&gt;&amp;lt;c:forEach&amp;gt;&lt;/code&gt;with
+ any kind of Faces component. This will require a new release of JSTL, 
+which will also be present in J2EE 5, along with Faces and JSP.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Back Button issues and Multi Frame or Multi Window Faces Apps&lt;/p&gt;&lt;p&gt;Due
+ to a deficiency in the State Management API using Faces in Multi Frame 
+or Multi Window applications presented some problems. The browser back 
+button also could cause application state to become confused. These 
+problems have now been fixed.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Associating a message with a particular component in the page.&lt;/p&gt;&lt;p&gt;Previous
+ revisions of the spec didn't allow for dynamically including the label 
+of a component in an error message for that component. New spec features
+ now allow for this to happen.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;The golden 
+question, of course, where's the implementation? It's all implemented, 
+but the implementation of the Faces spec is only partially available, 
+due to the unavailability of a public implementation of the JSP 2.1 
+spec. There are two reasons for this.&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;ol&gt;&lt;li&gt;&lt;p&gt;We 
+heavily leverage the new, Unified EL, that is a separate spec document 
+but, for convenience, is being delivered under the JSP 2.1 spec. So, 
+while using the Unified EL does introduce a dependency on JSP 2.1, there
+ is nothing stopping someone from implementing the EL spec outside of 
+JSP.&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;In order to fix the Tree Creation and Content 
+Interweaving problems (which are inherent to the old way of using Faces 
+and JSP together, and therefore already implicitly dependent on JSP), as
+ well as using &amp;lt;c:forEach&amp;gt; with Faces input components (and 
+therefore implicitly dependent on JSTL), we had to make changes to the 
+JSP spec, which are being delivered as part of JSP 2.1&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;&lt;strong&gt;The parts that are unavailable are those parts that a user would encounter only when using Faces and JSP together.&lt;/strong&gt;
+ The parts that are available are those parts that a user would 
+encounter whether they use Faces with JSP or not. Features that are 
+unavailable at this time are listed in &lt;span style=&quot;color: gray;&quot;&gt;gray&lt;/span&gt;,
+ available features are listed in non-gray text. Available features are 
+present in the latest release of the official Faces implementation on &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://javaserverfaces.dev.java.net/&quot; rel=&quot;nofollow&quot;&gt;java.net&lt;/a&gt; which continues to run on J2EE 1.3 containers. Note that the content in section IV is mostly available.&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;Now, the outline of changes is available &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://weblogs.java.net/blog/edburns/outline.html&quot; rel=&quot;nofollow&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">I'm pleased to announce the availability of the Public Review revisions of the next release of the JavaServerTM Faces and Pages specifications. The Faces spec may be downloaded from &amp;lt;http://www.jcp.org/en/jsr/detail?id=252&amp;gt; and the Pages spec may be downloaded from &amp;lt;http://www.jcp.org/en/jsr/detail?id=245&amp;gt;We really want feedback! Please use our Forum to share your thoughts on the specs. Or you may send feedback to the comments alias for Faces or JSP (jsr-252-comments@jcp.org and jsr-245-comments@jcp.orgrespectively) .In
+ this entry, I link to a comprehensive high level outline of the changes
+ to the spec since the 1.1 release of the Faces spec. I've decided 
+include changes present in the December Early Draft Release
+ as well as the current release for completeness. Keep in mind this is a
+ high level outline, for details, I encourage you to read the relevant 
+sections of the spec itself.Before we get to the outline, here is a brief summary of the main changes:Unified ELThe
+ expression language used in Faces, which was inspired by the expression
+ language used in JSTL and JSP, has been generalized and extracted into 
+its own top level javax.el package. The EL is agnostic of 
+the technology hosting it, such as JSP or Faces, and is intended to be 
+generally useful in the same way one can use OGNL in a variety of 
+applications. Faces now has deprecated its internal EL in favor of using
+ the Unified EL.New Tree Creation and Content Interweaving Model for Faces applications that use JSPWhile
+ it is perfectly acceptable to use Faces without using JSP, many people 
+find their productivity increases when using these two technologies 
+together. Unfortunately, as amply documented by Hans Bergsten in his article at onjava.com,
+ there were some integration cases that didn't work as expected. By 
+changing the specification of the implementation of the Faces 
+ViewHandler for JSP, as well as changing the JSP custom tag base class 
+used by all Faces component tags, these problems have all been resolved.Integration with JSTLAnother long standing problem was in using JSTL's&amp;lt;c:forEach&amp;gt;
+ tag to contain Faces input components. Because JSP has no notion of a 
+postback, it was not possible to apply the values correctly to the 
+nested input components on postback. By introducing some new concepts 
+into the EL, it is now possible to fully use &amp;lt;c:forEach&amp;gt;with
+ any kind of Faces component. This will require a new release of JSTL, 
+which will also be present in J2EE 5, along with Faces and JSP.Back Button issues and Multi Frame or Multi Window Faces AppsDue
+ to a deficiency in the State Management API using Faces in Multi Frame 
+or Multi Window applications presented some problems. The browser back 
+button also could cause application state to become confused. These 
+problems have now been fixed.Associating a message with a particular component in the page.Previous
+ revisions of the spec didn't allow for dynamically including the label 
+of a component in an error message for that component. New spec features
+ now allow for this to happen.The golden 
+question, of course, where's the implementation? It's all implemented, 
+but the implementation of the Faces spec is only partially available, 
+due to the unavailability of a public implementation of the JSP 2.1 
+spec. There are two reasons for this.We 
+heavily leverage the new, Unified EL, that is a separate spec document 
+but, for convenience, is being delivered under the JSP 2.1 spec. So, 
+while using the Unified EL does introduce a dependency on JSP 2.1, there
+ is nothing stopping someone from implementing the EL spec outside of 
+JSP.In order to fix the Tree Creation and Content 
+Interweaving problems (which are inherent to the old way of using Faces 
+and JSP together, and therefore already implicitly dependent on JSP), as
+ well as using &amp;lt;c:forEach&amp;gt; with Faces input components (and 
+therefore implicitly dependent on JSTL), we had to make changes to the 
+JSP spec, which are being delivered as part of JSP 2.1The parts that are unavailable are those parts that a user would encounter only when using Faces and JSP together.
+ The parts that are available are those parts that a user would 
+encounter whether they use Faces with JSP or not. Features that are 
+unavailable at this time are listed in gray,
+ available features are listed in non-gray text. Available features are 
+present in the latest release of the official Faces implementation on java.net which continues to run on J2EE 1.3 containers. Note that the content in section IV is mostly available.Now, the outline of changes is available here.</summary></entry><entry><title type="html">C++ Ease of use, never heard of it. Blog</title><link href="/blog/2005/03/21/c-ease-use-never-heard-it.html" rel="alternate" type="text/html" title="C++ Ease of use, never heard of it. Blog" /><published>2005-03-21T12:21:00-05:00</published><updated>2005-03-21T12:21:00-05:00</updated><id>/blog/2005/03/21/c-ease-use-never-heard-it</id><content type="html" xml:base="/blog/2005/03/21/c-ease-use-never-heard-it.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;I was doing some C++ hacking today, and I added the traditional:&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;pre&gt;#ifndef MYINTERFACENAME_H
+#define MYINTERFACENAME_H
+&lt;/pre&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;preprocessor magic in my .h file and it occurred 
+to me: normally I don't even question having to type such nonsense in 
+C++, I just live with it. Exploring this train of thought more 
+completely, I realized that C++ has never gone through a concerted 
+ease-of-development effort as Java has been going through over the past 
+few years. Why is that? Is it because &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.research.att.com/%7Ebs/homepage.html&quot; rel=&quot;nofollow&quot;&gt;Mr. Stroustrup&lt;/a&gt;doesn't care about &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.developer.com/design/article.php/3432191&quot; rel=&quot;nofollow&quot;&gt;the corporate developer&lt;/a&gt;?
+ Is it because no one company is betting its future on the success of 
+C++, and therefore there is no need to expand the ranks of the 
+developer?&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;technoratitag&quot;&gt;Technorati Tags: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.technorati.com/tags/edburns&quot; rel=&quot;nofollow&quot;&gt;edburns&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;</content><summary type="html">I was doing some C++ hacking today, and I added the traditional:#ifndef MYINTERFACENAME_H
+#define MYINTERFACENAME_H
+preprocessor magic in my .h file and it occurred 
+to me: normally I don't even question having to type such nonsense in 
+C++, I just live with it. Exploring this train of thought more 
+completely, I realized that C++ has never gone through a concerted 
+ease-of-development effort as Java has been going through over the past 
+few years. Why is that? Is it because Mr. Stroustrupdoesn't care about the corporate developer?
+ Is it because no one company is betting its future on the success of 
+C++, and therefore there is no need to expand the ranks of the 
+developer?Technorati Tags: edburns</summary></entry><entry><title type="html">All Hail TDD! Blog</title><link href="/blog/2005/03/14/all-hail-tdd.html" rel="alternate" type="text/html" title="All Hail TDD! Blog" /><published>2005-03-14T02:57:00-05:00</published><updated>2005-03-14T02:57:00-05:00</updated><id>/blog/2005/03/14/all-hail-tdd</id><content type="html" xml:base="/blog/2005/03/14/all-hail-tdd.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;Way
+ back in October 2002, I had the enviable position of ramping up the 
+development effort for the Sun RI for JavaServer Faces. At that time, 
+Test Driven Development (TDD) was just starting to catch on, and I used 
+my position as team leader to mandate (HA!) that we would use TDD on the
+ project. I realized that for any mandate to succeed, it must be easy to
+ implement, so the team and I invested in building the infrastructure 
+iteratively growing our test codebase. I can't tell you how many times 
+that investment has paid off, but I'll tell you one time: right now.&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;While implementing Adam Winer's proposal for fixing the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=11&quot; rel=&quot;nofollow&quot;&gt;State Saving Window Id&lt;/a&gt;
+ problem, I came across a corner case not covered explicitly in the 
+proposal. Basically, the proposal re-allocated some responsibilities and
+ neglected to re-allocate this one corner case, which happened to be 
+caught in an &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://htmlunit.sourceforge.net/&quot; rel=&quot;nofollow&quot;&gt;HTMLUnit&lt;/a&gt;
+ test, written by Craig, I think. Unfortunately, the net effect of this 
+neglect was to throw the webapp into an infinite loop. It was very easy 
+to re-produce: just visit the prefix mapped webapp and include only the 
+servlet-mapping with no trailing slash and no viewId. Thanks to the unit
+ test, I quickly found and fixed the problem, without introducing the 
+bug into the code.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">Way
+ back in October 2002, I had the enviable position of ramping up the 
+development effort for the Sun RI for JavaServer Faces. At that time, 
+Test Driven Development (TDD) was just starting to catch on, and I used 
+my position as team leader to mandate (HA!) that we would use TDD on the
+ project. I realized that for any mandate to succeed, it must be easy to
+ implement, so the team and I invested in building the infrastructure 
+iteratively growing our test codebase. I can't tell you how many times 
+that investment has paid off, but I'll tell you one time: right now.While implementing Adam Winer's proposal for fixing the State Saving Window Id
+ problem, I came across a corner case not covered explicitly in the 
+proposal. Basically, the proposal re-allocated some responsibilities and
+ neglected to re-allocate this one corner case, which happened to be 
+caught in an HTMLUnit
+ test, written by Craig, I think. Unfortunately, the net effect of this 
+neglect was to throw the webapp into an infinite loop. It was very easy 
+to re-produce: just visit the prefix mapped webapp and include only the 
+servlet-mapping with no trailing slash and no viewId. Thanks to the unit
+ test, I quickly found and fixed the problem, without introducing the 
+bug into the code.</summary></entry><entry><title type="html">Questions for Sun’s head of Software Blog</title><link href="/blog/2005/03/10/questions-suns-head-software.html" rel="alternate" type="text/html" title="Questions for Sun's head of Software Blog" /><published>2005-03-10T01:15:00-05:00</published><updated>2005-03-10T01:15:00-05:00</updated><id>/blog/2005/03/10/questions-suns-head-software</id><content type="html" xml:base="/blog/2005/03/10/questions-suns-head-software.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;span&gt;Next
+ month I'll have the opportunity to ask questions in real-time to John 
+Loiacano, Sun's head of Software. I usually can come up with tough 
+questions on my own, but since I got into blogging, I thought, &quot;why not 
+see what the world wants to know?&quot; So, please leave a comment with your 
+questions, if you are so inclined. I can't commit to publishing any 
+answers in this forum, but who knows, perhaps I'll run into you at a 
+conference and we can talk off the record. In person, I can exercise the
+ usual discretion when talking about such things, which isn't as easy in
+ a blog. Ed&amp;nbsp;&amp;nbsp; &lt;/span&gt;&lt;/div&gt;</content><summary type="html">Next
+ month I'll have the opportunity to ask questions in real-time to John 
+Loiacano, Sun's head of Software. I usually can come up with tough 
+questions on my own, but since I got into blogging, I thought, &quot;why not 
+see what the world wants to know?&quot; So, please leave a comment with your 
+questions, if you are so inclined. I can't commit to publishing any 
+answers in this forum, but who knows, perhaps I'll run into you at a 
+conference and we can talk off the record. In person, I can exercise the
+ usual discretion when talking about such things, which isn't as easy in
+ a blog. Ed&amp;nbsp;&amp;nbsp;</summary></entry><entry><title type="html">Article Thoughts - Dick Grimes’s .NET Farewell Blog</title><link href="/blog/2005/03/08/article-thoughts-dick-grimess-net-farewell.html" rel="alternate" type="text/html" title="Article Thoughts - Dick Grimes's .NET Farewell Blog" /><published>2005-03-08T01:13:00-05:00</published><updated>2005-03-08T01:13:00-05:00</updated><id>/blog/2005/03/08/article-thoughts-dick-grimess-net-farewell</id><content type="html" xml:base="/blog/2005/03/08/article-thoughts-dick-grimess-net-farewell.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.ddj.com/documents/s=9211/ddj050201dnn/&quot; rel=&quot;nofollow&quot;&gt;http://www.ddj.com/documents/s=9211/ddj050201dnn/&lt;/a&gt;&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;I know I'm late to the party on this article, so please excuse my tardiness.&lt;/p&gt;&lt;span&gt;&lt;/span&gt;&lt;p&gt;I'd
+ like to offer my thoughts on how Microsoft and Sun have approached the 
+problem of bringing more &quot;ease of development&quot; to their respective 
+platforms. According to Mr. Grimes's article, Microsoft marketing was 
+behind the introduction of VB.NET. Their motivation was to free the 
+massive numbers of developers they had won with VB from the shackles of a
+ single-threaded non-OO language, while still retaining those massive 
+numbers firmly in the Microsoft development camp. Their approach to do 
+this was marketing driven, and resulted in the creation of a backwards 
+incompatible language, with an implementation of inconsistent quality, 
+that is marketed as being backwards compatible with VB. Sun's motivation
+ for &quot;ease of development&quot; was, &quot;we have a great, powerful, easy to use,
+ language, but damn, look at all those VB developers!&quot; Sun's approach, 
+rather than being marketing driven, was engineering driven. We chose to 
+develop easy to use tools and technologies (like &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.sun.com/software/products/jscreator/&quot; rel=&quot;nofollow&quot;&gt;Java Studio Creator&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://research.sun.com/technical-reports/2005/abstract-128.html&quot; rel=&quot;nofollow&quot;&gt;DASL&lt;/a&gt;)
+ and add selective, highly considered, features to the core language. I 
+contend that right now Sun's approach has yielded a more successful 
+result in terms of &quot;ease of development&quot;, and it's starting to yield a 
+good result in terms also of developer capture as well.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">http://www.ddj.com/documents/s=9211/ddj050201dnn/I know I'm late to the party on this article, so please excuse my tardiness.I'd
+ like to offer my thoughts on how Microsoft and Sun have approached the 
+problem of bringing more &quot;ease of development&quot; to their respective 
+platforms. According to Mr. Grimes's article, Microsoft marketing was 
+behind the introduction of VB.NET. Their motivation was to free the 
+massive numbers of developers they had won with VB from the shackles of a
+ single-threaded non-OO language, while still retaining those massive 
+numbers firmly in the Microsoft development camp. Their approach to do 
+this was marketing driven, and resulted in the creation of a backwards 
+incompatible language, with an implementation of inconsistent quality, 
+that is marketed as being backwards compatible with VB. Sun's motivation
+ for &quot;ease of development&quot; was, &quot;we have a great, powerful, easy to use,
+ language, but damn, look at all those VB developers!&quot; Sun's approach, 
+rather than being marketing driven, was engineering driven. We chose to 
+develop easy to use tools and technologies (like Java Studio Creator and DASL)
+ and add selective, highly considered, features to the core language. I 
+contend that right now Sun's approach has yielded a more successful 
+result in terms of &quot;ease of development&quot;, and it's starting to yield a 
+good result in terms also of developer capture as well.</summary></entry><entry><title type="html">TSSJS - Gregor Hohpe - SOA Same Old Architecture? Blog</title><link href="/blog/2005/03/05/tssjs-gregor-hohpe-soa-same-old-architecture.html" rel="alternate" type="text/html" title="TSSJS - Gregor Hohpe - SOA Same Old Architecture? Blog" /><published>2005-03-05T05:45:00-05:00</published><updated>2005-03-05T05:45:00-05:00</updated><id>/blog/2005/03/05/tssjs-gregor-hohpe-soa-same-old-architecture</id><content type="html" xml:base="/blog/2005/03/05/tssjs-gregor-hohpe-soa-same-old-architecture.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;pre&gt;Gregor Hohpe SOA - Same Old Architecture
+
+I often have angst about how my relatively narrow focus on web
+presentation technologies, and faces in specific, is potentially career
+limiting.&amp;nbsp; Therefore, I'm taking steps to look up and look around.
+Mr. Hohpe's talk is such a step.&amp;nbsp; He has so much to say about SOA, and
+appears to understand the software development practice on its own very
+well.&amp;nbsp; So attending the talk, while I won't retain nearly all of the
+content, is very valuable.&amp;nbsp; I'll put his book &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.eaipatterns.com/index.html&quot; rel=&quot;nofollow&quot;&gt;Enterprise Integration
+Patterns&lt;/a&gt; on my Safari bookshelf.
+
+By the way, I think it's really great that Sun pays for all of its
+employees to have access to the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://sun.safaribooksonline.com/&quot; rel=&quot;nofollow&quot;&gt;Safari Books&lt;/a&gt; service.
+
+Regarding the talk itself, a good point that ties into my angst is that
+architectural patterns don't evolve that fast, but the vendor economics
+dictates that they want their products to evolve and sell quickly, so
+they spin it so the state of the art seems to be evolving very quickly.
+
+&lt;/pre&gt;&lt;/div&gt;</content><summary type="html">Gregor Hohpe SOA - Same Old Architecture</summary></entry><entry><title type="html">TSSJS - Keynote Panel Blog</title><link href="/blog/2005/03/05/tssjs-keynote-panel.html" rel="alternate" type="text/html" title="TSSJS - Keynote Panel Blog" /><published>2005-03-05T04:19:00-05:00</published><updated>2005-03-05T04:19:00-05:00</updated><id>/blog/2005/03/05/tssjs-keynote-panel</id><content type="html" xml:base="/blog/2005/03/05/tssjs-keynote-panel.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;pre&gt;Keynote panel
+
+Q: Motorola guy: Why should I believe that J2EE will withstand the .NET
+onslought?
+
+A.Cliff: IBM
+
+A.Mark: people may not want vendor lock-in.&amp;nbsp; People aren't putting all
+their IP into .NET.&amp;nbsp; 
+
+A.Rod: projects are succeeding
+
+A.Cliff: Band together to fight MS.&amp;nbsp; JCP.&amp;nbsp; Open Source influencing JCP.
+
+A.Gregor Hohpe: JCP: give us your idea, Sun owns it.&amp;nbsp; MS: give us your
+idea, we hire you.&amp;nbsp; It's about developer mindshare.&amp;nbsp; The stuff that is
+most pervasive, is the stuff that's no-one talks about any more.&amp;nbsp; Cobol,
+C++. There aren't that many Cobol conferences, but many businesses are
+running their businesses on it.&amp;nbsp; People like choices, but not too mant
+choices.&amp;nbsp; 
+
+A.Linda: agree.&amp;nbsp; We have a competitive technology market of our own,
+therefore, we have the benefit of having these technologies compete
+against each other.&amp;nbsp; 
+
+A.Mark: No one does COM any more?
+
+A.Gregor: doch.&amp;nbsp; But new development is outweighed by maintenance many
+times over.&amp;nbsp; There is lots of COM out there.&amp;nbsp; MS did lose some of the VB
+community with ASP.NET.&amp;nbsp; 
+
+Floyd: MS has sent out invitations to developers that are neutral to
+hostile to .NET.&amp;nbsp; 
+
+Rod: there is some growth in .NET open source things.&amp;nbsp; How long will EJB
+and J2EE live?
+
+A.Dion: waiting for the next thing.&amp;nbsp; 
+
+A.Mark: Look at core of Java and MS.&amp;nbsp; Java: boundaires: JVM, libraries.
+Enables independent evolution.&amp;nbsp; .NET: boundary is Windows.&amp;nbsp; Can't evolve
+independently.&amp;nbsp; Personal: but can't MS just introduce this boundary?
+
+A.Rod: MS community is very pragmatic.&amp;nbsp; Let's learn from it.&amp;nbsp; 
+
+Audience: I like SOA.&amp;nbsp; Why are you guys dissing it?
+
+A.Gregor: It's coming, but it's not displacing.
+
+A.Rod: SOA is coming, but slowly than it seems.&amp;nbsp; J2EE App Server is
+becoming a commodity.&amp;nbsp; 
+
+Q: Does it make sense to bring in loosly typed objects directly into
+Java?&amp;nbsp; 
+
+A.Mark: JAXB is going to this.&amp;nbsp; 
+
+A.Cliff: Apache XMLBeans is out there.
+
+A.Dion: EcmaScript for XML, E4X, has this.&amp;nbsp; 
+
+Q.Rod: What's happening with Groovy?
+
+A.Dion: It's a JSR, it shouldn't be.&amp;nbsp; What else can we do on the JVM.
+
+A.Cliff: Open source is a better venue for early collaboration than JCP,
+because the vendor nature of JCP.
+
+Q: J12004: we're going after MS developers.&amp;nbsp; It hasn't happened.&amp;nbsp; Why?
+
+A.Gregor: Java makes people waste too much time on versionitis.
+
+A.Mark: He thinks the component area with JSF is where we can make some
+headway.&amp;nbsp;&amp;nbsp;&amp;nbsp; 
+
+A.Rod: Tools are still not as good as MS.
+
+Q.Nike: missing in java: the nightly batch run.&amp;nbsp; Not a lot of support
+for transactionality from a batch process.&amp;nbsp; 
+
+A.Rod: Agree.&amp;nbsp; We're not giving any attention.
+
+A.Mark: Agree.&amp;nbsp; Platform is oriented to interactive &quot;real time&quot; apps,
+not batch apps.&amp;nbsp; 
+
+Q. Putting JSF into J2EE seems to be a marketing thing.&amp;nbsp; Will this have
+a negative framework for other frameworks?
+
+A.Cliff: Still the same.&amp;nbsp; People will choose, even if it's in J2EE.&amp;nbsp; 
+
+A.Rod: Persistence: there is some clarity in the winner.&amp;nbsp; In the web
+space, not yet.&amp;nbsp; It'll be interesting to see who wins.&amp;nbsp; 
+
+A.Mark: I don't think that bundling JSF won't stop other frameworks from
+existing out there.
+
+A.Dion: Depends on the kind of app you're building.&amp;nbsp; 
+
+
+
+&lt;/pre&gt;&lt;/div&gt;</content><summary type="html">Keynote panel</summary></entry><entry><title type="html">TSSJS - Tapestry Blog</title><link href="/blog/2005/03/04/tssjs-tapestry.html" rel="alternate" type="text/html" title="TSSJS - Tapestry Blog" /><published>2005-03-04T06:39:00-05:00</published><updated>2005-03-04T06:39:00-05:00</updated><id>/blog/2005/03/04/tssjs-tapestry</id><content type="html" xml:base="/blog/2005/03/04/tssjs-tapestry.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;pre&gt;&amp;nbsp; Tapestry Overview
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Component-based
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Minimizes java coding
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Developer Focused
+
+&amp;nbsp; Benefits
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Simplified, readable HTML
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; True separation of MVC
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; minimal java coding
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Great I18N
+ 
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Great developer feedback (fix)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; True component reuse
+
+&amp;nbsp; Simple Forms
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Login page
+
+&amp;nbsp; WAR layout
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Page is three:
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; HTML file, the view
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Java Code
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; XML file that tie two together
+
+&amp;nbsp; Start with Plain HTML
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Mark tags as components by giving them the jwcid attrs.&amp;nbsp; There is a
+&amp;nbsp;&amp;nbsp;&amp;nbsp; standard set of components that can be bound to html elements
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; OGNL does the value binding with the value attribute.
+
+&amp;nbsp; Create the XML part.&amp;nbsp; 
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Identifies the java class
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; (problem) three artifacts for the page
+
+&amp;nbsp; Create the Java Part
+
+&amp;nbsp; Q.1 Is there a scoped namespace facility?
+
+&amp;nbsp; Listeners are constrained to be a certain type.&amp;nbsp; 
+
+&amp;nbsp; Q.2 Are there any other kinds of listeners?
+
+&amp;nbsp; Has the concept of an active page.
+
+&amp;nbsp; Validation
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Error message is per page.&amp;nbsp; Can there be per-component error
+&amp;nbsp;&amp;nbsp;&amp;nbsp; messages? Yes.&amp;nbsp; He mentions lots of things that can be done with the
+&amp;nbsp;&amp;nbsp;&amp;nbsp; implementation.&amp;nbsp; More components.&amp;nbsp; 
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Client side validation, is easy to do.&amp;nbsp; Just turn it on.
+
+&amp;nbsp; Has conditional tags.&amp;nbsp; This is done by having &amp;lt;span&amp;gt; with id
+
+&amp;nbsp; (copy) When displaying the error page:
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Line precise error message
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Display evey possible piece of info you have.&amp;nbsp; Query params, system
+&amp;nbsp;&amp;nbsp;&amp;nbsp; properties, etc.&amp;nbsp; 
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Only do this during development.
+
+&amp;nbsp; The incorrect page pooling problem shouldn't happen
+ 
+&amp;nbsp; Q.3: Are all beans defined in .page files?&amp;nbsp; Can you have app session,
+&amp;nbsp; scoped beans?
+
+&amp;nbsp; Mega Components
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Table Component
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; They have per-cell renderer.
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Palette: does some AJAX stuff
+
+&amp;nbsp; Principles
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Simplicity
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Consistency
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Efficiency
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Feedback
+&lt;/pre&gt;&lt;/div&gt;</content><summary type="html">&amp;nbsp; Tapestry Overview</summary></entry><entry><title type="html">TSSJS Rod Johnson Keynote Blog</title><link href="/blog/2005/03/04/tssjs-rod-johnson-keynote.html" rel="alternate" type="text/html" title="TSSJS Rod Johnson Keynote Blog" /><published>2005-03-04T06:36:00-05:00</published><updated>2005-03-04T06:36:00-05:00</updated><id>/blog/2005/03/04/tssjs-rod-johnson-keynote</id><content type="html" xml:base="/blog/2005/03/04/tssjs-rod-johnson-keynote.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;pre&gt;Rod Johnson
+
+&amp;nbsp; - Agile J2EE has saved the J2EE platform from destroying itself via
+&amp;nbsp;&amp;nbsp;&amp;nbsp; its own best practices (blueprints).
+
+&amp;nbsp; - AOP 
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Not growing as fast as he expected, but it will continue to grow
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; AspectJ 5.0 will be the definitive AOP framework going forward
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Standardization?
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Hard to see the benefit now
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; JCP standardization not appropriate for AOP.&amp;nbsp; AOP is not
+&amp;nbsp;&amp;nbsp;&amp;nbsp; language-specific.
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Proxy-based AOP: a transitional technology
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Implications of AOP for app servers
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; - We'll see an evolution from a monolithic container to a service
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; integration point.&amp;nbsp; I think he's saying the app server is being
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; commoditized.
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp; Technologies to watch
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; IoC/Dependency injection
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; TDD
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; O-R mapping.&amp;nbsp; 
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Post struts 1.x web technology
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Value add web technologies
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Struts 2.0 is moving into workflow
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Beehive
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Spring is adding web flow technology
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Rich Client
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Technical skills to acquire
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Frameworks/methodologies
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Ability to set and ensure project direction
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; Offshoring: it's coming, if you know to leverage, you'll have a
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; job
+
+&lt;/pre&gt;&lt;/div&gt;</content><summary type="html">Rod Johnson</summary></entry></feed>

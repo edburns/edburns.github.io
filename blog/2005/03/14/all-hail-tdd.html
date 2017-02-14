@@ -6,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Ed Burns Blog</title>
-  <meta name="description" content="Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.">
+  <title>All Hail TDD! Blog</title>
+  <meta name="description" content="Way back in October 2002, I had the enviable position of ramping up the development effort for the Sun RI for JavaServer Faces. At that time, Test Driven Dev...">
 
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <!--[if IE]>
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <![endif]-->
   <link rel="stylesheet" href="/blog/assets/main.css">
-  <link rel="canonical" href="/blog/">
+  <link rel="canonical" href="/blog/2005/03/14/all-hail-tdd.html">
   <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
   
   
@@ -63,148 +63,38 @@
     <main class="page-content" aria-label="Content">
       <div class="jekyll-wrapper">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">All Hail TDD! Blog</h1>
+    <p class="post-meta"><time datetime="2005-03-14T02:57:00-05:00" itemprop="datePublished">Mar 14, 2005</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="jive-rendered-content"><p>Way
+ back in October 2002, I had the enviable position of ramping up the 
+development effort for the Sun RI for JavaServer Faces. At that time, 
+Test Driven Development (TDD) was just starting to catch on, and I used 
+my position as team leader to mandate (HA!) that we would use TDD on the
+ project. I realized that for any mandate to succeed, it must be easy to
+ implement, so the team and I invested in building the infrastructure 
+iteratively growing our test codebase. I can't tell you how many times 
+that investment has paid off, but I'll tell you one time: right now.</p><span></span><p>While implementing Adam Winer's proposal for fixing the <a class="jive-link-external-small" href="https://javaserverfaces-spec-public.dev.java.net/issues/show_bug.cgi?id=11" rel="nofollow">State Saving Window Id</a>
+ problem, I came across a corner case not covered explicitly in the 
+proposal. Basically, the proposal re-allocated some responsibilities and
+ neglected to re-allocate this one corner case, which happened to be 
+caught in an <a class="jive-link-external-small" href="http://htmlunit.sourceforge.net/" rel="nofollow">HTMLUnit</a>
+ test, written by Craig, I think. Unfortunately, the net effect of this 
+neglect was to throw the webapp into an infinite loop. It was very easy 
+to re-produce: just visit the prefix mapped webapp and include only the 
+servlet-mapping with no trailing slash and no viewId. Thanks to the unit
+ test, I quickly found and fixed the problem, without introducing the 
+bug into the code.</p></div>
+
+  </div>
+
   
-  
-
-
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Feb 11, 2017</span>
-
-        <h2>
-          <a class="post-link" href="/blog/jekyll/update/2017/02/11/welcome-to-jekyll.html">Welcome to Jekyll!</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Apr 14, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/04/14/javaserver-faces-12-and-javaserver-pages-21-public-review-specifications-available.html">JavaServer Faces 1.2 and JavaServer Pages 2.1 Public Review Specifications available Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 21, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/21/c-ease-use-never-heard-it.html">C++ Ease of use, never heard of it. Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 14, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/14/all-hail-tdd.html">All Hail TDD! Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 10, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/10/questions-suns-head-software.html">Questions for Sun&#39;s head of Software Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 8, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/08/article-thoughts-dick-grimess-net-farewell.html">Article Thoughts - Dick Grimes&#39;s .NET Farewell Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 5, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/05/tssjs-gregor-hohpe-soa-same-old-architecture.html">TSSJS - Gregor Hohpe - SOA Same Old Architecture? Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 5, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/05/tssjs-keynote-panel.html">TSSJS - Keynote Panel Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 4, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/04/tssjs-tapestry.html">TSSJS - Tapestry Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 4, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/04/tssjs-rod-johnson-keynote.html">TSSJS Rod Johnson Keynote Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 3, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/03/tssjs-rod-johnson-why-j2ee-projects-fail.html">TSSJS Rod Johnson - Why J2EE projects Fail Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 3, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/03/tssjs-ajax-ben-and-dion.html">TSSJS - AJAX with Ben and Dion Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Mar 3, 2005</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2005/03/03/tssjs-caesars-palace-party-notes.html">TSSJS Caesar&#39;s Palace Party notes Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Aug 30, 2004</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2004/08/30/introducing-jayashri-visvanathan.html">Introducing Jayashri Visvanathan Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Aug 18, 2004</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2004/08/18/lets-learn-about-ourfaces.html">Let&#39;s learn about ourfaces Blog</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 28, 2004</span>
-
-        <h2>
-          <a class="post-link" href="/blog/2004/06/28/welcome-javaserver-tm-faces-implementation-project.html">Welcome to the JavaServer (TM) Faces Implementation Project! Blog</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/blog/feed.xml">via RSS</a></p>
-
-</div>
+</article>
 
       </div>
       </div>

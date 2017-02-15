@@ -1,17 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-15T11:40:08-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="/blog/jekyll/update/2017/02/11/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2017-02-11T10:16:45-05:00</published><updated>2017-02-11T10:16:45-05:00</updated><id>/blog/jekyll/update/2017/02/11/welcome-to-jekyll</id><content type="html" xml:base="/blog/jekyll/update/2017/02/11/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
-
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-15T13:43:51-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
  I am sensitive to the real damage done to real lives and families that 
 is caused by gambling, so I will include a link to an organization that 
 offers help: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.calpg.org/&quot; rel=&quot;nofollow&quot;&gt;1-800-GAMBLER&lt;/a&gt;.
@@ -884,4 +872,110 @@ Java Developer community is very evident. Though firmly in legacy
 territory, Java is still very vibrant and very new. The priorities 
 behind the design choices in Java itself (innovation packaged in an 
 enterprise ready programming environment) are on display in the 
-community as well.</summary></entry></feed>
+community as well.</summary></entry><entry><title type="html">JavaOne 2014 Day Three Notes Blog</title><link href="/blog/2014/10/16/javaone-2014-day-three-notes.html" rel="alternate" type="text/html" title="JavaOne 2014 Day Three Notes Blog" /><published>2014-10-16T12:08:00-04:00</published><updated>2014-10-16T12:08:00-04:00</updated><id>/blog/2014/10/16/javaone-2014-day-three-notes</id><content type="html" xml:base="/blog/2014/10/16/javaone-2014-day-three-notes.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;Day
+ three was definitely the high point of the conference for me.&amp;nbsp; As 
+anyone who has spoken at tech conferences knows, the point in time when 
+all of one's sessions have been given is the turning point between 
+tempered enjoyment and pure enjoyment of the conference.&amp;nbsp; I was 
+blessed with the scheduling this year; I was all done after 
+Wednesday.&amp;nbsp; This put me in a great frame of mind to enjoy the 
+Oracle Appreciation Event.&amp;nbsp; Day three also saw the culmination of a
+ long running project: the Web Framework Smackdown 2014 edition.&lt;/p&gt;&amp;nbsp; &lt;p&gt;My friend and colleague &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.rahmannet.net/&quot; rel=&quot;nofollow&quot;&gt;Reza Rahman&lt;/a&gt; asked me to keep the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2014/06/22/web-framework-smackdown-2014-edition?force=485&quot; rel=&quot;nofollow&quot;&gt;web framework smackdown meme&lt;/a&gt;
+ going for another year.&amp;nbsp; This year I called in quite a few favors 
+to pull together a diverse group of celebrity panelists: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/mhevery&quot; rel=&quot;nofollow&quot;&gt;Miško Hevery&lt;/a&gt;, creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/angularjs&quot; rel=&quot;nofollow&quot;&gt;AngularJS&lt;/a&gt; at Google, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/floydophone&quot; rel=&quot;nofollow&quot;&gt;Pete Hunt&lt;/a&gt; creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/reactjs&quot; rel=&quot;nofollow&quot;&gt;ReactJS&lt;/a&gt; at Facebook, &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149455/20141001-smackdown-prep.jpg&quot;&gt;&lt;img __embedded_id=&quot;395&quot; alt=&quot;panelists preparing&quot; src=&quot;20141016_files/20141001-smackdown-prep.jpg&quot; style=&quot;float:right;&quot; width=&quot;200&quot; height=&quot;103&quot;&gt;&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/joonaslehtinen&quot; rel=&quot;nofollow&quot;&gt;Joonas Lehtinen&lt;/a&gt;, creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/vaadin&quot; rel=&quot;nofollow&quot;&gt;Vaadin&lt;/a&gt;.&amp;nbsp; The panel was moderated by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/neal4d&quot; rel=&quot;nofollow&quot;&gt;Neal Ford&lt;/a&gt; of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/thoughtworks&quot; rel=&quot;nofollow&quot;&gt;ThoughtWorks&lt;/a&gt;.&amp;nbsp; I rounded out the panel representing &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/jsf_spec&quot; rel=&quot;nofollow&quot;&gt;JSF&lt;/a&gt;.&amp;nbsp;
+ I've learned from previous smackdowns that a confident and comfortable 
+moderator combined with a little prep time just before the panel are the
+ keys to success.&amp;nbsp; We met at 11am for this purpose over Patxi's 
+pizza. From the left you can see Neal Ford, Miško Hevery, myself, Joonas
+ Lehtinen, and Pete Hunt.&amp;nbsp; I don't think Pete and Miško had met 
+before, and it was interesting hearing them trade notes about their 
+approaches to the performance of handling the model update side of their
+ frameworks.&amp;nbsp; From what I gathered, they both see that feature as 
+the most valuable aspect of their frameworks, and they both have spent 
+significant time optimizing that part.&amp;nbsp; When it came time to take 
+it on stage, we started by introducing our different approaches to the 
+task of building a stateful and responsive user interface delivered in a
+ web browser.&amp;nbsp; Angular and React are entirely client side, while 
+JSF and Vaadin are entirely server side.&amp;nbsp; In spite of Neal's 
+earlier recommendation that client side is the way of the future, Joonas
+ and I made the case for where server side makes sense.&amp;nbsp; Briefly, 
+reasons for favoring server side over client side include simplicity, 
+security, integratability (such as mashups), and maintainability.&amp;nbsp; 
+Client side is better when Facebook-sized scale is important, when 
+JavaScript fluency is a non-issue, and when &quot;modern&quot; browsers are a 
+given.&amp;nbsp; You'll have to check out the audio to get the full 
+details.&amp;nbsp; My only complaint with the panel is that it really didn't
+ get smackdown-ish at all.&amp;nbsp; I welcome comments about the 
+client/server UI debate.&amp;nbsp; Perhaps we can get some smackdown action 
+in the comments.&lt;/p&gt;&amp;nbsp; &lt;p&gt;My last official obligation of the 
+conference was my final booth duty in the Java EE both.&amp;nbsp; This 
+session closed out the JavaOne exhibition, and as such the traffic was a
+ bit light.&amp;nbsp; I was able to take a tour around the exhibition to 
+obtain some schwag for my kids.&amp;nbsp; This year it was novel to see &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://codewithtarget.com/&quot; rel=&quot;nofollow&quot;&gt;Target&lt;/a&gt;
+ with a booth.&amp;nbsp; I've long been a fan (and shareholder) of Target, 
+avoiding Wal*mart at all (unfortunately frequently too high) 
+costs.&amp;nbsp; They were recruiting.&amp;nbsp; JavaOne is not a job fair, but 
+it was still nice to see them representing Minneapolis, home of Facelets
+ creator Jakob Hookom.&lt;/p&gt;&amp;nbsp;&amp;nbsp; &lt;p&gt; &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149456/20141001-nullpointers-01.jpg&quot;&gt;&lt;img __embedded_id=&quot;396&quot; alt=&quot;Geert and the NullPointers&quot; src=&quot;20141016_files/20141001-nullpointers-01.jpg&quot; style=&quot;float:left;&quot; width=&quot;200&quot; height=&quot;220&quot;&gt;&lt;/a&gt;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149457/20141001-nullpointers-02.jpg&quot;&gt;&lt;img __embedded_id=&quot;397&quot; alt=&quot;Freddy, Frank, and Ed&quot; src=&quot;20141016_files/20141001-nullpointers-02.jpg&quot; style=&quot;float:right;&quot; width=&quot;200&quot; height=&quot;123&quot;&gt;&lt;/a&gt; Booth duty done, it was on to a bit of fun in Duke's Cafe.&amp;nbsp; As I mentioned in my &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2014/10/07/javaone-2014-day-one-notes&quot; rel=&quot;nofollow&quot;&gt;JavaOne 2014 Day One&lt;/a&gt; blog entry, Chicago JUG leader &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/fguime&quot; rel=&quot;nofollow&quot;&gt;Freddy Guime&lt;/a&gt;
+ had put together a band of musician Java enthusiasts called the 
+NullPointers. They allowed me to sit in with them for some songs during 
+their set at 5pm Wednesday.&amp;nbsp; This was a real honor and a great 
+blast.&amp;nbsp; At left, from the left you see &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/neuroph&quot; rel=&quot;nofollow&quot;&gt;Zoran Severac&lt;/a&gt;, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/matkar&quot; rel=&quot;nofollow&quot;&gt;Mattias Karlsson&lt;/a&gt;, of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.jfokus.se/jfokus/&quot; rel=&quot;nofollow&quot;&gt;JFokus&lt;/a&gt;, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/gbevin&quot; rel=&quot;nofollow&quot;&gt;Geert Bevin&lt;/a&gt; of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://zeroturnaround.com/&quot; rel=&quot;nofollow&quot;&gt;ZeroTurnaround&lt;/a&gt;, and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/JavaFXpert&quot; rel=&quot;nofollow&quot;&gt;Jim Weaver&lt;/a&gt;, Java Developer Advocate for Oracle.&amp;nbsp; At right, from the right, you see Freddy, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/frankgreco&quot; rel=&quot;nofollow&quot;&gt;Frank Greco&lt;/a&gt; of the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javasig.com/&quot; rel=&quot;nofollow&quot;&gt;New York Java Users Group&lt;/a&gt; and myself.&amp;nbsp; I think my keyboard stand was formerly in the Hackergarten.&lt;/p&gt;&amp;nbsp; &lt;p&gt;The fun kept on rolling, with the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://home.java.net/sites/default/files/c12bg-openworld-bands-2264324.jpg&quot; rel=&quot;nofollow&quot;&gt;Oracle Appreciation Event&lt;/a&gt;.&amp;nbsp;
+ This used to be called the Customer Appreciation Event.&amp;nbsp; I'm not 
+sure why they renamed it.&amp;nbsp; I would probably have given it a pass 
+this year but for my 11 year old who is a big Macklemore fan.&amp;nbsp; I'm 
+glad I went because Macklemore was very entertaining, and Aerosmith put 
+on a great show as well.&lt;/p&gt; &lt;/div&gt;</content><summary type="html">Day
+ three was definitely the high point of the conference for me.&amp;nbsp; As 
+anyone who has spoken at tech conferences knows, the point in time when 
+all of one's sessions have been given is the turning point between 
+tempered enjoyment and pure enjoyment of the conference.&amp;nbsp; I was 
+blessed with the scheduling this year; I was all done after 
+Wednesday.&amp;nbsp; This put me in a great frame of mind to enjoy the 
+Oracle Appreciation Event.&amp;nbsp; Day three also saw the culmination of a
+ long running project: the Web Framework Smackdown 2014 edition.&amp;nbsp; My friend and colleague Reza Rahman asked me to keep the web framework smackdown meme
+ going for another year.&amp;nbsp; This year I called in quite a few favors 
+to pull together a diverse group of celebrity panelists: Miško Hevery, creator of AngularJS at Google, Pete Hunt creator of ReactJS at Facebook,  and Joonas Lehtinen, creator of Vaadin.&amp;nbsp; The panel was moderated by Neal Ford of ThoughtWorks.&amp;nbsp; I rounded out the panel representing JSF.&amp;nbsp;
+ I've learned from previous smackdowns that a confident and comfortable 
+moderator combined with a little prep time just before the panel are the
+ keys to success.&amp;nbsp; We met at 11am for this purpose over Patxi's 
+pizza. From the left you can see Neal Ford, Miško Hevery, myself, Joonas
+ Lehtinen, and Pete Hunt.&amp;nbsp; I don't think Pete and Miško had met 
+before, and it was interesting hearing them trade notes about their 
+approaches to the performance of handling the model update side of their
+ frameworks.&amp;nbsp; From what I gathered, they both see that feature as 
+the most valuable aspect of their frameworks, and they both have spent 
+significant time optimizing that part.&amp;nbsp; When it came time to take 
+it on stage, we started by introducing our different approaches to the 
+task of building a stateful and responsive user interface delivered in a
+ web browser.&amp;nbsp; Angular and React are entirely client side, while 
+JSF and Vaadin are entirely server side.&amp;nbsp; In spite of Neal's 
+earlier recommendation that client side is the way of the future, Joonas
+ and I made the case for where server side makes sense.&amp;nbsp; Briefly, 
+reasons for favoring server side over client side include simplicity, 
+security, integratability (such as mashups), and maintainability.&amp;nbsp; 
+Client side is better when Facebook-sized scale is important, when 
+JavaScript fluency is a non-issue, and when &quot;modern&quot; browsers are a 
+given.&amp;nbsp; You'll have to check out the audio to get the full 
+details.&amp;nbsp; My only complaint with the panel is that it really didn't
+ get smackdown-ish at all.&amp;nbsp; I welcome comments about the 
+client/server UI debate.&amp;nbsp; Perhaps we can get some smackdown action 
+in the comments.&amp;nbsp; My last official obligation of the 
+conference was my final booth duty in the Java EE both.&amp;nbsp; This 
+session closed out the JavaOne exhibition, and as such the traffic was a
+ bit light.&amp;nbsp; I was able to take a tour around the exhibition to 
+obtain some schwag for my kids.&amp;nbsp; This year it was novel to see Target
+ with a booth.&amp;nbsp; I've long been a fan (and shareholder) of Target, 
+avoiding Wal*mart at all (unfortunately frequently too high) 
+costs.&amp;nbsp; They were recruiting.&amp;nbsp; JavaOne is not a job fair, but 
+it was still nice to see them representing Minneapolis, home of Facelets
+ creator Jakob Hookom.&amp;nbsp;&amp;nbsp;  &amp;nbsp;&amp;nbsp;  Booth duty done, it was on to a bit of fun in Duke's Cafe.&amp;nbsp; As I mentioned in my JavaOne 2014 Day One blog entry, Chicago JUG leader Freddy Guime
+ had put together a band of musician Java enthusiasts called the 
+NullPointers. They allowed me to sit in with them for some songs during 
+their set at 5pm Wednesday.&amp;nbsp; This was a real honor and a great 
+blast.&amp;nbsp; At left, from the left you see Zoran Severac, Mattias Karlsson, of JFokus, Geert Bevin of ZeroTurnaround, and Jim Weaver, Java Developer Advocate for Oracle.&amp;nbsp; At right, from the right, you see Freddy, Frank Greco of the New York Java Users Group and myself.&amp;nbsp; I think my keyboard stand was formerly in the Hackergarten.&amp;nbsp; The fun kept on rolling, with the Oracle Appreciation Event.&amp;nbsp;
+ This used to be called the Customer Appreciation Event.&amp;nbsp; I'm not 
+sure why they renamed it.&amp;nbsp; I would probably have given it a pass 
+this year but for my 11 year old who is a big Macklemore fan.&amp;nbsp; I'm 
+glad I went because Macklemore was very entertaining, and Aerosmith put 
+on a great show as well.</summary></entry></feed>

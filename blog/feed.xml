@@ -1,753 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-15T22:38:03-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html"></title><link href="/blog/2017/02/15/2010-03-03-perils-8220there8217s-more-one-way-do-it8221.html" rel="alternate" type="text/html" title="" /><published>2017-02-15T22:38:03-05:00</published><updated>2017-02-15T22:38:03-05:00</updated><id>/blog/2017/02/15/2010-03-03-perils-8220there8217s-more-one-way-do-it8221</id><content type="html" xml:base="/blog/2017/02/15/2010-03-03-perils-8220there8217s-more-one-way-do-it8221.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;
-Programming Perl, First Edition. My first book with my name on the cover
- (although I had ghost-written a dozen books before that).
-//&lt;/div&gt;
-
-&lt;h2&gt;6 Comments&lt;/h2&gt;
-
-    &lt;ul class=&quot;jive-comment jive-comment-threaded jive-comment-indent-0&quot;&gt;
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964500&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964500&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20100303_files/32_005.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;randalschwartz&quot; data-height=&quot;32&quot; alt=&quot;randalschwartz&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20100303_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;randalschwartz&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964500&quot; id=&quot;comment-modDate-964500&quot; class=&quot;font-color-meta-light&quot;&gt;Mar 4, 2010 6:19 PM&lt;/a&gt;
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964500&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:dcee62d2-6599-4744-88c3-1545d15222dc] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-Programming Perl, First Edition. My first book with my name on the cover
- (although I had ghost-written a dozen books before that).
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:dcee62d2-6599-4744-88c3-1545d15222dc] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964500&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964500&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964500&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14291&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964500&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964500&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964500&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964500-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964500&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964500-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964500&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;-1&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964501--&gt;
-
-
-
-    &lt;ul class=&quot;jive-comment jive-comment-threaded jive-comment-indent-1&quot;&gt;
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964501&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964501&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20100303_files/32.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;javaserverfowner&quot; data-height=&quot;32&quot; alt=&quot;javaserverfowner&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20100303_files/level7.png&quot; alt=&quot;Whiz&quot; title=&quot;Whiz&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;javaserverfowner&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964501&quot; id=&quot;comment-modDate-964501&quot; class=&quot;font-color-meta-light&quot;&gt;Mar 4, 2010 8:27 PM&lt;/a&gt;
-                            (&lt;a class=&quot;font-color-meta-light localScroll&quot; href=&quot;#comment-964500&quot; title=&quot;Go to message&quot;&gt;in response to randalschwartz&lt;/a&gt;)
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964501&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:ba380cbb-780c-4a0e-b86b-af1020073427] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-Thanks for commenting!&amp;nbsp; I'd love to know how you were alerted of 
-the existence of this post.&amp;nbsp; I'm quite certain that you don't 
-manually subscribe to my blog entry, because, after all, you wrote the 
-camel book.
-
-You don't by any chance remember that session at SGI in Mountain View in
- 1995, do you?
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:ba380cbb-780c-4a0e-b86b-af1020073427] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964501&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964501&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964501&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14291&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964501&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964501&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964501&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964501-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964501&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964501-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964501&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;964500&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964502--&gt;
-
-
-
-    &lt;ul class=&quot;jive-comment jive-comment-threaded jive-comment-indent-1&quot;&gt;
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964502&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964502&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20100303_files/32_005.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;randalschwartz&quot; data-height=&quot;32&quot; alt=&quot;randalschwartz&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20100303_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;randalschwartz&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964502&quot; id=&quot;comment-modDate-964502&quot; class=&quot;font-color-meta-light&quot;&gt;Apr 3, 2010 4:57 PM&lt;/a&gt;
-                            (&lt;a class=&quot;font-color-meta-light localScroll&quot; href=&quot;#comment-964501&quot; title=&quot;Go to message&quot;&gt;in response to javaserverfowner&lt;/a&gt;)
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964502&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:fa2ecfb3-1c02-4697-8f2e-a4b952ad07e0] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-Yes, I have custom RSS feeds that watch for my name and the names of my 
-books and FLOSS Weekly using the power of Google, which I read in Google
- Reader.
-
-I taught a lot at SGI during the first web boom, so I don't remember the
- *specific* session, but I remember being there. Oddly enough, my 
-&quot;Google Tech Talk&quot; on git was done about 50 feet from where I used to 
-teach at SGI, since Google HQ is the former SGI buildings.
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:fa2ecfb3-1c02-4697-8f2e-a4b952ad07e0] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964502&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964502&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964502&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14291&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964502&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964502&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964502&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964502-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964502&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964502-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964502&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;964501&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    &lt;/ul&gt;
-    
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    &lt;/ul&gt;
-    
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964503--&gt;
-
-
-
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964503&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964503&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20100303_files/32_002.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;breilly&quot; data-height=&quot;32&quot; alt=&quot;breilly&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20100303_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;breilly&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964503&quot; id=&quot;comment-modDate-964503&quot; class=&quot;font-color-meta-light&quot;&gt;Apr 14, 2010 7:27 PM&lt;/a&gt;
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964503&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:7476a67f-1205-43f6-85e2-15994cda1103] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-The key is to make the preferred way for the majority of cases also be 
-the most obvious way... to both the author and the reader.
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:7476a67f-1205-43f6-85e2-15994cda1103] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964503&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964503&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964503&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14291&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964503&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964503&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964503&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964503-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964503&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964503-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964503&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;-1&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964504--&gt;
-
-
-
-    &lt;ul class=&quot;jive-comment jive-comment-threaded jive-comment-indent-1&quot;&gt;
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964504&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964504&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20100303_files/32_003.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;edrandall&quot; data-height=&quot;32&quot; alt=&quot;edrandall&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20100303_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;edrandall&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964504&quot; id=&quot;comment-modDate-964504&quot; class=&quot;font-color-meta-light&quot;&gt;May 5, 2010 9:55 AM&lt;/a&gt;
-                            (&lt;a class=&quot;font-color-meta-light localScroll&quot; href=&quot;#comment-964503&quot; title=&quot;Go to message&quot;&gt;in response to breilly&lt;/a&gt;)
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964504&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:64e5a957-544a-4af2-9989-3864dd1bd076] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-Having &quot;more that one way to do it&quot; gives the system an inherent 
-advantage, perhaps one of the reasons for the longevity of PERL.
-
-If product A provides &quot;only one way to do it&quot;,&amp;nbsp; it can become 
-inherently harder to integrate A&amp;nbsp; to work with C and D.
-
-If B on the other hand is flexible, there's a good chance I can work 
-around any issues,
-at least I have more options and tactics available to succeed getting 
-the whole system up and running.
-So I'll choose B over A any day.&amp;nbsp; It's genetically stronger.
-
-This is perhaps one of the problematic consequences of&amp;nbsp; 
-&quot;programming by convention&quot;&amp;nbsp; that is often overlooked.
-It might get you up-and-running with something impressive to show quite 
-early on, but try and do anything that
-conflicts with those conventions and by golly you're in for a hard time!
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:64e5a957-544a-4af2-9989-3864dd1bd076] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964504&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964504&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964504&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14291&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964504&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964504&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964504&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964504-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964504&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964504-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964504&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;964503&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964505--&gt;
-
-
-
-    &lt;ul class=&quot;jive-comment jive-comment-threaded jive-comment-indent-1&quot;&gt;
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964505&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964505&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20100303_files/32_004.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;healeyb&quot; data-height=&quot;32&quot; alt=&quot;healeyb&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20100303_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;healeyb&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964505&quot; id=&quot;comment-modDate-964505&quot; class=&quot;font-color-meta-light&quot;&gt;Sep 20, 2010 1:26 AM&lt;/a&gt;
-                            (&lt;a class=&quot;font-color-meta-light localScroll&quot; href=&quot;#comment-964504&quot; title=&quot;Go to message&quot;&gt;in response to edrandall&lt;/a&gt;)
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964505&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:69dcb102-9f5a-4495-9826-c4d3727c4c99] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-Convention is not mutually exclusive with configuration, you can have the best of both worlds.
-
-If you think about what you're trying to do with JSF, it's putting things on a page in the right place
-doing the right things. And it's very hard to do. To be successful you need to make it really easy.
-Do you want JSF to be exclusive to only the top level of software engineers in the world? sounds
-interesting but does not work. The biggest mistake was terminating VWP. If there was a visual
-project it would end up driving the underlying implementation. I think it unlikely that it would be
-possible to create a VWP implementation given the complexities of the product as it exists today.
-
-If JSF is to be a world beater it has to be really easy to use, and it isn't at present.
-
-Another, issue I have is that I'd like to see some de-coupling from CSS. The component libs are
-doing some skinning but CSS is a complete nightmare really. Leave it for the .1% who need it.
-
-To address your point, sure, you sometimes need to delve in and do some special things, but
-how many tiers of complexity do you want? I want &quot;really simple&quot; and &quot;potentially quite complex&quot;.
-I want to use the latter very rarely.
-
-Regards,
-Brendan.
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:69dcb102-9f5a-4495-9826-c4d3727c4c99] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964505&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964505&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964505&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14291&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964505&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964505&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964505&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964505-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964505&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964505-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964505&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;964504&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    &lt;/ul&gt;
-    
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    &lt;/ul&gt;
-    
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    &lt;/ul&gt;</content></entry><entry><title type="html"></title><link href="/blog/2017/02/15/2009-03-04-response-call-fix-jcp-oberver-status.html" rel="alternate" type="text/html" title="" /><published>2017-02-15T22:38:03-05:00</published><updated>2017-02-15T22:38:03-05:00</updated><id>/blog/2017/02/15/2009-03-04-response-call-fix-jcp-oberver-status</id><content type="html" xml:base="/blog/2017/02/15/2009-03-04-response-call-fix-jcp-oberver-status.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;Public Access to JSF 2.0 JSR-314-EG Discussions Now Available&lt;/h1&gt;&lt;p&gt;Caveat:
- Yes this action is long overdue, and many open source projects have 
-long been more open than JSF is, even after considering the changes 
-announced in this blog entry. Oh well.&lt;/p&gt;&lt;p&gt;My &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://weblogs.java.net%20]]%3E%3C%21[CDATA[%20/blog/edburns/archive/2004/06/welcome_to_the.html&quot; rel=&quot;nofollow&quot;&gt;very first blog post on java.net&lt;/a&gt;,
- nearly six years ago, advertised the availability of Sun’s JSF 
-implementation under an open development model. This was followed one 
-year later by an announcment of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://weblogs.java.net/blog/edburns/archive/2005/06/javaserver_face_2.html&quot; rel=&quot;nofollow&quot;&gt;the Java Distribution License for JSF&lt;/a&gt;,
- and another year later with the release of all of Java SE and EE under 
-GPL. All of those announcements had to do with code being free. The 
-process of &lt;em&gt;designing&lt;/em&gt; the code is another matter.&lt;/p&gt;&lt;p&gt;JSF is designed using the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://jcp.org/&quot; rel=&quot;nofollow&quot;&gt;Java Community Process&lt;/a&gt;.
- JCP allows the individuals who lead the specification teams great 
-latitude in determining just how open they want their process to be. 
-100% openness is strongly encouraged, but not required. As mentioned in &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://weblogs.java.net/blog/cayhorstmann/archive/2009/01/a_call_to_fix_t.html#comments&quot; rel=&quot;nofollow&quot;&gt;the discussion&lt;/a&gt; on Cay Horstman’s blog entry: “&lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://weblogs.java.net/blog/cayhorstmann/archive/2009/01/a_call_to_fix_t.html&quot; rel=&quot;nofollow&quot;&gt;A Call to Fix the JCP Oberver Status&lt;/a&gt;”, JAX-RS (&lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://jsr311.dev.java.net/&quot; rel=&quot;nofollow&quot;&gt;JSR-311&lt;/a&gt;) is a great example of a very open process. Another great example is Mike Milikich's Mobile Information Device Profile (&lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://opensource.motorola.com/sf/projects/jsr271&quot; rel=&quot;nofollow&quot;&gt;JSR-271&lt;/a&gt;).
- At the other end of the spectrum, we have many more JSRs that are not 
-very open at all. I don't want to name names, but you know who you are. 
-JSF is somewhere in the middle, though I like to think we’re tending 
-towards more open. As Cay mentions, our &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://javaserverfaces-spec-public.dev.java.net/servlets/ProjectIssues&quot; rel=&quot;nofollow&quot;&gt;issue tracker of record&lt;/a&gt; is public. As I mentioned above, Sun’s JSF implementation is an &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://javaserverfaces.dev.java.net/&quot; rel=&quot;nofollow&quot;&gt;an open source project&lt;/a&gt;. But as Cay also says, we need to do better.&lt;/p&gt;&lt;p&gt;Cay calls for:&lt;/p&gt;&lt;ul style=&quot;background-color: #efefef;&quot;&gt;&lt;li&gt;Email and forum discussions are to be archived (unless there is some specific reason for confidentiality)&lt;/li&gt;&lt;li&gt;All versions of spec drafts are to be archived&lt;/li&gt;&lt;li&gt;Observers have access to these archives&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span&gt;I”m
- happy to announce that we now have all of the above items. For the 
-first item, the JSR-314-EG discussion can now be directly observed by 
-anyone (JCP member or not) by subscribing to the &lt;/span&gt;&lt;a class=&quot;jive-link-email-small&quot; href=&quot;mailto:JSR-314-OPEN@JCP.ORG&quot;&gt;JSR-314-OPEN@JCP.ORG&lt;/a&gt;&lt;span&gt; mailing list. For the second and third items, unofficial “Editor’s Drafts” of the spec are now available at &lt;/span&gt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://javaserverfaces-spec-public.dev.java.net/servlets/ProjectDocumentList?folderID=11078&amp;amp;expandFolder=11078&amp;amp;folderID=0&quot; rel=&quot;nofollow&quot;&gt;the documents and files area of the javaserverfaces-spec-public project&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;There is one way to subscribe to jsr-314-open:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Send a message with SUBSCRIBE JSR-314-OPEN in the subject line to &lt;a class=&quot;jive-link-email-small&quot; href=&quot;mailto:list-request@jcp.org?subject=subscribe%20jsr-314-open&quot;&gt;list-request@jcp.org&lt;/a&gt;. The body of the message is irrelevant and will be ignored.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Any
- content previously sent the JSR-314-EG before JSR-314-OPEN was created 
-is not publically accessible, but know that all future content, for the 
-rest of the JSR, &lt;em&gt;will be&lt;/em&gt;.&lt;/p&gt;&lt;p&gt;From the “better late than 
-never” department, I have to point out that we're almost done with JSF 
-2.0! When you tune into the discussion, you’ll see that we're nearly 
-ready to hand our Proposed Final Draft off to the JCP. I just posted an 
-    Editor's draft tonight and you can find it &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://javaserverfaces-spec-public.dev.java.net/files/documents/1936/128586/jsf-spec-2.0-20090304.zip&quot; rel=&quot;nofollow&quot;&gt;as a zip file&lt;/a&gt; or &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://javaserverfaces-spec-public.dev.java.net/nonav/snapshots/jsf-spec-2.0-20090304/&quot; rel=&quot;nofollow&quot;&gt;as a web browsable document&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;&lt;span class=&quot;technoratitag&quot;&gt; Technorati Tags: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.technorati.com/tags/edburns&quot; rel=&quot;nofollow&quot;&gt;edburns&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;
-
-&lt;h2&gt;7 Comments&lt;/h2&gt;
-
-    &lt;ul class=&quot;jive-comment jive-comment-threaded jive-comment-indent-0&quot;&gt;
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964425&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964425&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20090304_files/32.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;392%20Guest&quot; data-height=&quot;32&quot; alt=&quot;392 Guest&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20090304_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;392 Guest&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964425&quot; id=&quot;comment-modDate-964425&quot; class=&quot;font-color-meta-light&quot;&gt;Mar 5, 2009 11:25 AM&lt;/a&gt;
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964425&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:b0a14eea-4bec-4760-91dd-3609e25055d7] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-I'm expert member on some JSRs (includin Java EE 6) and I find 
-frustrating not to be able to observe other JSRs (some even being part 
-of Java EE6). Last december at Devoxx I talked with JCP's representative
- and asked them, at least, to allow people to observe any JSR. I posted 
-an entry on my blog about this topic :
-
-http://www.jroller.com/agoncal/entry/everybody_should_be_able_to
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:b0a14eea-4bec-4760-91dd-3609e25055d7] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964425&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964425&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964425&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14267&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964425&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964425&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964425&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964425-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964425&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964425-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964425&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;-1&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964426--&gt;
-
-
-
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964426&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964426&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20090304_files/32_003.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;cayhorstmann-3071947&quot; data-height=&quot;32&quot; alt=&quot;cayhorstmann-3071947&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20090304_files/level8.png&quot; alt=&quot;Master&quot; title=&quot;Master&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;cayhorstmann-3071947&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964426&quot; id=&quot;comment-modDate-964426&quot; class=&quot;font-color-meta-light&quot;&gt;Mar 5, 2009 4:11 PM&lt;/a&gt;
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964426&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:69251f79-3f27-486b-9eba-dec4917f9ddf] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-Antonio--I read your blog. I have no problem limiting email privileges 
-to the actual experts, but the public should be able to observe the 
-discussion. I don't know if that's how Ed has set it up. As Ed noted, 
-JSF 2.0 is nearly done, so this is mainly a model for the future. 
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:69251f79-3f27-486b-9eba-dec4917f9ddf] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964426&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964426&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964426&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14267&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964426&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964426&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964426&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964426-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964426&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964426-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964426&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;-1&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964427--&gt;
-
-
-
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964427&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964427&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20090304_files/32_002.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;javaserverfowner&quot; data-height=&quot;32&quot; alt=&quot;javaserverfowner&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20090304_files/level7.png&quot; alt=&quot;Whiz&quot; title=&quot;Whiz&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;javaserverfowner&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964427&quot; id=&quot;comment-modDate-964427&quot; class=&quot;font-color-meta-light&quot;&gt;Mar 5, 2009 4:33 PM&lt;/a&gt;
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964427&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:f5dd8223-b531-4e8a-97d1-fb249eb539e9] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-I'll leave it for Patrick Curran to explain, but I do know that a 
-read-only &quot;jsr-nnn-public&quot; email alias will be included in the default 
-package for future JSRs.
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:f5dd8223-b531-4e8a-97d1-fb249eb539e9] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964427&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964427&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964427&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14267&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964427&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964427&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964427&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964427-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964427&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964427-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964427&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;-1&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964428--&gt;
-
-
-
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964428&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964428&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20090304_files/32.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;392%20Guest&quot; data-height=&quot;32&quot; alt=&quot;392 Guest&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20090304_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;392 Guest&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964428&quot; id=&quot;comment-modDate-964428&quot; class=&quot;font-color-meta-light&quot;&gt;Mar 10, 2009 10:38 AM&lt;/a&gt;
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964428&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:c7827447-ada3-4a5e-b706-e84b5287ed4e] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-good decision! It is good to see a more open way to get involved, even this is pretty late..
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:c7827447-ada3-4a5e-b706-e84b5287ed4e] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964428&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964428&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964428&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14267&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964428&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964428&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964428&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964428-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964428&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964428-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964428&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;-1&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964429--&gt;
-
-
-
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964429&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964429&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20090304_files/32.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;392%20Guest&quot; data-height=&quot;32&quot; alt=&quot;392 Guest&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20090304_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;392 Guest&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964429&quot; id=&quot;comment-modDate-964429&quot; class=&quot;font-color-meta-light&quot;&gt;Apr 4, 2009 1:15 AM&lt;/a&gt;
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964429&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:e0589ff2-5834-4631-ac14-6d85703a2e0d] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-I am observing your discussions now, and it's quite interesting.
-
-But It's still a pity that we can't comment anything or let our voice be heard. Sometimes I'd like to give my 2 cents.
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:e0589ff2-5834-4631-ac14-6d85703a2e0d] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964429&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964429&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964429&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14267&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964429&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964429&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964429&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964429-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964429&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964429-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964429&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;-1&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964430--&gt;
-
-
-
-    &lt;ul class=&quot;jive-comment jive-comment-threaded jive-comment-indent-1&quot;&gt;
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964430&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964430&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20090304_files/32_002.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;javaserverfowner&quot; data-height=&quot;32&quot; alt=&quot;javaserverfowner&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20090304_files/level7.png&quot; alt=&quot;Whiz&quot; title=&quot;Whiz&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;javaserverfowner&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964430&quot; id=&quot;comment-modDate-964430&quot; class=&quot;font-color-meta-light&quot;&gt;Feb 23, 2010 7:00 AM&lt;/a&gt;
-                            (&lt;a class=&quot;font-color-meta-light localScroll&quot; href=&quot;#comment-964429&quot; title=&quot;Go to message&quot;&gt;in response to 392 Guest&lt;/a&gt;)
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964430&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:79ba5464-8da6-405b-ac36-65f9e635ebaf] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-&lt;p&gt;&amp;nbsp;Thanks for your interest. &amp;nbsp;We are working on this very 
-thing. &amp;nbsp;As you can imagine, the new steward of JCP, Oracle America 
-Inc., is reviewing all of the items in its expanded portfolio with a 
-view towards how to make it better. &amp;nbsp;I expect great things!&lt;/p&gt;
-&lt;p&gt;Ed Burns JSF Spec co-lead.&lt;/p&gt;
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:79ba5464-8da6-405b-ac36-65f9e635ebaf] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964430&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964430&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964430&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14267&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964430&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964430&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964430&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964430-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964430&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964430-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964430&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;964429&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    &lt;/ul&gt;
-    
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    
-    &lt;!-- parentId == -1 when the comment does not have a parent --&gt;
-    &lt;!-- Begin Comment 964424--&gt;
-
-
-
-    &lt;li class=&quot;reply j-anchor-target&quot; id=&quot;comment-964424&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964424&quot;&gt;
-
-
-
-&lt;a href=&quot;&quot;&gt;
-    &lt;img class=&quot;jive-avatar&quot; src=&quot;20090304_files/32.png&quot; data-avatarid=&quot;-1&quot; data-username=&quot;392%20Guest&quot; data-height=&quot;32&quot; alt=&quot;392 Guest&quot; width=&quot;32&quot; height=&quot;32&quot; border=&quot;0&quot;&gt;
-    &lt;span class=&quot;j-status-levels j-gamification-status-level&quot;&gt;&lt;img src=&quot;20090304_files/level1.png&quot; alt=&quot;Newbie&quot; title=&quot;Newbie&quot;&gt;&lt;/span&gt;&lt;/a&gt;
-                    &lt;div class=&quot;jive-comment-arrow&quot;&gt;&lt;/div&gt;
-            &lt;div class=&quot;jive-comment-content clearfix&quot;&gt;
-                &lt;div class=&quot;j-comment-header&quot;&gt;
-
-                    &lt;p class=&quot;jive-comment-meta font-color-meta-light&quot;&gt;
-
-                    &lt;span class=&quot;j-username-wrap&quot;&gt;
-                        &lt;a href=&quot;&quot;&gt;392 Guest&lt;/a&gt;
-                    &lt;/span&gt;
-                        &lt;a href=&quot;#comment-964424&quot; id=&quot;comment-modDate-964424&quot; class=&quot;font-color-meta-light&quot;&gt;May 23, 2009 2:28 PM&lt;/a&gt;
-                    &lt;/p&gt;
-
-                &lt;/div&gt;
-                &lt;div id=&quot;comment-body-964424&quot;&gt;
-
-                        &lt;!-- [DocumentBodyStart:482ccf4f-335c-4930-afc7-4d04c260500b] --&gt;&lt;div class=&quot;jive-rendered-content&quot;&gt;
-I want to ask you if there is a reference documentation for JSF 2.0 as it's for JSF 1.2 (at SUN JEE tutorials) ?
-
-Thanks
-//&lt;/div&gt;&lt;!-- [DocumentBodyEnd:482ccf4f-335c-4930-afc7-4d04c260500b] --&gt;
-                &lt;/div&gt;
-&lt;span class=&quot;js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964424&quot; data-helpful-count=&quot;0&quot; data-overall-count=&quot;0&quot; data-display-overall=&quot;false&quot;&gt;&lt;/span&gt;
-&lt;ul class=&quot;js-outcome-badge-container j-outcome-badge-container js-ed-105-964424&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964424&quot; data-parent-object-type=&quot;38&quot; data-parent-object-id=&quot;14267&quot; aria-label=&quot;Outcome badges&quot; aria-live=&quot;polite&quot;&gt;&lt;/ul&gt;
-                &lt;ul class=&quot;j-comment-footer js-comment-footer clearfix&quot;&gt;
-                    &lt;li class=&quot;jive-comment-actions font-color-meta clearfix&quot; data-comment-id=&quot;964424&quot;&gt;
-
-
-&lt;span class=&quot;js-liking-control j-liking-control&quot;&gt;&lt;span class=&quot;jive-icon-glyph icon-thumbs-up jive-glyph-like&quot;&gt;&lt;/span&gt;&lt;span id=&quot;acclaim-container-105-964424&quot; class=&quot;acclaim-container&quot;&gt;&lt;span id=&quot;jive-acclaim-like-container-105-964424&quot; data-acclaim-count=&quot;0&quot; data-can-apply=&quot;false&quot; data-type=&quot;small&quot; data-show-icon=&quot;true&quot; class=&quot;js-acclaim-container acclaim-like-container&quot;&gt;&lt;span class=&quot;j-social-action&quot;&gt;Like &lt;label class=&quot;j-508-label&quot; id=&quot;showAcclaim-964424-105-count-label&quot;&gt;Show 0 Likes&lt;/label&gt;&lt;a class=&quot;jive-acclaim-likedlink&quot; data-command=&quot;showAcclaim&quot; data-acclaim-type=&quot;like&quot; data-object-id=&quot;964424&quot; data-object-type=&quot;105&quot; data-count=&quot;0&quot; href=&quot;#&quot; role=&quot;button&quot; aria-labelledby=&quot;showAcclaim-964424-105-count-label&quot; title=&quot;Show 0 Likes&quot;&gt;(0)&lt;/a&gt; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-
-                    &lt;/li&gt;
-                    &lt;li class=&quot;jive-comment-action-button font-color-meta-light clearfix&quot;&gt;
-&lt;a href=&quot;#&quot; class=&quot;font-color-meta js-outcome-button j-outcome-button&quot; data-object-type=&quot;105&quot; data-object-id=&quot;964424&quot; data-dom-actions=&quot;[]&quot; data-parent-id=&quot;-1&quot; data-root-community=&quot;Oracle Community&quot;&gt;Actions &lt;span class=&quot;j-ui-elem j-action-down-arrow&quot;&gt;&lt;/span&gt;&lt;/a&gt;                    &lt;/li&gt;
-                &lt;/ul&gt;
-        &lt;/div&gt;
-
-        &lt;!-- End Comment --&gt;
-
-    &lt;/li&gt;
-    &lt;/ul&gt;</content></entry><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-16T08:42:28-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
  I am sensitive to the real damage done to real lives and families that 
 is caused by gambling, so I will include a link to an organization that 
 offers help: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.calpg.org/&quot; rel=&quot;nofollow&quot;&gt;1-800-GAMBLER&lt;/a&gt;.
@@ -1412,4 +664,318 @@ that placing technologies in their own extension specifications, while
 initially controversial in some cases, has proven to be a long-term 
 benefit for peace and harmony in the end.” Peace and harmony? I hope so.
  In any case, Oliver and I will break this down and show you what it 
-means for developers using Java EE 7.Here is the basic outline of the session.Morning session WebSocket, JSON, JSFJSON - Why is this important? JSON is to HTML5 what XML was to web services - JSON-P is for parsing - What about binding to Java Objects?WebSocket- Three specs: JavaScript API, IETF transport protocol, Java API - Java API details: Usage from a browser, Usage from standalone clientJSF: The good parts - Composite components - HTML 5–friendly markupAfternoon session: HTML 5 Deep DiveHTML 5: Why all the fuss? - What's in a name? - Is it really a big deal?HTML 5: High-level perspective - Design goals - How does it differ from HTML 4HTML 5: Subspecifications - Browser contexts - Microdata - Canvas context - Offline apps - Messaging - Events - Cross-document messaging - Server-sent events - WebSocket - Drag and drop - Web storageJavaLand 2015 has much to offer aside from just this training day, so please consider attending!</summary></entry></feed>
+means for developers using Java EE 7.Here is the basic outline of the session.Morning session WebSocket, JSON, JSFJSON - Why is this important? JSON is to HTML5 what XML was to web services - JSON-P is for parsing - What about binding to Java Objects?WebSocket- Three specs: JavaScript API, IETF transport protocol, Java API - Java API details: Usage from a browser, Usage from standalone clientJSF: The good parts - Composite components - HTML 5–friendly markupAfternoon session: HTML 5 Deep DiveHTML 5: Why all the fuss? - What's in a name? - Is it really a big deal?HTML 5: High-level perspective - Design goals - How does it differ from HTML 4HTML 5: Subspecifications - Browser contexts - Microdata - Canvas context - Offline apps - Messaging - Events - Cross-document messaging - Server-sent events - WebSocket - Drag and drop - Web storageJavaLand 2015 has much to offer aside from just this training day, so please consider attending!</summary></entry><entry><title type="html">JavaOne 2014 Day Four Notes Blog</title><link href="/blog/2014/10/28/javaone-2014-day-four-notes.html" rel="alternate" type="text/html" title="JavaOne 2014 Day Four Notes Blog" /><published>2014-10-28T08:35:00-04:00</published><updated>2014-10-28T08:35:00-04:00</updated><id>/blog/2014/10/28/javaone-2014-day-four-notes</id><content type="html" xml:base="/blog/2014/10/28/javaone-2014-day-four-notes.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;With
+ all of my formal JavaOne conference obligations satisfied, day four was
+ dedicated to listening. Another day, another hotel. The community 
+keynote had a little bit of everything and was in the San Francisco 
+Marriott, bringing to four the total number of separate buildings I had 
+to visit for ]]&amp;gt;is available at Oracle. The room was full, and Intel 
+VP Michael Greene had an attentive audience for his portion of the 
+keynote. The keynote quickly moved on to showcasing some highlights from
+ the Java community over the last year. There was a great selection of 
+awards, demos, and product announcements. I was happy to see Scratch 
+style programming return to the Java platform in the form of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.reportmill.com/snap/&quot; rel=&quot;nofollow&quot;&gt;SnapCode&lt;/a&gt;, demonstrated by its creator &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/DonaldOJDK/status/517731602328453120/photo/1&quot; rel=&quot;nofollow&quot;&gt;Jeff Martin&lt;/a&gt;. I feel that Scratch is the gold standard in this sort of environment, and I was very disappointed when they dropped &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://scratchforums.blob8108.net/forums/viewtopic.php?id=57148&quot; rel=&quot;nofollow&quot;&gt;Java in favor of Flash&lt;/a&gt;
+ (as part of a broader move to an entirely cloud-based development 
+environment, which I also didn't appreciate). If you had some of the 
+same reservations, consider giving SnapCode a try. There were some other
+ nifty demos all of which combined to give the attendees a positive 
+impression about how fun and cool it is to develop on the Java Platform.&lt;/p&gt;&lt;p&gt;Mark
+ Reinhold re-appeared and gave the rest of the technical keynote, 
+allowing Brian Goetz to finish his interrupted content from Sunday. 
+Oracle has helpfully produced a &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://medianetwork.oracle.com/video/player/3811045975001&quot; rel=&quot;nofollow&quot;&gt;single streaming file with the content from both days&lt;/a&gt;. Mark and Brian's presentation was followed by a question and answer panel, facilitated by the twitter hashtag &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/hashtag/j1qa?src=hash&quot; rel=&quot;nofollow&quot;&gt;#j1qa&lt;/a&gt;
+ and adding James Gosling, Brian Oliver and Charles Nutter as panelists.
+ Perhaps we should have done this approach during the web framework 
+smackdown. The most humorous question was regarding a suggestion to move
+ OpenJDK to GitHub. Mark's satisfyingly definitive answer was &quot;no&quot;. As 
+usual with large-scale Q&amp;amp;A panels, there was not much depth and the 
+questions bounced around a lot. It's always great to have James Gosling 
+on hand for some part of JavaOne, and this year he pointed out that Java
+ has come full circle, having been intended for &quot;Internet of Things&quot; 
+from the start. I'll point out that Sun had a mass-market IoT device &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.sunspotworld.com/about.html&quot; rel=&quot;nofollow&quot;&gt;ten years ago&lt;/a&gt; in theform of the SunSPOT. Did you know that Oracle Labs continues the work on SunSPOT and you can &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://shop.oracle.com/pls/ostore/product?p1=sunspotjavadevelopmentkit&amp;amp;p2=&amp;amp;p3=&amp;amp;p4=&amp;amp;sc=sunspotsite&quot; rel=&quot;nofollow&quot;&gt;still buy them&lt;/a&gt; for $399? The panel closed out with the traditional t-shirt cannon distribution. I give a special thanks to my old pal &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/vsenger&quot; rel=&quot;nofollow&quot;&gt;Vinicius Senger&lt;/a&gt; for catching one for me. In a nod to a more TED-style talk, (but a mere shadow of the glory days of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.discovery.org/a/3488&quot; rel=&quot;nofollow&quot;&gt;Douglas Adams' JavaOne keynote&lt;/a&gt;)
+ Andra Keay gave a nice talk about the dynamics of robot/human 
+interactions. Sadly missing from the talk was any mention about my pet 
+peeve in the whole robot revolution: the need to change how society 
+values the output of human work in a world where robots do most of the 
+work.&lt;/p&gt;&lt;p&gt;The conference orgnizers thoughtfully delayed the start of 
+the rest of the sessions by 30 minutes to accomodate the lengthened 
+keynote. This gave me time to get back over to Parc55 for CON2131: Java 
+EE Community Update and Panel. &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/brunoborges&quot; rel=&quot;nofollow&quot;&gt;Bruno Borges&lt;/a&gt; moderated. On the panel were my (skiplevels) boss &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/cpurdy&quot; rel=&quot;nofollow&quot;&gt;Cameron Purdy&lt;/a&gt;, John Clingan, GlassFish Product Manager at Oracle, Kevin Sutter, Java EE Architect at IBM, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/nmcl&quot; rel=&quot;nofollow&quot;&gt;Mark Little&lt;/a&gt;, RedHat VP, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/AdamBien&quot; rel=&quot;nofollow&quot;&gt;Adam Bien&lt;/a&gt;, famous Java EE consultant, and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/dblevins&quot; rel=&quot;nofollow&quot;&gt;David Blevins&lt;/a&gt;
+ founder of Tomitribe. Sadly missing from this year's panel was any 
+representative from Pivotal. Bruno lead off the session with some slides
+ and allowed the panelists to introduce themselves. Interestingly, the 
+slides in the content catalog for this session are &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://oracleus.activeevents.com/2014/connect/fileDownload/session/22EFE7168EEF4D32387C88483F9FEA81/CON2131_Little-JavaEE.next.pdf&quot; rel=&quot;nofollow&quot;&gt;Mark Little's&lt;/a&gt;,
+ not Bruno's. Nonetheless, Mark's slides are very informative, do check 
+them out. The discussion rapidly focused on some current trends in 
+enterprise Java software and how Java EE has responded to and will 
+respond to these trends. Mark Little, in typical dry British fashion, 
+observed that what we now call microservices is really just the latest 
+name for SOA. This observation lead to an acknowledgement that the idea 
+of a WAR file being deployed in a container is starting to give way to 
+the idea of a deployable application that contains an executable 
+runtime. I hope they post the audio for this session because there was a
+ lot more that I'm not recalling.&lt;/p&gt;&lt;p&gt;It turned out that the next 
+session I attended was the only purely technical Java EE based session I
+ could make, but it was a good one. It was CON3389: Migrating a 
+JSF-Based Web application from Spring 3 to Java EE 7 and CDI. The slides
+ are &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://oracleus.activeevents.com/2014/connect/fileDownload/session/38D170F17A082C3A2A7D213C6D498CD0/CON3389_Reimer-Migrating%20a%20JSF-Based%20Web%20Application%20from%20Spring%203%20to%20Java%20EE%207%20and%20CDI.pdf&quot; rel=&quot;nofollow&quot;&gt;in the content catalog&lt;/a&gt;. This session by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/LeanderReimer&quot; rel=&quot;nofollow&quot;&gt;Leander Reimer&lt;/a&gt;
+ was an excellent case-study of how an existing JSF based web 
+application that was built on Spring was migrated to a pure Java EE 
+stack. It is common knowledge that Spring has risen to prominence by 
+positioning itself as an alternative to Java EE. What is not so common 
+knowledge is that there has always been significant interplay and 
+cross-polination of ideas between Spring and Java EE. For example, did 
+you know that JSF 1.0 had its own, XML based dependency injection 
+mechanism way back in 2004, right around the time that Spring 1.0 was 
+released? This sort of thing is not surprising since both stacks have 
+been trying to solve the same kinds of problems, for the same kinds of 
+developers, and there are only so many ways to skin a cat. This fact 
+enabled Mr. Reimer and his team to successfully and quickly complete the
+ migration. The main idea of the talk was to show that for every thing 
+they had in their app using Spring, there was a corresponding way to do 
+it in Java EE. This traversal of migration tasks served as a vehicle for
+ pointing out several pitfalls they had to safely navigate to get to 
+production. During the Q&amp;amp;A I asked Mr. Reimer a two part question. 
+First, I asked why did they use JSF in the first place when many Spring 
+shops just go with the built-in Spring MVC? His answer: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.primefaces.org/showcase/&quot; rel=&quot;nofollow&quot;&gt;PrimeFaces&lt;/a&gt;.
+ Next, I asked him to speculate how much harder would the task have been
+ had the UI been in Spring MVC instead of JSF. I was hoping the 
+discussion might give my colleague Manfred Riem, also in the audience, a
+ chance to bring up &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://java.net/projects/mvc-spec/pages/Home&quot; rel=&quot;nofollow&quot;&gt;MVC 1.0&lt;/a&gt;.
+ Instead, Mr. Reimer observed it wouldn't be that hard to write an 
+integration layer on top of JSF that allows its use in an 
+action-oriented manner. This was a skillfully executed talk with a 
+compelling topic given from an in-the-trenches perspective. Bravo.&lt;/p&gt;&lt;p&gt;Way back in March when I attended &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/&quot; rel=&quot;nofollow&quot;&gt;JavaLand&lt;/a&gt;
+ I saw an excellent session from my old pals Manfred Geiler and Thomas 
+Spiegl from Irian. The session was about their new UI technology called &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://ankor.io/&quot; rel=&quot;nofollow&quot;&gt;Ankor&lt;/a&gt;. I requested they submit this session to JavaOne, and thankfully it was accepted as &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://oracleus.activeevents.com/2014/connect/fileDownload/session/E2A49CD1203FD3DFA9D7C751D78AB76A/CON2403_Geiler-Ankor%20Presentation%20-%20JavaOne%20SanFrancisco%202014-09.pptx&quot; rel=&quot;nofollow&quot;&gt;CON2403 - Reactive UIs with the MVVM Pattern&lt;/a&gt;. &lt;img alt=&quot;Ed Burns and Manfred Geiler&quot; class=&quot;jive-external-image&quot; style=&quot;float: right;&quot; width=&quot;200&quot; height=&quot;136&quot;&gt;&lt;img alt=&quot;Ed Burns and Manfred Geiler&quot; class=&quot;jive-external-image&quot; style=&quot;float: left;&quot; width=&quot;152&quot; height=&quot;136&quot;&gt;I
+ was unable to attend the talk as it conflicted with Mr. Reimer's but I 
+did catch up with Manfred and Thomas after their session for a beer in 
+Duke's cafe. This was a special anniversary for Manfred and I. Ten years
+ ago, at JavaOne 2004, Manfred and I met when he attended my session on 
+JSF 1.0. Manfred approached me and said, &quot;Hey, I have an independent 
+implementation of JSF,&quot; and I was thrilled. This, of course, was &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://myfaces.apache.org/&quot; rel=&quot;nofollow&quot;&gt;MyFaces&lt;/a&gt;.
+ To commemorate these two meetings separated by ten years, at left you 
+see Manfred and I at JavaOne 2004, and at right, with Thomas Spiegl, at 
+JavaOne 2014.&lt;/p&gt;&lt;p&gt;My final session, in the final slot, was &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/mjduigou&quot; rel=&quot;nofollow&quot;&gt;Mike Duigou's&lt;/a&gt; excellent &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://oracleus.activeevents.com/2014/connect/sessionDetail.ww?SESSION_ID=6309&quot; rel=&quot;nofollow&quot;&gt;CON6309 New Tricks for Old Dogs: Collections in Java 8&lt;/a&gt;. The slides haven't been posted yet, but do get them when they become available. &lt;img alt=&quot;http://ridingthecrest.com/scratch/20141002-stuart-marks-edburns-checkup.jpg&quot; class=&quot;jive-external-image&quot; style=&quot;float: right;&quot; width=&quot;120&quot; height=&quot;195&quot;&gt;Talks
+ like this are really useful to expose you to the new features you 
+really need in practice. Mike's session was really useful because he 
+gave the perspective behind the design choices in these fundamental 
+library classes that have contributed so much to the success of Java 
+over the years. Sadly, I see that Mike has recently &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/mjduigou/status/520360658869579776&quot; rel=&quot;nofollow&quot;&gt;left Oracle&lt;/a&gt;
+ but he's now working with James Gosling directly at his Liquid Robotics
+ outfit. I wish you the best, Mike, but I'm sure we'll see you at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://blogs.oracle.com/javaone/entry/15_off_your_javaone_2015&quot; rel=&quot;nofollow&quot;&gt;JavaOne next year&lt;/a&gt;. I ran into &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/stuartmarks&quot; rel=&quot;nofollow&quot;&gt;Stuart Marks&lt;/a&gt; after Mike's session and he gave me a checkup on the knowledge I had absorbed, as seen at left.&lt;/p&gt;&lt;p&gt;To
+ sum up JavaOne 2014, Oracle's consistent investment in promoting the 
+Java Developer community is very evident. Though firmly in legacy 
+territory, Java is still very vibrant and very new. The priorities 
+behind the design choices in Java itself (innovation packaged in an 
+enterprise ready programming environment) are on display in the 
+community as well.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">With
+ all of my formal JavaOne conference obligations satisfied, day four was
+ dedicated to listening. Another day, another hotel. The community 
+keynote had a little bit of everything and was in the San Francisco 
+Marriott, bringing to four the total number of separate buildings I had 
+to visit for ]]&amp;gt;is available at Oracle. The room was full, and Intel 
+VP Michael Greene had an attentive audience for his portion of the 
+keynote. The keynote quickly moved on to showcasing some highlights from
+ the Java community over the last year. There was a great selection of 
+awards, demos, and product announcements. I was happy to see Scratch 
+style programming return to the Java platform in the form of SnapCode, demonstrated by its creator Jeff Martin. I feel that Scratch is the gold standard in this sort of environment, and I was very disappointed when they dropped Java in favor of Flash
+ (as part of a broader move to an entirely cloud-based development 
+environment, which I also didn't appreciate). If you had some of the 
+same reservations, consider giving SnapCode a try. There were some other
+ nifty demos all of which combined to give the attendees a positive 
+impression about how fun and cool it is to develop on the Java Platform.Mark
+ Reinhold re-appeared and gave the rest of the technical keynote, 
+allowing Brian Goetz to finish his interrupted content from Sunday. 
+Oracle has helpfully produced a single streaming file with the content from both days. Mark and Brian's presentation was followed by a question and answer panel, facilitated by the twitter hashtag #j1qa
+ and adding James Gosling, Brian Oliver and Charles Nutter as panelists.
+ Perhaps we should have done this approach during the web framework 
+smackdown. The most humorous question was regarding a suggestion to move
+ OpenJDK to GitHub. Mark's satisfyingly definitive answer was &quot;no&quot;. As 
+usual with large-scale Q&amp;amp;A panels, there was not much depth and the 
+questions bounced around a lot. It's always great to have James Gosling 
+on hand for some part of JavaOne, and this year he pointed out that Java
+ has come full circle, having been intended for &quot;Internet of Things&quot; 
+from the start. I'll point out that Sun had a mass-market IoT device ten years ago in theform of the SunSPOT. Did you know that Oracle Labs continues the work on SunSPOT and you can still buy them for $399? The panel closed out with the traditional t-shirt cannon distribution. I give a special thanks to my old pal Vinicius Senger for catching one for me. In a nod to a more TED-style talk, (but a mere shadow of the glory days of Douglas Adams' JavaOne keynote)
+ Andra Keay gave a nice talk about the dynamics of robot/human 
+interactions. Sadly missing from the talk was any mention about my pet 
+peeve in the whole robot revolution: the need to change how society 
+values the output of human work in a world where robots do most of the 
+work.The conference orgnizers thoughtfully delayed the start of 
+the rest of the sessions by 30 minutes to accomodate the lengthened 
+keynote. This gave me time to get back over to Parc55 for CON2131: Java 
+EE Community Update and Panel. Bruno Borges moderated. On the panel were my (skiplevels) boss Cameron Purdy, John Clingan, GlassFish Product Manager at Oracle, Kevin Sutter, Java EE Architect at IBM, Mark Little, RedHat VP, Adam Bien, famous Java EE consultant, and David Blevins
+ founder of Tomitribe. Sadly missing from this year's panel was any 
+representative from Pivotal. Bruno lead off the session with some slides
+ and allowed the panelists to introduce themselves. Interestingly, the 
+slides in the content catalog for this session are Mark Little's,
+ not Bruno's. Nonetheless, Mark's slides are very informative, do check 
+them out. The discussion rapidly focused on some current trends in 
+enterprise Java software and how Java EE has responded to and will 
+respond to these trends. Mark Little, in typical dry British fashion, 
+observed that what we now call microservices is really just the latest 
+name for SOA. This observation lead to an acknowledgement that the idea 
+of a WAR file being deployed in a container is starting to give way to 
+the idea of a deployable application that contains an executable 
+runtime. I hope they post the audio for this session because there was a
+ lot more that I'm not recalling.It turned out that the next 
+session I attended was the only purely technical Java EE based session I
+ could make, but it was a good one. It was CON3389: Migrating a 
+JSF-Based Web application from Spring 3 to Java EE 7 and CDI. The slides
+ are in the content catalog. This session by Leander Reimer
+ was an excellent case-study of how an existing JSF based web 
+application that was built on Spring was migrated to a pure Java EE 
+stack. It is common knowledge that Spring has risen to prominence by 
+positioning itself as an alternative to Java EE. What is not so common 
+knowledge is that there has always been significant interplay and 
+cross-polination of ideas between Spring and Java EE. For example, did 
+you know that JSF 1.0 had its own, XML based dependency injection 
+mechanism way back in 2004, right around the time that Spring 1.0 was 
+released? This sort of thing is not surprising since both stacks have 
+been trying to solve the same kinds of problems, for the same kinds of 
+developers, and there are only so many ways to skin a cat. This fact 
+enabled Mr. Reimer and his team to successfully and quickly complete the
+ migration. The main idea of the talk was to show that for every thing 
+they had in their app using Spring, there was a corresponding way to do 
+it in Java EE. This traversal of migration tasks served as a vehicle for
+ pointing out several pitfalls they had to safely navigate to get to 
+production. During the Q&amp;amp;A I asked Mr. Reimer a two part question. 
+First, I asked why did they use JSF in the first place when many Spring 
+shops just go with the built-in Spring MVC? His answer: PrimeFaces.
+ Next, I asked him to speculate how much harder would the task have been
+ had the UI been in Spring MVC instead of JSF. I was hoping the 
+discussion might give my colleague Manfred Riem, also in the audience, a
+ chance to bring up MVC 1.0.
+ Instead, Mr. Reimer observed it wouldn't be that hard to write an 
+integration layer on top of JSF that allows its use in an 
+action-oriented manner. This was a skillfully executed talk with a 
+compelling topic given from an in-the-trenches perspective. Bravo.Way back in March when I attended JavaLand
+ I saw an excellent session from my old pals Manfred Geiler and Thomas 
+Spiegl from Irian. The session was about their new UI technology called Ankor. I requested they submit this session to JavaOne, and thankfully it was accepted as CON2403 - Reactive UIs with the MVVM Pattern. I
+ was unable to attend the talk as it conflicted with Mr. Reimer's but I 
+did catch up with Manfred and Thomas after their session for a beer in 
+Duke's cafe. This was a special anniversary for Manfred and I. Ten years
+ ago, at JavaOne 2004, Manfred and I met when he attended my session on 
+JSF 1.0. Manfred approached me and said, &quot;Hey, I have an independent 
+implementation of JSF,&quot; and I was thrilled. This, of course, was MyFaces.
+ To commemorate these two meetings separated by ten years, at left you 
+see Manfred and I at JavaOne 2004, and at right, with Thomas Spiegl, at 
+JavaOne 2014.My final session, in the final slot, was Mike Duigou's excellent CON6309 New Tricks for Old Dogs: Collections in Java 8. The slides haven't been posted yet, but do get them when they become available. Talks
+ like this are really useful to expose you to the new features you 
+really need in practice. Mike's session was really useful because he 
+gave the perspective behind the design choices in these fundamental 
+library classes that have contributed so much to the success of Java 
+over the years. Sadly, I see that Mike has recently left Oracle
+ but he's now working with James Gosling directly at his Liquid Robotics
+ outfit. I wish you the best, Mike, but I'm sure we'll see you at JavaOne next year. I ran into Stuart Marks after Mike's session and he gave me a checkup on the knowledge I had absorbed, as seen at left.To
+ sum up JavaOne 2014, Oracle's consistent investment in promoting the 
+Java Developer community is very evident. Though firmly in legacy 
+territory, Java is still very vibrant and very new. The priorities 
+behind the design choices in Java itself (innovation packaged in an 
+enterprise ready programming environment) are on display in the 
+community as well.</summary></entry><entry><title type="html">JavaOne 2014 Day Three Notes Blog</title><link href="/blog/2014/10/16/javaone-2014-day-three-notes.html" rel="alternate" type="text/html" title="JavaOne 2014 Day Three Notes Blog" /><published>2014-10-16T12:08:00-04:00</published><updated>2014-10-16T12:08:00-04:00</updated><id>/blog/2014/10/16/javaone-2014-day-three-notes</id><content type="html" xml:base="/blog/2014/10/16/javaone-2014-day-three-notes.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;Day
+ three was definitely the high point of the conference for me.&amp;nbsp; As 
+anyone who has spoken at tech conferences knows, the point in time when 
+all of one's sessions have been given is the turning point between 
+tempered enjoyment and pure enjoyment of the conference.&amp;nbsp; I was 
+blessed with the scheduling this year; I was all done after 
+Wednesday.&amp;nbsp; This put me in a great frame of mind to enjoy the 
+Oracle Appreciation Event.&amp;nbsp; Day three also saw the culmination of a
+ long running project: the Web Framework Smackdown 2014 edition.&lt;/p&gt;&amp;nbsp; &lt;p&gt;My friend and colleague &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.rahmannet.net/&quot; rel=&quot;nofollow&quot;&gt;Reza Rahman&lt;/a&gt; asked me to keep the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2014/06/22/web-framework-smackdown-2014-edition?force=485&quot; rel=&quot;nofollow&quot;&gt;web framework smackdown meme&lt;/a&gt;
+ going for another year.&amp;nbsp; This year I called in quite a few favors 
+to pull together a diverse group of celebrity panelists: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/mhevery&quot; rel=&quot;nofollow&quot;&gt;Miško Hevery&lt;/a&gt;, creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/angularjs&quot; rel=&quot;nofollow&quot;&gt;AngularJS&lt;/a&gt; at Google, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/floydophone&quot; rel=&quot;nofollow&quot;&gt;Pete Hunt&lt;/a&gt; creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/reactjs&quot; rel=&quot;nofollow&quot;&gt;ReactJS&lt;/a&gt; at Facebook, &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149455/20141001-smackdown-prep.jpg&quot;&gt;&lt;img __embedded_id=&quot;395&quot; alt=&quot;panelists preparing&quot; src=&quot;20141016_files/20141001-smackdown-prep.jpg&quot; style=&quot;float:right;&quot; width=&quot;200&quot; height=&quot;103&quot;&gt;&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/joonaslehtinen&quot; rel=&quot;nofollow&quot;&gt;Joonas Lehtinen&lt;/a&gt;, creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/vaadin&quot; rel=&quot;nofollow&quot;&gt;Vaadin&lt;/a&gt;.&amp;nbsp; The panel was moderated by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/neal4d&quot; rel=&quot;nofollow&quot;&gt;Neal Ford&lt;/a&gt; of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/thoughtworks&quot; rel=&quot;nofollow&quot;&gt;ThoughtWorks&lt;/a&gt;.&amp;nbsp; I rounded out the panel representing &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/jsf_spec&quot; rel=&quot;nofollow&quot;&gt;JSF&lt;/a&gt;.&amp;nbsp;
+ I've learned from previous smackdowns that a confident and comfortable 
+moderator combined with a little prep time just before the panel are the
+ keys to success.&amp;nbsp; We met at 11am for this purpose over Patxi's 
+pizza. From the left you can see Neal Ford, Miško Hevery, myself, Joonas
+ Lehtinen, and Pete Hunt.&amp;nbsp; I don't think Pete and Miško had met 
+before, and it was interesting hearing them trade notes about their 
+approaches to the performance of handling the model update side of their
+ frameworks.&amp;nbsp; From what I gathered, they both see that feature as 
+the most valuable aspect of their frameworks, and they both have spent 
+significant time optimizing that part.&amp;nbsp; When it came time to take 
+it on stage, we started by introducing our different approaches to the 
+task of building a stateful and responsive user interface delivered in a
+ web browser.&amp;nbsp; Angular and React are entirely client side, while 
+JSF and Vaadin are entirely server side.&amp;nbsp; In spite of Neal's 
+earlier recommendation that client side is the way of the future, Joonas
+ and I made the case for where server side makes sense.&amp;nbsp; Briefly, 
+reasons for favoring server side over client side include simplicity, 
+security, integratability (such as mashups), and maintainability.&amp;nbsp; 
+Client side is better when Facebook-sized scale is important, when 
+JavaScript fluency is a non-issue, and when &quot;modern&quot; browsers are a 
+given.&amp;nbsp; You'll have to check out the audio to get the full 
+details.&amp;nbsp; My only complaint with the panel is that it really didn't
+ get smackdown-ish at all.&amp;nbsp; I welcome comments about the 
+client/server UI debate.&amp;nbsp; Perhaps we can get some smackdown action 
+in the comments.&lt;/p&gt;&amp;nbsp; &lt;p&gt;My last official obligation of the 
+conference was my final booth duty in the Java EE both.&amp;nbsp; This 
+session closed out the JavaOne exhibition, and as such the traffic was a
+ bit light.&amp;nbsp; I was able to take a tour around the exhibition to 
+obtain some schwag for my kids.&amp;nbsp; This year it was novel to see &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://codewithtarget.com/&quot; rel=&quot;nofollow&quot;&gt;Target&lt;/a&gt;
+ with a booth.&amp;nbsp; I've long been a fan (and shareholder) of Target, 
+avoiding Wal*mart at all (unfortunately frequently too high) 
+costs.&amp;nbsp; They were recruiting.&amp;nbsp; JavaOne is not a job fair, but 
+it was still nice to see them representing Minneapolis, home of Facelets
+ creator Jakob Hookom.&lt;/p&gt;&amp;nbsp;&amp;nbsp; &lt;p&gt; &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149456/20141001-nullpointers-01.jpg&quot;&gt;&lt;img __embedded_id=&quot;396&quot; alt=&quot;Geert and the NullPointers&quot; src=&quot;20141016_files/20141001-nullpointers-01.jpg&quot; style=&quot;float:left;&quot; width=&quot;200&quot; height=&quot;220&quot;&gt;&lt;/a&gt;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149457/20141001-nullpointers-02.jpg&quot;&gt;&lt;img __embedded_id=&quot;397&quot; alt=&quot;Freddy, Frank, and Ed&quot; src=&quot;20141016_files/20141001-nullpointers-02.jpg&quot; style=&quot;float:right;&quot; width=&quot;200&quot; height=&quot;123&quot;&gt;&lt;/a&gt; Booth duty done, it was on to a bit of fun in Duke's Cafe.&amp;nbsp; As I mentioned in my &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2014/10/07/javaone-2014-day-one-notes&quot; rel=&quot;nofollow&quot;&gt;JavaOne 2014 Day One&lt;/a&gt; blog entry, Chicago JUG leader &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/fguime&quot; rel=&quot;nofollow&quot;&gt;Freddy Guime&lt;/a&gt;
+ had put together a band of musician Java enthusiasts called the 
+NullPointers. They allowed me to sit in with them for some songs during 
+their set at 5pm Wednesday.&amp;nbsp; This was a real honor and a great 
+blast.&amp;nbsp; At left, from the left you see &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/neuroph&quot; rel=&quot;nofollow&quot;&gt;Zoran Severac&lt;/a&gt;, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/matkar&quot; rel=&quot;nofollow&quot;&gt;Mattias Karlsson&lt;/a&gt;, of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.jfokus.se/jfokus/&quot; rel=&quot;nofollow&quot;&gt;JFokus&lt;/a&gt;, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/gbevin&quot; rel=&quot;nofollow&quot;&gt;Geert Bevin&lt;/a&gt; of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://zeroturnaround.com/&quot; rel=&quot;nofollow&quot;&gt;ZeroTurnaround&lt;/a&gt;, and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/JavaFXpert&quot; rel=&quot;nofollow&quot;&gt;Jim Weaver&lt;/a&gt;, Java Developer Advocate for Oracle.&amp;nbsp; At right, from the right, you see Freddy, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/frankgreco&quot; rel=&quot;nofollow&quot;&gt;Frank Greco&lt;/a&gt; of the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javasig.com/&quot; rel=&quot;nofollow&quot;&gt;New York Java Users Group&lt;/a&gt; and myself.&amp;nbsp; I think my keyboard stand was formerly in the Hackergarten.&lt;/p&gt;&amp;nbsp; &lt;p&gt;The fun kept on rolling, with the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://home.java.net/sites/default/files/c12bg-openworld-bands-2264324.jpg&quot; rel=&quot;nofollow&quot;&gt;Oracle Appreciation Event&lt;/a&gt;.&amp;nbsp;
+ This used to be called the Customer Appreciation Event.&amp;nbsp; I'm not 
+sure why they renamed it.&amp;nbsp; I would probably have given it a pass 
+this year but for my 11 year old who is a big Macklemore fan.&amp;nbsp; I'm 
+glad I went because Macklemore was very entertaining, and Aerosmith put 
+on a great show as well.&lt;/p&gt; &lt;/div&gt;</content><summary type="html">Day
+ three was definitely the high point of the conference for me.&amp;nbsp; As 
+anyone who has spoken at tech conferences knows, the point in time when 
+all of one's sessions have been given is the turning point between 
+tempered enjoyment and pure enjoyment of the conference.&amp;nbsp; I was 
+blessed with the scheduling this year; I was all done after 
+Wednesday.&amp;nbsp; This put me in a great frame of mind to enjoy the 
+Oracle Appreciation Event.&amp;nbsp; Day three also saw the culmination of a
+ long running project: the Web Framework Smackdown 2014 edition.&amp;nbsp; My friend and colleague Reza Rahman asked me to keep the web framework smackdown meme
+ going for another year.&amp;nbsp; This year I called in quite a few favors 
+to pull together a diverse group of celebrity panelists: Miško Hevery, creator of AngularJS at Google, Pete Hunt creator of ReactJS at Facebook,  and Joonas Lehtinen, creator of Vaadin.&amp;nbsp; The panel was moderated by Neal Ford of ThoughtWorks.&amp;nbsp; I rounded out the panel representing JSF.&amp;nbsp;
+ I've learned from previous smackdowns that a confident and comfortable 
+moderator combined with a little prep time just before the panel are the
+ keys to success.&amp;nbsp; We met at 11am for this purpose over Patxi's 
+pizza. From the left you can see Neal Ford, Miško Hevery, myself, Joonas
+ Lehtinen, and Pete Hunt.&amp;nbsp; I don't think Pete and Miško had met 
+before, and it was interesting hearing them trade notes about their 
+approaches to the performance of handling the model update side of their
+ frameworks.&amp;nbsp; From what I gathered, they both see that feature as 
+the most valuable aspect of their frameworks, and they both have spent 
+significant time optimizing that part.&amp;nbsp; When it came time to take 
+it on stage, we started by introducing our different approaches to the 
+task of building a stateful and responsive user interface delivered in a
+ web browser.&amp;nbsp; Angular and React are entirely client side, while 
+JSF and Vaadin are entirely server side.&amp;nbsp; In spite of Neal's 
+earlier recommendation that client side is the way of the future, Joonas
+ and I made the case for where server side makes sense.&amp;nbsp; Briefly, 
+reasons for favoring server side over client side include simplicity, 
+security, integratability (such as mashups), and maintainability.&amp;nbsp; 
+Client side is better when Facebook-sized scale is important, when 
+JavaScript fluency is a non-issue, and when &quot;modern&quot; browsers are a 
+given.&amp;nbsp; You'll have to check out the audio to get the full 
+details.&amp;nbsp; My only complaint with the panel is that it really didn't
+ get smackdown-ish at all.&amp;nbsp; I welcome comments about the 
+client/server UI debate.&amp;nbsp; Perhaps we can get some smackdown action 
+in the comments.&amp;nbsp; My last official obligation of the 
+conference was my final booth duty in the Java EE both.&amp;nbsp; This 
+session closed out the JavaOne exhibition, and as such the traffic was a
+ bit light.&amp;nbsp; I was able to take a tour around the exhibition to 
+obtain some schwag for my kids.&amp;nbsp; This year it was novel to see Target
+ with a booth.&amp;nbsp; I've long been a fan (and shareholder) of Target, 
+avoiding Wal*mart at all (unfortunately frequently too high) 
+costs.&amp;nbsp; They were recruiting.&amp;nbsp; JavaOne is not a job fair, but 
+it was still nice to see them representing Minneapolis, home of Facelets
+ creator Jakob Hookom.&amp;nbsp;&amp;nbsp;  &amp;nbsp;&amp;nbsp;  Booth duty done, it was on to a bit of fun in Duke's Cafe.&amp;nbsp; As I mentioned in my JavaOne 2014 Day One blog entry, Chicago JUG leader Freddy Guime
+ had put together a band of musician Java enthusiasts called the 
+NullPointers. They allowed me to sit in with them for some songs during 
+their set at 5pm Wednesday.&amp;nbsp; This was a real honor and a great 
+blast.&amp;nbsp; At left, from the left you see Zoran Severac, Mattias Karlsson, of JFokus, Geert Bevin of ZeroTurnaround, and Jim Weaver, Java Developer Advocate for Oracle.&amp;nbsp; At right, from the right, you see Freddy, Frank Greco of the New York Java Users Group and myself.&amp;nbsp; I think my keyboard stand was formerly in the Hackergarten.&amp;nbsp; The fun kept on rolling, with the Oracle Appreciation Event.&amp;nbsp;
+ This used to be called the Customer Appreciation Event.&amp;nbsp; I'm not 
+sure why they renamed it.&amp;nbsp; I would probably have given it a pass 
+this year but for my 11 year old who is a big Macklemore fan.&amp;nbsp; I'm 
+glad I went because Macklemore was very entertaining, and Aerosmith put 
+on a great show as well.</summary></entry></feed>

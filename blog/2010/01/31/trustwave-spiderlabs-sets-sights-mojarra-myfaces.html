@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Trustwave SpiderLabs sets sights on Mojarra, MyFaces Blog</title>
+  <meta name="description" content="I received an email from core Mojarra team member Jim Driscoll, who was inexplicably laid off from Sun after its recent acquisition by Oracle, about a talk a...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2010/01/31/trustwave-spiderlabs-sets-sights-mojarra-myfaces.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Trustwave SpiderLabs sets sights on Mojarra, MyFaces Blog</h1>
+    <p class="post-meta"><time datetime="2010-01-31T07:11:00-05:00" itemprop="datePublished">Jan 31, 2010</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="jive-rendered-content"><p>I received an email from core Mojarra team member <a class="jive-link-external-small" href="http://www.java.net/blogs/driscoll/" rel="nofollow">Jim Driscoll</a>, who was inexplicably laid off from Sun after its recent acquisition by Oracle, about a talk at next week’s <a class="jive-link-external-small" href="http://blackhat.com/html/bh-dc-10/bh-dc-10-briefings.html" rel="nofollow">BlackHat Conference</a> in Arlington, VA, U.S.A.. Jim pointed out that two security luminaries from the elite <a class="jive-link-external-small" href="https://www.trustwave.com/spiderLabs.php" rel="nofollow">SpiderLabs</a> team from Trustwave are giving a talk at BlackHat about view state security, specifically focusing on Mojarra and MyFaces.</p><span></span><p>Cursory research on the talk found two articles: one by Kelly Jackson Higgins at <a class="jive-link-external-small" href="http://www.darkreading.com/vulnerability_management/security/vulnerabilities/showArticle.jhtml?articleID=222600302#community#comments" rel="nofollow">DarkReading</a>, and another (which appears to be based on the first) at <a class="jive-link-external-small" href="http://www.scmagazineuk.com/a-malicious-use-of-view-state-that-allows-visibility-of-a-users-credentials-will-be-demonstrated-at-next-weeks-black-hat-conference/article/162624/" rel="nofollow">SC Magazine</a>. The talk will be given by David Byrne (the guy who released <a class="jive-link-external-small" href="http://grendel-scan.com/" rel="nofollow">grendel</a>,
+ not the guy from Talking Heads), and Rohini Sulatycki. For my money, 
+the most important quote in the former article is, “There’s no patch to 
+fix these flaws, either. ‘All developers have to do is perform a 
+configuration change,’ he says, and encrypt view state.”</p><span></span><p>I
+ haven’t seen their presentation yet, but for Mojarra, you can put lines
+ 16 - 24 of the following web.xml into your web.xml to ensure that 
+    client state will be encrypted.</p><span></span><div class="xml" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;?xml</span> <span style="color: #000066;">version</span>=<span style="color: #ff0000;">"1.0"</span> <span style="color: #000066;">encoding</span>=<span style="color: #ff0000;">"UTF-8"</span><span style="color: #000000; font-weight: bold;">?&gt;</span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;web-app</span> <span style="color: #000066;">version</span>=<span style="color: #ff0000;">"3.0"</span> <span style="color: #000066;">xmlns</span>=<span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://java.sun.com/xml/ns/javaee" rel="nofollow">http://java.sun.com/xml/ns/javaee</a><span>"</span></span> <span style="color: #000066;">xmlns:xsi</span>=<span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://www.w3.org/2001/XMLSchema-instance" rel="nofollow">http://www.w3.org/2001/XMLSchema-instance</a><span>"</span></span><span style="color: #000066;">xsi:schemaLocation</span>=<span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://java.sun.com/xml/ns/javaee" rel="nofollow">http://java.sun.com/xml/ns/javaee</a><span> </span><a class="jive-link-external-small" href="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" rel="nofollow">http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd</a><span>"</span></span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;servlet<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;servlet-name<span style="color: #000000; font-weight: bold;">&gt;</span></span>Faces Servlet<span style="color: #000000; font-weight: bold;">&lt;/servlet-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;servlet-class<span style="color: #000000; font-weight: bold;">&gt;</span></span>javax.faces.webapp.FacesServlet<span style="color: #000000; font-weight: bold;">&lt;/servlet-class<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;load-on-startup<span style="color: #000000; font-weight: bold;">&gt;</span></span>1<span style="color: #000000; font-weight: bold;">&lt;/load-on-startup<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;/servlet<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;servlet-mapping<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;servlet-name<span style="color: #000000; font-weight: bold;">&gt;</span></span>Faces Servlet<span style="color: #000000; font-weight: bold;">&lt;/servlet-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;url-pattern<span style="color: #000000; font-weight: bold;">&gt;</span></span>/faces/*<span style="color: #000000; font-weight: bold;">&lt;/url-pattern<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;/servlet-mapping<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;welcome-file-list<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;welcome-file<span style="color: #000000; font-weight: bold;">&gt;</span></span>faces/index.xhtml<span style="color: #000000; font-weight: bold;">&lt;/welcome-file<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;/welcome-file-list<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;context-param<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;param-name<span style="color: #000000; font-weight: bold;">&gt;</span></span>javax.faces.STATE_SAVING_METHOD<span style="color: #000000; font-weight: bold;">&lt;/param-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;param-value<span style="color: #000000; font-weight: bold;">&gt;</span></span>client<span style="color: #000000; font-weight: bold;">&lt;/param-value<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;/context-param<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;env-entry<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;env-entry-name<span style="color: #000000; font-weight: bold;">&gt;</span></span>ClientStateSavingPassword<span style="color: #000000; font-weight: bold;">&lt;/env-entry-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;env-entry-type<span style="color: #000000; font-weight: bold;">&gt;</span></span>java.lang.String<span style="color: #000000; font-weight: bold;">&lt;/env-entry-type<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;env-entry-value<span style="color: #000000; font-weight: bold;">&gt;</span></span>driscoll<span style="color: #000000; font-weight: bold;">&lt;/env-entry-value<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;/env-entry<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">&lt;/web-app<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li></ol></div><span></span><p>A zipped netbeans project that does this is available at &lt;<a class="jive-link-external-small" href="http://mediacast.sun.com/users/edburns00/media/TestClientStatePassword.zip" rel="nofollow">http://mediacast.sun.com/users/edburns00/media/TestClientStatePassword.zip</a>&gt;</p></div>
+
+<h2>2 Comments</h2>
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-0">
+    <li class="reply j-anchor-target" id="comment-964498" data-object-type="105" data-object-id="964498">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20100131_files/32.png" data-avatarid="-1" data-username="alexsmirnov" data-height="32" alt="alexsmirnov" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20100131_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">alexsmirnov</a>
+                    </span>
+                        <a href="#comment-964498" id="comment-modDate-964498" class="font-color-meta-light">Feb 1, 2010 4:18 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964498">
+
+                        <!-- [DocumentBodyStart:3ddc7eab-47e8-4a3b-9622-93975fcd82ac] --><div class="jive-rendered-content">
+Yes, this is known problem, and that is why both JSF implementations 
+have the view state encryption feature.
+Another hole has been introduced by JSF 2.0 AJAX feature there list of 
+components to execute at form submission can be sent from client, so 
+attacker has ability to change application logic ( bypass validation of 
+some fields, for example ). There is no simple way to protect 
+application from such vulnerability except additional checks in 
+application code. That is why I've always been against "execute" or 
+"update" parameters in AJAX request.
+//</div><!-- [DocumentBodyEnd:3ddc7eab-47e8-4a3b-9622-93975fcd82ac] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964498" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964498" data-object-type="105" data-object-id="964498" data-parent-object-type="38" data-parent-object-id="14290" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964498">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964498" class="acclaim-container"><span id="jive-acclaim-like-container-105-964498" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964498-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964498" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964498-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964498" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964499-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964499" data-object-type="105" data-object-id="964499">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20100131_files/32_002.png" data-avatarid="-1" data-username="mwessendorf" data-height="32" alt="mwessendorf" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20100131_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">mwessendorf</a>
+                    </span>
+                        <a href="#comment-964499" id="comment-modDate-964499" class="font-color-meta-light">Feb 1, 2010 11:24 PM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964499">
+
+                        
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964499" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964499" data-object-type="105" data-object-id="964499" data-parent-object-type="38" data-parent-object-id="14290" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964499">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964499" class="acclaim-container"><span id="jive-acclaim-like-container-105-964499" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964499-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964499" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964499-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964499" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+
+  </div>
+
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

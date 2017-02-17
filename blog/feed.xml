@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-16T08:42:28-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-17T14:02:37-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
  I am sensitive to the real damage done to real lives and families that 
 is caused by gambling, so I will include a link to an organization that 
@@ -10,7 +10,82 @@ google for “theonion internet andreessen viewing device”. I’m old enough
  to have first read that on an actual physical newspaper!)&lt;/p&gt;&lt;p&gt;Now, on
  to the raw notes. YMMV of course, but if nothing else this will help 
 you overcome the annoying problem of the slide advancing not being 
-synched to the audio.&lt;/p&gt;&lt;pre&gt; Context: presentation by Patrick Di Loreto (@patricknoir) R&amp;amp;D Engineering lead for William Hill online betting. The presenation was done for Typesafe as a Webinar on 14 June 2015. They have a new betting platform they call Omnia. - Need to handle massive amount of data - Based on Lambda Architecture from Nathan Marz &amp;lt;http://lambda-architecture.net/&amp;gt;. - Omnia is a platform that includes four different components * Chronos - Data Source * Fates - Batch Layer * NeoCortex - Speed layer * Hermes - Serving layer 03:47 definition of Lambda Architecture “All the data must come from a unique place (data source) They separate access to the data source into two different modes based on timeliness requirements. NeoCortex (Speed Layer) is to access the data in real time, but without some consistency and correctness guarantees. Optimized for speed. It has only recent data. Fates (Batch Layer) is to access the data not in real time, but with more (complete?) consistency. 05:00 Reactive Manifesto slide 06:15 importance of elasticty for them 06:47 Chronos Data Source: “It’s nothing else than a container for active streams” “Chronos is a sort of middleware. It can talk to the outside world and bring the data into their system.” Organize the data into a stream of observable events, called “incidents”. Can have different viewpoints for different concerns * Internal (stuff they need to implement the system itself) * Product centric (which of the WH products such as “sports” “tweets” “news”. * External (“social media sharing”) * Customer centric 10:12 Chronos streams connect to the external system and bring it into Chronos Adapter: Understand all the possible protocols that other systems implement. Connect to the other system. Converter: Transform the incoming data into their internal format Persistence Manager: Make the converted data durable. 11:22 Chronos clustering Benefits from the Akka Framework. Distributes the streams across the cluster. When failover happens, stream connection to outside source is migrated to another node via Akka. Keeps referential transparency. Each stream is an Actor which “supervises” its children: adapter, converter, persistence manager. 12:41 Supervising (Slides diverged from audio) (Slide 12) Supervision is key to allowing “error kernel pattern”. &amp;lt;http://danielwestheide.com/blog/2013/03/20/the-neophytes-guide-to-scala-part-15-dealing-with-failure-in-actor-systems.html&amp;gt; Basically, it is just a simple guideline you should always try to follow, stating that if an actor carries important internal state, then it should delegate dangerous tasks to child actors, so as to prevent the state-carrying actor from crashing. Sometimes, it may make sense to spawn a new child actor for each such task, but that&lt;/pre&gt;&lt;/div&gt;</content><summary type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di LoretoMy friend Oliver White is doing his usual bang-up job in his new gig at TypeSafe. One aspect is the humble webinar. Here are my notes for one that caught my eye, Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization. This is a very dense but well delivered presentation by Patrick Di Loreto who helped develop a new platform for his employer, the online gambling service, William Hill.Morally,
+    synched to the audio.&lt;/p&gt;
+
+  &lt;pre&gt;
+
+Context: presentation by Patrick Di Loreto (@patricknoir) R&amp;amp;D
+Engineering lead for William Hill online betting.
+
+The presenation was
+done for Typesafe as a Webinar on 14 June 2015. They have a new betting
+platform they call Omnia.
+
+- Need to handle massive amount of data
+
+- Based on Lambda Architecture from Nathan Marz &amp;lt;http://lambda-architecture.net/&amp;gt;.
+
+- Omnia is a platform that includes four different components
+
+* Chronos - Data Source
+* Fates - Batch Layer
+* NeoCortex - Speed layer
+* Hermes - Serving layer
+
+03:47 definition of Lambda Architecture “All the data must come from a unique
+place (data source) They separate access to the data source into two
+different modes based on timeliness requirements.
+
+NeoCortex (Speed
+Layer) is to access the data in real time, but without some consistency
+and correctness guarantees. Optimized for speed. It has only recent
+data. Fates (Batch Layer) is to access the data not in real time, but
+with more (complete?) consistency.
+
+05:00 Reactive Manifesto slide
+
+06:15 importance of elasticty for them
+
+06:47 Chronos Data Source: “It’s nothing else than a container for
+active streams” “Chronos is a sort of middleware. It can talk to the
+outside world and bring the data into their system.” Organize the data
+into a stream of observable events, called “incidents”. Can have
+different viewpoints for different concerns
+
+* Internal (stuff they need to implement the system itself)
+
+* Product centric (which of the WH products such as “sports” “tweets” “news”.
+
+* External (“social media sharing”)
+
+* Customer centric
+
+  10:12 Chronos streams connect to the external system and bring it into
+  Chronos Adapter: Understand all the possible protocols that other systems
+  implement. Connect to the other system.
+
+Converter: Transform the incoming data into their internal format
+Persistence Manager: Make the converted data durable.
+
+11:22 Chronos clustering Benefits from the Akka Framework. Distributes
+the streams across the cluster. When failover happens, stream connection
+to outside source is migrated to another node via Akka. Keeps
+referential transparency. Each stream is an Actor which “supervises” its
+children: adapter, converter, persistence manager.
+
+12:41 Supervising (Slides diverged from audio) (Slide 12) Supervision is
+key to allowing “error kernel
+pattern”. &amp;lt;http://danielwestheide.com/blog/2013/03/20/the-neophytes-guide-to-scala-part-15-dealing-with-failure-in-actor-systems.html&amp;gt;
+Basically, it is just a simple guideline you should always try to
+follow, stating that if an actor carries important internal state, then
+it should delegate dangerous tasks to child actors, so as to prevent the
+state-carrying actor from crashing. Sometimes, it may make sense to
+spawn a new child actor for each such task, but that
+
+  &lt;/pre&gt;
+
+
+&lt;/div&gt;</content><summary type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di LoretoMy friend Oliver White is doing his usual bang-up job in his new gig at TypeSafe. One aspect is the humble webinar. Here are my notes for one that caught my eye, Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization. This is a very dense but well delivered presentation by Patrick Di Loreto who helped develop a new platform for his employer, the online gambling service, William Hill.Morally,
  I am sensitive to the real damage done to real lives and families that 
 is caused by gambling, so I will include a link to an organization that 
 offers help: 1-800-GAMBLER.
@@ -21,7 +96,7 @@ google for “theonion internet andreessen viewing device”. I’m old enough
  to have first read that on an actual physical newspaper!)Now, on
  to the raw notes. YMMV of course, but if nothing else this will help 
 you overcome the annoying problem of the slide advancing not being 
-synched to the audio. Context: presentation by Patrick Di Loreto (@patricknoir) R&amp;amp;D Engineering lead for William Hill online betting. The presenation was done for Typesafe as a Webinar on 14 June 2015. They have a new betting platform they call Omnia. - Need to handle massive amount of data - Based on Lambda Architecture from Nathan Marz &amp;lt;http://lambda-architecture.net/&amp;gt;. - Omnia is a platform that includes four different components * Chronos - Data Source * Fates - Batch Layer * NeoCortex - Speed layer * Hermes - Serving layer 03:47 definition of Lambda Architecture “All the data must come from a unique place (data source) They separate access to the data source into two different modes based on timeliness requirements. NeoCortex (Speed Layer) is to access the data in real time, but without some consistency and correctness guarantees. Optimized for speed. It has only recent data. Fates (Batch Layer) is to access the data not in real time, but with more (complete?) consistency. 05:00 Reactive Manifesto slide 06:15 importance of elasticty for them 06:47 Chronos Data Source: “It’s nothing else than a container for active streams” “Chronos is a sort of middleware. It can talk to the outside world and bring the data into their system.” Organize the data into a stream of observable events, called “incidents”. Can have different viewpoints for different concerns * Internal (stuff they need to implement the system itself) * Product centric (which of the WH products such as “sports” “tweets” “news”. * External (“social media sharing”) * Customer centric 10:12 Chronos streams connect to the external system and bring it into Chronos Adapter: Understand all the possible protocols that other systems implement. Connect to the other system. Converter: Transform the incoming data into their internal format Persistence Manager: Make the converted data durable. 11:22 Chronos clustering Benefits from the Akka Framework. Distributes the streams across the cluster. When failover happens, stream connection to outside source is migrated to another node via Akka. Keeps referential transparency. Each stream is an Actor which “supervises” its children: adapter, converter, persistence manager. 12:41 Supervising (Slides diverged from audio) (Slide 12) Supervision is key to allowing “error kernel pattern”. &amp;lt;http://danielwestheide.com/blog/2013/03/20/the-neophytes-guide-to-scala-part-15-dealing-with-failure-in-actor-systems.html&amp;gt; Basically, it is just a simple guideline you should always try to follow, stating that if an actor carries important internal state, then it should delegate dangerous tasks to child actors, so as to prevent the state-carrying actor from crashing. Sometimes, it may make sense to spawn a new child actor for each such task, but that</summary></entry><entry><title type="html">GeekOut 2015 Summary Blog</title><link href="/blog/2015/06/16/geekout-2015-summary.html" rel="alternate" type="text/html" title="GeekOut 2015 Summary Blog" /><published>2015-06-16T09:28:00-04:00</published><updated>2015-06-16T09:28:00-04:00</updated><id>/blog/2015/06/16/geekout-2015-summary</id><content type="html" xml:base="/blog/2015/06/16/geekout-2015-summary.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;GeekOut 2015 Summary&lt;/h1&gt;&lt;p&gt;I
+    synched to the audio.</summary></entry><entry><title type="html">GeekOut 2015 Summary Blog</title><link href="/blog/2015/06/16/geekout-2015-summary.html" rel="alternate" type="text/html" title="GeekOut 2015 Summary Blog" /><published>2015-06-16T09:28:00-04:00</published><updated>2015-06-16T09:28:00-04:00</updated><id>/blog/2015/06/16/geekout-2015-summary</id><content type="html" xml:base="/blog/2015/06/16/geekout-2015-summary.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;GeekOut 2015 Summary&lt;/h1&gt;&lt;p&gt;I
  last had the pleasure of visiting the lovely Baltic city of Tallinn in 
 2012, when I presented JSF 2.2 and the Rockstar talk at GeekOut 2012. 
 Now that I've got something new (for me anyway) to talk about I made the

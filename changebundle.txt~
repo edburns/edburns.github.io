@@ -4,10 +4,6 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   author.html
-	modified:   author.jpg
-	modified:   edburns/index.html
-	modified:   index.html
-	modified:   interviews.html
+	modified:   calendar.html
 
 no changes added to commit (use "git add" and/or "git commit -a")

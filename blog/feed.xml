@@ -1,5 +1,162 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-18T13:10:22-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-21T12:44:58-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">DevNexus 2017 Picks</title><link href="/blog/2017/02/21/devnexus-2017-picks.html" rel="alternate" type="text/html" title="DevNexus 2017 Picks" /><published>2017-02-21T11:15:00-05:00</published><updated>2017-02-21T11:15:00-05:00</updated><id>/blog/2017/02/21/devnexus-2017-picks</id><content type="html" xml:base="/blog/2017/02/21/devnexus-2017-picks.html">&lt;p&gt;I am blessed with the opportunity to speak
+at &lt;a href=&quot;http://devnexus.com/&quot;&gt;DevNexus&lt;/a&gt; again this year, after
+having spoken there
+in &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;in
+2014 and 2015&lt;/a&gt;.  Pratik, Vincent, Gunnar and the
+whole &lt;a href=&quot;http://www.ajug.org/&quot;&gt;Atlanta JUG&lt;/a&gt; do a great job
+putting on this very community focused show.  It is the largest
+developer event in the southeastern U.S., an area of the country that
+vitally needs more such events.  There are so many great session from so
+many great speakers, though.  You really can't go wrong with any path.
+Here are my picks for sessions I plan to attend.&lt;/p&gt;
+
+&lt;h3&gt;Wednesday &amp;mdash; Workshop Day&lt;/h3&gt;
+
+&lt;ul&gt;
+  
+  &lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/15529&quot;&gt;Building Reactive Applications&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;A full day workshop with the legendary Venkat Subramaniam?  Yes
+  please.  Venkat's presentation skills are legendary and his humble
+  delivery creates a learning environment that is sure to enrich your
+  career.  It's probably booked out, though it doesn't say so on the
+  conference site.&lt;/p&gt;
+
+  &lt;/li&gt;
+  
+&lt;/ul&gt;
+
+&lt;h3&gt;Thursday &amp;mdash; Conference Day One&lt;/h3&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;&lt;p&gt;09:15 Sidney Marcus Auditorium &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/19975&quot;&gt;Don't
+	        walk away from Complexity, Run (Keynote)&lt;/a&gt;&lt;/p&gt;
+
+            &lt;p&gt;Sticking with the Venkat theme, this is the keynote, so
+            obviously I'll be attending.  The theme of &quot;complexity as
+            bugbear&quot; is an old saw, but Venkat is sure to offer a fresh
+            take on it.&lt;/p&gt;
+            
+	  &lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;10:30 A302 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17348&quot;&gt;Building a private CI/CD pipeline with Java and Docker in the Cloud&lt;/a&gt;
+	    &lt;/p&gt;
+
+            &lt;p&gt;In the spirit of DevOps, we all need to try to be as full
+            stack as
+            possible.  &lt;a href=&quot;https://twitter.com/jbaruch&quot;&gt;Baruch
+            Sadogursky&lt;/a&gt; knows his stuff, in this space in
+            particular.  We use Artifactory at Oracle.  The 75 minute
+            length of the DevNexus session should allow him to stretch
+            out and really teach some skills.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;13:00 A316 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17137&quot;&gt;Tuning with Poor Tools and Cheap Drink&lt;/a&gt;
+	    &lt;/p&gt;
+
+          &lt;p&gt;Kirk is one of the leading experts in the world on Java
+          performance tuning.  We are lucky to have him at DevNexus.&lt;/p&gt;
+
+          &lt;/li&gt;
+          
+          &lt;li&gt;&lt;p&gt;14:30 A411 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17426&quot;&gt;Reactive Thinking in Java&lt;/a&gt;
+	    &lt;/p&gt;
+
+            &lt;p&gt;Yakov Fain is a provocative and thoughtful speaker, I
+            look forward to his thoughts on this hot topic.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;16:00 My session is in the next slot, in room A311, but if I
+	  wasn't speaking then, I'd go
+	  see &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/19469&quot;&gt;The
+	  Art of Java Performance&lt;/a&gt;
+	  from &lt;a href=&quot;https://twitter.com/JoroRoss&quot;&gt;Jonathan Ross&lt;/a&gt;.
+	  &lt;/p&gt;&lt;/li&gt;
+          
+	  &lt;li&gt;&lt;p&gt;17:30
+	  A302 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17356&quot;&gt;Docker
+	        tips and tricks for Java Developers&lt;/a&gt;&lt;/p&gt;
+
+            &lt;p&gt;Docker is a big enough of a pain in the rear to make a
+            &quot;tips and tricks&quot; session well worthwhile.  I haven't seen a
+            talk from Mr. Tsang before, but his credentials speak for
+            themselves.  Also, it may be nice to find kindred spirits
+            who are also leverage Docker and smooth out its sharp
+            edges.&lt;/p&gt;
+
+
+          &lt;/li&gt;
+
+&lt;h3&gt;Friday &amp;mdash; Conference Day Two&lt;/h3&gt;
+
+	  &lt;li&gt;&lt;p&gt;10:30 A412 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17302&quot;&gt;Why does Yesterday's Best Practice Become Tomorrow's Antipattern?&lt;/a&gt;
+	    &lt;/p&gt;
+
+
+            &lt;p&gt;Neal Ford is another conference legend and former
+            moderator of the &lt;a href=&quot;/blog/2014/06/22/web-framework-smackdown-2014-edition.html&quot;&gt;2014 edition of the web
+            framework smackdown&lt;/a&gt;.  As an author whose best practices
+            have been labeled as anti-patterns, some of which by
+            Mr. Ford himself, I look forward to his answer.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+
+	  &lt;li&gt;&lt;p&gt;13:00
+	  A403 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17318&quot;&gt;Introduction
+	        to Apache Kafka - The Next Gen Event Streaming System &lt;/a&gt;&lt;/p&gt;
+
+            &lt;p&gt;James is an excellent and engaging speaker.  He's managed
+            to become an expert on a wide range of highly relevant
+            technologies over the years, no mean feat in itself.  Let's
+            see what he has to say about the latest hotness.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;14:30
+          A305 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17309&quot;&gt;Successful
+                JavaEE DevOps In The Cloud&lt;/a&gt;&lt;/p&gt;
+
+            &lt;p&gt;This ambitious session features
+            a &lt;a href=&quot;http://devnexus.illinoisjug.org/&quot;&gt;pre-configured
+            VM&lt;/a&gt; and will show you how to use it.  I've given this
+            sort of session many times before and it's hard to pull
+            off.  I like the topic and I want to see how they do it.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;16:00 A405 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17164&quot;&gt;MVC
+	        1.0 - Now Even Better!&lt;/a&gt;&lt;/p&gt;
+
+            &lt;p&gt;Oracle's decision to drop MVC from the Java EE 8
+            specification was met with grumbles by some and cheers by
+            others.  I look forward to seeing what the new spec lead
+            has to say about it.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+
+	&lt;/ul&gt;</content><summary type="html">I am blessed with the opportunity to speak
+at DevNexus again this year, after
+having spoken there
+in in
+2014 and 2015.  Pratik, Vincent, Gunnar and the
+whole Atlanta JUG do a great job
+putting on this very community focused show.  It is the largest
+developer event in the southeastern U.S., an area of the country that
+vitally needs more such events.  There are so many great session from so
+many great speakers, though.  You really can't go wrong with any path.
+Here are my picks for sessions I plan to attend.</summary></entry><entry><title type="html">Welcome to my blog reboot</title><link href="/blog/2017/02/21/welcome-to-my-blog-reboot.html" rel="alternate" type="text/html" title="Welcome to my blog reboot" /><published>2017-02-21T08:15:00-05:00</published><updated>2017-02-21T08:15:00-05:00</updated><id>/blog/2017/02/21/welcome-to-my-blog-reboot</id><content type="html" xml:base="/blog/2017/02/21/welcome-to-my-blog-reboot.html">&lt;p&gt;After a two year hiatus, I intend to blog again.  I'm not sure how
+popular blogs are any more, though.  Many thanks
+to &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; for their excellent and
+polished tool.&lt;/p&gt;</content><summary type="html">After a two year hiatus, I intend to blog again.  I'm not sure how
+popular blogs are any more, though.  Many thanks
+to Jekyll for their excellent and
+polished tool.</summary></entry><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
  I am sensitive to the real damage done to real lives and families that 
 is caused by gambling, so I will include a link to an organization that 
 offers help: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.calpg.org/&quot; rel=&quot;nofollow&quot;&gt;1-800-GAMBLER&lt;/a&gt;.
@@ -739,318 +896,4 @@ that placing technologies in their own extension specifications, while
 initially controversial in some cases, has proven to be a long-term 
 benefit for peace and harmony in the end.” Peace and harmony? I hope so.
  In any case, Oliver and I will break this down and show you what it 
-means for developers using Java EE 7.Here is the basic outline of the session.Morning session WebSocket, JSON, JSFJSON - Why is this important? JSON is to HTML5 what XML was to web services - JSON-P is for parsing - What about binding to Java Objects?WebSocket- Three specs: JavaScript API, IETF transport protocol, Java API - Java API details: Usage from a browser, Usage from standalone clientJSF: The good parts - Composite components - HTML 5–friendly markupAfternoon session: HTML 5 Deep DiveHTML 5: Why all the fuss? - What's in a name? - Is it really a big deal?HTML 5: High-level perspective - Design goals - How does it differ from HTML 4HTML 5: Subspecifications - Browser contexts - Microdata - Canvas context - Offline apps - Messaging - Events - Cross-document messaging - Server-sent events - WebSocket - Drag and drop - Web storageJavaLand 2015 has much to offer aside from just this training day, so please consider attending!</summary></entry><entry><title type="html">JavaOne 2014 Day Four Notes Blog</title><link href="/blog/2014/10/28/javaone-2014-day-four-notes.html" rel="alternate" type="text/html" title="JavaOne 2014 Day Four Notes Blog" /><published>2014-10-28T08:35:00-04:00</published><updated>2014-10-28T08:35:00-04:00</updated><id>/blog/2014/10/28/javaone-2014-day-four-notes</id><content type="html" xml:base="/blog/2014/10/28/javaone-2014-day-four-notes.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;With
- all of my formal JavaOne conference obligations satisfied, day four was
- dedicated to listening. Another day, another hotel. The community 
-keynote had a little bit of everything and was in the San Francisco 
-Marriott, bringing to four the total number of separate buildings I had 
-to visit for ]]&amp;gt;is available at Oracle. The room was full, and Intel 
-VP Michael Greene had an attentive audience for his portion of the 
-keynote. The keynote quickly moved on to showcasing some highlights from
- the Java community over the last year. There was a great selection of 
-awards, demos, and product announcements. I was happy to see Scratch 
-style programming return to the Java platform in the form of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.reportmill.com/snap/&quot; rel=&quot;nofollow&quot;&gt;SnapCode&lt;/a&gt;, demonstrated by its creator &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/DonaldOJDK/status/517731602328453120/photo/1&quot; rel=&quot;nofollow&quot;&gt;Jeff Martin&lt;/a&gt;. I feel that Scratch is the gold standard in this sort of environment, and I was very disappointed when they dropped &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://scratchforums.blob8108.net/forums/viewtopic.php?id=57148&quot; rel=&quot;nofollow&quot;&gt;Java in favor of Flash&lt;/a&gt;
- (as part of a broader move to an entirely cloud-based development 
-environment, which I also didn't appreciate). If you had some of the 
-same reservations, consider giving SnapCode a try. There were some other
- nifty demos all of which combined to give the attendees a positive 
-impression about how fun and cool it is to develop on the Java Platform.&lt;/p&gt;&lt;p&gt;Mark
- Reinhold re-appeared and gave the rest of the technical keynote, 
-allowing Brian Goetz to finish his interrupted content from Sunday. 
-Oracle has helpfully produced a &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://medianetwork.oracle.com/video/player/3811045975001&quot; rel=&quot;nofollow&quot;&gt;single streaming file with the content from both days&lt;/a&gt;. Mark and Brian's presentation was followed by a question and answer panel, facilitated by the twitter hashtag &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/hashtag/j1qa?src=hash&quot; rel=&quot;nofollow&quot;&gt;#j1qa&lt;/a&gt;
- and adding James Gosling, Brian Oliver and Charles Nutter as panelists.
- Perhaps we should have done this approach during the web framework 
-smackdown. The most humorous question was regarding a suggestion to move
- OpenJDK to GitHub. Mark's satisfyingly definitive answer was &quot;no&quot;. As 
-usual with large-scale Q&amp;amp;A panels, there was not much depth and the 
-questions bounced around a lot. It's always great to have James Gosling 
-on hand for some part of JavaOne, and this year he pointed out that Java
- has come full circle, having been intended for &quot;Internet of Things&quot; 
-from the start. I'll point out that Sun had a mass-market IoT device &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.sunspotworld.com/about.html&quot; rel=&quot;nofollow&quot;&gt;ten years ago&lt;/a&gt; in theform of the SunSPOT. Did you know that Oracle Labs continues the work on SunSPOT and you can &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://shop.oracle.com/pls/ostore/product?p1=sunspotjavadevelopmentkit&amp;amp;p2=&amp;amp;p3=&amp;amp;p4=&amp;amp;sc=sunspotsite&quot; rel=&quot;nofollow&quot;&gt;still buy them&lt;/a&gt; for $399? The panel closed out with the traditional t-shirt cannon distribution. I give a special thanks to my old pal &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/vsenger&quot; rel=&quot;nofollow&quot;&gt;Vinicius Senger&lt;/a&gt; for catching one for me. In a nod to a more TED-style talk, (but a mere shadow of the glory days of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.discovery.org/a/3488&quot; rel=&quot;nofollow&quot;&gt;Douglas Adams' JavaOne keynote&lt;/a&gt;)
- Andra Keay gave a nice talk about the dynamics of robot/human 
-interactions. Sadly missing from the talk was any mention about my pet 
-peeve in the whole robot revolution: the need to change how society 
-values the output of human work in a world where robots do most of the 
-work.&lt;/p&gt;&lt;p&gt;The conference orgnizers thoughtfully delayed the start of 
-the rest of the sessions by 30 minutes to accomodate the lengthened 
-keynote. This gave me time to get back over to Parc55 for CON2131: Java 
-EE Community Update and Panel. &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/brunoborges&quot; rel=&quot;nofollow&quot;&gt;Bruno Borges&lt;/a&gt; moderated. On the panel were my (skiplevels) boss &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/cpurdy&quot; rel=&quot;nofollow&quot;&gt;Cameron Purdy&lt;/a&gt;, John Clingan, GlassFish Product Manager at Oracle, Kevin Sutter, Java EE Architect at IBM, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/nmcl&quot; rel=&quot;nofollow&quot;&gt;Mark Little&lt;/a&gt;, RedHat VP, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/AdamBien&quot; rel=&quot;nofollow&quot;&gt;Adam Bien&lt;/a&gt;, famous Java EE consultant, and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/dblevins&quot; rel=&quot;nofollow&quot;&gt;David Blevins&lt;/a&gt;
- founder of Tomitribe. Sadly missing from this year's panel was any 
-representative from Pivotal. Bruno lead off the session with some slides
- and allowed the panelists to introduce themselves. Interestingly, the 
-slides in the content catalog for this session are &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://oracleus.activeevents.com/2014/connect/fileDownload/session/22EFE7168EEF4D32387C88483F9FEA81/CON2131_Little-JavaEE.next.pdf&quot; rel=&quot;nofollow&quot;&gt;Mark Little's&lt;/a&gt;,
- not Bruno's. Nonetheless, Mark's slides are very informative, do check 
-them out. The discussion rapidly focused on some current trends in 
-enterprise Java software and how Java EE has responded to and will 
-respond to these trends. Mark Little, in typical dry British fashion, 
-observed that what we now call microservices is really just the latest 
-name for SOA. This observation lead to an acknowledgement that the idea 
-of a WAR file being deployed in a container is starting to give way to 
-the idea of a deployable application that contains an executable 
-runtime. I hope they post the audio for this session because there was a
- lot more that I'm not recalling.&lt;/p&gt;&lt;p&gt;It turned out that the next 
-session I attended was the only purely technical Java EE based session I
- could make, but it was a good one. It was CON3389: Migrating a 
-JSF-Based Web application from Spring 3 to Java EE 7 and CDI. The slides
- are &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://oracleus.activeevents.com/2014/connect/fileDownload/session/38D170F17A082C3A2A7D213C6D498CD0/CON3389_Reimer-Migrating%20a%20JSF-Based%20Web%20Application%20from%20Spring%203%20to%20Java%20EE%207%20and%20CDI.pdf&quot; rel=&quot;nofollow&quot;&gt;in the content catalog&lt;/a&gt;. This session by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/LeanderReimer&quot; rel=&quot;nofollow&quot;&gt;Leander Reimer&lt;/a&gt;
- was an excellent case-study of how an existing JSF based web 
-application that was built on Spring was migrated to a pure Java EE 
-stack. It is common knowledge that Spring has risen to prominence by 
-positioning itself as an alternative to Java EE. What is not so common 
-knowledge is that there has always been significant interplay and 
-cross-polination of ideas between Spring and Java EE. For example, did 
-you know that JSF 1.0 had its own, XML based dependency injection 
-mechanism way back in 2004, right around the time that Spring 1.0 was 
-released? This sort of thing is not surprising since both stacks have 
-been trying to solve the same kinds of problems, for the same kinds of 
-developers, and there are only so many ways to skin a cat. This fact 
-enabled Mr. Reimer and his team to successfully and quickly complete the
- migration. The main idea of the talk was to show that for every thing 
-they had in their app using Spring, there was a corresponding way to do 
-it in Java EE. This traversal of migration tasks served as a vehicle for
- pointing out several pitfalls they had to safely navigate to get to 
-production. During the Q&amp;amp;A I asked Mr. Reimer a two part question. 
-First, I asked why did they use JSF in the first place when many Spring 
-shops just go with the built-in Spring MVC? His answer: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.primefaces.org/showcase/&quot; rel=&quot;nofollow&quot;&gt;PrimeFaces&lt;/a&gt;.
- Next, I asked him to speculate how much harder would the task have been
- had the UI been in Spring MVC instead of JSF. I was hoping the 
-discussion might give my colleague Manfred Riem, also in the audience, a
- chance to bring up &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://java.net/projects/mvc-spec/pages/Home&quot; rel=&quot;nofollow&quot;&gt;MVC 1.0&lt;/a&gt;.
- Instead, Mr. Reimer observed it wouldn't be that hard to write an 
-integration layer on top of JSF that allows its use in an 
-action-oriented manner. This was a skillfully executed talk with a 
-compelling topic given from an in-the-trenches perspective. Bravo.&lt;/p&gt;&lt;p&gt;Way back in March when I attended &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/&quot; rel=&quot;nofollow&quot;&gt;JavaLand&lt;/a&gt;
- I saw an excellent session from my old pals Manfred Geiler and Thomas 
-Spiegl from Irian. The session was about their new UI technology called &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://ankor.io/&quot; rel=&quot;nofollow&quot;&gt;Ankor&lt;/a&gt;. I requested they submit this session to JavaOne, and thankfully it was accepted as &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://oracleus.activeevents.com/2014/connect/fileDownload/session/E2A49CD1203FD3DFA9D7C751D78AB76A/CON2403_Geiler-Ankor%20Presentation%20-%20JavaOne%20SanFrancisco%202014-09.pptx&quot; rel=&quot;nofollow&quot;&gt;CON2403 - Reactive UIs with the MVVM Pattern&lt;/a&gt;. &lt;img alt=&quot;Ed Burns and Manfred Geiler&quot; class=&quot;jive-external-image&quot; style=&quot;float: right;&quot; width=&quot;200&quot; height=&quot;136&quot;&gt;&lt;img alt=&quot;Ed Burns and Manfred Geiler&quot; class=&quot;jive-external-image&quot; style=&quot;float: left;&quot; width=&quot;152&quot; height=&quot;136&quot;&gt;I
- was unable to attend the talk as it conflicted with Mr. Reimer's but I 
-did catch up with Manfred and Thomas after their session for a beer in 
-Duke's cafe. This was a special anniversary for Manfred and I. Ten years
- ago, at JavaOne 2004, Manfred and I met when he attended my session on 
-JSF 1.0. Manfred approached me and said, &quot;Hey, I have an independent 
-implementation of JSF,&quot; and I was thrilled. This, of course, was &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://myfaces.apache.org/&quot; rel=&quot;nofollow&quot;&gt;MyFaces&lt;/a&gt;.
- To commemorate these two meetings separated by ten years, at left you 
-see Manfred and I at JavaOne 2004, and at right, with Thomas Spiegl, at 
-JavaOne 2014.&lt;/p&gt;&lt;p&gt;My final session, in the final slot, was &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/mjduigou&quot; rel=&quot;nofollow&quot;&gt;Mike Duigou's&lt;/a&gt; excellent &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://oracleus.activeevents.com/2014/connect/sessionDetail.ww?SESSION_ID=6309&quot; rel=&quot;nofollow&quot;&gt;CON6309 New Tricks for Old Dogs: Collections in Java 8&lt;/a&gt;. The slides haven't been posted yet, but do get them when they become available. &lt;img alt=&quot;http://ridingthecrest.com/scratch/20141002-stuart-marks-edburns-checkup.jpg&quot; class=&quot;jive-external-image&quot; style=&quot;float: right;&quot; width=&quot;120&quot; height=&quot;195&quot;&gt;Talks
- like this are really useful to expose you to the new features you 
-really need in practice. Mike's session was really useful because he 
-gave the perspective behind the design choices in these fundamental 
-library classes that have contributed so much to the success of Java 
-over the years. Sadly, I see that Mike has recently &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/mjduigou/status/520360658869579776&quot; rel=&quot;nofollow&quot;&gt;left Oracle&lt;/a&gt;
- but he's now working with James Gosling directly at his Liquid Robotics
- outfit. I wish you the best, Mike, but I'm sure we'll see you at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://blogs.oracle.com/javaone/entry/15_off_your_javaone_2015&quot; rel=&quot;nofollow&quot;&gt;JavaOne next year&lt;/a&gt;. I ran into &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/stuartmarks&quot; rel=&quot;nofollow&quot;&gt;Stuart Marks&lt;/a&gt; after Mike's session and he gave me a checkup on the knowledge I had absorbed, as seen at left.&lt;/p&gt;&lt;p&gt;To
- sum up JavaOne 2014, Oracle's consistent investment in promoting the 
-Java Developer community is very evident. Though firmly in legacy 
-territory, Java is still very vibrant and very new. The priorities 
-behind the design choices in Java itself (innovation packaged in an 
-enterprise ready programming environment) are on display in the 
-community as well.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">With
- all of my formal JavaOne conference obligations satisfied, day four was
- dedicated to listening. Another day, another hotel. The community 
-keynote had a little bit of everything and was in the San Francisco 
-Marriott, bringing to four the total number of separate buildings I had 
-to visit for ]]&amp;gt;is available at Oracle. The room was full, and Intel 
-VP Michael Greene had an attentive audience for his portion of the 
-keynote. The keynote quickly moved on to showcasing some highlights from
- the Java community over the last year. There was a great selection of 
-awards, demos, and product announcements. I was happy to see Scratch 
-style programming return to the Java platform in the form of SnapCode, demonstrated by its creator Jeff Martin. I feel that Scratch is the gold standard in this sort of environment, and I was very disappointed when they dropped Java in favor of Flash
- (as part of a broader move to an entirely cloud-based development 
-environment, which I also didn't appreciate). If you had some of the 
-same reservations, consider giving SnapCode a try. There were some other
- nifty demos all of which combined to give the attendees a positive 
-impression about how fun and cool it is to develop on the Java Platform.Mark
- Reinhold re-appeared and gave the rest of the technical keynote, 
-allowing Brian Goetz to finish his interrupted content from Sunday. 
-Oracle has helpfully produced a single streaming file with the content from both days. Mark and Brian's presentation was followed by a question and answer panel, facilitated by the twitter hashtag #j1qa
- and adding James Gosling, Brian Oliver and Charles Nutter as panelists.
- Perhaps we should have done this approach during the web framework 
-smackdown. The most humorous question was regarding a suggestion to move
- OpenJDK to GitHub. Mark's satisfyingly definitive answer was &quot;no&quot;. As 
-usual with large-scale Q&amp;amp;A panels, there was not much depth and the 
-questions bounced around a lot. It's always great to have James Gosling 
-on hand for some part of JavaOne, and this year he pointed out that Java
- has come full circle, having been intended for &quot;Internet of Things&quot; 
-from the start. I'll point out that Sun had a mass-market IoT device ten years ago in theform of the SunSPOT. Did you know that Oracle Labs continues the work on SunSPOT and you can still buy them for $399? The panel closed out with the traditional t-shirt cannon distribution. I give a special thanks to my old pal Vinicius Senger for catching one for me. In a nod to a more TED-style talk, (but a mere shadow of the glory days of Douglas Adams' JavaOne keynote)
- Andra Keay gave a nice talk about the dynamics of robot/human 
-interactions. Sadly missing from the talk was any mention about my pet 
-peeve in the whole robot revolution: the need to change how society 
-values the output of human work in a world where robots do most of the 
-work.The conference orgnizers thoughtfully delayed the start of 
-the rest of the sessions by 30 minutes to accomodate the lengthened 
-keynote. This gave me time to get back over to Parc55 for CON2131: Java 
-EE Community Update and Panel. Bruno Borges moderated. On the panel were my (skiplevels) boss Cameron Purdy, John Clingan, GlassFish Product Manager at Oracle, Kevin Sutter, Java EE Architect at IBM, Mark Little, RedHat VP, Adam Bien, famous Java EE consultant, and David Blevins
- founder of Tomitribe. Sadly missing from this year's panel was any 
-representative from Pivotal. Bruno lead off the session with some slides
- and allowed the panelists to introduce themselves. Interestingly, the 
-slides in the content catalog for this session are Mark Little's,
- not Bruno's. Nonetheless, Mark's slides are very informative, do check 
-them out. The discussion rapidly focused on some current trends in 
-enterprise Java software and how Java EE has responded to and will 
-respond to these trends. Mark Little, in typical dry British fashion, 
-observed that what we now call microservices is really just the latest 
-name for SOA. This observation lead to an acknowledgement that the idea 
-of a WAR file being deployed in a container is starting to give way to 
-the idea of a deployable application that contains an executable 
-runtime. I hope they post the audio for this session because there was a
- lot more that I'm not recalling.It turned out that the next 
-session I attended was the only purely technical Java EE based session I
- could make, but it was a good one. It was CON3389: Migrating a 
-JSF-Based Web application from Spring 3 to Java EE 7 and CDI. The slides
- are in the content catalog. This session by Leander Reimer
- was an excellent case-study of how an existing JSF based web 
-application that was built on Spring was migrated to a pure Java EE 
-stack. It is common knowledge that Spring has risen to prominence by 
-positioning itself as an alternative to Java EE. What is not so common 
-knowledge is that there has always been significant interplay and 
-cross-polination of ideas between Spring and Java EE. For example, did 
-you know that JSF 1.0 had its own, XML based dependency injection 
-mechanism way back in 2004, right around the time that Spring 1.0 was 
-released? This sort of thing is not surprising since both stacks have 
-been trying to solve the same kinds of problems, for the same kinds of 
-developers, and there are only so many ways to skin a cat. This fact 
-enabled Mr. Reimer and his team to successfully and quickly complete the
- migration. The main idea of the talk was to show that for every thing 
-they had in their app using Spring, there was a corresponding way to do 
-it in Java EE. This traversal of migration tasks served as a vehicle for
- pointing out several pitfalls they had to safely navigate to get to 
-production. During the Q&amp;amp;A I asked Mr. Reimer a two part question. 
-First, I asked why did they use JSF in the first place when many Spring 
-shops just go with the built-in Spring MVC? His answer: PrimeFaces.
- Next, I asked him to speculate how much harder would the task have been
- had the UI been in Spring MVC instead of JSF. I was hoping the 
-discussion might give my colleague Manfred Riem, also in the audience, a
- chance to bring up MVC 1.0.
- Instead, Mr. Reimer observed it wouldn't be that hard to write an 
-integration layer on top of JSF that allows its use in an 
-action-oriented manner. This was a skillfully executed talk with a 
-compelling topic given from an in-the-trenches perspective. Bravo.Way back in March when I attended JavaLand
- I saw an excellent session from my old pals Manfred Geiler and Thomas 
-Spiegl from Irian. The session was about their new UI technology called Ankor. I requested they submit this session to JavaOne, and thankfully it was accepted as CON2403 - Reactive UIs with the MVVM Pattern. I
- was unable to attend the talk as it conflicted with Mr. Reimer's but I 
-did catch up with Manfred and Thomas after their session for a beer in 
-Duke's cafe. This was a special anniversary for Manfred and I. Ten years
- ago, at JavaOne 2004, Manfred and I met when he attended my session on 
-JSF 1.0. Manfred approached me and said, &quot;Hey, I have an independent 
-implementation of JSF,&quot; and I was thrilled. This, of course, was MyFaces.
- To commemorate these two meetings separated by ten years, at left you 
-see Manfred and I at JavaOne 2004, and at right, with Thomas Spiegl, at 
-JavaOne 2014.My final session, in the final slot, was Mike Duigou's excellent CON6309 New Tricks for Old Dogs: Collections in Java 8. The slides haven't been posted yet, but do get them when they become available. Talks
- like this are really useful to expose you to the new features you 
-really need in practice. Mike's session was really useful because he 
-gave the perspective behind the design choices in these fundamental 
-library classes that have contributed so much to the success of Java 
-over the years. Sadly, I see that Mike has recently left Oracle
- but he's now working with James Gosling directly at his Liquid Robotics
- outfit. I wish you the best, Mike, but I'm sure we'll see you at JavaOne next year. I ran into Stuart Marks after Mike's session and he gave me a checkup on the knowledge I had absorbed, as seen at left.To
- sum up JavaOne 2014, Oracle's consistent investment in promoting the 
-Java Developer community is very evident. Though firmly in legacy 
-territory, Java is still very vibrant and very new. The priorities 
-behind the design choices in Java itself (innovation packaged in an 
-enterprise ready programming environment) are on display in the 
-community as well.</summary></entry><entry><title type="html">JavaOne 2014 Day Three Notes Blog</title><link href="/blog/2014/10/16/javaone-2014-day-three-notes.html" rel="alternate" type="text/html" title="JavaOne 2014 Day Three Notes Blog" /><published>2014-10-16T12:08:00-04:00</published><updated>2014-10-16T12:08:00-04:00</updated><id>/blog/2014/10/16/javaone-2014-day-three-notes</id><content type="html" xml:base="/blog/2014/10/16/javaone-2014-day-three-notes.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;p&gt;Day
- three was definitely the high point of the conference for me.&amp;nbsp; As 
-anyone who has spoken at tech conferences knows, the point in time when 
-all of one's sessions have been given is the turning point between 
-tempered enjoyment and pure enjoyment of the conference.&amp;nbsp; I was 
-blessed with the scheduling this year; I was all done after 
-Wednesday.&amp;nbsp; This put me in a great frame of mind to enjoy the 
-Oracle Appreciation Event.&amp;nbsp; Day three also saw the culmination of a
- long running project: the Web Framework Smackdown 2014 edition.&lt;/p&gt;&amp;nbsp; &lt;p&gt;My friend and colleague &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.rahmannet.net/&quot; rel=&quot;nofollow&quot;&gt;Reza Rahman&lt;/a&gt; asked me to keep the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2014/06/22/web-framework-smackdown-2014-edition?force=485&quot; rel=&quot;nofollow&quot;&gt;web framework smackdown meme&lt;/a&gt;
- going for another year.&amp;nbsp; This year I called in quite a few favors 
-to pull together a diverse group of celebrity panelists: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/mhevery&quot; rel=&quot;nofollow&quot;&gt;Miško Hevery&lt;/a&gt;, creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/angularjs&quot; rel=&quot;nofollow&quot;&gt;AngularJS&lt;/a&gt; at Google, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/floydophone&quot; rel=&quot;nofollow&quot;&gt;Pete Hunt&lt;/a&gt; creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/reactjs&quot; rel=&quot;nofollow&quot;&gt;ReactJS&lt;/a&gt; at Facebook, &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149455/20141001-smackdown-prep.jpg&quot;&gt;&lt;img __embedded_id=&quot;395&quot; alt=&quot;panelists preparing&quot; src=&quot;20141016_files/20141001-smackdown-prep.jpg&quot; style=&quot;float:right;&quot; width=&quot;200&quot; height=&quot;103&quot;&gt;&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/joonaslehtinen&quot; rel=&quot;nofollow&quot;&gt;Joonas Lehtinen&lt;/a&gt;, creator of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/vaadin&quot; rel=&quot;nofollow&quot;&gt;Vaadin&lt;/a&gt;.&amp;nbsp; The panel was moderated by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/neal4d&quot; rel=&quot;nofollow&quot;&gt;Neal Ford&lt;/a&gt; of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/thoughtworks&quot; rel=&quot;nofollow&quot;&gt;ThoughtWorks&lt;/a&gt;.&amp;nbsp; I rounded out the panel representing &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/jsf_spec&quot; rel=&quot;nofollow&quot;&gt;JSF&lt;/a&gt;.&amp;nbsp;
- I've learned from previous smackdowns that a confident and comfortable 
-moderator combined with a little prep time just before the panel are the
- keys to success.&amp;nbsp; We met at 11am for this purpose over Patxi's 
-pizza. From the left you can see Neal Ford, Miško Hevery, myself, Joonas
- Lehtinen, and Pete Hunt.&amp;nbsp; I don't think Pete and Miško had met 
-before, and it was interesting hearing them trade notes about their 
-approaches to the performance of handling the model update side of their
- frameworks.&amp;nbsp; From what I gathered, they both see that feature as 
-the most valuable aspect of their frameworks, and they both have spent 
-significant time optimizing that part.&amp;nbsp; When it came time to take 
-it on stage, we started by introducing our different approaches to the 
-task of building a stateful and responsive user interface delivered in a
- web browser.&amp;nbsp; Angular and React are entirely client side, while 
-JSF and Vaadin are entirely server side.&amp;nbsp; In spite of Neal's 
-earlier recommendation that client side is the way of the future, Joonas
- and I made the case for where server side makes sense.&amp;nbsp; Briefly, 
-reasons for favoring server side over client side include simplicity, 
-security, integratability (such as mashups), and maintainability.&amp;nbsp; 
-Client side is better when Facebook-sized scale is important, when 
-JavaScript fluency is a non-issue, and when &quot;modern&quot; browsers are a 
-given.&amp;nbsp; You'll have to check out the audio to get the full 
-details.&amp;nbsp; My only complaint with the panel is that it really didn't
- get smackdown-ish at all.&amp;nbsp; I welcome comments about the 
-client/server UI debate.&amp;nbsp; Perhaps we can get some smackdown action 
-in the comments.&lt;/p&gt;&amp;nbsp; &lt;p&gt;My last official obligation of the 
-conference was my final booth duty in the Java EE both.&amp;nbsp; This 
-session closed out the JavaOne exhibition, and as such the traffic was a
- bit light.&amp;nbsp; I was able to take a tour around the exhibition to 
-obtain some schwag for my kids.&amp;nbsp; This year it was novel to see &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://codewithtarget.com/&quot; rel=&quot;nofollow&quot;&gt;Target&lt;/a&gt;
- with a booth.&amp;nbsp; I've long been a fan (and shareholder) of Target, 
-avoiding Wal*mart at all (unfortunately frequently too high) 
-costs.&amp;nbsp; They were recruiting.&amp;nbsp; JavaOne is not a job fair, but 
-it was still nice to see them representing Minneapolis, home of Facelets
- creator Jakob Hookom.&lt;/p&gt;&amp;nbsp;&amp;nbsp; &lt;p&gt; &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149456/20141001-nullpointers-01.jpg&quot;&gt;&lt;img __embedded_id=&quot;396&quot; alt=&quot;Geert and the NullPointers&quot; src=&quot;20141016_files/20141001-nullpointers-01.jpg&quot; style=&quot;float:left;&quot; width=&quot;200&quot; height=&quot;220&quot;&gt;&lt;/a&gt;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://community.oracle.com/servlet/JiveServlet/showImage/38-14345-149457/20141001-nullpointers-02.jpg&quot;&gt;&lt;img __embedded_id=&quot;397&quot; alt=&quot;Freddy, Frank, and Ed&quot; src=&quot;20141016_files/20141001-nullpointers-02.jpg&quot; style=&quot;float:right;&quot; width=&quot;200&quot; height=&quot;123&quot;&gt;&lt;/a&gt; Booth duty done, it was on to a bit of fun in Duke's Cafe.&amp;nbsp; As I mentioned in my &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2014/10/07/javaone-2014-day-one-notes&quot; rel=&quot;nofollow&quot;&gt;JavaOne 2014 Day One&lt;/a&gt; blog entry, Chicago JUG leader &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/fguime&quot; rel=&quot;nofollow&quot;&gt;Freddy Guime&lt;/a&gt;
- had put together a band of musician Java enthusiasts called the 
-NullPointers. They allowed me to sit in with them for some songs during 
-their set at 5pm Wednesday.&amp;nbsp; This was a real honor and a great 
-blast.&amp;nbsp; At left, from the left you see &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/neuroph&quot; rel=&quot;nofollow&quot;&gt;Zoran Severac&lt;/a&gt;, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/matkar&quot; rel=&quot;nofollow&quot;&gt;Mattias Karlsson&lt;/a&gt;, of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.jfokus.se/jfokus/&quot; rel=&quot;nofollow&quot;&gt;JFokus&lt;/a&gt;, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/gbevin&quot; rel=&quot;nofollow&quot;&gt;Geert Bevin&lt;/a&gt; of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://zeroturnaround.com/&quot; rel=&quot;nofollow&quot;&gt;ZeroTurnaround&lt;/a&gt;, and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/JavaFXpert&quot; rel=&quot;nofollow&quot;&gt;Jim Weaver&lt;/a&gt;, Java Developer Advocate for Oracle.&amp;nbsp; At right, from the right, you see Freddy, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/frankgreco&quot; rel=&quot;nofollow&quot;&gt;Frank Greco&lt;/a&gt; of the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javasig.com/&quot; rel=&quot;nofollow&quot;&gt;New York Java Users Group&lt;/a&gt; and myself.&amp;nbsp; I think my keyboard stand was formerly in the Hackergarten.&lt;/p&gt;&amp;nbsp; &lt;p&gt;The fun kept on rolling, with the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://home.java.net/sites/default/files/c12bg-openworld-bands-2264324.jpg&quot; rel=&quot;nofollow&quot;&gt;Oracle Appreciation Event&lt;/a&gt;.&amp;nbsp;
- This used to be called the Customer Appreciation Event.&amp;nbsp; I'm not 
-sure why they renamed it.&amp;nbsp; I would probably have given it a pass 
-this year but for my 11 year old who is a big Macklemore fan.&amp;nbsp; I'm 
-glad I went because Macklemore was very entertaining, and Aerosmith put 
-on a great show as well.&lt;/p&gt; &lt;/div&gt;</content><summary type="html">Day
- three was definitely the high point of the conference for me.&amp;nbsp; As 
-anyone who has spoken at tech conferences knows, the point in time when 
-all of one's sessions have been given is the turning point between 
-tempered enjoyment and pure enjoyment of the conference.&amp;nbsp; I was 
-blessed with the scheduling this year; I was all done after 
-Wednesday.&amp;nbsp; This put me in a great frame of mind to enjoy the 
-Oracle Appreciation Event.&amp;nbsp; Day three also saw the culmination of a
- long running project: the Web Framework Smackdown 2014 edition.&amp;nbsp; My friend and colleague Reza Rahman asked me to keep the web framework smackdown meme
- going for another year.&amp;nbsp; This year I called in quite a few favors 
-to pull together a diverse group of celebrity panelists: Miško Hevery, creator of AngularJS at Google, Pete Hunt creator of ReactJS at Facebook,  and Joonas Lehtinen, creator of Vaadin.&amp;nbsp; The panel was moderated by Neal Ford of ThoughtWorks.&amp;nbsp; I rounded out the panel representing JSF.&amp;nbsp;
- I've learned from previous smackdowns that a confident and comfortable 
-moderator combined with a little prep time just before the panel are the
- keys to success.&amp;nbsp; We met at 11am for this purpose over Patxi's 
-pizza. From the left you can see Neal Ford, Miško Hevery, myself, Joonas
- Lehtinen, and Pete Hunt.&amp;nbsp; I don't think Pete and Miško had met 
-before, and it was interesting hearing them trade notes about their 
-approaches to the performance of handling the model update side of their
- frameworks.&amp;nbsp; From what I gathered, they both see that feature as 
-the most valuable aspect of their frameworks, and they both have spent 
-significant time optimizing that part.&amp;nbsp; When it came time to take 
-it on stage, we started by introducing our different approaches to the 
-task of building a stateful and responsive user interface delivered in a
- web browser.&amp;nbsp; Angular and React are entirely client side, while 
-JSF and Vaadin are entirely server side.&amp;nbsp; In spite of Neal's 
-earlier recommendation that client side is the way of the future, Joonas
- and I made the case for where server side makes sense.&amp;nbsp; Briefly, 
-reasons for favoring server side over client side include simplicity, 
-security, integratability (such as mashups), and maintainability.&amp;nbsp; 
-Client side is better when Facebook-sized scale is important, when 
-JavaScript fluency is a non-issue, and when &quot;modern&quot; browsers are a 
-given.&amp;nbsp; You'll have to check out the audio to get the full 
-details.&amp;nbsp; My only complaint with the panel is that it really didn't
- get smackdown-ish at all.&amp;nbsp; I welcome comments about the 
-client/server UI debate.&amp;nbsp; Perhaps we can get some smackdown action 
-in the comments.&amp;nbsp; My last official obligation of the 
-conference was my final booth duty in the Java EE both.&amp;nbsp; This 
-session closed out the JavaOne exhibition, and as such the traffic was a
- bit light.&amp;nbsp; I was able to take a tour around the exhibition to 
-obtain some schwag for my kids.&amp;nbsp; This year it was novel to see Target
- with a booth.&amp;nbsp; I've long been a fan (and shareholder) of Target, 
-avoiding Wal*mart at all (unfortunately frequently too high) 
-costs.&amp;nbsp; They were recruiting.&amp;nbsp; JavaOne is not a job fair, but 
-it was still nice to see them representing Minneapolis, home of Facelets
- creator Jakob Hookom.&amp;nbsp;&amp;nbsp;  &amp;nbsp;&amp;nbsp;  Booth duty done, it was on to a bit of fun in Duke's Cafe.&amp;nbsp; As I mentioned in my JavaOne 2014 Day One blog entry, Chicago JUG leader Freddy Guime
- had put together a band of musician Java enthusiasts called the 
-NullPointers. They allowed me to sit in with them for some songs during 
-their set at 5pm Wednesday.&amp;nbsp; This was a real honor and a great 
-blast.&amp;nbsp; At left, from the left you see Zoran Severac, Mattias Karlsson, of JFokus, Geert Bevin of ZeroTurnaround, and Jim Weaver, Java Developer Advocate for Oracle.&amp;nbsp; At right, from the right, you see Freddy, Frank Greco of the New York Java Users Group and myself.&amp;nbsp; I think my keyboard stand was formerly in the Hackergarten.&amp;nbsp; The fun kept on rolling, with the Oracle Appreciation Event.&amp;nbsp;
- This used to be called the Customer Appreciation Event.&amp;nbsp; I'm not 
-sure why they renamed it.&amp;nbsp; I would probably have given it a pass 
-this year but for my 11 year old who is a big Macklemore fan.&amp;nbsp; I'm 
-glad I went because Macklemore was very entertaining, and Aerosmith put 
-on a great show as well.</summary></entry></feed>
+means for developers using Java EE 7.Here is the basic outline of the session.Morning session WebSocket, JSON, JSFJSON - Why is this important? JSON is to HTML5 what XML was to web services - JSON-P is for parsing - What about binding to Java Objects?WebSocket- Three specs: JavaScript API, IETF transport protocol, Java API - Java API details: Usage from a browser, Usage from standalone clientJSF: The good parts - Composite components - HTML 5–friendly markupAfternoon session: HTML 5 Deep DiveHTML 5: Why all the fuss? - What's in a name? - Is it really a big deal?HTML 5: High-level perspective - Design goals - How does it differ from HTML 4HTML 5: Subspecifications - Browser contexts - Microdata - Canvas context - Offline apps - Messaging - Events - Cross-document messaging - Server-sent events - WebSocket - Drag and drop - Web storageJavaLand 2015 has much to offer aside from just this training day, so please consider attending!</summary></entry></feed>

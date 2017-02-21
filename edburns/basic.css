@@ -5,7 +5,7 @@ td { background-color: #ffda9c }
 a:link { color: black }
 a:visited { color: black }
 .verticaltext {
-writing-mode: tb-rl;
+writing-mode: vertical-rl;
 filter: flipv fliph;
 }
 .complete { color: green }

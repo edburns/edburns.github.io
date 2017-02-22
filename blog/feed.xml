@@ -1,5 +1,597 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-21T12:57:20-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">DevNexus 2017 Picks</title><link href="/blog/2017/02/21/devnexus-2017-picks.html" rel="alternate" type="text/html" title="DevNexus 2017 Picks" /><published>2017-02-21T11:15:00-05:00</published><updated>2017-02-21T11:15:00-05:00</updated><id>/blog/2017/02/21/devnexus-2017-picks</id><content type="html" xml:base="/blog/2017/02/21/devnexus-2017-picks.html">&lt;p&gt;I am blessed with the opportunity to speak
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-22T00:32:24-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JAX-RS 2.1 New Feature Introduction</title><link href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction" /><published>2017-02-22T00:15:00-05:00</published><updated>2017-02-22T00:15:00-05:00</updated><id>/blog/2017/02/22/jax-rs-2_1-new-feature-introduction</id><content type="html" xml:base="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">&lt;p&gt;In preparation for my
+&lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus talk on Thursday&lt;/a&gt; I
+reviewed the commit log for the JAX-RS API for all the commits in
+the 2.1 cycle, to be sure I didn’t miss anything.  There are basically
+two new big ticket features in JAX-RS 2.1.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Server Sent Events, with support for Reactive Streams as specified in
+the Reactive Streams API&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Reactive Client API&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This blog post outlines each feature.  For more details, see the
+DevNexus talk.  Thanks to
+&lt;a href=&quot;https://twitter.com/pavel_bucek&quot;&gt;Pavel Bucek&lt;/a&gt;,
+&lt;a href=&quot;https://twitter.com/marek_potociar&quot;&gt;Marek Potociar&lt;/a&gt; and
+&lt;a href=&quot;https://twitter.com/spericas&quot;&gt;Santigo Pericas-Geertsen&lt;/a&gt; for co-leading
+the JAX-2.1 Spec and in particular for the code samples I cite in this
+post.&lt;/p&gt;
+
+&lt;p&gt;Please note that this blog post documents in-progress features whose API
+will likely change before JAX-RS 2.1 is final.&lt;/p&gt;
+
+&lt;h2 id=&quot;server-sent-events-sse&quot;&gt;Server Sent Events (SSE)&lt;/h2&gt;
+
+&lt;p&gt;This feature was introduced in “commit 37f8814 Date: Tue Oct 6 20:15:07
+2015 +0200” and was substantially enhanced several times since, most
+notably with the addition of support for the
+&lt;a href=&quot;http://reactive-streams.org&quot;&gt;Reactive Streams Standard from Lightbend&lt;/a&gt;.
+Reactive support was very recently introduced, in “commit b2b8f3f Date:
+Tue Jan 10 16:36:28 2017 +0100”.  SSE is currently the only JAX-RS
+feature to use Reactive Streams, but it is specified without being
+particularly bound to that feature.  SSE support in JAX-RS makes it easy
+to use this feature in a standard way, in both client and server.&lt;/p&gt;
+
+&lt;p&gt;Server Sent Events, SSE is a popular web transport technique specified
+by the W3C at &lt;a href=&quot;https://www.w3.org/TR/eventsource/&quot;&gt;https://www.w3.org/TR/eventsource/&lt;/a&gt;.  The most common
+usage of SSE is to allow web applications to push one way asynchronous
+updates to browsers without having to maintain a million open sockets.
+This common usage is well documented at
+&lt;a href=&quot;https://www.html5rocks.com/en/tutorials/eventsource/basics/&quot;&gt;https://www.html5rocks.com/en/tutorials/eventsource/basics/&lt;/a&gt;.  As an
+aside, because JAX-RS can function as both a client and a server
+technology, it is possible to use SSE in a two way fashion if you have
+JAX-RS on both ends of your client and server connection.  Either way,
+JAX-RS 2.1 has you covered.&lt;/p&gt;
+
+&lt;p&gt;Let’s take a look at the most up-to-date manifestation of the SSE API in
+JAX-RS 2.1.  First, a simple REST resource that implements an SSE server:&lt;/p&gt;
+
+&lt;div style=&quot;padding: 5px;&quot;&gt;
+		&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;server-sent-events&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Singleton&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt; ServerSentEventsResource &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;private&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;final&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aobject+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Object&lt;/span&gt;&lt;/a&gt; outputLock &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;new&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aobject+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Object&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;private&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;final&lt;/span&gt; Sse sse&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;private&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;volatile&lt;/span&gt; SseEventSink eventSink&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Resource&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;private&lt;/span&gt; ManagedExecutorService executorService&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Inject&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; ServerSentEventsResource&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;Sse sse&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;this&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;sse&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; sse&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @GET&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Produces&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;MediaType.&lt;span style=&quot;color: #006633;&quot;&gt;SERVER_SENT_EVENTS&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; getMessageQueue&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;@&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Acontext+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Context&lt;/span&gt;&lt;/a&gt; SseEventSink eventSink&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;synchronized&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;outputLock&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;this&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;eventSink&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;!=&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;null&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;throw&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;new&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aillegalstateexception+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;IllegalStateException&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;Server sink already served.&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;this&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;eventSink&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; eventSink&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @POST&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; addMessage&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;final&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; message&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;throws&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aioexception+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;IOException&lt;/span&gt;&lt;/a&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;eventSink &lt;span style=&quot;color: #339933;&quot;&gt;==&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;null&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;throw&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;new&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aillegalstateexception+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;IllegalStateException&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;No client connected.&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;onNext&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEvent&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;custom-message&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @DELETE&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; close&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;throws&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aioexception+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;IOException&lt;/span&gt;&lt;/a&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;synchronized&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;outputLock&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;eventSink &lt;span style=&quot;color: #339933;&quot;&gt;!=&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;null&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;close&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;null&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @POST&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;domains/{id}&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Produces&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;MediaType.&lt;span style=&quot;color: #006633;&quot;&gt;SERVER_SENT_EVENTS&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; startDomain&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;@PathParam&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;final&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; id,&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; @&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Acontext+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Context&lt;/span&gt;&lt;/a&gt; SseEventSink eventSink&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; executorService.&lt;span style=&quot;color: #006633;&quot;&gt;submit&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;try&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;onNext&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEventBuilder&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;name&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;domain-progress&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; .&lt;span style=&quot;color: #006633;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;starting domain &amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;+&lt;/span&gt; id &lt;span style=&quot;color: #339933;&quot;&gt;+&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot; ...&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;build&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Athread+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Thread&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;sleep&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;200&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;onNext&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEvent&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;domain-progress&amp;quot;&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;50%&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Athread+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Thread&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;sleep&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;200&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;onNext&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEvent&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;domain-progress&amp;quot;&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;60%&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Athread+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Thread&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;sleep&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;200&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;onNext&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEvent&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;domain-progress&amp;quot;&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;70%&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Athread+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Thread&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;sleep&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;200&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;onNext&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEvent&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;domain-progress&amp;quot;&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;99%&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Athread+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Thread&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;sleep&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;200&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;onNext&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEvent&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;domain-progress&amp;quot;&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;Done.&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;close&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;catch&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;final&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Ainterruptedexception+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;InterruptedException&lt;/span&gt;&lt;/a&gt; &lt;span style=&quot;color: #339933;&quot;&gt;|&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aioexception+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;IOException&lt;/span&gt;&lt;/a&gt; e&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; e.&lt;span style=&quot;color: #006633;&quot;&gt;printStackTrace&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
+
+&lt;p&gt;The constructor on line 13 receives the &lt;code class=&quot;highlighter-rouge&quot;&gt;Sse&lt;/code&gt; class, formerly known as
+&lt;code class=&quot;highlighter-rouge&quot;&gt;SseContext&lt;/code&gt;.  This serves as a factory for instances of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;OutboundSseEvent&lt;/code&gt;, as seen on lines 33 and 57 - 65.&lt;/p&gt;
+
+&lt;p&gt;The method that processes GET requests starts on line 17.  This method
+receives an &lt;code class=&quot;highlighter-rouge&quot;&gt;SseEventSink&lt;/code&gt; via injection.  In this simple example, the
+GET request is just made to cause the &lt;code class=&quot;highlighter-rouge&quot;&gt;eventSink&lt;/code&gt; instance variable to
+be populated.&lt;/p&gt;
+
+&lt;p&gt;Now the magic starts to happen.  &lt;code class=&quot;highlighter-rouge&quot;&gt;SseEventSink&lt;/code&gt; extends the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;javax.ws.rs.Flow.Subscriber&amp;lt;T&amp;gt;&lt;/code&gt; interface, which is part of a 1:1 copy
+of the
+&lt;a href=&quot;http://download.java.net/java/jdk9/docs/api/java/util/concurrent/Flow.Subscriber.html&quot;&gt;Java SE 9 Flow API&lt;/a&gt;
+(which is a reactive streams compliant API.  The plan is to drop this
+copy in the version of JAX-RS that suppors Java SE 9).  You can see the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt; method of this interface being invoked within the POST
+processor on line 33.  Because JAX-RS SSE transparently supports the
+Reactive Streams API, you can rest assured that the necessary
+requirements to safely maintain a reactive-compliant application are
+met.  The meaning of &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt; is simply, “here’s another thing in the
+stream of things for you to process”.  In this case, the recipient of
+the new thing is whatever parties are connected to the other end of the
+SSE connection.&lt;/p&gt;
+
+&lt;p&gt;A more advanced POST processor is found starting on line 46, for the
+path of &lt;code class=&quot;highlighter-rouge&quot;&gt;domains/{id}&lt;/code&gt;.  A post to this path causes an asynchronous
+action to commence using the &lt;code class=&quot;highlighter-rouge&quot;&gt;ExecutorService&lt;/code&gt;.  This example illustrates the
+process of starting an appserver domain on line 54.  Several status
+updates are sent on lines 56 - 65 and then the &lt;code class=&quot;highlighter-rouge&quot;&gt;eventSink&lt;/code&gt; is closed on
+line 67.&lt;/p&gt;
+
+&lt;p&gt;Rounding out the example, a DELETE processor simply closes the eventSink
+on demand, on line 36.&lt;/p&gt;
+
+&lt;p&gt;I feel the SSE Client API is more interesting in a sense because it
+enables the less common use case of a non-JavaScript SSE client.  Let’s
+take a look at the SSE Client API in JAX-RS 2.1.&lt;/p&gt;
+
+&lt;div style=&quot;padding: 5px;&quot;&gt;
+		&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt; SseClient &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;static&lt;/span&gt; WebTarget target&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;static&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; main&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#91;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#93;&lt;/span&gt; args&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; target &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; ClientBuilder.&lt;span style=&quot;color: #006633;&quot;&gt;newClient&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;args&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#91;&lt;/span&gt;0&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#93;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; consumeEventsViaSubscription&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;private&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;static&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; consumeEventsViaSubscription&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;try&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;final&lt;/span&gt; SseEventSource eventSource &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;SseEventSource.&lt;span style=&quot;color: #006633;&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;target&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;.&lt;span style=&quot;color: #006633;&quot;&gt;build&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSource.&lt;span style=&quot;color: #006633;&quot;&gt;subscribe&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Asystem+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;System&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;out&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;::&lt;/span&gt;println&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSource.&lt;span style=&quot;color: #006633;&quot;&gt;open&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;for&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;int&lt;/span&gt; counter &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #cc66cc;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt; counter &lt;span style=&quot;color: #339933;&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&quot;color: #cc66cc;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt; counter&lt;span style=&quot;color: #339933;&quot;&gt;++&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; target.&lt;span style=&quot;color: #006633;&quot;&gt;request&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;post&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aentity+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Entity&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;text&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;message &amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;+&lt;/span&gt; counter&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Athread+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Thread&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;sleep&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;500&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt; &lt;span style=&quot;color: #666666; font-style: italic;&quot;&gt;// make sure all the events have time to arrive&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;catch&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Ainterruptedexception+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;InterruptedException&lt;/span&gt;&lt;/a&gt; e&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; e.&lt;span style=&quot;color: #006633;&quot;&gt;printStackTrace&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
+
+&lt;p&gt;Here we come upon an in-progress aspec of the SSE API:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;SseEventSource&lt;/code&gt;.  This class will eventually extend
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Flow.Publisher&amp;lt;InboundSseEvent&amp;gt;&lt;/code&gt;, but in the latest revision of
+JAX-RS 2.1, 2.1-m04, it does not.  It does, however, have all necessary the
+methods of that interface.  In the above example, the subscribe() method
+is seen on line 15.  Here we are simply printing out the messages
+received from the server.  Then, on lines 18 - 20 we are issuing a few
+POST requests to the server.&lt;/p&gt;
+
+&lt;h2 id=&quot;reactive-client-api&quot;&gt;Reactive Client API&lt;/h2&gt;
+
+&lt;p&gt;This other major feature for JAX-RS 2.1 was introduced in “commit
+dea3922 Date: Wed Aug 26 10:26:26 2015 -0400”: the Reactive Client API.
+This API builds entirely on two foundations: Java 8 CompletableFuture
+and the Invocation API from JAX-RS 2.0.  The former is capably explained
+by
+&lt;a href=&quot;http://www.nurkiewicz.com/2013/05/java-8-definitive-guide-to.html&quot;&gt;Thomas Nurkiewicz&lt;/a&gt;
+whom I had the pleasure of seeing present at
+&lt;a href=&quot;/blog/2015/06/16/geekout-2015-summary.html&quot;&gt;GeekOut 2015&lt;/a&gt;.  The latter
+is a way to compose client requests and cause them to be processed in
+the proper order to enable assembling the responses.  In the case of the
+Reactive Client API, these responses are asynchronous and fully reactive
+compliant.  The root interface of the API is &lt;code class=&quot;highlighter-rouge&quot;&gt;RxInvoker&lt;/code&gt;.  This
+interface has Java methods for all of the standard HTTP methods, as well
+a generic “method” method for arbitrary methods.  The API is usually
+invoked as part of a fluid call chain.&lt;/p&gt;
+
+&lt;p&gt;The full details of both of these foundational features are too deep to
+describe in this blog post, but the following simple example gives a
+flavor of their power.&lt;/p&gt;
+
+&lt;div style=&quot;padding: 5px;&quot;&gt;
+		&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;Client client &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; ClientBuilder.&lt;span style=&quot;color: #006633;&quot;&gt;newClient&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;URI service &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; URI.&lt;span style=&quot;color: #006633;&quot;&gt;create&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;http://localhost/service/resource&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;CompletionStage&lt;span style=&quot;color: #339933;&quot;&gt;&amp;lt;&lt;/span&gt;Response&lt;span style=&quot;color: #339933;&quot;&gt;&amp;gt;&lt;/span&gt; cs1 &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; client.&lt;span style=&quot;color: #006633;&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;service&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;request&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;rx&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;post&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aentity+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Entity&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;text&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;CompletionStage&lt;span style=&quot;color: #339933;&quot;&gt;&amp;lt;&lt;/span&gt;Response&lt;span style=&quot;color: #339933;&quot;&gt;&amp;gt;&lt;/span&gt; cs2 &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; client.&lt;span style=&quot;color: #006633;&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;service&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;request&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;rx&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;post&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aentity+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Entity&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;text&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;cs1.&lt;span style=&quot;color: #006633;&quot;&gt;thenCombine&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;cs2, &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;r1, r2&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; s1 &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; r1.&lt;span style=&quot;color: #006633;&quot;&gt;readEntity&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; s2 &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; r2.&lt;span style=&quot;color: #006633;&quot;&gt;readEntity&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;return&lt;/span&gt; client.&lt;span style=&quot;color: #006633;&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;service&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;request&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;rx&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;post&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Aentity+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Entity&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;text&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;s1 &lt;span style=&quot;color: #339933;&quot;&gt;+&lt;/span&gt; s2&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;thenAccept&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;responseCompletionStage &lt;span style=&quot;color: #339933;&quot;&gt;-&amp;gt;&lt;/span&gt; responseCompletionStage.&lt;span style=&quot;color: #006633;&quot;&gt;thenAccept&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;r3 &lt;span style=&quot;color: #339933;&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; s3 &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; r3.&lt;span style=&quot;color: #006633;&quot;&gt;readEntity&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Asystem+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;System&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;out&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;println&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;s3&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
+
+&lt;p&gt;This example shows a reactive client that issues three separate POST
+requests asynchronously, in a non-blocking fashion, and assembling the
+result for printing, on line 15.&lt;/p&gt;
+
+&lt;h2 id=&quot;appendix-work-in-progress-non-blocking-io&quot;&gt;Appendix, work in progress Non-Blocking IO&lt;/h2&gt;
+
+&lt;p&gt;Another important feature is in the works for JAX-RS 2.1, a Non-Blocking
+IO API.  An early draft of this feature was introduced in “commit
+e997a32 Date: Thu Sep 3 14:38:00 2015 -0400”&lt;/p&gt;
+
+&lt;p&gt;In its final form, this work will likely use the Flow API in a similar
+way that the SSE support does.&lt;/p&gt;
+
+&lt;h2 id=&quot;annotated-commit-log-messages&quot;&gt;Annotated Commit Log Messages&lt;/h2&gt;
+
+&lt;p&gt;The remainder of the blog post is a review of all the commits to the
+JAX-RS 2.1 API since the start of the JSR.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-a2b9dfe-date-fri-feb-10-190946-2017-0100&quot;&gt;commit a2b9dfe Date: Fri Feb 10 19:09:46 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;Refine javadoc for javax/ws/rs/sse/SseEventSource.java.  Fix the type on
+the reference to the accept() method.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-4d79c56-date---fri-feb-10-162815-2017-0100&quot;&gt;commit 4d79c56 Date:   Fri Feb 10 16:28:15 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;Rename Sse.newEvent() to newEventBuilder().  Rename Sse.newDataEvent()
+to newEvent().  Update example accordingly.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-d62ed77-date---fri-feb-10-154136-2017-0100&quot;&gt;commit d62ed77 Date:   Fri Feb 10 15:41:36 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;In javax/ws/rs/sse/SseBroadcaster.java, in onException() and onClose(),
+modify the type of the argument to be less specific in the inheritance
+hierarchy.  It’s just a FlowSubscriber&amp;lt;&amp;gt; now, of which SseEventSink is
+an implementation.&lt;/p&gt;
+
+&lt;p&gt;Refine jaxrs/examples/sse/ItemStoreResource.java example accordingly.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-8a61f14-date---wed-feb-8-090340-2017-0100&quot;&gt;commit 8a61f14 Date:   Wed Feb 8 09:03:40 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;Add newDataEvent() to javax/ws/rs/sse/Sse.java.  This creates an
+OutputboundSseEvent.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-b036972-date---wed-feb-8-094351-2017-0100&quot;&gt;commit b036972 Date:   Wed Feb 8 09:43:51 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;Refine Javadoc of RxInvokerProvider.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-459ddb6-date---wed-feb-8-181431-2017-0100&quot;&gt;commit 459ddb6 Date:   Wed Feb 8 18:14:31 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;This was the big refactor of the Sse API.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Drop SseClientSubscriber and remove usages.  Functionality taken over
+by new class javax/ws/rs/sse/SseSubscription.java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Drop SseEventInput&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Rename SseEventOutput to SseEventSink.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Rename SseContext to Sse.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;commit-2ae0169-date---thu-feb-2-184314-2017-0100&quot;&gt;commit 2ae0169 Date:   Thu Feb 2 18:43:14 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;Introduce javax/ws/rs/sse/SseClientSubscriber.java, an implementation of
+Flow.Subscriber().  Drop open() from SseEventSource.  This class was
+removed shortly after this commit.&lt;/p&gt;
+
+&lt;p&gt;Refine SseClient example to use SseClientSubscriber instead of open().&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-4e87a23-date---fri-jan-13-142909-2017-0100&quot;&gt;commit 4e87a23 Date:   Fri Jan 13 14:29:09 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;Rework commit f601630, to remove Class&amp;lt;? extends RxInvokerProvider&lt;T&gt;&amp;gt;
+from the signatures, replacing with Class&lt;T&gt;.  Added isProviderFor()
+method to javax/ws/rs/client/RxInvokerProvider.java.  Modify
+getRxInvoker() to take a SyncInvoker instead of Invocation.Builder.&lt;/T&gt;&lt;/T&gt;&lt;/p&gt;
+
+&lt;p&gt;Updated example javax/ws/rs/core/RxClientTest.java&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-f601630-date---thu-jan-12-103141-2017-0100&quot;&gt;commit f601630 Date:   Thu Jan 12 10:31:41 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;This was reworked in a subsequent commit.&lt;/p&gt;
+
+&lt;p&gt;Refine javax/ws/rs/client/Invocation.java.  Add an rx() method that
+takes an RxInvokerProvider.  This enables other types of asynchronous
+computation models, such as the RxJava.  There is also a variant that
+takes an ExecutorService.&lt;/p&gt;
+
+&lt;p&gt;Add javax/ws/rs/client/RxInvokerProvider.java.&lt;/p&gt;
+
+&lt;p&gt;Add example javax/ws/rs/core/RxClientTest.java.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-b2b8f3f-date---tue-jan-10-163628-2017-0100&quot;&gt;commit b2b8f3f Date:   Tue Jan 10 16:36:28 2017 +0100&lt;/h3&gt;
+
+&lt;p&gt;Refine jaxrs/examples/sse/ItemStoreResource.java and
+jaxrs/examples/sse/ServerSentEventsResource.java to use Java SE 8
+lambdas.&lt;/p&gt;
+
+&lt;p&gt;Added class javax/ws/rs/Flow.java.  This is the implementation of the
+Reactive Streams API.  This is the big class here.&lt;/p&gt;
+
+&lt;p&gt;Rework Sse feature to use the Flow API.  In particular, make
+SseEventInput an implementation of Flow.Publisher and SseEventOutput an
+implementation of Flow.Subscriber.  Also make SseEventSource an
+implementation of Flow.Publisher&lt;InboundSseEvent&gt;.&lt;/InboundSseEvent&gt;&lt;/p&gt;
+
+&lt;p&gt;Rework Sse feature to flesh out some hitherto missing Javadoc.&lt;/p&gt;
+
+&lt;p&gt;Adde a package-info.java for Sse.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-46d81cf-date---thu-oct-15-145243-2015-0200&quot;&gt;commit 46d81cf Date:   Thu Oct 15 14:52:43 2015 +0200&lt;/h3&gt;
+
+&lt;p&gt;Refine ServerSentEventsResource example.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-37f8814-date---tue-oct-6-201507-2015-0200&quot;&gt;commit 37f8814 Date:   Tue Oct 6 20:15:07 2015 +0200&lt;/h3&gt;
+
+&lt;p&gt;First draft of Server Sent Events support.  Since this is one of the
+biggest new features in JAX-RS-2.1, I’ll discuss it in its final form.&lt;/p&gt;
+
+&lt;p&gt;This commit added examples of using SSE in classes
+jaxrs/examples/sse/ItemStoreResource.java,
+jaxrs/examples/sse/SseClient.java andcommit d62ed77308878b7df80f56a956aa90f9d1e4b613
+Author: Pavel Bucek &lt;a href=&quot;mailto:pavel.bucek@oracle.com&quot;&gt;pavel.bucek@oracle.com&lt;/a&gt;
+Date:   Fri Feb 10 15:41:36 2017 +0100&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SseBroadcaster shouldn't force SseEventSink in #onException and #onClose.
+
+Change-Id: I1d1c87ef04dbeb0f317eb793473812b3ad09558c
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;diff –git a/examples/src/main/java/jaxrs/examples/sse/ItemStoreResource.java b/examples/src/main/java/jaxrs/examples/sse/ItemStoreResource.java
+index bec389f..64c8394 100644
+— a/examples/src/main/java/jaxrs/examples/sse/ItemStoreResource.java
++++ b/examples/src/main/java/jaxrs/examples/sse/ItemStoreResource.java
+@@ -89,10 +89,10 @@ public class ItemStoreResource {
+         this.sse = sse;
+         this.broadcaster = sse.newBroadcaster();&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;broadcaster.onException((sseEventOutput, e) -&amp;gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;broadcaster.onException((subscriber, e) -&amp;gt;
+        LOGGER.log(Level.WARNING, “An exception has been thrown while broadcasting to an event output.”, e));&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;broadcaster.onClose(sseEventOutput -&amp;gt; LOGGER.log(Level.INFO, “SSE event output has been closed.”));&lt;/li&gt;
+  &lt;li&gt;broadcaster.onClose(subscriber -&amp;gt; LOGGER.log(Level.INFO, “SSE event output has been closed.”));
+     }&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; private static volatile long reconnectDelay = 0; diff --git a/jaxrs-api/src/main/java/javax/ws/rs/sse/SseBroadcaster.java b/jaxrs-api/src/main/java/javax/ws/rs/sse/SseBroadcaster.java index 988e8ba..c9078a0 100644 --- a/jaxrs-api/src/main/java/javax/ws/rs/sse/SseBroadcaster.java +++ b/jaxrs-api/src/main/java/javax/ws/rs/sse/SseBroadcaster.java @@ -68,7 +68,7 @@ public interface SseBroadcaster extends AutoCloseable, Flow.Publisher&amp;lt;OutboundSs
+  * @param onException bi-consumer, taking two parameters: {@link SseEventSink}, which is the source of the
+  *                    exception and the actual {@link Exception}.
+  */ -    void onException(BiConsumer&amp;lt;SseEventSink, Exception&amp;gt; onException); +    void onException(BiConsumer&amp;lt;Flow.Subscriber&amp;lt;? super OutboundSseEvent&amp;gt;, Exception&amp;gt; onException);
+ 
+ /**
+  * Register a listener, which will be called when the SSE event output has been closed (either by client closing @@ -80,7 +80,7 @@ public interface SseBroadcaster extends AutoCloseable, Flow.Publisher&amp;lt;OutboundSs
+  *
+  * @param onClose consumer taking single parameter, a {@link SseEventSink}, which was closed.
+  */ -    void onClose(Consumer&amp;lt;SseEventSink&amp;gt; onClose); +    void onClose(Consumer&amp;lt;Flow.Subscriber&amp;lt;? super OutboundSseEvent&amp;gt;&amp;gt; onClose);
+ 
+ /**
+  * Subscribe {@link OutboundSseEvent} subscriber (i.e. {@link SseEventSink})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;examples/sse/ServerSentEventsResource.java.  These classes are still in
+the codebase.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added forInstance() that takes an Object and returns GenericType to
+javax/ws/rs/core/GenericType.java.  This uses the
+GenericEntity.getType() to return the type, or just returns the Java
+Class.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added LAST_EVENT_ID_HEADER constant to
+javax/ws/rs/core/HttpHeaders.java.  This constant is used for the
+“Last-Event-ID” header in the SSE spec &lt;a href=&quot;http://www.w3.org/TR/eventsource/#last-event-id&quot;&gt;http://www.w3.org/TR/eventsource/#last-event-id&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added text/event-stream to javax/ws/rs/core/MediaType.java.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added javax/ws/rs/sse/FactoryFinder.java.  Looks like this is used
+from SseEventSource to instantiate an SseEventSource.Builder.  This
+class has been moved in a later revision of the proposal.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added javax/ws/rs/sse/InboundSseEvent.java.  An SseEvent subclass for
+events when JAX-RS client is listening to a server that is sending
+SSE?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added javax/ws/rs/sse/OutboundSseEvent.java.  An SseEvent subclass for
+events when JAX-RS is acting as the server sending SSE events.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added javax/ws/rs/sse/SseBroadcaster.java.  The thing that causes
+OutboundSseEvents to be sent to the client.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added javax/ws/rs/sse/SseContext.java.  To make the SSE feature
+injectable.  This class has been renamed to Sse in a later version of
+the feature.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added class java/javax/ws/rs/sse/SseEvent.java, the event base class.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added javax/ws/rs/sse/SseEventInput.java.  Lets you read
+InboundSseEvents as they arrive.  This class has been droped in a
+later version of the feature.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added javax/ws/rs/sse/SseEventOutput.java.  Lets you write
+OutboundSseEvents. This class has been renamed to SseEventSink a
+later version of the feature.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added java/javax/ws/rs/sse/SseEventSource.java.  Lets you read
+InboundSseEvents.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;commit-f1b7167-date---thu-sep-3-144156-2015--0400&quot;&gt;commit f1b7167 Date:   Thu Sep 3 14:41:56 2015 -0400&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Remove onWritePossible() from Response.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;commit-e997a32-date---thu-sep-3-143800-2015--0400&quot;&gt;commit e997a32 Date:   Thu Sep 3 14:38:00 2015 -0400&lt;/h3&gt;
+
+&lt;p&gt;This commit added some experimental work for the use of non-blocking IO
+in the JAX-RS spec.  There are helpful examples in
+jaxrs/examples/nio/FileResourceClient.java and
+jaxrs/examples/nio/FileResource.java.&lt;/p&gt;
+
+&lt;p&gt;This commit introduced the following classes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/client/NioInvoker.java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/core/NioCompletionHandler.java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/core/NioErrorHandler.java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/core/NioInputStream.java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/core/NioOutputStream.java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/core/NioReaderHandler.java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/core/NioWriterHandler.java&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And modified the following classes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/core/Request.java and javax/ws/rs/core/Response.java
+— Add entity methods that take the Nio*Handler classes above.
+For Response, also add an onWritePossible() method that takes the
+NioWriterHandler.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/client/Invocation.java — Return the NioInvoker from
+Invocation.nio().&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Since this is one of the biggest new features in JAX-RS 2.1, I’ll
+discuss it in its final form later.  Note that the above classes are all
+still present in the API as of today.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-dea3922-date---wed-aug-26-102626-2015--0400&quot;&gt;commit dea3922 Date:   Wed Aug 26 10:26:26 2015 -0400&lt;/h3&gt;
+
+&lt;p&gt;The first iteration of the RxInvoker proposal.  This commit added the
+following classes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/client/CompletionStageRxInvoker.java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;javax/ws/rs/client/RxInvoker.java&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And introduced changes to the following classes&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;javax/ws/rs/client/Invocation.java&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A helpful test is at javax/ws/rs/core/RxClientTest.java.&lt;/p&gt;
+
+&lt;p&gt;Since this is one of the biggest new features in JAX-RS 2.1, I’ll
+discuss it in its final form later.  Note that the above classes are all
+still present in the API as of today.&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-77464a5-date---wed-feb-18-164144-2015-0100&quot;&gt;commit 77464a5 Date:   Wed Feb 18 16:41:44 2015 +0100&lt;/h3&gt;
+
+&lt;p&gt;Remove the LaTeX sources to a separate repo.
+git://java.net/jax-rs-spec~spec&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-0dbabe25-date---wed-feb-4-132831-2015--0500&quot;&gt;commit 0dbabe25 Date:   Wed Feb 4 13:28:31 2015 -0500&lt;/h3&gt;
+
+&lt;p&gt;Spec prose document section 3.2 specifies how Java language fields and
+JavaBean properties of Resource classes are injected with values from
+the incoming request, all of which are coming over HTTP and are
+therefore just plain strings.  That section includes a list that
+describes the types of valid values to which those strings can be
+converted, let’s call them destinations for discussion.  This commit
+added List&lt;T&gt;, Set&lt;T&gt;, and SortedSet&lt;T&gt; to set of possible destinations,
+where T meets at least one of the following requirements.&lt;/T&gt;&lt;/T&gt;&lt;/T&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;T has a ParamConverter&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;T has a public constructor that takes a single String.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;T has a public static valueOf() method that takes a String and returns
+an instance of T.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The commit also tightened up what happens when a WebApplicationException
+is thrown during the conversion process.&lt;/p&gt;</content><author><name></name></author><summary type="html">In preparation for my DevNexus talk on Thursday I reviewed the commit log for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I didn’t miss anything. There are basically two new big ticket features in JAX-RS 2.1.</summary></entry><entry><title type="html">DevNexus 2017 Picks</title><link href="/blog/2017/02/21/devnexus-2017-picks.html" rel="alternate" type="text/html" title="DevNexus 2017 Picks" /><published>2017-02-21T11:15:00-05:00</published><updated>2017-02-21T11:15:00-05:00</updated><id>/blog/2017/02/21/devnexus-2017-picks</id><content type="html" xml:base="/blog/2017/02/21/devnexus-2017-picks.html">&lt;p&gt;I am blessed with the opportunity to speak
 at &lt;a href=&quot;http://devnexus.com/&quot;&gt;DevNexus&lt;/a&gt; again this year, after
 having spoken there
 in &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;in
@@ -144,23 +736,10 @@ Here are my picks for sessions I plan to attend.&lt;/p&gt;
           &lt;/li&gt;
 
 
-	&lt;/ul&gt;</content><summary type="html">I am blessed with the opportunity to speak
-at DevNexus again this year, after
-having spoken there
-in in
-2014 and 2015.  Pratik, Vincent, Gunnar and the
-whole Atlanta JUG do a great job
-putting on this very community focused show.  It is the largest
-developer event in the southeastern U.S., an area of the country that
-vitally needs more such events.  There are so many great session from so
-many great speakers, though.  You really can't go wrong with any path.
-Here are my picks for sessions I plan to attend.</summary></entry><entry><title type="html">Welcome to my blog reboot</title><link href="/blog/2017/02/21/welcome-to-my-blog-reboot.html" rel="alternate" type="text/html" title="Welcome to my blog reboot" /><published>2017-02-21T08:15:00-05:00</published><updated>2017-02-21T08:15:00-05:00</updated><id>/blog/2017/02/21/welcome-to-my-blog-reboot</id><content type="html" xml:base="/blog/2017/02/21/welcome-to-my-blog-reboot.html">&lt;p&gt;After a two year hiatus, I intend to blog again.  I'm not sure how
+	&lt;/ul&gt;</content><author><name></name></author><summary type="html">I am blessed with the opportunity to speak at DevNexus again this year, after having spoken there in in 2014 and 2015. Pratik, Vincent, Gunnar and the whole Atlanta JUG do a great job putting on this very community focused show. It is the largest developer event in the southeastern U.S., an area of the country that vitally needs more such events. There are so many great session from so many great speakers, though. You really can't go wrong with any path. Here are my picks for sessions I plan to attend.</summary></entry><entry><title type="html">Welcome to my blog reboot</title><link href="/blog/2017/02/21/welcome-to-my-blog-reboot.html" rel="alternate" type="text/html" title="Welcome to my blog reboot" /><published>2017-02-21T08:15:00-05:00</published><updated>2017-02-21T08:15:00-05:00</updated><id>/blog/2017/02/21/welcome-to-my-blog-reboot</id><content type="html" xml:base="/blog/2017/02/21/welcome-to-my-blog-reboot.html">&lt;p&gt;After a two year hiatus, I intend to blog again.  I'm not sure how
 popular blogs are any more, though.  Many thanks
 to &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; for their excellent and
-polished tool.&lt;/p&gt;</content><summary type="html">After a two year hiatus, I intend to blog again.  I'm not sure how
-popular blogs are any more, though.  Many thanks
-to Jekyll for their excellent and
-polished tool.</summary></entry><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
+polished tool.&lt;/p&gt;</content><author><name></name></author><summary type="html">After a two year hiatus, I intend to blog again. I'm not sure how popular blogs are any more, though. Many thanks to Jekyll for their excellent and polished tool.</summary></entry><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
  I am sensitive to the real damage done to real lives and families that 
 is caused by gambling, so I will include a link to an organization that 
 offers help: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.calpg.org/&quot; rel=&quot;nofollow&quot;&gt;1-800-GAMBLER&lt;/a&gt;.
@@ -246,18 +825,7 @@ spawn a new child actor for each such task, but that
   &lt;/pre&gt;
 
 
-&lt;/div&gt;</content><summary type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di LoretoMy friend Oliver White is doing his usual bang-up job in his new gig at TypeSafe. One aspect is the humble webinar. Here are my notes for one that caught my eye, Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization. This is a very dense but well delivered presentation by Patrick Di Loreto who helped develop a new platform for his employer, the online gambling service, William Hill.Morally,
- I am sensitive to the real damage done to real lives and families that 
-is caused by gambling, so I will include a link to an organization that 
-offers help: 1-800-GAMBLER.
- That said, this is just another instance of the ancient tradition of 
-technology development being driven by something that traditionally is 
-seen as vice. (For a humorous, NSFW and prophetic Onion article, search 
-google for “theonion internet andreessen viewing device”. I’m old enough
- to have first read that on an actual physical newspaper!)Now, on
- to the raw notes. YMMV of course, but if nothing else this will help 
-you overcome the annoying problem of the slide advancing not being 
-    synched to the audio.</summary></entry><entry><title type="html">GeekOut 2015 Summary Blog</title><link href="/blog/2015/06/16/geekout-2015-summary.html" rel="alternate" type="text/html" title="GeekOut 2015 Summary Blog" /><published>2015-06-16T09:28:00-04:00</published><updated>2015-06-16T09:28:00-04:00</updated><id>/blog/2015/06/16/geekout-2015-summary</id><content type="html" xml:base="/blog/2015/06/16/geekout-2015-summary.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;GeekOut 2015 Summary&lt;/h1&gt;&lt;p&gt;I
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di LoretoMy friend Oliver White is doing his usual bang-up job in his new gig at TypeSafe. One aspect is the humble webinar. Here are my notes for one that caught my eye, Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization. This is a very dense but well delivered presentation by Patrick Di Loreto who helped develop a new platform for his employer, the online gambling service, William Hill.Morally, I am sensitive to the real damage done to real lives and families that is caused by gambling, so I will include a link to an organization that offers help: 1-800-GAMBLER. That said, this is just another instance of the ancient tradition of technology development being driven by something that traditionally is seen as vice. (For a humorous, NSFW and prophetic Onion article, search google for “theonion internet andreessen viewing device”. I’m old enough to have first read that on an actual physical newspaper!)Now, on to the raw notes. YMMV of course, but if nothing else this will help you overcome the annoying problem of the slide advancing not being synched to the audio.</summary></entry><entry><title type="html">GeekOut 2015 Summary Blog</title><link href="/blog/2015/06/16/geekout-2015-summary.html" rel="alternate" type="text/html" title="GeekOut 2015 Summary Blog" /><published>2015-06-16T09:28:00-04:00</published><updated>2015-06-16T09:28:00-04:00</updated><id>/blog/2015/06/16/geekout-2015-summary</id><content type="html" xml:base="/blog/2015/06/16/geekout-2015-summary.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;GeekOut 2015 Summary&lt;/h1&gt;&lt;p&gt;I
  last had the pleasure of visiting the lovely Baltic city of Tallinn in 
 2012, when I presented JSF 2.2 and the Rockstar talk at GeekOut 2012. 
 Now that I've got something new (for me anyway) to talk about I made the
@@ -345,95 +913,7 @@ barriers to entry to give it a try. Go succeeds because it rules several
  fundamental things as simply out of scope. There is no dynamic linking.
  There is no UI. There is no API to the threading model. There is no 
 inheritance. I'm glad Go is out there because sometimes you don't need 
-that stuff. For what it's worth, here's a nice post on Go &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://spf13.com/post/is-go-object-oriented/&quot; rel=&quot;nofollow&quot;&gt;from the Docker guy&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/ekabanov&quot; rel=&quot;nofollow&quot;&gt;Jevgeni Kabanov&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/toomasr&quot; rel=&quot;nofollow&quot;&gt;Toomas Römer&lt;/a&gt;. I'm glad to see these guys doing well.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">GeekOut 2015 SummaryI
- last had the pleasure of visiting the lovely Baltic city of Tallinn in 
-2012, when I presented JSF 2.2 and the Rockstar talk at GeekOut 2012. 
-Now that I've got something new (for me anyway) to talk about I made the
- cut and was invited back to present Servlet 4.0 at GeekOut 2015.
- Attendence was capped at 400, giving this conference a very exclusive 
-feel. Indeed, 99% of those that registered for the conference actually 
-did attend. This was the 5th installment of the GeekOut conference, 
-hosted by ZeroTurnaround.
- This was the first time the conference had two tracks, so my report 
-here only covers the sessions I actually attended. All of the sessions 
-were video recorded, and I expect the sessions will be made available 
-soon.Day OneDay one started with back-to-back plenary sessions offering two different perspectives on the #java20 theme. Stephen Chin
- gave a historically rich but technically light session featuring lots 
-of freshly recorded video clips with Java luminaries. Of course there 
-was ample content from James Gosling, who I would like to congratulate 
-for winning the 2015 IEEE John von Neumann Medal.
- This puts James in the company of such titans as Leslie Lamport, Donald
- Knuth, Ivan Sutherland, and Fred Brooks. I was happy to see that 
-Stephen dove deeper and offered the perspectives of John Rose and 
-Georges Saab on more fundamental aspects of the history of Java. Martin Thompson
- followed Steven with a very complimentary session. The session was so 
-complimentary I'd almost say they coordinated. Martin's session gave his
- personal perspective on Java over the years, with some very interesting
- stories from his work on making Java perform well. I liked his 
-perspective on the causes and challenges of bloat in a long-lived 
-software ecosystem. Another very interesting perspective was the extent 
-to which high frequency trading drives advances in performance (in Java 
-and in the entire industry). Martin's talk piqued my desire for a 
-#java20 talk about all the companies that have been spawned directly or 
-indirectly by the Java ecosystem. I'm thinking Interface21, Tangosol, 
-JBoss, NoFluffJustStuff, ZeroTurnaround, Atlassian, Parleys and there 
-are many others. Hey, I'm pretty sure there's an interesting talk in 
-there somewhere.After the plenary sessions, we broke out into the
- two tracks, starting with my session on Servlet 4.0 and a session on 
-Cassandra. My session was quite well attended, and it went pretty 
-smoothly. We'll see how the feedback shows up, however! After my 
-session, I went down to see Markus Eisele
- talk about Apache Camel. I hadn't followed the progress in the Camel 
-community and I'm happy to see it is doing well since. Also nice to see 
-my old pal Gregor Hohpe represented virtually, as his book is represented in spirit in Camel itself.I was very keen to see the Vaadin talk from Peter Lehto.
- I had long been perplexed at Vaadin's ability to decouple itself from 
-GWT, particularly as GWT's popularity has dwindled. This talk, at last, 
-promised to lay bare the secret at the heart of Vaadin: its runtime is 
-dependent on GWT. I was not disappointed, but I was also very pleasantly
- surprised. Mr. Lehto directly addressed the question of the relevance 
-of server side UI frameworks, including Vaadin (and JSF, though he 
-didn't name it specifically) in an HTML5 JavaScript framework world. He 
-did so by pointing out the importance of abstraction, which I've long 
-been pointing out when presenting on JSF. In the case of Vaadin and JSF,
- their core value add is the authoring experience. With Vaadin, it's 
-Java programmers who want to treat the world like Swing. With JSF it's 
-&quot;page developers&quot; who want to treat the world like some form of 
-VisualBasic environment. For Vaadin, its existing abstraction allows 
-their underlying runtime to leverage W3C Web Components (or the polymer 
-implementation of the same) for some Vaadin components while relying on 
-GWT for others. Peter put a strong stake in the ground and predicted 
-that W3C Web Components are the future for web development. I don't 
-disagree, but JSF is well positioned to leverage W3C Web Components 
-because it fits in nicely with the JSF abstraction.Day TwoDay two started out with Attila Szegedi's
- highly technical Rhino talk. This was the first talk of the day, after 
-the party night, so it was a little lightly attended. However, those 
-that made it there were rewarded with an in-depth understanding of the 
-rationale for some performance related design decisions in the 
-implementation of Nashorn.The 10:30 slot was another effectively plenary session, but out in the demo area. Stephen Chin's highly effective NIGHTHACKING brand came to GeekOut with a panel discussion on the #java20 theme. The video is on the NIGHTHACKING website. This was a lot of fun, and I got to put my Javagator old-timer test out there. I also had the pleasure of a brief chat with Stephen regarding JSF 2.3 and Servlet 4.0.I was really looking forward to Tomasz Nurkiewicz's session about CompletableFuture, particularly because of its use in the Java SE9 HTTP/2 client.
- Thomas managed to pack a whole lot into a short, well constructed, code
- powered session. It's not easy to explain the differences between 
-thenApply(), thenCombine(), thenCompose() and many other methods in the 
-API, but Tomasz succeeded. He even surfaced an important naming 
-inconsistency between the CompletableFuture API and the 
-java.util.Optional API: thenCompose() == flatMap(). For more on this 
-topic from Tomasz, check out his blog entry The Definitive Guide to Completable Future.
- Personally, I think it's a bit bold to give a single blog entry such a 
-lofty title, but you can't argue that it does indeed cover the topic 
-very well. I meant to ask Tomasz if his code samples from the talk were 
-taken from an upcoming book. Tomasz, if you happen to see this little 
-blog entry, please plug the book if there is one.I had high hopes for the next talk, Gleb Smirnov's
- concurrency talk. It was probably a great talk, but sadly this is when 
-my jetlag hit hard and I was struggling to keep up. I'll look for the 
-video!I took a pass for the 15:00 slot due to the afore mentioned jetlag and opted to save my energy for one final session, Andrzej Grzesik's
- Go. I'd taken a quick look at Go before the session, so I was in a good
- position to enjoy it. This session made no excuses about having nothing
- to do with Java and instead just tried to give a quick tour of the Go 
-language and programming environment, with a view towards lowering the 
-barriers to entry to give it a try. Go succeeds because it rules several
- fundamental things as simply out of scope. There is no dynamic linking.
- There is no UI. There is no API to the threading model. There is no 
-inheritance. I'm glad Go is out there because sometimes you don't need 
-that stuff. For what it's worth, here's a nice post on Go from the Docker guy.Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends Jevgeni Kabanov and Toomas Römer. I'm glad to see these guys doing well.</summary></entry><entry><title type="html">Recent Ripple of JSF Extensions Blog</title><link href="/blog/2015/06/01/recent-ripple-jsf-extensions.html" rel="alternate" type="text/html" title="Recent Ripple of JSF Extensions Blog" /><published>2015-06-01T10:30:00-04:00</published><updated>2015-06-01T10:30:00-04:00</updated><id>/blog/2015/06/01/recent-ripple-jsf-extensions</id><content type="html" xml:base="/blog/2015/06/01/recent-ripple-jsf-extensions.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;Recent Ripple of JSF Extensions&lt;/h1&gt;&amp;nbsp; &lt;p&gt;My colleague &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.java.net/blogs/mriem&quot; rel=&quot;nofollow&quot;&gt;Manfred Riem&lt;/a&gt; tipped me off to a new framework built on JSF, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.butterfaces.org/&quot; rel=&quot;nofollow&quot;&gt;ButterFaces&lt;/a&gt;.&amp;nbsp;
+that stuff. For what it's worth, here's a nice post on Go &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://spf13.com/post/is-go-object-oriented/&quot; rel=&quot;nofollow&quot;&gt;from the Docker guy&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/ekabanov&quot; rel=&quot;nofollow&quot;&gt;Jevgeni Kabanov&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/toomasr&quot; rel=&quot;nofollow&quot;&gt;Toomas Römer&lt;/a&gt;. I'm glad to see these guys doing well.&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">GeekOut 2015 SummaryI last had the pleasure of visiting the lovely Baltic city of Tallinn in 2012, when I presented JSF 2.2 and the Rockstar talk at GeekOut 2012. Now that I've got something new (for me anyway) to talk about I made the cut and was invited back to present Servlet 4.0 at GeekOut 2015. Attendence was capped at 400, giving this conference a very exclusive feel. Indeed, 99% of those that registered for the conference actually did attend. This was the 5th installment of the GeekOut conference, hosted by ZeroTurnaround. This was the first time the conference had two tracks, so my report here only covers the sessions I actually attended. All of the sessions were video recorded, and I expect the sessions will be made available soon.Day OneDay one started with back-to-back plenary sessions offering two different perspectives on the #java20 theme. Stephen Chin gave a historically rich but technically light session featuring lots of freshly recorded video clips with Java luminaries. Of course there was ample content from James Gosling, who I would like to congratulate for winning the 2015 IEEE John von Neumann Medal. This puts James in the company of such titans as Leslie Lamport, Donald Knuth, Ivan Sutherland, and Fred Brooks. I was happy to see that Stephen dove deeper and offered the perspectives of John Rose and Georges Saab on more fundamental aspects of the history of Java. Martin Thompson followed Steven with a very complimentary session. The session was so complimentary I'd almost say they coordinated. Martin's session gave his personal perspective on Java over the years, with some very interesting stories from his work on making Java perform well. I liked his perspective on the causes and challenges of bloat in a long-lived software ecosystem. Another very interesting perspective was the extent to which high frequency trading drives advances in performance (in Java and in the entire industry). Martin's talk piqued my desire for a #java20 talk about all the companies that have been spawned directly or indirectly by the Java ecosystem. I'm thinking Interface21, Tangosol, JBoss, NoFluffJustStuff, ZeroTurnaround, Atlassian, Parleys and there are many others. Hey, I'm pretty sure there's an interesting talk in there somewhere.After the plenary sessions, we broke out into the two tracks, starting with my session on Servlet 4.0 and a session on Cassandra. My session was quite well attended, and it went pretty smoothly. We'll see how the feedback shows up, however! After my session, I went down to see Markus Eisele talk about Apache Camel. I hadn't followed the progress in the Camel community and I'm happy to see it is doing well since. Also nice to see my old pal Gregor Hohpe represented virtually, as his book is represented in spirit in Camel itself.I was very keen to see the Vaadin talk from Peter Lehto. I had long been perplexed at Vaadin's ability to decouple itself from GWT, particularly as GWT's popularity has dwindled. This talk, at last, promised to lay bare the secret at the heart of Vaadin: its runtime is dependent on GWT. I was not disappointed, but I was also very pleasantly surprised. Mr. Lehto directly addressed the question of the relevance of server side UI frameworks, including Vaadin (and JSF, though he didn't name it specifically) in an HTML5 JavaScript framework world. He did so by pointing out the importance of abstraction, which I've long been pointing out when presenting on JSF. In the case of Vaadin and JSF, their core value add is the authoring experience. With Vaadin, it's Java programmers who want to treat the world like Swing. With JSF it's &quot;page developers&quot; who want to treat the world like some form of VisualBasic environment. For Vaadin, its existing abstraction allows their underlying runtime to leverage W3C Web Components (or the polymer implementation of the same) for some Vaadin components while relying on GWT for others. Peter put a strong stake in the ground and predicted that W3C Web Components are the future for web development. I don't disagree, but JSF is well positioned to leverage W3C Web Components because it fits in nicely with the JSF abstraction.Day TwoDay two started out with Attila Szegedi's highly technical Rhino talk. This was the first talk of the day, after the party night, so it was a little lightly attended. However, those that made it there were rewarded with an in-depth understanding of the rationale for some performance related design decisions in the implementation of Nashorn.The 10:30 slot was another effectively plenary session, but out in the demo area. Stephen Chin's highly effective NIGHTHACKING brand came to GeekOut with a panel discussion on the #java20 theme. The video is on the NIGHTHACKING website. This was a lot of fun, and I got to put my Javagator old-timer test out there. I also had the pleasure of a brief chat with Stephen regarding JSF 2.3 and Servlet 4.0.I was really looking forward to Tomasz Nurkiewicz's session about CompletableFuture, particularly because of its use in the Java SE9 HTTP/2 client. Thomas managed to pack a whole lot into a short, well constructed, code powered session. It's not easy to explain the differences between thenApply(), thenCombine(), thenCompose() and many other methods in the API, but Tomasz succeeded. He even surfaced an important naming inconsistency between the CompletableFuture API and the java.util.Optional API: thenCompose() == flatMap(). For more on this topic from Tomasz, check out his blog entry The Definitive Guide to Completable Future. Personally, I think it's a bit bold to give a single blog entry such a lofty title, but you can't argue that it does indeed cover the topic very well. I meant to ask Tomasz if his code samples from the talk were taken from an upcoming book. Tomasz, if you happen to see this little blog entry, please plug the book if there is one.I had high hopes for the next talk, Gleb Smirnov's concurrency talk. It was probably a great talk, but sadly this is when my jetlag hit hard and I was struggling to keep up. I'll look for the video!I took a pass for the 15:00 slot due to the afore mentioned jetlag and opted to save my energy for one final session, Andrzej Grzesik's Go. I'd taken a quick look at Go before the session, so I was in a good position to enjoy it. This session made no excuses about having nothing to do with Java and instead just tried to give a quick tour of the Go language and programming environment, with a view towards lowering the barriers to entry to give it a try. Go succeeds because it rules several fundamental things as simply out of scope. There is no dynamic linking. There is no UI. There is no API to the threading model. There is no inheritance. I'm glad Go is out there because sometimes you don't need that stuff. For what it's worth, here's a nice post on Go from the Docker guy.Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends Jevgeni Kabanov and Toomas Römer. I'm glad to see these guys doing well.</summary></entry><entry><title type="html">Recent Ripple of JSF Extensions Blog</title><link href="/blog/2015/06/01/recent-ripple-jsf-extensions.html" rel="alternate" type="text/html" title="Recent Ripple of JSF Extensions Blog" /><published>2015-06-01T10:30:00-04:00</published><updated>2015-06-01T10:30:00-04:00</updated><id>/blog/2015/06/01/recent-ripple-jsf-extensions</id><content type="html" xml:base="/blog/2015/06/01/recent-ripple-jsf-extensions.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;Recent Ripple of JSF Extensions&lt;/h1&gt;&amp;nbsp; &lt;p&gt;My colleague &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.java.net/blogs/mriem&quot; rel=&quot;nofollow&quot;&gt;Manfred Riem&lt;/a&gt; tipped me off to a new framework built on JSF, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.butterfaces.org/&quot; rel=&quot;nofollow&quot;&gt;ButterFaces&lt;/a&gt;.&amp;nbsp;
  This whimsical name started an amusing Twitter thread, but also, and 
 much more importantly brought several other new JSF extensions to light.
  This is the sort of thing that I used to look to Kito Mann's &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.jsfcentral.com/products/frameworks/&quot; rel=&quot;nofollow&quot;&gt;JSF Central Frameworks Page&lt;/a&gt;
@@ -454,27 +934,7 @@ frameworks.&amp;nbsp; My recent work with HTTP/2 in Servlet 4 has shown me
 that such frameworks are very well positioned to take advantage of the 
 optimizations in the HTTP/2 protocol, as well as other performance 
 optimizations shown in &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/igrigorik&quot; rel=&quot;nofollow&quot;&gt;Ilya Grigorik's&lt;/a&gt; excellent &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://chimera.labs.oreilly.com/books/1230000000545&quot; rel=&quot;nofollow&quot;&gt;High Performance Browser Networking&lt;/a&gt;.&lt;/p&gt;&amp;nbsp; &lt;p&gt;So, check out these new frameworks and don't be afraid to question conventional wisdom.&lt;/p&gt; 
-&lt;/div&gt;</content><summary type="html">Recent Ripple of JSF Extensions&amp;nbsp; My colleague Manfred Riem tipped me off to a new framework built on JSF, ButterFaces.&amp;nbsp;
- This whimsical name started an amusing Twitter thread, but also, and 
-much more importantly brought several other new JSF extensions to light.
- This is the sort of thing that I used to look to Kito Mann's JSF Central Frameworks Page
- for, but it seems that needs an update.&amp;nbsp; So, in addition to 
-ButterFaces, here are several other JSF extensions that are definitely 
-worth a look.&amp;nbsp; BootsFaces focuses on Twitter Bootstrap 3 and jQuery UI.&amp;nbsp; Material Prime is a PrimeFaces extension that lets you build web apps that conform to Google's &quot;Material&quot; design language.&amp;nbsp; Generjee
- is a Java EE application generator that outputs JSF+JavaEE 7+CDI 
-code.&amp;nbsp; FWIW, I would be remiss if I didn't point out that there is nothing named JEE.&amp;nbsp; So, I suggest this project rename itself to generee.&amp;nbsp; I think that's snappier anyway.&amp;nbsp; This
- recent flurry of activity shows two things.&amp;nbsp; First, the continuing
- vitality of the JSF ecosystem.&amp;nbsp; By now I think we all know that 
-the ecosystem around the technology is just as important as the 
-technology itself.&amp;nbsp; It's like this.&amp;nbsp; A technology has to be 
-&quot;good enough&quot; to get the job done.&amp;nbsp; That's a given.&amp;nbsp; Heck, it 
-could even be excellent technology.&amp;nbsp; But without an ecosystem 
-around it, even the best technologies will not survive.&amp;nbsp; Second, 
-there is still interest and value in server side state UI 
-frameworks.&amp;nbsp; My recent work with HTTP/2 in Servlet 4 has shown me 
-that such frameworks are very well positioned to take advantage of the 
-optimizations in the HTTP/2 protocol, as well as other performance 
-optimizations shown in Ilya Grigorik's excellent High Performance Browser Networking.&amp;nbsp; So, check out these new frameworks and don't be afraid to question conventional wisdom.</summary></entry><entry><title type="html">ConFESS 2015 Wrap Up Blog</title><link href="/blog/2015/05/18/confess-2015-wrap.html" rel="alternate" type="text/html" title="ConFESS 2015 Wrap Up Blog" /><published>2015-05-18T10:02:00-04:00</published><updated>2015-05-18T10:02:00-04:00</updated><id>/blog/2015/05/18/confess-2015-wrap</id><content type="html" xml:base="/blog/2015/05/18/confess-2015-wrap.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;ConFESS 2015 Wrap Up&lt;/h1&gt;&lt;p&gt;Hard on the heels of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2015/03/30/javaland-2015-wrap&quot; rel=&quot;nofollow&quot;&gt;JavaLand&lt;/a&gt; was &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://2015.con-fess.com/&quot; rel=&quot;nofollow&quot;&gt;ConFESS&lt;/a&gt;. This was the eighth installment of the conference that started life in 2008 as &lt;a class=&quot;&quot; href=&quot;https://community.oracle.com/blog/http%20]]%3E%3C%21[CDATA[%20s:/matthiaswessendorf.wordpress.com/2008/02/14/jsfdays-2008-in-vienna&quot;&gt;JSF Days&lt;/a&gt;,
+&lt;/div&gt;</content><author><name></name></author><summary type="html">Recent Ripple of JSF Extensions&amp;nbsp; My colleague Manfred Riem tipped me off to a new framework built on JSF, ButterFaces.&amp;nbsp; This whimsical name started an amusing Twitter thread, but also, and much more importantly brought several other new JSF extensions to light. This is the sort of thing that I used to look to Kito Mann's JSF Central Frameworks Page for, but it seems that needs an update.&amp;nbsp; So, in addition to ButterFaces, here are several other JSF extensions that are definitely worth a look.&amp;nbsp; BootsFaces focuses on Twitter Bootstrap 3 and jQuery UI.&amp;nbsp; Material Prime is a PrimeFaces extension that lets you build web apps that conform to Google's &quot;Material&quot; design language.&amp;nbsp; Generjee is a Java EE application generator that outputs JSF+JavaEE 7+CDI code.&amp;nbsp; FWIW, I would be remiss if I didn't point out that there is nothing named JEE.&amp;nbsp; So, I suggest this project rename itself to generee.&amp;nbsp; I think that's snappier anyway.&amp;nbsp; This recent flurry of activity shows two things.&amp;nbsp; First, the continuing vitality of the JSF ecosystem.&amp;nbsp; By now I think we all know that the ecosystem around the technology is just as important as the technology itself.&amp;nbsp; It's like this.&amp;nbsp; A technology has to be &quot;good enough&quot; to get the job done.&amp;nbsp; That's a given.&amp;nbsp; Heck, it could even be excellent technology.&amp;nbsp; But without an ecosystem around it, even the best technologies will not survive.&amp;nbsp; Second, there is still interest and value in server side state UI frameworks.&amp;nbsp; My recent work with HTTP/2 in Servlet 4 has shown me that such frameworks are very well positioned to take advantage of the optimizations in the HTTP/2 protocol, as well as other performance optimizations shown in Ilya Grigorik's excellent High Performance Browser Networking.&amp;nbsp; So, check out these new frameworks and don't be afraid to question conventional wisdom.</summary></entry><entry><title type="html">ConFESS 2015 Wrap Up Blog</title><link href="/blog/2015/05/18/confess-2015-wrap.html" rel="alternate" type="text/html" title="ConFESS 2015 Wrap Up Blog" /><published>2015-05-18T10:02:00-04:00</published><updated>2015-05-18T10:02:00-04:00</updated><id>/blog/2015/05/18/confess-2015-wrap</id><content type="html" xml:base="/blog/2015/05/18/confess-2015-wrap.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;ConFESS 2015 Wrap Up&lt;/h1&gt;&lt;p&gt;Hard on the heels of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2015/03/30/javaland-2015-wrap&quot; rel=&quot;nofollow&quot;&gt;JavaLand&lt;/a&gt; was &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://2015.con-fess.com/&quot; rel=&quot;nofollow&quot;&gt;ConFESS&lt;/a&gt;. This was the eighth installment of the conference that started life in 2008 as &lt;a class=&quot;&quot; href=&quot;https://community.oracle.com/blog/http%20]]%3E%3C%21[CDATA[%20s:/matthiaswessendorf.wordpress.com/2008/02/14/jsfdays-2008-in-vienna&quot;&gt;JSF Days&lt;/a&gt;,
  switching to the name &quot;ConFESS&quot; in 2011. The name stands for the 
 &quot;Conference for Enterprise Software Solutions&quot;. Last year, ConFESS was 
 held as a partnership with JavaLand in Brühl Germany. Neither party was 
@@ -555,88 +1015,7 @@ stack. I need to spend more time getting to know the workflow in current
  front end shops. Can anyone recommend a user group or meetup in 
 Orlando, FL?&lt;/p&gt;&lt;p&gt;Following the two day conference was my full day of 
 workshops. I had a small but dedicated room of students and I hope they 
-enjoyed the sessions.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">ConFESS 2015 Wrap UpHard on the heels of JavaLand was ConFESS. This was the eighth installment of the conference that started life in 2008 as JSF Days,
- switching to the name &quot;ConFESS&quot; in 2011. The name stands for the 
-&quot;Conference for Enterprise Software Solutions&quot;. Last year, ConFESS was 
-held as a partnership with JavaLand in Brühl Germany. Neither party was 
-satisfied with how that turned out and in 2015 ConFESS returned to its 
-home in Vienna, where it will stay. It was a relatively small event, 
-with just over 200 participants. It nicely filled out the venue, the C3 
-event center in the 3rd district. In my opinion, its small size is a 
-large asset. The ability to have the entire event schedule on two sides 
-of a 4x5 inch card is very convenient.My
- overall impression of the conference was very positive. There was a 
-wide variety of talks from speakers I hadn't seen before on the 
-conference circuit. There was a good breadth of coverage in diverse 
-tracks ranging from agile/methods to Java EE to tools to client side 
-technologies, and there was an excellent band on Tuesday night, Florian Braun and FSG Company. There was also a Lego Mindstorms EV3 competition that got rave reviews, but I didn't attend that portion of the event.The full set of abstracts from the conference are available at the regonline site for the event.
- You can use that site to learn more about the sessions for which I will
- give my brief impressions in the remainder of this blog entry.TuesdayThe Tuesday Keynote was from Oracle Labs's Thomas Wuerthinger. Thomas presented his exciting work on the Graal VM. First off, I'm glad to see that Oracle has continued Sun's tradition of funding long-term research in the spirit of Sun Labs,
- founded by computing pioneer Ivan Sutherland (yep, just checked, he 
-still works for Oracle). The basic idea of Graal appears to be: take the
- abstract syntax tree concept from compiler design and make it a first 
-class part of the JIT process, allowing the runtime to rewrite itself as
- the program runs to achieve greater performance without sacrificing 
-agility. Cool stuff, and great for a keynote.Sticking with the JSF heritage of the conference, next up was Cagatay Civici's
- talk about PrimeFaces. Cagatay introduced the new &quot;layouts&quot; concept, 
-built on JSF 2.2 Resource Library Contracts. The base offering consists 
-of two new layouts, Sentinel and Spark.
- One thing I've always liked about PrimeFaces is how they take the base 
-concepts of the core JSF specification and use them to maximum effect, 
-taking full advantage of new features, large and small.Diving down a level, Johannes Tuchscherer
- from CloudFoundry talked about Docker and how it relates to offerings 
-from Pivotal. Johannes put the hype into perspective, showing how you 
-still need other technologies to actually create value with Docker.Sticking in the Pivotal realm, Jürgen Höller
- gave the Spring 4.1 overview talk. It was nice to see that they were 
-able to leverage Java SE 8 features while producing a binary that runs 
-on Java SE 6. I was happy to have the opportunity to ask Juergen how 
-pulled that trick off and the answer is basically build-time static code
- analysis. They compile with Java SE 8 with -source and -target 1.6, and
- have a build-time tool that looks for usages of Java SE 8 only idioms 
-and APIs, and flags them as failures.The next talk I attended was a really practical hands on session about Java Flight Recorder from Johan Janssen. I'm a big fan of learning to get more out of tools I already have. JFR has been a part of the JDK for quite some time.WednesdayI
- was happy to see my good friend and fellow Oracle employee Mike Keith 
-given the Wednesday keynote slot. Mike is a veteran of the conference 
-trail, author of Pro JPA2
- and former JPA spec lead. Mike was talking about an exciting new 
-product from Oracle: Mobile Back End As A Service (MBaaS). In a 
-nutshell, this product packages up everything enterprises need to deploy
- mobile based applications that are built on their existing 
-infrastructure. Mike's slides are available for download.My
- own session was up next, at which I gave a status update on JSF 2.3. 
-Briefly, it's a community driven release aimed at preserving your 
-existing investment in JSF. I've uploaded my slides to slideshare.As a counterpart to Johan Janssen's session yesterday I attended Anton Arhipov's session about ZeroTurnaround's XRebel
- product. I liked his straightforward pitch: most applications receive 
-very little profiling attention, let's make a super simple product that 
-lets you get the low hanging fruit with maximum performance gain. 
-Indeed, the slick browser based UI is very easy to use. When asked about
- various corner cases, Anton was honest and answered the current state 
-of the product is very narrowly focused on where the most value can be 
-easily extracted. This focus is a key success factor for ZT, in my 
-opinion.I've always talked up the importance of maintainability, 
-and sold that as a strong suit of the Java EE stack, so it was with 
-great interest that I attended Bernhard Keprt's session about maintenance. One reason I like attending conferences is to remove my 3rd order ignorance by exposing me to technologies I otherwise would not encounter. During Bernhard's talk, he introduced me to VersionEye.
- The value-add of this tool is easy to perceive: given that you have 
-lots of dependencies, let's have a tool that keeps an eye on them and 
-lets you know when they update.Stefan Schuster gave a session 
-from his experiences in developing apps for the three big flavors of 
-mobile deployment platforms: native, Apache Cordova, and mobile web app.
- I liked this session for its first-hand perspective.To close out my 2015 ConFESS session attendance I viewed Alex Göschl's session on AngularJS. Alex shared his experiences in deployng Angular 1 for the jobs portal for conference sponsor Willhaben.
- FWIW, I found nine job postings for JSF on the site and four for 
-Angular. This was an enjoyable talk and Alex did a great job explaining 
-the extremely heterogeneous set of tools and technologies used in the 
-project. Prior to switching the jobs portal to Angular 1, they were 
-using GWT. It was pretty much a complete rewrite. The most useful aspect
- of the talk to me was the ease with which such an apparently complex 
-tool chain is now accepted and leveraged by your average front end team.
- For example, the following nine step dev time build process was rattled
- off as if it were no big deal.clean build targetscompile less to csscopy vendor librariescopy assetscompile and optimize angular templatescompile and check typescriptcopy to tomcatinject velocity templatesIt
- must just be my Java EE roots that makes me feel that the preceding 
-list is a lot more complex than a similar build process in a Java EE 
-stack. I need to spend more time getting to know the workflow in current
- front end shops. Can anyone recommend a user group or meetup in 
-Orlando, FL?Following the two day conference was my full day of 
-workshops. I had a small but dedicated room of students and I hope they 
-enjoyed the sessions.</summary></entry><entry><title type="html">JavaLand 2015 Wrap-Up Blog</title><link href="/blog/2015/03/30/javaland-2015-wrap.html" rel="alternate" type="text/html" title="JavaLand 2015 Wrap-Up Blog" /><published>2015-03-30T09:32:00-04:00</published><updated>2015-03-30T09:32:00-04:00</updated><id>/blog/2015/03/30/javaland-2015-wrap</id><content type="html" xml:base="/blog/2015/03/30/javaland-2015-wrap.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Wrap Up&lt;/h1&gt;&lt;p&gt;After
+enjoyed the sessions.&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">ConFESS 2015 Wrap UpHard on the heels of JavaLand was ConFESS. This was the eighth installment of the conference that started life in 2008 as JSF Days, switching to the name &quot;ConFESS&quot; in 2011. The name stands for the &quot;Conference for Enterprise Software Solutions&quot;. Last year, ConFESS was held as a partnership with JavaLand in Brühl Germany. Neither party was satisfied with how that turned out and in 2015 ConFESS returned to its home in Vienna, where it will stay. It was a relatively small event, with just over 200 participants. It nicely filled out the venue, the C3 event center in the 3rd district. In my opinion, its small size is a large asset. The ability to have the entire event schedule on two sides of a 4x5 inch card is very convenient.My overall impression of the conference was very positive. There was a wide variety of talks from speakers I hadn't seen before on the conference circuit. There was a good breadth of coverage in diverse tracks ranging from agile/methods to Java EE to tools to client side technologies, and there was an excellent band on Tuesday night, Florian Braun and FSG Company. There was also a Lego Mindstorms EV3 competition that got rave reviews, but I didn't attend that portion of the event.The full set of abstracts from the conference are available at the regonline site for the event. You can use that site to learn more about the sessions for which I will give my brief impressions in the remainder of this blog entry.TuesdayThe Tuesday Keynote was from Oracle Labs's Thomas Wuerthinger. Thomas presented his exciting work on the Graal VM. First off, I'm glad to see that Oracle has continued Sun's tradition of funding long-term research in the spirit of Sun Labs, founded by computing pioneer Ivan Sutherland (yep, just checked, he still works for Oracle). The basic idea of Graal appears to be: take the abstract syntax tree concept from compiler design and make it a first class part of the JIT process, allowing the runtime to rewrite itself as the program runs to achieve greater performance without sacrificing agility. Cool stuff, and great for a keynote.Sticking with the JSF heritage of the conference, next up was Cagatay Civici's talk about PrimeFaces. Cagatay introduced the new &quot;layouts&quot; concept, built on JSF 2.2 Resource Library Contracts. The base offering consists of two new layouts, Sentinel and Spark. One thing I've always liked about PrimeFaces is how they take the base concepts of the core JSF specification and use them to maximum effect, taking full advantage of new features, large and small.Diving down a level, Johannes Tuchscherer from CloudFoundry talked about Docker and how it relates to offerings from Pivotal. Johannes put the hype into perspective, showing how you still need other technologies to actually create value with Docker.Sticking in the Pivotal realm, Jürgen Höller gave the Spring 4.1 overview talk. It was nice to see that they were able to leverage Java SE 8 features while producing a binary that runs on Java SE 6. I was happy to have the opportunity to ask Juergen how pulled that trick off and the answer is basically build-time static code analysis. They compile with Java SE 8 with -source and -target 1.6, and have a build-time tool that looks for usages of Java SE 8 only idioms and APIs, and flags them as failures.The next talk I attended was a really practical hands on session about Java Flight Recorder from Johan Janssen. I'm a big fan of learning to get more out of tools I already have. JFR has been a part of the JDK for quite some time.WednesdayI was happy to see my good friend and fellow Oracle employee Mike Keith given the Wednesday keynote slot. Mike is a veteran of the conference trail, author of Pro JPA2 and former JPA spec lead. Mike was talking about an exciting new product from Oracle: Mobile Back End As A Service (MBaaS). In a nutshell, this product packages up everything enterprises need to deploy mobile based applications that are built on their existing infrastructure. Mike's slides are available for download.My own session was up next, at which I gave a status update on JSF 2.3. Briefly, it's a community driven release aimed at preserving your existing investment in JSF. I've uploaded my slides to slideshare.As a counterpart to Johan Janssen's session yesterday I attended Anton Arhipov's session about ZeroTurnaround's XRebel product. I liked his straightforward pitch: most applications receive very little profiling attention, let's make a super simple product that lets you get the low hanging fruit with maximum performance gain. Indeed, the slick browser based UI is very easy to use. When asked about various corner cases, Anton was honest and answered the current state of the product is very narrowly focused on where the most value can be easily extracted. This focus is a key success factor for ZT, in my opinion.I've always talked up the importance of maintainability, and sold that as a strong suit of the Java EE stack, so it was with great interest that I attended Bernhard Keprt's session about maintenance. One reason I like attending conferences is to remove my 3rd order ignorance by exposing me to technologies I otherwise would not encounter. During Bernhard's talk, he introduced me to VersionEye. The value-add of this tool is easy to perceive: given that you have lots of dependencies, let's have a tool that keeps an eye on them and lets you know when they update.Stefan Schuster gave a session from his experiences in developing apps for the three big flavors of mobile deployment platforms: native, Apache Cordova, and mobile web app. I liked this session for its first-hand perspective.To close out my 2015 ConFESS session attendance I viewed Alex Göschl's session on AngularJS. Alex shared his experiences in deployng Angular 1 for the jobs portal for conference sponsor Willhaben. FWIW, I found nine job postings for JSF on the site and four for Angular. This was an enjoyable talk and Alex did a great job explaining the extremely heterogeneous set of tools and technologies used in the project. Prior to switching the jobs portal to Angular 1, they were using GWT. It was pretty much a complete rewrite. The most useful aspect of the talk to me was the ease with which such an apparently complex tool chain is now accepted and leveraged by your average front end team. For example, the following nine step dev time build process was rattled off as if it were no big deal.clean build targetscompile less to csscopy vendor librariescopy assetscompile and optimize angular templatescompile and check typescriptcopy to tomcatinject velocity templatesIt must just be my Java EE roots that makes me feel that the preceding list is a lot more complex than a similar build process in a Java EE stack. I need to spend more time getting to know the workflow in current front end shops. Can anyone recommend a user group or meetup in Orlando, FL?Following the two day conference was my full day of workshops. I had a small but dedicated room of students and I hope they enjoyed the sessions.</summary></entry><entry><title type="html">JavaLand 2015 Wrap-Up Blog</title><link href="/blog/2015/03/30/javaland-2015-wrap.html" rel="alternate" type="text/html" title="JavaLand 2015 Wrap-Up Blog" /><published>2015-03-30T09:32:00-04:00</published><updated>2015-03-30T09:32:00-04:00</updated><id>/blog/2015/03/30/javaland-2015-wrap</id><content type="html" xml:base="/blog/2015/03/30/javaland-2015-wrap.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Wrap Up&lt;/h1&gt;&lt;p&gt;After
  months of preparation, it all came down to three days of intense 
 execution, and I was just one speaker. I can only marvel at the 
 logistical acumen that was on display from the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/team/&quot; rel=&quot;nofollow&quot;&gt;JavaLand&lt;/a&gt; and DOAG team. I had an action , capably coodinated by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/personenseiten/andreas-badelt/&quot; rel=&quot;nofollow&quot;&gt;Andreas Badelt&lt;/a&gt;.
@@ -679,50 +1058,7 @@ to the Java Community. I hope I didn't mangle my words too badly.&lt;/p&gt;&lt;p
 at which I invariably bring home lots of chocolate, I felt it was time 
 to give the Germans a taste of American-style sweets along with their 
 pre-loaded VM usb sticks. These Tasty Kakes or a specialty of my 
-home-town of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.tastykake.com/history&quot; rel=&quot;nofollow&quot;&gt;Philadelphia&lt;/a&gt;, and each attendee of the session &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/programm/vertiefe-schulungstag/&quot; rel=&quot;nofollow&quot;&gt;Java EE aus einer HTML5-Perspektive&lt;/a&gt; received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.&lt;/p&gt;&lt;p&gt;In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">JavaLand 2015 Wrap UpAfter
- months of preparation, it all came down to three days of intense 
-execution, and I was just one speaker. I can only marvel at the 
-logistical acumen that was on display from the JavaLand and DOAG team. I had an action , capably coodinated by Andreas Badelt.
- Because of the high level of activity on my personal agenda, I was not 
-able to attend as many sessions as I would have liked. In any case, this
- blog entry is my place to share my overall impressions of the 
-conference, and of the sessions I did get a chance to attend.Day One Right off the bat, I want to tip my cap to Marcus Lagergren
- for remaining calm in the face of some AV problems. Even with all that,
- and the 45 minute session duration, Marcus managed to give a compelling
- whirlwind tour of his personal experience with Java from the beginning.
- More photos like the one on the right are available from Stefan Hildebrandt's flickr photo stream.
- I think there is a lot more room in the &quot;20 year's of Java meme&quot;, 
-however, and I applaud Marcus for wisely not attempting to speak for all
- of it and drawing from his own experiences. That's one great thing 
-about the #java20 meme, everyone has their own story. Maybe at JavaOne 2015 they will have some sort of Story Corps
- type thing where people can give their stories. Come to think of it, if
- someone wants to build Story Corps as a Service (SCAAS), perpahs they 
-can sell it to Oracle for use at the show.Shortly after Marcus's session, I presented with my good friend Oliver Szymanzki a 45 minute capsule of our full day training session about Java EE 7 from an HTML5 Perspective.
- It was tough to make a meaningful abstraction from a full day session 
-to just 45 minutes, but I hope at least people could take something 
-useful away from it.Then came my first exposure to the EAA, which was my only chance to present JSF content here at JavaLand. I gave a quick presentation
- and had an informal meeting with several JSF EG members who were at 
-JavaLand. We covered f:socket, multi-component validation, and URL 
-mapping.The evening community event was really not to be missed. 
-If you ever have a chance to attend JavaLand, I really recommend you 
-participate.Day TwoI started out the day by presenting a modified version of my DevNexus session about Servlet 4.0 and HTTP/2. I basically dropped the demo and moved the Java SE 9 content to an EAA session in order to fit into the 45 minute window.Following my session I was able to enjoy Mark Little's keynote about Java Enterprise and Internet of Things.
- This session put out some hard-won truths of problems we have solved in
- Java as cautionary tales for newer stacks that seem intent on 
-re-inventing wheels rather than standing on the shoulders of others. I 
-must admit it was a feel-good session, but still realistic and largely kool aid free.In the afternoon, I supported David Blevins during his session about the new Security JSR. This was a very informative session that got a whole lot done in only 45 minutes. I hope it encouraged some people to get involved in JSR-375.Running back to the EAA, I presented the exciting work being done by Michael McMahon
- to bring a new Http Client to Java SE 9, including HTTP/2 support. I 
-can't post the slides, but I'm sure we'll have something on this at 
-JavaOne.My last engagment of the conference proper was to participate in a joint vJUG/NightHacking session regarding Adopt-a-JSR. This was lots of fun, and I thank Stephen Chin and Simon Maple for providing a vehicle for it.As
- a nice wind-down from the conference, and a bit of chill before the 
-training day, I was invited by DOAG boss Fried Saacke to attend the 5 year celebration dinner for Java Aktuell
- magazine. I didn't know it at the time, but the invitation included an 
-opportunity to give a short speech, in German, on the importance of JCP 
-to the Java Community. I hope I didn't mangle my words too badly.
- After being blessed with many years of German conference opportunities 
-at which I invariably bring home lots of chocolate, I felt it was time 
-to give the Germans a taste of American-style sweets along with their 
-pre-loaded VM usb sticks. These Tasty Kakes or a specialty of my 
-home-town of Philadelphia, and each attendee of the session Java EE aus einer HTML5-Perspektive received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.</summary></entry><entry><title type="html">JavaLand 2015 Early Adopter’s Area Preview Blog</title><link href="/blog/2015/02/15/javaland-2015-early-adopters-area-preview.html" rel="alternate" type="text/html" title="JavaLand 2015 Early Adopter's Area Preview Blog" /><published>2015-02-15T10:48:00-05:00</published><updated>2015-02-15T10:48:00-05:00</updated><id>/blog/2015/02/15/javaland-2015-early-adopters-area-preview</id><content type="html" xml:base="/blog/2015/02/15/javaland-2015-early-adopters-area-preview.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Early Adopter's Area&lt;/h1&gt;&lt;p&gt;With only 25 business days to go until JavaLand 2015, now's a good time to share the plans for the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/index.php?id=1786&quot; rel=&quot;nofollow&quot;&gt;Early Adopter's area&lt;/a&gt;
+home-town of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.tastykake.com/history&quot; rel=&quot;nofollow&quot;&gt;Philadelphia&lt;/a&gt;, and each attendee of the session &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/programm/vertiefe-schulungstag/&quot; rel=&quot;nofollow&quot;&gt;Java EE aus einer HTML5-Perspektive&lt;/a&gt; received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.&lt;/p&gt;&lt;p&gt;In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Wrap UpAfter months of preparation, it all came down to three days of intense execution, and I was just one speaker. I can only marvel at the logistical acumen that was on display from the JavaLand and DOAG team. I had an action , capably coodinated by Andreas Badelt. Because of the high level of activity on my personal agenda, I was not able to attend as many sessions as I would have liked. In any case, this blog entry is my place to share my overall impressions of the conference, and of the sessions I did get a chance to attend.Day One Right off the bat, I want to tip my cap to Marcus Lagergren for remaining calm in the face of some AV problems. Even with all that, and the 45 minute session duration, Marcus managed to give a compelling whirlwind tour of his personal experience with Java from the beginning. More photos like the one on the right are available from Stefan Hildebrandt's flickr photo stream. I think there is a lot more room in the &quot;20 year's of Java meme&quot;, however, and I applaud Marcus for wisely not attempting to speak for all of it and drawing from his own experiences. That's one great thing about the #java20 meme, everyone has their own story. Maybe at JavaOne 2015 they will have some sort of Story Corps type thing where people can give their stories. Come to think of it, if someone wants to build Story Corps as a Service (SCAAS), perpahs they can sell it to Oracle for use at the show.Shortly after Marcus's session, I presented with my good friend Oliver Szymanzki a 45 minute capsule of our full day training session about Java EE 7 from an HTML5 Perspective. It was tough to make a meaningful abstraction from a full day session to just 45 minutes, but I hope at least people could take something useful away from it.Then came my first exposure to the EAA, which was my only chance to present JSF content here at JavaLand. I gave a quick presentation and had an informal meeting with several JSF EG members who were at JavaLand. We covered f:socket, multi-component validation, and URL mapping.The evening community event was really not to be missed. If you ever have a chance to attend JavaLand, I really recommend you participate.Day TwoI started out the day by presenting a modified version of my DevNexus session about Servlet 4.0 and HTTP/2. I basically dropped the demo and moved the Java SE 9 content to an EAA session in order to fit into the 45 minute window.Following my session I was able to enjoy Mark Little's keynote about Java Enterprise and Internet of Things. This session put out some hard-won truths of problems we have solved in Java as cautionary tales for newer stacks that seem intent on re-inventing wheels rather than standing on the shoulders of others. I must admit it was a feel-good session, but still realistic and largely kool aid free.In the afternoon, I supported David Blevins during his session about the new Security JSR. This was a very informative session that got a whole lot done in only 45 minutes. I hope it encouraged some people to get involved in JSR-375.Running back to the EAA, I presented the exciting work being done by Michael McMahon to bring a new Http Client to Java SE 9, including HTTP/2 support. I can't post the slides, but I'm sure we'll have something on this at JavaOne.My last engagment of the conference proper was to participate in a joint vJUG/NightHacking session regarding Adopt-a-JSR. This was lots of fun, and I thank Stephen Chin and Simon Maple for providing a vehicle for it.As a nice wind-down from the conference, and a bit of chill before the training day, I was invited by DOAG boss Fried Saacke to attend the 5 year celebration dinner for Java Aktuell magazine. I didn't know it at the time, but the invitation included an opportunity to give a short speech, in German, on the importance of JCP to the Java Community. I hope I didn't mangle my words too badly. After being blessed with many years of German conference opportunities at which I invariably bring home lots of chocolate, I felt it was time to give the Germans a taste of American-style sweets along with their pre-loaded VM usb sticks. These Tasty Kakes or a specialty of my home-town of Philadelphia, and each attendee of the session Java EE aus einer HTML5-Perspektive received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.</summary></entry><entry><title type="html">JavaLand 2015 Early Adopter’s Area Preview Blog</title><link href="/blog/2015/02/15/javaland-2015-early-adopters-area-preview.html" rel="alternate" type="text/html" title="JavaLand 2015 Early Adopter's Area Preview Blog" /><published>2015-02-15T10:48:00-05:00</published><updated>2015-02-15T10:48:00-05:00</updated><id>/blog/2015/02/15/javaland-2015-early-adopters-area-preview</id><content type="html" xml:base="/blog/2015/02/15/javaland-2015-early-adopters-area-preview.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Early Adopter's Area&lt;/h1&gt;&lt;p&gt;With only 25 business days to go until JavaLand 2015, now's a good time to share the plans for the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/index.php?id=1786&quot; rel=&quot;nofollow&quot;&gt;Early Adopter's area&lt;/a&gt;
  and Hackergarten. As at many other Java community conferences, this is a
  space where anyone can visit and meet with leaders of different parts 
 of the Java ecosystem to see first hand what's new in their own little 
@@ -763,48 +1099,7 @@ at several conferences over the past couple years, and he epitomizes the
  passionate Java developer. As the late night tech conversations would 
 dwindle off, he'd always be one of the last ones still talking hard core
  tech. Mani's the real deal. Mani is talking about OpenJDK, among other 
-things.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Roland Huss&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Roland is talking about JMX and Java EE Management.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!&lt;/p&gt;&lt;/div&gt;</content><summary type="html">JavaLand 2015 Early Adopter's AreaWith only 25 business days to go until JavaLand 2015, now's a good time to share the plans for the Early Adopter's area
- and Hackergarten. As at many other Java community conferences, this is a
- space where anyone can visit and meet with leaders of different parts 
-of the Java ecosystem to see first hand what's new in their own little 
-patch of the Java world. The detail page for this space on the JavaLand 
-website: &amp;lt; http://www.javaland.eu/index.php?id=1786
- &amp;gt; lists the individuals who have committed to spend some time in the
- space. I've been participating in these kinds of spaces for nearly ten years now and it's always very worthwhile for me to interact with the community in this way.The
- schedule of mini-presentations is still not yet finalized, but the 
-detail page will have the final schedule when it is. In the meantime, I 
-can share an alphabetical snapshot of the current set of individuals and
- their topics. If I have any commentary to add for each entry, I'll add 
-it. As I prepared the commentary, a theme emerged. Every one of these 
-individuals is passionately advocating for their ideas in the face of 
-some form of challenge. I see individuals who are trying to displace an 
-incumbent technology, trying to overcome some part of the community &quot;not
- getting&quot; their idea, and fighting the old bugbear of 
-complexity/indifference. This passion makes it worth your time to stop 
-by the early adopter's area.Alex Snaps, Peter LawreyAlex and Peter are talking about JCache and Data Grids&amp;nbsp;Anatole TreschApache Tamaya, Java Configuration, and Money and CurrencyAnatole
- has been super determined to make progress on the configuration for 
-Java effort. This effort started out as an Oracle-lead JSR proposal, was
- transferred to Anatole's employer, Credit Suisse, was declined for 
-consideration in both EE and SE JCP executive committees, and Anatole 
-finally decided to make progress as an Apache Incubator Project. I 
-applaud his tenacity.Andres AlmirayAndres is 
-most famous for his involvement in the Griffon desktop application 
-framework, but his passion for this space has lead him to propose JSR-377: A Desktop Application API.
- Now, I've been around long enough to know that this is a difficult 
-space to occupy, with several attempts at standardization having come 
-and gone (see JSR-295, and JSR-296, and JSR-143). I wish you the best of success with this one, Andres, but it's obviously a tough nut to crack.Dan AllenI
- know Dan from his productive involvement in JSF 2.0. These days I see 
-him frequently tweeting about Asciidoctor. After having just made a trivial pull request to the HTTP/2 spec and using xml2rfc to do it, I can say there is room for improvement in this space, and I know that Dan can tell you all about it.Ed BurnsI'll be here talking about JSF, Servlet, and HTTP/2.Heather VancuraHeather
- is the heart of the JCP, and therefore has her finger on the pulse of 
-what is happening across the evolution of the entire Java platform.Ivar GrimnstadI
- don't know Ivar, but he is on the MVC Expert Group, and is thus a great
- conduit to the development efforts of one of only two new JSRs in Java 
-EE 8.Mani Sarkar, Daniel BryantI've seen Mani 
-at several conferences over the past couple years, and he epitomizes the
- passionate Java developer. As the late night tech conversations would 
-dwindle off, he'd always be one of the last ones still talking hard core
- tech. Mani's the real deal. Mani is talking about OpenJDK, among other 
-things.Roland HussRoland is talking about JMX and Java EE Management.Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!</summary></entry><entry><title type="html">JavaLand 2015 Conference Picks Blog</title><link href="/blog/2015/01/15/javaland-2015-conference-picks.html" rel="alternate" type="text/html" title="JavaLand 2015 Conference Picks Blog" /><published>2015-01-15T10:12:00-05:00</published><updated>2015-01-15T10:12:00-05:00</updated><id>/blog/2015/01/15/javaland-2015-conference-picks</id><content type="html" xml:base="/blog/2015/01/15/javaland-2015-conference-picks.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Conference Picks&lt;/h1&gt;&lt;p&gt;With
+things.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Roland Huss&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Roland is talking about JMX and Java EE Management.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Early Adopter's AreaWith only 25 business days to go until JavaLand 2015, now's a good time to share the plans for the Early Adopter's area and Hackergarten. As at many other Java community conferences, this is a space where anyone can visit and meet with leaders of different parts of the Java ecosystem to see first hand what's new in their own little patch of the Java world. The detail page for this space on the JavaLand website: &amp;lt; http://www.javaland.eu/index.php?id=1786 &amp;gt; lists the individuals who have committed to spend some time in the space. I've been participating in these kinds of spaces for nearly ten years now and it's always very worthwhile for me to interact with the community in this way.The schedule of mini-presentations is still not yet finalized, but the detail page will have the final schedule when it is. In the meantime, I can share an alphabetical snapshot of the current set of individuals and their topics. If I have any commentary to add for each entry, I'll add it. As I prepared the commentary, a theme emerged. Every one of these individuals is passionately advocating for their ideas in the face of some form of challenge. I see individuals who are trying to displace an incumbent technology, trying to overcome some part of the community &quot;not getting&quot; their idea, and fighting the old bugbear of complexity/indifference. This passion makes it worth your time to stop by the early adopter's area.Alex Snaps, Peter LawreyAlex and Peter are talking about JCache and Data Grids&amp;nbsp;Anatole TreschApache Tamaya, Java Configuration, and Money and CurrencyAnatole has been super determined to make progress on the configuration for Java effort. This effort started out as an Oracle-lead JSR proposal, was transferred to Anatole's employer, Credit Suisse, was declined for consideration in both EE and SE JCP executive committees, and Anatole finally decided to make progress as an Apache Incubator Project. I applaud his tenacity.Andres AlmirayAndres is most famous for his involvement in the Griffon desktop application framework, but his passion for this space has lead him to propose JSR-377: A Desktop Application API. Now, I've been around long enough to know that this is a difficult space to occupy, with several attempts at standardization having come and gone (see JSR-295, and JSR-296, and JSR-143). I wish you the best of success with this one, Andres, but it's obviously a tough nut to crack.Dan AllenI know Dan from his productive involvement in JSF 2.0. These days I see him frequently tweeting about Asciidoctor. After having just made a trivial pull request to the HTTP/2 spec and using xml2rfc to do it, I can say there is room for improvement in this space, and I know that Dan can tell you all about it.Ed BurnsI'll be here talking about JSF, Servlet, and HTTP/2.Heather VancuraHeather is the heart of the JCP, and therefore has her finger on the pulse of what is happening across the evolution of the entire Java platform.Ivar GrimnstadI don't know Ivar, but he is on the MVC Expert Group, and is thus a great conduit to the development efforts of one of only two new JSRs in Java EE 8.Mani Sarkar, Daniel BryantI've seen Mani at several conferences over the past couple years, and he epitomizes the passionate Java developer. As the late night tech conversations would dwindle off, he'd always be one of the last ones still talking hard core tech. Mani's the real deal. Mani is talking about OpenJDK, among other things.Roland HussRoland is talking about JMX and Java EE Management.Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!</summary></entry><entry><title type="html">JavaLand 2015 Conference Picks Blog</title><link href="/blog/2015/01/15/javaland-2015-conference-picks.html" rel="alternate" type="text/html" title="JavaLand 2015 Conference Picks Blog" /><published>2015-01-15T10:12:00-05:00</published><updated>2015-01-15T10:12:00-05:00</updated><id>/blog/2015/01/15/javaland-2015-conference-picks</id><content type="html" xml:base="/blog/2015/01/15/javaland-2015-conference-picks.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Conference Picks&lt;/h1&gt;&lt;p&gt;With
  only 44 business days to go until JavaLand 2015, I’d like to share my 
 conference picks. I’m including my sessions for completeness, and 
 naturally I recommend you attend them, but I’ll also include an 
@@ -837,67 +1132,4 @@ tools in practice to improve software quality. I’ve never seen &lt;a class=&qu
 Puppet, or at least learn how these two popular sysadmin technologies 
 relate to eachother. As with the previous talk, I’ve not seen &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/ithempel&quot; rel=&quot;nofollow&quot;&gt;Sebastian Hempel&lt;/a&gt; speak before this.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;h2&gt;Thursday, 26 March 2015&lt;/h2&gt;&lt;p&gt;As mentioned &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2014/12/26/javaland-2015-training-day-teaser&quot; rel=&quot;nofollow&quot;&gt;in my previous entry&lt;/a&gt;, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/SourceKnights&quot; rel=&quot;nofollow&quot;&gt;Oliver Szymanski&lt;/a&gt; and I are presenting an entry in the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/programm/vertiefe-schulungstag.html&quot; rel=&quot;nofollow&quot;&gt;training day&lt;/a&gt;: Java EE 7 from an HTML5 Perspective.&lt;/p&gt;&lt;p&gt;JavaLand
  was great fun and very professionally enriching last year. This year 
-promises to be even more so. I hope to see you there!&lt;/p&gt;&lt;/div&gt;</content><summary type="html">JavaLand 2015 Conference PicksWith
- only 44 business days to go until JavaLand 2015, I’d like to share my 
-conference picks. I’m including my sessions for completeness, and 
-naturally I recommend you attend them, but I’ll also include an 
-alternate that I’d attend ]]&amp;gt;Tuesday, 24 March 20150900, Wintergarden, Welcome Keynote: 20 Years of JavaI like to attend the plenary sessions of a conference if they are at all interesting, and Oracle Java engineer Marcus Lagergren’s looks great. It will be on the big stage. This year I’m celebrating my own 20 year anniversary with Java, since I was present at the German debut of Java at the The Third International World-Wide Web Conference in Darmstadt, Germany in April 1995. I vividly remember someone (Arthur van Hoff I think) typing, as root rm -rf /*, at the end of the demo on a Sun UNIX workstation. What flair!1000, Schauspielhaus, Praktisches API-DesignDieser Vortrag wird auf Deutsch gegeben, aber trotzdem empfehle sie ich weil das Thema nebem meinem Hertz liegt.  Hopefully I’ll get some tips for design in JSF and Servlet.1200, Quantum 1, Java EE 7 from an HTML5 Perspective: WebSocket, JSON, &amp;amp; JSFThis
- is my first session, and it is an overview of JavaEE 7 from the 
-perspective of technologies useful to those developing JavaEE 7 backed 
-apps with HTML5 user interfaces.If I wasn’t speaking myself, I’d attend my pal Anton Epple’s 1200, Quantum 2, Wie programmiert man JavaScript in Java.1300, Schauspielhaus, The (not so) Dark Art of Performance TuningMy good friend Kirk Pepperdine is a global expert in this topic, and a great and entertaining speaker as well.1400, Wintergarden, JBatch mit Apache BatchEEBatch
- is one of those unglamorous yet essential technologies, and also one 
-with a very vibrant JCP community. I remember meeting Michael Minella of Spring Batch at DevNexus 2014 and he was so excited about passing the TCK. The session speaker, Mark Struberg, is a tech titan and one of the sharpest guys I’ve had the pleasure of working with. He’s also a great speaker.1500, Wintergarden, Where Are We At with MVC in Java EE 8I work very closely with my co-spec lead on JSF, Manfred Riem, so I’m biased, but this session is sure to be great. MVC is one of the most talked about technologies in Java EE 8.1600, Quantum 4, Confessions of an Automation AddictI’m a bit of an automation addict myself, but the horse I picked to ride has fallen out of favor. Nonetheless, I still use it heavily.1700, Schauspielhaus, Speed up Your Java by Turning it into BinaryJohn is a great speaker and industry veteran, and this talk has a provocative topic, so it is sure to be worthwhile.&amp;nbsp;One
- unique aspect of this conference is its location: a top-tier amusmement
- park. Think of it as a smaller mashup of Disney’s Epcot and Magic 
-Kingdom, with German sensibilities. After the first day of the 
-conference, some of the rides will be open to conference attendees. My 
-favorite was Winja’s force.  This is a relatively mellow roller coaster with a twist, literally. The car you sit in can rotate as it glides along the rails.Wednesday, 25 March 20150900, Quantum 3, Developing Native Mobile Apps Using JavaScriptThis is a bit outside of my bailiwick, but my friend Hazem Saleh is a great speaker and strong proponent of Open Source. He’s also a JSF Expert Group member.1000, Schauspielhaus, HTTP 2.0 Comes to Java EEThis is my second session, and I’ll explain what’s in store for Servlet 4.0, with a special view towards HTTP/2.If I wasn’t speaking, I’d definitely attend Sven Peters’s
- Coding Culture session in Wintergarden. First off, Atlassian makes much
- better products than GitHub. Second, Sven is an excellent speaker, and 
-third the talk is likely to be keynote worthy. I’m not glad to be up 
-against him in the schedule.1100, Wintergarden, Enterprise and Internet of ThingsThe Tuesday plenary is by Dr. Mark Little,
- who is doing a great job driving Java EE forward at JBoss. I normally 
-don’t go in for IoT sessions, but Mark is sure to make it interesting.1300, Schauspielhaus, Java EE Security: Let’s Make Something UsefulDavid Blevins
- is a strong community voice for improving Java EE, and security is one 
-of the most challenging areas to improve. You can tell it’s hard just by
- how long it’s taken for the community to get up enough steam to tackle 
-it in a proper JSR. Well, we have one now: JSR-375, and David will tell us how we can make the most of it.1400, Quantum 4, Productive, Effective Development? You Weak Minded fool!Simon Maple has done a great job building the Virtual JUG
- into a force for good in the Java Community. He is well positioned to 
-deliver this kind of talk thanks to his role at ZeroTurnaround.1500, Quantum 1, Softwarequalität steigernThis
- appears to be a survey talk about how to effectively use some popular 
-tools in practice to improve software quality. I’ve never seen Andreas G¨nzel talk, but the topic is interesting to me.1600, Quantum 4, Puppet für EntwicklerNow
- that Docker is all the rage, I’ll be interested to see what’s new with 
-Puppet, or at least learn how these two popular sysadmin technologies 
-relate to eachother. As with the previous talk, I’ve not seen Sebastian Hempel speak before this.Thursday, 26 March 2015As mentioned in my previous entry, Oliver Szymanski and I are presenting an entry in the training day: Java EE 7 from an HTML5 Perspective.JavaLand
- was great fun and very professionally enriching last year. This year 
-promises to be even more so. I hope to see you there!</summary></entry><entry><title type="html">JavaLand 2015 Training Day Teaser Blog</title><link href="/blog/2014/12/26/javaland-2015-training-day-teaser.html" rel="alternate" type="text/html" title="JavaLand 2015 Training Day Teaser Blog" /><published>2014-12-26T08:03:00-05:00</published><updated>2014-12-26T08:03:00-05:00</updated><id>/blog/2014/12/26/javaland-2015-training-day-teaser</id><content type="html" xml:base="/blog/2014/12/26/javaland-2015-training-day-teaser.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand Training Day Teaser&lt;/h1&gt;&lt;p&gt;With
- only 61 days to go until JavaLand 2015, it's high time for a preview of
- the Training Day session I am pleased to offer with my friend Oliver 
-Szymanksi. Briefly, this session is a full day treatment of the parts of
- Java EE 7 that intersect with the world of HTML5 web development.&lt;/p&gt;&lt;p&gt;While the session is an update of the successful class we offered at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.oracle.com/javaone/java-university/index.html#JavaEE7&quot; rel=&quot;nofollow&quot;&gt;JavaOne San Francisco 2014&lt;/a&gt;, it is not a simple repeat. Some major things have happened in the world of HTML5 since JavaOne 2014. Most notably, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.w3.org/2014/10/html5-rec.html.en&quot; rel=&quot;nofollow&quot;&gt;HTML5 has gone final&lt;/a&gt;. In case you missed it, many things that were slated for inclusion in HTML5 have been descoped, as detailed in the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://dev.w3.org/html5/decision-policy/html5-2014-plan.html&quot; rel=&quot;nofollow&quot;&gt;Plan 2014&lt;/a&gt;
- document from W3C. The idea is to reduce HTML5 spec size by splitting 
-things into seperate specification efforts. Formerly core ideas such as 
-the 2D Canvas, Web Storafe, WebSocket, Server Sent Events and WebRTC 
-either already had their own specification effort or now have one. The 
-Plan 2014 document justifes this move with some compelling anecdotal 
-data, summing it up with this defensive statement, “The evidence shows 
-that placing technologies in their own extension specifications, while 
-initially controversial in some cases, has proven to be a long-term 
-benefit for peace and harmony in the end.” Peace and harmony? I hope so.
- In any case, Oliver and I will break this down and show you what it 
-means for developers using Java EE 7.&lt;/p&gt;&lt;p&gt;Here is the basic outline of the session.&lt;/p&gt;&lt;p&gt;Morning session WebSocket, JSON, JSF&lt;/p&gt;&lt;ul class=&quot;mondo-grey listicons&quot;&gt;&lt;li&gt;JSON&lt;br&gt; - Why is this important? JSON is to HTML5 what XML was to web services&lt;br&gt; - JSON-P is for parsing&lt;br&gt; - What about binding to Java Objects?&lt;/li&gt;&lt;li&gt;WebSocket&lt;br&gt;- Three specs: JavaScript API, IETF transport protocol, Java API&lt;br&gt; - Java API details: Usage from a browser, Usage from standalone client&lt;/li&gt;&lt;li&gt;JSF: The good parts&lt;br&gt; - Composite components&lt;br&gt; - HTML 5–friendly markup&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Afternoon session: HTML 5 Deep Dive&lt;/p&gt;&lt;ul class=&quot;mondo-grey listicons&quot;&gt;&lt;li style=&quot;line-height: 1.3em;&quot;&gt;HTML 5: Why all the fuss?&lt;br&gt; - What's in a name?&lt;br&gt; - Is it really a big deal?&lt;/li&gt;&lt;li&gt;HTML 5: High-level perspective&lt;br&gt; - Design goals&lt;br&gt; - How does it differ from HTML 4&lt;/li&gt;&lt;li&gt;HTML 5: Subspecifications&lt;br&gt; - Browser contexts&lt;br&gt; - Microdata&lt;br&gt; - Canvas context&lt;br&gt; - Offline apps&lt;br&gt; - Messaging&lt;br&gt; - Events&lt;br&gt; - Cross-document messaging&lt;br&gt; - Server-sent events&lt;br&gt; - WebSocket&lt;br&gt; - Drag and drop&lt;br&gt; - Web storage&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/&quot; rel=&quot;nofollow&quot;&gt;JavaLand 2015&lt;/a&gt; has much to offer aside from just this training day, so please consider attending!&lt;/p&gt;&lt;/div&gt;</content><summary type="html">JavaLand Training Day TeaserWith
- only 61 days to go until JavaLand 2015, it's high time for a preview of
- the Training Day session I am pleased to offer with my friend Oliver 
-Szymanksi. Briefly, this session is a full day treatment of the parts of
- Java EE 7 that intersect with the world of HTML5 web development.While the session is an update of the successful class we offered at JavaOne San Francisco 2014, it is not a simple repeat. Some major things have happened in the world of HTML5 since JavaOne 2014. Most notably, HTML5 has gone final. In case you missed it, many things that were slated for inclusion in HTML5 have been descoped, as detailed in the Plan 2014
- document from W3C. The idea is to reduce HTML5 spec size by splitting 
-things into seperate specification efforts. Formerly core ideas such as 
-the 2D Canvas, Web Storafe, WebSocket, Server Sent Events and WebRTC 
-either already had their own specification effort or now have one. The 
-Plan 2014 document justifes this move with some compelling anecdotal 
-data, summing it up with this defensive statement, “The evidence shows 
-that placing technologies in their own extension specifications, while 
-initially controversial in some cases, has proven to be a long-term 
-benefit for peace and harmony in the end.” Peace and harmony? I hope so.
- In any case, Oliver and I will break this down and show you what it 
-means for developers using Java EE 7.Here is the basic outline of the session.Morning session WebSocket, JSON, JSFJSON - Why is this important? JSON is to HTML5 what XML was to web services - JSON-P is for parsing - What about binding to Java Objects?WebSocket- Three specs: JavaScript API, IETF transport protocol, Java API - Java API details: Usage from a browser, Usage from standalone clientJSF: The good parts - Composite components - HTML 5–friendly markupAfternoon session: HTML 5 Deep DiveHTML 5: Why all the fuss? - What's in a name? - Is it really a big deal?HTML 5: High-level perspective - Design goals - How does it differ from HTML 4HTML 5: Subspecifications - Browser contexts - Microdata - Canvas context - Offline apps - Messaging - Events - Cross-document messaging - Server-sent events - WebSocket - Drag and drop - Web storageJavaLand 2015 has much to offer aside from just this training day, so please consider attending!</summary></entry></feed>
+promises to be even more so. I hope to see you there!&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Conference PicksWith only 44 business days to go until JavaLand 2015, I’d like to share my conference picks. I’m including my sessions for completeness, and naturally I recommend you attend them, but I’ll also include an alternate that I’d attend ]]&amp;gt;Tuesday, 24 March 20150900, Wintergarden, Welcome Keynote: 20 Years of JavaI like to attend the plenary sessions of a conference if they are at all interesting, and Oracle Java engineer Marcus Lagergren’s looks great. It will be on the big stage. This year I’m celebrating my own 20 year anniversary with Java, since I was present at the German debut of Java at the The Third International World-Wide Web Conference in Darmstadt, Germany in April 1995. I vividly remember someone (Arthur van Hoff I think) typing, as root rm -rf /*, at the end of the demo on a Sun UNIX workstation. What flair!1000, Schauspielhaus, Praktisches API-DesignDieser Vortrag wird auf Deutsch gegeben, aber trotzdem empfehle sie ich weil das Thema nebem meinem Hertz liegt. Hopefully I’ll get some tips for design in JSF and Servlet.1200, Quantum 1, Java EE 7 from an HTML5 Perspective: WebSocket, JSON, &amp;amp; JSFThis is my first session, and it is an overview of JavaEE 7 from the perspective of technologies useful to those developing JavaEE 7 backed apps with HTML5 user interfaces.If I wasn’t speaking myself, I’d attend my pal Anton Epple’s 1200, Quantum 2, Wie programmiert man JavaScript in Java.1300, Schauspielhaus, The (not so) Dark Art of Performance TuningMy good friend Kirk Pepperdine is a global expert in this topic, and a great and entertaining speaker as well.1400, Wintergarden, JBatch mit Apache BatchEEBatch is one of those unglamorous yet essential technologies, and also one with a very vibrant JCP community. I remember meeting Michael Minella of Spring Batch at DevNexus 2014 and he was so excited about passing the TCK. The session speaker, Mark Struberg, is a tech titan and one of the sharpest guys I’ve had the pleasure of working with. He’s also a great speaker.1500, Wintergarden, Where Are We At with MVC in Java EE 8I work very closely with my co-spec lead on JSF, Manfred Riem, so I’m biased, but this session is sure to be great. MVC is one of the most talked about technologies in Java EE 8.1600, Quantum 4, Confessions of an Automation AddictI’m a bit of an automation addict myself, but the horse I picked to ride has fallen out of favor. Nonetheless, I still use it heavily.1700, Schauspielhaus, Speed up Your Java by Turning it into BinaryJohn is a great speaker and industry veteran, and this talk has a provocative topic, so it is sure to be worthwhile.&amp;nbsp;One unique aspect of this conference is its location: a top-tier amusmement park. Think of it as a smaller mashup of Disney’s Epcot and Magic Kingdom, with German sensibilities. After the first day of the conference, some of the rides will be open to conference attendees. My favorite was Winja’s force. This is a relatively mellow roller coaster with a twist, literally. The car you sit in can rotate as it glides along the rails.Wednesday, 25 March 20150900, Quantum 3, Developing Native Mobile Apps Using JavaScriptThis is a bit outside of my bailiwick, but my friend Hazem Saleh is a great speaker and strong proponent of Open Source. He’s also a JSF Expert Group member.1000, Schauspielhaus, HTTP 2.0 Comes to Java EEThis is my second session, and I’ll explain what’s in store for Servlet 4.0, with a special view towards HTTP/2.If I wasn’t speaking, I’d definitely attend Sven Peters’s Coding Culture session in Wintergarden. First off, Atlassian makes much better products than GitHub. Second, Sven is an excellent speaker, and third the talk is likely to be keynote worthy. I’m not glad to be up against him in the schedule.1100, Wintergarden, Enterprise and Internet of ThingsThe Tuesday plenary is by Dr. Mark Little, who is doing a great job driving Java EE forward at JBoss. I normally don’t go in for IoT sessions, but Mark is sure to make it interesting.1300, Schauspielhaus, Java EE Security: Let’s Make Something UsefulDavid Blevins is a strong community voice for improving Java EE, and security is one of the most challenging areas to improve. You can tell it’s hard just by how long it’s taken for the community to get up enough steam to tackle it in a proper JSR. Well, we have one now: JSR-375, and David will tell us how we can make the most of it.1400, Quantum 4, Productive, Effective Development? You Weak Minded fool!Simon Maple has done a great job building the Virtual JUG into a force for good in the Java Community. He is well positioned to deliver this kind of talk thanks to his role at ZeroTurnaround.1500, Quantum 1, Softwarequalität steigernThis appears to be a survey talk about how to effectively use some popular tools in practice to improve software quality. I’ve never seen Andreas G¨nzel talk, but the topic is interesting to me.1600, Quantum 4, Puppet für EntwicklerNow that Docker is all the rage, I’ll be interested to see what’s new with Puppet, or at least learn how these two popular sysadmin technologies relate to eachother. As with the previous talk, I’ve not seen Sebastian Hempel speak before this.Thursday, 26 March 2015As mentioned in my previous entry, Oliver Szymanski and I are presenting an entry in the training day: Java EE 7 from an HTML5 Perspective.JavaLand was great fun and very professionally enriching last year. This year promises to be even more so. I hope to see you there!</summary></entry></feed>

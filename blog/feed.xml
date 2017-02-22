@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-22T00:32:24-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-22T00:46:05-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">JAX-RS 2.1 New Feature Introduction</title><link href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction" /><published>2017-02-22T00:15:00-05:00</published><updated>2017-02-22T00:15:00-05:00</updated><id>/blog/2017/02/22/jax-rs-2_1-new-feature-introduction</id><content type="html" xml:base="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">&lt;p&gt;In preparation for my
 &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus talk on Thursday&lt;/a&gt; I
 reviewed the commit log for the JAX-RS API for all the commits in
@@ -372,52 +372,8 @@ biggest new features in JAX-RS-2.1, I’ll discuss it in its final form.&lt;/p&g
 
 &lt;p&gt;This commit added examples of using SSE in classes
 jaxrs/examples/sse/ItemStoreResource.java,
-jaxrs/examples/sse/SseClient.java andcommit d62ed77308878b7df80f56a956aa90f9d1e4b613
-Author: Pavel Bucek &lt;a href=&quot;mailto:pavel.bucek@oracle.com&quot;&gt;pavel.bucek@oracle.com&lt;/a&gt;
-Date:   Fri Feb 10 15:41:36 2017 +0100&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SseBroadcaster shouldn't force SseEventSink in #onException and #onClose.
-
-Change-Id: I1d1c87ef04dbeb0f317eb793473812b3ad09558c
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;diff –git a/examples/src/main/java/jaxrs/examples/sse/ItemStoreResource.java b/examples/src/main/java/jaxrs/examples/sse/ItemStoreResource.java
-index bec389f..64c8394 100644
-— a/examples/src/main/java/jaxrs/examples/sse/ItemStoreResource.java
-+++ b/examples/src/main/java/jaxrs/examples/sse/ItemStoreResource.java
-@@ -89,10 +89,10 @@ public class ItemStoreResource {
-         this.sse = sse;
-         this.broadcaster = sse.newBroadcaster();&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;broadcaster.onException((sseEventOutput, e) -&amp;gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;broadcaster.onException((subscriber, e) -&amp;gt;
-        LOGGER.log(Level.WARNING, “An exception has been thrown while broadcasting to an event output.”, e));&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;broadcaster.onClose(sseEventOutput -&amp;gt; LOGGER.log(Level.INFO, “SSE event output has been closed.”));&lt;/li&gt;
-  &lt;li&gt;broadcaster.onClose(subscriber -&amp;gt; LOGGER.log(Level.INFO, “SSE event output has been closed.”));
-     }&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; private static volatile long reconnectDelay = 0; diff --git a/jaxrs-api/src/main/java/javax/ws/rs/sse/SseBroadcaster.java b/jaxrs-api/src/main/java/javax/ws/rs/sse/SseBroadcaster.java index 988e8ba..c9078a0 100644 --- a/jaxrs-api/src/main/java/javax/ws/rs/sse/SseBroadcaster.java +++ b/jaxrs-api/src/main/java/javax/ws/rs/sse/SseBroadcaster.java @@ -68,7 +68,7 @@ public interface SseBroadcaster extends AutoCloseable, Flow.Publisher&amp;lt;OutboundSs
-  * @param onException bi-consumer, taking two parameters: {@link SseEventSink}, which is the source of the
-  *                    exception and the actual {@link Exception}.
-  */ -    void onException(BiConsumer&amp;lt;SseEventSink, Exception&amp;gt; onException); +    void onException(BiConsumer&amp;lt;Flow.Subscriber&amp;lt;? super OutboundSseEvent&amp;gt;, Exception&amp;gt; onException);
- 
- /**
-  * Register a listener, which will be called when the SSE event output has been closed (either by client closing @@ -80,7 +80,7 @@ public interface SseBroadcaster extends AutoCloseable, Flow.Publisher&amp;lt;OutboundSs
-  *
-  * @param onClose consumer taking single parameter, a {@link SseEventSink}, which was closed.
-  */ -    void onClose(Consumer&amp;lt;SseEventSink&amp;gt; onClose); +    void onClose(Consumer&amp;lt;Flow.Subscriber&amp;lt;? super OutboundSseEvent&amp;gt;&amp;gt; onClose);
- 
- /**
-  * Subscribe {@link OutboundSseEvent} subscriber (i.e. {@link SseEventSink})
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;examples/sse/ServerSentEventsResource.java.  These classes are still in
+jaxrs/examples/sse/SseClient.java and
+examples/sse/ServerSentEventsResource.java.  These classes are still in
 the codebase.&lt;/p&gt;
 
 &lt;ul&gt;

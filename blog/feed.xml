@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-22T00:46:05-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">JAX-RS 2.1 New Feature Introduction</title><link href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction" /><published>2017-02-22T00:15:00-05:00</published><updated>2017-02-22T00:15:00-05:00</updated><id>/blog/2017/02/22/jax-rs-2_1-new-feature-introduction</id><content type="html" xml:base="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">&lt;p&gt;In preparation for my
-&lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus talk on Thursday&lt;/a&gt; I
-reviewed the commit log for the JAX-RS API for all the commits in
-the 2.1 cycle, to be sure I didn’t miss anything.  There are basically
-two new big ticket features in JAX-RS 2.1.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-22T13:18:39-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JAX-RS 2.1 New Feature Introduction</title><link href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction" /><published>2017-02-22T00:15:00-05:00</published><updated>2017-02-22T00:15:00-05:00</updated><id>/blog/2017/02/22/jax-rs-2_1-new-feature-introduction</id><content type="html" xml:base="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">&lt;p&gt;In preparation for my &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus talk on Thursday&lt;/a&gt; I reviewed the commit log
+for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I
+didn’t miss anything (See git://java.net/jax-rs-spec~api).  There are
+basically three new big ticket features in JAX-RS 2.1.&lt;/p&gt;
 
 &lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Integration with Arbitrary Third-Party Reactive Frameworks&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Server Sent Events, with support for Reactive Streams as specified in
 the Reactive Streams API&lt;/p&gt;
@@ -25,6 +27,36 @@ post.&lt;/p&gt;
 
 &lt;p&gt;Please note that this blog post documents in-progress features whose API
 will likely change before JAX-RS 2.1 is final.&lt;/p&gt;
+
+&lt;h2 id=&quot;integration-with-arbitrary-third-party-reactive-frameworks&quot;&gt;Integration with Arbitrary Third-Party Reactive Frameworks&lt;/h2&gt;
+
+&lt;p&gt;The JAX-RS EG acknowledges that the state of the art of reactive
+programming has already reached maturity, and several popular frameworks
+exist, while the Java SE 9 Flow API is not yet available.  The reactive
+features in JAX-RS 2.1 are designed in the spirit of
+&lt;a href=&quot;http://dreamsongs.com/IHE/&quot;&gt;innovation happens elsewhere&lt;/a&gt;: you can
+bring your own reactive framework.  The following example uses
+&lt;a href=&quot;http://reactivex.io/&quot;&gt;Flowable&lt;/a&gt; from RxJava2.&lt;/p&gt;
+
+&lt;div style=&quot;padding: 5px;&quot;&gt;
+		&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;Client client &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; ClientBuilder.&lt;span style=&quot;color: #006633;&quot;&gt;newClient&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;register&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;RxFlowableInvokerProvider.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;Flowable&lt;span style=&quot;color: #339933;&quot;&gt;&amp;lt;&lt;/span&gt;Response&lt;span style=&quot;color: #339933;&quot;&gt;&amp;gt;&lt;/span&gt; flowable &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; client.&lt;span style=&quot;color: #006633;&quot;&gt;target&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;http://cloud.oracle.com&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; .&lt;span style=&quot;color: #006633;&quot;&gt;request&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; .&lt;span style=&quot;color: #006633;&quot;&gt;rx&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;RxFlowableInvoker.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; .&lt;span style=&quot;color: #006633;&quot;&gt;get&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;flowable.&lt;span style=&quot;color: #006633;&quot;&gt;subscribe&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;response &lt;span style=&quot;color: #339933;&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #666666; font-style: italic;&quot;&gt;// do something with a response when it arrives.&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
+
+&lt;p&gt;The work of implementing the &lt;code class=&quot;highlighter-rouge&quot;&gt;RxFlowableInvokerProvider&lt;/code&gt; on line 1 and
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;RxFlowableInvoker&lt;/code&gt; on line 5 is beyond the scope of this blog post,
+but it is expected that reactive framework providers (or third parties)
+will provide the necessary implementations of &lt;code class=&quot;highlighter-rouge&quot;&gt;RxInvokerProvider&lt;/code&gt; for
+popular frameworks.  This work was introduced in “commit f601630 Date:
+Thu Jan 12 10:31:41 2017 +0100”.&lt;/p&gt;
 
 &lt;h2 id=&quot;server-sent-events-sse&quot;&gt;Server Sent Events (SSE)&lt;/h2&gt;
 
@@ -137,20 +169,18 @@ receives an &lt;code class=&quot;highlighter-rouge&quot;&gt;SseEventSink&lt;/cod
 GET request is just made to cause the &lt;code class=&quot;highlighter-rouge&quot;&gt;eventSink&lt;/code&gt; instance variable to
 be populated.&lt;/p&gt;
 
-&lt;p&gt;Now the magic starts to happen.  &lt;code class=&quot;highlighter-rouge&quot;&gt;SseEventSink&lt;/code&gt; extends the
-&lt;code class=&quot;highlighter-rouge&quot;&gt;javax.ws.rs.Flow.Subscriber&amp;lt;T&amp;gt;&lt;/code&gt; interface, which is part of a 1:1 copy
-of the
-&lt;a href=&quot;http://download.java.net/java/jdk9/docs/api/java/util/concurrent/Flow.Subscriber.html&quot;&gt;Java SE 9 Flow API&lt;/a&gt;
-(which is a reactive streams compliant API.  The plan is to drop this
-copy in the version of JAX-RS that suppors Java SE 9).  You can see the
-&lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt; method of this interface being invoked within the POST
-processor on line 33.  Because JAX-RS SSE transparently supports the
-Reactive Streams API, you can rest assured that the necessary
-requirements to safely maintain a reactive-compliant application are
-met.  The meaning of &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt; is simply, “here’s another thing in the
-stream of things for you to process”.  In this case, the recipient of
-the new thing is whatever parties are connected to the other end of the
-SSE connection.&lt;/p&gt;
+&lt;p&gt;Now the magic starts to happen.  &lt;code class=&quot;highlighter-rouge&quot;&gt;SseEventSink&lt;/code&gt; is functionally a
+&lt;a href=&quot;http://download.java.net/java/jdk9/docs/api/java/util/concurrent/Flow.Subscriber.html&quot;&gt;Flow.Subscriber&lt;/a&gt;,
+though in the Java EE 8 delivery of JAX-RS 2.1 the class will not
+actually extend &lt;code class=&quot;highlighter-rouge&quot;&gt;Flow.Subscriber&amp;lt;T&amp;gt;&lt;/code&gt;.  The first version of JAX-RS that
+does support Java SE 9 will do so.  In either case, the necessary
+methods from that interface are implemented so the API will remain
+unchanged.  The Java SE 9 Flow API is a reactive streams compliant API.
+You can see the &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt; method of this interface being invoked within
+the POST processor on line 33.  The meaning of &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt; is simply,
+“here’s another thing in the stream of things for you to process”.  In
+this case, the recipient of the new thing is whatever parties are
+connected to the other end of the SSE connection.&lt;/p&gt;
 
 &lt;p&gt;A more advanced POST processor is found starting on line 46, for the
 path of &lt;code class=&quot;highlighter-rouge&quot;&gt;domains/{id}&lt;/code&gt;.  A post to this path causes an asynchronous
@@ -197,14 +227,13 @@ take a look at the SSE Client API in JAX-RS 2.1.&lt;/p&gt;
 &lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
 
-&lt;p&gt;Here we come upon an in-progress aspec of the SSE API:
-&lt;code class=&quot;highlighter-rouge&quot;&gt;SseEventSource&lt;/code&gt;.  This class will eventually extend
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Flow.Publisher&amp;lt;InboundSseEvent&amp;gt;&lt;/code&gt;, but in the latest revision of
-JAX-RS 2.1, 2.1-m04, it does not.  It does, however, have all necessary the
-methods of that interface.  In the above example, the subscribe() method
-is seen on line 15.  Here we are simply printing out the messages
-received from the server.  Then, on lines 18 - 20 we are issuing a few
-POST requests to the server.&lt;/p&gt;
+&lt;p&gt;As in the server case, &lt;code class=&quot;highlighter-rouge&quot;&gt;SseEventSource&lt;/code&gt; is functionally equivalent to an
+instance of &lt;code class=&quot;highlighter-rouge&quot;&gt;Flow.Publisher&amp;lt;InboundSseEvent&amp;gt;&lt;/code&gt;, and will literally be one
+in the JAX-RS version that supports Java SE 9.  It does, however, have
+all necessary the methods of that interface.  In the above example, the
+subscribe() method is seen on line 15.  Here we are simply printing out
+the messages received from the server.  Then, on lines 18 - 20 we are
+issuing a few POST requests to the server.&lt;/p&gt;
 
 &lt;h2 id=&quot;reactive-client-api&quot;&gt;Reactive Client API&lt;/h2&gt;
 
@@ -547,7 +576,7 @@ an instance of T.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The commit also tightened up what happens when a WebApplicationException
-is thrown during the conversion process.&lt;/p&gt;</content><author><name></name></author><summary type="html">In preparation for my DevNexus talk on Thursday I reviewed the commit log for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I didn’t miss anything. There are basically two new big ticket features in JAX-RS 2.1.</summary></entry><entry><title type="html">DevNexus 2017 Picks</title><link href="/blog/2017/02/21/devnexus-2017-picks.html" rel="alternate" type="text/html" title="DevNexus 2017 Picks" /><published>2017-02-21T11:15:00-05:00</published><updated>2017-02-21T11:15:00-05:00</updated><id>/blog/2017/02/21/devnexus-2017-picks</id><content type="html" xml:base="/blog/2017/02/21/devnexus-2017-picks.html">&lt;p&gt;I am blessed with the opportunity to speak
+is thrown during the conversion process.&lt;/p&gt;</content><author><name></name></author><summary type="html">In preparation for my DevNexus talk on Thursday I reviewed the commit log for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I didn’t miss anything (See git://java.net/jax-rs-spec~api). There are basically three new big ticket features in JAX-RS 2.1.</summary></entry><entry><title type="html">DevNexus 2017 Picks</title><link href="/blog/2017/02/21/devnexus-2017-picks.html" rel="alternate" type="text/html" title="DevNexus 2017 Picks" /><published>2017-02-21T11:15:00-05:00</published><updated>2017-02-21T11:15:00-05:00</updated><id>/blog/2017/02/21/devnexus-2017-picks</id><content type="html" xml:base="/blog/2017/02/21/devnexus-2017-picks.html">&lt;p&gt;I am blessed with the opportunity to speak
 at &lt;a href=&quot;http://devnexus.com/&quot;&gt;DevNexus&lt;/a&gt; again this year, after
 having spoken there
 in &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;in

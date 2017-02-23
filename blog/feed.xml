@@ -1,5 +1,151 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-23T00:09:23-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">JAX-RS 2.1 New Feature Introduction</title><link href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction" /><published>2017-02-22T00:15:00-05:00</published><updated>2017-02-22T00:15:00-05:00</updated><id>/blog/2017/02/22/jax-rs-2_1-new-feature-introduction</id><content type="html" xml:base="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">&lt;p&gt;In preparation for my &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus talk on Thursday&lt;/a&gt; I reviewed the commit log
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-23T18:49:06-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Ray Tsang Docker Tips and Tricks</title><link href="/blog/2017/02/23/ray-tsang-docker-tips-notes.html" rel="alternate" type="text/html" title="Ray Tsang Docker Tips and Tricks" /><published>2017-02-23T17:36:00-05:00</published><updated>2017-02-23T17:36:00-05:00</updated><id>/blog/2017/02/23/ray-tsang-docker-tips-notes</id><content type="html" xml:base="/blog/2017/02/23/ray-tsang-docker-tips-notes.html">&lt;p&gt;Twitter &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;@saturnism&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Started with his desert oasis story.  He wants to help you avoid the
+four hour walk.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;Established the itch which Docker scratches.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Package and deployment: old way: application.war and application.ear,
+etc.  There was no other way to do it.  You also had to dead-eye the
+resource allocations: procurement.  It’s the pet’s vs. cattle thing.&lt;/p&gt;
+
+&lt;p&gt;Machine&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;app.war / app.ear&lt;/li&gt;
+  &lt;li&gt;App server&lt;/li&gt;
+  &lt;li&gt;Shell / CLI / Tools&lt;/li&gt;
+  &lt;li&gt;Kernel&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And after all that, it probably doesn’t run perfectly the first time.
+Or you get environment sensitive issues: works in dev, not in prod.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Old way: shared machine: no isolation, shared filesystem.  Maybe use
+chroot?  &lt;em&gt;Uses chroot to teach one aspect of containers.  Uses tar as a
+poor man’s Docker image.  Builds the case for what Docker is.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Old way: Virtual Machines: some isolation, expensive and inefficient,
+still highly coupled to the guest os.  &lt;em&gt;Showed some problems with VM
+approach&lt;/em&gt;: need to use lots of packager stuff to get the machine ready
+to use.  &lt;em&gt;Still establishing the itch.&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;New way: finally introduces Docker.  Shows how it scratches the
+established itches.  Simple Dockerfile example, that solves all the
+“packager stuff” from the previous section.  Mentions the filesystem
+layer created for each line.&lt;/p&gt;
+
+&lt;p&gt;Created a war live coding style with SpringBoot and Groovy.
+@RestController.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;spring war helloworld.war
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;TIP: Use COPY instead of ADD in your Dockerfile.&lt;/p&gt;
+
+&lt;p&gt;TIP: If using apt-get in Dockerfile, make sure to use -y.&lt;/p&gt;
+
+&lt;p&gt;Then he does a docker build.&lt;/p&gt;
+
+&lt;p&gt;Quickly showed the -p option.&lt;/p&gt;
+
+&lt;p&gt;Showed how to optimize the size of the docker image.&lt;/p&gt;
+
+&lt;p&gt;TIP: Try to do as much as you can on a single line, as long as it makes
+logical sense.  Also, remove &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/lib/apt/lists/*&lt;/code&gt;  Remove any
+intermediate tar files.&lt;/p&gt;
+
+&lt;p&gt;TIP: Put the COPY command on the bottom because if you update the war,
+then all the subsequent lines will cause the filesystem layer to be
+re-built.  Talked about the caching in the docker server with respect to
+the building of the docker images.  He suggest pinning to a specific
+version of things.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;em&gt;TIP: He finally mentions the default “run as root” problem.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;He uses useradd or adduser in the Dockerfile.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;RUN useradd tomcat
+USER tomcat
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;TIP: Use &lt;code class=&quot;highlighter-rouge&quot;&gt;curl url | tar zxvf -&lt;/code&gt;.  This removes the need for the removal
+of the tar.x`&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;TIP: docker history command.  Shows the size of the filesystem layers.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Talks about using the image as a custom base image.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM tomcat-base-image
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Because of the layers, the base image does not consume more space the
+more images are built from it.&lt;/p&gt;
+
+&lt;p&gt;TIP: Why am I getting out of space all the time?  When you run a
+container, it is going to instantiate that image.  This includes a
+filesystem layer for that image.  When you stop the image, the
+filesystem layer for that image still sticks around.  You need to delete
+that image when you are done.  &lt;code class=&quot;highlighter-rouge&quot;&gt;*docker run -ti --rm*&lt;/code&gt;  This causes the
+layer for the image to be removed when the container stops.&lt;/p&gt;
+
+&lt;p&gt;TIP: &lt;code class=&quot;highlighter-rouge&quot;&gt;docker system prune&lt;/code&gt;.  Also checkout spotify’s docker-gc.  If the
+container is not running, let me delete it, because the image is stored
+in a registry anyway.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;What about logs?  The longer you run it, the more logs you are going to
+have.  There is no automatic log rotator.&lt;/p&gt;
+
+&lt;p&gt;TIP: Whatever you do, don’t store the logs in the container’s
+filesystem.  But what about when you are running multiple containers?
+Recommendation: don’t write the logs to the disk at all.  Use forwardd.
+Send the logs to stdout and use the centralized logging system.&lt;/p&gt;
+
+&lt;p&gt;TIP: Don’t chown in Dockerfile.  It doubles the container size.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Recommends the spotify docker maven plugin.&lt;/p&gt;
+
+&lt;p&gt;TIP: ENTRYPOINT should go on the top, since it doesn’t change often.&lt;/p&gt;
+
+&lt;p&gt;TIP: buildnumber-maven-plugin, puts the git commit hash in your tag.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;TIP: Know what is in that public container you get from Dockerhub.
+Containers are not security boundaries.  Non-updated containers can have
+vulnerabilities in their dependencies.&lt;/p&gt;
+
+&lt;p&gt;TIP: Try stacksmith.  Creates a Dockerfile, but shows vulnerabilities in
+non updated dependency versions.&lt;/p&gt;
+
+&lt;p&gt;TIP: SecureRandom is slow.  &lt;code class=&quot;highlighter-rouge&quot;&gt;-Djava.security.egd=file:/dev/urandom&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;TIP: How many CPUs.  Don’t trust Runtime.availableProcessors().  See
+&lt;a href=&quot;https://github.com/fabric8io-images/run-java-sh&quot;&gt;the RedHat script&lt;/a&gt;.  java
+-XX:+PrintFlagsFinal -version | grep HeapSize&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://medium.com/google-cloud/my-slow-internet-vs-docker-7678ae1cae72#.w5on3gqzh&quot;&gt;https://medium.com/google-cloud/my-slow-internet-vs-docker-7678ae1cae72#.w5on3gqzh&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Twitter @saturnism.</summary></entry><entry><title type="html">JAX-RS 2.1 New Feature Introduction</title><link href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction" /><published>2017-02-22T00:15:00-05:00</published><updated>2017-02-22T00:15:00-05:00</updated><id>/blog/2017/02/22/jax-rs-2_1-new-feature-introduction</id><content type="html" xml:base="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">&lt;p&gt;In preparation for my &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus talk on Thursday&lt;/a&gt; I reviewed the commit log
 for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I
 didn’t miss anything (See git://java.net/jax-rs-spec~api).  There are
 basically three new big ticket features in JAX-RS 2.1.&lt;/p&gt;
@@ -1093,37 +1239,4 @@ at several conferences over the past couple years, and he epitomizes the
  passionate Java developer. As the late night tech conversations would 
 dwindle off, he'd always be one of the last ones still talking hard core
  tech. Mani's the real deal. Mani is talking about OpenJDK, among other 
-things.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Roland Huss&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Roland is talking about JMX and Java EE Management.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Early Adopter's AreaWith only 25 business days to go until JavaLand 2015, now's a good time to share the plans for the Early Adopter's area and Hackergarten. As at many other Java community conferences, this is a space where anyone can visit and meet with leaders of different parts of the Java ecosystem to see first hand what's new in their own little patch of the Java world. The detail page for this space on the JavaLand website: &amp;lt; http://www.javaland.eu/index.php?id=1786 &amp;gt; lists the individuals who have committed to spend some time in the space. I've been participating in these kinds of spaces for nearly ten years now and it's always very worthwhile for me to interact with the community in this way.The schedule of mini-presentations is still not yet finalized, but the detail page will have the final schedule when it is. In the meantime, I can share an alphabetical snapshot of the current set of individuals and their topics. If I have any commentary to add for each entry, I'll add it. As I prepared the commentary, a theme emerged. Every one of these individuals is passionately advocating for their ideas in the face of some form of challenge. I see individuals who are trying to displace an incumbent technology, trying to overcome some part of the community &quot;not getting&quot; their idea, and fighting the old bugbear of complexity/indifference. This passion makes it worth your time to stop by the early adopter's area.Alex Snaps, Peter LawreyAlex and Peter are talking about JCache and Data Grids&amp;nbsp;Anatole TreschApache Tamaya, Java Configuration, and Money and CurrencyAnatole has been super determined to make progress on the configuration for Java effort. This effort started out as an Oracle-lead JSR proposal, was transferred to Anatole's employer, Credit Suisse, was declined for consideration in both EE and SE JCP executive committees, and Anatole finally decided to make progress as an Apache Incubator Project. I applaud his tenacity.Andres AlmirayAndres is most famous for his involvement in the Griffon desktop application framework, but his passion for this space has lead him to propose JSR-377: A Desktop Application API. Now, I've been around long enough to know that this is a difficult space to occupy, with several attempts at standardization having come and gone (see JSR-295, and JSR-296, and JSR-143). I wish you the best of success with this one, Andres, but it's obviously a tough nut to crack.Dan AllenI know Dan from his productive involvement in JSF 2.0. These days I see him frequently tweeting about Asciidoctor. After having just made a trivial pull request to the HTTP/2 spec and using xml2rfc to do it, I can say there is room for improvement in this space, and I know that Dan can tell you all about it.Ed BurnsI'll be here talking about JSF, Servlet, and HTTP/2.Heather VancuraHeather is the heart of the JCP, and therefore has her finger on the pulse of what is happening across the evolution of the entire Java platform.Ivar GrimnstadI don't know Ivar, but he is on the MVC Expert Group, and is thus a great conduit to the development efforts of one of only two new JSRs in Java EE 8.Mani Sarkar, Daniel BryantI've seen Mani at several conferences over the past couple years, and he epitomizes the passionate Java developer. As the late night tech conversations would dwindle off, he'd always be one of the last ones still talking hard core tech. Mani's the real deal. Mani is talking about OpenJDK, among other things.Roland HussRoland is talking about JMX and Java EE Management.Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!</summary></entry><entry><title type="html">JavaLand 2015 Conference Picks Blog</title><link href="/blog/2015/01/15/javaland-2015-conference-picks.html" rel="alternate" type="text/html" title="JavaLand 2015 Conference Picks Blog" /><published>2015-01-15T10:12:00-05:00</published><updated>2015-01-15T10:12:00-05:00</updated><id>/blog/2015/01/15/javaland-2015-conference-picks</id><content type="html" xml:base="/blog/2015/01/15/javaland-2015-conference-picks.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Conference Picks&lt;/h1&gt;&lt;p&gt;With
- only 44 business days to go until JavaLand 2015, I’d like to share my 
-conference picks. I’m including my sessions for completeness, and 
-naturally I recommend you attend them, but I’ll also include an 
-alternate that I’d attend ]]&amp;gt;&lt;/p&gt;&lt;h2&gt;Tuesday, 24 March 2015&lt;/h2&gt;&lt;dl&gt;&lt;dt&gt;0900, Wintergarden, Welcome Keynote: 20 Years of Java&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;I like to attend the plenary sessions of a conference if they are at all interesting, and Oracle Java engineer &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/lagergren&quot; rel=&quot;nofollow&quot;&gt;Marcus Lagergren’s&lt;/a&gt; looks great. It will be on the big stage. &lt;a href=&quot;http://www.java.net/sites/default/files/big-room.jpg&quot; rel=&quot;nofollow&quot;&gt;&lt;img __embedded_id=&quot;398&quot; src=&quot;20150115_files/big-room.html&quot; style=&quot;float: right;&quot; width=&quot;100&quot;&gt;&lt;/a&gt;This year I’m celebrating my own 20 year anniversary with Java, since &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.flux.utah.edu/%7Ekwright/paper_summs/network_papers/mweb-w3c96.html&quot; rel=&quot;nofollow&quot;&gt;I was present&lt;/a&gt; at the German debut of Java at the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://web.archive.org/web/19980214105213/http://www.igd.fhg.de/www/www95/www95.html&quot; rel=&quot;nofollow&quot;&gt;The Third International World-Wide Web Conference in Darmstadt, Germany&lt;/a&gt; in April 1995. I vividly remember someone (&lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/avh&quot; rel=&quot;nofollow&quot;&gt;Arthur van Hoff&lt;/a&gt; I think) typing, as root &lt;code&gt;rm -rf /*&lt;/code&gt;, at the end of the demo on a Sun UNIX workstation. What flair!&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;1000, Schauspielhaus, Praktisches API-Design&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Dieser Vortrag wird auf Deutsch gegeben, aber trotzdem empfehle sie ich weil das Thema nebem meinem Hertz liegt. &lt;a href=&quot;http://www.java.net/sites/default/files/schauspielhaus.jpg&quot; rel=&quot;nofollow&quot;&gt;&lt;img __embedded_id=&quot;399&quot; src=&quot;20150115_files/schauspielhaus.html&quot; style=&quot;float: left;&quot; width=&quot;100&quot; height=&quot;134&quot;&gt;&lt;/a&gt; Hopefully I’ll get some tips for design in JSF and Servlet.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;1200, Quantum 1, Java EE 7 from an HTML5 Perspective: WebSocket, JSON, &amp;amp; JSF&lt;/p&gt;&lt;p&gt;This
- is my first session, and it is an overview of JavaEE 7 from the 
-perspective of technologies useful to those developing JavaEE 7 backed 
-apps with HTML5 user interfaces.&lt;/p&gt;&lt;p&gt;If I wasn’t speaking myself, I’d attend my pal &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/monacotoni&quot; rel=&quot;nofollow&quot;&gt;Anton Epple’s 1200, Quantum 2, Wie programmiert man JavaScript in Java.&lt;/a&gt;&lt;/p&gt;&lt;p&gt;1300, Schauspielhaus, The (not so) Dark Art of Performance Tuning&lt;/p&gt;&lt;p&gt;My good friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/kcpeppe&quot; rel=&quot;nofollow&quot;&gt;Kirk Pepperdine&lt;/a&gt; is a global expert in this topic, and a great and entertaining speaker as well.&lt;/p&gt;&lt;p&gt;1400, Wintergarden, JBatch mit Apache BatchEE&lt;/p&gt;&lt;p&gt;Batch
- is one of those unglamorous yet essential technologies, and also one 
-with a very vibrant JCP community. I remember meeting &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/michaelminella&quot; rel=&quot;nofollow&quot;&gt;Michael Minella&lt;/a&gt; of Spring Batch at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://devnexus.com/s/index&quot; rel=&quot;nofollow&quot;&gt;DevNexus 2014&lt;/a&gt; and he was so excited about passing the TCK. The session speaker, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/struberg&quot; rel=&quot;nofollow&quot;&gt;Mark Struberg&lt;/a&gt;, is a tech titan and one of the sharpest guys I’ve had the pleasure of working with. He’s also a great speaker.&lt;/p&gt;&lt;p&gt;1500, Wintergarden, Where Are We At with MVC in Java EE 8&lt;/p&gt;&lt;p&gt;I work very closely with my co-spec lead on JSF, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/mnriem&quot; rel=&quot;nofollow&quot;&gt;Manfred Riem&lt;/a&gt;, so I’m biased, but this session is sure to be great. MVC is one of the most talked about technologies in Java EE 8.&lt;/p&gt;&lt;p&gt;1600, Quantum 4, Confessions of an Automation Addict&lt;/p&gt;&lt;p&gt;I’m a bit of an automation addict myself, but the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.mhprofessional.com/product.php?isbn=0071804285&quot; rel=&quot;nofollow&quot;&gt;horse I picked to ride&lt;/a&gt; has fallen out of favor. Nonetheless, I still use it heavily.&lt;/p&gt;&lt;p&gt;1700, Schauspielhaus, Speed up Your Java by Turning it into Binary&lt;/p&gt;&lt;p&gt;John is a great speaker and industry veteran, and this talk has a provocative topic, so it is sure to be worthwhile.&lt;/p&gt;&lt;p style=&quot;min-height: 8pt; padding: 0px;&quot;&gt;&amp;nbsp;&lt;/p&gt;&lt;p&gt;One
- unique aspect of this conference is its location: a top-tier amusmement
- park. Think of it as a smaller mashup of Disney’s Epcot and Magic 
-Kingdom, with German sensibilities. After the first day of the 
-conference, some of the rides will be open to conference attendees. My 
-favorite was Winja’s force. &lt;a href=&quot;http://www.java.net/sites/default/files/winjas-force.jpg&quot; rel=&quot;nofollow&quot;&gt;&lt;img __embedded_id=&quot;400&quot; src=&quot;20150115_files/winjas-force.html&quot; style=&quot;float: right;&quot; width=&quot;134&quot;&gt;&lt;/a&gt; This is a relatively mellow roller coaster with a twist, literally. The car you sit in can rotate as it glides along the rails.&lt;/p&gt;&lt;h2&gt;Wednesday, 25 March 2015&lt;/h2&gt;&lt;dl&gt;&lt;dt&gt;0900, Quantum 3, Developing Native Mobile Apps Using JavaScript&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;This is a bit outside of my bailiwick, but my friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/hazems&quot; rel=&quot;nofollow&quot;&gt;Hazem Saleh&lt;/a&gt; is a great speaker and strong proponent of Open Source. He’s also a JSF Expert Group member.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;1000, Schauspielhaus, HTTP 2.0 Comes to Java EE&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;This is my second session, and I’ll explain what’s in store for Servlet 4.0, with a special view towards HTTP/2.&lt;/p&gt;&lt;p&gt;If I wasn’t speaking, I’d definitely attend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/svenpet&quot; rel=&quot;nofollow&quot;&gt;Sven Peters’s&lt;/a&gt;
- Coding Culture session in Wintergarden. First off, Atlassian makes much
- better products than GitHub. Second, Sven is an excellent speaker, and 
-third the talk is likely to be keynote worthy. I’m not glad to be up 
-against him in the schedule.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;1100, Wintergarden, Enterprise and Internet of Things&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;The Tuesday plenary is by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/nmcl&quot; rel=&quot;nofollow&quot;&gt;Dr. Mark Little&lt;/a&gt;,
- who is doing a great job driving Java EE forward at JBoss. I normally 
-don’t go in for IoT sessions, but Mark is sure to make it interesting.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;1300, Schauspielhaus, Java EE Security: Let’s Make Something Useful&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/dblevins&quot; rel=&quot;nofollow&quot;&gt;David Blevins&lt;/a&gt;
- is a strong community voice for improving Java EE, and security is one 
-of the most challenging areas to improve. You can tell it’s hard just by
- how long it’s taken for the community to get up enough steam to tackle 
-it in a proper JSR. Well, we have one now: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://jcp.org/en/jsr/detail?id=375&quot; rel=&quot;nofollow&quot;&gt;JSR-375&lt;/a&gt;, and David will tell us how we can make the most of it.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;1400, Quantum 4, Productive, Effective Development? You Weak Minded fool!&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/sjmaple&quot; rel=&quot;nofollow&quot;&gt;Simon Maple&lt;/a&gt; has done a great job building the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/virtualJUG&quot; rel=&quot;nofollow&quot;&gt;Virtual JUG&lt;/a&gt;
- into a force for good in the Java Community. He is well positioned to 
-deliver this kind of talk thanks to his role at ZeroTurnaround.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;1500, Quantum 1, Softwarequalität steigern&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;This
- appears to be a survey talk about how to effectively use some popular 
-tools in practice to improve software quality. I’ve never seen &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/leichtundkross&quot; rel=&quot;nofollow&quot;&gt;Andreas G¨nzel&lt;/a&gt; talk, but the topic is interesting to me.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;1600, Quantum 4, Puppet für Entwickler&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Now
- that Docker is all the rage, I’ll be interested to see what’s new with 
-Puppet, or at least learn how these two popular sysadmin technologies 
-relate to eachother. As with the previous talk, I’ve not seen &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/ithempel&quot; rel=&quot;nofollow&quot;&gt;Sebastian Hempel&lt;/a&gt; speak before this.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;h2&gt;Thursday, 26 March 2015&lt;/h2&gt;&lt;p&gt;As mentioned &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2014/12/26/javaland-2015-training-day-teaser&quot; rel=&quot;nofollow&quot;&gt;in my previous entry&lt;/a&gt;, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/SourceKnights&quot; rel=&quot;nofollow&quot;&gt;Oliver Szymanski&lt;/a&gt; and I are presenting an entry in the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/programm/vertiefe-schulungstag.html&quot; rel=&quot;nofollow&quot;&gt;training day&lt;/a&gt;: Java EE 7 from an HTML5 Perspective.&lt;/p&gt;&lt;p&gt;JavaLand
- was great fun and very professionally enriching last year. This year 
-promises to be even more so. I hope to see you there!&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Conference PicksWith only 44 business days to go until JavaLand 2015, I’d like to share my conference picks. I’m including my sessions for completeness, and naturally I recommend you attend them, but I’ll also include an alternate that I’d attend ]]&amp;gt;Tuesday, 24 March 20150900, Wintergarden, Welcome Keynote: 20 Years of JavaI like to attend the plenary sessions of a conference if they are at all interesting, and Oracle Java engineer Marcus Lagergren’s looks great. It will be on the big stage. This year I’m celebrating my own 20 year anniversary with Java, since I was present at the German debut of Java at the The Third International World-Wide Web Conference in Darmstadt, Germany in April 1995. I vividly remember someone (Arthur van Hoff I think) typing, as root rm -rf /*, at the end of the demo on a Sun UNIX workstation. What flair!1000, Schauspielhaus, Praktisches API-DesignDieser Vortrag wird auf Deutsch gegeben, aber trotzdem empfehle sie ich weil das Thema nebem meinem Hertz liegt. Hopefully I’ll get some tips for design in JSF and Servlet.1200, Quantum 1, Java EE 7 from an HTML5 Perspective: WebSocket, JSON, &amp;amp; JSFThis is my first session, and it is an overview of JavaEE 7 from the perspective of technologies useful to those developing JavaEE 7 backed apps with HTML5 user interfaces.If I wasn’t speaking myself, I’d attend my pal Anton Epple’s 1200, Quantum 2, Wie programmiert man JavaScript in Java.1300, Schauspielhaus, The (not so) Dark Art of Performance TuningMy good friend Kirk Pepperdine is a global expert in this topic, and a great and entertaining speaker as well.1400, Wintergarden, JBatch mit Apache BatchEEBatch is one of those unglamorous yet essential technologies, and also one with a very vibrant JCP community. I remember meeting Michael Minella of Spring Batch at DevNexus 2014 and he was so excited about passing the TCK. The session speaker, Mark Struberg, is a tech titan and one of the sharpest guys I’ve had the pleasure of working with. He’s also a great speaker.1500, Wintergarden, Where Are We At with MVC in Java EE 8I work very closely with my co-spec lead on JSF, Manfred Riem, so I’m biased, but this session is sure to be great. MVC is one of the most talked about technologies in Java EE 8.1600, Quantum 4, Confessions of an Automation AddictI’m a bit of an automation addict myself, but the horse I picked to ride has fallen out of favor. Nonetheless, I still use it heavily.1700, Schauspielhaus, Speed up Your Java by Turning it into BinaryJohn is a great speaker and industry veteran, and this talk has a provocative topic, so it is sure to be worthwhile.&amp;nbsp;One unique aspect of this conference is its location: a top-tier amusmement park. Think of it as a smaller mashup of Disney’s Epcot and Magic Kingdom, with German sensibilities. After the first day of the conference, some of the rides will be open to conference attendees. My favorite was Winja’s force. This is a relatively mellow roller coaster with a twist, literally. The car you sit in can rotate as it glides along the rails.Wednesday, 25 March 20150900, Quantum 3, Developing Native Mobile Apps Using JavaScriptThis is a bit outside of my bailiwick, but my friend Hazem Saleh is a great speaker and strong proponent of Open Source. He’s also a JSF Expert Group member.1000, Schauspielhaus, HTTP 2.0 Comes to Java EEThis is my second session, and I’ll explain what’s in store for Servlet 4.0, with a special view towards HTTP/2.If I wasn’t speaking, I’d definitely attend Sven Peters’s Coding Culture session in Wintergarden. First off, Atlassian makes much better products than GitHub. Second, Sven is an excellent speaker, and third the talk is likely to be keynote worthy. I’m not glad to be up against him in the schedule.1100, Wintergarden, Enterprise and Internet of ThingsThe Tuesday plenary is by Dr. Mark Little, who is doing a great job driving Java EE forward at JBoss. I normally don’t go in for IoT sessions, but Mark is sure to make it interesting.1300, Schauspielhaus, Java EE Security: Let’s Make Something UsefulDavid Blevins is a strong community voice for improving Java EE, and security is one of the most challenging areas to improve. You can tell it’s hard just by how long it’s taken for the community to get up enough steam to tackle it in a proper JSR. Well, we have one now: JSR-375, and David will tell us how we can make the most of it.1400, Quantum 4, Productive, Effective Development? You Weak Minded fool!Simon Maple has done a great job building the Virtual JUG into a force for good in the Java Community. He is well positioned to deliver this kind of talk thanks to his role at ZeroTurnaround.1500, Quantum 1, Softwarequalität steigernThis appears to be a survey talk about how to effectively use some popular tools in practice to improve software quality. I’ve never seen Andreas G¨nzel talk, but the topic is interesting to me.1600, Quantum 4, Puppet für EntwicklerNow that Docker is all the rage, I’ll be interested to see what’s new with Puppet, or at least learn how these two popular sysadmin technologies relate to eachother. As with the previous talk, I’ve not seen Sebastian Hempel speak before this.Thursday, 26 March 2015As mentioned in my previous entry, Oliver Szymanski and I are presenting an entry in the training day: Java EE 7 from an HTML5 Perspective.JavaLand was great fun and very professionally enriching last year. This year promises to be even more so. I hope to see you there!</summary></entry></feed>
+things.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Roland Huss&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Roland is talking about JMX and Java EE Management.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Early Adopter's AreaWith only 25 business days to go until JavaLand 2015, now's a good time to share the plans for the Early Adopter's area and Hackergarten. As at many other Java community conferences, this is a space where anyone can visit and meet with leaders of different parts of the Java ecosystem to see first hand what's new in their own little patch of the Java world. The detail page for this space on the JavaLand website: &amp;lt; http://www.javaland.eu/index.php?id=1786 &amp;gt; lists the individuals who have committed to spend some time in the space. I've been participating in these kinds of spaces for nearly ten years now and it's always very worthwhile for me to interact with the community in this way.The schedule of mini-presentations is still not yet finalized, but the detail page will have the final schedule when it is. In the meantime, I can share an alphabetical snapshot of the current set of individuals and their topics. If I have any commentary to add for each entry, I'll add it. As I prepared the commentary, a theme emerged. Every one of these individuals is passionately advocating for their ideas in the face of some form of challenge. I see individuals who are trying to displace an incumbent technology, trying to overcome some part of the community &quot;not getting&quot; their idea, and fighting the old bugbear of complexity/indifference. This passion makes it worth your time to stop by the early adopter's area.Alex Snaps, Peter LawreyAlex and Peter are talking about JCache and Data Grids&amp;nbsp;Anatole TreschApache Tamaya, Java Configuration, and Money and CurrencyAnatole has been super determined to make progress on the configuration for Java effort. This effort started out as an Oracle-lead JSR proposal, was transferred to Anatole's employer, Credit Suisse, was declined for consideration in both EE and SE JCP executive committees, and Anatole finally decided to make progress as an Apache Incubator Project. I applaud his tenacity.Andres AlmirayAndres is most famous for his involvement in the Griffon desktop application framework, but his passion for this space has lead him to propose JSR-377: A Desktop Application API. Now, I've been around long enough to know that this is a difficult space to occupy, with several attempts at standardization having come and gone (see JSR-295, and JSR-296, and JSR-143). I wish you the best of success with this one, Andres, but it's obviously a tough nut to crack.Dan AllenI know Dan from his productive involvement in JSF 2.0. These days I see him frequently tweeting about Asciidoctor. After having just made a trivial pull request to the HTTP/2 spec and using xml2rfc to do it, I can say there is room for improvement in this space, and I know that Dan can tell you all about it.Ed BurnsI'll be here talking about JSF, Servlet, and HTTP/2.Heather VancuraHeather is the heart of the JCP, and therefore has her finger on the pulse of what is happening across the evolution of the entire Java platform.Ivar GrimnstadI don't know Ivar, but he is on the MVC Expert Group, and is thus a great conduit to the development efforts of one of only two new JSRs in Java EE 8.Mani Sarkar, Daniel BryantI've seen Mani at several conferences over the past couple years, and he epitomizes the passionate Java developer. As the late night tech conversations would dwindle off, he'd always be one of the last ones still talking hard core tech. Mani's the real deal. Mani is talking about OpenJDK, among other things.Roland HussRoland is talking about JMX and Java EE Management.Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!</summary></entry></feed>

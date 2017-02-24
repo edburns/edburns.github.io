@@ -1,5 +1,427 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-23T18:49:06-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Ray Tsang Docker Tips and Tricks</title><link href="/blog/2017/02/23/ray-tsang-docker-tips-notes.html" rel="alternate" type="text/html" title="Ray Tsang Docker Tips and Tricks" /><published>2017-02-23T17:36:00-05:00</published><updated>2017-02-23T17:36:00-05:00</updated><id>/blog/2017/02/23/ray-tsang-docker-tips-notes</id><content type="html" xml:base="/blog/2017/02/23/ray-tsang-docker-tips-notes.html">&lt;p&gt;Twitter &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;@saturnism&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-24T17:12:47-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Ivar Grimstad MVC Notes</title><link href="/blog/2017/02/24/ivar-grimstad-mvc.html" rel="alternate" type="text/html" title="Ivar Grimstad MVC Notes" /><published>2017-02-24T15:55:00-05:00</published><updated>2017-02-24T15:55:00-05:00</updated><id>/blog/2017/02/24/ivar-grimstad-mvc</id><content type="html" xml:base="/blog/2017/02/24/ivar-grimstad-mvc.html">&lt;p&gt;Twitter
+&lt;a href=&quot;http://twitter.com/ivar_grimstad&quot;&gt;@ivar_grimstad&lt;/a&gt;. &lt;a href=&quot;http://www.agilejava.eu/&quot;&gt;Blog&lt;/a&gt;
+&lt;a href=&quot;http://twitter.com/mvc_spec&quot;&gt;@mvc_spec&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ivar had a tough timeslot, the last slot of the last day, but just the
+same is doing a great job.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;He is taking over the spec lead role from Manfred and Santiago from
+Oracle.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Agenda&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;JSR 371 status&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MVC 1.0&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Q&amp;amp;A.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Shared the Java EE Roadmap slide from JavaOne, the one including EE8 and
+EE9.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Stated that the decision to drop MVC was influenced by the agressive
+schedule for EE8.&lt;/p&gt;
+
+&lt;p&gt;Repeated the “Cloud apps often ship headless, making MVC largely
+irrelevant”.  He said that server side rendering is still something he
+uses in his day to day work.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Showed a screen grab of the transfer ballot.  He restated that even
+though he is listed as an individual, he really feels he’s representing
+the community.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;New slogan, “&lt;code class=&quot;highlighter-rouge&quot;&gt;@Control&lt;/code&gt;ler to the Community”.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Timeline&lt;/p&gt;
+
+&lt;p&gt;August 2014 First Proposal&lt;/p&gt;
+
+&lt;p&gt;March 2015 EDR 1&lt;/p&gt;
+
+&lt;p&gt;October 2015 EDR 2&lt;/p&gt;
+
+&lt;p&gt;January 2017 Transfer Ballot.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Current activities&lt;/p&gt;
+
+&lt;p&gt;Transfer approved by the executive committee&lt;/p&gt;
+
+&lt;p&gt;Finalize transfer&lt;/p&gt;
+
+&lt;p&gt;Oracle legal is working on the final details&lt;/p&gt;
+
+&lt;p&gt;New infrastructure Setup has started&lt;/p&gt;
+
+&lt;p&gt;Investigating what license to re-used.  Looking at other specs that are
+not lead by Oracle to see how they are licensed.  He has to make sure to
+choose a license that will not preclude the possibility of inclusion in
+a future Java EE release.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Future Activities&lt;/p&gt;
+
+&lt;p&gt;Formally move the infrastructure from java.net.  They currently do have
+the code mirrored from java.net to GitHub, but GitHub is not the scm of
+record.&lt;/p&gt;
+
+&lt;p&gt;Bring in Christian Kaltepoth as co-spec lead.&lt;/p&gt;
+
+&lt;p&gt;Revise the schedule.  Current schedule has 1.0 in first half 2017.
+Probably not possible.  It will likely be second half of 2017 or
+early 2018.&lt;/p&gt;
+
+&lt;p&gt;Adopt-a-JSR: They plan to use it.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Infrastructure Setup Changes&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;code java.net -&amp;gt; &lt;a href=&quot;https://github.com/mvc-spec&quot;&gt;https://github.com/mvc-spec&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Issure Tracker &lt;a href=&quot;https://github.com/mvc-spec/mvc-spec/issues&quot;&gt;https://github.com/mvc-spec/mvc-spec/issues&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Mailing list jsr371-users@googlegroups.com&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Web site &lt;a href=&quot;http://www.mvc-spec.org/&quot;&gt;http://www.mvc-spec.org/&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Adopt-a-JSR&lt;/p&gt;
+
+&lt;p&gt;They need help here.  They’d love to have a sample app.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Write Code&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Blog&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Tweet&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Upcoming talks&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;jDays&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;JavaLand&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;One other that I missed&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;It is an Action-Based MVC.&lt;/p&gt;
+
+&lt;p&gt;Currently no standard for this.  It’s not a replacement for JSF, as
+component based MVC.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Request hits the controller, updates the model, decides which view to
+render.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;In Action-based MVC, the application implements the controller&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Spring MVC, the most used action based MVC framework.  Around
+since 2005.&lt;/p&gt;
+
+&lt;p&gt;Struts 2, around since 2004, as WebWork2.  Still widely adopted.&lt;/p&gt;
+
+&lt;p&gt;He states that MVC will apply the lessons learned from both of these.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Using existing Java EE technologies.  They will not invent something
+unless they need to do so.  This means to run MVC, you need to be
+running in a Java EE container.  He mentioned that this causes tension
+with the fat jar movement.  He stated that docker run is just as easy to
+run as java.jar.&lt;/p&gt;
+
+&lt;p&gt;Templating must support Facelets and JSPs.  Model is CDI.  You can use
+Bean Validation and JPA as well.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Decision to build MVC on top of JAX-RS.  It was a close vote, but he
+thinks they ended up with the right decision.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
+@Path(&quot;hello&quot;)
+public class HelloController {
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Every method in this class is a controller, because the annotation is at
+the class level.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Views&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
+@Path(&quot;hello&quot;)
+public class HelloController {
+
+  @GET
+  public String hello() {
+    return &quot;hello.jsp&quot;
+  }
+
+  @GET
+  public String hello() {
+    return &quot;hello.jsp&quot;
+  }
+
+  @View(&quot;hello.jsp&quot;)
+  @GET
+  public void hello() {}
+
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hello.jsp&lt;/code&gt; is in the “views” folder.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Models&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
+@Path(&quot;hello&quot;)
+public class HelloController {
+
+  @Inject
+  private Models model;
+
+  @GET
+  public String hello() {
+    return &quot;hello.jsp&quot;
+  }
+
+  @GET
+  public String hello() {
+    return &quot;hello.jsp&quot;
+  }
+
+  @View(&quot;hello.jsp&quot;)
+  @GET
+  public void hello() {}
+
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Validation&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
+@Path(&quot;hello&quot;)
+public class HelloController {
+
+  @Inject
+  private Models model;
+
+  @POST
+  public Response formPost(@Valid @BeanParam FormDataBean f) {
+    return Response.status(OK)...
+  }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Can use the ExceptionMapper feature, but it is overly broad.&lt;/p&gt;
+
+&lt;p&gt;They added support for binding results.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  @Inject private BindingResult br;
+
+  @POST
+  public Response formPost(@Valid @BeanParam FormDataBean f) {
+  if (br.isFailed()) {
+    // go to error page
+  } else {
+    return Response.status(OK)...
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Bring your own View Engine&lt;/p&gt;
+
+&lt;p&gt;CDI discovery is used to figure out which engine is used.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public interface ViewEngine {
+
+boolean supports(String view);
+
+void processView(ViewEngineContext context) thows ViewEngineException
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can use &lt;code class=&quot;highlighter-rouge&quot;&gt;@Priority&lt;/code&gt; to control which View Engine is used.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Events&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use CDI events.  Spec defines order for events.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;BeforeControllerEvent&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;AfterControllerEvent&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;…&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;CDI &lt;code class=&quot;highlighter-rouge&quot;&gt;@Observes BeforeControllerEvent&lt;/code&gt;.  Be aware these events are
+executed synchronously.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Security&lt;/p&gt;
+
+&lt;p&gt;CSRF prevention: &lt;code class=&quot;highlighter-rouge&quot;&gt;@CsrfValid&lt;/code&gt; on a JAX-RS http method.  Causes the token
+to be added.  Must include &lt;code class=&quot;highlighter-rouge&quot;&gt;${mvc.csrf.name}&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;${mvc.csrf.token}&lt;/code&gt; as
+a hidden field.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;CDI Scopes&lt;/p&gt;
+
+&lt;p&gt;You have the standard scopes.  But what about custom scopes?  Did the
+POST Redirect Get with the &lt;code class=&quot;highlighter-rouge&quot;&gt;@RedirectScoped&lt;/code&gt; scope.  Like JSF
+&lt;code class=&quot;highlighter-rouge&quot;&gt;@FlashScope&lt;/code&gt;.  The &lt;code class=&quot;highlighter-rouge&quot;&gt;@Controller&lt;/code&gt; is request scoped, but the bean is
+&lt;code class=&quot;highlighter-rouge&quot;&gt;@RedirectScoped&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Internationalization&lt;/p&gt;
+
+&lt;p&gt;Request Locale.  Can be used for any request Locale.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Inject
+private MvcContext mvc;
+
+@GET
+public String get() {
+  Locale locale = mvc.getLocale();
+}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Tool Support&lt;/p&gt;
+
+&lt;p&gt;Even though they are not released the tool support is pretty good.  For
+example &lt;a href=&quot;http://jpamodeler.github.io&quot;&gt;jpamodeler.github.io&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Demos.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Simple&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Simple with validation&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Simple with better validation&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Post Redirect Get&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Locale support&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CSRF&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;JpaModeler&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It was too quick to live blog this, but the demos are at the
+&lt;a href=&quot;https://github.com/ivargrimstad/mvc-samples&quot;&gt;Ivar’s github&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Summary&lt;/p&gt;
+
+&lt;p&gt;Action-Based MVC&lt;/p&gt;
+
+&lt;p&gt;Uses existing Java EE technologies: JAX-RS, BeanVal, JSF, JSP&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I would like to see some Facelets templating in the samples.&lt;/p&gt;</content><author><name></name></author><summary type="html">Twitter @ivar_grimstad. Blog @mvc_spec.</summary></entry><entry><title type="html">Ray Tsang Docker Tips and Tricks</title><link href="/blog/2017/02/23/ray-tsang-docker-tips-notes.html" rel="alternate" type="text/html" title="Ray Tsang Docker Tips and Tricks" /><published>2017-02-23T17:36:00-05:00</published><updated>2017-02-23T17:36:00-05:00</updated><id>/blog/2017/02/23/ray-tsang-docker-tips-notes</id><content type="html" xml:base="/blog/2017/02/23/ray-tsang-docker-tips-notes.html">&lt;p&gt;Twitter &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;@saturnism&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Started with his desert oasis story.  He wants to help you avoid the
 four hour walk.&lt;/p&gt;
@@ -1198,45 +1620,4 @@ to the Java Community. I hope I didn't mangle my words too badly.&lt;/p&gt;&lt;p
 at which I invariably bring home lots of chocolate, I felt it was time 
 to give the Germans a taste of American-style sweets along with their 
 pre-loaded VM usb sticks. These Tasty Kakes or a specialty of my 
-home-town of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.tastykake.com/history&quot; rel=&quot;nofollow&quot;&gt;Philadelphia&lt;/a&gt;, and each attendee of the session &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/programm/vertiefe-schulungstag/&quot; rel=&quot;nofollow&quot;&gt;Java EE aus einer HTML5-Perspektive&lt;/a&gt; received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.&lt;/p&gt;&lt;p&gt;In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Wrap UpAfter months of preparation, it all came down to three days of intense execution, and I was just one speaker. I can only marvel at the logistical acumen that was on display from the JavaLand and DOAG team. I had an action , capably coodinated by Andreas Badelt. Because of the high level of activity on my personal agenda, I was not able to attend as many sessions as I would have liked. In any case, this blog entry is my place to share my overall impressions of the conference, and of the sessions I did get a chance to attend.Day One Right off the bat, I want to tip my cap to Marcus Lagergren for remaining calm in the face of some AV problems. Even with all that, and the 45 minute session duration, Marcus managed to give a compelling whirlwind tour of his personal experience with Java from the beginning. More photos like the one on the right are available from Stefan Hildebrandt's flickr photo stream. I think there is a lot more room in the &quot;20 year's of Java meme&quot;, however, and I applaud Marcus for wisely not attempting to speak for all of it and drawing from his own experiences. That's one great thing about the #java20 meme, everyone has their own story. Maybe at JavaOne 2015 they will have some sort of Story Corps type thing where people can give their stories. Come to think of it, if someone wants to build Story Corps as a Service (SCAAS), perpahs they can sell it to Oracle for use at the show.Shortly after Marcus's session, I presented with my good friend Oliver Szymanzki a 45 minute capsule of our full day training session about Java EE 7 from an HTML5 Perspective. It was tough to make a meaningful abstraction from a full day session to just 45 minutes, but I hope at least people could take something useful away from it.Then came my first exposure to the EAA, which was my only chance to present JSF content here at JavaLand. I gave a quick presentation and had an informal meeting with several JSF EG members who were at JavaLand. We covered f:socket, multi-component validation, and URL mapping.The evening community event was really not to be missed. If you ever have a chance to attend JavaLand, I really recommend you participate.Day TwoI started out the day by presenting a modified version of my DevNexus session about Servlet 4.0 and HTTP/2. I basically dropped the demo and moved the Java SE 9 content to an EAA session in order to fit into the 45 minute window.Following my session I was able to enjoy Mark Little's keynote about Java Enterprise and Internet of Things. This session put out some hard-won truths of problems we have solved in Java as cautionary tales for newer stacks that seem intent on re-inventing wheels rather than standing on the shoulders of others. I must admit it was a feel-good session, but still realistic and largely kool aid free.In the afternoon, I supported David Blevins during his session about the new Security JSR. This was a very informative session that got a whole lot done in only 45 minutes. I hope it encouraged some people to get involved in JSR-375.Running back to the EAA, I presented the exciting work being done by Michael McMahon to bring a new Http Client to Java SE 9, including HTTP/2 support. I can't post the slides, but I'm sure we'll have something on this at JavaOne.My last engagment of the conference proper was to participate in a joint vJUG/NightHacking session regarding Adopt-a-JSR. This was lots of fun, and I thank Stephen Chin and Simon Maple for providing a vehicle for it.As a nice wind-down from the conference, and a bit of chill before the training day, I was invited by DOAG boss Fried Saacke to attend the 5 year celebration dinner for Java Aktuell magazine. I didn't know it at the time, but the invitation included an opportunity to give a short speech, in German, on the importance of JCP to the Java Community. I hope I didn't mangle my words too badly. After being blessed with many years of German conference opportunities at which I invariably bring home lots of chocolate, I felt it was time to give the Germans a taste of American-style sweets along with their pre-loaded VM usb sticks. These Tasty Kakes or a specialty of my home-town of Philadelphia, and each attendee of the session Java EE aus einer HTML5-Perspektive received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.</summary></entry><entry><title type="html">JavaLand 2015 Early Adopter’s Area Preview Blog</title><link href="/blog/2015/02/15/javaland-2015-early-adopters-area-preview.html" rel="alternate" type="text/html" title="JavaLand 2015 Early Adopter's Area Preview Blog" /><published>2015-02-15T10:48:00-05:00</published><updated>2015-02-15T10:48:00-05:00</updated><id>/blog/2015/02/15/javaland-2015-early-adopters-area-preview</id><content type="html" xml:base="/blog/2015/02/15/javaland-2015-early-adopters-area-preview.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Early Adopter's Area&lt;/h1&gt;&lt;p&gt;With only 25 business days to go until JavaLand 2015, now's a good time to share the plans for the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/index.php?id=1786&quot; rel=&quot;nofollow&quot;&gt;Early Adopter's area&lt;/a&gt;
- and Hackergarten. As at many other Java community conferences, this is a
- space where anyone can visit and meet with leaders of different parts 
-of the Java ecosystem to see first hand what's new in their own little 
-patch of the Java world. The detail page for this space on the JavaLand 
-website: &amp;lt; &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/index.php?id=1786&quot; rel=&quot;nofollow&quot;&gt;http://www.javaland.eu/index.php?id=1786&lt;/a&gt;
- &amp;gt; lists the individuals who have committed to spend some time in the
- space. I've been participating in these kinds of spaces &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2006/08/im_lucy_van_pel.html&quot; rel=&quot;nofollow&quot;&gt;for nearly ten years now&lt;/a&gt; and it's always very worthwhile for me to interact with the community in this way.&lt;/p&gt;&lt;p&gt;The
- schedule of mini-presentations is still not yet finalized, but the 
-detail page will have the final schedule when it is. In the meantime, I 
-can share an alphabetical snapshot of the current set of individuals and
- their topics. If I have any commentary to add for each entry, I'll add 
-it. As I prepared the commentary, a theme emerged. Every one of these 
-individuals is passionately advocating for their ideas in the face of 
-some form of challenge. I see individuals who are trying to displace an 
-incumbent technology, trying to overcome some part of the community &quot;not
- getting&quot; their idea, and fighting the old bugbear of 
-complexity/indifference. This passion makes it worth your time to stop 
-by the early adopter's area.&lt;/p&gt;&lt;dl&gt;&lt;dt&gt;Alex Snaps, Peter Lawrey&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Alex and Peter are talking about JCache and Data Grids&lt;/p&gt;&lt;p style=&quot;min-height: 8pt; padding: 0px;&quot;&gt;&amp;nbsp;&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Anatole Tresch&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Apache Tamaya, Java Configuration, and Money and Currency&lt;/p&gt;&lt;p&gt;Anatole
- has been super determined to make progress on the configuration for 
-Java effort. This effort started out as an Oracle-lead JSR proposal, was
- transferred to Anatole's employer, Credit Suisse, was declined for 
-consideration in both EE and SE JCP executive committees, and Anatole 
-finally decided to make progress as an Apache Incubator Project. I 
-applaud his tenacity.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Andres Almiray&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Andres is 
-most famous for his involvement in the Griffon desktop application 
-framework, but his passion for this space has lead him to propose &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://jcp.org/en/jsr/detail?id=377&quot; rel=&quot;nofollow&quot;&gt;JSR-377: A Desktop Application API&lt;/a&gt;.
- Now, I've been around long enough to know that this is a difficult 
-space to occupy, with several attempts at standardization having come 
-and gone (see &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://jcp.org/en/jsr/detail?id=295&quot; rel=&quot;nofollow&quot;&gt;JSR-295&lt;/a&gt;, and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://jcp.org/en/jsr/detail?id=296&quot; rel=&quot;nofollow&quot;&gt;JSR-296&lt;/a&gt;, and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://jcp.org/en/jsr/detail?id=143&quot; rel=&quot;nofollow&quot;&gt;JSR-143&lt;/a&gt;). I wish you the best of success with this one, Andres, but it's obviously a tough nut to crack.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Dan Allen&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;I
- know Dan from his productive involvement in JSF 2.0. These days I see 
-him frequently tweeting about Asciidoctor. After having just made a &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://github.com/edburns/http2-spec/commit/08c4b1376354801f9e5abfe144b3696191b4194e&quot; rel=&quot;nofollow&quot;&gt;trivial pull request to the HTTP/2 spec&lt;/a&gt; and using &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://xml2rfc.ietf.org/&quot; rel=&quot;nofollow&quot;&gt;xml2rfc&lt;/a&gt; to do it, I can say there is room for improvement in this space, and I know that Dan can tell you all about it.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Ed Burns&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;I'll be here talking about JSF, Servlet, and HTTP/2.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Heather Vancura&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Heather
- is the heart of the JCP, and therefore has her finger on the pulse of 
-what is happening across the evolution of the entire Java platform.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Ivar Grimnstad&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;I
- don't know Ivar, but he is on the MVC Expert Group, and is thus a great
- conduit to the development efforts of one of only two new JSRs in Java 
-EE 8.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Mani Sarkar, Daniel Bryant&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;I've seen Mani 
-at several conferences over the past couple years, and he epitomizes the
- passionate Java developer. As the late night tech conversations would 
-dwindle off, he'd always be one of the last ones still talking hard core
- tech. Mani's the real deal. Mani is talking about OpenJDK, among other 
-things.&lt;/p&gt;&lt;/dd&gt;&lt;dt&gt;Roland Huss&lt;/dt&gt;&lt;dd&gt;&lt;p&gt;Roland is talking about JMX and Java EE Management.&lt;/p&gt;&lt;/dd&gt;&lt;/dl&gt;&lt;p&gt;Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Early Adopter's AreaWith only 25 business days to go until JavaLand 2015, now's a good time to share the plans for the Early Adopter's area and Hackergarten. As at many other Java community conferences, this is a space where anyone can visit and meet with leaders of different parts of the Java ecosystem to see first hand what's new in their own little patch of the Java world. The detail page for this space on the JavaLand website: &amp;lt; http://www.javaland.eu/index.php?id=1786 &amp;gt; lists the individuals who have committed to spend some time in the space. I've been participating in these kinds of spaces for nearly ten years now and it's always very worthwhile for me to interact with the community in this way.The schedule of mini-presentations is still not yet finalized, but the detail page will have the final schedule when it is. In the meantime, I can share an alphabetical snapshot of the current set of individuals and their topics. If I have any commentary to add for each entry, I'll add it. As I prepared the commentary, a theme emerged. Every one of these individuals is passionately advocating for their ideas in the face of some form of challenge. I see individuals who are trying to displace an incumbent technology, trying to overcome some part of the community &quot;not getting&quot; their idea, and fighting the old bugbear of complexity/indifference. This passion makes it worth your time to stop by the early adopter's area.Alex Snaps, Peter LawreyAlex and Peter are talking about JCache and Data Grids&amp;nbsp;Anatole TreschApache Tamaya, Java Configuration, and Money and CurrencyAnatole has been super determined to make progress on the configuration for Java effort. This effort started out as an Oracle-lead JSR proposal, was transferred to Anatole's employer, Credit Suisse, was declined for consideration in both EE and SE JCP executive committees, and Anatole finally decided to make progress as an Apache Incubator Project. I applaud his tenacity.Andres AlmirayAndres is most famous for his involvement in the Griffon desktop application framework, but his passion for this space has lead him to propose JSR-377: A Desktop Application API. Now, I've been around long enough to know that this is a difficult space to occupy, with several attempts at standardization having come and gone (see JSR-295, and JSR-296, and JSR-143). I wish you the best of success with this one, Andres, but it's obviously a tough nut to crack.Dan AllenI know Dan from his productive involvement in JSF 2.0. These days I see him frequently tweeting about Asciidoctor. After having just made a trivial pull request to the HTTP/2 spec and using xml2rfc to do it, I can say there is room for improvement in this space, and I know that Dan can tell you all about it.Ed BurnsI'll be here talking about JSF, Servlet, and HTTP/2.Heather VancuraHeather is the heart of the JCP, and therefore has her finger on the pulse of what is happening across the evolution of the entire Java platform.Ivar GrimnstadI don't know Ivar, but he is on the MVC Expert Group, and is thus a great conduit to the development efforts of one of only two new JSRs in Java EE 8.Mani Sarkar, Daniel BryantI've seen Mani at several conferences over the past couple years, and he epitomizes the passionate Java developer. As the late night tech conversations would dwindle off, he'd always be one of the last ones still talking hard core tech. Mani's the real deal. Mani is talking about OpenJDK, among other things.Roland HussRoland is talking about JMX and Java EE Management.Please drop by the Early Adopter's Area to catch up with these and other Java community leaders!</summary></entry></feed>
+home-town of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.tastykake.com/history&quot; rel=&quot;nofollow&quot;&gt;Philadelphia&lt;/a&gt;, and each attendee of the session &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/programm/vertiefe-schulungstag/&quot; rel=&quot;nofollow&quot;&gt;Java EE aus einer HTML5-Perspektive&lt;/a&gt; received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.&lt;/p&gt;&lt;p&gt;In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Wrap UpAfter months of preparation, it all came down to three days of intense execution, and I was just one speaker. I can only marvel at the logistical acumen that was on display from the JavaLand and DOAG team. I had an action , capably coodinated by Andreas Badelt. Because of the high level of activity on my personal agenda, I was not able to attend as many sessions as I would have liked. In any case, this blog entry is my place to share my overall impressions of the conference, and of the sessions I did get a chance to attend.Day One Right off the bat, I want to tip my cap to Marcus Lagergren for remaining calm in the face of some AV problems. Even with all that, and the 45 minute session duration, Marcus managed to give a compelling whirlwind tour of his personal experience with Java from the beginning. More photos like the one on the right are available from Stefan Hildebrandt's flickr photo stream. I think there is a lot more room in the &quot;20 year's of Java meme&quot;, however, and I applaud Marcus for wisely not attempting to speak for all of it and drawing from his own experiences. That's one great thing about the #java20 meme, everyone has their own story. Maybe at JavaOne 2015 they will have some sort of Story Corps type thing where people can give their stories. Come to think of it, if someone wants to build Story Corps as a Service (SCAAS), perpahs they can sell it to Oracle for use at the show.Shortly after Marcus's session, I presented with my good friend Oliver Szymanzki a 45 minute capsule of our full day training session about Java EE 7 from an HTML5 Perspective. It was tough to make a meaningful abstraction from a full day session to just 45 minutes, but I hope at least people could take something useful away from it.Then came my first exposure to the EAA, which was my only chance to present JSF content here at JavaLand. I gave a quick presentation and had an informal meeting with several JSF EG members who were at JavaLand. We covered f:socket, multi-component validation, and URL mapping.The evening community event was really not to be missed. If you ever have a chance to attend JavaLand, I really recommend you participate.Day TwoI started out the day by presenting a modified version of my DevNexus session about Servlet 4.0 and HTTP/2. I basically dropped the demo and moved the Java SE 9 content to an EAA session in order to fit into the 45 minute window.Following my session I was able to enjoy Mark Little's keynote about Java Enterprise and Internet of Things. This session put out some hard-won truths of problems we have solved in Java as cautionary tales for newer stacks that seem intent on re-inventing wheels rather than standing on the shoulders of others. I must admit it was a feel-good session, but still realistic and largely kool aid free.In the afternoon, I supported David Blevins during his session about the new Security JSR. This was a very informative session that got a whole lot done in only 45 minutes. I hope it encouraged some people to get involved in JSR-375.Running back to the EAA, I presented the exciting work being done by Michael McMahon to bring a new Http Client to Java SE 9, including HTTP/2 support. I can't post the slides, but I'm sure we'll have something on this at JavaOne.My last engagment of the conference proper was to participate in a joint vJUG/NightHacking session regarding Adopt-a-JSR. This was lots of fun, and I thank Stephen Chin and Simon Maple for providing a vehicle for it.As a nice wind-down from the conference, and a bit of chill before the training day, I was invited by DOAG boss Fried Saacke to attend the 5 year celebration dinner for Java Aktuell magazine. I didn't know it at the time, but the invitation included an opportunity to give a short speech, in German, on the importance of JCP to the Java Community. I hope I didn't mangle my words too badly. After being blessed with many years of German conference opportunities at which I invariably bring home lots of chocolate, I felt it was time to give the Germans a taste of American-style sweets along with their pre-loaded VM usb sticks. These Tasty Kakes or a specialty of my home-town of Philadelphia, and each attendee of the session Java EE aus einer HTML5-Perspektive received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.</summary></entry></feed>

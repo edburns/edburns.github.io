@@ -1,5 +1,242 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-24T17:12:47-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Ivar Grimstad MVC Notes</title><link href="/blog/2017/02/24/ivar-grimstad-mvc.html" rel="alternate" type="text/html" title="Ivar Grimstad MVC Notes" /><published>2017-02-24T15:55:00-05:00</published><updated>2017-02-24T15:55:00-05:00</updated><id>/blog/2017/02/24/ivar-grimstad-mvc</id><content type="html" xml:base="/blog/2017/02/24/ivar-grimstad-mvc.html">&lt;p&gt;Twitter
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-02-27T11:00:45-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JavaLand 2017 Picks</title><link href="/blog/2017/02/27/javaland-2017-picks.html" rel="alternate" type="text/html" title="JavaLand 2017 Picks" /><published>2017-02-27T08:33:00-05:00</published><updated>2017-02-27T08:33:00-05:00</updated><id>/blog/2017/02/27/javaland-2017-picks</id><content type="html" xml:base="/blog/2017/02/27/javaland-2017-picks.html">&lt;p&gt;I'm proud to say I've been at
+every &lt;a href=&quot;http://www.javaland.eu/&quot;&gt;JavaLand&lt;/a&gt; since it's
+inception in 2014, and blessed to say I'm attending again this year.  My
+good friend &lt;a href=&quot;http://source-knights.com&quot;&gt;Oliver Szymanski&lt;/a&gt; and
+I are teaching at the
+&lt;a href=&quot;http://www.javaland.eu/de/programm/schulungstag/&quot;&gt;Schulungstag.&lt;/a&gt;
+The title of our class is: &amp;#8220;Full Stack Java Microservices with
+Marathon, Docker and HTML&amp;#8221;, but before our class there is a jam
+packed conference schedule to absorb.  Here are my session picks.  Note
+that most of day 2 is in one room, Quantum 3+4.  Knowing the short
+session duration and the difficulty of getting from one room to another,
+this is probably a good conference tip: stay put in one room if you
+can.&lt;/p&gt;
+
+&lt;h3&gt;Tuesday 28 March&lt;/h3&gt;
+
+&lt;ul&gt;
+
+&lt;li&gt; &lt;p&gt;08:30 Quantum 1+2 &lt;a
+href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529312&quot;&gt;CDI
+2.0 is Upon Us&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Unique this year, there is a full lineup of sessions *even before*
+Fried's famous
+&lt;a
+href=&quot;https://www.heise.de/developer/artikel/developer_artikel_2160223.html&quot;&gt;conference greeting&lt;/a&gt;!  What could possibly be worth getting up for at this
+hour?  CDI 2.0 of course!  Since its introduction in Java EE 6, CDI has
+been at the heart of Java EE, and it is one of the key pieces of Java
+EE 8.  The session by spec lead Antoine Sabot-Durand will lay out what's
+new and notable.&lt;/p&gt;
+
+&lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;09:30 Silverado Theater &lt;a
+      href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529948&quot;&gt;Begrüßung&lt;/a&gt;&lt;/p&gt;
+      
+      &lt;p&gt;This session, in German, lays out the highlights of the
+      conference and gets you in the mood.&lt;/p&gt;
+      
+      &lt;/li&gt;
+      
+      	  &lt;li&gt;&lt;p&gt;10:00 Silverado Theater &lt;a
+          href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529957&quot;&gt;The
+          role of the CDO as Chief Product Owner&lt;/a&gt;&lt;/p&gt;
+          
+          &lt;p&gt;This keynote promises from the Chief Digital Office of the
+          REWE group will give a peek into the operation of this 50
+          billion EUR annual revenue retail giant.  Unless you work
+          inside of such an operation, it is rare to get such insight.&lt;/p&gt;
+          
+          &lt;/li&gt;
+          
+	  &lt;li&gt;&lt;p&gt;11:00 Neptun &lt;a
+      href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=537951&quot;&gt;Panel
+      Discussion - Java EE 8 Status&lt;/a&gt;&lt;/p&gt;
+      
+      &lt;p&gt;I'll be participating in this panel discussion in my role as
+      co-spec lead for two of the Oracle JSRs that are a key part of
+      Java EE 8: Servlet and JSF.&lt;/p&gt;
+      
+      &lt;/li&gt;
+      
+      	  &lt;li&gt;&lt;p&gt;12:00 Silverado Theater &lt;a
+          href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529435&quot;&gt;JDK
+          8 Lambdas: Cool Code that Doesn't Use Streams&lt;/a&gt;&lt;/p&gt;
+          
+          &lt;p&gt;Simon is a seasoned speaker how knows how to get his point
+          across quickly and clearly, something the 40 minute sessions
+          of JavaLand require.  I like this topic since so much of the
+          Lambda content out there also forces you to contend with the
+          equally complex, and powerful stream API.  It will be nice to
+          hear one without the other.&lt;/p&gt;
+          
+          &lt;/li&gt;
+          
+        &lt;li&gt;&lt;p&gt;13:00 Quantum 1+2 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529325&quot;&gt;Serverlose Web-Architekturen mit der AWS-Cloud-Infrastruktur&lt;/a&gt;&lt;/p&gt;
+        
+        &lt;p&gt;&lt;a href=&quot;https://twitter.com/dasniko&quot;&gt;Das Niko&lt;/a&gt; has a long
+        history of being on the cutting edge.  He was all over the
+        promising Project Avatar, for example.  I've been a fan of the
+        concept of &amp;#8220;serverless&amp;#8221; but have not yet invested
+        time in gaining any depth of understanding aside from my simple
+        observation that the technology itself seems to be the logical
+        end of the road we started to walk with the beginning of
+        inversion of control.  Let's see how Niko makes me smart.&lt;/p&gt;
+        
+        &lt;/li&gt;
+        
+        &lt;li&gt;&lt;p&gt;14:00 Silverado Theater &lt;a
+        href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=530111&quot;&gt;Fast
+        &amp; Efficient Microservices w/ binary protocol - gRPC 101&lt;/a&gt;&lt;/p&gt;
+        
+        &lt;p&gt;I've been a fan of &lt;a
+        href=&quot;https://twitter.com/saturnism&quot;&gt;Ray Tsang's&lt;/a&gt; easygoing,
+        yet deceptively information packed style since I attended his &lt;a
+        href=&quot;https://twitter.com/edburns/status/834913415500038144&quot;&gt;Docker
+        Tips and Tricks&lt;/a&gt; session at &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus&lt;/a&gt; last week.
+        He's great at live coding.  gRPC is a compelling alternative to
+        REST, and those of us old enough to remember CORBA will
+        appreciate this technology that promises the performance of a
+        binary protocol with the simplicity of REST.&lt;/p&gt;
+        
+        &lt;/li&gt;
+        
+     	  &lt;li&gt;&lt;p&gt;15:00 Wintergarden &lt;a
+          href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529273&quot;&gt;Serverless
+          Application - Who the heck needs a Server?&lt;/a&gt;&lt;/p&gt;
+          
+          &lt;p&gt;I want more, not less, of serverless.  This one looks like
+          it is higher level than Niko's.  Plus, I haven't seen anyone
+          aside from Mike Keith talk about Backend as a Service.&lt;/p&gt;
+          
+          &lt;/li&gt;
+          
+         &lt;li&gt;&lt;p&gt;16:00 Wintergarden &lt;a
+         href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529278&quot;&gt;Going
+         forward with Java EE Next?&lt;/a&gt;&lt;/p&gt;
+         
+         &lt;p&gt;I am confident that David's session will replace the
+         question mark with an exclamation point, as he share's Oracle's
+         vision for the future of Java EE.&lt;/p&gt;
+         
+         &lt;/li&gt;
+         
+      	  &lt;li&gt;&lt;p&gt;17:00 Silverado Theater &lt;a
+          href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529951&quot;&gt;Keynote:
+          Listening to the Design Pressures&lt;/a&gt;&lt;/p&gt;
+          
+          &lt;p&gt;I met Mr. Mechanical Sympathy at &lt;a href=&quot;/blog/2015/06/16/geekout-2015-summary.html&quot;&gt;GeekOut 2015&lt;/a&gt; and was
+taken by his in-depth &quot;war stories&quot; approach to presenting.  Martin is
+unquestionably a world leader in high performance systems, don't miss
+this one.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+&lt;/ul&gt;
+
+&lt;h3&gt;Wednesday 29 March&lt;/h3&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;&lt;p&gt;09:00 Wintergarden &lt;a
+      href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529430&quot;&gt;Migrating
+      to Java 9 Modules&lt;/a&gt;&lt;/p&gt;
+      
+      &lt;p&gt;Modules are to Java 9 what Lambdas are to Java 8: the biggest
+      feature.  In fact, in my opinion since they are far more
+      fundamental and long awaited.  This talk looks like a great way to
+      get ready for the most potentially disruptive feature to hit Java
+      since annotations in J2SE 1.5.&lt;/p&gt;
+      
+      &lt;/li&gt;
+      
+  	  &lt;li&gt;&lt;p&gt;10:00 Eventhalle &lt;a
+      href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529579&quot;&gt;Field
+      Notes of a Command Line Ninja&lt;/a&gt;&lt;/p&gt;
+      
+      &lt;p&gt;I've done enough pair programming over the years to know that
+      command line ninja skills are not a given, but I wish they were.
+      Now, I'm no ninja, but I do ok, and I certainly know the value in
+      investing even a little time in being more productive in this
+      foundational skill.  Besides, many of the &lt;a
+      href=&quot;/&quot;&gt;Rockstars&lt;/a&gt; I interviewed listed &quot;tools mastery&quot; as one
+      of the most important skills.&lt;/p&gt;
+      
+          &lt;/li&gt;
+
+      	  &lt;li&gt;&lt;p&gt;11:00 Neptun &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529616&quot;&gt;Resilient Software Design Patterns&lt;/a&gt;&lt;/p&gt;
+
+            &lt;p&gt;From the abstract, this looks like a good introduction to the hows and whys of microservices. &lt;/p&gt;
+           
+          &lt;/li&gt;
+
+      	  &lt;li&gt;&lt;p&gt;12:00 Wintergarden &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529443&quot;&gt; Continuous Delivery im Enterprise-Umfeld mit Docker, Ansible und Jenkins&lt;/a&gt;&lt;/p&gt;
+
+          &lt;p&gt;Trying to do something useful on this ambitious topic in 40
+          minutes is worth a look.  This talk also looks interesting
+          because it has a real-world basis.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+      	  &lt;li&gt;&lt;p&gt;13:00 Quantum 3+4 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529538&quot;&gt;Microprofile, Apache TomEE Now &amp; Beyond&lt;/a&gt;&lt;/p&gt;
+
+          &lt;p&gt;I like how MicroProfile is referred to as a
+          &quot;pre-specification effort&quot;.  As a fan of JCP, I hope that
+          proves to be true.  Let's see what they have been up to.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;14:00 Quantum 3+4 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529562&quot;&gt;Klein, leicht, modular - Java EE goes Microservices&lt;/a&gt;&lt;/p&gt;
+
+          &lt;p&gt;Any talk that points out the obvious synergy between Java
+          EE and microservices, rather than decrying their
+            irreconcilability, is worth a look in.&lt;/p&gt;
+          
+          &lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;15:00 Quantum 3+4 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529566&quot;&gt;Reactive Domain Driven Design&lt;/a&gt;&lt;/p&gt;
+
+            &lt;p&gt;It will be interesting to see how these two memes come together.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;16:00 Quantum 3+4 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529570&quot;&gt;Lagom - die richtige Dosis Microservice&lt;/a&gt;&lt;/p&gt;
+
+          &lt;p&gt;LightBend, formerly TypeSafe, were the early movers in the
+          latest resurgence of the idea of microservices.  As authors of
+          the famous &lt;a href=&quot;http://reactivemanifesto.org/&quot;&gt;Reactive
+          Manifesto&lt;/a&gt;, they had a jump on the rest of the herd.  I've
+          been hearing about Lagom for a while, but this is my first
+          opportunity to attend a session about it.  Interestingly, the
+          presenter appears not to be a LightBend employee, which may
+          speak well to the prospects for the objectivity of the
+          session.&lt;/p&gt;
+            
+          &lt;/li&gt;
+          
+          
+          
+
+
+
+      
+
+
+	&lt;/ul&gt;</content><summary type="html">I'm proud to say I've been at
+every JavaLand since it's
+inception in 2014, and blessed to say I'm attending again this year.  My
+good friend Oliver Szymanski and
+I are teaching at the
+Schulungstag.
+The title of our class is: &amp;#8220;Full Stack Java Microservices with
+Marathon, Docker and HTML&amp;#8221;, but before our class there is a jam
+packed conference schedule to absorb.  Here are my session picks.  Note
+that most of day 2 is in one room, Quantum 3+4.  Knowing the short
+session duration and the difficulty of getting from one room to another,
+this is probably a good conference tip: stay put in one room if you
+can.</summary></entry><entry><title type="html">Ivar Grimstad MVC Notes</title><link href="/blog/2017/02/24/ivar-grimstad-mvc.html" rel="alternate" type="text/html" title="Ivar Grimstad MVC Notes" /><published>2017-02-24T15:55:00-05:00</published><updated>2017-02-24T15:55:00-05:00</updated><id>/blog/2017/02/24/ivar-grimstad-mvc</id><content type="html" xml:base="/blog/2017/02/24/ivar-grimstad-mvc.html">&lt;p&gt;Twitter
 &lt;a href=&quot;http://twitter.com/ivar_grimstad&quot;&gt;@ivar_grimstad&lt;/a&gt;. &lt;a href=&quot;http://www.agilejava.eu/&quot;&gt;Blog&lt;/a&gt;
 &lt;a href=&quot;http://twitter.com/mvc_spec&quot;&gt;@mvc_spec&lt;/a&gt;.&lt;/p&gt;
 
@@ -421,7 +658,9 @@ example &lt;a href=&quot;http://jpamodeler.github.io&quot;&gt;jpamodeler.github.
 
 &lt;hr /&gt;
 
-&lt;p&gt;I would like to see some Facelets templating in the samples.&lt;/p&gt;</content><author><name></name></author><summary type="html">Twitter @ivar_grimstad. Blog @mvc_spec.</summary></entry><entry><title type="html">Ray Tsang Docker Tips and Tricks</title><link href="/blog/2017/02/23/ray-tsang-docker-tips-notes.html" rel="alternate" type="text/html" title="Ray Tsang Docker Tips and Tricks" /><published>2017-02-23T17:36:00-05:00</published><updated>2017-02-23T17:36:00-05:00</updated><id>/blog/2017/02/23/ray-tsang-docker-tips-notes</id><content type="html" xml:base="/blog/2017/02/23/ray-tsang-docker-tips-notes.html">&lt;p&gt;Twitter &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;@saturnism&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I would like to see some Facelets templating in the samples.&lt;/p&gt;</content><summary type="html">Twitter
+@ivar_grimstad. Blog
+@mvc_spec.</summary></entry><entry><title type="html">Ray Tsang Docker Tips and Tricks</title><link href="/blog/2017/02/23/ray-tsang-docker-tips-notes.html" rel="alternate" type="text/html" title="Ray Tsang Docker Tips and Tricks" /><published>2017-02-23T17:36:00-05:00</published><updated>2017-02-23T17:36:00-05:00</updated><id>/blog/2017/02/23/ray-tsang-docker-tips-notes</id><content type="html" xml:base="/blog/2017/02/23/ray-tsang-docker-tips-notes.html">&lt;p&gt;Twitter &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;@saturnism&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Started with his desert oasis story.  He wants to help you avoid the
 four hour walk.&lt;/p&gt;
@@ -567,7 +806,7 @@ non updated dependency versions.&lt;/p&gt;
 &lt;a href=&quot;https://github.com/fabric8io-images/run-java-sh&quot;&gt;the RedHat script&lt;/a&gt;.  java
 -XX:+PrintFlagsFinal -version | grep HeapSize&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://medium.com/google-cloud/my-slow-internet-vs-docker-7678ae1cae72#.w5on3gqzh&quot;&gt;https://medium.com/google-cloud/my-slow-internet-vs-docker-7678ae1cae72#.w5on3gqzh&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Twitter @saturnism.</summary></entry><entry><title type="html">JAX-RS 2.1 New Feature Introduction</title><link href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction" /><published>2017-02-22T00:15:00-05:00</published><updated>2017-02-22T00:15:00-05:00</updated><id>/blog/2017/02/22/jax-rs-2_1-new-feature-introduction</id><content type="html" xml:base="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">&lt;p&gt;In preparation for my &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus talk on Thursday&lt;/a&gt; I reviewed the commit log
+&lt;p&gt;&lt;a href=&quot;https://medium.com/google-cloud/my-slow-internet-vs-docker-7678ae1cae72#.w5on3gqzh&quot;&gt;https://medium.com/google-cloud/my-slow-internet-vs-docker-7678ae1cae72#.w5on3gqzh&lt;/a&gt;&lt;/p&gt;</content><summary type="html">Twitter @saturnism.</summary></entry><entry><title type="html">JAX-RS 2.1 New Feature Introduction</title><link href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction" /><published>2017-02-22T00:15:00-05:00</published><updated>2017-02-22T00:15:00-05:00</updated><id>/blog/2017/02/22/jax-rs-2_1-new-feature-introduction</id><content type="html" xml:base="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">&lt;p&gt;In preparation for my &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus talk on Thursday&lt;/a&gt; I reviewed the commit log
 for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I
 didn’t miss anything (See git://java.net/jax-rs-spec~api).  There are
 basically three new big ticket features in JAX-RS 2.1.&lt;/p&gt;
@@ -1144,7 +1383,10 @@ an instance of T.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The commit also tightened up what happens when a WebApplicationException
-is thrown during the conversion process.&lt;/p&gt;</content><author><name></name></author><summary type="html">In preparation for my DevNexus talk on Thursday I reviewed the commit log for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I didn’t miss anything (See git://java.net/jax-rs-spec~api). There are basically three new big ticket features in JAX-RS 2.1.</summary></entry><entry><title type="html">DevNexus 2017 Picks</title><link href="/blog/2017/02/21/devnexus-2017-picks.html" rel="alternate" type="text/html" title="DevNexus 2017 Picks" /><published>2017-02-21T11:15:00-05:00</published><updated>2017-02-21T11:15:00-05:00</updated><id>/blog/2017/02/21/devnexus-2017-picks</id><content type="html" xml:base="/blog/2017/02/21/devnexus-2017-picks.html">&lt;p&gt;Edited: 2017-02-23: Recommend additional session.&lt;/p&gt;
+is thrown during the conversion process.&lt;/p&gt;</content><summary type="html">In preparation for my DevNexus talk on Thursday I reviewed the commit log
+for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I
+didn’t miss anything (See git://java.net/jax-rs-spec~api).  There are
+basically three new big ticket features in JAX-RS 2.1.</summary></entry><entry><title type="html">DevNexus 2017 Picks</title><link href="/blog/2017/02/21/devnexus-2017-picks.html" rel="alternate" type="text/html" title="DevNexus 2017 Picks" /><published>2017-02-21T11:15:00-05:00</published><updated>2017-02-21T11:15:00-05:00</updated><id>/blog/2017/02/21/devnexus-2017-picks</id><content type="html" xml:base="/blog/2017/02/21/devnexus-2017-picks.html">&lt;p&gt;Edited: 2017-02-23: Recommend additional session.&lt;/p&gt;
 
 &lt;p&gt;I am blessed with the opportunity to speak
 at &lt;a href=&quot;http://devnexus.com/&quot;&gt;DevNexus&lt;/a&gt; again this year, after
@@ -1298,10 +1540,13 @@ Here are my picks for sessions I plan to attend.&lt;/p&gt;
           &lt;/li&gt;
 
 
-	&lt;/ul&gt;</content><author><name></name></author><summary type="html">Edited: 2017-02-23: Recommend additional session.</summary></entry><entry><title type="html">Welcome to my blog reboot</title><link href="/blog/2017/02/21/welcome-to-my-blog-reboot.html" rel="alternate" type="text/html" title="Welcome to my blog reboot" /><published>2017-02-21T08:15:00-05:00</published><updated>2017-02-21T08:15:00-05:00</updated><id>/blog/2017/02/21/welcome-to-my-blog-reboot</id><content type="html" xml:base="/blog/2017/02/21/welcome-to-my-blog-reboot.html">&lt;p&gt;After a two year hiatus, I intend to blog again.  I'm not sure how
+	&lt;/ul&gt;</content><summary type="html">Edited: 2017-02-23: Recommend additional session.</summary></entry><entry><title type="html">Welcome to my blog reboot</title><link href="/blog/2017/02/21/welcome-to-my-blog-reboot.html" rel="alternate" type="text/html" title="Welcome to my blog reboot" /><published>2017-02-21T08:15:00-05:00</published><updated>2017-02-21T08:15:00-05:00</updated><id>/blog/2017/02/21/welcome-to-my-blog-reboot</id><content type="html" xml:base="/blog/2017/02/21/welcome-to-my-blog-reboot.html">&lt;p&gt;After a two year hiatus, I intend to blog again.  I'm not sure how
 popular blogs are any more, though.  Many thanks
 to &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; for their excellent and
-polished tool.&lt;/p&gt;</content><author><name></name></author><summary type="html">After a two year hiatus, I intend to blog again. I'm not sure how popular blogs are any more, though. Many thanks to Jekyll for their excellent and polished tool.</summary></entry><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
+polished tool.&lt;/p&gt;</content><summary type="html">After a two year hiatus, I intend to blog again.  I'm not sure how
+popular blogs are any more, though.  Many thanks
+to Jekyll for their excellent and
+polished tool.</summary></entry><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T08:28:00-04:00</published><updated>2015-07-01T08:28:00-04:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
  I am sensitive to the real damage done to real lives and families that 
 is caused by gambling, so I will include a link to an organization that 
 offers help: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.calpg.org/&quot; rel=&quot;nofollow&quot;&gt;1-800-GAMBLER&lt;/a&gt;.
@@ -1387,7 +1632,18 @@ spawn a new child actor for each such task, but that
   &lt;/pre&gt;
 
 
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di LoretoMy friend Oliver White is doing his usual bang-up job in his new gig at TypeSafe. One aspect is the humble webinar. Here are my notes for one that caught my eye, Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization. This is a very dense but well delivered presentation by Patrick Di Loreto who helped develop a new platform for his employer, the online gambling service, William Hill.Morally, I am sensitive to the real damage done to real lives and families that is caused by gambling, so I will include a link to an organization that offers help: 1-800-GAMBLER. That said, this is just another instance of the ancient tradition of technology development being driven by something that traditionally is seen as vice. (For a humorous, NSFW and prophetic Onion article, search google for “theonion internet andreessen viewing device”. I’m old enough to have first read that on an actual physical newspaper!)Now, on to the raw notes. YMMV of course, but if nothing else this will help you overcome the annoying problem of the slide advancing not being synched to the audio.</summary></entry><entry><title type="html">GeekOut 2015 Summary Blog</title><link href="/blog/2015/06/16/geekout-2015-summary.html" rel="alternate" type="text/html" title="GeekOut 2015 Summary Blog" /><published>2015-06-16T09:28:00-04:00</published><updated>2015-06-16T09:28:00-04:00</updated><id>/blog/2015/06/16/geekout-2015-summary</id><content type="html" xml:base="/blog/2015/06/16/geekout-2015-summary.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;GeekOut 2015 Summary&lt;/h1&gt;&lt;p&gt;I
+&lt;/div&gt;</content><summary type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di LoretoMy friend Oliver White is doing his usual bang-up job in his new gig at TypeSafe. One aspect is the humble webinar. Here are my notes for one that caught my eye, Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization. This is a very dense but well delivered presentation by Patrick Di Loreto who helped develop a new platform for his employer, the online gambling service, William Hill.Morally,
+ I am sensitive to the real damage done to real lives and families that 
+is caused by gambling, so I will include a link to an organization that 
+offers help: 1-800-GAMBLER.
+ That said, this is just another instance of the ancient tradition of 
+technology development being driven by something that traditionally is 
+seen as vice. (For a humorous, NSFW and prophetic Onion article, search 
+google for “theonion internet andreessen viewing device”. I’m old enough
+ to have first read that on an actual physical newspaper!)Now, on
+ to the raw notes. YMMV of course, but if nothing else this will help 
+you overcome the annoying problem of the slide advancing not being 
+    synched to the audio.</summary></entry><entry><title type="html">GeekOut 2015 Summary Blog</title><link href="/blog/2015/06/16/geekout-2015-summary.html" rel="alternate" type="text/html" title="GeekOut 2015 Summary Blog" /><published>2015-06-16T09:28:00-04:00</published><updated>2015-06-16T09:28:00-04:00</updated><id>/blog/2015/06/16/geekout-2015-summary</id><content type="html" xml:base="/blog/2015/06/16/geekout-2015-summary.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;GeekOut 2015 Summary&lt;/h1&gt;&lt;p&gt;I
  last had the pleasure of visiting the lovely Baltic city of Tallinn in 
 2012, when I presented JSF 2.2 and the Rockstar talk at GeekOut 2012. 
 Now that I've got something new (for me anyway) to talk about I made the
@@ -1475,7 +1731,95 @@ barriers to entry to give it a try. Go succeeds because it rules several
  fundamental things as simply out of scope. There is no dynamic linking.
  There is no UI. There is no API to the threading model. There is no 
 inheritance. I'm glad Go is out there because sometimes you don't need 
-that stuff. For what it's worth, here's a nice post on Go &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://spf13.com/post/is-go-object-oriented/&quot; rel=&quot;nofollow&quot;&gt;from the Docker guy&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/ekabanov&quot; rel=&quot;nofollow&quot;&gt;Jevgeni Kabanov&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/toomasr&quot; rel=&quot;nofollow&quot;&gt;Toomas Römer&lt;/a&gt;. I'm glad to see these guys doing well.&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">GeekOut 2015 SummaryI last had the pleasure of visiting the lovely Baltic city of Tallinn in 2012, when I presented JSF 2.2 and the Rockstar talk at GeekOut 2012. Now that I've got something new (for me anyway) to talk about I made the cut and was invited back to present Servlet 4.0 at GeekOut 2015. Attendence was capped at 400, giving this conference a very exclusive feel. Indeed, 99% of those that registered for the conference actually did attend. This was the 5th installment of the GeekOut conference, hosted by ZeroTurnaround. This was the first time the conference had two tracks, so my report here only covers the sessions I actually attended. All of the sessions were video recorded, and I expect the sessions will be made available soon.Day OneDay one started with back-to-back plenary sessions offering two different perspectives on the #java20 theme. Stephen Chin gave a historically rich but technically light session featuring lots of freshly recorded video clips with Java luminaries. Of course there was ample content from James Gosling, who I would like to congratulate for winning the 2015 IEEE John von Neumann Medal. This puts James in the company of such titans as Leslie Lamport, Donald Knuth, Ivan Sutherland, and Fred Brooks. I was happy to see that Stephen dove deeper and offered the perspectives of John Rose and Georges Saab on more fundamental aspects of the history of Java. Martin Thompson followed Steven with a very complimentary session. The session was so complimentary I'd almost say they coordinated. Martin's session gave his personal perspective on Java over the years, with some very interesting stories from his work on making Java perform well. I liked his perspective on the causes and challenges of bloat in a long-lived software ecosystem. Another very interesting perspective was the extent to which high frequency trading drives advances in performance (in Java and in the entire industry). Martin's talk piqued my desire for a #java20 talk about all the companies that have been spawned directly or indirectly by the Java ecosystem. I'm thinking Interface21, Tangosol, JBoss, NoFluffJustStuff, ZeroTurnaround, Atlassian, Parleys and there are many others. Hey, I'm pretty sure there's an interesting talk in there somewhere.After the plenary sessions, we broke out into the two tracks, starting with my session on Servlet 4.0 and a session on Cassandra. My session was quite well attended, and it went pretty smoothly. We'll see how the feedback shows up, however! After my session, I went down to see Markus Eisele talk about Apache Camel. I hadn't followed the progress in the Camel community and I'm happy to see it is doing well since. Also nice to see my old pal Gregor Hohpe represented virtually, as his book is represented in spirit in Camel itself.I was very keen to see the Vaadin talk from Peter Lehto. I had long been perplexed at Vaadin's ability to decouple itself from GWT, particularly as GWT's popularity has dwindled. This talk, at last, promised to lay bare the secret at the heart of Vaadin: its runtime is dependent on GWT. I was not disappointed, but I was also very pleasantly surprised. Mr. Lehto directly addressed the question of the relevance of server side UI frameworks, including Vaadin (and JSF, though he didn't name it specifically) in an HTML5 JavaScript framework world. He did so by pointing out the importance of abstraction, which I've long been pointing out when presenting on JSF. In the case of Vaadin and JSF, their core value add is the authoring experience. With Vaadin, it's Java programmers who want to treat the world like Swing. With JSF it's &quot;page developers&quot; who want to treat the world like some form of VisualBasic environment. For Vaadin, its existing abstraction allows their underlying runtime to leverage W3C Web Components (or the polymer implementation of the same) for some Vaadin components while relying on GWT for others. Peter put a strong stake in the ground and predicted that W3C Web Components are the future for web development. I don't disagree, but JSF is well positioned to leverage W3C Web Components because it fits in nicely with the JSF abstraction.Day TwoDay two started out with Attila Szegedi's highly technical Rhino talk. This was the first talk of the day, after the party night, so it was a little lightly attended. However, those that made it there were rewarded with an in-depth understanding of the rationale for some performance related design decisions in the implementation of Nashorn.The 10:30 slot was another effectively plenary session, but out in the demo area. Stephen Chin's highly effective NIGHTHACKING brand came to GeekOut with a panel discussion on the #java20 theme. The video is on the NIGHTHACKING website. This was a lot of fun, and I got to put my Javagator old-timer test out there. I also had the pleasure of a brief chat with Stephen regarding JSF 2.3 and Servlet 4.0.I was really looking forward to Tomasz Nurkiewicz's session about CompletableFuture, particularly because of its use in the Java SE9 HTTP/2 client. Thomas managed to pack a whole lot into a short, well constructed, code powered session. It's not easy to explain the differences between thenApply(), thenCombine(), thenCompose() and many other methods in the API, but Tomasz succeeded. He even surfaced an important naming inconsistency between the CompletableFuture API and the java.util.Optional API: thenCompose() == flatMap(). For more on this topic from Tomasz, check out his blog entry The Definitive Guide to Completable Future. Personally, I think it's a bit bold to give a single blog entry such a lofty title, but you can't argue that it does indeed cover the topic very well. I meant to ask Tomasz if his code samples from the talk were taken from an upcoming book. Tomasz, if you happen to see this little blog entry, please plug the book if there is one.I had high hopes for the next talk, Gleb Smirnov's concurrency talk. It was probably a great talk, but sadly this is when my jetlag hit hard and I was struggling to keep up. I'll look for the video!I took a pass for the 15:00 slot due to the afore mentioned jetlag and opted to save my energy for one final session, Andrzej Grzesik's Go. I'd taken a quick look at Go before the session, so I was in a good position to enjoy it. This session made no excuses about having nothing to do with Java and instead just tried to give a quick tour of the Go language and programming environment, with a view towards lowering the barriers to entry to give it a try. Go succeeds because it rules several fundamental things as simply out of scope. There is no dynamic linking. There is no UI. There is no API to the threading model. There is no inheritance. I'm glad Go is out there because sometimes you don't need that stuff. For what it's worth, here's a nice post on Go from the Docker guy.Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends Jevgeni Kabanov and Toomas Römer. I'm glad to see these guys doing well.</summary></entry><entry><title type="html">Recent Ripple of JSF Extensions Blog</title><link href="/blog/2015/06/01/recent-ripple-jsf-extensions.html" rel="alternate" type="text/html" title="Recent Ripple of JSF Extensions Blog" /><published>2015-06-01T10:30:00-04:00</published><updated>2015-06-01T10:30:00-04:00</updated><id>/blog/2015/06/01/recent-ripple-jsf-extensions</id><content type="html" xml:base="/blog/2015/06/01/recent-ripple-jsf-extensions.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;Recent Ripple of JSF Extensions&lt;/h1&gt;&amp;nbsp; &lt;p&gt;My colleague &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.java.net/blogs/mriem&quot; rel=&quot;nofollow&quot;&gt;Manfred Riem&lt;/a&gt; tipped me off to a new framework built on JSF, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.butterfaces.org/&quot; rel=&quot;nofollow&quot;&gt;ButterFaces&lt;/a&gt;.&amp;nbsp;
+that stuff. For what it's worth, here's a nice post on Go &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://spf13.com/post/is-go-object-oriented/&quot; rel=&quot;nofollow&quot;&gt;from the Docker guy&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/ekabanov&quot; rel=&quot;nofollow&quot;&gt;Jevgeni Kabanov&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/toomasr&quot; rel=&quot;nofollow&quot;&gt;Toomas Römer&lt;/a&gt;. I'm glad to see these guys doing well.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">GeekOut 2015 SummaryI
+ last had the pleasure of visiting the lovely Baltic city of Tallinn in 
+2012, when I presented JSF 2.2 and the Rockstar talk at GeekOut 2012. 
+Now that I've got something new (for me anyway) to talk about I made the
+ cut and was invited back to present Servlet 4.0 at GeekOut 2015.
+ Attendence was capped at 400, giving this conference a very exclusive 
+feel. Indeed, 99% of those that registered for the conference actually 
+did attend. This was the 5th installment of the GeekOut conference, 
+hosted by ZeroTurnaround.
+ This was the first time the conference had two tracks, so my report 
+here only covers the sessions I actually attended. All of the sessions 
+were video recorded, and I expect the sessions will be made available 
+soon.Day OneDay one started with back-to-back plenary sessions offering two different perspectives on the #java20 theme. Stephen Chin
+ gave a historically rich but technically light session featuring lots 
+of freshly recorded video clips with Java luminaries. Of course there 
+was ample content from James Gosling, who I would like to congratulate 
+for winning the 2015 IEEE John von Neumann Medal.
+ This puts James in the company of such titans as Leslie Lamport, Donald
+ Knuth, Ivan Sutherland, and Fred Brooks. I was happy to see that 
+Stephen dove deeper and offered the perspectives of John Rose and 
+Georges Saab on more fundamental aspects of the history of Java. Martin Thompson
+ followed Steven with a very complimentary session. The session was so 
+complimentary I'd almost say they coordinated. Martin's session gave his
+ personal perspective on Java over the years, with some very interesting
+ stories from his work on making Java perform well. I liked his 
+perspective on the causes and challenges of bloat in a long-lived 
+software ecosystem. Another very interesting perspective was the extent 
+to which high frequency trading drives advances in performance (in Java 
+and in the entire industry). Martin's talk piqued my desire for a 
+#java20 talk about all the companies that have been spawned directly or 
+indirectly by the Java ecosystem. I'm thinking Interface21, Tangosol, 
+JBoss, NoFluffJustStuff, ZeroTurnaround, Atlassian, Parleys and there 
+are many others. Hey, I'm pretty sure there's an interesting talk in 
+there somewhere.After the plenary sessions, we broke out into the
+ two tracks, starting with my session on Servlet 4.0 and a session on 
+Cassandra. My session was quite well attended, and it went pretty 
+smoothly. We'll see how the feedback shows up, however! After my 
+session, I went down to see Markus Eisele
+ talk about Apache Camel. I hadn't followed the progress in the Camel 
+community and I'm happy to see it is doing well since. Also nice to see 
+my old pal Gregor Hohpe represented virtually, as his book is represented in spirit in Camel itself.I was very keen to see the Vaadin talk from Peter Lehto.
+ I had long been perplexed at Vaadin's ability to decouple itself from 
+GWT, particularly as GWT's popularity has dwindled. This talk, at last, 
+promised to lay bare the secret at the heart of Vaadin: its runtime is 
+dependent on GWT. I was not disappointed, but I was also very pleasantly
+ surprised. Mr. Lehto directly addressed the question of the relevance 
+of server side UI frameworks, including Vaadin (and JSF, though he 
+didn't name it specifically) in an HTML5 JavaScript framework world. He 
+did so by pointing out the importance of abstraction, which I've long 
+been pointing out when presenting on JSF. In the case of Vaadin and JSF,
+ their core value add is the authoring experience. With Vaadin, it's 
+Java programmers who want to treat the world like Swing. With JSF it's 
+&quot;page developers&quot; who want to treat the world like some form of 
+VisualBasic environment. For Vaadin, its existing abstraction allows 
+their underlying runtime to leverage W3C Web Components (or the polymer 
+implementation of the same) for some Vaadin components while relying on 
+GWT for others. Peter put a strong stake in the ground and predicted 
+that W3C Web Components are the future for web development. I don't 
+disagree, but JSF is well positioned to leverage W3C Web Components 
+because it fits in nicely with the JSF abstraction.Day TwoDay two started out with Attila Szegedi's
+ highly technical Rhino talk. This was the first talk of the day, after 
+the party night, so it was a little lightly attended. However, those 
+that made it there were rewarded with an in-depth understanding of the 
+rationale for some performance related design decisions in the 
+implementation of Nashorn.The 10:30 slot was another effectively plenary session, but out in the demo area. Stephen Chin's highly effective NIGHTHACKING brand came to GeekOut with a panel discussion on the #java20 theme. The video is on the NIGHTHACKING website. This was a lot of fun, and I got to put my Javagator old-timer test out there. I also had the pleasure of a brief chat with Stephen regarding JSF 2.3 and Servlet 4.0.I was really looking forward to Tomasz Nurkiewicz's session about CompletableFuture, particularly because of its use in the Java SE9 HTTP/2 client.
+ Thomas managed to pack a whole lot into a short, well constructed, code
+ powered session. It's not easy to explain the differences between 
+thenApply(), thenCombine(), thenCompose() and many other methods in the 
+API, but Tomasz succeeded. He even surfaced an important naming 
+inconsistency between the CompletableFuture API and the 
+java.util.Optional API: thenCompose() == flatMap(). For more on this 
+topic from Tomasz, check out his blog entry The Definitive Guide to Completable Future.
+ Personally, I think it's a bit bold to give a single blog entry such a 
+lofty title, but you can't argue that it does indeed cover the topic 
+very well. I meant to ask Tomasz if his code samples from the talk were 
+taken from an upcoming book. Tomasz, if you happen to see this little 
+blog entry, please plug the book if there is one.I had high hopes for the next talk, Gleb Smirnov's
+ concurrency talk. It was probably a great talk, but sadly this is when 
+my jetlag hit hard and I was struggling to keep up. I'll look for the 
+video!I took a pass for the 15:00 slot due to the afore mentioned jetlag and opted to save my energy for one final session, Andrzej Grzesik's
+ Go. I'd taken a quick look at Go before the session, so I was in a good
+ position to enjoy it. This session made no excuses about having nothing
+ to do with Java and instead just tried to give a quick tour of the Go 
+language and programming environment, with a view towards lowering the 
+barriers to entry to give it a try. Go succeeds because it rules several
+ fundamental things as simply out of scope. There is no dynamic linking.
+ There is no UI. There is no API to the threading model. There is no 
+inheritance. I'm glad Go is out there because sometimes you don't need 
+that stuff. For what it's worth, here's a nice post on Go from the Docker guy.Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends Jevgeni Kabanov and Toomas Römer. I'm glad to see these guys doing well.</summary></entry><entry><title type="html">Recent Ripple of JSF Extensions Blog</title><link href="/blog/2015/06/01/recent-ripple-jsf-extensions.html" rel="alternate" type="text/html" title="Recent Ripple of JSF Extensions Blog" /><published>2015-06-01T10:30:00-04:00</published><updated>2015-06-01T10:30:00-04:00</updated><id>/blog/2015/06/01/recent-ripple-jsf-extensions</id><content type="html" xml:base="/blog/2015/06/01/recent-ripple-jsf-extensions.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;Recent Ripple of JSF Extensions&lt;/h1&gt;&amp;nbsp; &lt;p&gt;My colleague &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.java.net/blogs/mriem&quot; rel=&quot;nofollow&quot;&gt;Manfred Riem&lt;/a&gt; tipped me off to a new framework built on JSF, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.butterfaces.org/&quot; rel=&quot;nofollow&quot;&gt;ButterFaces&lt;/a&gt;.&amp;nbsp;
  This whimsical name started an amusing Twitter thread, but also, and 
 much more importantly brought several other new JSF extensions to light.
  This is the sort of thing that I used to look to Kito Mann's &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.jsfcentral.com/products/frameworks/&quot; rel=&quot;nofollow&quot;&gt;JSF Central Frameworks Page&lt;/a&gt;
@@ -1496,7 +1840,27 @@ frameworks.&amp;nbsp; My recent work with HTTP/2 in Servlet 4 has shown me
 that such frameworks are very well positioned to take advantage of the 
 optimizations in the HTTP/2 protocol, as well as other performance 
 optimizations shown in &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/igrigorik&quot; rel=&quot;nofollow&quot;&gt;Ilya Grigorik's&lt;/a&gt; excellent &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://chimera.labs.oreilly.com/books/1230000000545&quot; rel=&quot;nofollow&quot;&gt;High Performance Browser Networking&lt;/a&gt;.&lt;/p&gt;&amp;nbsp; &lt;p&gt;So, check out these new frameworks and don't be afraid to question conventional wisdom.&lt;/p&gt; 
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Recent Ripple of JSF Extensions&amp;nbsp; My colleague Manfred Riem tipped me off to a new framework built on JSF, ButterFaces.&amp;nbsp; This whimsical name started an amusing Twitter thread, but also, and much more importantly brought several other new JSF extensions to light. This is the sort of thing that I used to look to Kito Mann's JSF Central Frameworks Page for, but it seems that needs an update.&amp;nbsp; So, in addition to ButterFaces, here are several other JSF extensions that are definitely worth a look.&amp;nbsp; BootsFaces focuses on Twitter Bootstrap 3 and jQuery UI.&amp;nbsp; Material Prime is a PrimeFaces extension that lets you build web apps that conform to Google's &quot;Material&quot; design language.&amp;nbsp; Generjee is a Java EE application generator that outputs JSF+JavaEE 7+CDI code.&amp;nbsp; FWIW, I would be remiss if I didn't point out that there is nothing named JEE.&amp;nbsp; So, I suggest this project rename itself to generee.&amp;nbsp; I think that's snappier anyway.&amp;nbsp; This recent flurry of activity shows two things.&amp;nbsp; First, the continuing vitality of the JSF ecosystem.&amp;nbsp; By now I think we all know that the ecosystem around the technology is just as important as the technology itself.&amp;nbsp; It's like this.&amp;nbsp; A technology has to be &quot;good enough&quot; to get the job done.&amp;nbsp; That's a given.&amp;nbsp; Heck, it could even be excellent technology.&amp;nbsp; But without an ecosystem around it, even the best technologies will not survive.&amp;nbsp; Second, there is still interest and value in server side state UI frameworks.&amp;nbsp; My recent work with HTTP/2 in Servlet 4 has shown me that such frameworks are very well positioned to take advantage of the optimizations in the HTTP/2 protocol, as well as other performance optimizations shown in Ilya Grigorik's excellent High Performance Browser Networking.&amp;nbsp; So, check out these new frameworks and don't be afraid to question conventional wisdom.</summary></entry><entry><title type="html">ConFESS 2015 Wrap Up Blog</title><link href="/blog/2015/05/18/confess-2015-wrap.html" rel="alternate" type="text/html" title="ConFESS 2015 Wrap Up Blog" /><published>2015-05-18T10:02:00-04:00</published><updated>2015-05-18T10:02:00-04:00</updated><id>/blog/2015/05/18/confess-2015-wrap</id><content type="html" xml:base="/blog/2015/05/18/confess-2015-wrap.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;ConFESS 2015 Wrap Up&lt;/h1&gt;&lt;p&gt;Hard on the heels of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2015/03/30/javaland-2015-wrap&quot; rel=&quot;nofollow&quot;&gt;JavaLand&lt;/a&gt; was &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://2015.con-fess.com/&quot; rel=&quot;nofollow&quot;&gt;ConFESS&lt;/a&gt;. This was the eighth installment of the conference that started life in 2008 as &lt;a class=&quot;&quot; href=&quot;https://community.oracle.com/blog/http%20]]%3E%3C%21[CDATA[%20s:/matthiaswessendorf.wordpress.com/2008/02/14/jsfdays-2008-in-vienna&quot;&gt;JSF Days&lt;/a&gt;,
+&lt;/div&gt;</content><summary type="html">Recent Ripple of JSF Extensions&amp;nbsp; My colleague Manfred Riem tipped me off to a new framework built on JSF, ButterFaces.&amp;nbsp;
+ This whimsical name started an amusing Twitter thread, but also, and 
+much more importantly brought several other new JSF extensions to light.
+ This is the sort of thing that I used to look to Kito Mann's JSF Central Frameworks Page
+ for, but it seems that needs an update.&amp;nbsp; So, in addition to 
+ButterFaces, here are several other JSF extensions that are definitely 
+worth a look.&amp;nbsp; BootsFaces focuses on Twitter Bootstrap 3 and jQuery UI.&amp;nbsp; Material Prime is a PrimeFaces extension that lets you build web apps that conform to Google's &quot;Material&quot; design language.&amp;nbsp; Generjee
+ is a Java EE application generator that outputs JSF+JavaEE 7+CDI 
+code.&amp;nbsp; FWIW, I would be remiss if I didn't point out that there is nothing named JEE.&amp;nbsp; So, I suggest this project rename itself to generee.&amp;nbsp; I think that's snappier anyway.&amp;nbsp; This
+ recent flurry of activity shows two things.&amp;nbsp; First, the continuing
+ vitality of the JSF ecosystem.&amp;nbsp; By now I think we all know that 
+the ecosystem around the technology is just as important as the 
+technology itself.&amp;nbsp; It's like this.&amp;nbsp; A technology has to be 
+&quot;good enough&quot; to get the job done.&amp;nbsp; That's a given.&amp;nbsp; Heck, it 
+could even be excellent technology.&amp;nbsp; But without an ecosystem 
+around it, even the best technologies will not survive.&amp;nbsp; Second, 
+there is still interest and value in server side state UI 
+frameworks.&amp;nbsp; My recent work with HTTP/2 in Servlet 4 has shown me 
+that such frameworks are very well positioned to take advantage of the 
+optimizations in the HTTP/2 protocol, as well as other performance 
+optimizations shown in Ilya Grigorik's excellent High Performance Browser Networking.&amp;nbsp; So, check out these new frameworks and don't be afraid to question conventional wisdom.</summary></entry><entry><title type="html">ConFESS 2015 Wrap Up Blog</title><link href="/blog/2015/05/18/confess-2015-wrap.html" rel="alternate" type="text/html" title="ConFESS 2015 Wrap Up Blog" /><published>2015-05-18T10:02:00-04:00</published><updated>2015-05-18T10:02:00-04:00</updated><id>/blog/2015/05/18/confess-2015-wrap</id><content type="html" xml:base="/blog/2015/05/18/confess-2015-wrap.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;ConFESS 2015 Wrap Up&lt;/h1&gt;&lt;p&gt;Hard on the heels of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://weblogs.java.net/blog/edburns/archive/2015/03/30/javaland-2015-wrap&quot; rel=&quot;nofollow&quot;&gt;JavaLand&lt;/a&gt; was &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://2015.con-fess.com/&quot; rel=&quot;nofollow&quot;&gt;ConFESS&lt;/a&gt;. This was the eighth installment of the conference that started life in 2008 as &lt;a class=&quot;&quot; href=&quot;https://community.oracle.com/blog/http%20]]%3E%3C%21[CDATA[%20s:/matthiaswessendorf.wordpress.com/2008/02/14/jsfdays-2008-in-vienna&quot;&gt;JSF Days&lt;/a&gt;,
  switching to the name &quot;ConFESS&quot; in 2011. The name stands for the 
 &quot;Conference for Enterprise Software Solutions&quot;. Last year, ConFESS was 
 held as a partnership with JavaLand in Brühl Germany. Neither party was 
@@ -1577,47 +1941,85 @@ stack. I need to spend more time getting to know the workflow in current
  front end shops. Can anyone recommend a user group or meetup in 
 Orlando, FL?&lt;/p&gt;&lt;p&gt;Following the two day conference was my full day of 
 workshops. I had a small but dedicated room of students and I hope they 
-enjoyed the sessions.&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">ConFESS 2015 Wrap UpHard on the heels of JavaLand was ConFESS. This was the eighth installment of the conference that started life in 2008 as JSF Days, switching to the name &quot;ConFESS&quot; in 2011. The name stands for the &quot;Conference for Enterprise Software Solutions&quot;. Last year, ConFESS was held as a partnership with JavaLand in Brühl Germany. Neither party was satisfied with how that turned out and in 2015 ConFESS returned to its home in Vienna, where it will stay. It was a relatively small event, with just over 200 participants. It nicely filled out the venue, the C3 event center in the 3rd district. In my opinion, its small size is a large asset. The ability to have the entire event schedule on two sides of a 4x5 inch card is very convenient.My overall impression of the conference was very positive. There was a wide variety of talks from speakers I hadn't seen before on the conference circuit. There was a good breadth of coverage in diverse tracks ranging from agile/methods to Java EE to tools to client side technologies, and there was an excellent band on Tuesday night, Florian Braun and FSG Company. There was also a Lego Mindstorms EV3 competition that got rave reviews, but I didn't attend that portion of the event.The full set of abstracts from the conference are available at the regonline site for the event. You can use that site to learn more about the sessions for which I will give my brief impressions in the remainder of this blog entry.TuesdayThe Tuesday Keynote was from Oracle Labs's Thomas Wuerthinger. Thomas presented his exciting work on the Graal VM. First off, I'm glad to see that Oracle has continued Sun's tradition of funding long-term research in the spirit of Sun Labs, founded by computing pioneer Ivan Sutherland (yep, just checked, he still works for Oracle). The basic idea of Graal appears to be: take the abstract syntax tree concept from compiler design and make it a first class part of the JIT process, allowing the runtime to rewrite itself as the program runs to achieve greater performance without sacrificing agility. Cool stuff, and great for a keynote.Sticking with the JSF heritage of the conference, next up was Cagatay Civici's talk about PrimeFaces. Cagatay introduced the new &quot;layouts&quot; concept, built on JSF 2.2 Resource Library Contracts. The base offering consists of two new layouts, Sentinel and Spark. One thing I've always liked about PrimeFaces is how they take the base concepts of the core JSF specification and use them to maximum effect, taking full advantage of new features, large and small.Diving down a level, Johannes Tuchscherer from CloudFoundry talked about Docker and how it relates to offerings from Pivotal. Johannes put the hype into perspective, showing how you still need other technologies to actually create value with Docker.Sticking in the Pivotal realm, Jürgen Höller gave the Spring 4.1 overview talk. It was nice to see that they were able to leverage Java SE 8 features while producing a binary that runs on Java SE 6. I was happy to have the opportunity to ask Juergen how pulled that trick off and the answer is basically build-time static code analysis. They compile with Java SE 8 with -source and -target 1.6, and have a build-time tool that looks for usages of Java SE 8 only idioms and APIs, and flags them as failures.The next talk I attended was a really practical hands on session about Java Flight Recorder from Johan Janssen. I'm a big fan of learning to get more out of tools I already have. JFR has been a part of the JDK for quite some time.WednesdayI was happy to see my good friend and fellow Oracle employee Mike Keith given the Wednesday keynote slot. Mike is a veteran of the conference trail, author of Pro JPA2 and former JPA spec lead. Mike was talking about an exciting new product from Oracle: Mobile Back End As A Service (MBaaS). In a nutshell, this product packages up everything enterprises need to deploy mobile based applications that are built on their existing infrastructure. Mike's slides are available for download.My own session was up next, at which I gave a status update on JSF 2.3. Briefly, it's a community driven release aimed at preserving your existing investment in JSF. I've uploaded my slides to slideshare.As a counterpart to Johan Janssen's session yesterday I attended Anton Arhipov's session about ZeroTurnaround's XRebel product. I liked his straightforward pitch: most applications receive very little profiling attention, let's make a super simple product that lets you get the low hanging fruit with maximum performance gain. Indeed, the slick browser based UI is very easy to use. When asked about various corner cases, Anton was honest and answered the current state of the product is very narrowly focused on where the most value can be easily extracted. This focus is a key success factor for ZT, in my opinion.I've always talked up the importance of maintainability, and sold that as a strong suit of the Java EE stack, so it was with great interest that I attended Bernhard Keprt's session about maintenance. One reason I like attending conferences is to remove my 3rd order ignorance by exposing me to technologies I otherwise would not encounter. During Bernhard's talk, he introduced me to VersionEye. The value-add of this tool is easy to perceive: given that you have lots of dependencies, let's have a tool that keeps an eye on them and lets you know when they update.Stefan Schuster gave a session from his experiences in developing apps for the three big flavors of mobile deployment platforms: native, Apache Cordova, and mobile web app. I liked this session for its first-hand perspective.To close out my 2015 ConFESS session attendance I viewed Alex Göschl's session on AngularJS. Alex shared his experiences in deployng Angular 1 for the jobs portal for conference sponsor Willhaben. FWIW, I found nine job postings for JSF on the site and four for Angular. This was an enjoyable talk and Alex did a great job explaining the extremely heterogeneous set of tools and technologies used in the project. Prior to switching the jobs portal to Angular 1, they were using GWT. It was pretty much a complete rewrite. The most useful aspect of the talk to me was the ease with which such an apparently complex tool chain is now accepted and leveraged by your average front end team. For example, the following nine step dev time build process was rattled off as if it were no big deal.clean build targetscompile less to csscopy vendor librariescopy assetscompile and optimize angular templatescompile and check typescriptcopy to tomcatinject velocity templatesIt must just be my Java EE roots that makes me feel that the preceding list is a lot more complex than a similar build process in a Java EE stack. I need to spend more time getting to know the workflow in current front end shops. Can anyone recommend a user group or meetup in Orlando, FL?Following the two day conference was my full day of workshops. I had a small but dedicated room of students and I hope they enjoyed the sessions.</summary></entry><entry><title type="html">JavaLand 2015 Wrap-Up Blog</title><link href="/blog/2015/03/30/javaland-2015-wrap.html" rel="alternate" type="text/html" title="JavaLand 2015 Wrap-Up Blog" /><published>2015-03-30T09:32:00-04:00</published><updated>2015-03-30T09:32:00-04:00</updated><id>/blog/2015/03/30/javaland-2015-wrap</id><content type="html" xml:base="/blog/2015/03/30/javaland-2015-wrap.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;JavaLand 2015 Wrap Up&lt;/h1&gt;&lt;p&gt;After
- months of preparation, it all came down to three days of intense 
-execution, and I was just one speaker. I can only marvel at the 
-logistical acumen that was on display from the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/team/&quot; rel=&quot;nofollow&quot;&gt;JavaLand&lt;/a&gt; and DOAG team. I had an action , capably coodinated by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/personenseiten/andreas-badelt/&quot; rel=&quot;nofollow&quot;&gt;Andreas Badelt&lt;/a&gt;.
- Because of the high level of activity on my personal agenda, I was not 
-able to attend as many sessions as I would have liked. In any case, this
- blog entry is my place to share my overall impressions of the 
-conference, and of the sessions I did get a chance to attend.&lt;/p&gt;&lt;h3&gt;Day One&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://community.oracle.com/blog/20150324-lagergren-keynote-hassle.png&quot;&gt;&lt;img __embedded_id=&quot;401&quot; src=&quot;20150330_files/20150324-lagergren-keynote-hassle.html&quot; style=&quot;float: right;&quot; width=&quot;200&quot; height=&quot;148&quot;&gt;&lt;/a&gt; Right off the bat, I want to tip my cap to &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/lagergren&quot; rel=&quot;nofollow&quot;&gt;Marcus Lagergren&lt;/a&gt;
- for remaining calm in the face of some AV problems. Even with all that,
- and the 45 minute session duration, Marcus managed to give a compelling
- whirlwind tour of his personal experience with Java from the beginning.
- More photos like the one on the right are available from &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/hildebrandttk&quot; rel=&quot;nofollow&quot;&gt;Stefan Hildebrandt&lt;/a&gt;'s &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.flickr.com/photos/130465085@N06/sets/72157651139135557/&quot; rel=&quot;nofollow&quot;&gt;flickr photo stream&lt;/a&gt;.
- I think there is a lot more room in the &quot;20 year's of Java meme&quot;, 
-however, and I applaud Marcus for wisely not attempting to speak for all
- of it and drawing from his own experiences. That's one great thing 
-about the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/search?q=%23java20&amp;amp;src=typd&amp;amp;customTheme=otn&quot; rel=&quot;nofollow&quot;&gt;#java20&lt;/a&gt; meme, everyone has their own story. Maybe at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.oracle.com/javaone/call-for-proposals.html&quot; rel=&quot;nofollow&quot;&gt;JavaOne 2015&lt;/a&gt; they will have some sort of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://storycorps.org/&quot; rel=&quot;nofollow&quot;&gt;Story Corps&lt;/a&gt;
- type thing where people can give their stories. Come to think of it, if
- someone wants to build Story Corps as a Service (SCAAS), perpahs they 
-can sell it to Oracle for use at the show.&lt;/p&gt;&lt;p&gt;Shortly after Marcus's session, I presented with my good friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/SourceKnights&quot; rel=&quot;nofollow&quot;&gt;Oliver Szymanzki&lt;/a&gt; a 45 minute capsule of our full day training session about &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.slideshare.net/edburns/java-ee-7-from-an-html5-perspective-javaland-2015&quot; rel=&quot;nofollow&quot;&gt;Java EE 7 from an HTML5 Perspective&lt;/a&gt;.
- It was tough to make a meaningful abstraction from a full day session 
-to just 45 minutes, but I hope at least people could take something 
-useful away from it.&lt;/p&gt;&lt;p&gt;Then came my first exposure to the EAA, which was my only chance to present JSF content here at JavaLand. I gave a &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.slideshare.net/edburns/jsf-22-input-output-javaland-2015&quot; rel=&quot;nofollow&quot;&gt;quick presentation&lt;/a&gt;
- and had an informal meeting with several JSF EG members who were at 
-JavaLand. We covered f:socket, multi-component validation, and URL 
-mapping.&lt;/p&gt;&lt;p&gt;The evening community event was really not to be missed. 
-If you ever have a chance to attend JavaLand, I really recommend you 
-participate.&lt;/p&gt;&lt;h3&gt;Day Two&lt;/h3&gt;&lt;p&gt;I started out the day by presenting a modified version of my &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.slideshare.net/edburns/http2-comes-to-java-what-servlet-40-means-to-you-devnexus-2015&quot; rel=&quot;nofollow&quot;&gt;DevNexus session about Servlet 4.0 and HTTP/2&lt;/a&gt;. I basically dropped the demo and moved the Java SE 9 content to an EAA session in order to fit into the 45 minute window.&lt;/p&gt;&lt;p&gt;Following my session I was able to enjoy &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/nmcl&quot; rel=&quot;nofollow&quot;&gt;Mark Little's&lt;/a&gt; keynote about Java &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.doag.org/konferenz/konferenzplaner/konferenzplaner_details.php?id=483801&amp;amp;locS=0&amp;amp;vid=491907&quot; rel=&quot;nofollow&quot;&gt;Enterprise and Internet of Things&lt;/a&gt;.
- This session put out some hard-won truths of problems we have solved in
- Java as cautionary tales for newer stacks that seem intent on 
-re-inventing wheels rather than standing on the shoulders of others. I 
-must admit it was a feel-good session, but still realistic and largely &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://en.wikipedia.org/wiki/Drinking_the_Kool-Aid&quot; rel=&quot;nofollow&quot;&gt;kool aid free&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;In the afternoon, I supported &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/dblevins&quot; rel=&quot;nofollow&quot;&gt;David Blevins&lt;/a&gt; during his &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.doag.org/konferenz/konferenzplaner/konferenzplaner_details.php?id=483801&amp;amp;locS=0&amp;amp;vid=491386&quot; rel=&quot;nofollow&quot;&gt;session about the new Security JSR&lt;/a&gt;. This was a very informative session that got a whole lot done in only 45 minutes. I hope it encouraged some people to &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://jcp.org/en/jsr/detail?id=375&quot; rel=&quot;nofollow&quot;&gt;get involved in JSR-375&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Running back to the EAA, I presented the exciting work being done by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/OpenJDK&quot; rel=&quot;nofollow&quot;&gt;Michael McMahon&lt;/a&gt;
- to bring a new Http Client to Java SE 9, including HTTP/2 support. I 
-can't post the slides, but I'm sure we'll have something on this at 
-JavaOne.&lt;/p&gt;&lt;p&gt;My last engagment of the conference proper was to participate in a joint vJUG/NightHacking session regarding &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://nighthacking.com/adopt-a-jsr-nighthackingvjug-sessions/&quot; rel=&quot;nofollow&quot;&gt;Adopt-a-JSR&lt;/a&gt;. This was lots of fun, and I thank &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/steveonjava&quot; rel=&quot;nofollow&quot;&gt;Stephen Chin&lt;/a&gt; and &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/sjmaple&quot; rel=&quot;nofollow&quot;&gt;Simon Maple&lt;/a&gt; for providing a vehicle for it.&lt;/p&gt;&lt;p&gt;As
- a nice wind-down from the conference, and a bit of chill before the 
-training day, I was invited by DOAG boss Fried Saacke to attend the &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/dasniko/status/580831517418618883&quot; rel=&quot;nofollow&quot;&gt;5 year celebration dinner&lt;/a&gt; for &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.ijug.eu/java-aktuell/das-magazin.html&quot; rel=&quot;nofollow&quot;&gt;Java Aktuell&lt;/a&gt;
- magazine. I didn't know it at the time, but the invitation included an 
-opportunity to give a short speech, in German, on the importance of JCP 
-to the Java Community. I hope I didn't mangle my words too badly.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://community.oracle.com/blog/20150326-tastykakes-and-usb.jpeg&quot;&gt;&lt;img __embedded_id=&quot;402&quot; src=&quot;20150330_files/20150326-tastykakes-and-usb.html&quot; style=&quot;float: left;&quot; width=&quot;200&quot; height=&quot;150&quot;&gt;&lt;/a&gt;
- After being blessed with many years of German conference opportunities 
-at which I invariably bring home lots of chocolate, I felt it was time 
-to give the Germans a taste of American-style sweets along with their 
-pre-loaded VM usb sticks. These Tasty Kakes or a specialty of my 
-home-town of &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.tastykake.com/history&quot; rel=&quot;nofollow&quot;&gt;Philadelphia&lt;/a&gt;, and each attendee of the session &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.javaland.eu/programm/vertiefe-schulungstag/&quot; rel=&quot;nofollow&quot;&gt;Java EE aus einer HTML5-Perspektive&lt;/a&gt; received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.&lt;/p&gt;&lt;p&gt;In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.&lt;/p&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">JavaLand 2015 Wrap UpAfter months of preparation, it all came down to three days of intense execution, and I was just one speaker. I can only marvel at the logistical acumen that was on display from the JavaLand and DOAG team. I had an action , capably coodinated by Andreas Badelt. Because of the high level of activity on my personal agenda, I was not able to attend as many sessions as I would have liked. In any case, this blog entry is my place to share my overall impressions of the conference, and of the sessions I did get a chance to attend.Day One Right off the bat, I want to tip my cap to Marcus Lagergren for remaining calm in the face of some AV problems. Even with all that, and the 45 minute session duration, Marcus managed to give a compelling whirlwind tour of his personal experience with Java from the beginning. More photos like the one on the right are available from Stefan Hildebrandt's flickr photo stream. I think there is a lot more room in the &quot;20 year's of Java meme&quot;, however, and I applaud Marcus for wisely not attempting to speak for all of it and drawing from his own experiences. That's one great thing about the #java20 meme, everyone has their own story. Maybe at JavaOne 2015 they will have some sort of Story Corps type thing where people can give their stories. Come to think of it, if someone wants to build Story Corps as a Service (SCAAS), perpahs they can sell it to Oracle for use at the show.Shortly after Marcus's session, I presented with my good friend Oliver Szymanzki a 45 minute capsule of our full day training session about Java EE 7 from an HTML5 Perspective. It was tough to make a meaningful abstraction from a full day session to just 45 minutes, but I hope at least people could take something useful away from it.Then came my first exposure to the EAA, which was my only chance to present JSF content here at JavaLand. I gave a quick presentation and had an informal meeting with several JSF EG members who were at JavaLand. We covered f:socket, multi-component validation, and URL mapping.The evening community event was really not to be missed. If you ever have a chance to attend JavaLand, I really recommend you participate.Day TwoI started out the day by presenting a modified version of my DevNexus session about Servlet 4.0 and HTTP/2. I basically dropped the demo and moved the Java SE 9 content to an EAA session in order to fit into the 45 minute window.Following my session I was able to enjoy Mark Little's keynote about Java Enterprise and Internet of Things. This session put out some hard-won truths of problems we have solved in Java as cautionary tales for newer stacks that seem intent on re-inventing wheels rather than standing on the shoulders of others. I must admit it was a feel-good session, but still realistic and largely kool aid free.In the afternoon, I supported David Blevins during his session about the new Security JSR. This was a very informative session that got a whole lot done in only 45 minutes. I hope it encouraged some people to get involved in JSR-375.Running back to the EAA, I presented the exciting work being done by Michael McMahon to bring a new Http Client to Java SE 9, including HTTP/2 support. I can't post the slides, but I'm sure we'll have something on this at JavaOne.My last engagment of the conference proper was to participate in a joint vJUG/NightHacking session regarding Adopt-a-JSR. This was lots of fun, and I thank Stephen Chin and Simon Maple for providing a vehicle for it.As a nice wind-down from the conference, and a bit of chill before the training day, I was invited by DOAG boss Fried Saacke to attend the 5 year celebration dinner for Java Aktuell magazine. I didn't know it at the time, but the invitation included an opportunity to give a short speech, in German, on the importance of JCP to the Java Community. I hope I didn't mangle my words too badly. After being blessed with many years of German conference opportunities at which I invariably bring home lots of chocolate, I felt it was time to give the Germans a taste of American-style sweets along with their pre-loaded VM usb sticks. These Tasty Kakes or a specialty of my home-town of Philadelphia, and each attendee of the session Java EE aus einer HTML5-Perspektive received some along with a full day of instruction and a USB stick with a VM containing the workshop materials.In summary, JavaLand has lots to recommend it. Come for the content, stay for the fun.</summary></entry></feed>
+enjoyed the sessions.&lt;/p&gt;&lt;/div&gt;</content><summary type="html">ConFESS 2015 Wrap UpHard on the heels of JavaLand was ConFESS. This was the eighth installment of the conference that started life in 2008 as JSF Days,
+ switching to the name &quot;ConFESS&quot; in 2011. The name stands for the 
+&quot;Conference for Enterprise Software Solutions&quot;. Last year, ConFESS was 
+held as a partnership with JavaLand in Brühl Germany. Neither party was 
+satisfied with how that turned out and in 2015 ConFESS returned to its 
+home in Vienna, where it will stay. It was a relatively small event, 
+with just over 200 participants. It nicely filled out the venue, the C3 
+event center in the 3rd district. In my opinion, its small size is a 
+large asset. The ability to have the entire event schedule on two sides 
+of a 4x5 inch card is very convenient.My
+ overall impression of the conference was very positive. There was a 
+wide variety of talks from speakers I hadn't seen before on the 
+conference circuit. There was a good breadth of coverage in diverse 
+tracks ranging from agile/methods to Java EE to tools to client side 
+technologies, and there was an excellent band on Tuesday night, Florian Braun and FSG Company. There was also a Lego Mindstorms EV3 competition that got rave reviews, but I didn't attend that portion of the event.The full set of abstracts from the conference are available at the regonline site for the event.
+ You can use that site to learn more about the sessions for which I will
+ give my brief impressions in the remainder of this blog entry.TuesdayThe Tuesday Keynote was from Oracle Labs's Thomas Wuerthinger. Thomas presented his exciting work on the Graal VM. First off, I'm glad to see that Oracle has continued Sun's tradition of funding long-term research in the spirit of Sun Labs,
+ founded by computing pioneer Ivan Sutherland (yep, just checked, he 
+still works for Oracle). The basic idea of Graal appears to be: take the
+ abstract syntax tree concept from compiler design and make it a first 
+class part of the JIT process, allowing the runtime to rewrite itself as
+ the program runs to achieve greater performance without sacrificing 
+agility. Cool stuff, and great for a keynote.Sticking with the JSF heritage of the conference, next up was Cagatay Civici's
+ talk about PrimeFaces. Cagatay introduced the new &quot;layouts&quot; concept, 
+built on JSF 2.2 Resource Library Contracts. The base offering consists 
+of two new layouts, Sentinel and Spark.
+ One thing I've always liked about PrimeFaces is how they take the base 
+concepts of the core JSF specification and use them to maximum effect, 
+taking full advantage of new features, large and small.Diving down a level, Johannes Tuchscherer
+ from CloudFoundry talked about Docker and how it relates to offerings 
+from Pivotal. Johannes put the hype into perspective, showing how you 
+still need other technologies to actually create value with Docker.Sticking in the Pivotal realm, Jürgen Höller
+ gave the Spring 4.1 overview talk. It was nice to see that they were 
+able to leverage Java SE 8 features while producing a binary that runs 
+on Java SE 6. I was happy to have the opportunity to ask Juergen how 
+pulled that trick off and the answer is basically build-time static code
+ analysis. They compile with Java SE 8 with -source and -target 1.6, and
+ have a build-time tool that looks for usages of Java SE 8 only idioms 
+and APIs, and flags them as failures.The next talk I attended was a really practical hands on session about Java Flight Recorder from Johan Janssen. I'm a big fan of learning to get more out of tools I already have. JFR has been a part of the JDK for quite some time.WednesdayI
+ was happy to see my good friend and fellow Oracle employee Mike Keith 
+given the Wednesday keynote slot. Mike is a veteran of the conference 
+trail, author of Pro JPA2
+ and former JPA spec lead. Mike was talking about an exciting new 
+product from Oracle: Mobile Back End As A Service (MBaaS). In a 
+nutshell, this product packages up everything enterprises need to deploy
+ mobile based applications that are built on their existing 
+infrastructure. Mike's slides are available for download.My
+ own session was up next, at which I gave a status update on JSF 2.3. 
+Briefly, it's a community driven release aimed at preserving your 
+existing investment in JSF. I've uploaded my slides to slideshare.As a counterpart to Johan Janssen's session yesterday I attended Anton Arhipov's session about ZeroTurnaround's XRebel
+ product. I liked his straightforward pitch: most applications receive 
+very little profiling attention, let's make a super simple product that 
+lets you get the low hanging fruit with maximum performance gain. 
+Indeed, the slick browser based UI is very easy to use. When asked about
+ various corner cases, Anton was honest and answered the current state 
+of the product is very narrowly focused on where the most value can be 
+easily extracted. This focus is a key success factor for ZT, in my 
+opinion.I've always talked up the importance of maintainability, 
+and sold that as a strong suit of the Java EE stack, so it was with 
+great interest that I attended Bernhard Keprt's session about maintenance. One reason I like attending conferences is to remove my 3rd order ignorance by exposing me to technologies I otherwise would not encounter. During Bernhard's talk, he introduced me to VersionEye.
+ The value-add of this tool is easy to perceive: given that you have 
+lots of dependencies, let's have a tool that keeps an eye on them and 
+lets you know when they update.Stefan Schuster gave a session 
+from his experiences in developing apps for the three big flavors of 
+mobile deployment platforms: native, Apache Cordova, and mobile web app.
+ I liked this session for its first-hand perspective.To close out my 2015 ConFESS session attendance I viewed Alex Göschl's session on AngularJS. Alex shared his experiences in deployng Angular 1 for the jobs portal for conference sponsor Willhaben.
+ FWIW, I found nine job postings for JSF on the site and four for 
+Angular. This was an enjoyable talk and Alex did a great job explaining 
+the extremely heterogeneous set of tools and technologies used in the 
+project. Prior to switching the jobs portal to Angular 1, they were 
+using GWT. It was pretty much a complete rewrite. The most useful aspect
+ of the talk to me was the ease with which such an apparently complex 
+tool chain is now accepted and leveraged by your average front end team.
+ For example, the following nine step dev time build process was rattled
+ off as if it were no big deal.clean build targetscompile less to csscopy vendor librariescopy assetscompile and optimize angular templatescompile and check typescriptcopy to tomcatinject velocity templatesIt
+ must just be my Java EE roots that makes me feel that the preceding 
+list is a lot more complex than a similar build process in a Java EE 
+stack. I need to spend more time getting to know the workflow in current
+ front end shops. Can anyone recommend a user group or meetup in 
+Orlando, FL?Following the two day conference was my full day of 
+workshops. I had a small but dedicated room of students and I hope they 
+enjoyed the sessions.</summary></entry></feed>

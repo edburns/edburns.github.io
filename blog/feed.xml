@@ -1,5 +1,162 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-03-07T11:08:45-05:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Hello Apiary, Java Annotations and Swagger YAML</title><link href="/blog/2017/03/07/hello-apiary-swagger.html" rel="alternate" type="text/html" title="Hello Apiary, Java Annotations and Swagger YAML" /><published>2017-03-07T09:19:00-05:00</published><updated>2017-03-07T09:19:00-05:00</updated><id>/blog/2017/03/07/hello-apiary-swagger</id><content type="html" xml:base="/blog/2017/03/07/hello-apiary-swagger.html">&lt;p&gt;As I'm finishing up the preparations for the class &lt;a href=&quot;http://source-knights.com&quot;&gt;Oliver Szymanski&lt;/a&gt; and
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-03-13T13:06:29-04:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Notes from The New Stack Godaddy CaaS podcast</title><link href="/blog/2017/03/13/newstack-godaddy-caas.html" rel="alternate" type="text/html" title="Notes from The New Stack Godaddy CaaS podcast" /><published>2017-03-13T12:39:00-04:00</published><updated>2017-03-13T12:39:00-04:00</updated><id>/blog/2017/03/13/newstack-godaddy-caas</id><content type="html" xml:base="/blog/2017/03/13/newstack-godaddy-caas.html">&lt;p&gt;I use GoDaddy for my DNS hosting for this site.  I'm interested in
+Container as a Service (CaaS).
+This &lt;a href=&quot;https://thenewstack.io/godaddy-built-container-service-platform/&quot;&gt;podcast
+    episode&lt;/a&gt; seems like a good fit.  Here are my notes as I listen.&lt;/p&gt;
+
+&lt;p&gt;0:33 uses Kubernetes and OpenStack.  Shaheeda Nizar, director of
+engineering, GoDaddy.  Micah Rupersburg, GoDaddy CaaS engineering
+  leader.&lt;/p&gt;
+
+&lt;p&gt;1:53 Why did you start to do it?  They already had IaaS powered by
+OpenStack.  Internally, the adoption of containers took
+off: &lt;strong&gt;mainly because of being able to package all the
+dependencies&lt;/strong&gt;.  Once they went down this road, they needed a
+  platform that runs, orchestrates and manages these containers.&lt;/p&gt;
+
+&lt;p&gt;03:33 High level overview.  Kubernetes started to take off as they
+were entering the space.  They liked the vibrant community.  They build
+Kubernets clusters on top of their OpenStack compute.  It had to be
+multi-tenant (obviously for GoDaddy).  This requirement caused much of
+  their interesting technical decisions.&lt;/p&gt;
+
+&lt;p&gt;04:57 They needed to get the efficiencies of scale.  Needed partition
+and isolation.  Kubernetes namespaces allows this.  They use namespaces
+to segregate the teams from one another in production.  In staging, they
+create one namespace for each instance of their entire stack that they
+  want to test.  It can be torn down all at once.  It's a sandbox.&lt;/p&gt;
+
+&lt;p&gt;06:51 Uses ActiveDirectory for group memberships and Keystone
+  (OpenStack) for authorization.  They have a custom shim that
+  syncronizes the ActiveDirectory into the authorization bit of
+  Kubernetes to provide RBAC.  Each team only has one role.  All team
+  members have all rights.  Driven by an annotation on the namespace
+  object.  Does that mean it's Java?&lt;/p&gt;
+
+&lt;p&gt;07:50 What about &quot;Nova&quot; (a part of OpenStack).  Did you drop that?
+  Seemed like a sensitive question.  She kind of equivocated.  They may
+  adopt a hybrid cloud approach: running Kubernetes on their own
+  private cloud, but OpenStack on the public cloud and be able to
+  deploy in both places.&lt;/p&gt;
+
+&lt;p&gt;08:45 Kubernetes provides isolation to give you cloud portability.
+  For example L7 load balancing has different impls on AWS vs their
+  impl, but the app's are isolated from that.  IP space is normalized.
+  They use DNS for service discovery.  They are scoped to the
+  namespace.  The federation feature of Kubernetes can be integrated
+  with DNS.&lt;/p&gt;
+
+&lt;p&gt;10:11 Drilling down on the hybrid environment.  Clients have to care
+  about if they have to be in different regions.  If the client is in a
+  region for which GoDaddy does not have a regional presence, they want
+  to be able to go after that business by using public cloud for that
+  client.&lt;/p&gt;
+
+&lt;p&gt;11:25 Much of the demand is driven by latency.  For example,
+  GoDaddy's main thing is searching for the availability of domain
+  names.  When someone does a query, it needs to be handled local to
+  you.  They don't have data centers in all the places they want to do
+  business.&lt;/p&gt;
+
+&lt;p&gt;12:25 How do you handle the data synchronization?  They are not even
+  looking at doing that.  The data is still local.  Are you referring
+  to data governance?  If so, still to premature to talk about.
+  Distributed database sync is the real problem.  Domain resellers need
+  a local endpoint to call.&lt;/p&gt;
+
+&lt;p&gt;15:05 Which are running in hybrid mode?  The multi-tenant thing is
+  still a year out.  Some apps originated as containerized, others were
+  broken up from monoliths.  They are good experts at stateless
+  microservices apps that are containerized.&lt;/p&gt;
+
+&lt;p&gt;16:55 Autoscaling and resiliency to failure is such a huge win for
+  product teams.  Services have better uptime.  No paging in the middle
+  of the night.  Better response time.&lt;/p&gt;
+
+&lt;p&gt;18:07 What do you use to gain visibility into what is inside the
+  containers?  For example, how do you know your containers have the
+  latest security patches applied?  They have a monitoring system:
+  metrics, logging events out (audit trail).  But they basically don't
+  keep track of what's inside containers.  They have a CICD pipeline
+  into which such inspection could be inserted.  They have standard
+  approved versions of frameworks.  Kubernetes allows you to deploy in
+  different ways, though.&lt;/p&gt;
+
+&lt;p&gt;21:42 How important is telemetry.  Snap and Grafana.  There is debate
+  within Kubernetes about CI.  They are using Jenkins for CI and CD.
+  They are not using Travis.  They run their own Git servers.  They
+  use &lt;a href=&quot;https://prometheus.io/&quot;&gt;Prometheus&lt;/a&gt; to collect
+  metrics.  They have a plugin that allows you to collect metrics from
+  all the containers in the cluster, and these metrics are federated to
+  a central location.  Grafana sits on top of that.  Each team can look
+  at a dashboard that represents their namespace.&lt;/p&gt;
+
+&lt;p&gt;24:03 As soon as a client gets onboarded, they get their own
+  dashboard.  &lt;/p&gt;
+
+&lt;p&gt;24:50 How are you managing the control plane?  They looked at Magnum,
+  but rolled their own using Ansible.  There are several different
+  layers for the CaaS.  At the network layer they use Flannel SDN,
+  backed by EtcD.  They deploy EtcD and Flannel before they deploy
+  anything else.  On top of that they deploy the Kubernetes control
+  plane.  On top of Kubernetes itself, they deploy all the ancialliary
+  services.  (Platform services).  They hope to make this available to
+  the community.&lt;/p&gt;
+
+&lt;p&gt;27:54 How do you decide what to share?  1. Not re-invent. 2. Use
+  open source that's the right fit.  They have custom code for legacy
+  tie-ins.  But the intention is to write it in a standardized way.
+  There is a huge benefit of sharing if it gets popular.  The community
+  can maintain the pattern.  She thinks of it as a two way street.&lt;/p&gt;
+
+&lt;p&gt;29:33 Are you still using any proprietary for new developments?  LDAP
+  integration is custom.  SSL certificates or DNS entries.  CaaS has the
+  smallest number of proprietary bits.  They
+  use &lt;a href=&quot;http://www.fluentd.org/&quot;&gt;FluentD&lt;/a&gt; to collect their
+  logs with
+  a &lt;a href=&quot;https://www.loggly.com/blog/why-journald/&quot;&gt;JournalD&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;31:35 They have a custom logging infrastructure but they wrote a
+  wrapper around it that looks like ElasticSearch.&lt;/p&gt;
+
+&lt;p&gt;32:05 How much of what is in the container do you want to provide as
+  a service?  Is every product group on their own there?  The web based
+  product teams are rolling their own stuff and they have a lot of
+  expertise in that area.  They don't have a lot of visibility into the
+  actual application teams.  But they do have patterns for best
+  practices such as &quot;how do I terminate SSL in my application with
+  NGINX?&quot;  &quot;How do I send events out?&quot;  &quot;How do I expose my metrics?&quot;
+  They have tutorials for how to do this kind of thing.  It's really a
+  pattern library.  They want to make it so the only thing they need to
+  interact with is Kubernetes to do anything involving deployment.  One
+  single YAML and you're good.  Deploying straight to OpenStack has lots
+  of steps.  These go away with their CaaS solution.&lt;/p&gt;
+
+&lt;p&gt;34:50 What is the business value of the service itself?  How is it
+  priced?  Who are the customers?  They measure the business impact in
+  1. time to market.  If developers can deploy their apps in a seamless
+  low friction environment, that's the win.  IT has transferred from a
+  &quot;ticket based&quot; thing where developers had to do a lot of those
+  tickets before they could deploy their app to production.  All of
+  that friction goes away.  2. The cost of devops.  How much work does a
+  dev or op have to put in to ensure the service is always up, is
+  scaling correctly, has sufficient monitoring.  &lt;/p&gt;
+
+&lt;p&gt;37:03 What's next?  Healthchecking. &lt;strong&gt;The old downstream
+    problem shows up again!&lt;/strong&gt;  How do we expose that type of
+    failure.  They are looking at ways to make this transparent, with
+    probing endpoints.  Making root cause analysis easier.  Elastic
+  capacity is not done yet.&lt;/p&gt;
+
+&lt;p&gt;39:22 The same tired value proposition: let developers focus on their
+  code and not have to worry about the environment.  What
+  about &lt;a href=&quot;https://github.com/funcatron&quot;&gt;Funcatron&lt;/a&gt;?&lt;/p&gt;
+
+&lt;p&gt;39:46 Kubernetes is a great platform to build higher level
+  constructs on top of.  Machine learning on top of the cluster.&lt;/p&gt;</content><summary type="html">I use GoDaddy for my DNS hosting for this site.  I'm interested in
+Container as a Service (CaaS).
+This podcast
+    episode seems like a good fit.  Here are my notes as I listen.</summary></entry><entry><title type="html">Hello Apiary, Java Annotations and Swagger YAML</title><link href="/blog/2017/03/07/hello-apiary-swagger.html" rel="alternate" type="text/html" title="Hello Apiary, Java Annotations and Swagger YAML" /><published>2017-03-07T09:19:00-05:00</published><updated>2017-03-07T09:19:00-05:00</updated><id>/blog/2017/03/07/hello-apiary-swagger</id><content type="html" xml:base="/blog/2017/03/07/hello-apiary-swagger.html">&lt;p&gt;As I'm finishing up the preparations for the class &lt;a href=&quot;http://source-knights.com&quot;&gt;Oliver Szymanski&lt;/a&gt; and
 I are teaching at the
 &lt;a href=&quot;http://www.javaland.eu/de/programm/schulungstag/&quot;&gt;JavaLand
 Schulungstag,&lt;/a&gt; I wanted to take some time to blog about some aspects
@@ -2186,45 +2343,4 @@ barriers to entry to give it a try. Go succeeds because it rules several
  fundamental things as simply out of scope. There is no dynamic linking.
  There is no UI. There is no API to the threading model. There is no 
 inheritance. I'm glad Go is out there because sometimes you don't need 
-that stuff. For what it's worth, here's a nice post on Go from the Docker guy.Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends Jevgeni Kabanov and Toomas Römer. I'm glad to see these guys doing well.</summary></entry><entry><title type="html">Recent Ripple of JSF Extensions Blog</title><link href="/blog/2015/06/01/recent-ripple-jsf-extensions.html" rel="alternate" type="text/html" title="Recent Ripple of JSF Extensions Blog" /><published>2015-06-01T10:30:00-04:00</published><updated>2015-06-01T10:30:00-04:00</updated><id>/blog/2015/06/01/recent-ripple-jsf-extensions</id><content type="html" xml:base="/blog/2015/06/01/recent-ripple-jsf-extensions.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h1&gt;Recent Ripple of JSF Extensions&lt;/h1&gt;&amp;nbsp; &lt;p&gt;My colleague &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.java.net/blogs/mriem&quot; rel=&quot;nofollow&quot;&gt;Manfred Riem&lt;/a&gt; tipped me off to a new framework built on JSF, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.butterfaces.org/&quot; rel=&quot;nofollow&quot;&gt;ButterFaces&lt;/a&gt;.&amp;nbsp;
- This whimsical name started an amusing Twitter thread, but also, and 
-much more importantly brought several other new JSF extensions to light.
- This is the sort of thing that I used to look to Kito Mann's &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.jsfcentral.com/products/frameworks/&quot; rel=&quot;nofollow&quot;&gt;JSF Central Frameworks Page&lt;/a&gt;
- for, but it seems that needs an update.&amp;nbsp; So, in addition to 
-ButterFaces, here are several other JSF extensions that are definitely 
-worth a look.&lt;/p&gt;&amp;nbsp; &lt;p&gt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.bootsfaces.net/&quot; rel=&quot;nofollow&quot;&gt;BootsFaces&lt;/a&gt; focuses on Twitter Bootstrap 3 and jQuery UI.&lt;/p&gt;&amp;nbsp; &lt;p&gt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.materialprime.com/&quot; rel=&quot;nofollow&quot;&gt;Material Prime&lt;/a&gt; is a PrimeFaces extension that lets you build web apps that conform to Google's &quot;Material&quot; design language.&lt;/p&gt;&amp;nbsp; &lt;p&gt;&lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.generjee.com/&quot; rel=&quot;nofollow&quot;&gt;Generjee&lt;/a&gt;
- is a Java EE application generator that outputs JSF+JavaEE 7+CDI 
-code.&amp;nbsp; FWIW, I would be remiss if I didn't point out that &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://java.net/projects/javaee-spec/pages/JEE&quot; rel=&quot;nofollow&quot;&gt;there is nothing named JEE&lt;/a&gt;.&amp;nbsp; So, I suggest this project rename itself to generee.&amp;nbsp; I think that's snappier anyway.&lt;/p&gt;&amp;nbsp; &lt;p&gt;This
- recent flurry of activity shows two things.&amp;nbsp; First, the continuing
- vitality of the JSF ecosystem.&amp;nbsp; By now I think we all know that 
-the ecosystem around the technology is just as important as the 
-technology itself.&amp;nbsp; It's like this.&amp;nbsp; A technology has to be 
-&quot;good enough&quot; to get the job done.&amp;nbsp; That's a given.&amp;nbsp; Heck, it 
-could even be excellent technology.&amp;nbsp; But without an ecosystem 
-around it, even the best technologies will not survive.&amp;nbsp; Second, 
-there is still interest and value in server side state UI 
-frameworks.&amp;nbsp; My recent work with HTTP/2 in Servlet 4 has shown me 
-that such frameworks are very well positioned to take advantage of the 
-optimizations in the HTTP/2 protocol, as well as other performance 
-optimizations shown in &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/igrigorik&quot; rel=&quot;nofollow&quot;&gt;Ilya Grigorik's&lt;/a&gt; excellent &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://chimera.labs.oreilly.com/books/1230000000545&quot; rel=&quot;nofollow&quot;&gt;High Performance Browser Networking&lt;/a&gt;.&lt;/p&gt;&amp;nbsp; &lt;p&gt;So, check out these new frameworks and don't be afraid to question conventional wisdom.&lt;/p&gt; 
-&lt;/div&gt;</content><summary type="html">Recent Ripple of JSF Extensions&amp;nbsp; My colleague Manfred Riem tipped me off to a new framework built on JSF, ButterFaces.&amp;nbsp;
- This whimsical name started an amusing Twitter thread, but also, and 
-much more importantly brought several other new JSF extensions to light.
- This is the sort of thing that I used to look to Kito Mann's JSF Central Frameworks Page
- for, but it seems that needs an update.&amp;nbsp; So, in addition to 
-ButterFaces, here are several other JSF extensions that are definitely 
-worth a look.&amp;nbsp; BootsFaces focuses on Twitter Bootstrap 3 and jQuery UI.&amp;nbsp; Material Prime is a PrimeFaces extension that lets you build web apps that conform to Google's &quot;Material&quot; design language.&amp;nbsp; Generjee
- is a Java EE application generator that outputs JSF+JavaEE 7+CDI 
-code.&amp;nbsp; FWIW, I would be remiss if I didn't point out that there is nothing named JEE.&amp;nbsp; So, I suggest this project rename itself to generee.&amp;nbsp; I think that's snappier anyway.&amp;nbsp; This
- recent flurry of activity shows two things.&amp;nbsp; First, the continuing
- vitality of the JSF ecosystem.&amp;nbsp; By now I think we all know that 
-the ecosystem around the technology is just as important as the 
-technology itself.&amp;nbsp; It's like this.&amp;nbsp; A technology has to be 
-&quot;good enough&quot; to get the job done.&amp;nbsp; That's a given.&amp;nbsp; Heck, it 
-could even be excellent technology.&amp;nbsp; But without an ecosystem 
-around it, even the best technologies will not survive.&amp;nbsp; Second, 
-there is still interest and value in server side state UI 
-frameworks.&amp;nbsp; My recent work with HTTP/2 in Servlet 4 has shown me 
-that such frameworks are very well positioned to take advantage of the 
-optimizations in the HTTP/2 protocol, as well as other performance 
-optimizations shown in Ilya Grigorik's excellent High Performance Browser Networking.&amp;nbsp; So, check out these new frameworks and don't be afraid to question conventional wisdom.</summary></entry></feed>
+that stuff. For what it's worth, here's a nice post on Go from the Docker guy.Finally, there were some brief and tasteful closing remarks from ZeroTurnaround founders and my good friends Jevgeni Kabanov and Toomas Römer. I'm glad to see these guys doing well.</summary></entry></feed>

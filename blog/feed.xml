@@ -1,5 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-03-21T00:04:47-07:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Devoxx US 2017 Picks</title><link href="/blog/2017/03/19/devoxx-us-2017-picks.html" rel="alternate" type="text/html" title="Devoxx US 2017 Picks" /><published>2017-03-19T22:59:00-07:00</published><updated>2017-03-19T22:59:00-07:00</updated><id>/blog/2017/03/19/devoxx-us-2017-picks</id><content type="html" xml:base="/blog/2017/03/19/devoxx-us-2017-picks.html">&lt;p&gt;I've been around the block a bit when it comes to Java developer
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-03-21T11:27:57-07:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Devoxx Java EE 8</title><link href="/blog/2017/03/21/java-ee-8.html" rel="alternate" type="text/html" title="Devoxx Java EE 8" /><published>2017-03-21T11:00:00-07:00</published><updated>2017-03-21T11:00:00-07:00</updated><id>/blog/2017/03/21/java-ee-8</id><content type="html" xml:base="/blog/2017/03/21/java-ee-8.html">&lt;p&gt;Raw notes from Linda DeMichiel's Java EE 8 talk.&lt;/p&gt;
+
+&lt;p&gt;What was in EE 7: Actually a very action packed release, with the
+usual themes: simplicity, platform cohesion, embracing contemporary
+  standards.&lt;/p&gt;
+
+&lt;p&gt;EE8: Admit the impact of the hiatus.  The original plan had to be
+  scaled back from 12 to 9 JSRs.  Really not a big scale back.&lt;/p&gt;
+
+&lt;p&gt;Two net new JSRs: Security and JSON-B.  Revisions for Servlet, JSF,
+  JSON-P, JAX-RS.&lt;/p&gt;
+
+
+&lt;p&gt;JSON-P.  JSON-Pointer: String syntax for referencing into a JSON
+  document.  &lt;a href=&quot;https://tools.ietf.org/html/rfc6901&quot;&gt;RFC-6901&lt;/a&gt;.
+  Would be nice if there was EL integration.  JSON Patch: Ability to
+  mutate a JSON
+  document.  &lt;a href=&quot;https://tools.ietf.org/html/rfc6902&quot;&gt;RFC-6902&lt;/a&gt;.
+  This has a builder API.  JSON-Merge Patch: Conditionally apply the
+  patch.  &lt;a href=&quot;https://tools.ietf.org/html/rfc7386&quot;&gt;RFC-7386&lt;/a&gt;.  &lt;strong&gt;Also
+  includes seamless integration with Java SE 8 Lambda and
+    Strings.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;JSON-B.  Like JAX-B, but for JSON.  This is the missing piece for
+  JSON in standard Java.  &lt;code&gt;JsonbBuilder&lt;/code&gt; is the client entry
+  point.  &lt;code&gt;Jsonb&lt;/code&gt; the thing you actually manipulate.  Allows
+  you to annotate your Java Pojo to control how it is mapped to JSON.
+  The &lt;code&gt;JsonBConfig&lt;/code&gt; allows you to do this control.  The RI is
+  called &lt;a href=&quot;http://json-b.net/&quot;&gt;Yasson&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;JAX-RS.  New features: Reactive Client API, Server Sent Events,
+  NIO.  I have more on this at &lt;a href=&quot;/blog/2017/02/21/jax-rs-2_1-new-feature-introduction.html&quot;&gt;a previous
+  post&lt;/a&gt;.  Linda's talk had more structure on Server Sent Events.  I
+  am glad she emphasized the value JAX-RS brings in sending SSE to both
+  client and server when doing REST.&lt;/p&gt;
+
+&lt;p&gt;Servlet. But first set the context with some plain content on HTTP/2.
+  When talking about the binary framing, she mentioned that frames were
+  self describing, which was a nice observation. &lt;/p&gt;
+
+&lt;p&gt;JSF. A mature technology.  An enormous number of community requested
+  fixes.  She did address why we are continuing JSF while we are not continuing MVC.  This was nice to hear.  &lt;/p&gt;
+
+&lt;p&gt;CDI 2.0.  Mostly about how to use CDI in Java SE environments,
+  outside of Java SE.  This is hugely important for fat-jar style
+  Microservices.  Some enhancements to CDI events.  In 1.1, events are
+  invoked synchronously, without regard for priority.  2.0 allows
+  prioritization and ordering.  Adds async
+  events: &lt;code&gt;event.fireAsync()&lt;/code&gt; and &lt;code&gt;@ObserveAsync&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;BeanValidation 2.0.  Continuing the theme with JSF, adds support for
+  a number of Java SE 8 features.  Adds some new constraints.  Add
+  ability to apply constraints on insertion into &lt;code&gt;Map&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Security 1.0.  Three new APIs &lt;code&gt;SecurityContext,
+  HttpAuthenticationMechanism, IdentityStore&lt;/code&gt;.  The first is under
+  debate about whether or note the first is actually
+  necessary.  &lt;code&gt;SecurityContext&lt;/code&gt; is intended to supercede APIs
+  in several of the other EE technologies.  I like the
+  idea.  &lt;code&gt;HttpAuthenticationMechanism&lt;/code&gt;, modeled on JASPIC,
+  and JASPIC is intended to delegate to this.  It is used to
+  authenticate callers of web applications.  &lt;code&gt;IdentityStore&lt;/code&gt;
+  has methods for authentication and authorization.&lt;/p&gt;
+
+&lt;p&gt;Summary: Target release date of this summer!&lt;/p&gt;
+
+&lt;!--
+
+&lt;h3&gt;Personal notes&lt;/h3&gt;
+
+&lt;p&gt;What is it about a presentation that makes it easier to take
+notes?&lt;/p&gt;
+
+
+--&gt;</content><author><name></name></author><summary type="html">Raw notes from Linda DeMichiel's Java EE 8 talk.</summary></entry><entry><title type="html">Devoxx US 2017 Picks</title><link href="/blog/2017/03/19/devoxx-us-2017-picks.html" rel="alternate" type="text/html" title="Devoxx US 2017 Picks" /><published>2017-03-19T22:59:00-07:00</published><updated>2017-03-19T22:59:00-07:00</updated><id>/blog/2017/03/19/devoxx-us-2017-picks</id><content type="html" xml:base="/blog/2017/03/19/devoxx-us-2017-picks.html">&lt;p&gt;I've been around the block a bit when it comes to Java developer
 conferences and for some reason Silicon Valley USA is a tough nut to
 crack, for the conference organizer.  This difficulty flies in the face
 of the obvious surplus of top tier talent in the area, but for some
@@ -2277,90 +2351,4 @@ Here are my picks for sessions I plan to attend.&lt;/p&gt;
 	&lt;/ul&gt;</content><author><name></name></author><summary type="html">Edited: 2017-02-23: Recommend additional session.</summary></entry><entry><title type="html">Welcome to my blog reboot</title><link href="/blog/2017/02/21/welcome-to-my-blog-reboot.html" rel="alternate" type="text/html" title="Welcome to my blog reboot" /><published>2017-02-21T05:15:00-08:00</published><updated>2017-02-21T05:15:00-08:00</updated><id>/blog/2017/02/21/welcome-to-my-blog-reboot</id><content type="html" xml:base="/blog/2017/02/21/welcome-to-my-blog-reboot.html">&lt;p&gt;After a two year hiatus, I intend to blog again.  I'm not sure how
 popular blogs are any more, though.  Many thanks
 to &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; for their excellent and
-polished tool.&lt;/p&gt;</content><author><name></name></author><summary type="html">After a two year hiatus, I intend to blog again. I'm not sure how popular blogs are any more, though. Many thanks to Jekyll for their excellent and polished tool.</summary></entry><entry><title type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog</title><link href="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html" rel="alternate" type="text/html" title="Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto Blog" /><published>2015-07-01T05:28:00-07:00</published><updated>2015-07-01T05:28:00-07:00</updated><id>/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto</id><content type="html" xml:base="/blog/2015/07/01/webinar-notes-typesafe-william-hill-omnia-patrick-di-loreto.html">&lt;div class=&quot;jive-rendered-content&quot;&gt;&lt;h2&gt;Webinar Notes: Typesafe William Hill Omnia Patrick Di Loreto&lt;/h2&gt;&lt;p&gt;My friend &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/TheOTown&quot; rel=&quot;nofollow&quot;&gt;Oliver White&lt;/a&gt; is doing his usual bang-up job in his new gig at &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/typesafe&quot; rel=&quot;nofollow&quot;&gt;TypeSafe&lt;/a&gt;. One aspect is the humble webinar. Here are my notes for one that caught my eye, &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://www.typesafe.com/blog/using-spark-kafka-cassandra-and-akka-on-mesos-for-real-time-personalization&quot; rel=&quot;nofollow&quot;&gt;Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization&lt;/a&gt;. This is a very dense but well delivered presentation by &lt;a class=&quot;jive-link-external-small&quot; href=&quot;https://twitter.com/patricknoir&quot; rel=&quot;nofollow&quot;&gt;Patrick Di Loreto&lt;/a&gt; who helped develop a new platform for his employer, the online gambling service, William Hill.&lt;/p&gt;&lt;p&gt;Morally,
- I am sensitive to the real damage done to real lives and families that 
-is caused by gambling, so I will include a link to an organization that 
-offers help: &lt;a class=&quot;jive-link-external-small&quot; href=&quot;http://www.calpg.org/&quot; rel=&quot;nofollow&quot;&gt;1-800-GAMBLER&lt;/a&gt;.
- That said, this is just another instance of the ancient tradition of 
-technology development being driven by something that traditionally is 
-seen as vice. (For a humorous, NSFW and prophetic Onion article, search 
-google for “theonion internet andreessen viewing device”. I’m old enough
- to have first read that on an actual physical newspaper!)&lt;/p&gt;&lt;p&gt;Now, on
- to the raw notes. YMMV of course, but if nothing else this will help 
-you overcome the annoying problem of the slide advancing not being 
-    synched to the audio.&lt;/p&gt;
-
-  &lt;pre&gt;
-
-Context: presentation by Patrick Di Loreto (@patricknoir) R&amp;amp;D
-Engineering lead for William Hill online betting.
-
-The presenation was
-done for Typesafe as a Webinar on 14 June 2015. They have a new betting
-platform they call Omnia.
-
-- Need to handle massive amount of data
-
-- Based on Lambda Architecture from Nathan Marz &amp;lt;http://lambda-architecture.net/&amp;gt;.
-
-- Omnia is a platform that includes four different components
-
-* Chronos - Data Source
-* Fates - Batch Layer
-* NeoCortex - Speed layer
-* Hermes - Serving layer
-
-03:47 definition of Lambda Architecture “All the data must come from a unique
-place (data source) They separate access to the data source into two
-different modes based on timeliness requirements.
-
-NeoCortex (Speed
-Layer) is to access the data in real time, but without some consistency
-and correctness guarantees. Optimized for speed. It has only recent
-data. Fates (Batch Layer) is to access the data not in real time, but
-with more (complete?) consistency.
-
-05:00 Reactive Manifesto slide
-
-06:15 importance of elasticty for them
-
-06:47 Chronos Data Source: “It’s nothing else than a container for
-active streams” “Chronos is a sort of middleware. It can talk to the
-outside world and bring the data into their system.” Organize the data
-into a stream of observable events, called “incidents”. Can have
-different viewpoints for different concerns
-
-* Internal (stuff they need to implement the system itself)
-
-* Product centric (which of the WH products such as “sports” “tweets” “news”.
-
-* External (“social media sharing”)
-
-* Customer centric
-
-  10:12 Chronos streams connect to the external system and bring it into
-  Chronos Adapter: Understand all the possible protocols that other systems
-  implement. Connect to the other system.
-
-Converter: Transform the incoming data into their internal format
-Persistence Manager: Make the converted data durable.
-
-11:22 Chronos clustering Benefits from the Akka Framework. Distributes
-the streams across the cluster. When failover happens, stream connection
-to outside source is migrated to another node via Akka. Keeps
-referential transparency. Each stream is an Actor which “supervises” its
-children: adapter, converter, persistence manager.
-
-12:41 Supervising (Slides diverged from audio) (Slide 12) Supervision is
-key to allowing “error kernel
-pattern”. &amp;lt;http://danielwestheide.com/blog/2013/03/20/the-neophytes-guide-to-scala-part-15-dealing-with-failure-in-actor-systems.html&amp;gt;
-Basically, it is just a simple guideline you should always try to
-follow, stating that if an actor carries important internal state, then
-it should delegate dangerous tasks to child actors, so as to prevent the
-state-carrying actor from crashing. Sometimes, it may make sense to
-spawn a new child actor for each such task, but that
-
-  &lt;/pre&gt;
-
-
-&lt;/div&gt;</content><author><name></name></author><summary type="html">Webinar Notes: Typesafe William Hill Omnia Patrick Di LoretoMy friend Oliver White is doing his usual bang-up job in his new gig at TypeSafe. One aspect is the humble webinar. Here are my notes for one that caught my eye, Using Spark, Kafka, Cassandra and Akka on Mesos for Real-Time Personalization. This is a very dense but well delivered presentation by Patrick Di Loreto who helped develop a new platform for his employer, the online gambling service, William Hill.Morally, I am sensitive to the real damage done to real lives and families that is caused by gambling, so I will include a link to an organization that offers help: 1-800-GAMBLER. That said, this is just another instance of the ancient tradition of technology development being driven by something that traditionally is seen as vice. (For a humorous, NSFW and prophetic Onion article, search google for “theonion internet andreessen viewing device”. I’m old enough to have first read that on an actual physical newspaper!)Now, on to the raw notes. YMMV of course, but if nothing else this will help you overcome the annoying problem of the slide advancing not being synched to the audio.</summary></entry></feed>
+polished tool.&lt;/p&gt;</content><author><name></name></author><summary type="html">After a two year hiatus, I intend to blog again. I'm not sure how popular blogs are any more, though. Many thanks to Jekyll for their excellent and polished tool.</summary></entry></feed>

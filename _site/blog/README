@@ -1,0 +1,7 @@
+To view the site locally
+
+jekyll serve
+
+To build the site for copying to github pages
+
+jekyll build --safe

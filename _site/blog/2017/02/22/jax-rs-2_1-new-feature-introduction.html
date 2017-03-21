@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>JAX-RS 2.1 New Feature Introduction</title>
+  <meta name="description" content="In preparation for my DevNexus talk on Thursday I reviewed the commit log for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I didn’t miss a...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">JAX-RS 2.1 New Feature Introduction</h1>
+    <p class="post-meta"><time datetime="2017-02-22T00:15:00-05:00" itemprop="datePublished">Feb 22, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>In preparation for my <a href="/blog/2017/02/21/devnexus-2017-picks.html">DevNexus talk on Thursday</a> I reviewed the commit log
+for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I
+didn’t miss anything (See git://java.net/jax-rs-spec~api).  There are
+basically three new big ticket features in JAX-RS 2.1.</p>
+
+<ul>
+  <li>
+    <p>Integration with Arbitrary Third-Party Reactive Frameworks</p>
+  </li>
+  <li>
+    <p>Server Sent Events, with support for Reactive Streams as specified in
+the Reactive Streams API</p>
+  </li>
+  <li>
+    <p>Reactive Client API</p>
+  </li>
+</ul>
+
+<p>This blog post outlines each feature.  For more details, see the
+DevNexus talk.  Thanks to
+<a href="https://twitter.com/pavel_bucek">Pavel Bucek</a>,
+<a href="https://twitter.com/marek_potociar">Marek Potociar</a> and
+<a href="https://twitter.com/spericas">Santigo Pericas-Geertsen</a> for co-leading
+the JAX-2.1 Spec and in particular for the code samples I cite in this
+post.</p>
+
+<p>Please note that this blog post documents in-progress features whose API
+will likely change before JAX-RS 2.1 is final.</p>
+
+<h2 id="integration-with-arbitrary-third-party-reactive-frameworks">Integration with Arbitrary Third-Party Reactive Frameworks</h2>
+
+<p>The JAX-RS EG acknowledges that the state of the art of reactive
+programming has already reached maturity, and several popular frameworks
+exist, while the Java SE 9 Flow API is not yet available.  The reactive
+features in JAX-RS 2.1 are designed in the spirit of
+<a href="http://dreamsongs.com/IHE/">innovation happens elsewhere</a>: you can
+bring your own reactive framework.  The following example uses
+<a href="http://reactivex.io/">Flowable</a> from RxJava2.</p>
+
+<div style="padding: 5px;">
+		<div class="java" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">Client client <span style="color: #339933;">=</span> ClientBuilder.<span style="color: #006633;">newClient</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">register</span><span style="color: #009900;">&#40;</span>RxFlowableInvokerProvider.<span style="color: #000000; font-weight: bold;">class</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">Flowable<span style="color: #339933;">&lt;</span>Response<span style="color: #339933;">&gt;</span> flowable <span style="color: #339933;">=</span> client.<span style="color: #006633;">target</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;http://cloud.oracle.com&quot;</span><span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .<span style="color: #006633;">request</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .<span style="color: #006633;">rx</span><span style="color: #009900;">&#40;</span>RxFlowableInvoker.<span style="color: #000000; font-weight: bold;">class</span><span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .<span style="color: #006633;">get</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">flowable.<span style="color: #006633;">subscribe</span><span style="color: #009900;">&#40;</span>response <span style="color: #339933;">-&gt;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #666666; font-style: italic;">// do something with a response when it arrives.</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+</ol></div>		</div>
+
+<p>The work of implementing the <code class="highlighter-rouge">RxFlowableInvokerProvider</code> on line 1 and
+the <code class="highlighter-rouge">RxFlowableInvoker</code> on line 5 is beyond the scope of this blog post,
+but it is expected that reactive framework providers (or third parties)
+will provide the necessary implementations of <code class="highlighter-rouge">RxInvokerProvider</code> for
+popular frameworks.  This work was introduced in “commit f601630 Date:
+Thu Jan 12 10:31:41 2017 +0100”.</p>
+
+<h2 id="server-sent-events-sse">Server Sent Events (SSE)</h2>
+
+<p>This feature was introduced in “commit 37f8814 Date: Tue Oct 6 20:15:07
+2015 +0200” and was substantially enhanced several times since, most
+notably with the addition of support for the
+<a href="http://reactive-streams.org">Reactive Streams Standard from Lightbend</a>.
+Reactive support was very recently introduced, in “commit b2b8f3f Date:
+Tue Jan 10 16:36:28 2017 +0100”.  SSE is currently the only JAX-RS
+feature to use Reactive Streams, but it is specified without being
+particularly bound to that feature.  SSE support in JAX-RS makes it easy
+to use this feature in a standard way, in both client and server.</p>
+
+<p>Server Sent Events, SSE is a popular web transport technique specified
+by the W3C at <a href="https://www.w3.org/TR/eventsource/">https://www.w3.org/TR/eventsource/</a>.  The most common
+usage of SSE is to allow web applications to push one way asynchronous
+updates to browsers without having to maintain a million open sockets.
+This common usage is well documented at
+<a href="https://www.html5rocks.com/en/tutorials/eventsource/basics/">https://www.html5rocks.com/en/tutorials/eventsource/basics/</a>.  As an
+aside, because JAX-RS can function as both a client and a server
+technology, it is possible to use SSE in a two way fashion if you have
+JAX-RS on both ends of your client and server connection.  Either way,
+JAX-RS 2.1 has you covered.</p>
+
+<p>Let’s take a look at the most up-to-date manifestation of the SSE API in
+JAX-RS 2.1.  First, a simple REST resource that implements an SSE server:</p>
+
+<div style="padding: 5px;">
+		<div class="java" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">@Path<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;server-sent-events&quot;</span><span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">@Singleton</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">class</span> ServerSentEventsResource <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">final</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aobject+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Object</span></a> outputLock <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aobject+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Object</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">final</span> Sse sse<span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">volatile</span> SseEventSink eventSink<span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @Resource</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span> ManagedExecutorService executorService<span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @Inject</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> ServerSentEventsResource<span style="color: #009900;">&#40;</span>Sse sse<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">sse</span> <span style="color: #339933;">=</span> sse<span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @GET</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @Produces<span style="color: #009900;">&#40;</span>MediaType.<span style="color: #006633;">SERVER_SENT_EVENTS</span><span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000066; font-weight: bold;">void</span> getMessageQueue<span style="color: #009900;">&#40;</span>@<a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Acontext+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Context</span></a> SseEventSink eventSink<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">synchronized</span> <span style="color: #009900;">&#40;</span>outputLock<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">eventSink</span> <span style="color: #339933;">!=</span> <span style="color: #000066; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">throw</span> <span style="color: #000000; font-weight: bold;">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aillegalstateexception+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">IllegalStateException</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;Server sink already served.&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">eventSink</span> <span style="color: #339933;">=</span> eventSink<span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @POST</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000066; font-weight: bold;">void</span> addMessage<span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">final</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a> message<span style="color: #009900;">&#41;</span> <span style="color: #000000; font-weight: bold;">throws</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aioexception+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">IOException</span></a> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>eventSink <span style="color: #339933;">==</span> <span style="color: #000066; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">throw</span> <span style="color: #000000; font-weight: bold;">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aillegalstateexception+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">IllegalStateException</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;No client connected.&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">onNext</span><span style="color: #009900;">&#40;</span>sse.<span style="color: #006633;">newEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;custom-message&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @DELETE</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000066; font-weight: bold;">void</span> close<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #000000; font-weight: bold;">throws</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aioexception+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">IOException</span></a> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">synchronized</span> <span style="color: #009900;">&#40;</span>outputLock<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>eventSink <span style="color: #339933;">!=</span> <span style="color: #000066; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">close</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink <span style="color: #339933;">=</span> <span style="color: #000066; font-weight: bold;">null</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @POST</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @Path<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;domains/{id}&quot;</span><span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; @Produces<span style="color: #009900;">&#40;</span>MediaType.<span style="color: #006633;">SERVER_SENT_EVENTS</span><span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000066; font-weight: bold;">void</span> startDomain<span style="color: #009900;">&#40;</span>@PathParam<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;id&quot;</span><span style="color: #009900;">&#41;</span> <span style="color: #000000; font-weight: bold;">final</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a> id,</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @<a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Acontext+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Context</span></a> SseEventSink eventSink<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; executorService.<span style="color: #006633;">submit</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">-&gt;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">try</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">onNext</span><span style="color: #009900;">&#40;</span>sse.<span style="color: #006633;">newEventBuilder</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">name</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;domain-progress&quot;</span><span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; .<span style="color: #006633;">data</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a>.<span style="color: #000000; font-weight: bold;">class</span>, <span style="color: #0000ff;">&quot;starting domain &quot;</span> <span style="color: #339933;">+</span> id <span style="color: #339933;">+</span> <span style="color: #0000ff;">&quot; ...&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">build</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Athread+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Thread</span></a>.<span style="color: #006633;">sleep</span><span style="color: #009900;">&#40;</span>200<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">onNext</span><span style="color: #009900;">&#40;</span>sse.<span style="color: #006633;">newEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;domain-progress&quot;</span>, <span style="color: #0000ff;">&quot;50%&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Athread+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Thread</span></a>.<span style="color: #006633;">sleep</span><span style="color: #009900;">&#40;</span>200<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">onNext</span><span style="color: #009900;">&#40;</span>sse.<span style="color: #006633;">newEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;domain-progress&quot;</span>, <span style="color: #0000ff;">&quot;60%&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Athread+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Thread</span></a>.<span style="color: #006633;">sleep</span><span style="color: #009900;">&#40;</span>200<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">onNext</span><span style="color: #009900;">&#40;</span>sse.<span style="color: #006633;">newEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;domain-progress&quot;</span>, <span style="color: #0000ff;">&quot;70%&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Athread+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Thread</span></a>.<span style="color: #006633;">sleep</span><span style="color: #009900;">&#40;</span>200<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">onNext</span><span style="color: #009900;">&#40;</span>sse.<span style="color: #006633;">newEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;domain-progress&quot;</span>, <span style="color: #0000ff;">&quot;99%&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Athread+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Thread</span></a>.<span style="color: #006633;">sleep</span><span style="color: #009900;">&#40;</span>200<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">onNext</span><span style="color: #009900;">&#40;</span>sse.<span style="color: #006633;">newEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;domain-progress&quot;</span>, <span style="color: #0000ff;">&quot;Done.&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSink.<span style="color: #006633;">close</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">catch</span> <span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">final</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Ainterruptedexception+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">InterruptedException</span></a> <span style="color: #339933;">|</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aioexception+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">IOException</span></a> e<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.<span style="color: #006633;">printStackTrace</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+</ol></div>		</div>
+
+<p>The constructor on line 13 receives the <code class="highlighter-rouge">Sse</code> class, formerly known as
+<code class="highlighter-rouge">SseContext</code>.  This serves as a factory for instances of
+<code class="highlighter-rouge">OutboundSseEvent</code>, as seen on lines 33 and 57 - 65.</p>
+
+<p>The method that processes GET requests starts on line 17.  This method
+receives an <code class="highlighter-rouge">SseEventSink</code> via injection.  In this simple example, the
+GET request is just made to cause the <code class="highlighter-rouge">eventSink</code> instance variable to
+be populated.</p>
+
+<p>Now the magic starts to happen.  <code class="highlighter-rouge">SseEventSink</code> is functionally a
+<a href="http://download.java.net/java/jdk9/docs/api/java/util/concurrent/Flow.Subscriber.html">Flow.Subscriber</a>,
+though in the Java EE 8 delivery of JAX-RS 2.1 the class will not
+actually extend <code class="highlighter-rouge">Flow.Subscriber&lt;T&gt;</code>.  The first version of JAX-RS that
+does support Java SE 9 will do so.  In either case, the necessary
+methods from that interface are implemented so the API will remain
+unchanged.  The Java SE 9 Flow API is a reactive streams compliant API.
+You can see the <code class="highlighter-rouge">onNext</code> method of this interface being invoked within
+the POST processor on line 33.  The meaning of <code class="highlighter-rouge">onNext</code> is simply,
+“here’s another thing in the stream of things for you to process”.  In
+this case, the recipient of the new thing is whatever parties are
+connected to the other end of the SSE connection.</p>
+
+<p>A more advanced POST processor is found starting on line 46, for the
+path of <code class="highlighter-rouge">domains/{id}</code>.  A post to this path causes an asynchronous
+action to commence using the <code class="highlighter-rouge">ExecutorService</code>.  This example illustrates the
+process of starting an appserver domain on line 54.  Several status
+updates are sent on lines 56 - 65 and then the <code class="highlighter-rouge">eventSink</code> is closed on
+line 67.</p>
+
+<p>Rounding out the example, a DELETE processor simply closes the eventSink
+on demand, on line 36.</p>
+
+<p>I feel the SSE Client API is more interesting in a sense because it
+enables the less common use case of a non-JavaScript SSE client.  Let’s
+take a look at the SSE Client API in JAX-RS 2.1.</p>
+
+<div style="padding: 5px;">
+		<div class="java" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">class</span> SseClient <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">static</span> WebTarget target<span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">static</span> <span style="color: #000066; font-weight: bold;">void</span> main<span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a><span style="color: #009900;">&#91;</span><span style="color: #009900;">&#93;</span> args<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; target <span style="color: #339933;">=</span> ClientBuilder.<span style="color: #006633;">newClient</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">target</span><span style="color: #009900;">&#40;</span>args<span style="color: #009900;">&#91;</span>0<span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; consumeEventsViaSubscription<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">static</span> <span style="color: #000066; font-weight: bold;">void</span> consumeEventsViaSubscription<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">try</span> <span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">final</span> SseEventSource eventSource <span style="color: #339933;">=</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;SseEventSource.<span style="color: #006633;">target</span><span style="color: #009900;">&#40;</span>target<span style="color: #009900;">&#41;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;.<span style="color: #006633;">build</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSource.<span style="color: #006633;">subscribe</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Asystem+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">System</span></a>.<span style="color: #006633;">out</span><span style="color: #339933;">::</span>println<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; eventSource.<span style="color: #006633;">open</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">for</span> <span style="color: #009900;">&#40;</span><span style="color: #000066; font-weight: bold;">int</span> counter <span style="color: #339933;">=</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">;</span> counter <span style="color: #339933;">&lt;</span> <span style="color: #cc66cc;">5</span><span style="color: #339933;">;</span> counter<span style="color: #339933;">++</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; target.<span style="color: #006633;">request</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">post</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aentity+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Entity</span></a>.<span style="color: #006633;">text</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;message &quot;</span> <span style="color: #339933;">+</span> counter<span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Athread+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Thread</span></a>.<span style="color: #006633;">sleep</span><span style="color: #009900;">&#40;</span>500<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// make sure all the events have time to arrive</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">catch</span> <span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Ainterruptedexception+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">InterruptedException</span></a> e<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; e.<span style="color: #006633;">printStackTrace</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp; <span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+</ol></div>		</div>
+
+<p>As in the server case, <code class="highlighter-rouge">SseEventSource</code> is functionally equivalent to an
+instance of <code class="highlighter-rouge">Flow.Publisher&lt;InboundSseEvent&gt;</code>, and will literally be one
+in the JAX-RS version that supports Java SE 9.  It does, however, have
+all necessary the methods of that interface.  In the above example, the
+subscribe() method is seen on line 15.  Here we are simply printing out
+the messages received from the server.  Then, on lines 18 - 20 we are
+issuing a few POST requests to the server.</p>
+
+<h2 id="reactive-client-api">Reactive Client API</h2>
+
+<p>This other major feature for JAX-RS 2.1 was introduced in “commit
+dea3922 Date: Wed Aug 26 10:26:26 2015 -0400”: the Reactive Client API.
+This API builds entirely on two foundations: Java 8 CompletableFuture
+and the Invocation API from JAX-RS 2.0.  The former is capably explained
+by
+<a href="http://www.nurkiewicz.com/2013/05/java-8-definitive-guide-to.html">Thomas Nurkiewicz</a>
+whom I had the pleasure of seeing present at
+<a href="/blog/2015/06/16/geekout-2015-summary.html">GeekOut 2015</a>.  The latter
+is a way to compose client requests and cause them to be processed in
+the proper order to enable assembling the responses.  In the case of the
+Reactive Client API, these responses are asynchronous and fully reactive
+compliant.  The root interface of the API is <code class="highlighter-rouge">RxInvoker</code>.  This
+interface has Java methods for all of the standard HTTP methods, as well
+a generic “method” method for arbitrary methods.  The API is usually
+invoked as part of a fluid call chain.</p>
+
+<p>The full details of both of these foundational features are too deep to
+describe in this blog post, but the following simple example gives a
+flavor of their power.</p>
+
+<div style="padding: 5px;">
+		<div class="java" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">Client client <span style="color: #339933;">=</span> ClientBuilder.<span style="color: #006633;">newClient</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">URI service <span style="color: #339933;">=</span> URI.<span style="color: #006633;">create</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;http://localhost/service/resource&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">CompletionStage<span style="color: #339933;">&lt;</span>Response<span style="color: #339933;">&gt;</span> cs1 <span style="color: #339933;">=</span> client.<span style="color: #006633;">target</span><span style="color: #009900;">&#40;</span>service<span style="color: #009900;">&#41;</span>.<span style="color: #006633;">request</span>.<span style="color: #006633;">rx</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">post</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aentity+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Entity</span></a>.<span style="color: #006633;">text</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;1&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">CompletionStage<span style="color: #339933;">&lt;</span>Response<span style="color: #339933;">&gt;</span> cs2 <span style="color: #339933;">=</span> client.<span style="color: #006633;">target</span><span style="color: #009900;">&#40;</span>service<span style="color: #009900;">&#41;</span>.<span style="color: #006633;">request</span>.<span style="color: #006633;">rx</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">post</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aentity+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Entity</span></a>.<span style="color: #006633;">text</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;2&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">cs1.<span style="color: #006633;">thenCombine</span><span style="color: #009900;">&#40;</span>cs2, <span style="color: #009900;">&#40;</span>r1, r2<span style="color: #009900;">&#41;</span> <span style="color: #339933;">-&gt;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a> s1 <span style="color: #339933;">=</span> r1.<span style="color: #006633;">readEntity</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a>.<span style="color: #000000; font-weight: bold;">class</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a> s2 <span style="color: #339933;">=</span> r2.<span style="color: #006633;">readEntity</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a>.<span style="color: #000000; font-weight: bold;">class</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <span style="color: #000000; font-weight: bold;">return</span> client.<span style="color: #006633;">target</span><span style="color: #009900;">&#40;</span>service<span style="color: #009900;">&#41;</span>.<span style="color: #006633;">request</span>.<span style="color: #006633;">rx</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">post</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Aentity+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">Entity</span></a>.<span style="color: #006633;">text</span><span style="color: #009900;">&#40;</span>s1 <span style="color: #339933;">+</span> s2<span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">thenAccept</span><span style="color: #009900;">&#40;</span>responseCompletionStage <span style="color: #339933;">-&gt;</span> responseCompletionStage.<span style="color: #006633;">thenAccept</span><span style="color: #009900;">&#40;</span>r3 <span style="color: #339933;">-&gt;</span> <span style="color: #009900;">&#123;</span></div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a> s3 <span style="color: #339933;">=</span> r3.<span style="color: #006633;">readEntity</span><span style="color: #009900;">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Astring+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">String</span></a>.<span style="color: #000000; font-weight: bold;">class</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
+<li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Asystem+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky"><span style="color: #003399;">System</span></a>.<span style="color: #006633;">out</span>.<span style="color: #006633;">println</span><span style="color: #009900;">&#40;</span>s3<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+<li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
+</ol></div>		</div>
+
+<p>This example shows a reactive client that issues three separate POST
+requests asynchronously, in a non-blocking fashion, and assembling the
+result for printing, on line 15.</p>
+
+<h2 id="appendix-work-in-progress-non-blocking-io">Appendix, work in progress Non-Blocking IO</h2>
+
+<p>Another important feature is in the works for JAX-RS 2.1, a Non-Blocking
+IO API.  An early draft of this feature was introduced in “commit
+e997a32 Date: Thu Sep 3 14:38:00 2015 -0400”</p>
+
+<p>In its final form, this work will likely use the Flow API in a similar
+way that the SSE support does.</p>
+
+<h2 id="annotated-commit-log-messages">Annotated Commit Log Messages</h2>
+
+<p>The remainder of the blog post is a review of all the commits to the
+JAX-RS 2.1 API since the start of the JSR.</p>
+
+<h3 id="commit-a2b9dfe-date-fri-feb-10-190946-2017-0100">commit a2b9dfe Date: Fri Feb 10 19:09:46 2017 +0100</h3>
+
+<p>Refine javadoc for javax/ws/rs/sse/SseEventSource.java.  Fix the type on
+the reference to the accept() method.</p>
+
+<h3 id="commit-4d79c56-date---fri-feb-10-162815-2017-0100">commit 4d79c56 Date:   Fri Feb 10 16:28:15 2017 +0100</h3>
+
+<p>Rename Sse.newEvent() to newEventBuilder().  Rename Sse.newDataEvent()
+to newEvent().  Update example accordingly.</p>
+
+<h3 id="commit-d62ed77-date---fri-feb-10-154136-2017-0100">commit d62ed77 Date:   Fri Feb 10 15:41:36 2017 +0100</h3>
+
+<p>In javax/ws/rs/sse/SseBroadcaster.java, in onException() and onClose(),
+modify the type of the argument to be less specific in the inheritance
+hierarchy.  It’s just a FlowSubscriber&lt;&gt; now, of which SseEventSink is
+an implementation.</p>
+
+<p>Refine jaxrs/examples/sse/ItemStoreResource.java example accordingly.</p>
+
+<h3 id="commit-8a61f14-date---wed-feb-8-090340-2017-0100">commit 8a61f14 Date:   Wed Feb 8 09:03:40 2017 +0100</h3>
+
+<p>Add newDataEvent() to javax/ws/rs/sse/Sse.java.  This creates an
+OutputboundSseEvent.</p>
+
+<h3 id="commit-b036972-date---wed-feb-8-094351-2017-0100">commit b036972 Date:   Wed Feb 8 09:43:51 2017 +0100</h3>
+
+<p>Refine Javadoc of RxInvokerProvider.</p>
+
+<h3 id="commit-459ddb6-date---wed-feb-8-181431-2017-0100">commit 459ddb6 Date:   Wed Feb 8 18:14:31 2017 +0100</h3>
+
+<p>This was the big refactor of the Sse API.</p>
+
+<ul>
+  <li>
+    <p>Drop SseClientSubscriber and remove usages.  Functionality taken over
+by new class javax/ws/rs/sse/SseSubscription.java</p>
+  </li>
+  <li>
+    <p>Drop SseEventInput</p>
+  </li>
+  <li>
+    <p>Rename SseEventOutput to SseEventSink.</p>
+  </li>
+  <li>
+    <p>Rename SseContext to Sse.</p>
+  </li>
+</ul>
+
+<h3 id="commit-2ae0169-date---thu-feb-2-184314-2017-0100">commit 2ae0169 Date:   Thu Feb 2 18:43:14 2017 +0100</h3>
+
+<p>Introduce javax/ws/rs/sse/SseClientSubscriber.java, an implementation of
+Flow.Subscriber().  Drop open() from SseEventSource.  This class was
+removed shortly after this commit.</p>
+
+<p>Refine SseClient example to use SseClientSubscriber instead of open().</p>
+
+<h3 id="commit-4e87a23-date---fri-jan-13-142909-2017-0100">commit 4e87a23 Date:   Fri Jan 13 14:29:09 2017 +0100</h3>
+
+<p>Rework commit f601630, to remove Class&lt;? extends RxInvokerProvider<T>&gt;
+from the signatures, replacing with Class<T>.  Added isProviderFor()
+method to javax/ws/rs/client/RxInvokerProvider.java.  Modify
+getRxInvoker() to take a SyncInvoker instead of Invocation.Builder.</T></T></p>
+
+<p>Updated example javax/ws/rs/core/RxClientTest.java</p>
+
+<h3 id="commit-f601630-date---thu-jan-12-103141-2017-0100">commit f601630 Date:   Thu Jan 12 10:31:41 2017 +0100</h3>
+
+<p>This was reworked in a subsequent commit.</p>
+
+<p>Refine javax/ws/rs/client/Invocation.java.  Add an rx() method that
+takes an RxInvokerProvider.  This enables other types of asynchronous
+computation models, such as the RxJava.  There is also a variant that
+takes an ExecutorService.</p>
+
+<p>Add javax/ws/rs/client/RxInvokerProvider.java.</p>
+
+<p>Add example javax/ws/rs/core/RxClientTest.java.</p>
+
+<h3 id="commit-b2b8f3f-date---tue-jan-10-163628-2017-0100">commit b2b8f3f Date:   Tue Jan 10 16:36:28 2017 +0100</h3>
+
+<p>Refine jaxrs/examples/sse/ItemStoreResource.java and
+jaxrs/examples/sse/ServerSentEventsResource.java to use Java SE 8
+lambdas.</p>
+
+<p>Added class javax/ws/rs/Flow.java.  This is the implementation of the
+Reactive Streams API.  This is the big class here.</p>
+
+<p>Rework Sse feature to use the Flow API.  In particular, make
+SseEventInput an implementation of Flow.Publisher and SseEventOutput an
+implementation of Flow.Subscriber.  Also make SseEventSource an
+implementation of Flow.Publisher<InboundSseEvent>.</InboundSseEvent></p>
+
+<p>Rework Sse feature to flesh out some hitherto missing Javadoc.</p>
+
+<p>Adde a package-info.java for Sse.</p>
+
+<h3 id="commit-46d81cf-date---thu-oct-15-145243-2015-0200">commit 46d81cf Date:   Thu Oct 15 14:52:43 2015 +0200</h3>
+
+<p>Refine ServerSentEventsResource example.</p>
+
+<h3 id="commit-37f8814-date---tue-oct-6-201507-2015-0200">commit 37f8814 Date:   Tue Oct 6 20:15:07 2015 +0200</h3>
+
+<p>First draft of Server Sent Events support.  Since this is one of the
+biggest new features in JAX-RS-2.1, I’ll discuss it in its final form.</p>
+
+<p>This commit added examples of using SSE in classes
+jaxrs/examples/sse/ItemStoreResource.java,
+jaxrs/examples/sse/SseClient.java and
+examples/sse/ServerSentEventsResource.java.  These classes are still in
+the codebase.</p>
+
+<ul>
+  <li>
+    <p>Added forInstance() that takes an Object and returns GenericType to
+javax/ws/rs/core/GenericType.java.  This uses the
+GenericEntity.getType() to return the type, or just returns the Java
+Class.</p>
+  </li>
+  <li>
+    <p>Added LAST_EVENT_ID_HEADER constant to
+javax/ws/rs/core/HttpHeaders.java.  This constant is used for the
+“Last-Event-ID” header in the SSE spec <a href="http://www.w3.org/TR/eventsource/#last-event-id">http://www.w3.org/TR/eventsource/#last-event-id</a></p>
+  </li>
+  <li>
+    <p>Added text/event-stream to javax/ws/rs/core/MediaType.java.</p>
+  </li>
+  <li>
+    <p>Added javax/ws/rs/sse/FactoryFinder.java.  Looks like this is used
+from SseEventSource to instantiate an SseEventSource.Builder.  This
+class has been moved in a later revision of the proposal.</p>
+  </li>
+  <li>
+    <p>Added javax/ws/rs/sse/InboundSseEvent.java.  An SseEvent subclass for
+events when JAX-RS client is listening to a server that is sending
+SSE?</p>
+  </li>
+  <li>
+    <p>Added javax/ws/rs/sse/OutboundSseEvent.java.  An SseEvent subclass for
+events when JAX-RS is acting as the server sending SSE events.</p>
+  </li>
+  <li>
+    <p>Added javax/ws/rs/sse/SseBroadcaster.java.  The thing that causes
+OutboundSseEvents to be sent to the client.</p>
+  </li>
+  <li>
+    <p>Added javax/ws/rs/sse/SseContext.java.  To make the SSE feature
+injectable.  This class has been renamed to Sse in a later version of
+the feature.</p>
+  </li>
+  <li>
+    <p>Added class java/javax/ws/rs/sse/SseEvent.java, the event base class.</p>
+  </li>
+  <li>
+    <p>Added javax/ws/rs/sse/SseEventInput.java.  Lets you read
+InboundSseEvents as they arrive.  This class has been droped in a
+later version of the feature.</p>
+  </li>
+  <li>
+    <p>Added javax/ws/rs/sse/SseEventOutput.java.  Lets you write
+OutboundSseEvents. This class has been renamed to SseEventSink a
+later version of the feature.</p>
+  </li>
+  <li>
+    <p>Added java/javax/ws/rs/sse/SseEventSource.java.  Lets you read
+InboundSseEvents.</p>
+  </li>
+</ul>
+
+<h3 id="commit-f1b7167-date---thu-sep-3-144156-2015--0400">commit f1b7167 Date:   Thu Sep 3 14:41:56 2015 -0400</h3>
+
+<ul>
+  <li>Remove onWritePossible() from Response.</li>
+</ul>
+
+<h3 id="commit-e997a32-date---thu-sep-3-143800-2015--0400">commit e997a32 Date:   Thu Sep 3 14:38:00 2015 -0400</h3>
+
+<p>This commit added some experimental work for the use of non-blocking IO
+in the JAX-RS spec.  There are helpful examples in
+jaxrs/examples/nio/FileResourceClient.java and
+jaxrs/examples/nio/FileResource.java.</p>
+
+<p>This commit introduced the following classes:</p>
+
+<ul>
+  <li>
+    <p>javax/ws/rs/client/NioInvoker.java</p>
+  </li>
+  <li>
+    <p>javax/ws/rs/core/NioCompletionHandler.java</p>
+  </li>
+  <li>
+    <p>javax/ws/rs/core/NioErrorHandler.java</p>
+  </li>
+  <li>
+    <p>javax/ws/rs/core/NioInputStream.java</p>
+  </li>
+  <li>
+    <p>javax/ws/rs/core/NioOutputStream.java</p>
+  </li>
+  <li>
+    <p>javax/ws/rs/core/NioReaderHandler.java</p>
+  </li>
+  <li>
+    <p>javax/ws/rs/core/NioWriterHandler.java</p>
+  </li>
+</ul>
+
+<p>And modified the following classes:</p>
+
+<ul>
+  <li>
+    <p>javax/ws/rs/core/Request.java and javax/ws/rs/core/Response.java
+— Add entity methods that take the Nio*Handler classes above.
+For Response, also add an onWritePossible() method that takes the
+NioWriterHandler.</p>
+  </li>
+  <li>
+    <p>javax/ws/rs/client/Invocation.java — Return the NioInvoker from
+Invocation.nio().</p>
+  </li>
+</ul>
+
+<p>Since this is one of the biggest new features in JAX-RS 2.1, I’ll
+discuss it in its final form later.  Note that the above classes are all
+still present in the API as of today.</p>
+
+<h3 id="commit-dea3922-date---wed-aug-26-102626-2015--0400">commit dea3922 Date:   Wed Aug 26 10:26:26 2015 -0400</h3>
+
+<p>The first iteration of the RxInvoker proposal.  This commit added the
+following classes:</p>
+
+<ul>
+  <li>
+    <p>javax/ws/rs/client/CompletionStageRxInvoker.java</p>
+  </li>
+  <li>
+    <p>javax/ws/rs/client/RxInvoker.java</p>
+  </li>
+</ul>
+
+<p>And introduced changes to the following classes</p>
+
+<ul>
+  <li>javax/ws/rs/client/Invocation.java</li>
+</ul>
+
+<p>A helpful test is at javax/ws/rs/core/RxClientTest.java.</p>
+
+<p>Since this is one of the biggest new features in JAX-RS 2.1, I’ll
+discuss it in its final form later.  Note that the above classes are all
+still present in the API as of today.</p>
+
+<h3 id="commit-77464a5-date---wed-feb-18-164144-2015-0100">commit 77464a5 Date:   Wed Feb 18 16:41:44 2015 +0100</h3>
+
+<p>Remove the LaTeX sources to a separate repo.
+git://java.net/jax-rs-spec~spec</p>
+
+<h3 id="commit-0dbabe25-date---wed-feb-4-132831-2015--0500">commit 0dbabe25 Date:   Wed Feb 4 13:28:31 2015 -0500</h3>
+
+<p>Spec prose document section 3.2 specifies how Java language fields and
+JavaBean properties of Resource classes are injected with values from
+the incoming request, all of which are coming over HTTP and are
+therefore just plain strings.  That section includes a list that
+describes the types of valid values to which those strings can be
+converted, let’s call them destinations for discussion.  This commit
+added List<T>, Set<T>, and SortedSet<T> to set of possible destinations,
+where T meets at least one of the following requirements.</T></T></T></p>
+
+<ul>
+  <li>
+    <p>T has a ParamConverter</p>
+  </li>
+  <li>
+    <p>T has a public constructor that takes a single String.</p>
+  </li>
+  <li>
+    <p>T has a public static valueOf() method that takes a String and returns
+an instance of T.</p>
+  </li>
+</ul>
+
+<p>The commit also tightened up what happens when a WebApplicationException
+is thrown during the conversion process.</p>
+
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

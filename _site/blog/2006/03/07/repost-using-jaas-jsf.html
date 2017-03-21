@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Repost: Using JAAS with JSF Blog</title>
+  <meta name="description" content="The content and ideas in this blog entry are taken from my upcoming McGraw Hill Osborne book JavaServer Faces: The Complete Reference, which I am co-authorin...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2006/03/07/repost-using-jaas-jsf.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Repost: Using JAAS with JSF Blog</h1>
+    <p class="post-meta"><time datetime="2006-03-07T07:33:00-05:00" itemprop="datePublished">Mar 7, 2006</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="jive-rendered-content"><p>The content and ideas in this blog entry are taken from my upcoming McGraw Hill Osborne book <a class="jive-link-external-small" href="http://purl.oclc.org/NET/jsfbook/" rel="nofollow">JavaServer Faces: The Complete Reference</a>, which I am co-authoring with <a class="jive-link-external-small" href="http://www.jroller.com/page/cschalk" rel="nofollow">Chris Schalk</a>.
+ In the book, we have a chapter on Securing JavaServer Faces 
+applications. This excerpt shows how the extensible design of JavaServer
+ Faces can be used to allow JAAS to provide authentication to a JSF Web 
+application. JAAS Authorization with JSF is also covered in the book, 
+but not in this excerpt.</p><span>&nbsp;&nbsp;&nbsp; </span><table border="1"><tbody><tr><td style="border:1px solid black;"><p>We
+ will conclude this chapter by showing how to enhance the example 
+application by leveraging the standard security infrastructure of the 
+Java platform. From its inception, the Java platform has treated 
+security as a first class concern. Indeed, one of the first benefits of 
+Java was to securely bring dynamic behavior to web deployed 
+applications. Over the years, the implementation and API to security has
+ evolved, but the core principals have improved and become steadily more
+ secure. Therefore, choosing to build your application managed security 
+on top of the standard Java security features is a very safe bet.</p><p>A
+ term often applied to Java security is JAAS, which is short for Java 
+Authentication and Authorization Service. JAAS started out as an 
+optional package in JDK 1.3 but has become a core part of the Java 
+platform as of JDK 1.4. As the name implies, JAAS covers the first two 
+of the three main aspects of security: authentication and authorization.
+ Let's explore one way to integrate JAAS style authentication and 
+authorization into the application</p><h2>Using JAAS Authentication in the example application</h2><p>While
+ it would certainly be possible to call into the JAAS layer directly 
+from the example application logic, for example, from the UserRegistry 
+bean, a more re-usable solution is to encapsulate the<strong style="color:black;background-color:#a0ffff;">JAAS</strong>
+ interface in a custom ActionListener. This approach de-couples the 
+security completely from your application and takes advantage of the 
+intended use of the ActionListener extension hook.</p><p>The mechanics 
+of providing such an ActionListener are described in Chapter 11, but 
+let's review briefly here. The first step is to modify the 
+faces-config.xml file for the example reusable component library so that
+ it includes the action-listener declaration, as shown here.</p><pre><code>&lt;application&gt;
+&nbsp; &lt;action-listener&gt;
+&nbsp;&nbsp;&nbsp; com.jsfcompref.examplecomponents.util.JAASActionListener
+&nbsp; &lt;/action-listener&gt;
+&lt;/application&gt;
+</code>
+</pre><p>Then, leverage the decorator pattern, as described in Chapter 
+10, to delegate most of the work to the "real" ActionListener by 
+providing a constructor that saves a reference to it. Following the 
+constructor, the processAction( ) method must be implemented, as 
+described below.</p><pre><code>private ActionListener parent = null;
+&nbsp;&nbsp;&nbsp; 
+public JAASActionListener(ActionListener parent) {
+&nbsp; this.parent = parent;
+}
+
+public void processAction(ActionEvent event)
+&nbsp; throws AbortProcessingException {
+&nbsp; FacesContext context = FacesContext.getCurrentInstance();
+&nbsp; UIOutput comp = null;
+&nbsp; String userid = null, password = null;
+&nbsp; JAASHelper jaasHelper = new JAASHelper();
+&nbsp; 
+&nbsp; // Check to see if they are on the login page.
+&nbsp; boolean onLoginPage = (-1 != context.getViewRoot().getViewId().
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lastIndexOf("login")) ? true : false;
+&nbsp; if (onLoginPage) {
+&nbsp;&nbsp;&nbsp; if (null != (comp = (UIOutput) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; context.getViewRoot().findComponent("form:userid"))) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; userid = (String) comp.getValue();
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; if (null != (comp = (UIOutput) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; context.getViewRoot().findComponent("form:password"))) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; password = (String) comp.getValue();
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; // If JAAS authentication failed
+&nbsp;&nbsp;&nbsp; if (!jaasHelper.authenticate(userid, password)) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; context.getApplication().getNavigationHandler().
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; handleNavigation(context, null, "login");
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; else {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Subject must not be null, since authentication succeeded
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; assert(null != jaasHelper.getSubject());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Put the authenticated subject in the session.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; context.getExternalContext().getSessionMap().put(JAASSubject, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jaasHelper.getSubject());
+&nbsp;&nbsp;&nbsp; }
+&nbsp; }
+&nbsp; parent.processAction(event);
+}
+
+</code>
+</pre><p>The first thing to note is that part of the usage contract for 
+JAASActionListener is the requirement that the username and password 
+components be nested inside a UIForm named "form", and be named "userid"
+ and "password" respectively. This expedient measure allows the 
+JAASActionListener to easily extract the user-provided values for 
+username and password so that they can be passed on to the JAASHelper 
+class. The second thing to note about the usage contract is the 
+requirement that the application provide a navigation rule for the 
+outcome "login" that causes the user to be directed to the login page if
+ the authentication failed. In the failure case, processAction( ) is not
+ called until after redirecting to the "login" outcome using 
+NavigationHandler. If authentication succeeded, the Subject is stored in
+ the session for later access. The java.security.Subject is the Java 
+class that represents the user to the runtime. (We'll cover Subject in 
+greater detail in the section on JAAS authentication.) Finally, the 
+parent processAction( ) method is called to do the normal action 
+handling. Note that this causes the existing application managed 
+authentication, as described in Chapter 9, to take place. A production 
+quality implementation would probably remove the application managed 
+authentication in favor of using JAAS, rather than just supplementing 
+it, as we have done here.</p><p>Let's examine the JAASHelper class.</p><pre><code>public class JAASHelper {
+&nbsp; 
+&nbsp; LoginContext loginContext = null;
+
+&nbsp; public JAASHelper() {
+&nbsp; }
+&nbsp; 
+&nbsp; public boolean authenticate(String userid, String password) {
+&nbsp;&nbsp;&nbsp; boolean result = false;
+&nbsp;&nbsp;&nbsp; try {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; loginContext = new LoginContext("FileLogin", 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; new LoginCallback(userid, password));
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; loginContext.login();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result = true;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; catch (LoginException e) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // A production quality implementation would log this message
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result = false;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; return result;
+&nbsp; }
+&nbsp; 
+&nbsp; public Subject getSubject () {
+&nbsp;&nbsp;&nbsp; Subject result = null;
+&nbsp;&nbsp;&nbsp; if (null != loginContext) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result = loginContext.getSubject();
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; return result;
+&nbsp; }
+&nbsp; 
+&nbsp; public static class LoginCallback implements CallbackHandler {
+&nbsp;&nbsp;&nbsp; private String userName = null;
+&nbsp;&nbsp;&nbsp; private String password = null;
+&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; public LoginCallback(String userName, String password) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.userName = userName;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.password = password;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; 
+&nbsp;&nbsp;&nbsp; public void handle(Callback[] callbacks) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (int i = 0; i&lt; callbacks.length; i++) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (callbacks[i] instanceof NameCallback) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NameCallback nc = (NameCallback)callbacks[i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nc.setName(userName);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (callbacks[i] instanceof PasswordCallback) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PasswordCallback pc = (PasswordCallback)callbacks[i];
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pc.setPassword(password.toCharArray());
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; }
+&nbsp; }
+}
+</code>
+</pre><p>The authenticate( ) method uses the class 
+java.security.auth.login.LoginContext to perform the login. The login( )
+ method of this class will throw a LoginException if the login fails for
+ any reason. This exception is caught by authenticate( ) and it responds
+ by setting result to false. false. If no exception is thrown, result is
+ set to true. authenticate( ) ends by returning the value of result.</p><p>The
+ two arguments to the LoginContext constructor are the most important 
+part of this example. The first, the literal string "FileLogin", refers 
+to an implementation of the javax.security.auth.spi.LoginModule 
+interface. This interface is implemented by a provider of a particular 
+implementation of authentication technology, for example JNDI, LDAP, or 
+database. In this example, we use a free software implementation called 
+"tagish" that provides a simple file based authentication scheme. The 
+implementation comes from John Gardner and can be found at <a class="jive-link-external-small" href="http://free.tagish.net/jaas/" rel="nofollow">http://free.tagish.net/<strong style="color:black;background-color:#a0ffff;">jaas</strong>/</a>.
+ Providing a LoginModule implementation is beyond the scope of this 
+chapter, but we must illustrate how to use one, once it has been 
+provided. This is the beauty of JAAS, the authentication technology 
+itself is separated from the rest of the system. In other words, if you 
+want to plug in LDAP, do it by providing a custom LoginModule.</p><p>The JVM is made aware of the existence of a LoginModule implementation either through a -D flag, or via a modification to the <code>JAVA_HOME/jre/lib/java.security</code> file. In our case, we use the former option: <code>-Djava.security.auth.login.config== D:/Projects/example/chapterCode/ch14/example/src/resources/tagish.login</code>Note
+ the use of forward slashes instead of the standard Windows backslashes.
+ Also note the "==" instead of just one "=". The format of this file is 
+prescribed by JAAS:</p><pre><code>FileLogin
+{
+&nbsp; com.tagish.auth.FileLogin required
+pwdFile="D:/Projects/example/chapterCode/ch14/example/src/resources/passwd";
+};
+</code>
+</pre><p>The FileLogin identifier must match the argument to the 
+LoginContext constructor. The first element inside the FileLogin 
+declaration is the fully qualified class name of the class implementing 
+LoginModule. In our application, we have bundled tagish.jar, which 
+contains this class, into the WEB-INF/lib directory of the application. 
+The required flag tells the system that the login must succeed, and 
+whether it succeeds or fails, the login must still proceed down the 
+LoginModule chain. Other valid values for this flag are requisite, 
+sufficient, and optional and are described in the javadocs for the class
+ javax.security.auth.login.Configuration. The pwdFile argument is an 
+implementation specific parameter to the code in tagish.jar that tells 
+it where to find its password file. The format of this file is also 
+implementation specific and for the example app looks like this:</p><pre><code>username:MD5 Hash Of Password:group*
+The specific file for the example follows:
+# Passwords for com.tagish.auth.FileLogin
+
+jfitness:5a64edabc9358c603103053a3c600a88:user
+stiger:40be4e59b9a2a2b5dffb918c0e86b3d7:user
+guest:084e0343a0486ff05530df6c705c8bb4:user
+jake:1200cf8ad328a60559cf5e7c5f46ee6d:user:manager
+</code>
+</pre><p><span>Obviously, a simple MD5 hash of the password is not at 
+all secure and a production quality implementation would use an actual 
+encryption algorithm. For the purposes of security, MD5 is just as 
+secure as Base64 encoding, described earlier in the chapter, which is to
+ say, not at all secure. A handy MD5 hash calculator can be found at </span><a class="jive-link-external-small" href="http://bfl.rctek.com/tools/?tool=hasher" rel="nofollow">http://bfl.rctek.com/tools/?tool=hasher</a><span>.
+ Note that user jake is a member of the user and manager groups, while 
+all the other users are simply members of the user group. Groups will 
+come into play in the next section.</span></p><p>The second argument to 
+the LoginContext constructor is an implementation of the 
+javax.security.auth.callback.CallbackHandler interface. The 
+LoginCallback implementation saves the username and password ultimately 
+originating from the userid and password components in its constructor 
+and uses standard boilerplate code to propagate them to the JAAS system.</p></td></tr></tbody></table><span>&nbsp; </span><span class="technoratitag">Technorati Tags: <a class="jive-link-external-small" href="http://www.technorati.com/tags/edburns" rel="nofollow">edburns</a></span></div>
+
+  </div>
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

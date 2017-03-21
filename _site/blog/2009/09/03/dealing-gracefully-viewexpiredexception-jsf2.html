@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dealing Gracefully with ViewExpiredException in JSF2 Blog</title>
+  <meta name="description" content="My previous entry dove under the covers for JSF 2.0 and examinedcomposite component metadata. This one is far less esoteric and shows how to handle the ViewE...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2009/09/03/dealing-gracefully-viewexpiredexception-jsf2.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Dealing Gracefully with ViewExpiredException in JSF2 Blog</h1>
+    <p class="post-meta"><time datetime="2009-09-03T02:55:00-04:00" itemprop="datePublished">Sep 3, 2009</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="jive-rendered-content"><p>My previous entry dove under the covers for JSF 2.0 and examined<a class="jive-link-external-small" href="http://weblogs.java.net/blog/edburns/archive/2009/09/02/jsf2-composite-component-metadata" rel="nofollow">composite component metadata</a>. This one is far less esoteric and shows how to handle the <code>ViewExpiredException</code> using a new JSF feature, the <code>ExceptionHandler</code>, contributed by<a class="jive-link-external-small" href="http://blog.hibernate.org/Bloggers/Pete" rel="nofollow">Pete Muir</a> a JSF Expert Group representative from JBoss.</p><span></span><p>JSF throws a <code>ViewExpiredException</code>
+ when a postback is made to a view and, for whatever reason, that view 
+cannot be restored. Usually this is due to a session timeout, but a 
+custom state management solution could also cause this exception to be 
+thrown. The default behavior in JSF2 is to show the Facelets error page 
+saying View Expired. The default page is illustrated at right.</p><span></span><img alt="The default ViewExpiredException error page" class="jive-external-image" style="float:right;"><span>&nbsp; </span><p>One way to fix this is to declare an<code>&lt;error-page&gt;</code> element in your web.xml, as shown here.</p><span></span><div class="xml" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;error-page<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;exception-type<span style="color: #000000; font-weight: bold;">&gt;</span></span>javax.faces.application.ViewExpiredException<span style="color: #000000; font-weight: bold;">&lt;/exception-type<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;location<span style="color: #000000; font-weight: bold;">&gt;</span></span>/faces/viewExpired.xhtml<span style="color: #000000; font-weight: bold;">&lt;/location<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;/error-page<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li></ol></div><span></span><p>This works well enough. You can even put JSF components on the error page if you put the proper Faces Servlet mapping in the<code>&lt;location&gt;</code>
+ element, as shown above. If you want to do some application level 
+manipulation in response to the exception, you'll want something 
+different, however. In this case, a custom <code>ExceptionHandler</code> is just the trick. I cover this in much more detial in my upcoming book, <a class="jive-link-external-small" href="http://bit.ly/edburnsjsf2" rel="nofollow">JavaServer Faces 2.0: The Complete Reference</a>,
+ and the example shown in this blog entry is neatly integrated into the 
+chapter 10 sample app. Consider this blog entry an appetizer. So delete 
+that old web.xml (it's not needed if you have JSF2 and Servlet 3, which 
+you get in Glassfish V3) and let's go.</p><span></span><p>First, we need to install a custom<code>ExceptionHandler</code>. This is done using the tried and true JSF decorator pattern. In this case, we place the following into the <code>faces-config.xml</code>.
+ There's no annotation for this because it's relatively uncommon, and we
+ expect advanced users to use the feature. Therefore, the EG tradeoff 
+was to not add yet another "scan for this annotation" clause to the 
+spec.</p><span></span><div class="xml" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div>&nbsp; <span style="color: #000000; font-weight: bold;">&lt;factory<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt;exception-handler-factory<span style="color: #000000; font-weight: bold;">&gt;</span></span>com.sun.faces.ViewExpiredExceptionExceptionHandlerFactory<span style="color: #000000; font-weight: bold;">&lt;/exception-handler-factory<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; <span style="color: #000000; font-weight: bold;">&lt;/factory<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li></ol></div><span></span><p>Here's the code for the class.</p><span></span><div class="java" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">package</span><span style="color: #006699;">com.sun.faces</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.context.ExceptionHandler</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.context.ExceptionHandlerFactory</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">public</span><span style="color: #000000; font-weight: bold;">class</span>ViewExpiredExceptionExceptionHandlerFactory <span style="color: #000000; font-weight: bold;">extends</span>ExceptionHandlerFactory <span style="color: #009900;">{</span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span>ExceptionHandlerFactory parent<span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span>ViewExpiredExceptionExceptionHandlerFactory<span style="color: #009900;">(</span>ExceptionHandlerFactory parent<span style="color: #009900;">)</span> <span style="color: #009900;">{</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">parent</span> <span style="color: #339933;">=</span> parent<span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #009900;">}</span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; @Override</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> ExceptionHandler getExceptionHandler<span style="color: #009900;">(</span><span style="color: #009900;">)</span> <span style="color: #009900;">{</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; ExceptionHandler result <span style="color: #339933;">=</span> parent.<span style="color: #006633;">getExceptionHandler</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; result <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span>ViewExpiredExceptionExceptionHandler<span style="color: #009900;">(</span>result<span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">return</span> result<span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #009900;">}</span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">}</span></div></li></ol></div><span></span><p>The interesting things happen on lines 15 - 20. This method is called once per request must return a new<code>ExceptionHandler</code> instance each time it's called. I know the method name should be<code><strong>create</strong>ExceptionHandler</code>, but we stuck with "get" for consistence with other JSF methods. On line 17, we call the real <code>ExceptionHandlerFactory</code> and ask it to create the instance, which we then wrap in our custom<code>ViewExpiredExceptionExceptionHandlerFactory</code> class. This is where the real interesting stuff happens.</p><span></span><div class="java" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">package</span><span style="color: #006699;">com.sun.faces</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">java.util.Iterator</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">java.util.Map</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.FacesException</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.application.NavigationHandler</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.application.ViewExpiredException</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.component.UIViewRoot</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.context.ExceptionHandler</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.context.ExceptionHandlerWrapper</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.context.FacesContext</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.event.ExceptionQueuedEvent</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">import</span><span style="color: #006699;">javax.faces.event.ExceptionQueuedEventContext</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">public</span><span style="color: #000000; font-weight: bold;">class</span>ViewExpiredExceptionExceptionHandler <span style="color: #000000; font-weight: bold;">extends</span>ExceptionHandlerWrapper <span style="color: #009900;">{</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">private</span>ExceptionHandler wrapped<span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span>ViewExpiredExceptionExceptionHandler<span style="color: #009900;">(</span>ExceptionHandler wrapped<span style="color: #009900;">)</span> <span style="color: #009900;">{</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">wrapped</span> <span style="color: #339933;">=</span> wrapped<span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #009900;">}</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; @Override</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> ExceptionHandler getWrapped<span style="color: #009900;">(</span><span style="color: #009900;">)</span> <span style="color: #009900;">{</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">return</span> <span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">wrapped</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #009900;">}</span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; @Override</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000066; font-weight: bold;">void</span> handle<span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #000000; font-weight: bold;">throws</span>FacesException <span style="color: #009900;">{</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">for</span> <span style="color: #009900;">(</span>Iterator<span style="color: #339933;">&lt;</span>ExceptionQueuedEvent<span style="color: #339933;">&gt;</span> i <span style="color: #339933;">=</span> getUnhandledExceptionQueuedEvents<span style="color: #009900;">(</span><span style="color: #009900;">)</span>.<span style="color: #006633;">iterator</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span>i.<span style="color: #006633;">hasNext</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span><span style="color: #009900;">)</span><span style="color: #009900;">{</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ExceptionQueuedEvent event <span style="color: #339933;">=</span> i.<span style="color: #006633;">next</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ExceptionQueuedEventContext context <span style="color: #339933;">=</span> <span style="color: #009900;">(</span>ExceptionQueuedEventContext<span style="color: #009900;">)</span> event.<span style="color: #006633;">getSource</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a class="jive-link-external-small" href="http://www.google.com/search?hl=en&amp;q=allinurl%3Athrowable+java.sun.com&amp;btnI=I%27m%20Feeling%20Lucky&amp;customTheme=otn" rel="nofollow"><span style="color: #003399;">Throwable</span></a> t <span style="color: #339933;">=</span> context.<span style="color: #006633;">getException</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">(</span>t <span style="color: #000000; font-weight: bold;">instanceof</span>ViewExpiredException<span style="color: #009900;">)</span> <span style="color: #009900;">{</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ViewExpiredException vee <span style="color: #339933;">=</span><span style="color: #009900;">(</span>ViewExpiredException<span style="color: #009900;">)</span> t<span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; FacesContext fc <span style="color: #339933;">=</span>FacesContext.<span style="color: #006633;">getCurrentInstance</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Map<span style="color: #339933;">&lt;</span>String, Object<span style="color: #339933;">&gt;</span> requestMap <span style="color: #339933;">=</span> fc.<span style="color: #006633;">getExternalContext</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span>.<span style="color: #006633;">getRequestMap</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NavigationHandler nav <span style="color: #339933;">=</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fc.<span style="color: #006633;">getApplication</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span>.<span style="color: #006633;">getNavigationHandler</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">try</span> <span style="color: #009900;">{</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #666666; font-style: italic;">// Push some useful stuff to the request scope for</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #666666; font-style: italic;">// use in the page</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; requestMap.<span style="color: #006633;">put</span><span style="color: #009900;">(</span><span style="color: #0000ff;">"currentViewId"</span>, vee.<span style="color: #006633;">getViewId</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nav.<span style="color: #006633;">handleNavigation</span><span style="color: #009900;">(</span>fc, <span style="color: #000066; font-weight: bold;">null</span>, <span style="color: #0000ff;">"viewExpired"</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fc.<span style="color: #006633;">renderResponse</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">}</span> <span style="color: #000000; font-weight: bold;">finally</span> <span style="color: #009900;">{</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; i.<span style="color: #006633;">remove</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">}</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">}</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;">}</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #666666; font-style: italic;">// At this point, the queue will not contain any ViewExpiredEvents.</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #666666; font-style: italic;">// Therefore, let the parent handle them.</span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">getWrapped()</span>.<span style="color: #006633;">handle</span><span style="color: #009900;">(</span><span style="color: #009900;">)</span><span style="color: #339933;">;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #009900;">}</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">}</span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li></ol></div><span></span><p>On line 15, you see we take advantage of the<code>javax.faces.context.ExceptionHandlerWrapper</code>convenience class. JSF has lots of these wrapper classes and when you use them, you need only override the <code>getWrapped()</code>method
+ to return the instance of the class you're wrapping, which is often 
+simply passed to the constructor, as shown on lines 19 - 21. Once you 
+override <code>getWrapped()</code>, you need only override those methods you're interested in. In this case, we want to override only <code>handle()</code>, which we do on lines 29 - 57.</p><span></span><p>We iterate over the unhandler exceptions using the iterator returned from<code>getUnhandledExceptionQueuedEvents().iterator()</code>, as shown on line 30. The <code>ExeceptionQueuedEvent</code> is a<code>SystemEvent</code> (also described in detail in <a class="jive-link-external-small" href="http://bit.ly/edburnsjsf2" rel="nofollow">my book</a>) from which we can get the actual <code>ViewExpiredException</code>,
+ which I do on line 35. I know I'm going to be ultimately showing a JSF 
+page so I want to extract some information from the exception and place 
+it in request scope, so I can access it via EL in the page. I do this on
+ line 37.</p><span></span><p>On lines 45 and 46, I leverage the JSF 
+implicit navigation system and cause the server to navigate to the 
+"viewExpired" page. This assumes, of course, that there is a<code>viewExpired.xhtml</code> page out there. <strong>2015-08-19:
+ This also assumes that the exception we are handling is not happening 
+during the Render Response phase. If the exception is during the Render 
+Response phase, it is not possible to use the NavigationHandler and you 
+need to find another approach to convey the desired information.</strong>
+ Naturally, you could parameterize this howevere you like, 
+context-param, annotation, whatever. Line 46 causes the intervening 
+lifecycle phases to be skipped.</p><span></span><p>Note that we have a try-finally block here, and in the finally block, on line 49, we call <code>remove()</code> on the iterator. This is an important part of the <code>ExceptionHandler</code>usage
+ contract. If you handle an exception, you have to remove it from the 
+list of unhandled exceptions. That way, we know it's safe to call <code>getWrapped().handle()</code> on line 55.</p><span></span><p>Finally, let's see my cheesy <code>viewExpired.xhtml</code> page in action, shown at left.</p><span></span><img alt="The customized ViewExpiredException error page" class="jive-external-image" style="float:left;"><span>&nbsp; </span><p>This
+ page is not much more visually appealing than the default one, but 
+that's not JSF's fault! The one in the JSF2 book will look nicer. Here's
+ the source for this cheesy one.</p><span></span><div class="html4strict" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div><span style="color: #00bbdd;"><span>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "</span><a class="jive-link-external-small" href="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" rel="nofollow">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</a><span>"&gt;</span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&lt;<a class="jive-link-external-small" href="http://december.com/html/4/element/html.html" rel="nofollow"><span style="color: #000000; font-weight: bold;">html</span></a> xmlns<span style="color: #66cc66;">=</span><span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://www.w3.org/1999/xhtml" rel="nofollow">http://www.w3.org/1999/xhtml</a><span>"</span></span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&nbsp; &nbsp; &nbsp;xmlns:h<span style="color: #66cc66;">=</span><span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://java.sun.com/jsf/html" rel="nofollow">http://java.sun.com/jsf/html</a><span>"</span></span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&nbsp; &nbsp; &nbsp;xmlns:f<span style="color: #66cc66;">=</span><span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://java.sun.com/jsf/core" rel="nofollow">http://java.sun.com/jsf/core</a><span>"</span></span>&gt;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&lt;h:head&gt;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; <span style="color: #009900;">&lt;<a class="jive-link-external-small" href="http://december.com/html/4/element/title.html" rel="nofollow"><span style="color: #000000; font-weight: bold;">title</span></a>&gt;</span>Nice View Expired Page<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><a class="jive-link-external-small" href="http://december.com/html/4/element/title.html" rel="nofollow"><span style="color: #000000; font-weight: bold;">title</span></a>&gt;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span>h:head&gt;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&lt;h:body&gt;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&lt;h:form&gt;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #009900;">&lt;<a class="jive-link-external-small" href="http://december.com/html/4/element/p.html" rel="nofollow"><span style="color: #000000; font-weight: bold;">p</span></a>&gt;</span>To protect your security, we have taken the liberty of logging you</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; out. Those who sacrifice liberty for security deserve to have</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; their views expired.<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><a class="jive-link-external-small" href="http://december.com/html/4/element/p.html" rel="nofollow"><span style="color: #000000; font-weight: bold;">p</span></a>&gt;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #009900;">&lt;<a class="jive-link-external-small" href="http://december.com/html/4/element/p.html" rel="nofollow"><span style="color: #000000; font-weight: bold;">p</span></a>&gt;</span>You were on page #{currentViewId}. &nbsp;Maybe that's useful.<span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><a class="jive-link-external-small" href="http://december.com/html/4/element/p.html" rel="nofollow"><span style="color: #000000; font-weight: bold;">p</span></a>&gt;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; <span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span>h:form&gt;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span>h:body&gt;</span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&lt;<span style="color: #66cc66;">/</span><a class="jive-link-external-small" href="http://december.com/html/4/element/html.html" rel="nofollow"><span style="color: #000000; font-weight: bold;">html</span></a>&gt;</span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li></ol></div><span></span><p>Note that we show the data from the exception on line 15.</p><span></span><p>This entry showed you how to programmatically intercept the<code>ViewExpiredException</code>
+ and do something nice with it. If you have any other state that you can
+    show in the page, it's easy to include it in the Facelets view.</p><span></span><p><span class="technoratitag">Technorati Tags: <a class="jive-link-external-small" href="http://www.technorati.com/tags/edburns" rel="nofollow">edburns</a></span></p></div>
+
+<h2>17 Comments</h2>
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-0">
+    <li class="reply j-anchor-target" id="comment-964461" data-object-type="105" data-object-id="964461">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_008.png" data-avatarid="-1" data-username="seltzerl" data-height="32" alt="seltzerl" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">seltzerl</a>
+                    </span>
+                        <a href="#comment-964461" id="comment-modDate-964461" class="font-color-meta-light">Sep 17, 2009 3:56 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964461">
+
+                        <!-- [DocumentBodyStart:fb97d859-ac02-4b03-937c-2289353f03a5] --><div class="jive-rendered-content">
+Ed,
+
+PLEASE don't let the book get released without a good index -- the first
+ edition was great, but the index made it about 1/10 as useful as it 
+would have been with a really good index.
+
+Thanks.
+
+Larry
+//</div><!-- [DocumentBodyEnd:fb97d859-ac02-4b03-937c-2289353f03a5] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964461" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964461" data-object-type="105" data-object-id="964461" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964461">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964461" class="acclaim-container"><span id="jive-acclaim-like-container-105-964461" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964461-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964461" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964461-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964461" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964462-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964462" data-object-type="105" data-object-id="964462">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_007.png" data-avatarid="-1" data-username="johnsoft" data-height="32" alt="johnsoft" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">johnsoft</a>
+                    </span>
+                        <a href="#comment-964462" id="comment-modDate-964462" class="font-color-meta-light">Apr 1, 2010 11:33 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964462">
+
+                        <!-- [DocumentBodyStart:c3df3b49-903a-4c39-868c-6eaf8cac0aeb] --><div class="jive-rendered-content">
+this not work with jboss richfaces in glassfish
+WARNING: ApplicationDispatcher[/uniplat] PWC1231: Servlet.service() for servlet Faces Servlet threw exception
+java.lang.NullPointerException
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.faces.lifecycle.Phase.doPhase(Phase.java:119)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.faces.lifecycle.RestoreViewPhase.doPhase(RestoreViewPhase.java:110)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.faces.lifecycle.LifecycleImpl.execute(LifecycleImpl.java:118)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at javax.faces.webapp.FacesServlet.service(FacesServlet.java:312)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardWrapper.service(StandardWrapper.java:1523)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationDispatcher.doInvoke(ApplicationDispatcher.java:822)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:684)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:519)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationDispatcher.doDispatch(ApplicationDispatcher.java:488)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.ApplicationDispatcher.dispatch(ApplicationDispatcher.java:379)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:485)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardHostValve.dispatchToErrorPage(StandardHostValve.java:679)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardHostValve.throwable(StandardHostValve.java:311)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.core.StandardHostValve.postInvoke(StandardHostValve.java:241)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.connector.CoyoteAdapter.doService(CoyoteAdapter.java:334)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:233)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.enterprise.v3.services.impl.ContainerMapper.service(ContainerMapper.java:165)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.http.ProcessorTask.invokeAdapter(ProcessorTask.java:791)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.http.ProcessorTask.doProcess(ProcessorTask.java:693)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.http.ProcessorTask.process(ProcessorTask.java:954)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.http.DefaultProtocolFilter.execute(DefaultProtocolFilter.java:170)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.DefaultProtocolChain.executeProtocolFilter(DefaultProtocolChain.java:135)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.DefaultProtocolChain.execute(DefaultProtocolChain.java:102)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.DefaultProtocolChain.execute(DefaultProtocolChain.java:88)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.http.HttpProtocolChain.execute(HttpProtocolChain.java:76)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.ProtocolChainContextTask.doCall(ProtocolChainContextTask.java:53)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.SelectionKeyContextTask.call(SelectionKeyContextTask.java:57)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.ContextTask.run(ContextTask.java:69)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.util.AbstractThreadPool$Worker.doWork(AbstractThreadPool.java:330)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at com.sun.grizzly.util.AbstractThreadPool$Worker.run(AbstractThreadPool.java:309)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at java.lang.Thread.run(Thread.java:619)
+//</div><!-- [DocumentBodyEnd:c3df3b49-903a-4c39-868c-6eaf8cac0aeb] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964462" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964462" data-object-type="105" data-object-id="964462" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964462">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964462" class="acclaim-container"><span id="jive-acclaim-like-container-105-964462" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964462-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964462" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964462-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964462" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964463-->
+
+
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-1">
+    <li class="reply j-anchor-target" id="comment-964463" data-object-type="105" data-object-id="964463">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32.png" data-avatarid="-1" data-username="javaserverfowner" data-height="32" alt="javaserverfowner" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level7.png" alt="Whiz" title="Whiz"></span><span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level7.png" alt="Whiz" title="Whiz"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">javaserverfowner</a>
+                    </span>
+                        <a href="#comment-964463" id="comment-modDate-964463" class="font-color-meta-light">Apr 1, 2010 8:05 PM</a>
+                            (<a class="font-color-meta-light localScroll" href="#comment-964462" title="Go to message">in response to johnsoft</a>)
+                    </p>
+
+                </div>
+                <div id="comment-body-964463">
+
+                        <!-- [DocumentBodyStart:349aa6c0-8a42-40b6-81b6-f76d77763241] --><div class="jive-rendered-content">
+<p>This blog entry is about making custom tags with JSF2: how does richfaces fit into this?</p>
+<p>Ed</p>
+//</div><!-- [DocumentBodyEnd:349aa6c0-8a42-40b6-81b6-f76d77763241] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964463" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964463" data-object-type="105" data-object-id="964463" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964463">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964463" class="acclaim-container"><span id="jive-acclaim-like-container-105-964463" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964463-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964463" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964463-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964463" data-dom-actions="[]" data-parent-id="964462" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964464-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964464" data-object-type="105" data-object-id="964464">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_002.png" data-avatarid="-1" data-username="nickarls-1034196" data-height="32" alt="nickarls-1034196" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">nickarls-1034196</a>
+                    </span>
+                        <a href="#comment-964464" id="comment-modDate-964464" class="font-color-meta-light">Jul 29, 2010 2:50 PM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964464">
+
+                        <!-- [DocumentBodyStart:1e8d254a-226a-49b5-a569-add7096c4b19] --><div class="jive-rendered-content">
+Hi,
+
+&nbsp; What is the recommended way of handling wrapped exceptions in JSF
+ 2? I tried throwing an intentional NPE from an EJB and it ended up 
+wrapped in EvaluationException/EJBTransactionRolledbackException/etc. 
+Tried using the getRootCause() but even that didn't get me the NPE I 
+threw.
+
+-Nik
+//</div><!-- [DocumentBodyEnd:1e8d254a-226a-49b5-a569-add7096c4b19] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964464" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964464" data-object-type="105" data-object-id="964464" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964464">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964464" class="acclaim-container"><span id="jive-acclaim-like-container-105-964464" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964464-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964464" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964464-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964464" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964465-->
+
+
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-1">
+    <li class="reply j-anchor-target" id="comment-964465" data-object-type="105" data-object-id="964465">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32.png" data-avatarid="-1" data-username="javaserverfowner" data-height="32" alt="javaserverfowner" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level7.png" alt="Whiz" title="Whiz"></span><span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level7.png" alt="Whiz" title="Whiz"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">javaserverfowner</a>
+                    </span>
+                        <a href="#comment-964465" id="comment-modDate-964465" class="font-color-meta-light">Jul 29, 2010 4:28 PM</a>
+                            (<a class="font-color-meta-light localScroll" href="#comment-964464" title="Go to message">in response to nickarls-1034196</a>)
+                    </p>
+
+                </div>
+                <div id="comment-body-964465">
+
+                        <!-- [DocumentBodyStart:b5bb2c5a-5e52-4fe0-b2f5-ae18f555da5f] --><div class="jive-rendered-content">
+<p>But seriously, this can be a tricky problem.&nbsp; I recently 
+discovered and fixed a case where an exception was thrown and swallowed,
+ obscuring the true problem.</p>
+<p>It's possible my recent checkin may make your problem go away.</p>
+<p>Please try a nightly build within the last week.&nbsp; </p>
+<p>If you can't do that, please try to post a stacktrace here and we'll see what can be done.</p>
+<p>Thanks,</p>
+<p>Ed</p>
+//</div><!-- [DocumentBodyEnd:b5bb2c5a-5e52-4fe0-b2f5-ae18f555da5f] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964465" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964465" data-object-type="105" data-object-id="964465" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964465">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964465" class="acclaim-container"><span id="jive-acclaim-like-container-105-964465" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964465-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964465" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964465-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964465" data-dom-actions="[]" data-parent-id="964464" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964466-->
+
+
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-1">
+    <li class="reply j-anchor-target" id="comment-964466" data-object-type="105" data-object-id="964466">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_002.png" data-avatarid="-1" data-username="nickarls-1034196" data-height="32" alt="nickarls-1034196" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">nickarls-1034196</a>
+                    </span>
+                        <a href="#comment-964466" id="comment-modDate-964466" class="font-color-meta-light">Jul 30, 2010 11:21 AM</a>
+                            (<a class="font-color-meta-light localScroll" href="#comment-964465" title="Go to message">in response to javaserverfowner</a>)
+                    </p>
+
+                </div>
+                <div id="comment-body-964466">
+
+                        
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964466" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964466" data-object-type="105" data-object-id="964466" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964466">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964466" class="acclaim-container"><span id="jive-acclaim-like-container-105-964466" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964466-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964466" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964466-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964466" data-dom-actions="[]" data-parent-id="964465" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964467-->
+
+
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-1">
+    <li class="reply j-anchor-target" id="comment-964467" data-object-type="105" data-object-id="964467">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32.png" data-avatarid="-1" data-username="javaserverfowner" data-height="32" alt="javaserverfowner" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level7.png" alt="Whiz" title="Whiz"></span><span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level7.png" alt="Whiz" title="Whiz"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">javaserverfowner</a>
+                    </span>
+                        <a href="#comment-964467" id="comment-modDate-964467" class="font-color-meta-light">Jul 30, 2010 4:23 PM</a>
+                            (<a class="font-color-meta-light localScroll" href="#comment-964466" title="Go to message">in response to nickarls-1034196</a>)
+                    </p>
+
+                </div>
+                <div id="comment-body-964467">
+
+                        
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964467" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964467" data-object-type="105" data-object-id="964467" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964467">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964467" class="acclaim-container"><span id="jive-acclaim-like-container-105-964467" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964467-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964467" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964467-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964467" data-dom-actions="[]" data-parent-id="964466" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 969425-->
+
+
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-1">
+    <li class="reply j-anchor-target" id="comment-969425" data-object-type="105" data-object-id="969425">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_002.png" data-avatarid="-1" data-username="nickarls-1034196" data-height="32" alt="nickarls-1034196" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">nickarls-1034196</a>
+                    </span>
+                        <a href="#comment-969425" id="comment-modDate-969425" class="font-color-meta-light">Aug 2, 2010 12:02 PM</a>
+                            (<a class="font-color-meta-light localScroll" href="#comment-964467" title="Go to message">in response to javaserverfowner</a>)
+                    </p>
+
+                </div>
+                <div id="comment-body-969425">
+
+                        <!-- [DocumentBodyStart:b0d3177a-8e28-438f-a390-ea43d7bbc94a] --><div class="jive-rendered-content">
+For the example the exception if a FacesException and getCause reveals 
+the NPE. OTOH, the scenario is not quite the same since there was EJB + 
+CDI in my stack so the issue might be there. Perhaps the EJB exception 
+thrown should be considered the root cause from the perspective of JSF. 
+In any case, a one-liner Throwable getTrueRootCause(Throwable) with some
+ recursion will dig out the root cause for most cases.
+//</div><!-- [DocumentBodyEnd:b0d3177a-8e28-438f-a390-ea43d7bbc94a] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="969425" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-969425" data-object-type="105" data-object-id="969425" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="969425">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-969425" class="acclaim-container"><span id="jive-acclaim-like-container-105-969425" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-969425-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="969425" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-969425-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="969425" data-dom-actions="[]" data-parent-id="964467" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 969426-->
+
+
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-1">
+    <li class="reply j-anchor-target" id="comment-969426" data-object-type="105" data-object-id="969426">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32.png" data-avatarid="-1" data-username="javaserverfowner" data-height="32" alt="javaserverfowner" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level7.png" alt="Whiz" title="Whiz"></span><span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level7.png" alt="Whiz" title="Whiz"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">javaserverfowner</a>
+                    </span>
+                        <a href="#comment-969426" id="comment-modDate-969426" class="font-color-meta-light">Aug 2, 2010 4:54 PM</a>
+                            (<a class="font-color-meta-light localScroll" href="#comment-969425" title="Go to message">in response to nickarls-1034196</a>)
+                    </p>
+
+                </div>
+                <div id="comment-body-969426">
+
+                        <!-- [DocumentBodyStart:63846f4c-3f6c-4b43-82c1-d89d813937cb] --><div class="jive-rendered-content">
+<p>I'm all for simplicity.&nbsp; Where do you recommend digging out the 
+root cause.&nbsp; At the point in time when we catch the exception from 
+EL?</p>
+<p>&nbsp;</p>
+<p>Ed</p>
+//</div><!-- [DocumentBodyEnd:63846f4c-3f6c-4b43-82c1-d89d813937cb] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="969426" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-969426" data-object-type="105" data-object-id="969426" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="969426">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-969426" class="acclaim-container"><span id="jive-acclaim-like-container-105-969426" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-969426-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="969426" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-969426-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="969426" data-dom-actions="[]" data-parent-id="969425" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 969437-->
+
+
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-1">
+    <li class="reply j-anchor-target" id="comment-969437" data-object-type="105" data-object-id="969437">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_002.png" data-avatarid="-1" data-username="nickarls-1034196" data-height="32" alt="nickarls-1034196" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">nickarls-1034196</a>
+                    </span>
+                        <a href="#comment-969437" id="comment-modDate-969437" class="font-color-meta-light">Aug 2, 2010 10:47 PM</a>
+                            (<a class="font-color-meta-light localScroll" href="#comment-969426" title="Go to message">in response to javaserverfowner</a>)
+                    </p>
+
+                </div>
+                <div id="comment-body-969437">
+
+                        
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="969437" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-969437" data-object-type="105" data-object-id="969437" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="969437">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-969437" class="acclaim-container"><span id="jive-acclaim-like-container-105-969437" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-969437-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="969437" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-969437-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="969437" data-dom-actions="[]" data-parent-id="969426" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964468-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964468" data-object-type="105" data-object-id="964468">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_011.png" data-avatarid="-1" data-username="jiai" data-height="32" alt="jiai" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">jiai</a>
+                    </span>
+                        <a href="#comment-964468" id="comment-modDate-964468" class="font-color-meta-light">Jan 16, 2011 12:24 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964468">
+
+                        <!-- [DocumentBodyStart:7355f360-43fc-42ee-b49d-20d25e31d297] --><div class="jive-rendered-content">
+<p>I've played around a bit with the version that is deployed with 
+Mojarra 2.0.4. Unfortunately it doesn't seem to work properly when you 
+are changing locales programmatically. The handler is triggered on:</p>
+<p>FacesContext.getCurrentInstance().getViewRoot().setLocale(currentLocale);</p>
+<p>A sample could be found at <a class="jive-link-external-small" href="http://www.coreservlets.com/JSF-Tutorial/jsf2/#Events" rel="nofollow">www.coreservlets.com/JSF-Tutorial/jsf2/#Events</a></p>
+//</div><!-- [DocumentBodyEnd:7355f360-43fc-42ee-b49d-20d25e31d297] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964468" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964468" data-object-type="105" data-object-id="964468" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964468">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964468" class="acclaim-container"><span id="jive-acclaim-like-container-105-964468" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964468-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964468" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964468-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964468" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964469-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964469" data-object-type="105" data-object-id="964469">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_004.png" data-avatarid="-1" data-username="matsa" data-height="32" alt="matsa" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">matsa</a>
+                    </span>
+                        <a href="#comment-964469" id="comment-modDate-964469" class="font-color-meta-light">Apr 7, 2011 3:53 PM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964469">
+
+                        <!-- [DocumentBodyStart:2b57dbb8-6f8d-4eea-9a23-8ae7ab1a3388] --><div class="jive-rendered-content">
+<p>Hi!<br>
+I'm attempting to adapt this example in my application but encounter 
+this error in the call:&nbsp;nav.handleNavigation(fc, null, 
+"viewExpired");<br>
+<br>
+java.lang.NullPointerException<br>
+at org.apache.myfaces.application.NavigationHandlerImpl.getNavigationCase(NavigationHandlerImpl.java:203)<br>
+at org.apache.myfaces.application.NavigationHandlerImpl.handleNavigation(NavigationHandlerImpl.java:77)</p>
+<p>Line 203: &nbsp;String viewId = facesContext.getViewRoot().getViewId();</p>
+<p>getViewRoot() returns null for some reason. Any ideas as to how&nbsp;I can fix this problem?</p>
+<p>Appreciate any help. :)</p>
+<p>UPDATE: Of course I found a workaround as soon as I posted the 
+question. I perform the following before calling the navigate-method.
+ 
+ if ( fc.getViewRoot() == null )
+ {
+&nbsp;&nbsp;&nbsp;&nbsp; UIViewRoot view = 
+fc.getApplication().getViewHandler().createView( fc, vee.getViewId() );
+&nbsp;&nbsp;&nbsp;&nbsp; fc.setViewRoot( view );
+ }
+ 
+ Perhaps you can explain what happened to the view root. ;)</p>
+//</div><!-- [DocumentBodyEnd:2b57dbb8-6f8d-4eea-9a23-8ae7ab1a3388] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964469" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964469" data-object-type="105" data-object-id="964469" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964469">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964469" class="acclaim-container"><span id="jive-acclaim-like-container-105-964469" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964469-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964469" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964469-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964469" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964470-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964470" data-object-type="105" data-object-id="964470">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_006.png" data-avatarid="-1" data-username="supertonsky" data-height="32" alt="supertonsky" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">supertonsky</a>
+                    </span>
+                        <a href="#comment-964470" id="comment-modDate-964470" class="font-color-meta-light">May 27, 2011 9:48 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964470">
+
+                        <!-- [DocumentBodyStart:3857a53f-e662-4e5e-9cf4-5a64a5f3f02b] --><div class="jive-rendered-content">
+<p>Nice article Ed.</p>
+<p>However, I find this part of the JSF API ugly. No offense to its 
+designers but how would anyone know that you're going to need a 
+constructor that accepts ExceptionHandlerFactory instance as an 
+argument? They could have made an abstract method to set that instance 
+variable. No one knows until somebody like you posts something like this
+ or read the source code.</p>
+<p>Hope to hear from you soon.</p>
+//</div><!-- [DocumentBodyEnd:3857a53f-e662-4e5e-9cf4-5a64a5f3f02b] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964470" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964470" data-object-type="105" data-object-id="964470" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964470">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964470" class="acclaim-container"><span id="jive-acclaim-like-container-105-964470" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964470-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964470" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964470-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964470" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964471-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964471" data-object-type="105" data-object-id="964471">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_005.png" data-avatarid="-1" data-username="cvarga" data-height="32" alt="cvarga" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">cvarga</a>
+                    </span>
+                        <a href="#comment-964471" id="comment-modDate-964471" class="font-color-meta-light">Jun 10, 2011 11:16 PM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964471">
+
+                        <!-- [DocumentBodyStart:05c7de5b-10c9-4009-955c-db522f8bb2cb] --><div class="jive-rendered-content">
+<p>Hi Ed</p>
+<p>Im having an unexpected problem with the ExceptionHandlerWrapper.</p>
+<p>Before the ExceptionHandlerWrapper handle the exception, the error is
+ printed on the console. I do not want the exception apears inside the 
+console. Something is intercepting and loggin it before entering the 
+ExceptionHandlerWrapper</p>
+<p>I cannot find anyreference on this "issue".</p>
+<p>Any ideas ?</p>
+<p>Excluding this "problem", the ExceptionHandlerWrapper works perfectly.</p>
+<p>Thanks</p>
+//</div><!-- [DocumentBodyEnd:05c7de5b-10c9-4009-955c-db522f8bb2cb] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964471" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964471" data-object-type="105" data-object-id="964471" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964471">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964471" class="acclaim-container"><span id="jive-acclaim-like-container-105-964471" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964471-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964471" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964471-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964471" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964472-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964472" data-object-type="105" data-object-id="964472">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_003.png" data-avatarid="-1" data-username="emrahkocaman" data-height="32" alt="emrahkocaman" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">emrahkocaman</a>
+                    </span>
+                        <a href="#comment-964472" id="comment-modDate-964472" class="font-color-meta-light">Mar 26, 2012 10:25 PM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964472">
+
+                        <!-- [DocumentBodyStart:aed1ae3e-13f2-4536-baeb-b02c35c90e11] --><div class="jive-rendered-content">
+<p>getUnhandledExceptionQueuedEvents return an empty collection in case of ajax requests. How should I proceed?</p>
+//</div><!-- [DocumentBodyEnd:aed1ae3e-13f2-4536-baeb-b02c35c90e11] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964472" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964472" data-object-type="105" data-object-id="964472" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964472">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964472" class="acclaim-container"><span id="jive-acclaim-like-container-105-964472" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964472-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964472" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964472-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964472" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964473-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964473" data-object-type="105" data-object-id="964473">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_009.png" data-avatarid="-1" data-username="Kimutua" data-height="32" alt="Kimutua" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">Kimutua</a>
+                    </span>
+                        <a href="#comment-964473" id="comment-modDate-964473" class="font-color-meta-light">Oct 31, 2013 9:25 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964473">
+
+                        <!-- [DocumentBodyStart:5e1d39e2-7043-4539-a3cd-c99ec0344698] --><div class="jive-rendered-content">
+I have successfully and Gracefully&nbsp;&nbsp; dealt with&nbsp; ViewExpiredException in JSF2.
+
+Good solution.
+//</div><!-- [DocumentBodyEnd:5e1d39e2-7043-4539-a3cd-c99ec0344698] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964473" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964473" data-object-type="105" data-object-id="964473" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964473">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964473" class="acclaim-container"><span id="jive-acclaim-like-container-105-964473" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964473-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964473" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964473-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964473" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 989225-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-989225" data-object-type="105" data-object-id="989225">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20090903_files/32_010.png" data-avatarid="1010" data-username="2924048" data-height="32" alt="2924048" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20090903_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">2924048</a>
+                    </span>
+                        <a href="#comment-989225" id="comment-modDate-989225" class="font-color-meta-light">Aug 16, 2016 11:10 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-989225">
+
+                        <!-- [DocumentBodyStart:3ee73663-974c-442b-a025-d9ff579012a6] --><div class="jive-rendered-content"><p>Just applied your code into my new HR application. Works like a charme!</p><p>Thanks.</p><p style="min-height: 8pt; padding: 0px;">&nbsp;</p><p>Bruno</p></div><!-- [DocumentBodyEnd:3ee73663-974c-442b-a025-d9ff579012a6] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="989225" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-989225" data-object-type="105" data-object-id="989225" data-parent-object-type="38" data-parent-object-id="14281" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="989225">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-989225" class="acclaim-container"><span id="jive-acclaim-like-container-105-989225" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-989225-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="989225" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-989225-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="989225" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

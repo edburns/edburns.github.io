@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Notes from The New Stack Godaddy CaaS podcast</title>
+  <meta name="description" content="I use GoDaddy for my DNS hosting for this site. I&#39;m interested in Container as a Service (CaaS). This podcast episode seems like a good fit. Here are my note...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2017/03/13/newstack-godaddy-caas.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Notes from The New Stack Godaddy CaaS podcast</h1>
+    <p class="post-meta"><time datetime="2017-03-13T12:39:00-04:00" itemprop="datePublished">Mar 13, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>I use GoDaddy for my DNS hosting for this site.  I'm interested in
+Container as a Service (CaaS).
+This <a href="https://thenewstack.io/godaddy-built-container-service-platform/">podcast
+    episode</a> seems like a good fit.  Here are my notes as I listen.</p>
+
+<p>0:33 uses Kubernetes and OpenStack.  Shaheeda Nizar, director of
+engineering, GoDaddy.  Micah Rupersburg, GoDaddy CaaS engineering
+  leader.</p>
+
+<p>1:53 Why did you start to do it?  They already had IaaS powered by
+OpenStack.  Internally, the adoption of containers took
+off: <strong>mainly because of being able to package all the
+dependencies</strong>.  Once they went down this road, they needed a
+  platform that runs, orchestrates and manages these containers.</p>
+
+<p>03:33 High level overview.  Kubernetes started to take off as they
+were entering the space.  They liked the vibrant community.  They build
+Kubernets clusters on top of their OpenStack compute.  It had to be
+multi-tenant (obviously for GoDaddy).  This requirement caused much of
+  their interesting technical decisions.</p>
+
+<p>04:57 They needed to get the efficiencies of scale.  Needed partition
+and isolation.  Kubernetes namespaces allows this.  They use namespaces
+to segregate the teams from one another in production.  In staging, they
+create one namespace for each instance of their entire stack that they
+  want to test.  It can be torn down all at once.  It's a sandbox.</p>
+
+<p>06:51 Uses ActiveDirectory for group memberships and Keystone
+  (OpenStack) for authorization.  They have a custom shim that
+  syncronizes the ActiveDirectory into the authorization bit of
+  Kubernetes to provide RBAC.  Each team only has one role.  All team
+  members have all rights.  Driven by an annotation on the namespace
+  object.  Does that mean it's Java?</p>
+
+<p>07:50 What about "Nova" (a part of OpenStack).  Did you drop that?
+  Seemed like a sensitive question.  She kind of equivocated.  They may
+  adopt a hybrid cloud approach: running Kubernetes on their own
+  private cloud, but OpenStack on the public cloud and be able to
+  deploy in both places.</p>
+
+<p>08:45 Kubernetes provides isolation to give you cloud portability.
+  For example L7 load balancing has different impls on AWS vs their
+  impl, but the app's are isolated from that.  IP space is normalized.
+  They use DNS for service discovery.  They are scoped to the
+  namespace.  The federation feature of Kubernetes can be integrated
+  with DNS.</p>
+
+<p>10:11 Drilling down on the hybrid environment.  Clients have to care
+  about if they have to be in different regions.  If the client is in a
+  region for which GoDaddy does not have a regional presence, they want
+  to be able to go after that business by using public cloud for that
+  client.</p>
+
+<p>11:25 Much of the demand is driven by latency.  For example,
+  GoDaddy's main thing is searching for the availability of domain
+  names.  When someone does a query, it needs to be handled local to
+  you.  They don't have data centers in all the places they want to do
+  business.</p>
+
+<p>12:25 How do you handle the data synchronization?  They are not even
+  looking at doing that.  The data is still local.  Are you referring
+  to data governance?  If so, still to premature to talk about.
+  Distributed database sync is the real problem.  Domain resellers need
+  a local endpoint to call.</p>
+
+<p>15:05 Which are running in hybrid mode?  The multi-tenant thing is
+  still a year out.  Some apps originated as containerized, others were
+  broken up from monoliths.  They are good experts at stateless
+  microservices apps that are containerized.</p>
+
+<p>16:55 Autoscaling and resiliency to failure is such a huge win for
+  product teams.  Services have better uptime.  No paging in the middle
+  of the night.  Better response time.</p>
+
+<p>18:07 What do you use to gain visibility into what is inside the
+  containers?  For example, how do you know your containers have the
+  latest security patches applied?  They have a monitoring system:
+  metrics, logging events out (audit trail).  But they basically don't
+  keep track of what's inside containers.  They have a CICD pipeline
+  into which such inspection could be inserted.  They have standard
+  approved versions of frameworks.  Kubernetes allows you to deploy in
+  different ways, though.</p>
+
+<p>21:42 How important is telemetry.  Snap and Grafana.  There is debate
+  within Kubernetes about CI.  They are using Jenkins for CI and CD.
+  They are not using Travis.  They run their own Git servers.  They
+  use <a href="https://prometheus.io/">Prometheus</a> to collect
+  metrics.  They have a plugin that allows you to collect metrics from
+  all the containers in the cluster, and these metrics are federated to
+  a central location.  Grafana sits on top of that.  Each team can look
+  at a dashboard that represents their namespace.</p>
+
+<p>24:03 As soon as a client gets onboarded, they get their own
+  dashboard.  </p>
+
+<p>24:50 How are you managing the control plane?  They looked at Magnum,
+  but rolled their own using Ansible.  There are several different
+  layers for the CaaS.  At the network layer they use Flannel SDN,
+  backed by EtcD.  They deploy EtcD and Flannel before they deploy
+  anything else.  On top of that they deploy the Kubernetes control
+  plane.  On top of Kubernetes itself, they deploy all the ancialliary
+  services.  (Platform services).  They hope to make this available to
+  the community.</p>
+
+<p>27:54 How do you decide what to share?  1. Not re-invent. 2. Use
+  open source that's the right fit.  They have custom code for legacy
+  tie-ins.  But the intention is to write it in a standardized way.
+  There is a huge benefit of sharing if it gets popular.  The community
+  can maintain the pattern.  She thinks of it as a two way street.</p>
+
+<p>29:33 Are you still using any proprietary for new developments?  LDAP
+  integration is custom.  SSL certificates or DNS entries.  CaaS has the
+  smallest number of proprietary bits.  They
+  use <a href="http://www.fluentd.org/">FluentD</a> to collect their
+  logs with
+  a <a href="https://www.loggly.com/blog/why-journald/">JournalD</a>.</p>
+
+<p>31:35 They have a custom logging infrastructure but they wrote a
+  wrapper around it that looks like ElasticSearch.</p>
+
+<p>32:05 How much of what is in the container do you want to provide as
+  a service?  Is every product group on their own there?  The web based
+  product teams are rolling their own stuff and they have a lot of
+  expertise in that area.  They don't have a lot of visibility into the
+  actual application teams.  But they do have patterns for best
+  practices such as "how do I terminate SSL in my application with
+  NGINX?"  "How do I send events out?"  "How do I expose my metrics?"
+  They have tutorials for how to do this kind of thing.  It's really a
+  pattern library.  They want to make it so the only thing they need to
+  interact with is Kubernetes to do anything involving deployment.  One
+  single YAML and you're good.  Deploying straight to OpenStack has lots
+  of steps.  These go away with their CaaS solution.</p>
+
+<p>34:50 What is the business value of the service itself?  How is it
+  priced?  Who are the customers?  They measure the business impact in
+  1. time to market.  If developers can deploy their apps in a seamless
+  low friction environment, that's the win.  IT has transferred from a
+  "ticket based" thing where developers had to do a lot of those
+  tickets before they could deploy their app to production.  All of
+  that friction goes away.  2. The cost of devops.  How much work does a
+  dev or op have to put in to ensure the service is always up, is
+  scaling correctly, has sufficient monitoring.  </p>
+
+<p>37:03 What's next?  Healthchecking. <strong>The old downstream
+    problem shows up again!</strong>  How do we expose that type of
+    failure.  They are looking at ways to make this transparent, with
+    probing endpoints.  Making root cause analysis easier.  Elastic
+  capacity is not done yet.</p>
+
+<p>39:22 The same tired value proposition: let developers focus on their
+  code and not have to worry about the environment.  What
+  about <a href="https://github.com/funcatron">Funcatron</a>?</p>
+
+<p>39:46 Kubernetes is a great platform to build higher level
+  constructs on top of.  Machine learning on top of the cluster.</p>
+
+
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

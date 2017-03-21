@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HTML(5) Friendly Markup in JSF 2.2 Blog</title>
+  <meta name="description" content="As mentioned in my talks at JavaOne San Francisco 2012, JSF 2.2 will include a new feature I&#39;m calling HTML(5) Friendly Markup. I owe a debt of thanks to Fra...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2012/11/01/html5-friendly-markup-jsf-22.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">HTML(5) Friendly Markup in JSF 2.2 Blog</h1>
+    <p class="post-meta"><time datetime="2012-11-01T03:04:00-04:00" itemprop="datePublished">Nov 1, 2012</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="jive-rendered-content"><p>As mentioned in my talks <a class="jive-link-external-small" href="https://oracleus.activeevents.com/connect/search.ww?event=javaone#loadSearch-event=javaone&amp;searchPhrase=burns&amp;searchType=session&amp;tc=0&amp;sortBy=&amp;p=&amp;i%2811424%29=&amp;i%2810050%29=&amp;i%2810090%29=&amp;i%2810092%29=&amp;i%2811842%29=&amp;i%2810086%29=&amp;customTheme=otn" rel="nofollow">at JavaOne San Francisco 2012</a>, JSF 2.2 will include a new feature I'm calling HTML(5) Friendly Markup. I owe a debt of thanks to <a class="jive-link-external-small" href="http://frankcaputo.de/" rel="nofollow">Frank Caputo</a>
+ for collaborating with me on ideas and code for the feature, including 
+the code example from this blog entry. The JSR-344 Expert Group also 
+deserves mention. In true lean fashion, this code sample is taken 
+directly from TDD tests in <a class="jive-link-external-small" href="http://jsf.java.net/" rel="nofollow">Mojarra</a>, which means you can easily <a class="jive-link-external-small" href="http://jsf.java.net/checkout.html" rel="nofollow">get the source</a>.</p><span></span><p>First,
+ let me re-state what I think is one of the core value propositions of 
+JSF: UI Components libraries. These libraries give page authors the 
+ability to embed a simple tag in their view, such as <code>&lt; p:calendar&gt;</code>.
+ With that simple act, the page author can trust that when that 
+component gets rendered to the browser, it will actually be "expanded" 
+to a potentially gigantic and complex bunch of HTML/CSS/JavaScript that 
+provides a beautiful and fun-to-use (including ajaxfied) UI experience 
+for choosing a date. Obviously, it's not just dates, but any of the many
+ components offered by any of the many JSF UI Component libraries 
+available.</p><span></span><p>The use of UI Component libraries is fine 
+in many cases, but if your page-author would rather not have JSF getting
+ in the way of rendering, and would rather have 100% control of the HTML
+ rendering themselves, JSF 2.2 HTML(5) Friendly Markup is the answer. 
+This approach lets the page author shine while letting JSF handle the 
+prosaic task of processing the interaction with the server. For years, 
+I've been calling this the "<a class="jive-link-external-small" href="http://weblogs.java.net/blog/edburns/archive/2006/11/motherhood_appl.html" rel="nofollow">motherhood and apple pie of web-apps"</a>.
+ The ability to write "prue" HTML as your view is one of the things the 
+Wicket camp has been touting for a long time as a key value proposition 
+of<strong>their</strong> framework. Now JSF has it too, but with the all additional features people have grow to enjoy over the years.</p><span></span><p>Let's jump right in with the HTML code.</p><span></span><p><a name="listing1">Listing 1: JSF 2.2 HTML(5) Friendly Markup and Ajax</a></p><span></span><div class="xml" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div><span style="color: #00bbdd;">&lt; !DOCTYPE html&gt;</span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; html</span> <span style="color: #000066;">xmlns</span>=<span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://www.w3.org/1999/xhtml" rel="nofollow">http://www.w3.org/1999/xhtml</a><span>"</span></span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&nbsp; &nbsp; &nbsp;<span style="color: #000066;">xmlns:jsf</span>=<span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://java.sun.com/jsf" rel="nofollow">http://java.sun.com/jsf</a><span>"</span></span> <span style="color: #000066;">xmlns:f</span>=<span style="color: #ff0000;"><span>"</span><a class="jive-link-external-small" href="http://java.sun.com/jsf/core" rel="nofollow">http://java.sun.com/jsf/core</a><span>"</span></span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; head</span> <span style="color: #000066;">jsf:id</span>=<span style="color: #ff0000;">"head"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt; title<span style="color: #000000; font-weight: bold;">&gt;</span></span>Putting it all together<span style="color: #000000; font-weight: bold;">&lt; /title<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; script</span> <span style="color: #000066;">jsf:target</span>=<span style="color: #ff0000;">"body"</span> <span style="color: #000066;">jsf:name</span>=<span style="color: #ff0000;">"js.js"</span><span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; link</span> <span style="color: #000066;">jsf:name</span>=<span style="color: #ff0000;">"css.css"</span> <span style="color: #000066;">rel</span>=<span style="color: #ff0000;">"stylesheet"</span> <span style="color: #000066;">type</span>=<span style="color: #ff0000;">"text/css"</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt; /head<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; body</span> <span style="color: #000066;">jsf:id</span>=<span style="color: #ff0000;">"body"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; form</span> <span style="color: #000066;">jsf:id</span>=<span style="color: #ff0000;">"form"</span> <span style="color: #000066;">jsf:prependId</span>=<span style="color: #ff0000;">"false"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; label</span> <span style="color: #000066;">jsf:for</span>=<span style="color: #ff0000;">"name"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>Name<span style="color: #000000; font-weight: bold;">&lt; /label<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; input</span> <span style="color: #000066;">jsf:id</span>=<span style="color: #ff0000;">"name"</span> <span style="color: #000066;">type</span>=<span style="color: #ff0000;">"text"</span> <span style="color: #000066;">jsf:value</span>=<span style="color: #ff0000;">"#{complex.name}"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; f:ajax</span> <span style="color: #000066;">execute</span>=<span style="color: #ff0000;">"@this"</span> <span style="color: #000066;">render</span>=<span style="color: #ff0000;">"progress"</span><span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt; /input<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; label</span> <span style="color: #000066;">jsf:for</span>=<span style="color: #ff0000;">"tel"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>Tel<span style="color: #000000; font-weight: bold;">&lt; /label<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; input</span> <span style="color: #000066;">jsf:id</span>=<span style="color: #ff0000;">"tel"</span> <span style="color: #000066;">type</span>=<span style="color: #ff0000;">"tel"</span> <span style="color: #000066;">jsf:value</span>=<span style="color: #ff0000;">"#{complex.tel}"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; f:ajax</span> <span style="color: #000066;">execute</span>=<span style="color: #ff0000;">"@this"</span> <span style="color: #000066;">render</span>=<span style="color: #ff0000;">"progress"</span><span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt; /input<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; label</span> <span style="color: #000066;">jsf:for</span>=<span style="color: #ff0000;">"email"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>Email<span style="color: #000000; font-weight: bold;">&lt; /label<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; input</span> <span style="color: #000066;">jsf:id</span>=<span style="color: #ff0000;">"email"</span> <span style="color: #000066;">type</span>=<span style="color: #ff0000;">"email"</span> <span style="color: #000066;">jsf:value</span>=<span style="color: #ff0000;">"#{complex.email}"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; f:ajax</span> <span style="color: #000066;">execute</span>=<span style="color: #ff0000;">"@this"</span> <span style="color: #000066;">render</span>=<span style="color: #ff0000;">"progress"</span><span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt; /input<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp;</div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; label</span> <span style="color: #000066;">for</span>=<span style="color: #ff0000;">"progress"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>Progress<span style="color: #000000; font-weight: bold;">&lt; /label<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt; progress</span> <span style="color: #000066;">jsf:id</span>=<span style="color: #ff0000;">"progress"</span> <span style="color: #000066;">max</span>=<span style="color: #ff0000;">"3"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>#{complex.progress} of 3<span style="color: #000000; font-weight: bold;">&lt; /progress<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li><li style="background: #f0f0f0;"><div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt; /form<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; &nbsp; <span style="color: #000000; font-weight: bold;">&lt; /body<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">&lt; /html<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;</div></li></ol></div><span></span><p>Note that this is HTML 5 markup as evidenced by the DOCTYPE on line 1, and the use of the <code>&lt; progress&gt;</code> element on line 26. Next, note the absence of a JSF UI Component Library, such as <code><span>&lt; </span><a class="jive-link-external-small" href="http://java.sun.com/jsf/core" rel="nofollow">http://java.sun.com/jsf/core</a><span>&gt;</span></code>,<code><span>&lt; </span><a class="jive-link-external-small" href="http://primefaces.org/ui" rel="nofollow">http://primefaces.org/ui</a><span>&gt;</span></code>, or <code><span>&lt; </span><a class="jive-link-external-small" href="http://richfaces.org/rich" rel="nofollow">http://richfaces.org/rich</a><span>&gt;</span></code>. Instead we have a smattering of XML namespaced attributes from the new namespace <code><span>&lt; </span><a class="jive-link-external-small" href="http://java.sun.com/jsf" rel="nofollow">http://java.sun.com/jsf</a><span>&gt;</span></code>.
+ XML namespaced attributes may be new to HTML authors, but they are not 
+new to markup. Just as HTML elements can be supplied by a namespace, it 
+turns out that attributes can be supplied as well. In Listing 1, line 13
+ is an example of using an element from the <code><span>&lt; </span><a class="jive-link-external-small" href="http://java.sun.com/jsf/core" rel="nofollow">http://java.sun.com/jsf/core</a><span>&gt;</span></code> namespace, while every occurrence of the string <code>jsf:</code> (such as line 4) is an example of using an attribute from the <code><span>&lt; </span><a class="jive-link-external-small" href="http://java.sun.com/jsf" rel="nofollow">http://java.sun.com/jsf</a><span>&gt;</span></code> namespace. One popular benefit of this approach is that you can open up such pages in a browser using a <code>file:///</code> URL. If you do that with this particular page in Firefox, you'll see this:</p><span></span><a href="https://community.oracle.com/servlet/JiveServlet/download/14325-209934/20121101-blog-fig-01.png"><img alt="Viewing Listing 1 as a file:/// URL in a browser" src="20121101_files/20121101-blog-fig-01.png" style="float: left;"></a><span>&nbsp; </span><p>Of
+ course, that's not fancy, but the point is that you can write plain 
+HTML, including HTML 5, and style it as you like and view it without 
+having the JSF runtime. On the other hand, when you<strong>do</strong> have the JSF runtime, you get the benefits of JSF, such as easy ajaxfication. For example, the standard<code>&lt; f:ajax&gt;</code>
+ tag will cause an ajax update to happen for the "sensible" DOM event 
+for the component in which it is nested. In the case of text fields, 
+that's "blur". Of course, you can customize what DOM event will cause 
+the update, and also customize which elements will participate in the 
+ajax request, but that sort of thing is not interesting in the HTML 
+expert role.</p><span></span><p>How does this work? If you want to dive 
+deeper, and you certainly do not need to in order to use this feature, 
+    you can look at the javadocs for class<code>javax.faces.view.facelets.TagDecorator</code>. You can browse the latest spec javadocs by following the instructions in <a class="jive-link-external-small" href="http://weblogs.java.net/blog/edburns/archive/2012/05/17/how-view-absolute-latest-jsf-22-spec-snapshot" rel="nofollow">this blog entry</a>, or you can download the latest maven <a class="jive-link-external-small" href="https://maven.java.net/service/local/artifact/maven/redirect?r=snapshots&amp;g=javax.faces&amp;a=javax.faces-api&amp;v=LATEST&amp;c=javadoc" rel="nofollow"><code>-javadoc.jar</code></a>.</p><span></span><p>As a parting note, and I can't stress this enough, <strong>the javadoc is part of the JSF specification</strong>. The intended audience is those <strong>implementing</strong> JSF,<strong>not</strong> those <strong>using</strong> JSF. I depend on the technical authoring community, including the <a class="jive-link-external-small" href="http://docs.oracle.com/javaee/6/tutorial/doc/" rel="nofollow">Java EE Tutorial</a>, as well <a class="jive-link-external-small" href="http://www.jsfcentral.com/reading/books/" rel="nofollow">third-party authors</a>(<a class="jive-link-external-small" href="http://jsfcompref.com/" rel="nofollow">including me</a>) to teach everyone how to best use JSF.</p><span></span><h3>Advertisement</h3><span></span><div style="margin-left: 2em;"><p>I'm teaching a JSF class on Friday 23 November 2012 in Nuremberg, Germany, just after the always awesome <a class="jive-link-external-small" href="http://www.doag.org/en/events/conferences/doag-2012.html" rel="nofollow">DOAG Conference</a>. Here are the details.</p><p>Date: <strong>Friday, 23.11.2012, 9-17h (Starting at 8:30)</strong></p><p>Place: <strong>NewElements GmbH, Thurn-und-Taxis-Str. 10, 90411 Nürnberg</strong></p><p>Cost: 299.00 EUR per-person (including lunch and tax)</p></div><span></span><p><span class="technoratitag">Technorati Tags: <a class="jive-link-external-small" href="http://www.technorati.com/tags/edburns" rel="nofollow">edburns</a></span></p></div>
+
+<h2>5 Comments</h2>
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-0">
+    <li class="reply j-anchor-target" id="comment-964555" data-object-type="105" data-object-id="964555">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20121101_files/32_002.png" data-avatarid="-1" data-username="arjan_t" data-height="32" alt="arjan_t" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20121101_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">arjan_t</a>
+                    </span>
+                        <a href="#comment-964555" id="comment-modDate-964555" class="font-color-meta-light">Nov 3, 2012 11:43 PM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964555">
+
+                        <!-- [DocumentBodyStart:c6d87492-f822-4b9d-99d5-126a789b3091] --><div class="jive-rendered-content">
+I looks like the listing is not rendering correctly. At least on Safari 6
+ and Chrome 22 on OS X I don't see any tags at all, just some attributes
+ and closing angle brackets.
+//</div><!-- [DocumentBodyEnd:c6d87492-f822-4b9d-99d5-126a789b3091] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964555" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964555" data-object-type="105" data-object-id="964555" data-parent-object-type="38" data-parent-object-id="14325" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964555">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964555" class="acclaim-container"><span id="jive-acclaim-like-container-105-964555" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964555-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964555" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964555-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964555" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964556-->
+
+
+
+    <ul class="jive-comment jive-comment-threaded jive-comment-indent-1">
+    <li class="reply j-anchor-target" id="comment-964556" data-object-type="105" data-object-id="964556">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20121101_files/32_002.png" data-avatarid="-1" data-username="arjan_t" data-height="32" alt="arjan_t" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20121101_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">arjan_t</a>
+                    </span>
+                        <a href="#comment-964556" id="comment-modDate-964556" class="font-color-meta-light">Nov 4, 2012 11:13 PM</a>
+                            (<a class="font-color-meta-light localScroll" href="#comment-964555" title="Go to message">in response to arjan_t</a>)
+                    </p>
+
+                </div>
+                <div id="comment-body-964556">
+
+                        <!-- [DocumentBodyStart:f96e15c8-3574-4b8d-a44d-626449eecd4c] --><div class="jive-rendered-content">
+Here's a link to the raw source of the listing: <a class="jive-link-external-small" href="https://svn.java.net/svn/mojarra%7Esvn/trunk/test/agnostic/renderKit/passthrough/src/main/webapp/complex.xhtml" rel="nofollow">https://svn.java.net/svn/mojarra~svn/trunk/test/agnostic/renderKit/passthrough/src/main/webapp/complex.xhtml</a>
+//</div><!-- [DocumentBodyEnd:f96e15c8-3574-4b8d-a44d-626449eecd4c] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964556" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964556" data-object-type="105" data-object-id="964556" data-parent-object-type="38" data-parent-object-id="14325" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964556">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964556" class="acclaim-container"><span id="jive-acclaim-like-container-105-964556" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964556-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964556" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964556-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964556" data-dom-actions="[]" data-parent-id="964555" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964557-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964557" data-object-type="105" data-object-id="964557">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20121101_files/32.png" data-avatarid="-1" data-username="dwuysan" data-height="32" alt="dwuysan" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20121101_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">dwuysan</a>
+                    </span>
+                        <a href="#comment-964557" id="comment-modDate-964557" class="font-color-meta-light">Jan 30, 2013 12:39 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964557">
+
+                        <!-- [DocumentBodyStart:da4d7129-4378-4bc7-a91b-95251e712bb4] --><div class="jive-rendered-content">
+Does it mean that the use of h:inputText etc will no longer be supported
+ for HTML5?
+
+For example, supposed it is for type="email", will it support 
+h:inputText type="email"?
+
+In the case we are using jsf:id approach as you mention in this post, I 
+was wondering about the rest of functionality such as binding component 
+to backing bean (i.e. previously we can bind ui element to a UIComponent
+ in the backing bean).
+
+Thanks, Ed.
+//</div><!-- [DocumentBodyEnd:da4d7129-4378-4bc7-a91b-95251e712bb4] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964557" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964557" data-object-type="105" data-object-id="964557" data-parent-object-type="38" data-parent-object-id="14325" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964557">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964557" class="acclaim-container"><span id="jive-acclaim-like-container-105-964557" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964557-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964557" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964557-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964557" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964558-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964558" data-object-type="105" data-object-id="964558">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20121101_files/32_004.png" data-avatarid="-1" data-username="mms_" data-height="32" alt="mms_" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20121101_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">mms_</a>
+                    </span>
+                        <a href="#comment-964558" id="comment-modDate-964558" class="font-color-meta-light">Mar 4, 2013 5:15 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964558">
+
+                        <!-- [DocumentBodyStart:bff4afcd-428c-43a9-9a10-f2bdc419c1f9] --><div class="jive-rendered-content">
+I tried in firefox 19 with jsf 2.2m09.&nbsp;&nbsp; The page shows up 
+with progress bar animating and when I enter data in text fields it 
+posts to tomcat but the progress bar just keeps animating without any 
+meaningful indication.
+//</div><!-- [DocumentBodyEnd:bff4afcd-428c-43a9-9a10-f2bdc419c1f9] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964558" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964558" data-object-type="105" data-object-id="964558" data-parent-object-type="38" data-parent-object-id="14325" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964558">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964558" class="acclaim-container"><span id="jive-acclaim-like-container-105-964558" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964558-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964558" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964558-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964558" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    
+    <!-- parentId == -1 when the comment does not have a parent -->
+    <!-- Begin Comment 964559-->
+
+
+
+    <li class="reply j-anchor-target" id="comment-964559" data-object-type="105" data-object-id="964559">
+
+
+
+<a href="">
+    <img class="jive-avatar" src="20121101_files/32_003.png" data-avatarid="-1" data-username="leandrokjava" data-height="32" alt="leandrokjava" width="32" height="32" border="0">
+    <span class="j-status-levels j-gamification-status-level"><img src="20121101_files/level1.png" alt="Newbie" title="Newbie"></span></a>
+                    <div class="jive-comment-arrow"></div>
+            <div class="jive-comment-content clearfix">
+                <div class="j-comment-header">
+
+                    <p class="jive-comment-meta font-color-meta-light">
+
+                    <span class="j-username-wrap">
+                        <a href="">leandrokjava</a>
+                    </span>
+                        <a href="#comment-964559" id="comment-modDate-964559" class="font-color-meta-light">Apr 8, 2013 6:21 AM</a>
+                    </p>
+
+                </div>
+                <div id="comment-body-964559">
+
+                        <!-- [DocumentBodyStart:61ca530e-f115-43b1-9bb9-37b6d44e46ec] --><div class="jive-rendered-content">
+\o/ Cool, is possible now integration with twitter bootstrap!
+
+//</div><!-- [DocumentBodyEnd:61ca530e-f115-43b1-9bb9-37b6d44e46ec] -->
+                </div>
+<span class="js-outcome-helpful-counts-container j-outcome-helpful-counts-container font-color-okay" data-object-type="105" data-object-id="964559" data-helpful-count="0" data-overall-count="0" data-display-overall="false"></span>
+<ul class="js-outcome-badge-container j-outcome-badge-container js-ed-105-964559" data-object-type="105" data-object-id="964559" data-parent-object-type="38" data-parent-object-id="14325" aria-label="Outcome badges" aria-live="polite"></ul>
+                <ul class="j-comment-footer js-comment-footer clearfix">
+                    <li class="jive-comment-actions font-color-meta clearfix" data-comment-id="964559">
+
+
+<span class="js-liking-control j-liking-control"><span class="jive-icon-glyph icon-thumbs-up jive-glyph-like"></span><span id="acclaim-container-105-964559" class="acclaim-container"><span id="jive-acclaim-like-container-105-964559" data-acclaim-count="0" data-can-apply="false" data-type="small" data-show-icon="true" class="js-acclaim-container acclaim-like-container"><span class="j-social-action">Like <label class="j-508-label" id="showAcclaim-964559-105-count-label">Show 0 Likes</label><a class="jive-acclaim-likedlink" data-command="showAcclaim" data-acclaim-type="like" data-object-id="964559" data-object-type="105" data-count="0" href="#" role="button" aria-labelledby="showAcclaim-964559-105-count-label" title="Show 0 Likes">(0)</a> </span></span></span></span>
+
+                    </li>
+                    <li class="jive-comment-action-button font-color-meta-light clearfix">
+<a href="#" class="font-color-meta js-outcome-button j-outcome-button" data-object-type="105" data-object-id="964559" data-dom-actions="[]" data-parent-id="-1" data-root-community="Oracle Community">Actions <span class="j-ui-elem j-action-down-arrow"></span></a>                    </li>
+                </ul>
+        </div>
+
+        <!-- End Comment -->
+
+    </li>
+    </ul>
+    
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

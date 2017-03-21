@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Summary of Mojarra Hudson Jobs and the Automated Tests They Run Blog</title>
+  <meta name="description" content="I&#39;m trying to provide transparency into Mojarra development practices and increase Mojarra code quality. To that end, this blog entry summarizes the current ...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2011/03/15/summary-mojarra-hudson-jobs-and-automated-tests-they-run.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Summary of Mojarra Hudson Jobs and the Automated Tests They Run Blog</h1>
+    <p class="post-meta"><time datetime="2011-03-15T07:55:00-04:00" itemprop="datePublished">Mar 15, 2011</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <div class="jive-rendered-content"><p>I'm
+ trying to provide transparency into Mojarra development practices and 
+increase Mojarra code quality. To that end, this blog entry summarizes 
+the current state of the Hudson jobs for <a class="jive-link-external-small" href="http://jsf.java.net/" rel="nofollow">Mojarra</a>.</p><p>Continuous integration is the layer of the <a class="jive-link-external-small" href="https://community.oracle.com/blog/http:%20]]%3E%3C%21[CDATA[%20/www.itworld.com/andy-hunt-rockstar-programmer-1-080401?page=0,13" rel="nofollow">software safety net</a>
+ that ties together the other two layers: version control mastery and a 
+comprehensive automated test library. Mojarra has been developed with 
+rigorous dedication to test driven development, and so has an automated 
+test library with over 2,000 tests. The hudson jobs in this article run 
+the jobs on a variety of server configurations.</p><p>Internal to the 
+GlassFish group at Oracle, we have a high performance hudson server with
+ numerous slaves. The Mojarra jobs are spread across two slaves, one 
+running Solaris X86 and the other running Oracle Enterprise GNU/Linux. 
+All of the Mojarra related jobs are published to the external hudson 
+view &lt;<a class="jive-link-external-small" href="http://hudson.glassfish.org/view/JSF%20Mojarra/" rel="nofollow">http://hudson.glassfish.org/view/JSF%20Mojarra/</a>&gt; using the hudson publisher plugin. This blog entry will examine five of those jobs in some detail.</p><p>Before
+ diving into the jobs, I want to outline the structure of the automated 
+test suite itself. This test suite has evolved since the first commit 
+was made to Mojarra (then just known as the JSF RI) back in Fall 2001. 
+The tests use a mix of in-container, out-of-container, white box, black 
+box and <a class="jive-link-external-small" href="http://www.javapolis.com/confluence/download/attachments/32865/U_11_04_04.pdf" rel="nofollow">acrylic box</a> techniques, sometimes using mock objects. The mock objects come from a home-grown test library, &lt;<a class="jive-link-external-small" href="http://java.net/projects/jsf-extensions/" rel="nofollow">http://java.net/projects/jsf-extensions/</a>&gt;,
+ and pre-date the many nicer mock alternatives such as EasyMock, 
+Mockito, or even JSFUnit. It has never been economical to dump 
+jsf-extensions so we just keep updating it as we go. The tests also use a
+ combination of JUnit, HtmlUnit, and even Cactus. The following table 
+summarizes the layout of the Mojarra test suite.</p><table class="tablesorter tablesorter-default" role="grid" width="80%" border="1"><thead><tr role="row" class="tablesorter-headerRow"><th style="border: 1px solid black; -moz-user-select: none;" data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Source directory relative to Mojarra root: No sort applied, activate to apply an ascending sort" width="30%"><div class="tablesorter-header-inner">Source directory relative to Mojarra root</div></th><th style="border: 1px solid black; -moz-user-select: none;" data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="What kinds of tests live there: No sort applied, activate to apply an ascending sort"><div class="tablesorter-header-inner">What kinds of tests live there</div></th></tr></thead><tbody aria-live="polite" aria-relevant="all"><tr role="row"><td style="border:1px solid black;">jsf-api/src/test/java</td><td style="border:1px solid black;">JUnit based, out-of-container, white box, unit tests, uses jsf-extensions for mocks.</td></tr><tr role="row"><td style="border:1px solid black;">jsf-ri/test</td><td style="border:1px solid black;">cactus based, in-contaniner, white-box, unit tests. Some simple JUnit based out-of-container tests as well.</td></tr><tr role="row"><td style="border:1px solid black;">jsf-ri/systest</td><td style="border:1px solid black;">HtmlUnit
+ based, in-container, acrylic box, system tests. This entire test suite 
+is run twice, once with partial state saving enabled, and again with 
+partial state saving disabled. The entire test is bundled into a single 
+war, and therefore any tests that need to exercise per-webapp 
+configuration cannot be done here.</td></tr><tr role="row"><td style="border:1px solid black;">jsf-ri/systest-per-webapp</td><td style="border:1px solid black;">HtmlUnit
+ based, in-container, black box, integration tests. For the 
+non-clustered deployment scenario, some of these tests are run twice, 
+once with no virtual servers, and again with two virtual servers.</td></tr><tr role="row"><td style="border:1px solid black;">jsf-test</td><td style="border:1px solid black;">HtmlUnit
+ based, in container, black box, regression tests, specific to bug 
+reports. Each test is responsible for its own deployment configuration 
+and is packaged in its own self contained web-app.</td></tr></tbody></table><p>Because
+ the primary target of Mojarra is GlassFish, four of the five jobs are 
+devoted to that container. The fifth job runs a subset of the automated 
+tests on Tomcat 7. I plan to add another job that runs a subset of the 
+tests against WebLogic Server. Of the four GlassFish focused jobs, two 
+of them run against the Mojarra trunk and two run against the <code>MOJARRA_2_1X_ROLLING</code> branch. Version 2.1.0 of this branch was what shipped in <a class="jive-link-external-small" href="http://glassfish.java.net/downloads/3.1-final.html" rel="nofollow">GlassFish 3.1</a>.
+ For both the trunk and the branch, the complete test suite is run in 
+two configurations: 1) a two node cluster, and 2) a single node with two
+ virtual servers. The last job runs just the systest suite on Tomcat 7, 
+with certain exclusions. The following table summarizes the hudson jobs 
+for Mojarra.</p><table class="tablesorter tablesorter-default" role="grid" width="80%" border="1"><thead><tr role="row" class="tablesorter-headerRow"><th style="border: 1px solid black; -moz-user-select: none;" data-column="0" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Job Name: No sort applied, activate to apply an ascending sort"><div class="tablesorter-header-inner">Job Name</div></th><th style="border: 1px solid black; -moz-user-select: none;" data-column="1" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Description: No sort applied, activate to apply an ascending sort"><div class="tablesorter-header-inner">Description</div></th><th style="border: 1px solid black; -moz-user-select: none;" data-column="2" class="tablesorter-header tablesorter-headerUnSorted" tabindex="0" scope="col" role="columnheader" aria-disabled="false" unselectable="on" aria-sort="none" aria-label="Expected Number of Successful Tests: No sort applied, activate to apply an ascending sort"><div class="tablesorter-header-inner">Expected Number of Successful Tests</div></th></tr></thead><tbody aria-live="polite" aria-relevant="all"><tr role="row"><td style="border:1px solid black;"><a class="jive-link-external-small" href="http://hudson.glassfish.org/view/JSF%20Mojarra/job/JSF_TRUNK-GF3.1/" rel="nofollow">JSF_TRUNK-GF3.1</a></td><td style="border:1px solid black;">With the Mojarra trunk source base, run the entire automated test suite in GlassFish 3.1 in a two node cluster scenario.</td><td style="border:1px solid black;">2077</td></tr><tr role="row"><td style="border:1px solid black;"><a class="jive-link-external-small" href="http://hudson.glassfish.org/view/JSF%20Mojarra/job/JSF_TRUNK_NO_CLUSTER-GF3.1/" rel="nofollow">JSF_TRUNK_NO_CLUSTER-GF3.1</a></td><td style="border:1px solid black;">With
+ the Mojarra trunk source base, run the entire automated test suite in 
+GlassFish 3.1 in a single instance. Run some of the tests with a two 
+virtual server scenario.</td><td style="border:1px solid black;">2109</td></tr><tr role="row"><td style="border:1px solid black;"><a class="jive-link-external-small" href="http://hudson.glassfish.org/view/JSF%20Mojarra/job/MOJARRA_2_1X_ROLLING-GF3.1/" rel="nofollow">MOJARRA_2_1X_ROLLING-GF3.1</a></td><td style="border:1px solid black;">With
+ the MOJARRA_2_1X_ROLLING branch source base, run the entire automated 
+test suite in GlassFish 3.1 in a two node cluster scenario.</td><td style="border:1px solid black;">2075</td></tr><tr role="row"><td style="border:1px solid black;"><a class="jive-link-external-small" href="http://hudson.glassfish.org/view/JSF%20Mojarra/job/MOJARRA_2_1X_ROLLING_NO_CLUSTER-GF3.1/" rel="nofollow">MOJARRA_2_1X_ROLLING_NO_CLUSTER-GF3.1</a></td><td style="border:1px solid black;">With
+ the MOJARRA_2_1X_ROLLING branch source base, run the entire automated 
+test suite in GlassFish 3.1 in a single instance. Run some of the tests 
+with a two virtual server scenario.</td><td style="border:1px solid black;">2107</td></tr><tr role="row"><td style="border:1px solid black;"><a class="jive-link-external-small" href="http://hudson.glassfish.org/view/JSF%20Mojarra/job/JSF_TRUNK-TOMCAT7/" rel="nofollow">JSF_TRUNK-TOMCAT7</a></td><td style="border:1px solid black;">With the Mojarra trunk source base, run the systest with partial state saving set to true.</td><td style="border:1px solid black;">368</td></tr></tbody></table><p>Note
+ that I'd really like to make it so the tomcat job runs more of the 
+entire test suite but it is not economical for Oracle to spend any more 
+time on it at this time. I would welcome help to do this work. Please 
+see &lt;<a class="jive-link-external-small" href="http://java.net/jira/browse/JAVASERVERFACES-1993" rel="nofollow">http://java.net/jira/browse/JAVASERVERFACES-1993</a>&gt;. In fact, having the tests run in tomcat at all is the result of an open source contribution from <a class="jive-link-external-small" href="http://www.xing.com/profile/Manuel_Gay" rel="nofollow">Manuel Gay</a>, integrated by Oracle Mojarra team member Sheetal Vartak.</p><h3>Additional Notes about These Jobs</h3><p>There
+ is a persistently occurring and annoying bug in the version of Hudson 
+we use that would cause the hudson parsing of the JUnit test results to 
+fail. The bug is &lt;<a class="jive-link-external-small" href="http://issues.hudson-ci.org/browse/HUDSON-8716" rel="nofollow">http://issues.hudson-ci.org/browse/HUDSON-8716</a>&gt;.
+ The cause of the failure is an errant "&gt;" character on a line by 
+itself. I'm not sure why that line is there, but it's messing up the 
+parsing and causing the job to fail. I added the following bit of script
+ to remove the offending character to the job before the test results 
+are processed by Hudson.</p><p><code>find ${WORKSPACE} -name "TEST*.xml" -exec perl -pi.bak -e "s/^&gt;/ /g" {} \;</code></p><p>I'm sure you could do the same thing with sed(1), but I never bothered to learn sed(1). Shame on me.</p><p>The
+ last little note is that I wanted to make it so the job fails if fewer 
+than expected tests pass. I achieved this by adding a build parameter to
+ each job with a default value that must be updated as more tests are 
+added. Then, I call the following ant task that parses the test results,
+ extracts the actual number of tests passed, and compares it with the 
+expected number, passed in as a parameter. Note that there is no 
+built-in comparison task in ant, so I just used math from antcontrib, 
+which we already import.</p><div class="xml" style="font-family: monospace;"><ol><li style="background: #fcfcfc;"><div><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;target</span> <span style="color: #000066;">name</span>=<span style="color: #ff0000;">"assert.expected.passed.test.count"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp; <span style="color: #000000; font-weight: bold;">&lt;if<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;&nbsp;&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;isset</span> <span style="color: #000066;">property</span>=<span style="color: #ff0000;">"expected.passed.test.count"</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp;&nbsp;&nbsp; <span style="color: #000000; font-weight: bold;">&lt;then<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #000000; font-weight: bold;">&lt;echo<span style="color: #000000; font-weight: bold;">&gt;</span></span>perform the assertion<span style="color: #000000; font-weight: bold;">&lt;/echo<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000000; font-weight: bold;">&lt;sequential<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;property</span> <span style="color: #000066;">name</span>=<span style="color: #ff0000;">"test.report.dir"</span> </span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">value</span>=<span style="color: #ff0000;">"${impl.dir}/build/test-reports"</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;loadfile</span> <span style="color: #000066;">property</span>=<span style="color: #ff0000;">"report.summary"</span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">srcFile</span>=<span style="color: #ff0000;">"${test.report.dir}/html/overview-summary.html"</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;propertyregex</span> <span style="color: #000066;">property</span>=<span style="color: #ff0000;">"actual.passed.test.count"</span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">input</span>=<span style="color: #ff0000;">"${report.summary}"</span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">regexp</span>=<span style="color: #ff0000;">"(?s)(.*)(href=.all-tests.html.&gt;</span></span>)([0-9]{1,6})(.*)"</div></li><li style="background: #f0f0f0;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ select="\3"</div></li><li style="background: #fcfcfc;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /&gt;</div></li><li style="background: #f0f0f0;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;math</span> <span style="color: #000066;">result</span>=<span style="color: #ff0000;">"passed.test.count.difference"</span> <span style="color: #000066;">datatype</span>=<span style="color: #ff0000;">"int"</span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">operation</span>=<span style="color: #ff0000;">"subtract"</span> </span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">operand1</span>=<span style="color: #ff0000;">"${actual.passed.test.count}"</span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">operand2</span>=<span style="color: #ff0000;">"${expected.passed.test.count}"</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;propertyregex</span> <span style="color: #000066;">property</span>=<span style="color: #ff0000;">"actual.lessthan.expected"</span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">input</span>=<span style="color: #ff0000;">"${passed.test.count.difference}"</span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">regexp</span>=<span style="color: #ff0000;">"^-.*"</span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">replace</span>=<span style="color: #ff0000;">"actual.lessthan.expected"</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;fail</span> <span style="color: #000066;">if</span>=<span style="color: #ff0000;">"actual.lessthan.expected"</span> <span style="color: #000066;">status</span>=<span style="color: #ff0000;">"-1"</span></span></div></li><li style="background: #fcfcfc;"><div><span style="color: #009900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000066;">message</span>=<span style="color: #ff0000;">"</span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #009900;"><span style="color: #ff0000;">--JOB
+ FAILED!-- Fewer than expected tests passed.&nbsp; Expected: 
+${expected.passed.test.count} Actual: ${actual.passed.test.count}"</span><span style="color: #000000; font-weight: bold;">/&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #000000; font-weight: bold;">&lt;/sequential<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div>&nbsp;&nbsp;&nbsp; <span style="color: #000000; font-weight: bold;">&lt;/then<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #fcfcfc;"><div>&nbsp; <span style="color: #000000; font-weight: bold;">&lt;/if<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="background: #f0f0f0;"><div><span style="color: #000000; font-weight: bold;">&lt;/target<span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li></ol></div><p>I'm sure there's a more elegant way to do this, but this gets the job done.</p><p><span class="technoratitag"> Technorati Tags: <a class="jive-link-external-small" href="http://www.technorati.com/tags/edburns" rel="nofollow">edburns</a></span></p></div>
+
+  </div>
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

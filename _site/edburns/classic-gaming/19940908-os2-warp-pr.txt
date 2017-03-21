@@ -1,0 +1,93 @@
+From: ...@ncsa.uiuc.edu (Larry Jackson)
+To: mosaicdev, ...@spyglass.com
+Cc: pls
+Subject: IBM announces OS/2 Browser
+Date: Thu, 8 Sep 1994 16:18:14 -0600
+Content-Type: text/plain; charset="us-ascii"
+Mime-Version: 1.0
+
+SAN FRANCISCO, CALIFORNIA, U.S.A., 1994 SEP 8 (NB) -- IBM has
+announced its planned Internet offering which is to be included in
+the new version of OS/2, called Warp. While the name of this new
+operating system (OS) may not be Warp in the final version, IBM
+made it clear that the Internet offering includes everything from
+file transfer protocol (FTP) to a World Wide Web browser, and one
+button registration and log-on.
+
+A number of analysts previously suggested IBM would offer an
+Internet utility for file and electronic-mail management. To the
+surprise of many, IBM's latest OS/2, which is still on schedule
+for its October release, will forego Mosaic and any of its enhanced
+versions for its own Web browser, WebExplorer. This browser will
+be available after the initial release of Warp.
+
+OS/2 users of the new operating system will have one of the most
+complete Internet access packages available. As well as access to
+gopher, telnet, FTP, e-mail, the Web and newsgroups, IBM will
+provide one-button registration and sign-on capabilities to its
+own IBM Global Network, which is managed by Advantis. The
+management group is a partnership formed by IBM and Sears,
+Roebuck.
+
+Wally Casey, IBM's director of marketing, told Newsbytes, "With this
+operating system, we want to deliver one package which would include
+a 32-bit operating system and a bonus pack of full applications. After
+careful consideration, we concluded Internet access was essential to
+rounding-out a full and ready-to-use system."
+
+Beyond offering an interface and access to the "Net," IBM says it will
+also provide extensive help for navigating the complex network.
+Novice users will have a schoolhouse to check-in to and IBM promises
+to update users on new sites, activities, and changes on the Internet.
+
+Casey continued, "While we want to offer our users the most complete
+Internet package possible, we do not intend to rule out other providers.
+Any user of the new operating system will be able to connect to other
+Internet service provider. Advantis will offer worldwide service, but
+there may be instances where a local provider may be a better
+connection to an individual user."
+
+The rates for accessing Advantis were not released, but Casey assured
+the conference attendees that it would offer comparable rates to other
+providers. He suggested a packet of hours would be offered for a
+monthly rate, after which hourly charges would prevail.
+
+Warp's Internet e-mail system is based on IBM's Ultimail which sends
+and receives mail through all gateway online providers and allows for
+bit-mapped annotated documents.
+
+A Newsreader which will search and update a user's favorite newsgroups
+is included. Represented by a NewsReader icon, this service allows users
+to select the newsgroups that interests them and have them updated
+daily.
+
+IBM does not release predictions about the number of copies it expects
+to deliver in the first issue of Warp, but Casey said, "You will see a very
+strong advertising campaign. We plan to get the word out to everyone
+that IBM is offering a full 32-bit, ready-to-use operating system with a
+full set of standard applications."
+
+Prices for the new OS have not been released, but indications point to a
+price somewhere in the range of $100. Casey said, "This new version of
+OS/2, including the bonus pack of applications and Internet package will
+cost less than the standard boxed software/book offerings of other
+Internet packages." Newsbytes research shows these products being
+offered at a suggested retail price of $129.
+
+Warp will allow applications written for OS/2, Windows 3.1 and 3.11,
+Windows for Workgroups 3.1 and 3.11 and DOS to run on the same
+desktop. Earlier versions of OS/2 did not address the four megabyte
+(MB) RAM market. One of the main targets for Warp is the 4MB user
+base in the desktop environment. IBM also plans to target network
+users.
+
+(Patrick McKenna/19940908/Press Contact: MeeLin Sit, Brodeur &
+Partners, 800-354-0978)
+
+
+
+=============
+Larry Jackson
+
+
+

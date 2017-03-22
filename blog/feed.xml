@@ -1,5 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-03-21T15:31:28-07:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Devoxx Java EE 8</title><link href="/blog/2017/03/21/java-ee-8.html" rel="alternate" type="text/html" title="Devoxx Java EE 8" /><published>2017-03-21T11:00:00-07:00</published><updated>2017-03-21T11:00:00-07:00</updated><id>/blog/2017/03/21/java-ee-8</id><content type="html" xml:base="/blog/2017/03/21/java-ee-8.html">&lt;p&gt;Raw notes from Linda DeMichiel's Java EE 8 talk.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-03-22T15:29:16-07:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Devoxx Cloud Debugging</title><link href="/blog/2017/03/22/cloud-debugging.html" rel="alternate" type="text/html" title="Devoxx Cloud Debugging" /><published>2017-03-22T15:20:00-07:00</published><updated>2017-03-22T15:20:00-07:00</updated><id>/blog/2017/03/22/cloud-debugging</id><content type="html" xml:base="/blog/2017/03/22/cloud-debugging.html">&lt;p&gt;Raw notes from Cloud Debugging
+with &lt;a href=&quot;http://twitter.com/patricknflynn&quot;&gt;Patrick Flynn&lt;/a&gt;.  Java
+Tools Tech Lead on Java Cloud Platform.&lt;/p&gt;
+
+&lt;p&gt;Picture from good old days, 2003.  Hardware was very manual.
+Purchase orders, procurement, six months later.  Cork board to separate
+  motherboards.&lt;/p&gt;
+
+&lt;p&gt;Tooling was also not good back then.&lt;/p&gt;
+
+&lt;p&gt;Did show of hands about who is doing deployments by hand.&lt;/p&gt;
+
+&lt;p&gt;Today, we can provision in a matter of seconds.  Great network
+infrastructure, great physical security, but if you are deploying
+  manually, you are still not getting all the benefits.&lt;/p&gt;
+
+
+&lt;p&gt;Asserts that spring boot is the platform of choice in the community
+right now.  Deployed as jars, not wars.  Demo.
+Takes &lt;code&gt;DataStore&lt;/code&gt;, a google cloud platform feature.  Puts a
+  value to the data store and displays it.&lt;/p&gt;
+
+&lt;p&gt;Mutates the demo to add translation.  It is a available as a maven
+dependency in maven central.  Had to look up the javadoc, out of the
+IDE.  Restarted spring boot because of dependency added.  Added language
+  detection iteratively.&lt;/p&gt;
+
+&lt;p&gt;Google cloud tools for intellij has support for a number of services.
+  Plugged these heavily.  Cloud source repositories, for example.&lt;/p&gt;
+
+&lt;p&gt;App Engine Flex.  Create Deployment Configuration: Went through lots
+of the fields in this dialog.  Points: Good maven support.  Need an
+appengine-web.xml.  On build, this actually orchestrates a Docker build.
+The system looks at the project type and chooses the right Docker image
+  to run it.  This is a bit slower than App Engine Standard.&lt;/p&gt;
+
+&lt;p&gt;Mentioned the vendor lock in concern.  App Engine Flex is not a
+walled garden.  It allows running arbitrary APIs.  Because it depends on
+  Docker, you can take your output to any other cloud.&lt;/p&gt;
+
+&lt;p&gt;Google built Borg as a container running service.  Kubernetes was
+informed by the design of Borg.  How do you run the Spring Boot demo on
+Kubernetes?  He went into the gcloud CLI and created a bunch of stuff to
+  run it.  This is entirely separate from App Engine Flex.  &lt;/p&gt;
+
+
+&lt;p&gt;Showed how the debugger gets enabled: Adding the cloud debugger agent
+into the Dockerfile.  The service name and the project file are included
+  in the dockerfile so the debugger knows about it.&lt;/p&gt;
+
+&lt;p&gt;Supports GitHub integration.&lt;/p&gt;
+
+&lt;p&gt;Demo used the spotify Docker Maven Plugin.  Need to include
+source-context.json and source-contexts.json.  Demo also includes a
+docker push to the container registry for the google cloud
+  project.  Did the mvn deploy from the cloud platform machine.&lt;/p&gt;
+
+&lt;p&gt;Additional kubernetes steps: Expose load balancer.  &lt;/p&gt;
+
+&lt;p&gt;Showed lots of mutations of the config on kubernetes and App Engine
+Flex.  Showed how easy traffic splitting, canary testing, and
+  versioning works.&lt;/p&gt;
+
+
+&lt;p&gt;Used Apache Bench to generate load.&lt;/p&gt;
+
+&lt;p&gt;With no time left, he finally got to the debugging.  Bug: reporting
+wrong user agent.  Shows how in Intellij you can attach to running
+instances.  It syncs the source to what is actually running in the
+cloud.  This works because the agent captures what the breakpoints are,
+captures the sample at the time when it is hit.  It is not interactive
+debugging.  You can't step.  But it's still better than nothing.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Cloud Debugging with Patrick Flynn. Java Tools Tech Lead on Java Cloud Platform.</summary></entry><entry><title type="html">Devoxx Baratine</title><link href="/blog/2017/03/21/baratine.html" rel="alternate" type="text/html" title="Devoxx Baratine" /><published>2017-03-21T19:09:00-07:00</published><updated>2017-03-21T19:09:00-07:00</updated><id>/blog/2017/03/21/baratine</id><content type="html" xml:base="/blog/2017/03/21/baratine.html">&lt;p&gt;Raw notes from Baratine talk.  Unfortunately, Simone Bordet and I were
+the only two attendees in a very large room.  On the bright side, I can
+say that what the room lacked in quantity of attendees, it made up for
+in quality, at least in terms of depth of understanding of the space of
+Servlet, HTTP/2, and web technologies in general.&lt;/p&gt;
+
+&lt;p&gt;Sean Wiley, from Caucho Resin.&lt;/p&gt;
+
+&lt;p&gt;Architecture Overview&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Described using the same boundaries as SOA.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;But these are the same thing as microservices.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Baratine Service&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;strong encapsulation boundaries&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Each service has its own thread and efficient lock-free inbox.  Batches to the service.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Inside of a service, code can be single threaded.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Persistent services load and store to a document style key/value database&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Services use their data in-memory.  Loading and storing is transparent.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Database persistence.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Built in.  Cannot swap it out.  Called Kraken.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Use cases&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;API engine.  Baratine service can operate as a REST service.  Can
+shard based on its own data.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DEMO: hello world rest service.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Simone asked about performance.  He answered: they use the disruptor
+pattern in the implementation.&lt;/p&gt;
+
+        &lt;p&gt;Has its own set of annotations similar to JAX-RS.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DEMO 2: Bookstore&lt;/p&gt;
+
+    &lt;p&gt;Showed how persistence can be enabled with two simple single annotations.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;REST service details&lt;/p&gt;
+
+    &lt;p&gt;Gave some performance numbers to show 2x performance over RESTEasy.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“faster because it removes the database from the critical path”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How do you do backpressure?&lt;/p&gt;
+
+    &lt;p&gt;The inbox concept allows them to do backpressure.  Requests are
+journaled into the inbox.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Performance is achieved from implicit batching.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use case 2: Auction Microservice https://github.com/baratine/auction A
+complete worked example.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Baratine can be used as a library, or embedded for fat-jar style.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Bottom line analysis.  Baratine looks like a good solution if you can
+afford to live within in a proprietary stack.*sh&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Baratine talk. Unfortunately, Simone Bordet and I were the only two attendees in a very large room. On the bright side, I can say that what the room lacked in quantity of attendees, it made up for in quality, at least in terms of depth of understanding of the space of Servlet, HTTP/2, and web technologies in general.</summary></entry><entry><title type="html">Devoxx Java EE 8</title><link href="/blog/2017/03/21/java-ee-8.html" rel="alternate" type="text/html" title="Devoxx Java EE 8" /><published>2017-03-21T11:00:00-07:00</published><updated>2017-03-21T11:00:00-07:00</updated><id>/blog/2017/03/21/java-ee-8</id><content type="html" xml:base="/blog/2017/03/21/java-ee-8.html">&lt;p&gt;Raw notes from Linda DeMichiel's Java EE 8 talk.&lt;/p&gt;
 
 &lt;p&gt;What was in EE 7: Actually a very action packed release, with the
 usual themes: simplicity, platform cohesion, embracing contemporary
@@ -2194,161 +2363,4 @@ an instance of T.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The commit also tightened up what happens when a WebApplicationException
-is thrown during the conversion process.&lt;/p&gt;</content><author><name></name></author><summary type="html">In preparation for my DevNexus talk on Thursday I reviewed the commit log for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I didn’t miss anything (See git://java.net/jax-rs-spec~api). There are basically three new big ticket features in JAX-RS 2.1.</summary></entry><entry><title type="html">DevNexus 2017 Picks</title><link href="/blog/2017/02/21/devnexus-2017-picks.html" rel="alternate" type="text/html" title="DevNexus 2017 Picks" /><published>2017-02-21T08:15:00-08:00</published><updated>2017-02-21T08:15:00-08:00</updated><id>/blog/2017/02/21/devnexus-2017-picks</id><content type="html" xml:base="/blog/2017/02/21/devnexus-2017-picks.html">&lt;p&gt;Edited: 2017-02-23: Recommend additional session.&lt;/p&gt;
-
-&lt;p&gt;I am blessed with the opportunity to speak
-at &lt;a href=&quot;http://devnexus.com/&quot;&gt;DevNexus&lt;/a&gt; again this year, after
-having spoken there
-in &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;in
-2014 and 2015&lt;/a&gt;.  Pratik, Vincent, Gunnar and the
-whole &lt;a href=&quot;http://www.ajug.org/&quot;&gt;Atlanta JUG&lt;/a&gt; do a great job
-putting on this very community focused show.  It is the largest
-developer event in the southeastern U.S., an area of the country that
-vitally needs more such events.  There are so many great session from so
-many great speakers, though.  You really can't go wrong with any path.
-Here are my picks for sessions I plan to attend.&lt;/p&gt;
-
-&lt;h3&gt;Wednesday &amp;mdash; Workshop Day&lt;/h3&gt;
-
-&lt;ul&gt;
-  
-  &lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/15529&quot;&gt;Building Reactive Applications&lt;/a&gt;&lt;/p&gt;
-
-  &lt;p&gt;A full day workshop with the legendary Venkat Subramaniam?  Yes
-  please.  Venkat's presentation skills are legendary and his humble
-  delivery creates a learning environment that is sure to enrich your
-  career.  It's probably booked out, though it doesn't say so on the
-  conference site.&lt;/p&gt;
-
-  &lt;/li&gt;
-  
-&lt;/ul&gt;
-
-&lt;h3&gt;Thursday &amp;mdash; Conference Day One&lt;/h3&gt;
-
-	&lt;ul&gt;
-
-	  &lt;li&gt;&lt;p&gt;09:15 Sidney Marcus Auditorium &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/19975&quot;&gt;Don't
-	        walk away from Complexity, Run (Keynote)&lt;/a&gt;&lt;/p&gt;
-
-            &lt;p&gt;Sticking with the Venkat theme, this is the keynote, so
-            obviously I'll be attending.  The theme of &quot;complexity as
-            bugbear&quot; is an old saw, but Venkat is sure to offer a fresh
-            take on it.&lt;/p&gt;
-            
-	  &lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;10:30 A302 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17348&quot;&gt;Building a private CI/CD pipeline with Java and Docker in the Cloud&lt;/a&gt;
-	    &lt;/p&gt;
-
-            &lt;p&gt;In the spirit of DevOps, we all need to try to be as full
-            stack as
-            possible.  &lt;a href=&quot;https://twitter.com/jbaruch&quot;&gt;Baruch
-            Sadogursky&lt;/a&gt; knows his stuff, in this space in
-            particular.  We use Artifactory at Oracle.  The 75 minute
-            length of the DevNexus session should allow him to stretch
-            out and really teach some skills.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-          &lt;li&gt;&lt;p&gt;13:00 A316 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17137&quot;&gt;Tuning with Poor Tools and Cheap Drink&lt;/a&gt;
-	    &lt;/p&gt;
-
-          &lt;p&gt;Kirk is one of the leading experts in the world on Java
-          performance tuning.  We are lucky to have him at DevNexus.&lt;/p&gt;
-
-          &lt;/li&gt;
-          
-          &lt;li&gt;&lt;p&gt;14:30 A411 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17426&quot;&gt;Reactive Thinking in Java&lt;/a&gt;
-	    &lt;/p&gt;
-
-            &lt;p&gt;Yakov Fain is a provocative and thoughtful speaker, I
-            look forward to his thoughts on this hot topic.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;16:00 My session is in the next slot, in room A311, but if I
-	  wasn't speaking then, I'd go
-	  see &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/19469&quot;&gt;The
-	  Art of Java Performance&lt;/a&gt;
-	  from &lt;a href=&quot;https://twitter.com/JoroRoss&quot;&gt;Jonathan Ross&lt;/a&gt;.
-	  &lt;/p&gt;&lt;/li&gt;
-          
-	  &lt;li&gt;&lt;p&gt;17:30
-	  A302 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17356&quot;&gt;Docker
-	        tips and tricks for Java Developers&lt;/a&gt;&lt;/p&gt;
-
-            &lt;p&gt;Docker is a big enough of a pain in the rear to make a
-            &quot;tips and tricks&quot; session well worthwhile.  I haven't seen a
-            talk from Mr. Tsang before, but his credentials speak for
-            themselves.  Also, it may be nice to find kindred spirits
-            who are also leverage Docker and smooth out its sharp
-            edges.&lt;/p&gt;
-
-
-          &lt;/li&gt;
-
-          &lt;/ul&gt;
-
-        &lt;h3&gt;Friday &amp;mdash; Conference Day Two&lt;/h3&gt;
-
-        &lt;ul&gt;
-
-	  &lt;li&gt;&lt;p&gt;10:30 A412 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17302&quot;&gt;Why does Yesterday's Best Practice Become Tomorrow's Antipattern?&lt;/a&gt;
-	    &lt;/p&gt;
-
-
-            &lt;p&gt;Neal Ford is another conference legend and former
-            moderator of the &lt;a href=&quot;/blog/2014/06/22/web-framework-smackdown-2014-edition.html&quot;&gt;2014 edition of the web
-            framework smackdown&lt;/a&gt;.  As an author whose best practices
-            have been labeled as anti-patterns, some of which by
-            Mr. Ford himself, I look forward to his answer.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-
-	  &lt;li&gt;&lt;p&gt;13:00
-	  A403 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17318&quot;&gt;Introduction
-	        to Apache Kafka - The Next Gen Event Streaming System &lt;/a&gt;&lt;/p&gt;
-
-            &lt;p&gt;James is an excellent and engaging speaker.  He's managed
-            to become an expert on a wide range of highly relevant
-            technologies over the years, no mean feat in itself.  Let's
-            see what he has to say about the latest hotness.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-          &lt;li&gt;&lt;p&gt;14:30 A411 &lt;a href=&quot;https://devnexus.com/s/devnexus2017/presentations/15655&quot;&gt;Java, JCP, Adopt-a-JSR &amp; You - A Winning Combination&lt;/a&gt;&lt;/p&gt;
-
-            &lt;p&gt;The Java Community Process is the driving force for the
-            evolution and vitality of the Java ecosystem.  This session
-            will show you how to get involved in making the future
-            Java.&lt;/p&gt;
-
-            &lt;p&gt;14:30
-          A305 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17309&quot;&gt;Successful
-                JavaEE DevOps In The Cloud&lt;/a&gt;&lt;/p&gt;
-
-            &lt;p&gt;This ambitious session features
-            a &lt;a href=&quot;http://devnexus.illinoisjug.org/&quot;&gt;pre-configured
-            VM&lt;/a&gt; and will show you how to use it.  I've given this
-            sort of session many times before and it's hard to pull
-            off.  I like the topic and I want to see how they do it.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;16:00 A405 &lt;a href=&quot;http://devnexus.com/s/devnexus2017/presentations/17164&quot;&gt;MVC
-	        1.0 - Now Even Better!&lt;/a&gt;&lt;/p&gt;
-
-            &lt;p&gt;Oracle's decision to drop MVC from the Java EE 8
-            specification was met with grumbles by some and cheers by
-            others.  I look forward to seeing what the new spec lead
-            has to say about it.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-
-	&lt;/ul&gt;</content><author><name></name></author><summary type="html">Edited: 2017-02-23: Recommend additional session.</summary></entry><entry><title type="html">Welcome to my blog reboot</title><link href="/blog/2017/02/21/welcome-to-my-blog-reboot.html" rel="alternate" type="text/html" title="Welcome to my blog reboot" /><published>2017-02-21T05:15:00-08:00</published><updated>2017-02-21T05:15:00-08:00</updated><id>/blog/2017/02/21/welcome-to-my-blog-reboot</id><content type="html" xml:base="/blog/2017/02/21/welcome-to-my-blog-reboot.html">&lt;p&gt;After a two year hiatus, I intend to blog again.  I'm not sure how
-popular blogs are any more, though.  Many thanks
-to &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; for their excellent and
-polished tool.&lt;/p&gt;</content><author><name></name></author><summary type="html">After a two year hiatus, I intend to blog again. I'm not sure how popular blogs are any more, though. Many thanks to Jekyll for their excellent and polished tool.</summary></entry></feed>
+is thrown during the conversion process.&lt;/p&gt;</content><author><name></name></author><summary type="html">In preparation for my DevNexus talk on Thursday I reviewed the commit log for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I didn’t miss anything (See git://java.net/jax-rs-spec~api). There are basically three new big ticket features in JAX-RS 2.1.</summary></entry></feed>

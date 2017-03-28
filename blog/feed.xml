@@ -1,5 +1,262 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-03-23T11:48:04-07:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Devoxx JAX-RS 2.1</title><link href="/blog/2017/03/23/devoxx-jax-rs.html" rel="alternate" type="text/html" title="Devoxx JAX-RS 2.1" /><published>2017-03-23T11:00:00-07:00</published><updated>2017-03-23T11:00:00-07:00</updated><id>/blog/2017/03/23/devoxx-jax-rs</id><content type="html" xml:base="/blog/2017/03/23/devoxx-jax-rs.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/spericas&quot;&gt;Santiago Pericas-Geertsen's&lt;/a&gt; JAX-RS 2.1 Reloaded&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-03-28T20:07:12+02:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JavaLand 2017 gRPC 101</title><link href="/blog/2017/03/28/javaland-gprc-101.html" rel="alternate" type="text/html" title="JavaLand 2017 gRPC 101" /><published>2017-03-28T14:30:00+02:00</published><updated>2017-03-28T14:30:00+02:00</updated><id>/blog/2017/03/28/javaland-gprc-101</id><content type="html" xml:base="/blog/2017/03/28/javaland-gprc-101.html">&lt;p&gt;Raw nots from &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;Ray Tsang&lt;/a&gt;'s talk about &lt;a href=&quot;http://twitter.com/grpcio&quot;&gt;gRPC&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally was able to get to a session before it
+  started.  &lt;a href=&quot;http://www.http2demo.io/&quot;&gt;HTTP/2 Demo.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Gave definition of saturnism: lead poisoning.&lt;/p&gt;
+
+&lt;p&gt;Trend: revisit: breaking down monolith into Microservices.  Or
+creating microservices in greenfield.  A lot of overhead for this
+  approach: distributed systems problems.  Need additional tooling.&lt;/p&gt;
+
+&lt;p&gt;Referenced &lt;a href=&quot;http://www.ejbtutorial.com/&quot;&gt;CORBA tutorial
+    here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;RPC has a bad rep.  But he spoke highly of RMI.  Everything just
+works.  But you have to be in Java on both sides.  To fix this, we came
+up with SOAP, which lead to REST.  Why RPC: efficient and strongly type.
+REST: everything is CRUDy.  What about how to represent, for example, a
+bank account transfer operation?  On REST, you also have to write client
+  libraries.  RPC can be great if it is simple and interoperable.&lt;/p&gt;
+
+&lt;p&gt;At Google, they use Stubby.  It does O(10&lt;super&gt;10&lt;/super&gt;).  They
+wanted to open source Stubby.  Square used to have their own RPC thing.
+They combined and made gRPC.  Owned by the cloud native foundation.  The
+  G in GPRC means GRPC.&lt;/p&gt;
+
+&lt;p&gt;Transport is in HTTP/2: binary protocol.  Gave a little talk over
+HTTP/2 features: binary, streams, HPACK, PUSH.  Protobuffer 3.
+  Marshalling and unmarshalling data.&lt;/p&gt;
+
+&lt;p&gt;Showed a graph showing throughput/cpu core: binary is faster than
+  text.  It is also better for battery life.&lt;/p&gt;
+
+&lt;p&gt;gRPC supports: C++, Objective C, PHP, Java.&lt;/p&gt;
+
+&lt;p&gt;Finished the slideware at 14 minutes in.&lt;/p&gt;
+
+&lt;p&gt;Protofile is the IDL file.  There you define the message payloads,
+  messages, etc.  Must define request and response payloads.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+
+    syntax = &quot;proto3&quot;;
+
+    package com.example.grpc;
+
+    option java_multiple_files = true;
+
+    enum Sentiment {
+    HAPPY = 0;
+    SAD = 1;
+    }
+
+    message HelloRequest {
+    string firstname = 1;
+    string lastmame = 2;
+    int64 age = 3;
+    Sentiment sentiment = 4;
+    repeated string hobbies = 5;
+    map&amp;lt;string, string&amp;gt; bagOfTricks = 6;
+    
+    }
+
+    message HelloResponse {
+    string greeting = 1;
+    }
+
+    service GreetingService {
+    rpc greeting([stream] HelloRequest) returns ([stream] HelloResponse);
+    }
+    
+&lt;/code&gt;  &lt;/pre&gt;
+
+&lt;p&gt;To run it, include mvn dependencies.  There are also stub generation
+  plugins.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+    public class GreetingImpl extends GreetingServiceGrpc.GreetingServiceImplBase {
+    public void greeting(HelloRequest, StreamObserver response);
+    
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Automatically supports &lt;code&gt;onNext, onCompleted, onError&lt;/code&gt;.
+All builder based.  &lt;/p&gt;
+
+&lt;p&gt;The client uses channels.  Supports client side interceptors.
+Supports load balancing.  Round robin.  Supports deadlines for calls.
+This is kind of a built-in circuit breakers.  &lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Ray Tsang's talk about gRPC.</summary></entry><entry><title type="html">JavaLand 2017 Serverless AWS</title><link href="/blog/2017/03/28/javaland-serverless-aws.html" rel="alternate" type="text/html" title="JavaLand 2017 Serverless AWS" /><published>2017-03-28T14:00:00+02:00</published><updated>2017-03-28T14:00:00+02:00</updated><id>/blog/2017/03/28/javaland-serverless-aws</id><content type="html" xml:base="/blog/2017/03/28/javaland-serverless-aws.html">&lt;p&gt;Raw nots from Niko K&amp;ouml;bler's talk.&lt;/p&gt;
+
+&lt;p&gt;Arrived late due to lunch choice.&lt;/p&gt;
+
+&lt;p&gt;API Gateway.  Hides possible multiple service calls.  Kinda like
+  ESB.&lt;/p&gt;
+
+&lt;p&gt;DynamoDB. Fully managed NoSQL datasource.  Document oriented.  Pay by
+  read/write/capacity units and used storage, not by time.&lt;/p&gt;
+
+&lt;p&gt;Used with Amazon Alexa.  Programs in Alexa are called &quot;skills&quot;.&lt;/p&gt;
+
+&lt;p&gt;Amazon Lambda has some competition: AzureFunctions, Google
+CloudFunctions, IBM Bluemix with OpenWhisk.  Each offers different
+  language bindings.&lt;/p&gt;
+
+&lt;p&gt;Introducing the &lt;a href=&quot;http://serverless.com&quot;&gt;Serverless
+    Framework&lt;/a&gt;.  Looks pretty clean.&lt;/p&gt;
+
+&lt;p&gt;Showed how it looks using the AWS web UI.  Then went into postman and
+  showed how to interact with the API.&lt;/p&gt;
+
+&lt;p&gt;I liked how there is no Docker in this whole thing.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&quot;http://twitter.com/serverlessbuch&quot;&gt;@serverlessbuch&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Niko K&amp;ouml;bler's talk.</summary></entry><entry><title type="html">JavaLand 2017 Lambdas</title><link href="/blog/2017/03/28/javaland-lambda.html" rel="alternate" type="text/html" title="JavaLand 2017 Lambdas" /><published>2017-03-28T11:00:00+02:00</published><updated>2017-03-28T11:00:00+02:00</updated><id>/blog/2017/03/28/javaland-lambda</id><content type="html" xml:base="/blog/2017/03/28/javaland-lambda.html">&lt;p&gt;Raw nots from Simon Ritter's talk.&lt;/p&gt;
+
+&lt;p&gt;We had support for some functional programming in JDK 1.0: anonymous
+  inner classes.  Lambdas do it much more cleanly.&lt;/p&gt;
+
+&lt;p&gt;You can use lambdas where ever the type is a &lt;code&gt;Functional
+Interface&lt;/code&gt;.  It has a single abstract method: accept.&lt;/p&gt;
+
+&lt;p&gt;A lambda looks like a method, but it is not associated with a class.
+  Therefore you can't call it a method.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;(parameters) -&amp;gt; body&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;There was a lot of debate of whether it should be =&amp;gt;.&lt;/p&gt;
+
+&lt;p&gt;Lambdas are closures over values, not types.  This means state cannot
+be modified in a lambda.  This means you can only refer to variables in
+the surrounding scope, they have to be effectively final.  Effectively
+means either explicitly marked final, or it's value cannot be
+changeable.&lt;/p&gt;
+
+&lt;p&gt;Method references let us reuse a method as a lambda expression.
+Three different ways of using them.  Static method.  Instance method of
+  an arbitrary type. Instance method of an existing type.&lt;/p&gt;
+
+
+&lt;p&gt;Performance implications.  Anonymous inner classes force the compiler
+to generate funny class names, type pollution, must be loaded at
+runtime.  Originally, lambdas were implemented this way.  Better way is
+to use invokedynamic.  Original idea of invokedymanic was to improve
+performance of dynamically typed languages on the JVM.  Defers
+implementation of the Lambda to the runtime.  It was the first thing
+added to the JVM bytecode since Java 1.0.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;java.lang.LambdaMetaFactory&lt;/code&gt; returns an instance of the
+lambda functional interface type.  Can divide lambdas into two groups.
+Non-capturing lambdas: no surrounding scope being used; simple
+conversion to static method.  Capturing lambdas: does use surrounding
+scope: static method with captured variables prepended as
+  parameters or synthetic instance method of class using Lambda. &lt;/p&gt;
+
+&lt;p&gt;Went over some impl performance differences between lambdas and
+anonymous inner classes.  Also for capture vs. instantiation of
+anonymous inner classes.  The latter has heap implications.  &lt;b&gt;Unused
+lambdas have no overhead.  Non-capturing lambdas automatically optimise.
+Method references are slightly more
+optimal.  &lt;code&gt;-XX:+TieredCompilation&lt;/code&gt; gives beter
+    lambdas.  &lt;/b&gt; This is the default.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Alonso Church, the Lambda Calculus (1936).  A way of having a
+mathematical definition for having functions and calling them.  He was
+  Alan Turing's PhD advisor.&lt;/p&gt;
+
+&lt;p&gt;Java programmers are typically imperative programmers.  Functional
+programming is not imperative: no side effects.  Lambda calculus and
+Turing machines are equivalent.  What can we do &lt;b&gt;only&lt;/b&gt; using Lambda
+  expressions?&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Simon Ritter's talk.</summary></entry><entry><title type="html">JavaLand 2017 Greeting</title><link href="/blog/2017/03/28/javaland-intro.html" rel="alternate" type="text/html" title="JavaLand 2017 Greeting" /><published>2017-03-28T10:00:00+02:00</published><updated>2017-03-28T10:00:00+02:00</updated><id>/blog/2017/03/28/javaland-intro</id><content type="html" xml:base="/blog/2017/03/28/javaland-intro.html">&lt;p&gt;Fried Saacke, kicked off JavaLand 2017 today.  It's totally full, and
+in a new theater within Fantasialand.  We have 110 lectures, 8 workshop
+sessions, and 16 community activities this year.  He admitted that not
+everything will go as smoothly as we might like, but we are doing the
+  best.  The biggest practical challenge is throughput.&lt;/p&gt;
+
+&lt;p&gt;He talked about DukeCon, which may be a separate conference, but
+  currently is an online sidecar with JavaLand.&lt;/p&gt;
+
+&lt;p&gt;Tobias Frech talked about the community activities: exchange with
+  eachother.  In the Quantum show floor.&lt;/p&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;&lt;p&gt;Java Innovation Lab
+	  &lt;/p&gt;&lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;Meet the JUGS
+	  &lt;/p&gt;&lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;Early Adapter's Area
+	  &lt;/p&gt;&lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;Workshops
+	  &lt;/p&gt;&lt;/li&gt;
+          
+          
+	&lt;/ul&gt;
+
+&lt;p&gt;16:30, Group photo outside Quantum&lt;/p&gt;
+
+&lt;p&gt;Use the #JavaLand twitter handle.&lt;/p&gt;
+
+&lt;p&gt;German speaking JavaLand slack group
+#jlca.  &lt;a href=&quot;https://slackin-jvm-german.herokuapp.com/&quot;&gt;Click
+    here&lt;/a&gt;.  Ask here where you can win a robot.&lt;/p&gt;
+
+&lt;p&gt;This year they had a JavaLand4Kids day before the conference.&lt;/p&gt;
+
+&lt;p&gt;Some more numbers about speakers, staff, exhititors,
+  sponsors, student helpers.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;He specially called out that he invited Oracle to be a sponsor, but
+    they declined.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Digitialization of the REWE Group&lt;/p&gt;
+
+&lt;p&gt;Mentioned the importance of being a good server leader.  So glad to
+  see him mention this.&lt;/p&gt;
+
+&lt;p&gt;Three big digitializaion efforts before joining REWE.  Related his
+recruitment story from REWE group.  Key point: never compromise, at all.
+But this is in conflict with the notion of being a servant leader.  He
+keeps mentioning that life is short.  Mentions you are only as good as
+  you think you are.&lt;/p&gt;
+
+&lt;p&gt;Listed some business numbers for REWE.  Lines of business: Food
+  retail, Tourism, DIY.&lt;/p&gt;
+
+&lt;p&gt;Car analogy: if the car keeps driving ok, why fix it?&lt;/p&gt;
+
+&lt;p&gt;What does he mean by digitalizaion?  Related ProMarkt story: Metaphor
+of Bezos cuckold story.  Basically: take on the &quot;software is eating the
+world&quot; meme and reorganize the company according to it.  Story: how he
+asked them to change the company car policy.  This is an example of the
+  changes he was trying to bring.&lt;/p&gt;
+
+&lt;p&gt;Similar story: the corporate suite and the whiteboard: he did not
+  compromise.&lt;/p&gt;
+
+&lt;p&gt;I would like to him to give more details of what they do from day to
+  day.  It was all about the environment.&lt;/p&gt;
+
+&lt;p&gt;Now he gets to it.  Slide showing non-digital businesses and
+corresponding digitalized business.  Old: World of Music, ProMarkt,
+Gortz, Morrisons.  New: iTunes, Spotify, amazon, zalando, ocado.
+Mentioned the he will sell his Morrisons shares short.  Morrisons: they
+compromised by partnering with Ocado and Amazon.  They are giving all of
+their knowledge away to someone who is going to eat you in the next
+years.&lt;/p&gt;
+
+&lt;p&gt;Have to rethink the whole business.  Starting with: what is a store?
+He thinks of it as a mini warehouse that is perfectly positioned in
+neighborhoods.  Difference between self service business and service
+business.  Gave an aside: build your technology yourself.  Don't buy
+  from vendors, otherwise you become too constrained.&lt;/p&gt;</content><author><name></name></author><summary type="html">Fried Saacke, kicked off JavaLand 2017 today. It's totally full, and in a new theater within Fantasialand. We have 110 lectures, 8 workshop sessions, and 16 community activities this year. He admitted that not everything will go as smoothly as we might like, but we are doing the best. The biggest practical challenge is throughput.</summary></entry><entry><title type="html">Devoxx JAX-RS 2.1</title><link href="/blog/2017/03/23/devoxx-jax-rs.html" rel="alternate" type="text/html" title="Devoxx JAX-RS 2.1" /><published>2017-03-23T19:00:00+01:00</published><updated>2017-03-23T19:00:00+01:00</updated><id>/blog/2017/03/23/devoxx-jax-rs</id><content type="html" xml:base="/blog/2017/03/23/devoxx-jax-rs.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/spericas&quot;&gt;Santiago Pericas-Geertsen's&lt;/a&gt; JAX-RS 2.1 Reloaded&lt;/p&gt;
 
 &lt;p&gt;Quick update on this latest &quot;minor revision&quot;.&lt;/p&gt;
 
@@ -100,7 +357,7 @@ new &lt;code&gt;MessageBodyReader&lt;/code&gt;: &lt;code&gt;NioBodyReader&lt;/co
 
 &lt;p&gt;Publisher = Source, Subscriber = Sink.  This lends itself to SSE.
   You can think of SSE as a special case of NIO.  An SSE connection is
-  just a Flow of SSE Events.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Santiago Pericas-Geertsen's JAX-RS 2.1 Reloaded</summary></entry><entry><title type="html">Devoxx Deep Learning</title><link href="/blog/2017/03/22/deep-learning.html" rel="alternate" type="text/html" title="Devoxx Deep Learning" /><published>2017-03-22T15:25:00-07:00</published><updated>2017-03-22T15:25:00-07:00</updated><id>/blog/2017/03/22/deep-learning</id><content type="html" xml:base="/blog/2017/03/22/deep-learning.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/agibsonccc&quot;&gt;Adam
+  just a Flow of SSE Events.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Santiago Pericas-Geertsen's JAX-RS 2.1 Reloaded</summary></entry><entry><title type="html">Devoxx Deep Learning</title><link href="/blog/2017/03/22/deep-learning.html" rel="alternate" type="text/html" title="Devoxx Deep Learning" /><published>2017-03-22T23:25:00+01:00</published><updated>2017-03-22T23:25:00+01:00</updated><id>/blog/2017/03/22/deep-learning</id><content type="html" xml:base="/blog/2017/03/22/deep-learning.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/agibsonccc&quot;&gt;Adam
 Gibson's&lt;/a&gt; Deep Learning in Production.&lt;/p&gt;
 
 &lt;p&gt;Defining Production: It's different for a startup from an enterprise,
@@ -161,7 +418,7 @@ much need for complexity management.  Python HPC stack.  C sometimes
 
 &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/CUDA&quot;&gt;CUDA&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Adam Gibson's Deep Learning in Production.</summary></entry><entry><title type="html">Devoxx Cloud Debugging</title><link href="/blog/2017/03/22/cloud-debugging.html" rel="alternate" type="text/html" title="Devoxx Cloud Debugging" /><published>2017-03-22T15:20:00-07:00</published><updated>2017-03-22T15:20:00-07:00</updated><id>/blog/2017/03/22/cloud-debugging</id><content type="html" xml:base="/blog/2017/03/22/cloud-debugging.html">&lt;p&gt;Raw notes from Cloud Debugging
+&lt;p&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Adam Gibson's Deep Learning in Production.</summary></entry><entry><title type="html">Devoxx Cloud Debugging</title><link href="/blog/2017/03/22/cloud-debugging.html" rel="alternate" type="text/html" title="Devoxx Cloud Debugging" /><published>2017-03-22T23:20:00+01:00</published><updated>2017-03-22T23:20:00+01:00</updated><id>/blog/2017/03/22/cloud-debugging</id><content type="html" xml:base="/blog/2017/03/22/cloud-debugging.html">&lt;p&gt;Raw notes from Cloud Debugging
 with &lt;a href=&quot;http://twitter.com/patricknflynn&quot;&gt;Patrick Flynn&lt;/a&gt;.  Java
 Tools Tech Lead on Java Cloud Platform.&lt;/p&gt;
 
@@ -232,7 +489,7 @@ wrong user agent.  Shows how in Intellij you can attach to running
 instances.  It syncs the source to what is actually running in the
 cloud.  This works because the agent captures what the breakpoints are,
 captures the sample at the time when it is hit.  It is not interactive
-debugging.  You can't step.  But it's still better than nothing.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Cloud Debugging with Patrick Flynn. Java Tools Tech Lead on Java Cloud Platform.</summary></entry><entry><title type="html">Devoxx Baratine</title><link href="/blog/2017/03/21/baratine.html" rel="alternate" type="text/html" title="Devoxx Baratine" /><published>2017-03-21T19:09:00-07:00</published><updated>2017-03-21T19:09:00-07:00</updated><id>/blog/2017/03/21/baratine</id><content type="html" xml:base="/blog/2017/03/21/baratine.html">&lt;p&gt;Raw notes from Baratine talk.  Unfortunately, Simone Bordet and I were
+debugging.  You can't step.  But it's still better than nothing.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Cloud Debugging with Patrick Flynn. Java Tools Tech Lead on Java Cloud Platform.</summary></entry><entry><title type="html">Devoxx Baratine</title><link href="/blog/2017/03/22/baratine.html" rel="alternate" type="text/html" title="Devoxx Baratine" /><published>2017-03-22T03:09:00+01:00</published><updated>2017-03-22T03:09:00+01:00</updated><id>/blog/2017/03/22/baratine</id><content type="html" xml:base="/blog/2017/03/22/baratine.html">&lt;p&gt;Raw notes from Baratine talk.  Unfortunately, Simone Bordet and I were
 the only two attendees in a very large room.  On the bright side, I can
 say that what the room lacked in quantity of attendees, it made up for
 in quality, at least in terms of depth of understanding of the space of
@@ -330,7 +587,7 @@ complete worked example.&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;Bottom line analysis.  Baratine looks like a good solution if you can
-afford to live within in a proprietary stack.*sh&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Baratine talk. Unfortunately, Simone Bordet and I were the only two attendees in a very large room. On the bright side, I can say that what the room lacked in quantity of attendees, it made up for in quality, at least in terms of depth of understanding of the space of Servlet, HTTP/2, and web technologies in general.</summary></entry><entry><title type="html">Devoxx Java EE 8</title><link href="/blog/2017/03/21/java-ee-8.html" rel="alternate" type="text/html" title="Devoxx Java EE 8" /><published>2017-03-21T11:00:00-07:00</published><updated>2017-03-21T11:00:00-07:00</updated><id>/blog/2017/03/21/java-ee-8</id><content type="html" xml:base="/blog/2017/03/21/java-ee-8.html">&lt;p&gt;Raw notes from Linda DeMichiel's Java EE 8 talk.&lt;/p&gt;
+afford to live within in a proprietary stack.*sh&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Baratine talk. Unfortunately, Simone Bordet and I were the only two attendees in a very large room. On the bright side, I can say that what the room lacked in quantity of attendees, it made up for in quality, at least in terms of depth of understanding of the space of Servlet, HTTP/2, and web technologies in general.</summary></entry><entry><title type="html">Devoxx Java EE 8</title><link href="/blog/2017/03/21/java-ee-8.html" rel="alternate" type="text/html" title="Devoxx Java EE 8" /><published>2017-03-21T19:00:00+01:00</published><updated>2017-03-21T19:00:00+01:00</updated><id>/blog/2017/03/21/java-ee-8</id><content type="html" xml:base="/blog/2017/03/21/java-ee-8.html">&lt;p&gt;Raw notes from Linda DeMichiel's Java EE 8 talk.&lt;/p&gt;
 
 &lt;p&gt;What was in EE 7: Actually a very action packed release, with the
 usual themes: simplicity, platform cohesion, embracing contemporary
@@ -361,7 +618,7 @@ usual themes: simplicity, platform cohesion, embracing contemporary
   called &lt;a href=&quot;http://json-b.net/&quot;&gt;Yasson&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;JAX-RS.  New features: Reactive Client API, Server Sent Events,
-  NIO.  I have more on this at &lt;a href=&quot;/blog/2017/02/21/jax-rs-2_1-new-feature-introduction.html&quot;&gt;a previous
+  NIO.  I have more on this at &lt;a href=&quot;/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html&quot;&gt;a previous
   post&lt;/a&gt;.  Linda's talk had more structure on Server Sent Events.  I
   am glad she emphasized the value JAX-RS brings in sending SSE to both
   client and server when doing REST.&lt;/p&gt;
@@ -404,7 +661,7 @@ usual themes: simplicity, platform cohesion, embracing contemporary
 notes?&lt;/p&gt;
 
 
---&gt;</content><author><name></name></author><summary type="html">Raw notes from Linda DeMichiel's Java EE 8 talk.</summary></entry><entry><title type="html">Devoxx US 2017 Picks</title><link href="/blog/2017/03/19/devoxx-us-2017-picks.html" rel="alternate" type="text/html" title="Devoxx US 2017 Picks" /><published>2017-03-19T22:59:00-07:00</published><updated>2017-03-19T22:59:00-07:00</updated><id>/blog/2017/03/19/devoxx-us-2017-picks</id><content type="html" xml:base="/blog/2017/03/19/devoxx-us-2017-picks.html">&lt;p&gt;I've been around the block a bit when it comes to Java developer
+--&gt;</content><author><name></name></author><summary type="html">Raw notes from Linda DeMichiel's Java EE 8 talk.</summary></entry><entry><title type="html">Devoxx US 2017 Picks</title><link href="/blog/2017/03/20/devoxx-us-2017-picks.html" rel="alternate" type="text/html" title="Devoxx US 2017 Picks" /><published>2017-03-20T06:59:00+01:00</published><updated>2017-03-20T06:59:00+01:00</updated><id>/blog/2017/03/20/devoxx-us-2017-picks</id><content type="html" xml:base="/blog/2017/03/20/devoxx-us-2017-picks.html">&lt;p&gt;I've been around the block a bit when it comes to Java developer
 conferences and for some reason Silicon Valley USA is a tough nut to
 crack, for the conference organizer.  This difficulty flies in the face
 of the obvious surplus of top tier talent in the area, but for some
@@ -645,1161 +902,4 @@ as well be present at this reboot.&lt;/p&gt;
 
         
         
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">I've been around the block a bit when it comes to Java developer conferences and for some reason Silicon Valley USA is a tough nut to crack, for the conference organizer. This difficulty flies in the face of the obvious surplus of top tier talent in the area, but for some reason it's been hard to replicate the success of European conferences in the hometown of US tech. That hasn't stopped the big names from trying, though. In 2011, S&amp;S Media launched the one-and-done JAX Conf 2011. I was not blessed with the honor of speaking or presenting, but I have heard from multiple sources that it was not a success. This is very surprising, since S&amp;S run a great show and are very well organized. This week, the Devoxx folks are having their go. I am fortunate to have the opportunity to attend Devoxx US. I've spoken at JavaPolis and Devoxx Antwerp, and these shows have a well-deserved reputation for excellence. Devoxx US looks like it could be great as well. Here, then, are my session picks.</summary></entry><entry><title type="html">Notes from The New Stack Godaddy CaaS podcast</title><link href="/blog/2017/03/13/newstack-godaddy-caas.html" rel="alternate" type="text/html" title="Notes from The New Stack Godaddy CaaS podcast" /><published>2017-03-13T09:39:00-07:00</published><updated>2017-03-13T09:39:00-07:00</updated><id>/blog/2017/03/13/newstack-godaddy-caas</id><content type="html" xml:base="/blog/2017/03/13/newstack-godaddy-caas.html">&lt;p&gt;I use GoDaddy for my DNS hosting for this site.  I'm interested in
-Container as a Service (CaaS).
-This &lt;a href=&quot;https://thenewstack.io/godaddy-built-container-service-platform/&quot;&gt;podcast
-    episode&lt;/a&gt; seems like a good fit.  Here are my notes as I listen.&lt;/p&gt;
-
-&lt;p&gt;0:33 uses Kubernetes and OpenStack.  Shaheeda Nizar, director of
-engineering, GoDaddy.  Micah Rupersburg, GoDaddy CaaS engineering
-  leader.&lt;/p&gt;
-
-&lt;p&gt;1:53 Why did you start to do it?  They already had IaaS powered by
-OpenStack.  Internally, the adoption of containers took
-off: &lt;strong&gt;mainly because of being able to package all the
-dependencies&lt;/strong&gt;.  Once they went down this road, they needed a
-  platform that runs, orchestrates and manages these containers.&lt;/p&gt;
-
-&lt;p&gt;03:33 High level overview.  Kubernetes started to take off as they
-were entering the space.  They liked the vibrant community.  They build
-Kubernets clusters on top of their OpenStack compute.  It had to be
-multi-tenant (obviously for GoDaddy).  This requirement caused much of
-  their interesting technical decisions.&lt;/p&gt;
-
-&lt;p&gt;04:57 They needed to get the efficiencies of scale.  Needed partition
-and isolation.  Kubernetes namespaces allows this.  They use namespaces
-to segregate the teams from one another in production.  In staging, they
-create one namespace for each instance of their entire stack that they
-  want to test.  It can be torn down all at once.  It's a sandbox.&lt;/p&gt;
-
-&lt;p&gt;06:51 Uses ActiveDirectory for group memberships and Keystone
-  (OpenStack) for authorization.  They have a custom shim that
-  syncronizes the ActiveDirectory into the authorization bit of
-  Kubernetes to provide RBAC.  Each team only has one role.  All team
-  members have all rights.  Driven by an annotation on the namespace
-  object.  Does that mean it's Java?&lt;/p&gt;
-
-&lt;p&gt;07:50 What about &quot;Nova&quot; (a part of OpenStack).  Did you drop that?
-  Seemed like a sensitive question.  She kind of equivocated.  They may
-  adopt a hybrid cloud approach: running Kubernetes on their own
-  private cloud, but OpenStack on the public cloud and be able to
-  deploy in both places.&lt;/p&gt;
-
-&lt;p&gt;08:45 Kubernetes provides isolation to give you cloud portability.
-  For example L7 load balancing has different impls on AWS vs their
-  impl, but the app's are isolated from that.  IP space is normalized.
-  They use DNS for service discovery.  They are scoped to the
-  namespace.  The federation feature of Kubernetes can be integrated
-  with DNS.&lt;/p&gt;
-
-&lt;p&gt;10:11 Drilling down on the hybrid environment.  Clients have to care
-  about if they have to be in different regions.  If the client is in a
-  region for which GoDaddy does not have a regional presence, they want
-  to be able to go after that business by using public cloud for that
-  client.&lt;/p&gt;
-
-&lt;p&gt;11:25 Much of the demand is driven by latency.  For example,
-  GoDaddy's main thing is searching for the availability of domain
-  names.  When someone does a query, it needs to be handled local to
-  you.  They don't have data centers in all the places they want to do
-  business.&lt;/p&gt;
-
-&lt;p&gt;12:25 How do you handle the data synchronization?  They are not even
-  looking at doing that.  The data is still local.  Are you referring
-  to data governance?  If so, still to premature to talk about.
-  Distributed database sync is the real problem.  Domain resellers need
-  a local endpoint to call.&lt;/p&gt;
-
-&lt;p&gt;15:05 Which are running in hybrid mode?  The multi-tenant thing is
-  still a year out.  Some apps originated as containerized, others were
-  broken up from monoliths.  They are good experts at stateless
-  microservices apps that are containerized.&lt;/p&gt;
-
-&lt;p&gt;16:55 Autoscaling and resiliency to failure is such a huge win for
-  product teams.  Services have better uptime.  No paging in the middle
-  of the night.  Better response time.&lt;/p&gt;
-
-&lt;p&gt;18:07 What do you use to gain visibility into what is inside the
-  containers?  For example, how do you know your containers have the
-  latest security patches applied?  They have a monitoring system:
-  metrics, logging events out (audit trail).  But they basically don't
-  keep track of what's inside containers.  They have a CICD pipeline
-  into which such inspection could be inserted.  They have standard
-  approved versions of frameworks.  Kubernetes allows you to deploy in
-  different ways, though.&lt;/p&gt;
-
-&lt;p&gt;21:42 How important is telemetry.  Snap and Grafana.  There is debate
-  within Kubernetes about CI.  They are using Jenkins for CI and CD.
-  They are not using Travis.  They run their own Git servers.  They
-  use &lt;a href=&quot;https://prometheus.io/&quot;&gt;Prometheus&lt;/a&gt; to collect
-  metrics.  They have a plugin that allows you to collect metrics from
-  all the containers in the cluster, and these metrics are federated to
-  a central location.  Grafana sits on top of that.  Each team can look
-  at a dashboard that represents their namespace.&lt;/p&gt;
-
-&lt;p&gt;24:03 As soon as a client gets onboarded, they get their own
-  dashboard.  &lt;/p&gt;
-
-&lt;p&gt;24:50 How are you managing the control plane?  They looked at Magnum,
-  but rolled their own using Ansible.  There are several different
-  layers for the CaaS.  At the network layer they use Flannel SDN,
-  backed by EtcD.  They deploy EtcD and Flannel before they deploy
-  anything else.  On top of that they deploy the Kubernetes control
-  plane.  On top of Kubernetes itself, they deploy all the ancialliary
-  services.  (Platform services).  They hope to make this available to
-  the community.&lt;/p&gt;
-
-&lt;p&gt;27:54 How do you decide what to share?  1. Not re-invent. 2. Use
-  open source that's the right fit.  They have custom code for legacy
-  tie-ins.  But the intention is to write it in a standardized way.
-  There is a huge benefit of sharing if it gets popular.  The community
-  can maintain the pattern.  She thinks of it as a two way street.&lt;/p&gt;
-
-&lt;p&gt;29:33 Are you still using any proprietary for new developments?  LDAP
-  integration is custom.  SSL certificates or DNS entries.  CaaS has the
-  smallest number of proprietary bits.  They
-  use &lt;a href=&quot;http://www.fluentd.org/&quot;&gt;FluentD&lt;/a&gt; to collect their
-  logs with
-  a &lt;a href=&quot;https://www.loggly.com/blog/why-journald/&quot;&gt;JournalD&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;31:35 They have a custom logging infrastructure but they wrote a
-  wrapper around it that looks like ElasticSearch.&lt;/p&gt;
-
-&lt;p&gt;32:05 How much of what is in the container do you want to provide as
-  a service?  Is every product group on their own there?  The web based
-  product teams are rolling their own stuff and they have a lot of
-  expertise in that area.  They don't have a lot of visibility into the
-  actual application teams.  But they do have patterns for best
-  practices such as &quot;how do I terminate SSL in my application with
-  NGINX?&quot;  &quot;How do I send events out?&quot;  &quot;How do I expose my metrics?&quot;
-  They have tutorials for how to do this kind of thing.  It's really a
-  pattern library.  They want to make it so the only thing they need to
-  interact with is Kubernetes to do anything involving deployment.  One
-  single YAML and you're good.  Deploying straight to OpenStack has lots
-  of steps.  These go away with their CaaS solution.&lt;/p&gt;
-
-&lt;p&gt;34:50 What is the business value of the service itself?  How is it
-  priced?  Who are the customers?  They measure the business impact in
-  1. time to market.  If developers can deploy their apps in a seamless
-  low friction environment, that's the win.  IT has transferred from a
-  &quot;ticket based&quot; thing where developers had to do a lot of those
-  tickets before they could deploy their app to production.  All of
-  that friction goes away.  2. The cost of devops.  How much work does a
-  dev or op have to put in to ensure the service is always up, is
-  scaling correctly, has sufficient monitoring.  &lt;/p&gt;
-
-&lt;p&gt;37:03 What's next?  Healthchecking. &lt;strong&gt;The old downstream
-    problem shows up again!&lt;/strong&gt;  How do we expose that type of
-    failure.  They are looking at ways to make this transparent, with
-    probing endpoints.  Making root cause analysis easier.  Elastic
-  capacity is not done yet.&lt;/p&gt;
-
-&lt;p&gt;39:22 The same tired value proposition: let developers focus on their
-  code and not have to worry about the environment.  What
-  about &lt;a href=&quot;https://github.com/funcatron&quot;&gt;Funcatron&lt;/a&gt;?&lt;/p&gt;
-
-&lt;p&gt;39:46 Kubernetes is a great platform to build higher level
-  constructs on top of.  Machine learning on top of the cluster.&lt;/p&gt;</content><author><name></name></author><summary type="html">I use GoDaddy for my DNS hosting for this site. I'm interested in Container as a Service (CaaS). This podcast episode seems like a good fit. Here are my notes as I listen.</summary></entry><entry><title type="html">Hello Apiary, Java Annotations and Swagger YAML</title><link href="/blog/2017/03/07/hello-apiary-swagger.html" rel="alternate" type="text/html" title="Hello Apiary, Java Annotations and Swagger YAML" /><published>2017-03-07T06:19:00-08:00</published><updated>2017-03-07T06:19:00-08:00</updated><id>/blog/2017/03/07/hello-apiary-swagger</id><content type="html" xml:base="/blog/2017/03/07/hello-apiary-swagger.html">&lt;p&gt;As I'm finishing up the preparations for the class &lt;a href=&quot;http://source-knights.com&quot;&gt;Oliver Szymanski&lt;/a&gt; and
-I are teaching at the
-&lt;a href=&quot;http://www.javaland.eu/de/programm/schulungstag/&quot;&gt;JavaLand
-Schulungstag,&lt;/a&gt; I wanted to take some time to blog about some aspects
-of a new workflow for RESTful API design.  If you are going to JavaLand,
-do check out my previous post where I list my &lt;a href=&quot;/blog/2017/02/27/javaland-2017-picks.html&quot;&gt;session picks&lt;/a&gt;.
-This workflow involves several disparate technologies, which is now
-commonplace in today's mega-heterogeneous, optimized for evolution,
-development environment.  This blog post will start with a simple Java
-interface, decorate it with JAX-RS annotations, further decorate it with
-OpenAPI Initiative (aka Swagger) API documentation annotations, upload
-it to Apiary, and close by handing off to further tutorials.&lt;/p&gt;
-
-&lt;h3&gt;Starting Simple&lt;/h3&gt;
-
-&lt;p&gt;Keeping it simple is harder now than ever.  In my opinion, this is
-due to the presence of powerful market forces that need to monetize the
-act of getting things done.  These forces insidiously inject themselves
-wherever possible into the process.  So don't get discouraged if things
-get complex very fast.  Just realize it's a constant process to preserve
-simplicity, the first step of which is starting simple.  We're going to
-design a simple Hello World REST service, starting with this Java
-  interface.&lt;/p&gt;
-
-&lt;div style=&quot;padding: 5px;&quot;&gt;
-		&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.core.Response&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;interface&lt;/span&gt; HelloApiary &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; Response sayHello&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; name&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
-
-&lt;p&gt;The idea is that the actual JAX-RS/Jersey code will implement this
-  interface, but as this post focuses on the API design, we will not
-  examine that aspect.  &lt;/p&gt;
-
-&lt;p&gt;The next step is to apply the standard JAX-RS annotations:&lt;/p&gt;
-
-&lt;div style=&quot;padding: 5px;&quot;&gt;
-		&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.GET&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.Path&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.Produces&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.QueryParam&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.core.MediaType&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.core.Response&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;20170204&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Produces&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;MediaType.&lt;span style=&quot;color: #006633;&quot;&gt;APPLICATION_JSON&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;interface&lt;/span&gt; HelloApiary &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @GET&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; Response sayHello&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; @QueryParam&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; name&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
-
-&lt;p&gt;The act of sprinkling these annotations on the interface says a lot.
-  Line 9 declares that this REST endpoint will be listening at the
-  path &lt;code&gt;20170204&lt;/code&gt;.  This is kind of like a servlet path
-  mapping.  We use an 8 digit date as the path to give us a simple,
-  unambiguous version scheme.  This is important to enable API evolution
-  while preserving compatibility with existing clients of our API. &lt;/p&gt;
-
-&lt;p&gt;Line 10 declares that the API will be returning JSON.&lt;/p&gt;
-
-&lt;p&gt;Line 13 declares that the &lt;code&gt;sayHello&lt;/code&gt; method should be
-  invoked when an HTTP GET request comes to the
-  path &lt;code&gt;20170204&lt;/code&gt;.  Line 15 says the value of
-  the &lt;code&gt;name&lt;/code&gt; argument will be provided by the URL query
-  parameter &lt;code&gt;name&lt;/code&gt;.  Note the duplication here.
-  Unfortunately this kind of duplication seems to be an accepted cost in
-  this style of API design.&lt;/p&gt;
-
-&lt;p&gt;Now we come to the matter of how to document our RESTful API, which
-  brings us back to monetization: several competing solutions exist,
-  each with their own agenda for success.  The best way to do this is
-  still an open question, and depends on finding a good fit between what
-  you have (in terms of current developer skillset) and what you want
-  (in terms of finished documentation).  I have chosen to strike a
-  compromise that gives me flexibility and options: use
-  the &lt;a href=&quot;https://www.openapis.org/&quot;&gt;OpenAPI Initiative&lt;/a&gt; Java
-  Annotations to produce a &lt;code&gt;swagger.yaml&lt;/code&gt; file.  OAI
-  (formerly Swagger) is not the only choice.
-  These &lt;a href=&quot;http://radar.oreilly.com/2015/09/building-apis-with-swagger.html&quot;&gt;two&lt;/a&gt; &lt;a href=&quot;http://modeling-languages.com/modeling-web-api-comparing/&quot;&gt;articles&lt;/a&gt;
-  describe some of the other options and the tradeoffs in each.  These
-  tradeoffs are just the latest iteration in the long and rich history
-  of &lt;a href=&quot;https://en.wikipedia.org/wiki/Interface_description_language&quot;&gt;API
-  languages&lt;/a&gt;.  In my opinion, this iteration seems to have more steam
-  and sticking power than any previous iteration.  I don't think we can
-  say, &amp;#8220;This time we finally got it right,&amp;#8221; but it may be
-  the case that the winner in this round will have so much adoption that
-  any other options simply can't compete.
-  Hello &lt;a href=&quot;https://en.wikipedia.org/wiki/Videotape_format_war&quot;&gt;Betamax&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3&gt;Getting More Complex&lt;/h3&gt;
-
-&lt;p&gt;So, sticking with the OAI annotations, we now have:&lt;/p&gt;
-
-&lt;div style=&quot;padding: 5px;&quot;&gt;
-		&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;io.swagger.annotations.Api&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;io.swagger.annotations.ApiOperation&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;io.swagger.annotations.ApiParam&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;io.swagger.annotations.ApiResponse&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;io.swagger.annotations.ApiResponses&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.GET&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.Path&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.Produces&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.QueryParam&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.core.MediaType&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;import&lt;/span&gt; &lt;span style=&quot;color: #006699;&quot;&gt;javax.ws.rs.core.Response&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Api&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;HelloApiary&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;20170204&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Produces&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;MediaType.&lt;span style=&quot;color: #006633;&quot;&gt;APPLICATION_JSON&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;interface&lt;/span&gt; HelloApiary &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @ApiOperation&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;value &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;Simple echo of query string value&amp;quot;&lt;/span&gt;,&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; notes &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;If no query string is present return 500.&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @ApiResponses&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;value &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; @ApiResponse&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;code &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #cc66cc;&quot;&gt;200&lt;/span&gt;,&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; message &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;Echo&amp;quot;&lt;/span&gt;,&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; response &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;,&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; @ApiResponse&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;code &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #cc66cc;&quot;&gt;500&lt;/span&gt;,&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; message &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;Missing parameter&amp;quot;&lt;/span&gt;,&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; response &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @GET&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; Response sayHello&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; @ApiParam&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;value &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;Your name&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; @QueryParam&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; name&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
-
-&lt;p&gt;This is starting to get complex, and it's still just hello world.
-Note that there is another implicit choice here: No javadoc.  To make
-this mess of annotations readable to developers, we need further
-tooling.  This is one area where the choice of OAI does offer some real
-advantages over Javadoc.  All of the tooling for generating developer
-documentation of RESTful APIs seems to provide at least some level of
-built-in interaction for testing and experimentation.  This blog post
-will use maven and
-the &lt;a href=&quot;https://github.com/kongchen/swagger-maven-plugin&quot;&gt;kongchen
-    Swagger Maven Plugin&lt;/a&gt;.  Here is the complete POM.&lt;/p&gt;
-
-&lt;div style=&quot;padding: 5px;&quot;&gt;
-		&lt;div class=&quot;xml&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;?xml&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;version&lt;/span&gt;=&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;1.0&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;encoding&lt;/span&gt;=&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;UTF-8&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;?&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;project&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;xmlns&lt;/span&gt;=&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;http://maven.apache.org/POM/4.0.0&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;xmlns:xsi&lt;/span&gt;=&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;xsi:schemaLocation&lt;/span&gt;=&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;modelVersion&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;4.0.0&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/modelVersion&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;20170204-apiary&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;com.ridingthecrest&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;1.0&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;packaging&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;jar&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/packaging&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;name&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Apiary example&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/name&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;properties&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;maven.jar.plugin.version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;2.6&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/maven.jar.plugin.version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;maven.compiler.plugin.version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;3.3&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/maven.compiler.plugin.version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;swagger.version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;1.5.10&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/swagger.version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;javaee.api.version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;7.0&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/javaee.api.version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;project.build.sourceEncoding&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;UTF-8&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/project.build.sourceEncoding&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;swagger-maven-plugin-version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;3.1.1&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/swagger-maven-plugin-version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/properties&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;dependencies&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;dependency&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;io.swagger&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;swagger-core&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;${swagger.version}&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/dependency&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;dependency&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;javax&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;javaee-api&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;${javaee.api.version}&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;scope&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;provided&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/scope&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/dependency&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/dependencies&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;build&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;plugins&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;plugin&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;com.github.kongchen&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;swagger-maven-plugin&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;${swagger-maven-plugin-version}&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;configuration&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;apiSources&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;apiSource&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;locations&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;com.ridingthecrest.apiary&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/locations&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;info&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;title&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Hello Apiary&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/title&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;v20170204&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;description&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;Hello&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/description&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/info&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;outputPath&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;${project.build.directory}/generated/document.html&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/outputPath&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;outputFormats&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;yaml&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/outputFormats&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;swaggerDirectory&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;${project.build.directory}/generated/swagger-ui&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/swaggerDirectory&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;swaggerApiReader&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;com.wordnik.swagger.jaxrs.reader.DefaultJaxrsApiReader&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/swaggerApiReader&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/apiSource&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/apiSources&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/configuration&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;executions&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;execution&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;phase&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;compile&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/phase&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;goals&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;goal&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;generate&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/goal&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/goals&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/execution&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/executions&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/plugin&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;plugin&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;org.apache.maven.plugins&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;maven-compiler-plugin&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;${maven.compiler.plugin.version}&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;configuration&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;source&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;1.8&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/source&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;target&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;1.8&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/target&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/configuration&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/plugin&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;plugin&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;org.apache.maven.plugins&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/groupId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;maven-jar-plugin&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/artifactId&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;${maven.jar.plugin.version}&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/version&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;executions&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;execution&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;goals&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;goal&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;test-jar&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/goal&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/goals&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/execution&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/executions&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/plugin&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/plugins&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/build&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;profiles&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/profiles&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/project&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
-
-&lt;p&gt;We follow the maven best practice of collecting our versions in
-  the &lt;code&gt;properties&lt;/code&gt; section, on lines 11 - 18.  At compile
-  time we only depend on two things: the OAI annotations jar and the
-  JAX-RS API jar, on lines 20 - 31.  Most of the action happens in the
-  plugins section.  The &lt;code&gt;maven-compiler-plugin&lt;/code&gt;
-  and &lt;code&gt;maven-jar-plugin&lt;/code&gt; declarations, on lines 65 - 85, are
-  just stock.  The &lt;code&gt;swagger-maven-plugin&lt;/code&gt; declaration, on
-  lines 36 - 64 is the important part.  This example shows the minimum
-  configuration you need in practice.  The plugin documentation has a
-  full and rich set of configuration.&lt;/p&gt;
-
-&lt;p&gt;Line 43 is the java package for which to generate the API.  This is a
-  comma separate list of java packages.  Line 45 is the API version.
-  Here again, is some unfortunate duplication with the Java code.  You
-  could use maven string filtering to template a value into the Java
-  code.  This is an instance of how perserving simplicity (avoiding
-  duplicates) takes additional complexity.  Sigh.
-  The &lt;code&gt;outputPath&lt;/code&gt; on line 49 shows where to place all the
-  output (not just the document.html).  Finally, and most importantly
-  for our purposes, the &lt;code&gt;outputFormats&lt;/code&gt; element.  I had to
-  choose yaml here because even though Apiary says it will convert OAI
-  json to yaml, that didn't work for me.&lt;/p&gt;
-
-&lt;p&gt;With this POM in place, a maven clean install will cause
-  a &lt;code&gt;target/generated/swagger-ui/swagger.yaml&lt;/code&gt; to be
-  generated, which is shown here.  Personally, I don't even bother to
-  read this, since it's generated, but I am including it here for
-  completeness.&lt;/p&gt;
-
-&lt;div style=&quot;padding: 5px;&quot;&gt;
-		&lt;div class=&quot;javascript&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;swagger&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;2.0&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;info&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; description&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; version&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;v20170204&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; title&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;Hello Apiary&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;tags&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #339933;&quot;&gt;-&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;name&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;HelloApiary&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;paths&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &lt;span style=&quot;color: #339933;&quot;&gt;/&lt;/span&gt;&lt;span style=&quot;color: #CC0000;&quot;&gt;20170204&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; get&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; tags&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #339933;&quot;&gt;-&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;HelloApiary&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; summary&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;Simple echo of query string value&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; description&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;If no query string is present return 500.&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; operationId&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;sayHello&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; produces&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #339933;&quot;&gt;-&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;application/json&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; parameters&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #339933;&quot;&gt;-&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;name&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;in&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;query&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; description&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;Your name&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; required&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #003366; font-weight: bold;&quot;&gt;false&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; type&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;string&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; responses&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #CC0000;&quot;&gt;200&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; description&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;Echo&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #CC0000;&quot;&gt;500&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; description&lt;span style=&quot;color: #339933;&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #3366CC;&quot;&gt;&amp;quot;Missing parameter&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;		&lt;/div&gt;
-
-&lt;h3&gt;Going Over the Top?&lt;/h3&gt;
-
-&lt;p&gt;With any API of moderate complexity or more, this will be impossible
-  to read.  Which brings us
-  to &lt;a href=&quot;http://apiary.io/&quot;&gt;Apiary&lt;/a&gt;.  &lt;a href=&quot;https://www.crunchbase.com/organization/apiary#/entity&quot;&gt;Apiary&lt;/a&gt;
-  came on my radar when my employer acquired
-  them &lt;a href=&quot;https://www.oracle.com/corporate/pressrelease/oracle-buys-apiary-011917.html&quot;&gt;in
-  mid January 2017&lt;/a&gt;.  This is just one in
-  a &lt;a href=&quot;https://www.oracle.com/corporate/pressrelease/oracle-buys-dyn-112116.html&quot;&gt;string
-  of savvy acquisitions&lt;/a&gt; that I think puts Oracle in a great place
-  for cloud dominance, provided we can integrate and execute
-  successfully.  Anyhow Apiary is awesome, and this whole blog post
-  really is an on-ramp to further exploration of their stack.&lt;/p&gt;
-
-&lt;p&gt;Basically, you can take the &lt;code&gt;swagger.yaml&lt;/code&gt; generated
-  above, and paste it into the Apiary editor to get access to a well
-  integrated stack of features including testing, validation, and of
-  course documentation.  The API is human browsable at
-  &amp;lt;&lt;a href=&quot;http://docs.edburnshelloapiary.apiary.io/&quot;&gt;http://docs.edburnshelloapiary.apiary.io/&lt;/a&gt;&amp;gt;
-  and &lt;a href=&quot;https://www.getpostman.com/&quot;&gt;Postman&lt;/a&gt; or other REST
-  tool interactable at &amp;lt;&lt;a href=&quot;http://private-a5b54-edburnshelloapiary.apiary-mock.com/20170204?name=Foo&quot;&gt;http://private-a5b54-edburnshelloapiary.apiary-mock.com/20170204?name=Foo&lt;/a&gt;&amp;gt;.&lt;/p&gt;
-
-&lt;p&gt;Apiary evolved around their own
-  format, &lt;a href=&quot;https://apiblueprint.org/&quot;&gt;API Blueprint&lt;/a&gt;.  API
-  Blueprint is also
-  an &lt;a href=&quot;https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md&quot;&gt;open
-  standard&lt;/a&gt; with its own set of industry backers.  It seems OAI has
-  more momentum, though personally I prefer API Blueprint.  Recognizing
-  this, Apiary has solid support for OAI, but you constantly run into
-  this friction when looking through the Apiary documentation.  Keep
-  that in mind when looking through the very decent tutorials at
-  &amp;lt;&lt;a href=&quot;https://help.apiary.io/api_101/&quot;&gt;https://help.apiary.io/api_101/&lt;/a&gt;&amp;gt;.
-  But there is one interesting question they do not answer: which is
-  better API Bluepring or OAI?  Perhaps with the Oracle acquisition a
-  definitive answer will be
-  forthcoming?  &lt;a href=&quot;http://www.mikestowe.com/2014/12/api-spec-comparison-tool.php&quot;&gt;Mike
-  Stowe has a formidable table&lt;/a&gt; comparing API Blueprint and OAI, as
-  well as others.&lt;/p&gt;
-
-&lt;h3&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;Software development is a very heterogeneous practice now.  The
-  emphasis is on evolvability and agility, which means developers need
-  to be familiar with lots of different tools, techniques, and stacks.
-  Gone are the days where you could just learn one stack and continue
-  to use it for all aspects of development.  This blog post showed how
-  to start with the familiar Java interface, add in JAX-RS and OAI
-  annotations, use the swagger-maven-plugin to generate an artifact,
-  and then uploade that to Apiary for further testing and exploration.&lt;/p&gt;</content><author><name></name></author><summary type="html">As I'm finishing up the preparations for the class Oliver Szymanski and I are teaching at the JavaLand Schulungstag, I wanted to take some time to blog about some aspects of a new workflow for RESTful API design. If you are going to JavaLand, do check out my previous post where I list my session picks. This workflow involves several disparate technologies, which is now commonplace in today's mega-heterogeneous, optimized for evolution, development environment. This blog post will start with a simple Java interface, decorate it with JAX-RS annotations, further decorate it with OpenAPI Initiative (aka Swagger) API documentation annotations, upload it to Apiary, and close by handing off to further tutorials.</summary></entry><entry><title type="html">JavaLand 2017 Picks</title><link href="/blog/2017/02/27/javaland-2017-picks.html" rel="alternate" type="text/html" title="JavaLand 2017 Picks" /><published>2017-02-27T05:33:00-08:00</published><updated>2017-02-27T05:33:00-08:00</updated><id>/blog/2017/02/27/javaland-2017-picks</id><content type="html" xml:base="/blog/2017/02/27/javaland-2017-picks.html">&lt;p&gt;I'm proud to say I've been at
-every &lt;a href=&quot;http://www.javaland.eu/&quot;&gt;JavaLand&lt;/a&gt; since it's
-inception in 2014, and blessed to say I'm attending again this year.  My
-good friend &lt;a href=&quot;http://source-knights.com&quot;&gt;Oliver Szymanski&lt;/a&gt; and
-I are teaching at the
-&lt;a href=&quot;http://www.javaland.eu/de/programm/schulungstag/&quot;&gt;Schulungstag.&lt;/a&gt;
-The title of our class is: &amp;#8220;Full Stack Java Microservices with
-Marathon, Docker and HTML&amp;#8221;, but before our class there is a jam
-packed conference schedule to absorb.  Here are my session picks.  Note
-that most of day 2 is in one room, Quantum 3+4.  Knowing the short
-session duration and the difficulty of getting from one room to another,
-this is probably a good conference tip: stay put in one room if you
-can.&lt;/p&gt;
-
-&lt;h3&gt;Tuesday 28 March&lt;/h3&gt;
-
-&lt;ul&gt;
-
-&lt;li&gt; &lt;p&gt;08:30 Quantum 1+2 &lt;a
-href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529312&quot;&gt;CDI
-2.0 is Upon Us&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Unique this year, there is a full lineup of sessions *even before*
-Fried's famous
-&lt;a
-href=&quot;https://www.heise.de/developer/artikel/developer_artikel_2160223.html&quot;&gt;conference greeting&lt;/a&gt;!  What could possibly be worth getting up for at this
-hour?  CDI 2.0 of course!  Since its introduction in Java EE 6, CDI has
-been at the heart of Java EE, and it is one of the key pieces of Java
-EE 8.  The session by spec lead Antoine Sabot-Durand will lay out what's
-new and notable.&lt;/p&gt;
-
-&lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;09:30 Silverado Theater &lt;a
-      href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529948&quot;&gt;Begrüßung&lt;/a&gt;&lt;/p&gt;
-      
-      &lt;p&gt;This session, in German, lays out the highlights of the
-      conference and gets you in the mood.&lt;/p&gt;
-      
-      &lt;/li&gt;
-      
-      	  &lt;li&gt;&lt;p&gt;10:00 Silverado Theater &lt;a
-          href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529957&quot;&gt;The
-          role of the CDO as Chief Product Owner&lt;/a&gt;&lt;/p&gt;
-          
-          &lt;p&gt;This keynote promises from the Chief Digital Office of the
-          REWE group will give a peek into the operation of this 50
-          billion EUR annual revenue retail giant.  Unless you work
-          inside of such an operation, it is rare to get such insight.&lt;/p&gt;
-          
-          &lt;/li&gt;
-          
-	  &lt;li&gt;&lt;p&gt;11:00 Neptun &lt;a
-      href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=537951&quot;&gt;Panel
-      Discussion - Java EE 8 Status&lt;/a&gt;&lt;/p&gt;
-      
-      &lt;p&gt;I'll be participating in this panel discussion in my role as
-      co-spec lead for two of the Oracle JSRs that are a key part of
-      Java EE 8: Servlet and JSF.&lt;/p&gt;
-      
-      &lt;/li&gt;
-      
-      	  &lt;li&gt;&lt;p&gt;12:00 Silverado Theater &lt;a
-          href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529435&quot;&gt;JDK
-          8 Lambdas: Cool Code that Doesn't Use Streams&lt;/a&gt;&lt;/p&gt;
-          
-          &lt;p&gt;Simon is a seasoned speaker how knows how to get his point
-          across quickly and clearly, something the 40 minute sessions
-          of JavaLand require.  I like this topic since so much of the
-          Lambda content out there also forces you to contend with the
-          equally complex, and powerful stream API.  It will be nice to
-          hear one without the other.&lt;/p&gt;
-          
-          &lt;/li&gt;
-          
-        &lt;li&gt;&lt;p&gt;13:00 Quantum 1+2 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529325&quot;&gt;Serverlose Web-Architekturen mit der AWS-Cloud-Infrastruktur&lt;/a&gt;&lt;/p&gt;
-        
-        &lt;p&gt;&lt;a href=&quot;https://twitter.com/dasniko&quot;&gt;Das Niko&lt;/a&gt; has a long
-        history of being on the cutting edge.  He was all over the
-        promising Project Avatar, for example.  I've been a fan of the
-        concept of &amp;#8220;serverless&amp;#8221; but have not yet invested
-        time in gaining any depth of understanding aside from my simple
-        observation that the technology itself seems to be the logical
-        end of the road we started to walk with the beginning of
-        inversion of control.  Let's see how Niko makes me smart.&lt;/p&gt;
-        
-        &lt;/li&gt;
-        
-        &lt;li&gt;&lt;p&gt;14:00 Silverado Theater &lt;a
-        href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=530111&quot;&gt;Fast
-        &amp; Efficient Microservices w/ binary protocol - gRPC 101&lt;/a&gt;&lt;/p&gt;
-        
-        &lt;p&gt;I've been a fan of &lt;a
-        href=&quot;https://twitter.com/saturnism&quot;&gt;Ray Tsang's&lt;/a&gt; easygoing,
-        yet deceptively information packed style since I attended his &lt;a
-        href=&quot;https://twitter.com/edburns/status/834913415500038144&quot;&gt;Docker
-        Tips and Tricks&lt;/a&gt; session at &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;DevNexus&lt;/a&gt; last week.
-        He's great at live coding.  gRPC is a compelling alternative to
-        REST, and those of us old enough to remember CORBA will
-        appreciate this technology that promises the performance of a
-        binary protocol with the simplicity of REST.&lt;/p&gt;
-        
-        &lt;/li&gt;
-        
-     	  &lt;li&gt;&lt;p&gt;15:00 Wintergarden &lt;a
-          href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529273&quot;&gt;Serverless
-          Application - Who the heck needs a Server?&lt;/a&gt;&lt;/p&gt;
-          
-          &lt;p&gt;I want more, not less, of serverless.  This one looks like
-          it is higher level than Niko's.  Plus, I haven't seen anyone
-          aside from Mike Keith talk about Backend as a Service.&lt;/p&gt;
-          
-          &lt;/li&gt;
-          
-         &lt;li&gt;&lt;p&gt;16:00 Wintergarden &lt;a
-         href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529278&quot;&gt;Going
-         forward with Java EE Next?&lt;/a&gt;&lt;/p&gt;
-         
-         &lt;p&gt;I am confident that David's session will replace the
-         question mark with an exclamation point, as he share's Oracle's
-         vision for the future of Java EE.&lt;/p&gt;
-         
-         &lt;/li&gt;
-         
-      	  &lt;li&gt;&lt;p&gt;17:00 Silverado Theater &lt;a
-          href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529951&quot;&gt;Keynote:
-          Listening to the Design Pressures&lt;/a&gt;&lt;/p&gt;
-          
-          &lt;p&gt;I met Mr. Mechanical Sympathy at &lt;a href=&quot;/blog/2015/06/16/geekout-2015-summary.html&quot;&gt;GeekOut 2015&lt;/a&gt; and was
-taken by his in-depth &quot;war stories&quot; approach to presenting.  Martin is
-unquestionably a world leader in high performance systems, don't miss
-this one.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-&lt;/ul&gt;
-
-&lt;h3&gt;Wednesday 29 March&lt;/h3&gt;
-
-	&lt;ul&gt;
-
-	  &lt;li&gt;&lt;p&gt;09:00 Wintergarden &lt;a
-      href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529430&quot;&gt;Migrating
-      to Java 9 Modules&lt;/a&gt;&lt;/p&gt;
-      
-      &lt;p&gt;Modules are to Java 9 what Lambdas are to Java 8: the biggest
-      feature.  In fact, in my opinion since they are far more
-      fundamental and long awaited.  This talk looks like a great way to
-      get ready for the most potentially disruptive feature to hit Java
-      since annotations in J2SE 1.5.&lt;/p&gt;
-      
-      &lt;/li&gt;
-      
-  	  &lt;li&gt;&lt;p&gt;10:00 Eventhalle &lt;a
-      href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529579&quot;&gt;Field
-      Notes of a Command Line Ninja&lt;/a&gt;&lt;/p&gt;
-      
-      &lt;p&gt;I've done enough pair programming over the years to know that
-      command line ninja skills are not a given, but I wish they were.
-      Now, I'm no ninja, but I do ok, and I certainly know the value in
-      investing even a little time in being more productive in this
-      foundational skill.  Besides, many of the &lt;a
-      href=&quot;/&quot;&gt;Rockstars&lt;/a&gt; I interviewed listed &quot;tools mastery&quot; as one
-      of the most important skills.&lt;/p&gt;
-      
-          &lt;/li&gt;
-
-      	  &lt;li&gt;&lt;p&gt;11:00 Neptun &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529616&quot;&gt;Resilient Software Design Patterns&lt;/a&gt;&lt;/p&gt;
-
-            &lt;p&gt;From the abstract, this looks like a good introduction to the hows and whys of microservices. &lt;/p&gt;
-           
-          &lt;/li&gt;
-
-      	  &lt;li&gt;&lt;p&gt;12:00 Wintergarden &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529443&quot;&gt; Continuous Delivery im Enterprise-Umfeld mit Docker, Ansible und Jenkins&lt;/a&gt;&lt;/p&gt;
-
-          &lt;p&gt;Trying to do something useful on this ambitious topic in 40
-          minutes is worth a look.  This talk also looks interesting
-          because it has a real-world basis.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-      	  &lt;li&gt;&lt;p&gt;13:00 Quantum 3+4 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529538&quot;&gt;Microprofile, Apache TomEE Now &amp; Beyond&lt;/a&gt;&lt;/p&gt;
-
-          &lt;p&gt;I like how MicroProfile is referred to as a
-          &quot;pre-specification effort&quot;.  As a fan of JCP, I hope that
-          proves to be true.  Let's see what they have been up to.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;14:00 Quantum 3+4 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529562&quot;&gt;Klein, leicht, modular - Java EE goes Microservices&lt;/a&gt;&lt;/p&gt;
-
-          &lt;p&gt;Any talk that points out the obvious synergy between Java
-          EE and microservices, rather than decrying their
-            irreconcilability, is worth a look in.&lt;/p&gt;
-          
-          &lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;15:00 Quantum 3+4 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529566&quot;&gt;Reactive Domain Driven Design&lt;/a&gt;&lt;/p&gt;
-
-            &lt;p&gt;It will be interesting to see how these two memes come together.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;16:00 Quantum 3+4 &lt;a href=&quot;https://www.javaland.eu/konferenz/konferenzplaner/konferenzplaner_details.php?id=522447&amp;locS=0&amp;vid=529570&quot;&gt;Lagom - die richtige Dosis Microservice&lt;/a&gt;&lt;/p&gt;
-
-          &lt;p&gt;LightBend, formerly TypeSafe, were the early movers in the
-          latest resurgence of the idea of microservices.  As authors of
-          the famous &lt;a href=&quot;http://reactivemanifesto.org/&quot;&gt;Reactive
-          Manifesto&lt;/a&gt;, they had a jump on the rest of the herd.  I've
-          been hearing about Lagom for a while, but this is my first
-          opportunity to attend a session about it.  Interestingly, the
-          presenter appears not to be a LightBend employee, which may
-          speak well to the prospects for the objectivity of the
-          session.&lt;/p&gt;
-            
-          &lt;/li&gt;
-          
-          
-          
-
-
-
-      
-
-
-	&lt;/ul&gt;</content><author><name></name></author><summary type="html">I'm proud to say I've been at every JavaLand since it's inception in 2014, and blessed to say I'm attending again this year. My good friend Oliver Szymanski and I are teaching at the Schulungstag. The title of our class is: &amp;#8220;Full Stack Java Microservices with Marathon, Docker and HTML&amp;#8221;, but before our class there is a jam packed conference schedule to absorb. Here are my session picks. Note that most of day 2 is in one room, Quantum 3+4. Knowing the short session duration and the difficulty of getting from one room to another, this is probably a good conference tip: stay put in one room if you can.</summary></entry><entry><title type="html">Ivar Grimstad MVC Notes</title><link href="/blog/2017/02/24/ivar-grimstad-mvc.html" rel="alternate" type="text/html" title="Ivar Grimstad MVC Notes" /><published>2017-02-24T12:55:00-08:00</published><updated>2017-02-24T12:55:00-08:00</updated><id>/blog/2017/02/24/ivar-grimstad-mvc</id><content type="html" xml:base="/blog/2017/02/24/ivar-grimstad-mvc.html">&lt;p&gt;Twitter
-&lt;a href=&quot;http://twitter.com/ivar_grimstad&quot;&gt;@ivar_grimstad&lt;/a&gt;. &lt;a href=&quot;http://www.agilejava.eu/&quot;&gt;Blog&lt;/a&gt;
-&lt;a href=&quot;http://twitter.com/mvc_spec&quot;&gt;@mvc_spec&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ivar had a tough timeslot, the last slot of the last day, but just the
-same is doing a great job.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;He is taking over the spec lead role from Manfred and Santiago from
-Oracle.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Agenda&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;JSR 371 status&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;MVC 1.0&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Q&amp;amp;A.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Shared the Java EE Roadmap slide from JavaOne, the one including EE8 and
-EE9.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Stated that the decision to drop MVC was influenced by the agressive
-schedule for EE8.&lt;/p&gt;
-
-&lt;p&gt;Repeated the “Cloud apps often ship headless, making MVC largely
-irrelevant”.  He said that server side rendering is still something he
-uses in his day to day work.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Showed a screen grab of the transfer ballot.  He restated that even
-though he is listed as an individual, he really feels he’s representing
-the community.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;New slogan, “&lt;code class=&quot;highlighter-rouge&quot;&gt;@Control&lt;/code&gt;ler to the Community”.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Timeline&lt;/p&gt;
-
-&lt;p&gt;August 2014 First Proposal&lt;/p&gt;
-
-&lt;p&gt;March 2015 EDR 1&lt;/p&gt;
-
-&lt;p&gt;October 2015 EDR 2&lt;/p&gt;
-
-&lt;p&gt;January 2017 Transfer Ballot.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Current activities&lt;/p&gt;
-
-&lt;p&gt;Transfer approved by the executive committee&lt;/p&gt;
-
-&lt;p&gt;Finalize transfer&lt;/p&gt;
-
-&lt;p&gt;Oracle legal is working on the final details&lt;/p&gt;
-
-&lt;p&gt;New infrastructure Setup has started&lt;/p&gt;
-
-&lt;p&gt;Investigating what license to re-used.  Looking at other specs that are
-not lead by Oracle to see how they are licensed.  He has to make sure to
-choose a license that will not preclude the possibility of inclusion in
-a future Java EE release.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Future Activities&lt;/p&gt;
-
-&lt;p&gt;Formally move the infrastructure from java.net.  They currently do have
-the code mirrored from java.net to GitHub, but GitHub is not the scm of
-record.&lt;/p&gt;
-
-&lt;p&gt;Bring in Christian Kaltepoth as co-spec lead.&lt;/p&gt;
-
-&lt;p&gt;Revise the schedule.  Current schedule has 1.0 in first half 2017.
-Probably not possible.  It will likely be second half of 2017 or
-early 2018.&lt;/p&gt;
-
-&lt;p&gt;Adopt-a-JSR: They plan to use it.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Infrastructure Setup Changes&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;code java.net -&amp;gt; &lt;a href=&quot;https://github.com/mvc-spec&quot;&gt;https://github.com/mvc-spec&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Issure Tracker &lt;a href=&quot;https://github.com/mvc-spec/mvc-spec/issues&quot;&gt;https://github.com/mvc-spec/mvc-spec/issues&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Mailing list jsr371-users@googlegroups.com&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Web site &lt;a href=&quot;http://www.mvc-spec.org/&quot;&gt;http://www.mvc-spec.org/&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Adopt-a-JSR&lt;/p&gt;
-
-&lt;p&gt;They need help here.  They’d love to have a sample app.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Write Code&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Blog&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Tweet&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Upcoming talks&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;jDays&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;JavaLand&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;One other that I missed&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;It is an Action-Based MVC.&lt;/p&gt;
-
-&lt;p&gt;Currently no standard for this.  It’s not a replacement for JSF, as
-component based MVC.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Request hits the controller, updates the model, decides which view to
-render.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;In Action-based MVC, the application implements the controller&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Spring MVC, the most used action based MVC framework.  Around
-since 2005.&lt;/p&gt;
-
-&lt;p&gt;Struts 2, around since 2004, as WebWork2.  Still widely adopted.&lt;/p&gt;
-
-&lt;p&gt;He states that MVC will apply the lessons learned from both of these.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Using existing Java EE technologies.  They will not invent something
-unless they need to do so.  This means to run MVC, you need to be
-running in a Java EE container.  He mentioned that this causes tension
-with the fat jar movement.  He stated that docker run is just as easy to
-run as java.jar.&lt;/p&gt;
-
-&lt;p&gt;Templating must support Facelets and JSPs.  Model is CDI.  You can use
-Bean Validation and JPA as well.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Decision to build MVC on top of JAX-RS.  It was a close vote, but he
-thinks they ended up with the right decision.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
-@Path(&quot;hello&quot;)
-public class HelloController {
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Every method in this class is a controller, because the annotation is at
-the class level.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Views&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
-@Path(&quot;hello&quot;)
-public class HelloController {
-
-  @GET
-  public String hello() {
-    return &quot;hello.jsp&quot;
-  }
-
-  @GET
-  public String hello() {
-    return &quot;hello.jsp&quot;
-  }
-
-  @View(&quot;hello.jsp&quot;)
-  @GET
-  public void hello() {}
-
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hello.jsp&lt;/code&gt; is in the “views” folder.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Models&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
-@Path(&quot;hello&quot;)
-public class HelloController {
-
-  @Inject
-  private Models model;
-
-  @GET
-  public String hello() {
-    return &quot;hello.jsp&quot;
-  }
-
-  @GET
-  public String hello() {
-    return &quot;hello.jsp&quot;
-  }
-
-  @View(&quot;hello.jsp&quot;)
-  @GET
-  public void hello() {}
-
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Validation&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Controller
-@Path(&quot;hello&quot;)
-public class HelloController {
-
-  @Inject
-  private Models model;
-
-  @POST
-  public Response formPost(@Valid @BeanParam FormDataBean f) {
-    return Response.status(OK)...
-  }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Can use the ExceptionMapper feature, but it is overly broad.&lt;/p&gt;
-
-&lt;p&gt;They added support for binding results.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  @Inject private BindingResult br;
-
-  @POST
-  public Response formPost(@Valid @BeanParam FormDataBean f) {
-  if (br.isFailed()) {
-    // go to error page
-  } else {
-    return Response.status(OK)...
-  }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Bring your own View Engine&lt;/p&gt;
-
-&lt;p&gt;CDI discovery is used to figure out which engine is used.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public interface ViewEngine {
-
-boolean supports(String view);
-
-void processView(ViewEngineContext context) thows ViewEngineException
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;You can use &lt;code class=&quot;highlighter-rouge&quot;&gt;@Priority&lt;/code&gt; to control which View Engine is used.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Events&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Use CDI events.  Spec defines order for events.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;BeforeControllerEvent&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;AfterControllerEvent&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;…&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;CDI &lt;code class=&quot;highlighter-rouge&quot;&gt;@Observes BeforeControllerEvent&lt;/code&gt;.  Be aware these events are
-executed synchronously.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Security&lt;/p&gt;
-
-&lt;p&gt;CSRF prevention: &lt;code class=&quot;highlighter-rouge&quot;&gt;@CsrfValid&lt;/code&gt; on a JAX-RS http method.  Causes the token
-to be added.  Must include &lt;code class=&quot;highlighter-rouge&quot;&gt;${mvc.csrf.name}&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;${mvc.csrf.token}&lt;/code&gt; as
-a hidden field.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;CDI Scopes&lt;/p&gt;
-
-&lt;p&gt;You have the standard scopes.  But what about custom scopes?  Did the
-POST Redirect Get with the &lt;code class=&quot;highlighter-rouge&quot;&gt;@RedirectScoped&lt;/code&gt; scope.  Like JSF
-&lt;code class=&quot;highlighter-rouge&quot;&gt;@FlashScope&lt;/code&gt;.  The &lt;code class=&quot;highlighter-rouge&quot;&gt;@Controller&lt;/code&gt; is request scoped, but the bean is
-&lt;code class=&quot;highlighter-rouge&quot;&gt;@RedirectScoped&lt;/code&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Internationalization&lt;/p&gt;
-
-&lt;p&gt;Request Locale.  Can be used for any request Locale.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Inject
-private MvcContext mvc;
-
-@GET
-public String get() {
-  Locale locale = mvc.getLocale();
-}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Tool Support&lt;/p&gt;
-
-&lt;p&gt;Even though they are not released the tool support is pretty good.  For
-example &lt;a href=&quot;http://jpamodeler.github.io&quot;&gt;jpamodeler.github.io&lt;/a&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Demos.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Simple&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Simple with validation&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Simple with better validation&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Post Redirect Get&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Locale support&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;CSRF&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;JpaModeler&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;It was too quick to live blog this, but the demos are at the
-&lt;a href=&quot;https://github.com/ivargrimstad/mvc-samples&quot;&gt;Ivar’s github&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Summary&lt;/p&gt;
-
-&lt;p&gt;Action-Based MVC&lt;/p&gt;
-
-&lt;p&gt;Uses existing Java EE technologies: JAX-RS, BeanVal, JSF, JSP&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;I would like to see some Facelets templating in the samples.&lt;/p&gt;</content><author><name></name></author><summary type="html">Twitter @ivar_grimstad. Blog @mvc_spec.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">I've been around the block a bit when it comes to Java developer conferences and for some reason Silicon Valley USA is a tough nut to crack, for the conference organizer. This difficulty flies in the face of the obvious surplus of top tier talent in the area, but for some reason it's been hard to replicate the success of European conferences in the hometown of US tech. That hasn't stopped the big names from trying, though. In 2011, S&amp;S Media launched the one-and-done JAX Conf 2011. I was not blessed with the honor of speaking or presenting, but I have heard from multiple sources that it was not a success. This is very surprising, since S&amp;S run a great show and are very well organized. This week, the Devoxx folks are having their go. I am fortunate to have the opportunity to attend Devoxx US. I've spoken at JavaPolis and Devoxx Antwerp, and these shows have a well-deserved reputation for excellence. Devoxx US looks like it could be great as well. Here, then, are my session picks.</summary></entry></feed>

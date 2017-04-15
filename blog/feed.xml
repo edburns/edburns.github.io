@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2017-04-07T07:37:06-04:00</updated><id>http://localhost:4000/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Chicago JUG / GOTO Meetup</title><link href="http://localhost:4000/blog/2017/04/04/cjug-goto-meetup.html" rel="alternate" type="text/html" title="Chicago JUG / GOTO Meetup" /><published>2017-04-04T09:00:00-04:00</published><updated>2017-04-04T09:00:00-04:00</updated><id>http://localhost:4000/blog/2017/04/04/cjug-goto-meetup</id><content type="html" xml:base="http://localhost:4000/blog/2017/04/04/cjug-goto-meetup.html">&lt;p&gt;I am honored to speak in such esteemed company with my fellow
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-04-15T11:24:06-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Chicago JUG / GOTO Meetup</title><link href="/blog/2017/04/04/cjug-goto-meetup.html" rel="alternate" type="text/html" title="Chicago JUG / GOTO Meetup" /><published>2017-04-04T09:00:00-04:00</published><updated>2017-04-04T09:00:00-04:00</updated><id>/blog/2017/04/04/cjug-goto-meetup</id><content type="html" xml:base="/blog/2017/04/04/cjug-goto-meetup.html">&lt;p&gt;I am honored to speak in such esteemed company with my fellow
 NullPointers &lt;a href=&quot;http://twitter.com/javafxpert&quot;&gt;James Weaver&lt;/a&gt;
 and &lt;a href=&quot;http://twitter.com/frankgreco&quot;&gt;Frank Greco&lt;/a&gt; at the generous
 invitation of my good friend, and also
@@ -8,16 +8,7 @@ and Frank are collaborating on a machine learning related talk, while I
 am sharing some things I've learned in using Mesos/Marathon as a
 desktop-to-datacenter-to-cloud runtime environment.  I only have 30
 minutes so I am putting the slides on &lt;a href=&quot;https://www.slideshare.net/EdBurns6/chicago-jug-goto-meetup&quot;&gt;SlideShare&lt;/a&gt; and the demo source
-code is available &lt;a href=&quot;/blog/downloads/20170404-cjug-goto-meetup.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">I am honored to speak in such esteemed company with my fellow
-NullPointers James Weaver
-and Frank Greco at the generous
-invitation of my good friend, and also
-NullPointer Freddy Guime.  James
-and Frank are collaborating on a machine learning related talk, while I
-am sharing some things I've learned in using Mesos/Marathon as a
-desktop-to-datacenter-to-cloud runtime environment.  I only have 30
-minutes so I am putting the slides on SlideShare and the demo source
-code is available here.</summary></entry><entry><title type="html">JavaLand 2017 gRPC 101</title><link href="http://localhost:4000/blog/2017/03/28/javaland-gprc-101.html" rel="alternate" type="text/html" title="JavaLand 2017 gRPC 101" /><published>2017-03-28T08:30:00-04:00</published><updated>2017-03-28T08:30:00-04:00</updated><id>http://localhost:4000/blog/2017/03/28/javaland-gprc-101</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/28/javaland-gprc-101.html">&lt;p&gt;Raw nots from &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;Ray Tsang&lt;/a&gt;'s talk about &lt;a href=&quot;http://twitter.com/grpcio&quot;&gt;gRPC&lt;/a&gt;.&lt;/p&gt;
+code is available &lt;a href=&quot;/blog/downloads/20170404-cjug-goto-meetup.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am honored to speak in such esteemed company with my fellow NullPointers James Weaver and Frank Greco at the generous invitation of my good friend, and also NullPointer Freddy Guime. James and Frank are collaborating on a machine learning related talk, while I am sharing some things I've learned in using Mesos/Marathon as a desktop-to-datacenter-to-cloud runtime environment. I only have 30 minutes so I am putting the slides on SlideShare and the demo source code is available here.</summary></entry><entry><title type="html">JavaLand 2017 gRPC 101</title><link href="/blog/2017/03/28/javaland-gprc-101.html" rel="alternate" type="text/html" title="JavaLand 2017 gRPC 101" /><published>2017-03-28T08:30:00-04:00</published><updated>2017-03-28T08:30:00-04:00</updated><id>/blog/2017/03/28/javaland-gprc-101</id><content type="html" xml:base="/blog/2017/03/28/javaland-gprc-101.html">&lt;p&gt;Raw nots from &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;Ray Tsang&lt;/a&gt;'s talk about &lt;a href=&quot;http://twitter.com/grpcio&quot;&gt;gRPC&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Finally was able to get to a session before it
   started.  &lt;a href=&quot;http://www.http2demo.io/&quot;&gt;HTTP/2 Demo.&lt;/a&gt;&lt;/p&gt;
@@ -105,7 +96,7 @@ All builder based.  &lt;/p&gt;
 
 &lt;p&gt;The client uses channels.  Supports client side interceptors.
 Supports load balancing.  Round robin.  Supports deadlines for calls.
-This is kind of a built-in circuit breakers.  &lt;/p&gt;</content><summary type="html">Raw nots from Ray Tsang's talk about gRPC.</summary></entry><entry><title type="html">JavaLand 2017 Serverless AWS</title><link href="http://localhost:4000/blog/2017/03/28/javaland-serverless-aws.html" rel="alternate" type="text/html" title="JavaLand 2017 Serverless AWS" /><published>2017-03-28T08:00:00-04:00</published><updated>2017-03-28T08:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/28/javaland-serverless-aws</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/28/javaland-serverless-aws.html">&lt;p&gt;Raw nots from Niko K&amp;ouml;bler's talk.&lt;/p&gt;
+This is kind of a built-in circuit breakers.  &lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Ray Tsang's talk about gRPC.</summary></entry><entry><title type="html">JavaLand 2017 Serverless AWS</title><link href="/blog/2017/03/28/javaland-serverless-aws.html" rel="alternate" type="text/html" title="JavaLand 2017 Serverless AWS" /><published>2017-03-28T08:00:00-04:00</published><updated>2017-03-28T08:00:00-04:00</updated><id>/blog/2017/03/28/javaland-serverless-aws</id><content type="html" xml:base="/blog/2017/03/28/javaland-serverless-aws.html">&lt;p&gt;Raw nots from Niko K&amp;ouml;bler's talk.&lt;/p&gt;
 
 &lt;p&gt;Arrived late due to lunch choice.&lt;/p&gt;
 
@@ -129,7 +120,7 @@ CloudFunctions, IBM Bluemix with OpenWhisk.  Each offers different
 
 &lt;p&gt;I liked how there is no Docker in this whole thing.&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&quot;http://twitter.com/serverlessbuch&quot;&gt;@serverlessbuch&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">Raw nots from Niko K&amp;ouml;bler's talk.</summary></entry><entry><title type="html">JavaLand 2017 Lambdas</title><link href="http://localhost:4000/blog/2017/03/28/javaland-lambda.html" rel="alternate" type="text/html" title="JavaLand 2017 Lambdas" /><published>2017-03-28T05:00:00-04:00</published><updated>2017-03-28T05:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/28/javaland-lambda</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/28/javaland-lambda.html">&lt;p&gt;Raw nots from Simon Ritter's talk.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&quot;http://twitter.com/serverlessbuch&quot;&gt;@serverlessbuch&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Niko K&amp;ouml;bler's talk.</summary></entry><entry><title type="html">JavaLand 2017 Lambdas</title><link href="/blog/2017/03/28/javaland-lambda.html" rel="alternate" type="text/html" title="JavaLand 2017 Lambdas" /><published>2017-03-28T05:00:00-04:00</published><updated>2017-03-28T05:00:00-04:00</updated><id>/blog/2017/03/28/javaland-lambda</id><content type="html" xml:base="/blog/2017/03/28/javaland-lambda.html">&lt;p&gt;Raw nots from Simon Ritter's talk.&lt;/p&gt;
 
 &lt;p&gt;We had support for some functional programming in JDK 1.0: anonymous
   inner classes.  Lambdas do it much more cleanly.&lt;/p&gt;
@@ -187,7 +178,7 @@ mathematical definition for having functions and calling them.  He was
 &lt;p&gt;Java programmers are typically imperative programmers.  Functional
 programming is not imperative: no side effects.  Lambda calculus and
 Turing machines are equivalent.  What can we do &lt;b&gt;only&lt;/b&gt; using Lambda
-  expressions?&lt;/p&gt;</content><summary type="html">Raw nots from Simon Ritter's talk.</summary></entry><entry><title type="html">JavaLand 2017 Greeting</title><link href="http://localhost:4000/blog/2017/03/28/javaland-intro.html" rel="alternate" type="text/html" title="JavaLand 2017 Greeting" /><published>2017-03-28T04:00:00-04:00</published><updated>2017-03-28T04:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/28/javaland-intro</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/28/javaland-intro.html">&lt;p&gt;Fried Saacke, kicked off JavaLand 2017 today.  It's totally full, and
+  expressions?&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Simon Ritter's talk.</summary></entry><entry><title type="html">JavaLand 2017 Greeting</title><link href="/blog/2017/03/28/javaland-intro.html" rel="alternate" type="text/html" title="JavaLand 2017 Greeting" /><published>2017-03-28T04:00:00-04:00</published><updated>2017-03-28T04:00:00-04:00</updated><id>/blog/2017/03/28/javaland-intro</id><content type="html" xml:base="/blog/2017/03/28/javaland-intro.html">&lt;p&gt;Fried Saacke, kicked off JavaLand 2017 today.  It's totally full, and
 in a new theater within Fantasialand.  We have 110 lectures, 8 workshop
 sessions, and 16 community activities this year.  He admitted that not
 everything will go as smoothly as we might like, but we are doing the
@@ -274,11 +265,7 @@ years.&lt;/p&gt;
 He thinks of it as a mini warehouse that is perfectly positioned in
 neighborhoods.  Difference between self service business and service
 business.  Gave an aside: build your technology yourself.  Don't buy
-  from vendors, otherwise you become too constrained.&lt;/p&gt;</content><summary type="html">Fried Saacke, kicked off JavaLand 2017 today.  It's totally full, and
-in a new theater within Fantasialand.  We have 110 lectures, 8 workshop
-sessions, and 16 community activities this year.  He admitted that not
-everything will go as smoothly as we might like, but we are doing the
-  best.  The biggest practical challenge is throughput.</summary></entry><entry><title type="html">Devoxx JAX-RS 2.1</title><link href="http://localhost:4000/blog/2017/03/23/devoxx-jax-rs.html" rel="alternate" type="text/html" title="Devoxx JAX-RS 2.1" /><published>2017-03-23T14:00:00-04:00</published><updated>2017-03-23T14:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/23/devoxx-jax-rs</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/23/devoxx-jax-rs.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/spericas&quot;&gt;Santiago Pericas-Geertsen's&lt;/a&gt; JAX-RS 2.1 Reloaded&lt;/p&gt;
+  from vendors, otherwise you become too constrained.&lt;/p&gt;</content><author><name></name></author><summary type="html">Fried Saacke, kicked off JavaLand 2017 today. It's totally full, and in a new theater within Fantasialand. We have 110 lectures, 8 workshop sessions, and 16 community activities this year. He admitted that not everything will go as smoothly as we might like, but we are doing the best. The biggest practical challenge is throughput.</summary></entry><entry><title type="html">Devoxx JAX-RS 2.1</title><link href="/blog/2017/03/23/devoxx-jax-rs.html" rel="alternate" type="text/html" title="Devoxx JAX-RS 2.1" /><published>2017-03-23T14:00:00-04:00</published><updated>2017-03-23T14:00:00-04:00</updated><id>/blog/2017/03/23/devoxx-jax-rs</id><content type="html" xml:base="/blog/2017/03/23/devoxx-jax-rs.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/spericas&quot;&gt;Santiago Pericas-Geertsen's&lt;/a&gt; JAX-RS 2.1 Reloaded&lt;/p&gt;
 
 &lt;p&gt;Quick update on this latest &quot;minor revision&quot;.&lt;/p&gt;
 
@@ -379,7 +366,7 @@ new &lt;code&gt;MessageBodyReader&lt;/code&gt;: &lt;code&gt;NioBodyReader&lt;/co
 
 &lt;p&gt;Publisher = Source, Subscriber = Sink.  This lends itself to SSE.
   You can think of SSE as a special case of NIO.  An SSE connection is
-  just a Flow of SSE Events.&lt;/p&gt;</content><summary type="html">Raw notes from Santiago Pericas-Geertsen's JAX-RS 2.1 Reloaded</summary></entry><entry><title type="html">Devoxx Deep Learning</title><link href="http://localhost:4000/blog/2017/03/22/deep-learning.html" rel="alternate" type="text/html" title="Devoxx Deep Learning" /><published>2017-03-22T18:25:00-04:00</published><updated>2017-03-22T18:25:00-04:00</updated><id>http://localhost:4000/blog/2017/03/22/deep-learning</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/22/deep-learning.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/agibsonccc&quot;&gt;Adam
+  just a Flow of SSE Events.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Santiago Pericas-Geertsen's JAX-RS 2.1 Reloaded</summary></entry><entry><title type="html">Devoxx Deep Learning</title><link href="/blog/2017/03/22/deep-learning.html" rel="alternate" type="text/html" title="Devoxx Deep Learning" /><published>2017-03-22T18:25:00-04:00</published><updated>2017-03-22T18:25:00-04:00</updated><id>/blog/2017/03/22/deep-learning</id><content type="html" xml:base="/blog/2017/03/22/deep-learning.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/agibsonccc&quot;&gt;Adam
 Gibson's&lt;/a&gt; Deep Learning in Production.&lt;/p&gt;
 
 &lt;p&gt;Defining Production: It's different for a startup from an enterprise,
@@ -440,8 +427,7 @@ much need for complexity management.  Python HPC stack.  C sometimes
 
 &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/CUDA&quot;&gt;CUDA&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</content><summary type="html">Raw notes from Adam
-Gibson's Deep Learning in Production.</summary></entry><entry><title type="html">Devoxx Cloud Debugging</title><link href="http://localhost:4000/blog/2017/03/22/cloud-debugging.html" rel="alternate" type="text/html" title="Devoxx Cloud Debugging" /><published>2017-03-22T18:20:00-04:00</published><updated>2017-03-22T18:20:00-04:00</updated><id>http://localhost:4000/blog/2017/03/22/cloud-debugging</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/22/cloud-debugging.html">&lt;p&gt;Raw notes from Cloud Debugging
+&lt;p&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Adam Gibson's Deep Learning in Production.</summary></entry><entry><title type="html">Devoxx Cloud Debugging</title><link href="/blog/2017/03/22/cloud-debugging.html" rel="alternate" type="text/html" title="Devoxx Cloud Debugging" /><published>2017-03-22T18:20:00-04:00</published><updated>2017-03-22T18:20:00-04:00</updated><id>/blog/2017/03/22/cloud-debugging</id><content type="html" xml:base="/blog/2017/03/22/cloud-debugging.html">&lt;p&gt;Raw notes from Cloud Debugging
 with &lt;a href=&quot;http://twitter.com/patricknflynn&quot;&gt;Patrick Flynn&lt;/a&gt;.  Java
 Tools Tech Lead on Java Cloud Platform.&lt;/p&gt;
 
@@ -512,9 +498,7 @@ wrong user agent.  Shows how in Intellij you can attach to running
 instances.  It syncs the source to what is actually running in the
 cloud.  This works because the agent captures what the breakpoints are,
 captures the sample at the time when it is hit.  It is not interactive
-debugging.  You can't step.  But it's still better than nothing.&lt;/p&gt;</content><summary type="html">Raw notes from Cloud Debugging
-with Patrick Flynn.  Java
-Tools Tech Lead on Java Cloud Platform.</summary></entry><entry><title type="html">Devoxx Baratine</title><link href="http://localhost:4000/blog/2017/03/21/baratine.html" rel="alternate" type="text/html" title="Devoxx Baratine" /><published>2017-03-21T22:09:00-04:00</published><updated>2017-03-21T22:09:00-04:00</updated><id>http://localhost:4000/blog/2017/03/21/baratine</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/21/baratine.html">&lt;p&gt;Raw notes from Baratine talk.  Unfortunately, Simone Bordet and I were
+debugging.  You can't step.  But it's still better than nothing.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Cloud Debugging with Patrick Flynn. Java Tools Tech Lead on Java Cloud Platform.</summary></entry><entry><title type="html">Devoxx Baratine</title><link href="/blog/2017/03/21/baratine.html" rel="alternate" type="text/html" title="Devoxx Baratine" /><published>2017-03-21T22:09:00-04:00</published><updated>2017-03-21T22:09:00-04:00</updated><id>/blog/2017/03/21/baratine</id><content type="html" xml:base="/blog/2017/03/21/baratine.html">&lt;p&gt;Raw notes from Baratine talk.  Unfortunately, Simone Bordet and I were
 the only two attendees in a very large room.  On the bright side, I can
 say that what the room lacked in quantity of attendees, it made up for
 in quality, at least in terms of depth of understanding of the space of
@@ -612,11 +596,7 @@ complete worked example.&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;Bottom line analysis.  Baratine looks like a good solution if you can
-afford to live within in a proprietary stack.*sh&lt;/p&gt;</content><summary type="html">Raw notes from Baratine talk.  Unfortunately, Simone Bordet and I were
-the only two attendees in a very large room.  On the bright side, I can
-say that what the room lacked in quantity of attendees, it made up for
-in quality, at least in terms of depth of understanding of the space of
-Servlet, HTTP/2, and web technologies in general.</summary></entry><entry><title type="html">Devoxx Java EE 8</title><link href="http://localhost:4000/blog/2017/03/21/java-ee-8.html" rel="alternate" type="text/html" title="Devoxx Java EE 8" /><published>2017-03-21T14:00:00-04:00</published><updated>2017-03-21T14:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/21/java-ee-8</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/21/java-ee-8.html">&lt;p&gt;Raw notes from Linda DeMichiel's Java EE 8 talk.&lt;/p&gt;
+afford to live within in a proprietary stack.*sh&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Baratine talk. Unfortunately, Simone Bordet and I were the only two attendees in a very large room. On the bright side, I can say that what the room lacked in quantity of attendees, it made up for in quality, at least in terms of depth of understanding of the space of Servlet, HTTP/2, and web technologies in general.</summary></entry><entry><title type="html">Devoxx Java EE 8</title><link href="/blog/2017/03/21/java-ee-8.html" rel="alternate" type="text/html" title="Devoxx Java EE 8" /><published>2017-03-21T14:00:00-04:00</published><updated>2017-03-21T14:00:00-04:00</updated><id>/blog/2017/03/21/java-ee-8</id><content type="html" xml:base="/blog/2017/03/21/java-ee-8.html">&lt;p&gt;Raw notes from Linda DeMichiel's Java EE 8 talk.&lt;/p&gt;
 
 &lt;p&gt;What was in EE 7: Actually a very action packed release, with the
 usual themes: simplicity, platform cohesion, embracing contemporary
@@ -690,4 +670,4 @@ usual themes: simplicity, platform cohesion, embracing contemporary
 notes?&lt;/p&gt;
 
 
---&gt;</content><summary type="html">Raw notes from Linda DeMichiel's Java EE 8 talk.</summary></entry></feed>
+--&gt;</content><author><name></name></author><summary type="html">Raw notes from Linda DeMichiel's Java EE 8 talk.</summary></entry></feed>

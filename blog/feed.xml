@@ -1,5 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-04-15T11:24:06-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Chicago JUG / GOTO Meetup</title><link href="/blog/2017/04/04/cjug-goto-meetup.html" rel="alternate" type="text/html" title="Chicago JUG / GOTO Meetup" /><published>2017-04-04T09:00:00-04:00</published><updated>2017-04-04T09:00:00-04:00</updated><id>/blog/2017/04/04/cjug-goto-meetup</id><content type="html" xml:base="/blog/2017/04/04/cjug-goto-meetup.html">&lt;p&gt;I am honored to speak in such esteemed company with my fellow
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-04-18T13:51:34-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Sun Ray GNOME Keyboard Stops Accepting Input</title><link href="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html" rel="alternate" type="text/html" title="Sun Ray GNOME Keyboard Stops Accepting Input" /><published>2017-04-18T11:00:00-04:00</published><updated>2017-04-18T11:00:00-04:00</updated><id>/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input</id><content type="html" xml:base="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html">&lt;p&gt;I was happily using my Sun Ray session one day and then it stopped
+accepting keyboard input.  Nothing I tried could make anything other
+than the BEL sound happen.  After posting to an internal list at Oracle
+carried over from the Sun days, the ever helpful and
+venerable &lt;a href=&quot;https://twitter.com/alanc&quot;&gt;Alan Coopersmith&lt;/a&gt; clued
+me in.  I must have held the shift key down for five seconds, turning on
+the &quot;only accept long keypresses&quot; feature.  This is great for people
+with Parkinson's but thankfully I'm not there yet.  But it's nice to
+  know GNOME has my back.&lt;/p&gt;
+
+&lt;p&gt;If you run into this problem you can disable it by going to
+System::Preferences::Keyboard, in the Accessibility tab, and ensuring
+the &quot;Slow Keys&quot; checkbox is not checked.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-gnome-keyboard-preferences-accessibility.png&quot; alt=&quot;Image of GNOME Keyboard Preferences Accessibility Tab with the slow keys checkbox not checked&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You may also want to uncheck &quot;Accessibility features can be toggled
+with keyboard shortcuts.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was happily using my Sun Ray session one day and then it stopped accepting keyboard input. Nothing I tried could make anything other than the BEL sound happen. After posting to an internal list at Oracle carried over from the Sun days, the ever helpful and venerable Alan Coopersmith clued me in. I must have held the shift key down for five seconds, turning on the &quot;only accept long keypresses&quot; feature. This is great for people with Parkinson's but thankfully I'm not there yet. But it's nice to know GNOME has my back.</summary></entry><entry><title type="html">Chicago JUG / GOTO Meetup</title><link href="/blog/2017/04/04/cjug-goto-meetup.html" rel="alternate" type="text/html" title="Chicago JUG / GOTO Meetup" /><published>2017-04-04T09:00:00-04:00</published><updated>2017-04-04T09:00:00-04:00</updated><id>/blog/2017/04/04/cjug-goto-meetup</id><content type="html" xml:base="/blog/2017/04/04/cjug-goto-meetup.html">&lt;p&gt;I am honored to speak in such esteemed company with my fellow
 NullPointers &lt;a href=&quot;http://twitter.com/javafxpert&quot;&gt;James Weaver&lt;/a&gt;
 and &lt;a href=&quot;http://twitter.com/frankgreco&quot;&gt;Frank Greco&lt;/a&gt; at the generous
 invitation of my good friend, and also
@@ -596,78 +613,4 @@ complete worked example.&lt;/p&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;Bottom line analysis.  Baratine looks like a good solution if you can
-afford to live within in a proprietary stack.*sh&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Baratine talk. Unfortunately, Simone Bordet and I were the only two attendees in a very large room. On the bright side, I can say that what the room lacked in quantity of attendees, it made up for in quality, at least in terms of depth of understanding of the space of Servlet, HTTP/2, and web technologies in general.</summary></entry><entry><title type="html">Devoxx Java EE 8</title><link href="/blog/2017/03/21/java-ee-8.html" rel="alternate" type="text/html" title="Devoxx Java EE 8" /><published>2017-03-21T14:00:00-04:00</published><updated>2017-03-21T14:00:00-04:00</updated><id>/blog/2017/03/21/java-ee-8</id><content type="html" xml:base="/blog/2017/03/21/java-ee-8.html">&lt;p&gt;Raw notes from Linda DeMichiel's Java EE 8 talk.&lt;/p&gt;
-
-&lt;p&gt;What was in EE 7: Actually a very action packed release, with the
-usual themes: simplicity, platform cohesion, embracing contemporary
-  standards.&lt;/p&gt;
-
-&lt;p&gt;EE8: Admit the impact of the hiatus.  The original plan had to be
-  scaled back from 12 to 9 JSRs.  Really not a big scale back.&lt;/p&gt;
-
-&lt;p&gt;Two net new JSRs: Security and JSON-B.  Revisions for Servlet, JSF,
-  JSON-P, JAX-RS.&lt;/p&gt;
-
-
-&lt;p&gt;JSON-P.  JSON-Pointer: String syntax for referencing into a JSON
-  document.  &lt;a href=&quot;https://tools.ietf.org/html/rfc6901&quot;&gt;RFC-6901&lt;/a&gt;.
-  Would be nice if there was EL integration.  JSON Patch: Ability to
-  mutate a JSON
-  document.  &lt;a href=&quot;https://tools.ietf.org/html/rfc6902&quot;&gt;RFC-6902&lt;/a&gt;.
-  This has a builder API.  JSON-Merge Patch: Conditionally apply the
-  patch.  &lt;a href=&quot;https://tools.ietf.org/html/rfc7386&quot;&gt;RFC-7386&lt;/a&gt;.  &lt;strong&gt;Also
-  includes seamless integration with Java SE 8 Lambda and
-    Strings.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;JSON-B.  Like JAX-B, but for JSON.  This is the missing piece for
-  JSON in standard Java.  &lt;code&gt;JsonbBuilder&lt;/code&gt; is the client entry
-  point.  &lt;code&gt;Jsonb&lt;/code&gt; the thing you actually manipulate.  Allows
-  you to annotate your Java Pojo to control how it is mapped to JSON.
-  The &lt;code&gt;JsonBConfig&lt;/code&gt; allows you to do this control.  The RI is
-  called &lt;a href=&quot;http://json-b.net/&quot;&gt;Yasson&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;JAX-RS.  New features: Reactive Client API, Server Sent Events,
-  NIO.  I have more on this at &lt;a href=&quot;/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html&quot;&gt;a previous
-  post&lt;/a&gt;.  Linda's talk had more structure on Server Sent Events.  I
-  am glad she emphasized the value JAX-RS brings in sending SSE to both
-  client and server when doing REST.&lt;/p&gt;
-
-&lt;p&gt;Servlet. But first set the context with some plain content on HTTP/2.
-  When talking about the binary framing, she mentioned that frames were
-  self describing, which was a nice observation. &lt;/p&gt;
-
-&lt;p&gt;JSF. A mature technology.  An enormous number of community requested
-  fixes.  She did address why we are continuing JSF while we are not continuing MVC.  This was nice to hear.  &lt;/p&gt;
-
-&lt;p&gt;CDI 2.0.  Mostly about how to use CDI in Java SE environments,
-  outside of Java SE.  This is hugely important for fat-jar style
-  Microservices.  Some enhancements to CDI events.  In 1.1, events are
-  invoked synchronously, without regard for priority.  2.0 allows
-  prioritization and ordering.  Adds async
-  events: &lt;code&gt;event.fireAsync()&lt;/code&gt; and &lt;code&gt;@ObserveAsync&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;BeanValidation 2.0.  Continuing the theme with JSF, adds support for
-  a number of Java SE 8 features.  Adds some new constraints.  Add
-  ability to apply constraints on insertion into &lt;code&gt;Map&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Security 1.0.  Three new APIs &lt;code&gt;SecurityContext,
-  HttpAuthenticationMechanism, IdentityStore&lt;/code&gt;.  The first is under
-  debate about whether or note the first is actually
-  necessary.  &lt;code&gt;SecurityContext&lt;/code&gt; is intended to supercede APIs
-  in several of the other EE technologies.  I like the
-  idea.  &lt;code&gt;HttpAuthenticationMechanism&lt;/code&gt;, modeled on JASPIC,
-  and JASPIC is intended to delegate to this.  It is used to
-  authenticate callers of web applications.  &lt;code&gt;IdentityStore&lt;/code&gt;
-  has methods for authentication and authorization.&lt;/p&gt;
-
-&lt;p&gt;Summary: Target release date of this summer!&lt;/p&gt;
-
-&lt;!--
-
-&lt;h3&gt;Personal notes&lt;/h3&gt;
-
-&lt;p&gt;What is it about a presentation that makes it easier to take
-notes?&lt;/p&gt;
-
-
---&gt;</content><author><name></name></author><summary type="html">Raw notes from Linda DeMichiel's Java EE 8 talk.</summary></entry></feed>
+afford to live within in a proprietary stack.*sh&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Baratine talk. Unfortunately, Simone Bordet and I were the only two attendees in a very large room. On the bright side, I can say that what the room lacked in quantity of attendees, it made up for in quality, at least in terms of depth of understanding of the space of Servlet, HTTP/2, and web technologies in general.</summary></entry></feed>

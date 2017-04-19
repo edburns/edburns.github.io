@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-04-18T17:40:44-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push</title><link href="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html" rel="alternate" type="text/html" title="Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push" /><published>2017-04-18T16:00:00-04:00</published><updated>2017-04-18T16:00:00-04:00</updated><id>/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push</id><content type="html" xml:base="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html">&lt;p&gt;I still recommend JSF 2.3 EG member and major Mojarra
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-04-19T11:49:46-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push</title><link href="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html" rel="alternate" type="text/html" title="Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push" /><published>2017-04-18T16:00:00-04:00</published><updated>2017-04-18T16:00:00-04:00</updated><id>/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push</id><content type="html" xml:base="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html">&lt;p&gt;&lt;code&gt;Updated: 2017-04-19 11:46 -0500: Called out the need to use
+exactly JDK 1.8.0_121 and why.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I still recommend JSF 2.3 EG member and major Mojarra
 committer &lt;a href=&quot;http://arjan-tijms.omnifaces.org/p/jsf-23.html&quot;&gt;Arjan
 Tijms'&lt;/a&gt; blog post for a feature overview of JSF 2.3, but this post
 gives a brief look into a feature I consider a key validation of the two
@@ -67,12 +70,16 @@ such that the feature only kicks in if Servlet 4.0 is actually
 
 &lt;h2&gt;Testing the Feature&lt;/h2&gt;
 
-&lt;p&gt;To test the feature, you must download the GlassFish nightly from
+&lt;p&gt;To test the feature, you must first make sure you are using exactly
+JDK 1.8.0_121, no more no less.  The reason for this precise requirement
+is explained in this
+email &lt;a href=&quot;https://java.net/projects/servlet-spec/lists/jsr369-experts/archive/2017-04/message/43&quot;&gt;to
+the Servlet EG&lt;/a&gt;.  Then, download the GlassFish nightly from
 &amp;lt;&lt;a href=&quot;http://download.oracle.com/glassfish/5.0/nightly/&quot;&gt;http://download.oracle.com/glassfish/5.0/nightly/&lt;/a&gt;&amp;gt;
 (from 2017-04-17 or later) and replace the &lt;code&gt;javax.faces.jar&lt;/code&gt;
 in the &lt;code&gt;modules&lt;/code&gt; directory
 with &lt;a href=&quot;https://maven.java.net/service/local/repositories/snapshots/content/org/glassfish/javax.faces/2.3.1-SNAPSHOT/javax.faces-2.3.1-20170417.161359-6.jar&quot;&gt;&lt;code&gt;org.glassfish:javax.faces:2.3.1-SNAPSHOT&lt;/code&gt;&lt;/a&gt;
-  (or later).&lt;/p&gt;
+(or later).&lt;/p&gt;
 
 &lt;p&gt;Once your GlassFish has been patched to have the latest Mojarra,
 deploy an app that has lots of resources.  I suggest
@@ -121,7 +128,7 @@ it does not make page load times seem faster&lt;/a&gt;.&lt;/p&gt;
 This feature is still in SNAPSHOT form.  I need testing to verify it
 works for some more cases.  If it causes any trouble at all, we may have
 to put it behind a &lt;code&gt;com.sun.faces context-param&lt;/code&gt;.  Please
-leave comments here with your findings.</content><author><name></name></author><summary type="html">I still recommend JSF 2.3 EG member and major Mojarra committer Arjan Tijms' blog post for a feature overview of JSF 2.3, but this post gives a brief look into a feature I consider a key validation of the two Java EE 8 specs to which I contribute: Servlet 4.0 and JSF 2.3. The feature is HTTP/2 Server Push, and it's the biggest new feature in Servlet 4.0 in terms of API impact. This blog post shows how Mojarra 2.3.1-SNAPSHOT uses Servlet 4.0 Server Push and solicits testing of this feature for eventual inclusion in Mojarra 2.3.1, and hopefully into GlassFish 5.0.</summary></entry><entry><title type="html">Sun Ray GNOME Keyboard Stops Accepting Input</title><link href="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html" rel="alternate" type="text/html" title="Sun Ray GNOME Keyboard Stops Accepting Input" /><published>2017-04-18T11:00:00-04:00</published><updated>2017-04-18T11:00:00-04:00</updated><id>/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input</id><content type="html" xml:base="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html">&lt;p&gt;I was happily using my Sun Ray session one day and then it stopped
+leave comments here with your findings.</content><author><name></name></author><summary type="html">Updated: 2017-04-19 11:46 -0500: Called out the need to use exactly JDK 1.8.0_121 and why.</summary></entry><entry><title type="html">Sun Ray GNOME Keyboard Stops Accepting Input</title><link href="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html" rel="alternate" type="text/html" title="Sun Ray GNOME Keyboard Stops Accepting Input" /><published>2017-04-18T11:00:00-04:00</published><updated>2017-04-18T11:00:00-04:00</updated><id>/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input</id><content type="html" xml:base="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html">&lt;p&gt;I was happily using my Sun Ray session one day and then it stopped
 accepting keyboard input.  Nothing I tried could make anything other
 than the BEL sound happen.  After posting to an internal list at Oracle
 carried over from the Sun days, the ever helpful and

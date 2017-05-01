@@ -1,5 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="http://localhost:4000/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/blog/" rel="alternate" type="text/html" /><updated>2017-04-19T23:12:22-04:00</updated><id>http://localhost:4000/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">GOTO Chicago 2017 Picks</title><link href="http://localhost:4000/blog/2017/04/19/goto-chicago-picks.html" rel="alternate" type="text/html" title="GOTO Chicago 2017 Picks" /><published>2017-04-19T19:00:00-04:00</published><updated>2017-04-19T19:00:00-04:00</updated><id>http://localhost:4000/blog/2017/04/19/goto-chicago-picks</id><content type="html" xml:base="http://localhost:4000/blog/2017/04/19/goto-chicago-picks.html">&lt;p&gt;I am very blessed with the opportunity to be speaking at this
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-01T11:07:23-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Goto Chicago 2017 Martin Fowler</title><link href="/blog/2017/05/01/goto-martin-fowler.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Martin Fowler" /><published>2017-05-01T10:00:00-04:00</published><updated>2017-05-01T10:00:00-04:00</updated><id>/blog/2017/05/01/goto-martin-fowler</id><content type="html" xml:base="/blog/2017/05/01/goto-martin-fowler.html">&lt;p&gt;Martin Fowler.&lt;/p&gt;
+
+&lt;p&gt;Event Driven Architectures.  What do people mean by it?  Common
+  theme: something called an event.  But really it's more open ended.&lt;/p&gt;
+
+&lt;p&gt;Thoughtworks internal conference in Denver.  &lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=aweV9FLTZkU&quot;&gt;Video&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;I. Event Notification&lt;/h2&gt;
+
+&lt;h3&gt;1. Event Notification: Dealing with subsystem coupling&lt;/h3&gt;
+
+&lt;p&gt;Turns things inside out and allows systems to be decoupled.&lt;/p&gt;
+
+&lt;p&gt;This pattern applies in at the macro (subsystems) and micro level
+  (text fields).&lt;/p&gt;
+
+&lt;h3&gt;2. Objectification of time: The event itself being a first class
+thingamajig.&lt;/h3&gt;
+
+&lt;p&gt;Encapsulates the time aspect nicely.  Objectifies the thing.&lt;/p&gt;
+
+&lt;p&gt;Events and commands.  What's the difference?  The naming things.&lt;/p&gt;
+
+&lt;p&gt;Events: something happened.  Commands: do something.&lt;/p&gt;
+
+&lt;p&gt;If you don't separate these things conceptually, it leads to
+  reasoning problems.&lt;/p&gt;
+
+&lt;h3&gt;3. Scale: Allows adding new throughput boosters without changing the architecture&lt;/h3&gt;
+
+&lt;p&gt;A downside: no statement of overall behavior.  Because it is not
+  imperative, the only way to understand is to observe the running it.&lt;/p&gt;
+
+&lt;h2&gt;II. Event-carried State Transfer&lt;/h2&gt;
+
+&lt;p&gt;It's not always possible to keep everything inside the event.  Or,
+deciding how much information to put in the event.  Can I put so much in
+there so the systems don't need to communicate directly.  Events: cause
+followon queries&lt;/p&gt;
+
+&lt;p&gt;a. Each subsystem keeps its data local.  b. each event has enough to
+  allow the local data to be updated and kept in sync.&lt;/p&gt;
+
+&lt;p&gt;But now you have the consistency problem.&lt;/p&gt;
+
+&lt;h2&gt;III. Event Sourcing&lt;/h2&gt;
+
+&lt;p&gt;Bring in the logs.  Test: If at any time, you can blow away the
+  current state, and replay the log, and you get back the same state.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Did a poll, &quot;who uses this&quot; was alarmed at the result.  Resorted
+    to observing that an SCM is an example of this.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In the banking world, an accounting ledger is the perfect example of
+  this.&lt;/p&gt;
+
+&lt;p&gt;It's a combination of every single change, plus snapshots.&lt;/p&gt;
+
+&lt;p&gt;Some benefits: debugging is nicer.  You can make copies.  Can keep
+your system itself entirely in memory.  Gave the famous lmax
+  example.&lt;/p&gt;
+
+&lt;h2&gt;Some downsides&lt;/h2&gt;
+
+&lt;p&gt;Unfamiliar, External Systems, &lt;code&gt;Event schema&lt;/code&gt; (JSON to the
+  rescue?), Identifiers&lt;/p&gt;
+
+&lt;p&gt;Slip ups: trouble with event sourcing.  Felt he had to do twice as
+much work.  People conflate asynchrony with event sourcing.  It doesn't
+have to be.  It does add a lot of complexity.  (How do you do event
+sourcing without adding asynchrony?  Locking?)  Trouble with versioning
+events.  Easy refactoring: change the name of a function.  How do you
+get all the callsites?  Advice: Don't have any business logic between
+  your event and its storage.&lt;/p&gt;
+
+&lt;h2&gt;IV. CQRS&lt;/h2&gt;
+
+&lt;p&gt;Separate the components that read and write from your store.  You
+only ever write using the command thing.  You only ever read from the
+  query system.&lt;/p&gt;
+
+&lt;p&gt;You have to be wary of this pattern.  People seem to get in trouble
+with this pattern.  &quot;My sense is that it really has to be deep down in
+the toolbag to pull this one out.&quot;  He's been talking about having
+reporting databases for years; that's CQRS too.  Pure CQRS is the &quot;only
+  ever write using the command thing.&quot;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://martinfowler.com/articles/201701-event-driven.html&quot;&gt;original article.&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Martin Fowler.</summary></entry><entry><title type="html">GOTO Chicago 2017 Picks</title><link href="/blog/2017/04/19/goto-chicago-picks.html" rel="alternate" type="text/html" title="GOTO Chicago 2017 Picks" /><published>2017-04-19T19:00:00-04:00</published><updated>2017-04-19T19:00:00-04:00</updated><id>/blog/2017/04/19/goto-chicago-picks</id><content type="html" xml:base="/blog/2017/04/19/goto-chicago-picks.html">&lt;p&gt;I am very blessed with the opportunity to be speaking at this
 years &lt;a href=&quot;https://gotochgo.com/2017/schedule&quot;&gt;GOTO Chicago 2017&lt;/a&gt;
 conference.  I will be dusting off the old Rockstar Programmers talk and
 refreshing it up with some new interviews.  Ahead of the conference I want
@@ -162,11 +251,7 @@ refreshing it up with some new interviews.  Ahead of the conference I want
 
           &lt;/li&gt;
           
-	&lt;/ul&gt;</content><summary type="html">I am very blessed with the opportunity to be speaking at this
-years GOTO Chicago 2017
-conference.  I will be dusting off the old Rockstar Programmers talk and
-refreshing it up with some new interviews.  Ahead of the conference I want
-  to share my conference picks.</summary></entry><entry><title type="html">Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push</title><link href="http://localhost:4000/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html" rel="alternate" type="text/html" title="Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push" /><published>2017-04-18T16:00:00-04:00</published><updated>2017-04-18T16:00:00-04:00</updated><id>http://localhost:4000/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push</id><content type="html" xml:base="http://localhost:4000/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html">&lt;p&gt;&lt;code&gt;Updated: 2017-04-19 11:46 -0500: Called out the need to use
+	&lt;/ul&gt;</content><author><name></name></author><summary type="html">I am very blessed with the opportunity to be speaking at this years GOTO Chicago 2017 conference. I will be dusting off the old Rockstar Programmers talk and refreshing it up with some new interviews. Ahead of the conference I want to share my conference picks.</summary></entry><entry><title type="html">Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push</title><link href="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html" rel="alternate" type="text/html" title="Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push" /><published>2017-04-18T16:00:00-04:00</published><updated>2017-04-18T16:00:00-04:00</updated><id>/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push</id><content type="html" xml:base="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html">&lt;p&gt;&lt;code&gt;Updated: 2017-04-19 11:46 -0500: Called out the need to use
 exactly JDK 1.8.0_121 and why.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;I still recommend JSF 2.3 EG member and major Mojarra
@@ -257,9 +342,9 @@ is to use Chrome with Developer Tools to hit
 have to jump through some extra hoops because Chrome finds it easiest to
   only support HTTP/2 over TLS.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/blog/assets/20170418-chrome-https-localhost.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-chrome-https-localhost.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/blog/assets/20170418-chrome-https-localhost-02.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-chrome-https-localhost-02.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Once the PrimeFaces is being served over HTTPS to Chrome from your
 patched GlassFish 5.0, you can visit the &quot;Compare&quot; widget within the
@@ -269,7 +354,7 @@ lowest &lt;code&gt;HTTP2_SESSION&lt;/code&gt; item to localhost:8181 in the list
 check the checkbox.  Do a find in page for &lt;code&gt;lara-ps3&lt;/code&gt;.  You
   can see that this image was pushed with server push, as shown next.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/assets/20170418-net-internals-push.png&quot;&gt;&lt;img width=&quot;1024&quot; height=&quot;200&quot; src=&quot;http://localhost:4000/blog/assets/20170418-net-internals-push.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/blog/assets/20170418-net-internals-push.png&quot;&gt;&lt;img width=&quot;1024&quot; height=&quot;200&quot; src=&quot;/blog/assets/20170418-net-internals-push.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;You can use find in page to look for other hits
 on &lt;code&gt;HTTP2_SESSION_RECV_PUSH_PROMISE&lt;/code&gt; to see resources being
@@ -281,7 +366,7 @@ column ta see the impact that push has on page load times.  You can see
 that some of the resources are being delivered before the page even
 finishes loading.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://localhost:4000/blog/assets/20170418-devtools-push.png&quot;&gt;&lt;img width=&quot;1024&quot; height=&quot;273&quot; src=&quot;http://localhost:4000/blog/assets/20170418-devtools-push.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/blog/assets/20170418-devtools-push.png&quot;&gt;&lt;img width=&quot;1024&quot; height=&quot;273&quot; src=&quot;/blog/assets/20170418-devtools-push.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 
 &lt;p&gt;It is beyond the scope of this article to explore this vital aspect
@@ -295,8 +380,7 @@ it does not make page load times seem faster&lt;/a&gt;.&lt;/p&gt;
 This feature is still in SNAPSHOT form.  I need testing to verify it
 works for some more cases.  If it causes any trouble at all, we may have
 to put it behind a &lt;code&gt;com.sun.faces context-param&lt;/code&gt;.  Please
-leave comments here with your findings.</content><summary type="html">Updated: 2017-04-19 11:46 -0500: Called out the need to use
-exactly JDK 1.8.0_121 and why.</summary></entry><entry><title type="html">Sun Ray GNOME Keyboard Stops Accepting Input</title><link href="http://localhost:4000/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html" rel="alternate" type="text/html" title="Sun Ray GNOME Keyboard Stops Accepting Input" /><published>2017-04-18T11:00:00-04:00</published><updated>2017-04-18T11:00:00-04:00</updated><id>http://localhost:4000/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input</id><content type="html" xml:base="http://localhost:4000/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html">&lt;p&gt;I was happily using my Sun Ray session one day and then it stopped
+leave comments here with your findings.</content><author><name></name></author><summary type="html">Updated: 2017-04-19 11:46 -0500: Called out the need to use exactly JDK 1.8.0_121 and why.</summary></entry><entry><title type="html">Sun Ray GNOME Keyboard Stops Accepting Input</title><link href="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html" rel="alternate" type="text/html" title="Sun Ray GNOME Keyboard Stops Accepting Input" /><published>2017-04-18T11:00:00-04:00</published><updated>2017-04-18T11:00:00-04:00</updated><id>/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input</id><content type="html" xml:base="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html">&lt;p&gt;I was happily using my Sun Ray session one day and then it stopped
 accepting keyboard input.  Nothing I tried could make anything other
 than the BEL sound happen.  After posting to an internal list at Oracle
 carried over from the Sun days, the ever helpful and
@@ -310,18 +394,10 @@ with Parkinson's but thankfully I'm not there yet.  But it's nice to
 System::Preferences::Keyboard, in the Accessibility tab, and ensuring
 the &quot;Slow Keys&quot; checkbox is not checked.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://localhost:4000/blog/assets/20170418-gnome-keyboard-preferences-accessibility.png&quot; alt=&quot;Image of GNOME Keyboard Preferences Accessibility Tab with the slow keys checkbox not checked&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-gnome-keyboard-preferences-accessibility.png&quot; alt=&quot;Image of GNOME Keyboard Preferences Accessibility Tab with the slow keys checkbox not checked&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You may also want to uncheck &quot;Accessibility features can be toggled
-with keyboard shortcuts.&lt;/p&gt;</content><summary type="html">I was happily using my Sun Ray session one day and then it stopped
-accepting keyboard input.  Nothing I tried could make anything other
-than the BEL sound happen.  After posting to an internal list at Oracle
-carried over from the Sun days, the ever helpful and
-venerable Alan Coopersmith clued
-me in.  I must have held the shift key down for five seconds, turning on
-the &quot;only accept long keypresses&quot; feature.  This is great for people
-with Parkinson's but thankfully I'm not there yet.  But it's nice to
-  know GNOME has my back.</summary></entry><entry><title type="html">Chicago JUG / GOTO Meetup</title><link href="http://localhost:4000/blog/2017/04/04/cjug-goto-meetup.html" rel="alternate" type="text/html" title="Chicago JUG / GOTO Meetup" /><published>2017-04-04T09:00:00-04:00</published><updated>2017-04-04T09:00:00-04:00</updated><id>http://localhost:4000/blog/2017/04/04/cjug-goto-meetup</id><content type="html" xml:base="http://localhost:4000/blog/2017/04/04/cjug-goto-meetup.html">&lt;p&gt;I am honored to speak in such esteemed company with my fellow
+with keyboard shortcuts.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was happily using my Sun Ray session one day and then it stopped accepting keyboard input. Nothing I tried could make anything other than the BEL sound happen. After posting to an internal list at Oracle carried over from the Sun days, the ever helpful and venerable Alan Coopersmith clued me in. I must have held the shift key down for five seconds, turning on the &quot;only accept long keypresses&quot; feature. This is great for people with Parkinson's but thankfully I'm not there yet. But it's nice to know GNOME has my back.</summary></entry><entry><title type="html">Chicago JUG / GOTO Meetup</title><link href="/blog/2017/04/04/cjug-goto-meetup.html" rel="alternate" type="text/html" title="Chicago JUG / GOTO Meetup" /><published>2017-04-04T09:00:00-04:00</published><updated>2017-04-04T09:00:00-04:00</updated><id>/blog/2017/04/04/cjug-goto-meetup</id><content type="html" xml:base="/blog/2017/04/04/cjug-goto-meetup.html">&lt;p&gt;I am honored to speak in such esteemed company with my fellow
 NullPointers &lt;a href=&quot;http://twitter.com/javafxpert&quot;&gt;James Weaver&lt;/a&gt;
 and &lt;a href=&quot;http://twitter.com/frankgreco&quot;&gt;Frank Greco&lt;/a&gt; at the generous
 invitation of my good friend, and also
@@ -330,16 +406,7 @@ and Frank are collaborating on a machine learning related talk, while I
 am sharing some things I've learned in using Mesos/Marathon as a
 desktop-to-datacenter-to-cloud runtime environment.  I only have 30
 minutes so I am putting the slides on &lt;a href=&quot;https://www.slideshare.net/EdBurns6/chicago-jug-goto-meetup&quot;&gt;SlideShare&lt;/a&gt; and the demo source
-code is available &lt;a href=&quot;/blog/downloads/20170404-cjug-goto-meetup.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">I am honored to speak in such esteemed company with my fellow
-NullPointers James Weaver
-and Frank Greco at the generous
-invitation of my good friend, and also
-NullPointer Freddy Guime.  James
-and Frank are collaborating on a machine learning related talk, while I
-am sharing some things I've learned in using Mesos/Marathon as a
-desktop-to-datacenter-to-cloud runtime environment.  I only have 30
-minutes so I am putting the slides on SlideShare and the demo source
-code is available here.</summary></entry><entry><title type="html">JavaLand 2017 gRPC 101</title><link href="http://localhost:4000/blog/2017/03/28/javaland-gprc-101.html" rel="alternate" type="text/html" title="JavaLand 2017 gRPC 101" /><published>2017-03-28T08:30:00-04:00</published><updated>2017-03-28T08:30:00-04:00</updated><id>http://localhost:4000/blog/2017/03/28/javaland-gprc-101</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/28/javaland-gprc-101.html">&lt;p&gt;Raw nots from &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;Ray Tsang&lt;/a&gt;'s talk about &lt;a href=&quot;http://twitter.com/grpcio&quot;&gt;gRPC&lt;/a&gt;.&lt;/p&gt;
+code is available &lt;a href=&quot;/blog/downloads/20170404-cjug-goto-meetup.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am honored to speak in such esteemed company with my fellow NullPointers James Weaver and Frank Greco at the generous invitation of my good friend, and also NullPointer Freddy Guime. James and Frank are collaborating on a machine learning related talk, while I am sharing some things I've learned in using Mesos/Marathon as a desktop-to-datacenter-to-cloud runtime environment. I only have 30 minutes so I am putting the slides on SlideShare and the demo source code is available here.</summary></entry><entry><title type="html">JavaLand 2017 gRPC 101</title><link href="/blog/2017/03/28/javaland-gprc-101.html" rel="alternate" type="text/html" title="JavaLand 2017 gRPC 101" /><published>2017-03-28T08:30:00-04:00</published><updated>2017-03-28T08:30:00-04:00</updated><id>/blog/2017/03/28/javaland-gprc-101</id><content type="html" xml:base="/blog/2017/03/28/javaland-gprc-101.html">&lt;p&gt;Raw nots from &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;Ray Tsang&lt;/a&gt;'s talk about &lt;a href=&quot;http://twitter.com/grpcio&quot;&gt;gRPC&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Finally was able to get to a session before it
   started.  &lt;a href=&quot;http://www.http2demo.io/&quot;&gt;HTTP/2 Demo.&lt;/a&gt;&lt;/p&gt;
@@ -427,7 +494,7 @@ All builder based.  &lt;/p&gt;
 
 &lt;p&gt;The client uses channels.  Supports client side interceptors.
 Supports load balancing.  Round robin.  Supports deadlines for calls.
-This is kind of a built-in circuit breakers.  &lt;/p&gt;</content><summary type="html">Raw nots from Ray Tsang's talk about gRPC.</summary></entry><entry><title type="html">JavaLand 2017 Serverless AWS</title><link href="http://localhost:4000/blog/2017/03/28/javaland-serverless-aws.html" rel="alternate" type="text/html" title="JavaLand 2017 Serverless AWS" /><published>2017-03-28T08:00:00-04:00</published><updated>2017-03-28T08:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/28/javaland-serverless-aws</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/28/javaland-serverless-aws.html">&lt;p&gt;Raw nots from Niko K&amp;ouml;bler's talk.&lt;/p&gt;
+This is kind of a built-in circuit breakers.  &lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Ray Tsang's talk about gRPC.</summary></entry><entry><title type="html">JavaLand 2017 Serverless AWS</title><link href="/blog/2017/03/28/javaland-serverless-aws.html" rel="alternate" type="text/html" title="JavaLand 2017 Serverless AWS" /><published>2017-03-28T08:00:00-04:00</published><updated>2017-03-28T08:00:00-04:00</updated><id>/blog/2017/03/28/javaland-serverless-aws</id><content type="html" xml:base="/blog/2017/03/28/javaland-serverless-aws.html">&lt;p&gt;Raw nots from Niko K&amp;ouml;bler's talk.&lt;/p&gt;
 
 &lt;p&gt;Arrived late due to lunch choice.&lt;/p&gt;
 
@@ -451,7 +518,7 @@ CloudFunctions, IBM Bluemix with OpenWhisk.  Each offers different
 
 &lt;p&gt;I liked how there is no Docker in this whole thing.&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&quot;http://twitter.com/serverlessbuch&quot;&gt;@serverlessbuch&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">Raw nots from Niko K&amp;ouml;bler's talk.</summary></entry><entry><title type="html">JavaLand 2017 Lambdas</title><link href="http://localhost:4000/blog/2017/03/28/javaland-lambda.html" rel="alternate" type="text/html" title="JavaLand 2017 Lambdas" /><published>2017-03-28T05:00:00-04:00</published><updated>2017-03-28T05:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/28/javaland-lambda</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/28/javaland-lambda.html">&lt;p&gt;Raw nots from Simon Ritter's talk.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&quot;http://twitter.com/serverlessbuch&quot;&gt;@serverlessbuch&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Niko K&amp;ouml;bler's talk.</summary></entry><entry><title type="html">JavaLand 2017 Lambdas</title><link href="/blog/2017/03/28/javaland-lambda.html" rel="alternate" type="text/html" title="JavaLand 2017 Lambdas" /><published>2017-03-28T05:00:00-04:00</published><updated>2017-03-28T05:00:00-04:00</updated><id>/blog/2017/03/28/javaland-lambda</id><content type="html" xml:base="/blog/2017/03/28/javaland-lambda.html">&lt;p&gt;Raw nots from Simon Ritter's talk.&lt;/p&gt;
 
 &lt;p&gt;We had support for some functional programming in JDK 1.0: anonymous
   inner classes.  Lambdas do it much more cleanly.&lt;/p&gt;
@@ -509,7 +576,7 @@ mathematical definition for having functions and calling them.  He was
 &lt;p&gt;Java programmers are typically imperative programmers.  Functional
 programming is not imperative: no side effects.  Lambda calculus and
 Turing machines are equivalent.  What can we do &lt;b&gt;only&lt;/b&gt; using Lambda
-  expressions?&lt;/p&gt;</content><summary type="html">Raw nots from Simon Ritter's talk.</summary></entry><entry><title type="html">JavaLand 2017 Greeting</title><link href="http://localhost:4000/blog/2017/03/28/javaland-intro.html" rel="alternate" type="text/html" title="JavaLand 2017 Greeting" /><published>2017-03-28T04:00:00-04:00</published><updated>2017-03-28T04:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/28/javaland-intro</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/28/javaland-intro.html">&lt;p&gt;Fried Saacke, kicked off JavaLand 2017 today.  It's totally full, and
+  expressions?&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Simon Ritter's talk.</summary></entry><entry><title type="html">JavaLand 2017 Greeting</title><link href="/blog/2017/03/28/javaland-intro.html" rel="alternate" type="text/html" title="JavaLand 2017 Greeting" /><published>2017-03-28T04:00:00-04:00</published><updated>2017-03-28T04:00:00-04:00</updated><id>/blog/2017/03/28/javaland-intro</id><content type="html" xml:base="/blog/2017/03/28/javaland-intro.html">&lt;p&gt;Fried Saacke, kicked off JavaLand 2017 today.  It's totally full, and
 in a new theater within Fantasialand.  We have 110 lectures, 8 workshop
 sessions, and 16 community activities this year.  He admitted that not
 everything will go as smoothly as we might like, but we are doing the
@@ -596,11 +663,7 @@ years.&lt;/p&gt;
 He thinks of it as a mini warehouse that is perfectly positioned in
 neighborhoods.  Difference between self service business and service
 business.  Gave an aside: build your technology yourself.  Don't buy
-  from vendors, otherwise you become too constrained.&lt;/p&gt;</content><summary type="html">Fried Saacke, kicked off JavaLand 2017 today.  It's totally full, and
-in a new theater within Fantasialand.  We have 110 lectures, 8 workshop
-sessions, and 16 community activities this year.  He admitted that not
-everything will go as smoothly as we might like, but we are doing the
-  best.  The biggest practical challenge is throughput.</summary></entry><entry><title type="html">Devoxx JAX-RS 2.1</title><link href="http://localhost:4000/blog/2017/03/23/devoxx-jax-rs.html" rel="alternate" type="text/html" title="Devoxx JAX-RS 2.1" /><published>2017-03-23T14:00:00-04:00</published><updated>2017-03-23T14:00:00-04:00</updated><id>http://localhost:4000/blog/2017/03/23/devoxx-jax-rs</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/23/devoxx-jax-rs.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/spericas&quot;&gt;Santiago Pericas-Geertsen's&lt;/a&gt; JAX-RS 2.1 Reloaded&lt;/p&gt;
+  from vendors, otherwise you become too constrained.&lt;/p&gt;</content><author><name></name></author><summary type="html">Fried Saacke, kicked off JavaLand 2017 today. It's totally full, and in a new theater within Fantasialand. We have 110 lectures, 8 workshop sessions, and 16 community activities this year. He admitted that not everything will go as smoothly as we might like, but we are doing the best. The biggest practical challenge is throughput.</summary></entry><entry><title type="html">Devoxx JAX-RS 2.1</title><link href="/blog/2017/03/23/devoxx-jax-rs.html" rel="alternate" type="text/html" title="Devoxx JAX-RS 2.1" /><published>2017-03-23T14:00:00-04:00</published><updated>2017-03-23T14:00:00-04:00</updated><id>/blog/2017/03/23/devoxx-jax-rs</id><content type="html" xml:base="/blog/2017/03/23/devoxx-jax-rs.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/spericas&quot;&gt;Santiago Pericas-Geertsen's&lt;/a&gt; JAX-RS 2.1 Reloaded&lt;/p&gt;
 
 &lt;p&gt;Quick update on this latest &quot;minor revision&quot;.&lt;/p&gt;
 
@@ -701,66 +764,4 @@ new &lt;code&gt;MessageBodyReader&lt;/code&gt;: &lt;code&gt;NioBodyReader&lt;/co
 
 &lt;p&gt;Publisher = Source, Subscriber = Sink.  This lends itself to SSE.
   You can think of SSE as a special case of NIO.  An SSE connection is
-  just a Flow of SSE Events.&lt;/p&gt;</content><summary type="html">Raw notes from Santiago Pericas-Geertsen's JAX-RS 2.1 Reloaded</summary></entry><entry><title type="html">Devoxx Deep Learning</title><link href="http://localhost:4000/blog/2017/03/22/deep-learning.html" rel="alternate" type="text/html" title="Devoxx Deep Learning" /><published>2017-03-22T18:25:00-04:00</published><updated>2017-03-22T18:25:00-04:00</updated><id>http://localhost:4000/blog/2017/03/22/deep-learning</id><content type="html" xml:base="http://localhost:4000/blog/2017/03/22/deep-learning.html">&lt;p&gt;Raw notes from &lt;a href=&quot;https://twitter.com/agibsonccc&quot;&gt;Adam
-Gibson's&lt;/a&gt; Deep Learning in Production.&lt;/p&gt;
-
-&lt;p&gt;Defining Production: It's different for a startup from an enterprise,
-and different from academia.  Each have their own set of tools and
-  expectations.&lt;/p&gt;
-
-&lt;p&gt;GPU clusters.  On prem research: something flexible and quick.  Not
-much need for complexity management.  Python HPC stack.  C sometimes
-  used for new neural networks.&lt;/p&gt;
-
-&lt;p&gt;Cloud research: AWS/Azure spin up resources as needed.&lt;/p&gt;
-
-&lt;p&gt;On Prem production: HPC, Video transcoding.  They use a lot of GPUs.
-  They also use resource schedulers: MESOS and YARN.&lt;/p&gt;
-
-&lt;p&gt;I must have missed when he talked about how GPUs are essential for
-  this space.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Hadoop: HDFS and ZooKeeper.  16:39.&lt;/p&gt;
-
-&lt;p&gt;Two modes: training and inference (using a model as an API).  GPUs
-  are specialized for matrix computations.&lt;/p&gt;
-
-&lt;p&gt;It started to become difficult to follow due to lots of hopping
-  around without defining the terms well enough, or at all.  It must be
-  my ignorance of the space.&lt;/p&gt;
-
-&lt;p&gt;At least he showed us how to pronounce Lagom.  It's log-AHM.&lt;/p&gt;
-
-&lt;p&gt;Training models is difficult and expensive.  This is why you need a
-  specialized chip.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;ETL: Extract Transform Load.&lt;/p&gt;
-
-&lt;p&gt;Neural nets are made up of Tensors. &lt;a href=&quot;https://en.wikipedia.org/wiki/MNIST_database&quot;&gt;MNIST&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Problems to think about on a GPU cluster:&lt;/p&gt;
-
-	&lt;ul&gt;
-
-	  &lt;li&gt;&lt;p&gt;Memory management.  Each GPU doesn't have that much
-	      RAM, so you have to shard your problem.&lt;/p&gt;&lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;Throughput
-	  &lt;/p&gt;&lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;Resource provisioning
-	  &lt;/p&gt;&lt;/li&gt;
-
-          &lt;li&gt;&lt;p&gt;GPU allocation for job.
-	  &lt;/p&gt;&lt;/li&gt;
-
-	&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/CUDA&quot;&gt;CUDA&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</content><summary type="html">Raw notes from Adam
-Gibson's Deep Learning in Production.</summary></entry></feed>
+  just a Flow of SSE Events.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Santiago Pericas-Geertsen's JAX-RS 2.1 Reloaded</summary></entry></feed>

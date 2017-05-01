@@ -6,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>JavaLand 2017 Serverless AWS</title>
-  <meta name="description" content="Raw nots from Niko K&amp;ouml;bler&#39;s talk.">
+  <title>Goto Chicago 2017 Martin Fowler</title>
+  <meta name="description" content="Martin Fowler.">
 
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <!--[if IE]>
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <![endif]-->
   <link rel="stylesheet" href="/blog/assets/main.css">
-  <link rel="canonical" href="/blog/2017/03/28/javaland-serverless-aws.html">
+  <link rel="canonical" href="/blog/2017/05/01/goto-martin-fowler.html">
   <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
   
   
@@ -77,36 +77,105 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">JavaLand 2017 Serverless AWS</h1>
-    <p class="post-meta"><time datetime="2017-03-28T08:00:00-04:00" itemprop="datePublished">Mar 28, 2017</time></p>
+    <h1 class="post-title" itemprop="name headline">Goto Chicago 2017 Martin Fowler</h1>
+    <p class="post-meta"><time datetime="2017-05-01T10:00:00-04:00" itemprop="datePublished">May 1, 2017</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>Raw nots from Niko K&ouml;bler's talk.</p>
+    <p>Martin Fowler.</p>
 
-<p>Arrived late due to lunch choice.</p>
+<p>Event Driven Architectures.  What do people mean by it?  Common
+  theme: something called an event.  But really it's more open ended.</p>
 
-<p>API Gateway.  Hides possible multiple service calls.  Kinda like
-  ESB.</p>
+<p>Thoughtworks internal conference in Denver.  </p>
 
-<p>DynamoDB. Fully managed NoSQL datasource.  Document oriented.  Pay by
-  read/write/capacity units and used storage, not by time.</p>
+<p><a href="https://www.youtube.com/watch?v=aweV9FLTZkU">Video</a></p>
 
-<p>Used with Amazon Alexa.  Programs in Alexa are called "skills".</p>
+<h2>I. Event Notification</h2>
 
-<p>Amazon Lambda has some competition: AzureFunctions, Google
-CloudFunctions, IBM Bluemix with OpenWhisk.  Each offers different
-  language bindings.</p>
+<h3>1. Event Notification: Dealing with subsystem coupling</h3>
 
-<p>Introducing the <a href="http://serverless.com">Serverless
-    Framework</a>.  Looks pretty clean.</p>
+<p>Turns things inside out and allows systems to be decoupled.</p>
 
-<p>Showed how it looks using the AWS web UI.  Then went into postman and
-  showed how to interact with the API.</p>
+<p>This pattern applies in at the macro (subsystems) and micro level
+  (text fields).</p>
 
-<p>I liked how there is no Docker in this whole thing.</p>
+<h3>2. Objectification of time: The event itself being a first class
+thingamajig.</h3>
 
-<p>See <a href="http://twitter.com/serverlessbuch">@serverlessbuch</a>.</p>
+<p>Encapsulates the time aspect nicely.  Objectifies the thing.</p>
+
+<p>Events and commands.  What's the difference?  The naming things.</p>
+
+<p>Events: something happened.  Commands: do something.</p>
+
+<p>If you don't separate these things conceptually, it leads to
+  reasoning problems.</p>
+
+<h3>3. Scale: Allows adding new throughput boosters without changing the architecture</h3>
+
+<p>A downside: no statement of overall behavior.  Because it is not
+  imperative, the only way to understand is to observe the running it.</p>
+
+<h2>II. Event-carried State Transfer</h2>
+
+<p>It's not always possible to keep everything inside the event.  Or,
+deciding how much information to put in the event.  Can I put so much in
+there so the systems don't need to communicate directly.  Events: cause
+followon queries</p>
+
+<p>a. Each subsystem keeps its data local.  b. each event has enough to
+  allow the local data to be updated and kept in sync.</p>
+
+<p>But now you have the consistency problem.</p>
+
+<h2>III. Event Sourcing</h2>
+
+<p>Bring in the logs.  Test: If at any time, you can blow away the
+  current state, and replay the log, and you get back the same state.</p>
+
+<p><em>Did a poll, "who uses this" was alarmed at the result.  Resorted
+    to observing that an SCM is an example of this.</em></p>
+
+<p>In the banking world, an accounting ledger is the perfect example of
+  this.</p>
+
+<p>It's a combination of every single change, plus snapshots.</p>
+
+<p>Some benefits: debugging is nicer.  You can make copies.  Can keep
+your system itself entirely in memory.  Gave the famous lmax
+  example.</p>
+
+<h2>Some downsides</h2>
+
+<p>Unfamiliar, External Systems, <code>Event schema</code> (JSON to the
+  rescue?), Identifiers</p>
+
+<p>Slip ups: trouble with event sourcing.  Felt he had to do twice as
+much work.  People conflate asynchrony with event sourcing.  It doesn't
+have to be.  It does add a lot of complexity.  (How do you do event
+sourcing without adding asynchrony?  Locking?)  Trouble with versioning
+events.  Easy refactoring: change the name of a function.  How do you
+get all the callsites?  Advice: Don't have any business logic between
+  your event and its storage.</p>
+
+<h2>IV. CQRS</h2>
+
+<p>Separate the components that read and write from your store.  You
+only ever write using the command thing.  You only ever read from the
+  query system.</p>
+
+<p>You have to be wary of this pattern.  People seem to get in trouble
+with this pattern.  "My sense is that it really has to be deep down in
+the toolbag to pull this one out."  He's been talking about having
+reporting databases for years; that's CQRS too.  Pure CQRS is the "only
+  ever write using the command thing."</p>
+
+<p><a href="http://martinfowler.com/articles/201701-event-driven.html">original article.</a></p>
+
+
+
+
 
   </div>
 

@@ -1,5 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-01T13:30:44-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Goto Chicago 2017 Jennifer Peepas</title><link href="/blog/2017/05/01/goto-jennifer-peepas.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Jennifer Peepas" /><published>2017-05-01T13:00:00-04:00</published><updated>2017-05-01T13:00:00-04:00</updated><id>/blog/2017/05/01/goto-jennifer-peepas</id><content type="html" xml:base="/blog/2017/05/01/goto-jennifer-peepas.html">&lt;p&gt;Teaches people to collaborate to make art.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-02T11:08:26-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Goto Chicago 2017 Bryan Cantrill</title><link href="/blog/2017/05/02/goto-brian-cantrill.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Bryan Cantrill" /><published>2017-05-02T10:00:00-04:00</published><updated>2017-05-02T10:00:00-04:00</updated><id>/blog/2017/05/02/goto-brian-cantrill</id><content type="html" xml:base="/blog/2017/05/02/goto-brian-cantrill.html">&lt;h2&gt;Recounting the story of a Joyent outage&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.theregister.co.uk/2014/05/28/joyent_cloud_down/&quot;&gt;Here is the register piece on the outage.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;How did we get here?&lt;/h2&gt;
+
+&lt;p&gt;He points out the flip side of such higly sophisticated automation:
+the stress upon the humans in the loop is amplified.  A human
+fallibility in a semi-automated system is worse than a human fallibility
+  in a non-automated system.&lt;/p&gt;
+
+&lt;h2&gt;Human fallibility in semi-automated systems&lt;/h2&gt;
+
+&lt;p&gt;Recounted the story of the Air Canada flight that ran out of fuel in
+flight.  767-200 in 1983.  The fuel mishap was due to the process of
+  converting from imperial to metric units at some place in the system.&lt;/p&gt;
+
+&lt;p&gt;Amazon S3 outage.&lt;/p&gt;
+
+&lt;h2&gt;Whither microservices?&lt;/h2&gt;
+
+&lt;p&gt;Microservices suffer from the amplification problem mentioned
+  above.&lt;/p&gt;
+
+&lt;h2&gt;Some non-IT illustrations&lt;/h2&gt;
+
+&lt;p&gt;1963 power outage in the northeast&lt;/p&gt;
+
+&lt;p&gt;This illustrates the notion of the load has to go somewhere.&lt;/p&gt;
+
+&lt;p&gt;Used the example of Three Mile Island.  When you have auxiliary
+systems, those systems are not checked.  The more alarms and alerts you
+  have, the more likely they will overload the operators.&lt;/p&gt;
+
+&lt;p&gt;We are gleefully deploying these distributed systems and telling
+  ourselves they will not fail.&lt;/p&gt;
+
+&lt;h2&gt;Debugging in the abstract&lt;/h2&gt;
+
+&lt;p&gt;Debugging is the process by which we understand pathological behavior
+  in the system.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;I like how he acknowledges that we have it easy in the software
+world, compared to the real world.  He is a very entertaining
+    speaker.&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Debugging is the ability to be able to ask the right questions.  He
+  described the continually narrowing set of constraints.&lt;/p&gt;
+
+&lt;h2&gt;The craft of debuggable software&lt;/h2&gt;
+
+&lt;p&gt;One slide as a nod to what you need to do to make things
+  debuggable.&lt;/p&gt;
+
+&lt;h2&gt;A culture of debugging&lt;/h2&gt;
+
+&lt;p&gt;We must have an organizational culture that supports taking the extra
+time for building for debuggability.&lt;/p&gt;
+
+&lt;p&gt;When you have an outage you need to harvest all the useful
+information and learn for it.  Every outage presents an opportunity to
+  advance understanding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Recounting the story of a Joyent outage</summary></entry><entry><title type="html">Goto Chicago 2017 Jennifer Peepas</title><link href="/blog/2017/05/01/goto-jennifer-peepas.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Jennifer Peepas" /><published>2017-05-01T13:00:00-04:00</published><updated>2017-05-01T13:00:00-04:00</updated><id>/blog/2017/05/01/goto-jennifer-peepas</id><content type="html" xml:base="/blog/2017/05/01/goto-jennifer-peepas.html">&lt;p&gt;Teaches people to collaborate to make art.&lt;/p&gt;
 
 &lt;p&gt;We grew up labeled as smart which is good, but sometimes people
 forget to teach us things because they assume you already know it or can
@@ -708,91 +769,4 @@ mathematical definition for having functions and calling them.  He was
 &lt;p&gt;Java programmers are typically imperative programmers.  Functional
 programming is not imperative: no side effects.  Lambda calculus and
 Turing machines are equivalent.  What can we do &lt;b&gt;only&lt;/b&gt; using Lambda
-  expressions?&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Simon Ritter's talk.</summary></entry><entry><title type="html">JavaLand 2017 Greeting</title><link href="/blog/2017/03/28/javaland-intro.html" rel="alternate" type="text/html" title="JavaLand 2017 Greeting" /><published>2017-03-28T04:00:00-04:00</published><updated>2017-03-28T04:00:00-04:00</updated><id>/blog/2017/03/28/javaland-intro</id><content type="html" xml:base="/blog/2017/03/28/javaland-intro.html">&lt;p&gt;Fried Saacke, kicked off JavaLand 2017 today.  It's totally full, and
-in a new theater within Fantasialand.  We have 110 lectures, 8 workshop
-sessions, and 16 community activities this year.  He admitted that not
-everything will go as smoothly as we might like, but we are doing the
-  best.  The biggest practical challenge is throughput.&lt;/p&gt;
-
-&lt;p&gt;He talked about DukeCon, which may be a separate conference, but
-  currently is an online sidecar with JavaLand.&lt;/p&gt;
-
-&lt;p&gt;Tobias Frech talked about the community activities: exchange with
-  eachother.  In the Quantum show floor.&lt;/p&gt;
-
-	&lt;ul&gt;
-
-	  &lt;li&gt;&lt;p&gt;Java Innovation Lab
-	  &lt;/p&gt;&lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;Meet the JUGS
-	  &lt;/p&gt;&lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;Early Adapter's Area
-	  &lt;/p&gt;&lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;Workshops
-	  &lt;/p&gt;&lt;/li&gt;
-          
-          
-	&lt;/ul&gt;
-
-&lt;p&gt;16:30, Group photo outside Quantum&lt;/p&gt;
-
-&lt;p&gt;Use the #JavaLand twitter handle.&lt;/p&gt;
-
-&lt;p&gt;German speaking JavaLand slack group
-#jlca.  &lt;a href=&quot;https://slackin-jvm-german.herokuapp.com/&quot;&gt;Click
-    here&lt;/a&gt;.  Ask here where you can win a robot.&lt;/p&gt;
-
-&lt;p&gt;This year they had a JavaLand4Kids day before the conference.&lt;/p&gt;
-
-&lt;p&gt;Some more numbers about speakers, staff, exhititors,
-  sponsors, student helpers.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;He specially called out that he invited Oracle to be a sponsor, but
-    they declined.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Digitialization of the REWE Group&lt;/p&gt;
-
-&lt;p&gt;Mentioned the importance of being a good server leader.  So glad to
-  see him mention this.&lt;/p&gt;
-
-&lt;p&gt;Three big digitializaion efforts before joining REWE.  Related his
-recruitment story from REWE group.  Key point: never compromise, at all.
-But this is in conflict with the notion of being a servant leader.  He
-keeps mentioning that life is short.  Mentions you are only as good as
-  you think you are.&lt;/p&gt;
-
-&lt;p&gt;Listed some business numbers for REWE.  Lines of business: Food
-  retail, Tourism, DIY.&lt;/p&gt;
-
-&lt;p&gt;Car analogy: if the car keeps driving ok, why fix it?&lt;/p&gt;
-
-&lt;p&gt;What does he mean by digitalizaion?  Related ProMarkt story: Metaphor
-of Bezos cuckold story.  Basically: take on the &quot;software is eating the
-world&quot; meme and reorganize the company according to it.  Story: how he
-asked them to change the company car policy.  This is an example of the
-  changes he was trying to bring.&lt;/p&gt;
-
-&lt;p&gt;Similar story: the corporate suite and the whiteboard: he did not
-  compromise.&lt;/p&gt;
-
-&lt;p&gt;I would like to him to give more details of what they do from day to
-  day.  It was all about the environment.&lt;/p&gt;
-
-&lt;p&gt;Now he gets to it.  Slide showing non-digital businesses and
-corresponding digitalized business.  Old: World of Music, ProMarkt,
-Gortz, Morrisons.  New: iTunes, Spotify, amazon, zalando, ocado.
-Mentioned the he will sell his Morrisons shares short.  Morrisons: they
-compromised by partnering with Ocado and Amazon.  They are giving all of
-their knowledge away to someone who is going to eat you in the next
-years.&lt;/p&gt;
-
-&lt;p&gt;Have to rethink the whole business.  Starting with: what is a store?
-He thinks of it as a mini warehouse that is perfectly positioned in
-neighborhoods.  Difference between self service business and service
-business.  Gave an aside: build your technology yourself.  Don't buy
-  from vendors, otherwise you become too constrained.&lt;/p&gt;</content><author><name></name></author><summary type="html">Fried Saacke, kicked off JavaLand 2017 today. It's totally full, and in a new theater within Fantasialand. We have 110 lectures, 8 workshop sessions, and 16 community activities this year. He admitted that not everything will go as smoothly as we might like, but we are doing the best. The biggest practical challenge is throughput.</summary></entry></feed>
+  expressions?&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Simon Ritter's talk.</summary></entry></feed>

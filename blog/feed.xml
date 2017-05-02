@@ -1,5 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-02T15:30:18-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Goto Chicago 2017 Chris Heilmann</title><link href="/blog/2017/05/02/goto-chris-heilmann.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Chris Heilmann" /><published>2017-05-02T13:00:00-04:00</published><updated>2017-05-02T13:00:00-04:00</updated><id>/blog/2017/05/02/goto-chris-heilmann</id><content type="html" xml:base="/blog/2017/05/02/goto-chris-heilmann.html">&lt;p&gt;Chris Heilmann &lt;a href=&quot;https://twitter.com/codepo8&quot;&gt;codepo8&lt;/a&gt;  &lt;a href=&quot;https://www.christianheilmann.com/&quot;&gt;https://www.christianheilmann.com/&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-02T16:25:32-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Goto Chicago 2017 Randy Shoup</title><link href="/blog/2017/05/02/goto-randy-shoup.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Randy Shoup" /><published>2017-05-02T15:30:00-04:00</published><updated>2017-05-02T15:30:00-04:00</updated><id>/blog/2017/05/02/goto-randy-shoup</id><content type="html" xml:base="/blog/2017/05/02/goto-randy-shoup.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/randyshoup&quot;&gt;Randy Shoup&lt;/a&gt;.&lt;/p&gt;
+
+
+&lt;p&gt;VP of engineering at Stitch Fix.  Did consulting in a &quot;CTO as a
+service&quot;, before that was Director of Engineering at Google and chief
+  engineer at eBay.&lt;/p&gt;
+
+&lt;p&gt;About Stitch Fix.  Reverse of standard retail.  Fill out style
+profile, get five handpicked items, keep what you like, return the
+  rest.&lt;/p&gt;
+
+&lt;p&gt;Behind the model is a lot of Art and Data Science.&lt;/p&gt;
+
+&lt;p&gt;1:1 Ratio of engineering and data scientists&lt;/p&gt;
+
+&lt;p&gt;Apply intelligence to &lt;b&gt;every&lt;/b&gt; part of the business&lt;/p&gt;
+
+&lt;p&gt;Buying, inventory management, logistics, styling, demand prediction&lt;/p&gt;
+
+&lt;p&gt;What is styling: personalized recommendations based on algorithmic
+  recommendations with a human curation layer.&lt;/p&gt;
+
+&lt;p&gt;Modern software dev: org, practices, culture, &lt;/p&gt;
+
+&lt;p&gt;small teams, devops&lt;/p&gt;
+
+&lt;p&gt;Small teams: aligned to domains, cross functional, depend on other
+  teams for help as well.&lt;/p&gt;
+
+&lt;p&gt;practices: TDD.  Motherhood and apple pie.  Continuous delivery: most
+applications deployed multiple times per day.  Release smaller units of
+  work, easier to roll back and role forward.  Better for AB testing.&lt;/p&gt;
+
+&lt;p&gt;Culture: The amazon model: you build it, you run it.&lt;/p&gt;
+
+&lt;h2&gt;Microservices&lt;/h2&gt;
+
+&lt;p&gt;Architecture Evolution&lt;/p&gt;
+
+&lt;p&gt;eBay: Monolithic Perl, Monolitic C++, Java, Microservices.&lt;/p&gt;
+
+&lt;p&gt;Twitter and Amazon had a similar evolution.  It's ok to start out as
+  a monolith.&lt;/p&gt;
+
+&lt;p&gt;The micro of microservice is: single purpose, simple well defined
+interface, isolated persistence (each one keeps its own state).  It's
+  SOA done right.&lt;/p&gt;
+
+&lt;p&gt;Approach 1: operate your own data store.  Store to your own Postgres, ie.&lt;/p&gt;
+
+&lt;p&gt;Approach 2: Use a persistence service and store to your own tables,
+  operated as a service on your behalf.  Slice is isolated.&lt;/p&gt;
+
+&lt;h3&gt;Maintaining interface stability&lt;/h3&gt;
+
+&lt;p&gt;backward/forward compatibility of interfaces.  Can never break your
+  client's code.  Semantic versioning.  major.minor.patch&lt;/p&gt;
+
+&lt;p&gt;Often maintaining multiple deployments and interface versions.  Need
+an explicit deprecation policy.&lt;/p&gt;
+
+&lt;p&gt;Went through procress from extracting services from the shared
+  DB.&lt;/p&gt;
+
+&lt;p&gt;Principle: single system of record.  There can be copies of that.&lt;/p&gt;
+
+&lt;p&gt;Approach 2: Async event+local cache.  Customer service sends events.
+  Order service listens to events.&lt;/p&gt;
+
+&lt;p&gt;Approach 3: Shared metadata library.  Read only metadata, basically
+  immutable.&lt;/p&gt;
+
+&lt;p&gt;Events as first class construct.  This was from Martin's talk.  Event
+  means: statement that something interesting has happened.&lt;/p&gt;
+
+&lt;p&gt;Fourth fundamental building block.  Presentation, Application,
+  Persistence, Events&lt;/p&gt;
+
+&lt;p&gt;Events and Microservices go well together.&lt;/p&gt;
+
+&lt;p&gt;Service interface includes: Synchronous request response.  Events the
+  service produces/consumes.&lt;/p&gt;
+
+&lt;p&gt;Joins: monolithic databases make joins very easily.  How to split it out?&lt;/p&gt;
+
+&lt;p&gt;Approach 1: Service that materializes the view.  Service that
+materializes the view.  &lt;/p&gt;
+
+&lt;p&gt;Approach 2: Join in the client.&lt;/p&gt;
+
+&lt;p&gt;Note that mashup style web apps do this.&lt;/p&gt;
+
+&lt;h3&gt;Microservice Techniques: Workflows and Sagas&lt;/h3&gt;
+
+&lt;p&gt;Problem: Monolithic apps make this trivially easy.  Splitting data
+across services is hard.  So, transactions turn into Sagas: Model the
+transaction as a series of steps coordinated by events.  It's like a
+workflow.  Rolllback by applying compensating operations.  Many common
+systems already do this.  For example payment processing and approval
+  workflows (expense reports).&lt;/p&gt;
+
+&lt;p&gt;Ideal use for functions as a service.  Very lightweight logic,
+stateless, triggered by an event.  Healthy companies in the future will
+  be doing some or all of this.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Randy Shoup.</summary></entry><entry><title type="html">Goto Chicago 2017 Chris Heilmann</title><link href="/blog/2017/05/02/goto-chris-heilmann.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Chris Heilmann" /><published>2017-05-02T13:00:00-04:00</published><updated>2017-05-02T13:00:00-04:00</updated><id>/blog/2017/05/02/goto-chris-heilmann</id><content type="html" xml:base="/blog/2017/05/02/goto-chris-heilmann.html">&lt;p&gt;Chris Heilmann &lt;a href=&quot;https://twitter.com/codepo8&quot;&gt;codepo8&lt;/a&gt;  &lt;a href=&quot;https://www.christianheilmann.com/&quot;&gt;https://www.christianheilmann.com/&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;The web is not doing that well right now.&lt;/p&gt;
 
@@ -787,28 +890,4 @@ All builder based.  &lt;/p&gt;
 
 &lt;p&gt;The client uses channels.  Supports client side interceptors.
 Supports load balancing.  Round robin.  Supports deadlines for calls.
-This is kind of a built-in circuit breakers.  &lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Ray Tsang's talk about gRPC.</summary></entry><entry><title type="html">JavaLand 2017 Serverless AWS</title><link href="/blog/2017/03/28/javaland-serverless-aws.html" rel="alternate" type="text/html" title="JavaLand 2017 Serverless AWS" /><published>2017-03-28T08:00:00-04:00</published><updated>2017-03-28T08:00:00-04:00</updated><id>/blog/2017/03/28/javaland-serverless-aws</id><content type="html" xml:base="/blog/2017/03/28/javaland-serverless-aws.html">&lt;p&gt;Raw nots from Niko K&amp;ouml;bler's talk.&lt;/p&gt;
-
-&lt;p&gt;Arrived late due to lunch choice.&lt;/p&gt;
-
-&lt;p&gt;API Gateway.  Hides possible multiple service calls.  Kinda like
-  ESB.&lt;/p&gt;
-
-&lt;p&gt;DynamoDB. Fully managed NoSQL datasource.  Document oriented.  Pay by
-  read/write/capacity units and used storage, not by time.&lt;/p&gt;
-
-&lt;p&gt;Used with Amazon Alexa.  Programs in Alexa are called &quot;skills&quot;.&lt;/p&gt;
-
-&lt;p&gt;Amazon Lambda has some competition: AzureFunctions, Google
-CloudFunctions, IBM Bluemix with OpenWhisk.  Each offers different
-  language bindings.&lt;/p&gt;
-
-&lt;p&gt;Introducing the &lt;a href=&quot;http://serverless.com&quot;&gt;Serverless
-    Framework&lt;/a&gt;.  Looks pretty clean.&lt;/p&gt;
-
-&lt;p&gt;Showed how it looks using the AWS web UI.  Then went into postman and
-  showed how to interact with the API.&lt;/p&gt;
-
-&lt;p&gt;I liked how there is no Docker in this whole thing.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&quot;http://twitter.com/serverlessbuch&quot;&gt;@serverlessbuch&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Niko K&amp;ouml;bler's talk.</summary></entry></feed>
+This is kind of a built-in circuit breakers.  &lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Ray Tsang's talk about gRPC.</summary></entry></feed>

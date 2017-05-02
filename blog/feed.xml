@@ -1,5 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-02T11:08:26-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Goto Chicago 2017 Bryan Cantrill</title><link href="/blog/2017/05/02/goto-brian-cantrill.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Bryan Cantrill" /><published>2017-05-02T10:00:00-04:00</published><updated>2017-05-02T10:00:00-04:00</updated><id>/blog/2017/05/02/goto-brian-cantrill</id><content type="html" xml:base="/blog/2017/05/02/goto-brian-cantrill.html">&lt;h2&gt;Recounting the story of a Joyent outage&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-02T15:30:18-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Goto Chicago 2017 Chris Heilmann</title><link href="/blog/2017/05/02/goto-chris-heilmann.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Chris Heilmann" /><published>2017-05-02T13:00:00-04:00</published><updated>2017-05-02T13:00:00-04:00</updated><id>/blog/2017/05/02/goto-chris-heilmann</id><content type="html" xml:base="/blog/2017/05/02/goto-chris-heilmann.html">&lt;p&gt;Chris Heilmann &lt;a href=&quot;https://twitter.com/codepo8&quot;&gt;codepo8&lt;/a&gt;  &lt;a href=&quot;https://www.christianheilmann.com/&quot;&gt;https://www.christianheilmann.com/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The web is not doing that well right now.&lt;/p&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;&lt;p&gt;Censorship
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;Bullying
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;Trolling
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;Malware
+	  &lt;/p&gt;&lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;Bloat
+	  &lt;/p&gt;&lt;/li&gt;
+          
+
+	&lt;/ul&gt;
+
+
+&lt;p&gt;He thinks bloat is a big problem.  He liked the simplicity of the
+  early web.&lt;/p&gt;
+
+&lt;p&gt;Most of the new end users are on mobile devices.&lt;/p&gt;
+
+&lt;p&gt;The web was not ready for the mobile form factor.  Initially the
+  mobile web was a throw back to the early web.&lt;/p&gt;
+
+&lt;h2&gt;The publisher's dilemma&lt;/h2&gt;
+
+&lt;p&gt;On the web, users are in control.&lt;/p&gt;
+
+&lt;p&gt;Users are contitioned to not pay for things but find ways around
+  paying.&lt;/p&gt;
+
+&lt;p&gt;Somehow you have to pay the bills&lt;/p&gt;
+
+&lt;h2&gt;Publishers like apps&lt;/h2&gt;
+
+&lt;p&gt;Control look and feel&lt;/p&gt;
+
+&lt;p&gt;Revenue resource&lt;/p&gt;
+
+&lt;p&gt;Built-in obsolescence&lt;/p&gt;
+
+&lt;p&gt;Control the environment, iOS first, android maybe&lt;/p&gt;
+
+&lt;h2&gt;Reality check for publishers&lt;/h2&gt;
+
+&lt;p&gt;Pricing race to the bottom&lt;/p&gt;
+
+&lt;p&gt;Lock-in to the marketplace&lt;/p&gt;
+
+&lt;p&gt;Revenue share with marketplace/OS&lt;/p&gt;
+
+&lt;p&gt;Updates are hard and may be delayed by marketplace rules.&lt;/p&gt;
+
+&lt;p&gt;94% of app revenue comes from 1% of publishers&lt;/p&gt;
+
+&lt;p&gt;80% of users who download an app fail to become active users.&lt;/p&gt;
+
+&lt;p&gt;In-app purchases are where the money is.&lt;/p&gt;
+
+&lt;p&gt;60% of the apps in the Google Play app store have never been
+  downloaded.&lt;/p&gt;
+
+&lt;h2&gt;Tips for making better mobile web apps: PWA Progressive Web Apps&lt;/h2&gt;
+
+&lt;p&gt;Small initial payload&lt;/p&gt;
+
+&lt;p&gt;Form factor supporting interfaces: big buttons&lt;/p&gt;
+
+&lt;p&gt;High contrast&lt;/p&gt;
+
+&lt;p&gt;Support offline/flaky connection&lt;/p&gt;
+
+&lt;p&gt;Taking advantage of the power of the end user device&lt;/p&gt;
+
+&lt;p&gt;Avoid interaction latency&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Chris let drop several pearls of wisdom during his talk about how
+he interacts with the digital world that left me with the desire to
+learn more about them.  For example: ad blocking and VPN location
+spoofing, how to serve your site over https.  People need to know how to
+do these things. &lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;App Manifest, and Service Worker.&lt;/p&gt;
+
+&lt;h2&gt;Progressive Enhancement&lt;/h2&gt;
+
+&lt;p&gt;Great analogy: escalator&lt;/p&gt;
+
+&lt;p&gt;The great thing here is that progressive web apps is that it brings
+  back the power of the link.&lt;/p&gt;</content><author><name></name></author><summary type="html">Chris Heilmann codepo8 https://www.christianheilmann.com/</summary></entry><entry><title type="html">Goto Chicago 2017 Bryan Cantrill</title><link href="/blog/2017/05/02/goto-brian-cantrill.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Bryan Cantrill" /><published>2017-05-02T10:00:00-04:00</published><updated>2017-05-02T10:00:00-04:00</updated><id>/blog/2017/05/02/goto-brian-cantrill</id><content type="html" xml:base="/blog/2017/05/02/goto-brian-cantrill.html">&lt;p&gt;Raw notes.&lt;/p&gt;
+
+&lt;h2&gt;Recounting the story of a Joyent outage&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.theregister.co.uk/2014/05/28/joyent_cloud_down/&quot;&gt;Here is the register piece on the outage.&lt;/a&gt;&lt;/p&gt;
 
@@ -43,7 +143,7 @@ systems, those systems are not checked.  The more alarms and alerts you
 
 &lt;p&gt;&lt;b&gt;I like how he acknowledges that we have it easy in the software
 world, compared to the real world.  He is a very entertaining
-    speaker.&lt;/b&gt;&lt;/p&gt;
+    speaker, but I don't like how he is yelling at us.&lt;/b&gt;&lt;/p&gt;
 
 &lt;p&gt;Debugging is the ability to be able to ask the right questions.  He
   described the continually narrowing set of constraints.&lt;/p&gt;
@@ -60,7 +160,7 @@ time for building for debuggability.&lt;/p&gt;
 
 &lt;p&gt;When you have an outage you need to harvest all the useful
 information and learn for it.  Every outage presents an opportunity to
-  advance understanding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Recounting the story of a Joyent outage</summary></entry><entry><title type="html">Goto Chicago 2017 Jennifer Peepas</title><link href="/blog/2017/05/01/goto-jennifer-peepas.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Jennifer Peepas" /><published>2017-05-01T13:00:00-04:00</published><updated>2017-05-01T13:00:00-04:00</updated><id>/blog/2017/05/01/goto-jennifer-peepas</id><content type="html" xml:base="/blog/2017/05/01/goto-jennifer-peepas.html">&lt;p&gt;Teaches people to collaborate to make art.&lt;/p&gt;
+  advance understanding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes.</summary></entry><entry><title type="html">Goto Chicago 2017 Jennifer Peepas</title><link href="/blog/2017/05/01/goto-jennifer-peepas.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Jennifer Peepas" /><published>2017-05-01T13:00:00-04:00</published><updated>2017-05-01T13:00:00-04:00</updated><id>/blog/2017/05/01/goto-jennifer-peepas</id><content type="html" xml:base="/blog/2017/05/01/goto-jennifer-peepas.html">&lt;p&gt;Teaches people to collaborate to make art.&lt;/p&gt;
 
 &lt;p&gt;We grew up labeled as smart which is good, but sometimes people
 forget to teach us things because they assume you already know it or can
@@ -711,62 +811,4 @@ CloudFunctions, IBM Bluemix with OpenWhisk.  Each offers different
 
 &lt;p&gt;I liked how there is no Docker in this whole thing.&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&quot;http://twitter.com/serverlessbuch&quot;&gt;@serverlessbuch&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Niko K&amp;ouml;bler's talk.</summary></entry><entry><title type="html">JavaLand 2017 Lambdas</title><link href="/blog/2017/03/28/javaland-lambda.html" rel="alternate" type="text/html" title="JavaLand 2017 Lambdas" /><published>2017-03-28T05:00:00-04:00</published><updated>2017-03-28T05:00:00-04:00</updated><id>/blog/2017/03/28/javaland-lambda</id><content type="html" xml:base="/blog/2017/03/28/javaland-lambda.html">&lt;p&gt;Raw nots from Simon Ritter's talk.&lt;/p&gt;
-
-&lt;p&gt;We had support for some functional programming in JDK 1.0: anonymous
-  inner classes.  Lambdas do it much more cleanly.&lt;/p&gt;
-
-&lt;p&gt;You can use lambdas where ever the type is a &lt;code&gt;Functional
-Interface&lt;/code&gt;.  It has a single abstract method: accept.&lt;/p&gt;
-
-&lt;p&gt;A lambda looks like a method, but it is not associated with a class.
-  Therefore you can't call it a method.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;(parameters) -&amp;gt; body&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;There was a lot of debate of whether it should be =&amp;gt;.&lt;/p&gt;
-
-&lt;p&gt;Lambdas are closures over values, not types.  This means state cannot
-be modified in a lambda.  This means you can only refer to variables in
-the surrounding scope, they have to be effectively final.  Effectively
-means either explicitly marked final, or it's value cannot be
-changeable.&lt;/p&gt;
-
-&lt;p&gt;Method references let us reuse a method as a lambda expression.
-Three different ways of using them.  Static method.  Instance method of
-  an arbitrary type. Instance method of an existing type.&lt;/p&gt;
-
-
-&lt;p&gt;Performance implications.  Anonymous inner classes force the compiler
-to generate funny class names, type pollution, must be loaded at
-runtime.  Originally, lambdas were implemented this way.  Better way is
-to use invokedynamic.  Original idea of invokedymanic was to improve
-performance of dynamically typed languages on the JVM.  Defers
-implementation of the Lambda to the runtime.  It was the first thing
-added to the JVM bytecode since Java 1.0.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;java.lang.LambdaMetaFactory&lt;/code&gt; returns an instance of the
-lambda functional interface type.  Can divide lambdas into two groups.
-Non-capturing lambdas: no surrounding scope being used; simple
-conversion to static method.  Capturing lambdas: does use surrounding
-scope: static method with captured variables prepended as
-  parameters or synthetic instance method of class using Lambda. &lt;/p&gt;
-
-&lt;p&gt;Went over some impl performance differences between lambdas and
-anonymous inner classes.  Also for capture vs. instantiation of
-anonymous inner classes.  The latter has heap implications.  &lt;b&gt;Unused
-lambdas have no overhead.  Non-capturing lambdas automatically optimise.
-Method references are slightly more
-optimal.  &lt;code&gt;-XX:+TieredCompilation&lt;/code&gt; gives beter
-    lambdas.  &lt;/b&gt; This is the default.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Alonso Church, the Lambda Calculus (1936).  A way of having a
-mathematical definition for having functions and calling them.  He was
-  Alan Turing's PhD advisor.&lt;/p&gt;
-
-&lt;p&gt;Java programmers are typically imperative programmers.  Functional
-programming is not imperative: no side effects.  Lambda calculus and
-Turing machines are equivalent.  What can we do &lt;b&gt;only&lt;/b&gt; using Lambda
-  expressions?&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Simon Ritter's talk.</summary></entry></feed>
+&lt;p&gt;See &lt;a href=&quot;http://twitter.com/serverlessbuch&quot;&gt;@serverlessbuch&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Niko K&amp;ouml;bler's talk.</summary></entry></feed>

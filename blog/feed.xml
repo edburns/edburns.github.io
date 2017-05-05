@@ -1,5 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-02T16:25:32-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Goto Chicago 2017 Randy Shoup</title><link href="/blog/2017/05/02/goto-randy-shoup.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Randy Shoup" /><published>2017-05-02T15:30:00-04:00</published><updated>2017-05-02T15:30:00-04:00</updated><id>/blog/2017/05/02/goto-randy-shoup</id><content type="html" xml:base="/blog/2017/05/02/goto-randy-shoup.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/randyshoup&quot;&gt;Randy Shoup&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-05T11:47:34-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Goto Chicago 2017 Zhamak Dehghanil</title><link href="/blog/2017/05/02/goto-zhamak-dehghani.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Zhamak Dehghanil" /><published>2017-05-02T17:30:00-04:00</published><updated>2017-05-02T17:30:00-04:00</updated><id>/blog/2017/05/02/goto-zhamak-dehghani</id><content type="html" xml:base="/blog/2017/05/02/goto-zhamak-dehghani.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/zhamakd&quot;&gt;Zhamak Dehghanil&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Getting to Microservices is a journey.  Looking for scale, get more
+capabilities, experimenting with improvements to their core business,
+  not just AB testing.&lt;/p&gt;
+
+&lt;p&gt;Nice simple image of a journey down the hill through the valley, and
+up the hill.&lt;/p&gt;
+
+&lt;p&gt;Deconstruct the monolith, unlock business capabilities.&lt;/p&gt;
+
+&lt;p&gt;Overview of microservices ecosystem.&lt;/p&gt;
+
+&lt;p&gt;1. Monolithic, 2. intelligently integrated, 3. layered, web app,
+  4. centrally integrated, 5. Microservices, 6. Microservices ecosystem
+  on a platform.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;This timeline makes me think about step 7.  Perhaps when the microservices leave the enterprise and can be sold as standalone services?&lt;/b&gt;&lt;/p&gt;
+
+&lt;p&gt;Microservices around business capabilities.  API as a product, the
+fabric of integration.  Independently releaseable.  Teams aligned with
+  services.  Built on a self-served platform.&lt;/p&gt;
+
+&lt;h2&gt;Monolith Evolution: The Battle&lt;/h2&gt;
+
+&lt;h3&gt;1. Identify most constraining&lt;/h3&gt;
+
+&lt;p&gt;Decouple the most constraining factor early.  The Knot.  Apply the
+theory of constraints, as a chain is no stronger than its weakest
+link.  For example.  A monolith that makes heavy use of session.  Need to find out what is the logical meaning of those things.  Use structural analysis tool.&lt;/p&gt;
+
+&lt;h3&gt;2. Decouple capability, not code&lt;/h3&gt;
+
+&lt;p&gt;The cost of reusing compared to its value is often underestimated.
+  It might be worth re-writing.  Use toxcicity evaluation tool.&lt;/p&gt;
+
+&lt;h3&gt;3. Decouple what matters&lt;/h3&gt;
+
+&lt;p&gt;Decouple the capability that is lively, being used... use code
+  analysis tool such as CodeScene for finding lively components.&lt;/p&gt;
+
+&lt;h3&gt;4. Decouple vertically, release the data early&lt;/h3&gt;
+
+&lt;p&gt;Apply the first principle of microservices: independence of build and
+operation.  Because each microservice is self contained, including
+  state, you need to extract full stack.&lt;/p&gt;
+
+&lt;p&gt;the anti-patterns: only decouple facade, only decouple backend
+  services, never decouple data.&lt;/p&gt;
+
+&lt;h3&gt;5. Minimize dependency back to monolith&lt;/h3&gt;
+
+&lt;p&gt;When you extract, don't go back to the monolith.  Tool: expose API
+from monolith.  Use anti-corruption layer in service to use
+monolith.&lt;/p&gt;
+
+&lt;h3&gt;6. Go Macro first then go Micro&lt;/h3&gt;
+
+&lt;p&gt;Recognize that operating a large number of small services requires
+higher maturity.  Must walk before running.  Give yourself time to
+acquire those skills.  Tool: use hyperlinks to logical resources within
+or outside the physical service boundary.  HATEOAS: The apps can return
+links that initially point back to oneself, but then can be changed to
+point to other services, and the clients will not notice the
+transition.&lt;/p&gt;
+
+&lt;h3&gt;7. Migrate in atomic steps of architecture evolution, not devolution&lt;/h3&gt;
+
+&lt;p&gt;Make sure that every step takes you closer to your goal.  Sometimes
+  take a small step, sometimes take a large leap.  Tool: decouple,
+  redirect, retire.&lt;/p&gt;
+
+&lt;h2&gt;The climb&lt;/h2&gt;
+
+&lt;p&gt;Start with a clear outcome in mind.  Define a fitness function.
+  Experiment speed, security, throughput.  Radar chart.&lt;/p&gt;
+
+&lt;p&gt;Hypothesize and measure.  Identify metrics.  For example, measure
+number of applications built with the API, how quickly you can create
+  new APIs.&lt;/p&gt;
+
+&lt;p&gt;Enable with a self-service platform: Domain API, Data infrastructure,
+  Delivery Infrastructure.&lt;/p&gt;
+
+&lt;p&gt;Trade-offs instead of
+solutions. &lt;a href=&quot;https://www.youtube.com/watch?v=3_EtIWmja-4&quot;&gt;&quot;There
+are no solutions only tradeoffs&quot; &amp;mdash; Thomas Sowell&lt;/a&gt;.  See
+also &lt;a href=&quot;http://www.quebecoislibre.org/younkins6.html&quot;&gt;Reality is
+Not Optional: Thomas Sowell's Vision of Man and Society&lt;/a&gt;. Reuse
+vs. Build vs. Buy vs. Re-write. &lt;/p&gt;
+
+&lt;p&gt;Align organization: How is the funding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Zhamak Dehghanil.</summary></entry><entry><title type="html">Goto Chicago 2017 Randy Shoup</title><link href="/blog/2017/05/02/goto-randy-shoup.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Randy Shoup" /><published>2017-05-02T15:30:00-04:00</published><updated>2017-05-02T15:30:00-04:00</updated><id>/blog/2017/05/02/goto-randy-shoup</id><content type="html" xml:base="/blog/2017/05/02/goto-randy-shoup.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/randyshoup&quot;&gt;Randy Shoup&lt;/a&gt;.&lt;/p&gt;
 
 
 &lt;p&gt;VP of engineering at Stitch Fix.  Did consulting in a &quot;CTO as a
@@ -802,92 +893,4 @@ and Frank are collaborating on a machine learning related talk, while I
 am sharing some things I've learned in using Mesos/Marathon as a
 desktop-to-datacenter-to-cloud runtime environment.  I only have 30
 minutes so I am putting the slides on &lt;a href=&quot;https://www.slideshare.net/EdBurns6/chicago-jug-goto-meetup&quot;&gt;SlideShare&lt;/a&gt; and the demo source
-code is available &lt;a href=&quot;/blog/downloads/20170404-cjug-goto-meetup.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am honored to speak in such esteemed company with my fellow NullPointers James Weaver and Frank Greco at the generous invitation of my good friend, and also NullPointer Freddy Guime. James and Frank are collaborating on a machine learning related talk, while I am sharing some things I've learned in using Mesos/Marathon as a desktop-to-datacenter-to-cloud runtime environment. I only have 30 minutes so I am putting the slides on SlideShare and the demo source code is available here.</summary></entry><entry><title type="html">JavaLand 2017 gRPC 101</title><link href="/blog/2017/03/28/javaland-gprc-101.html" rel="alternate" type="text/html" title="JavaLand 2017 gRPC 101" /><published>2017-03-28T08:30:00-04:00</published><updated>2017-03-28T08:30:00-04:00</updated><id>/blog/2017/03/28/javaland-gprc-101</id><content type="html" xml:base="/blog/2017/03/28/javaland-gprc-101.html">&lt;p&gt;Raw nots from &lt;a href=&quot;http://twitter.com/saturnism&quot;&gt;Ray Tsang&lt;/a&gt;'s talk about &lt;a href=&quot;http://twitter.com/grpcio&quot;&gt;gRPC&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Finally was able to get to a session before it
-  started.  &lt;a href=&quot;http://www.http2demo.io/&quot;&gt;HTTP/2 Demo.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Gave definition of saturnism: lead poisoning.&lt;/p&gt;
-
-&lt;p&gt;Trend: revisit: breaking down monolith into Microservices.  Or
-creating microservices in greenfield.  A lot of overhead for this
-  approach: distributed systems problems.  Need additional tooling.&lt;/p&gt;
-
-&lt;p&gt;Referenced &lt;a href=&quot;http://www.ejbtutorial.com/&quot;&gt;CORBA tutorial
-    here.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;RPC has a bad rep.  But he spoke highly of RMI.  Everything just
-works.  But you have to be in Java on both sides.  To fix this, we came
-up with SOAP, which lead to REST.  Why RPC: efficient and strongly type.
-REST: everything is CRUDy.  What about how to represent, for example, a
-bank account transfer operation?  On REST, you also have to write client
-  libraries.  RPC can be great if it is simple and interoperable.&lt;/p&gt;
-
-&lt;p&gt;At Google, they use Stubby.  It does O(10&lt;super&gt;10&lt;/super&gt;).  They
-wanted to open source Stubby.  Square used to have their own RPC thing.
-They combined and made gRPC.  Owned by the cloud native foundation.  The
-  G in GPRC means GRPC.&lt;/p&gt;
-
-&lt;p&gt;Transport is in HTTP/2: binary protocol.  Gave a little talk over
-HTTP/2 features: binary, streams, HPACK, PUSH.  Protobuffer 3.
-  Marshalling and unmarshalling data.&lt;/p&gt;
-
-&lt;p&gt;Showed a graph showing throughput/cpu core: binary is faster than
-  text.  It is also better for battery life.&lt;/p&gt;
-
-&lt;p&gt;gRPC supports: C++, Objective C, PHP, Java.&lt;/p&gt;
-
-&lt;p&gt;Finished the slideware at 14 minutes in.&lt;/p&gt;
-
-&lt;p&gt;Protofile is the IDL file.  There you define the message payloads,
-  messages, etc.  Must define request and response payloads.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-
-    syntax = &quot;proto3&quot;;
-
-    package com.example.grpc;
-
-    option java_multiple_files = true;
-
-    enum Sentiment {
-    HAPPY = 0;
-    SAD = 1;
-    }
-
-    message HelloRequest {
-    string firstname = 1;
-    string lastmame = 2;
-    int64 age = 3;
-    Sentiment sentiment = 4;
-    repeated string hobbies = 5;
-    map&amp;lt;string, string&amp;gt; bagOfTricks = 6;
-    
-    }
-
-    message HelloResponse {
-    string greeting = 1;
-    }
-
-    service GreetingService {
-    rpc greeting([stream] HelloRequest) returns ([stream] HelloResponse);
-    }
-    
-&lt;/code&gt;  &lt;/pre&gt;
-
-&lt;p&gt;To run it, include mvn dependencies.  There are also stub generation
-  plugins.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;
-    public class GreetingImpl extends GreetingServiceGrpc.GreetingServiceImplBase {
-    public void greeting(HelloRequest, StreamObserver response);
-    
-    }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Automatically supports &lt;code&gt;onNext, onCompleted, onError&lt;/code&gt;.
-All builder based.  &lt;/p&gt;
-
-&lt;p&gt;The client uses channels.  Supports client side interceptors.
-Supports load balancing.  Round robin.  Supports deadlines for calls.
-This is kind of a built-in circuit breakers.  &lt;/p&gt;</content><author><name></name></author><summary type="html">Raw nots from Ray Tsang's talk about gRPC.</summary></entry></feed>
+code is available &lt;a href=&quot;/blog/downloads/20170404-cjug-goto-meetup.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am honored to speak in such esteemed company with my fellow NullPointers James Weaver and Frank Greco at the generous invitation of my good friend, and also NullPointer Freddy Guime. James and Frank are collaborating on a machine learning related talk, while I am sharing some things I've learned in using Mesos/Marathon as a desktop-to-datacenter-to-cloud runtime environment. I only have 30 minutes so I am putting the slides on SlideShare and the demo source code is available here.</summary></entry></feed>

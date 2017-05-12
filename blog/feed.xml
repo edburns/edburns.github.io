@@ -1,5 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-05T11:47:34-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Goto Chicago 2017 Zhamak Dehghanil</title><link href="/blog/2017/05/02/goto-zhamak-dehghani.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Zhamak Dehghanil" /><published>2017-05-02T17:30:00-04:00</published><updated>2017-05-02T17:30:00-04:00</updated><id>/blog/2017/05/02/goto-zhamak-dehghani</id><content type="html" xml:base="/blog/2017/05/02/goto-zhamak-dehghani.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/zhamakd&quot;&gt;Zhamak Dehghanil&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-11T23:08:55-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">So long, and thanks for all the commits</title><link href="/blog/2017/05/11/java-net-sunset.html" rel="alternate" type="text/html" title="So long, and thanks for all the commits" /><published>2017-05-11T20:00:00-04:00</published><updated>2017-05-11T20:00:00-04:00</updated><id>/blog/2017/05/11/java-net-sunset</id><content type="html" xml:base="/blog/2017/05/11/java-net-sunset.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/20170512-sunset.jpg&quot; alt=&quot;Image of sunset with java.net coffe beans spilling&quot; /&gt;&lt;sub&gt;Image credit (CC) &lt;a href=&quot;https://magnusbråth.se/&quot;&gt;Magnus Bråth&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt;
+
+&lt;p&gt;The long
+awaited &lt;a href=&quot;https://community.oracle.com/community/java/javanet-forge-sunset&quot;&gt;java.net
+forge sunset&lt;/a&gt; has finally come to pass.  Before there was github,
+before there was google code, when sourceforge was a hot new thing,
+there was java.net.  I always felt that java.net was the tip of the open
+source spear, whose shape was influenced in no small part by former Sun
+CEO &lt;a href=&quot;https://jonathanischwartz.wordpress.com/&quot;&gt;Jonathan
+Schwartz&lt;/a&gt;.  In fact the motto of java.net spoke of this role:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20170510-java-net-sunset-02.png&quot; alt=&quot;The source for Java Technolgy Collaboration&quot; /&gt;&lt;/p&gt;
+
+
+&lt;p&gt;In fact the first &lt;a href=&quot;/blog/2004/06/28/welcome-javaserver-tm-faces-implementation-project.html&quot;&gt;blog
+post I ever made&lt;/a&gt; was made to the java.net CMS, before there was such
+a term as CMS.  Over the years, java.net hosted GlassFish, OpenJDK (for
+a time), JSF, Facelets, JAX-RS, JMS, EJB, JavaMail, Jersey, Grizzly,
+WebSocket, and many more.  I'd like to take this blog post to thank
+those who ran java.net over the years, and more vitally, to thank those
+who have played a role in migrating the Java EE content over to GitHub
+and Groups.io.  I tried to not leave anyone out, but if I have, let me
+know and I'll add them.  So, here's to you java.net and to all the
+people who have helped keep it running and migrate its content to new
+  homes.&lt;/p&gt;
+
+&lt;h2&gt;Thanks to those who made the java.net migration a success&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Arindam Bandyopadhyay&lt;/li&gt;
+&lt;li&gt;Sonya Barry&lt;/li&gt;
+&lt;li&gt;Padmanabha Bhat&lt;/li&gt;
+&lt;li&gt;Christina Brashear &lt;/li&gt;
+&lt;li&gt;Ed Bratt&lt;/li&gt;
+&lt;li&gt;Padmanabhan C.V. &lt;/li&gt;
+&lt;li&gt;Chris Carter &lt;/li&gt;
+&lt;li&gt;Krishna Deepak&lt;/li&gt;
+&lt;li&gt;David Delabassee&lt;/li&gt;
+&lt;li&gt;Romain Grecourt&lt;/li&gt;
+&lt;li&gt;Kokil Jain&lt;/li&gt;
+&lt;li&gt;Yamini Kalyandurga&lt;/li&gt;
+&lt;li&gt;Mike Kiehn&lt;/li&gt;
+&lt;li&gt;Thomas Kurian&lt;/li&gt;
+&lt;li&gt;Nalanda Mahajan&lt;/li&gt;
+&lt;li&gt;Brian Oliver&lt;/li&gt;
+&lt;li&gt;Sameer Pandit&lt;/li&gt;
+&lt;li&gt;Yolande Poirier&lt;/li&gt;
+&lt;li&gt;Sahay Pranjal&lt;/li&gt;
+&lt;li&gt;Bill Shannon&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Image credit (CC) Magnus Bråth</summary></entry><entry><title type="html">Goto Chicago 2017 Zhamak Dehghanil</title><link href="/blog/2017/05/02/goto-zhamak-dehghani.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Zhamak Dehghanil" /><published>2017-05-02T17:30:00-04:00</published><updated>2017-05-02T17:30:00-04:00</updated><id>/blog/2017/05/02/goto-zhamak-dehghani</id><content type="html" xml:base="/blog/2017/05/02/goto-zhamak-dehghani.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/zhamakd&quot;&gt;Zhamak Dehghanil&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Getting to Microservices is a journey.  Looking for scale, get more
 capabilities, experimenting with improvements to their core business,
@@ -884,13 +933,4 @@ the &quot;Slow Keys&quot; checkbox is not checked.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-gnome-keyboard-preferences-accessibility.png&quot; alt=&quot;Image of GNOME Keyboard Preferences Accessibility Tab with the slow keys checkbox not checked&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You may also want to uncheck &quot;Accessibility features can be toggled
-with keyboard shortcuts.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was happily using my Sun Ray session one day and then it stopped accepting keyboard input. Nothing I tried could make anything other than the BEL sound happen. After posting to an internal list at Oracle carried over from the Sun days, the ever helpful and venerable Alan Coopersmith clued me in. I must have held the shift key down for five seconds, turning on the &quot;only accept long keypresses&quot; feature. This is great for people with Parkinson's but thankfully I'm not there yet. But it's nice to know GNOME has my back.</summary></entry><entry><title type="html">Chicago JUG / GOTO Meetup</title><link href="/blog/2017/04/04/cjug-goto-meetup.html" rel="alternate" type="text/html" title="Chicago JUG / GOTO Meetup" /><published>2017-04-04T09:00:00-04:00</published><updated>2017-04-04T09:00:00-04:00</updated><id>/blog/2017/04/04/cjug-goto-meetup</id><content type="html" xml:base="/blog/2017/04/04/cjug-goto-meetup.html">&lt;p&gt;I am honored to speak in such esteemed company with my fellow
-NullPointers &lt;a href=&quot;http://twitter.com/javafxpert&quot;&gt;James Weaver&lt;/a&gt;
-and &lt;a href=&quot;http://twitter.com/frankgreco&quot;&gt;Frank Greco&lt;/a&gt; at the generous
-invitation of my good friend, and also
-NullPointer &lt;a href=&quot;http://twitter.com/fguime&quot;&gt;Freddy Guime&lt;/a&gt;.  James
-and Frank are collaborating on a machine learning related talk, while I
-am sharing some things I've learned in using Mesos/Marathon as a
-desktop-to-datacenter-to-cloud runtime environment.  I only have 30
-minutes so I am putting the slides on &lt;a href=&quot;https://www.slideshare.net/EdBurns6/chicago-jug-goto-meetup&quot;&gt;SlideShare&lt;/a&gt; and the demo source
-code is available &lt;a href=&quot;/blog/downloads/20170404-cjug-goto-meetup.zip&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am honored to speak in such esteemed company with my fellow NullPointers James Weaver and Frank Greco at the generous invitation of my good friend, and also NullPointer Freddy Guime. James and Frank are collaborating on a machine learning related talk, while I am sharing some things I've learned in using Mesos/Marathon as a desktop-to-datacenter-to-cloud runtime environment. I only have 30 minutes so I am putting the slides on SlideShare and the demo source code is available here.</summary></entry></feed>
+with keyboard shortcuts.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was happily using my Sun Ray session one day and then it stopped accepting keyboard input. Nothing I tried could make anything other than the BEL sound happen. After posting to an internal list at Oracle carried over from the Sun days, the ever helpful and venerable Alan Coopersmith clued me in. I must have held the shift key down for five seconds, turning on the &quot;only accept long keypresses&quot; feature. This is great for people with Parkinson's but thankfully I'm not there yet. But it's nice to know GNOME has my back.</summary></entry></feed>

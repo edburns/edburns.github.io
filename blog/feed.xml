@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-11T23:08:55-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-11T23:23:33-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">So long, and thanks for all the commits</title><link href="/blog/2017/05/11/java-net-sunset.html" rel="alternate" type="text/html" title="So long, and thanks for all the commits" /><published>2017-05-11T20:00:00-04:00</published><updated>2017-05-11T20:00:00-04:00</updated><id>/blog/2017/05/11/java-net-sunset</id><content type="html" xml:base="/blog/2017/05/11/java-net-sunset.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/20170512-sunset.jpg&quot; alt=&quot;Image of sunset with java.net coffe beans spilling&quot; /&gt;&lt;sub&gt;Image credit (CC) &lt;a href=&quot;https://magnusbråth.se/&quot;&gt;Magnus Bråth&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt;
 
 &lt;p&gt;The long
 awaited &lt;a href=&quot;https://community.oracle.com/community/java/javanet-forge-sunset&quot;&gt;java.net
 forge sunset&lt;/a&gt; has finally come to pass.  Before there was github,
 before there was google code, when sourceforge was a hot new thing,
-there was java.net.  I always felt that java.net was the tip of the open
-source spear, whose shape was influenced in no small part by former Sun
-CEO &lt;a href=&quot;https://jonathanischwartz.wordpress.com/&quot;&gt;Jonathan
+there was java.net.  I always felt that java.net was the tip of Sun's
+open source spear, whose shape was influenced in no small part by former
+Sun CEO &lt;a href=&quot;https://jonathanischwartz.wordpress.com/&quot;&gt;Jonathan
 Schwartz&lt;/a&gt;.  In fact the motto of java.net spoke of this role:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20170510-java-net-sunset-02.png&quot; alt=&quot;The source for Java Technolgy Collaboration&quot; /&gt;&lt;/p&gt;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-16T13:10:05-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-17T09:55:18-04:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">So long, and thanks for all the commits</title><link href="/blog/2017/05/11/java-net-sunset.html" rel="alternate" type="text/html" title="So long, and thanks for all the commits" /><published>2017-05-11T20:00:00-04:00</published><updated>2017-05-11T20:00:00-04:00</updated><id>/blog/2017/05/11/java-net-sunset</id><content type="html" xml:base="/blog/2017/05/11/java-net-sunset.html">&lt;p&gt;&lt;code&gt;Updated: 2017-05-16 18:07Z Added more images.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20170512-sunset.jpg&quot; alt=&quot;Image of sunset with java.net coffe beans spilling&quot; /&gt;&lt;sub&gt;Image credit (CC) &lt;a href=&quot;https://magnusbråth.se/&quot;&gt;Magnus Bråth&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt;
@@ -56,7 +56,7 @@ people who have helped keep it running and migrate its content to new
 &lt;li&gt;Heather Vancura&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20170515-javanet-closed.png&quot; alt=&quot;Java.net closed message&quot; /&gt; &lt;img src=&quot;/blog/assets/20170516-eol.gif&quot; alt=&quot;END OF LINE&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Updated: 2017-05-16 18:07Z Added more images.</summary></entry><entry><title type="html">Goto Chicago 2017 Zhamak Dehghanil</title><link href="/blog/2017/05/02/goto-zhamak-dehghani.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Zhamak Dehghanil" /><published>2017-05-02T17:30:00-04:00</published><updated>2017-05-02T17:30:00-04:00</updated><id>/blog/2017/05/02/goto-zhamak-dehghani</id><content type="html" xml:base="/blog/2017/05/02/goto-zhamak-dehghani.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/zhamakd&quot;&gt;Zhamak Dehghanil&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20170515-javanet-closed.png&quot; alt=&quot;Java.net closed message&quot; /&gt; &lt;img src=&quot;/blog/assets/20170516-eol.gif&quot; alt=&quot;END OF LINE&quot; /&gt;&lt;/p&gt;</content><summary type="html">Updated: 2017-05-16 18:07Z Added more images.</summary></entry><entry><title type="html">Goto Chicago 2017 Zhamak Dehghanil</title><link href="/blog/2017/05/02/goto-zhamak-dehghani.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Zhamak Dehghanil" /><published>2017-05-02T17:30:00-04:00</published><updated>2017-05-02T17:30:00-04:00</updated><id>/blog/2017/05/02/goto-zhamak-dehghani</id><content type="html" xml:base="/blog/2017/05/02/goto-zhamak-dehghani.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/zhamakd&quot;&gt;Zhamak Dehghanil&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Getting to Microservices is a journey.  Looking for scale, get more
 capabilities, experimenting with improvements to their core business,
@@ -147,7 +147,7 @@ also &lt;a href=&quot;http://www.quebecoislibre.org/younkins6.html&quot;&gt;Real
 Not Optional: Thomas Sowell's Vision of Man and Society&lt;/a&gt;. Reuse
 vs. Build vs. Buy vs. Re-write. &lt;/p&gt;
 
-&lt;p&gt;Align organization: How is the funding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Zhamak Dehghanil.</summary></entry><entry><title type="html">Goto Chicago 2017 Randy Shoup</title><link href="/blog/2017/05/02/goto-randy-shoup.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Randy Shoup" /><published>2017-05-02T15:30:00-04:00</published><updated>2017-05-02T15:30:00-04:00</updated><id>/blog/2017/05/02/goto-randy-shoup</id><content type="html" xml:base="/blog/2017/05/02/goto-randy-shoup.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/randyshoup&quot;&gt;Randy Shoup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Align organization: How is the funding.&lt;/p&gt;</content><summary type="html">Raw notes from Zhamak Dehghanil.</summary></entry><entry><title type="html">Goto Chicago 2017 Randy Shoup</title><link href="/blog/2017/05/02/goto-randy-shoup.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Randy Shoup" /><published>2017-05-02T15:30:00-04:00</published><updated>2017-05-02T15:30:00-04:00</updated><id>/blog/2017/05/02/goto-randy-shoup</id><content type="html" xml:base="/blog/2017/05/02/goto-randy-shoup.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/randyshoup&quot;&gt;Randy Shoup&lt;/a&gt;.&lt;/p&gt;
 
 
 &lt;p&gt;VP of engineering at Stitch Fix.  Did consulting in a &quot;CTO as a
@@ -250,7 +250,7 @@ systems already do this.  For example payment processing and approval
 
 &lt;p&gt;Ideal use for functions as a service.  Very lightweight logic,
 stateless, triggered by an event.  Healthy companies in the future will
-  be doing some or all of this.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Randy Shoup.</summary></entry><entry><title type="html">Goto Chicago 2017 Chris Heilmann</title><link href="/blog/2017/05/02/goto-chris-heilmann.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Chris Heilmann" /><published>2017-05-02T13:00:00-04:00</published><updated>2017-05-02T13:00:00-04:00</updated><id>/blog/2017/05/02/goto-chris-heilmann</id><content type="html" xml:base="/blog/2017/05/02/goto-chris-heilmann.html">&lt;p&gt;Chris Heilmann &lt;a href=&quot;https://twitter.com/codepo8&quot;&gt;codepo8&lt;/a&gt;  &lt;a href=&quot;https://www.christianheilmann.com/&quot;&gt;https://www.christianheilmann.com/&lt;/a&gt;&lt;/p&gt;
+  be doing some or all of this.&lt;/p&gt;</content><summary type="html">Raw notes from Randy Shoup.</summary></entry><entry><title type="html">Goto Chicago 2017 Chris Heilmann</title><link href="/blog/2017/05/02/goto-chris-heilmann.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Chris Heilmann" /><published>2017-05-02T13:00:00-04:00</published><updated>2017-05-02T13:00:00-04:00</updated><id>/blog/2017/05/02/goto-chris-heilmann</id><content type="html" xml:base="/blog/2017/05/02/goto-chris-heilmann.html">&lt;p&gt;Chris Heilmann &lt;a href=&quot;https://twitter.com/codepo8&quot;&gt;codepo8&lt;/a&gt;  &lt;a href=&quot;https://www.christianheilmann.com/&quot;&gt;https://www.christianheilmann.com/&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;The web is not doing that well right now.&lt;/p&gt;
 
@@ -348,7 +348,7 @@ do these things. &lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;Great analogy: escalator&lt;/p&gt;
 
 &lt;p&gt;The great thing here is that progressive web apps is that it brings
-  back the power of the link.&lt;/p&gt;</content><author><name></name></author><summary type="html">Chris Heilmann codepo8 https://www.christianheilmann.com/</summary></entry><entry><title type="html">Goto Chicago 2017 Bryan Cantrill</title><link href="/blog/2017/05/02/goto-brian-cantrill.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Bryan Cantrill" /><published>2017-05-02T10:00:00-04:00</published><updated>2017-05-02T10:00:00-04:00</updated><id>/blog/2017/05/02/goto-brian-cantrill</id><content type="html" xml:base="/blog/2017/05/02/goto-brian-cantrill.html">&lt;p&gt;Raw notes.&lt;/p&gt;
+  back the power of the link.&lt;/p&gt;</content><summary type="html">Chris Heilmann codepo8  https://www.christianheilmann.com/</summary></entry><entry><title type="html">Goto Chicago 2017 Bryan Cantrill</title><link href="/blog/2017/05/02/goto-brian-cantrill.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Bryan Cantrill" /><published>2017-05-02T10:00:00-04:00</published><updated>2017-05-02T10:00:00-04:00</updated><id>/blog/2017/05/02/goto-brian-cantrill</id><content type="html" xml:base="/blog/2017/05/02/goto-brian-cantrill.html">&lt;p&gt;Raw notes.&lt;/p&gt;
 
 &lt;h2&gt;Recounting the story of a Joyent outage&lt;/h2&gt;
 
@@ -411,7 +411,7 @@ time for building for debuggability.&lt;/p&gt;
 
 &lt;p&gt;When you have an outage you need to harvest all the useful
 information and learn for it.  Every outage presents an opportunity to
-  advance understanding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes.</summary></entry><entry><title type="html">Goto Chicago 2017 Jennifer Peepas</title><link href="/blog/2017/05/01/goto-jennifer-peepas.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Jennifer Peepas" /><published>2017-05-01T13:00:00-04:00</published><updated>2017-05-01T13:00:00-04:00</updated><id>/blog/2017/05/01/goto-jennifer-peepas</id><content type="html" xml:base="/blog/2017/05/01/goto-jennifer-peepas.html">&lt;p&gt;Teaches people to collaborate to make art.&lt;/p&gt;
+  advance understanding.&lt;/p&gt;</content><summary type="html">Raw notes.</summary></entry><entry><title type="html">Goto Chicago 2017 Jennifer Peepas</title><link href="/blog/2017/05/01/goto-jennifer-peepas.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Jennifer Peepas" /><published>2017-05-01T13:00:00-04:00</published><updated>2017-05-01T13:00:00-04:00</updated><id>/blog/2017/05/01/goto-jennifer-peepas</id><content type="html" xml:base="/blog/2017/05/01/goto-jennifer-peepas.html">&lt;p&gt;Teaches people to collaborate to make art.&lt;/p&gt;
 
 &lt;p&gt;We grew up labeled as smart which is good, but sometimes people
 forget to teach us things because they assume you already know it or can
@@ -543,7 +543,7 @@ doing it that way.  Try to stay focused on the future, what needs to
 
 &lt;p&gt;Thorough feedback is a gift of time and attention.  It's an
 investment in the projects you make and in your development as a
-creator.&lt;/p&gt;</content><author><name></name></author><summary type="html">Teaches people to collaborate to make art.</summary></entry><entry><title type="html">Goto Chicago 2017 Martin Fowler</title><link href="/blog/2017/05/01/goto-martin-fowler.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Martin Fowler" /><published>2017-05-01T10:00:00-04:00</published><updated>2017-05-01T10:00:00-04:00</updated><id>/blog/2017/05/01/goto-martin-fowler</id><content type="html" xml:base="/blog/2017/05/01/goto-martin-fowler.html">&lt;p&gt;Martin Fowler.&lt;/p&gt;
+creator.&lt;/p&gt;</content><summary type="html">Teaches people to collaborate to make art.</summary></entry><entry><title type="html">Goto Chicago 2017 Martin Fowler</title><link href="/blog/2017/05/01/goto-martin-fowler.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Martin Fowler" /><published>2017-05-01T10:00:00-04:00</published><updated>2017-05-01T10:00:00-04:00</updated><id>/blog/2017/05/01/goto-martin-fowler</id><content type="html" xml:base="/blog/2017/05/01/goto-martin-fowler.html">&lt;p&gt;Martin Fowler.&lt;/p&gt;
 
 &lt;p&gt;Event Driven Architectures.  What do people mean by it?  Common
   theme: something called an event.  But really it's more open ended.&lt;/p&gt;
@@ -632,7 +632,7 @@ the toolbag to pull this one out.&quot;  He's been talking about having
 reporting databases for years; that's CQRS too.  Pure CQRS is the &quot;only
   ever write using the command thing.&quot;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://martinfowler.com/articles/201701-event-driven.html&quot;&gt;original article.&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Martin Fowler.</summary></entry><entry><title type="html">GOTO Chicago 2017 Picks</title><link href="/blog/2017/04/19/goto-chicago-picks.html" rel="alternate" type="text/html" title="GOTO Chicago 2017 Picks" /><published>2017-04-19T19:00:00-04:00</published><updated>2017-04-19T19:00:00-04:00</updated><id>/blog/2017/04/19/goto-chicago-picks</id><content type="html" xml:base="/blog/2017/04/19/goto-chicago-picks.html">&lt;p&gt;I am very blessed with the opportunity to be speaking at this
+&lt;p&gt;&lt;a href=&quot;http://martinfowler.com/articles/201701-event-driven.html&quot;&gt;original article.&lt;/a&gt;&lt;/p&gt;</content><summary type="html">Martin Fowler.</summary></entry><entry><title type="html">GOTO Chicago 2017 Picks</title><link href="/blog/2017/04/19/goto-chicago-picks.html" rel="alternate" type="text/html" title="GOTO Chicago 2017 Picks" /><published>2017-04-19T19:00:00-04:00</published><updated>2017-04-19T19:00:00-04:00</updated><id>/blog/2017/04/19/goto-chicago-picks</id><content type="html" xml:base="/blog/2017/04/19/goto-chicago-picks.html">&lt;p&gt;I am very blessed with the opportunity to be speaking at this
 years &lt;a href=&quot;https://gotochgo.com/2017/schedule&quot;&gt;GOTO Chicago 2017&lt;/a&gt;
 conference.  I will be dusting off the old Rockstar Programmers talk and
 refreshing it up with some new interviews.  Ahead of the conference I want
@@ -795,7 +795,11 @@ refreshing it up with some new interviews.  Ahead of the conference I want
 
           &lt;/li&gt;
           
-	&lt;/ul&gt;</content><author><name></name></author><summary type="html">I am very blessed with the opportunity to be speaking at this years GOTO Chicago 2017 conference. I will be dusting off the old Rockstar Programmers talk and refreshing it up with some new interviews. Ahead of the conference I want to share my conference picks.</summary></entry><entry><title type="html">Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push</title><link href="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html" rel="alternate" type="text/html" title="Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push" /><published>2017-04-18T16:00:00-04:00</published><updated>2017-04-18T16:00:00-04:00</updated><id>/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push</id><content type="html" xml:base="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html">&lt;p&gt;&lt;code&gt;Updated: 2017-04-19 11:46 -0500: Called out the need to use
+	&lt;/ul&gt;</content><summary type="html">I am very blessed with the opportunity to be speaking at this
+years GOTO Chicago 2017
+conference.  I will be dusting off the old Rockstar Programmers talk and
+refreshing it up with some new interviews.  Ahead of the conference I want
+  to share my conference picks.</summary></entry><entry><title type="html">Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push</title><link href="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html" rel="alternate" type="text/html" title="Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push" /><published>2017-04-18T16:00:00-04:00</published><updated>2017-04-18T16:00:00-04:00</updated><id>/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push</id><content type="html" xml:base="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html">&lt;p&gt;&lt;code&gt;Updated: 2017-04-19 11:46 -0500: Called out the need to use
 exactly JDK 1.8.0_121 and why.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;I still recommend JSF 2.3 EG member and major Mojarra
@@ -924,7 +928,8 @@ it does not make page load times seem faster&lt;/a&gt;.&lt;/p&gt;
 This feature is still in SNAPSHOT form.  I need testing to verify it
 works for some more cases.  If it causes any trouble at all, we may have
 to put it behind a &lt;code&gt;com.sun.faces context-param&lt;/code&gt;.  Please
-leave comments here with your findings.</content><author><name></name></author><summary type="html">Updated: 2017-04-19 11:46 -0500: Called out the need to use exactly JDK 1.8.0_121 and why.</summary></entry><entry><title type="html">Sun Ray GNOME Keyboard Stops Accepting Input</title><link href="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html" rel="alternate" type="text/html" title="Sun Ray GNOME Keyboard Stops Accepting Input" /><published>2017-04-18T11:00:00-04:00</published><updated>2017-04-18T11:00:00-04:00</updated><id>/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input</id><content type="html" xml:base="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html">&lt;p&gt;I was happily using my Sun Ray session one day and then it stopped
+leave comments here with your findings.</content><summary type="html">Updated: 2017-04-19 11:46 -0500: Called out the need to use
+exactly JDK 1.8.0_121 and why.</summary></entry><entry><title type="html">Sun Ray GNOME Keyboard Stops Accepting Input</title><link href="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html" rel="alternate" type="text/html" title="Sun Ray GNOME Keyboard Stops Accepting Input" /><published>2017-04-18T11:00:00-04:00</published><updated>2017-04-18T11:00:00-04:00</updated><id>/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input</id><content type="html" xml:base="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html">&lt;p&gt;I was happily using my Sun Ray session one day and then it stopped
 accepting keyboard input.  Nothing I tried could make anything other
 than the BEL sound happen.  After posting to an internal list at Oracle
 carried over from the Sun days, the ever helpful and
@@ -941,4 +946,12 @@ the &quot;Slow Keys&quot; checkbox is not checked.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-gnome-keyboard-preferences-accessibility.png&quot; alt=&quot;Image of GNOME Keyboard Preferences Accessibility Tab with the slow keys checkbox not checked&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You may also want to uncheck &quot;Accessibility features can be toggled
-with keyboard shortcuts.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was happily using my Sun Ray session one day and then it stopped accepting keyboard input. Nothing I tried could make anything other than the BEL sound happen. After posting to an internal list at Oracle carried over from the Sun days, the ever helpful and venerable Alan Coopersmith clued me in. I must have held the shift key down for five seconds, turning on the &quot;only accept long keypresses&quot; feature. This is great for people with Parkinson's but thankfully I'm not there yet. But it's nice to know GNOME has my back.</summary></entry></feed>
+with keyboard shortcuts.&lt;/p&gt;</content><summary type="html">I was happily using my Sun Ray session one day and then it stopped
+accepting keyboard input.  Nothing I tried could make anything other
+than the BEL sound happen.  After posting to an internal list at Oracle
+carried over from the Sun days, the ever helpful and
+venerable Alan Coopersmith clued
+me in.  I must have held the shift key down for five seconds, turning on
+the &quot;only accept long keypresses&quot; feature.  This is great for people
+with Parkinson's but thankfully I'm not there yet.  But it's nice to
+  know GNOME has my back.</summary></entry></feed>

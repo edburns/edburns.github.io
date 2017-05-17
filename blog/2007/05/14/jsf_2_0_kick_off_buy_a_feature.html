@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>JSF 2.0 EG Kick Off Meeting: Buy a Feature</title>
+  <meta name="description" content="Even though we haven&#39;t yet officially filed the JSR for JSF 2.0, we&#39;re darn close, and I felt we could not afford to miss the opportunity to have a JSF 2.0 E...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2007/05/14/jsf_2_0_kick_off_buy_a_feature.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">JSF 2.0 EG Kick Off Meeting: Buy a Feature</h1>
+    <p class="post-meta"><time datetime="2007-05-14T23:59:00-04:00" itemprop="datePublished">May 14, 2007</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Even though we haven't yet officially filed the JSR for JSF 2.0,
+we're darn close, and I felt we could not afford to miss the opportunity
+to have a JSF 2.0 Expert Group kick off meeting at JavaOne this year.
+Once again we were blessed with a great turnout (19 people, including a
+special visit from <a href="http://blogs.sun.com/jonathan/">Jonathan
+Schwartz</a>, see <a href="#roster">the roster</a>).  Instead of
+spending time gathering requriements or kibbutzing, I decided the
+requirements we have already gathered were good enough for now.  Our
+first order of business as the JSF 2.0 Expert Group was to prioritize
+these requirements so we can build a schedule.</p>
+
+<p>To complete this exercise, we used one of Luke Hohmann's Innovation
+Games: <a href="http://www.innovationgames.com/Game/BuyAFeature.aspx">Buy a
+Feature</a>.  From Luke's description: </p>
+
+<blockquote>
+Create a list of features with an estimated cost. The cost can be
+development effort or something else; although the cost can be the
+actual cost you intend to charge for the feature, this is usually not
+required. Customers buy features that they want in the next
+release. Make certain that some features are priced high enough that no
+one customer can buy them. This will help motivate negotiations between
+customers as to which features are most important. Encourage customers
+to pool their money to buy especially important / expensive
+features. Works best with 4-5 customers in a group, so that you can
+create more opportunities for customers to pool their money through
+negotiating.
+</blockquote>
+
+<p>"Buy a Feature" is just one of the great games in Luke's book, <u><a href="http://www.amazon.com/Innovation-Games-Creating-Breakthrough-Collaborative/dp/0321437292/ref=pd_bbs_sr_1/002-8440464-8460023?ie=UTF8&amp;s=books&amp;qid=1179146533&amp;sr=8-1">Innovation
+Games: Creating Breakthrough Products Through Collaborative Play
+</a></u>.  </p>
+
+<p>Exercising spec lead authority, I looked at 1) <a href="https://javaserverfaces-spec-public.dev.java.net/proposals/JSF-2_0-draft.html">the
+JSR draft</a>, 2) <a href="http://wiki.java.net/bin/view/Projects/Jsf2RequirementsScratchpad">the
+Requirements Scratchpad</a>, and 3) Alex Smirnov's requirements
+document, and picked 15 requirements using a weighting algorithm.  I
+assigned prices to each based on how much spec effort I thought it would
+take to specify each feature.  I took the final 15 into the meeting.
+JCP Experts being JCP Experts, there was some disagreement over my
+inclusions and omissions from the list.  I pushed aside this
+disagreement, for the most part, and only allowed two changes to the
+menu at the meeting.  The actual menu used at the meeting follows.
+</p>
+
+<table border="1">
+<caption>Table 1 - Menu of JSF 2.0 Features available for purchase</caption>
+<tbody><tr>
+
+<th>
+Feature Name
+</th>
+
+<th>
+Feature
+</th>
+
+<th>
+Cost (USD)
+</th>
+
+</tr>
+
+<tr>
+
+<td>Facelets
+</td>
+
+
+
+<td>Real world, production view description technology, including
+templating: include something influenced by Facelets, JSFTemplating or
+Tiles in the specification.  Also includes component aggregation: allow
+development of true JSF custom component with little or no Java coding
+by aggregating existing simple components.
+</td>
+
+<td>165</td>
+
+</tr>
+
+<tr>
+
+<td>Zero Deployment Time
+</td>
+
+<td>Eliminate the "deployment step". All the artifacts that comprise a JSF
+application can be modified while the application is running. This will
+bring the responsiveness people have been used to with iterative JSP
+development to the JSF developer. One design idea for this is to allow
+JSF artifacts to be authored in Script.
+</td>
+
+<td>100</td>
+
+</tr>
+
+<tr>
+
+<td>EZComp
+</td>
+
+<td>Make it really easy to create JSF custom components.
+</td>
+
+<td>100
+</td>
+
+</tr>
+
+<tr>
+
+<td>Ajax
+</td>
+
+
+
+<td>Expand the request processing lifecycle to be aware of Ajax. This may
+include describing a small developer-contract footprint JavaScript
+library as part of the JavaServer Faces specification.  Enable
+components to have a client based lifecycle in addition to, or instead
+of the server based request/response lifecycle. Such a client based
+lifecycle would enable use-cases such as drag-and-drop, master-detail
+and sub-dialogs on a single page interface web application.
+</td>
+
+<td>80</td>
+
+</tr>
+
+
+<tr>
+
+<td>Errors
+</td>
+
+
+
+<td>Better Error reporting, like what you get with Tapestry (also in
+JSR-252-EG, where it was said: any time there is an error in *any* part
+of the lifecycle, the user should see not just a cryptic stack trace,
+but also the component - including file and line number - that triggered
+the problem, the EL expression that was being evaluated - including the
+part of the EL expression that triggered the problem,
+etc. Diagnosability for state saving is also important. On this point,
+Gavin King wants to have centralized error handling, with an
+interception point, perhaps using navigation rules, to help handle
+errors.)
+</td>
+
+<td>80</td>
+
+</tr>
+
+<tr>
+
+<td>MegaListeners
+</td>
+
+
+
+<td>You want to be able to add listeners for various kinds of lifecycle
+application events.  Maybe, "call this each time something validates,"
+or "call this after everything successfully validates."  "before JSF
+initializes", "after JSF is done initializing",
+</td>
+
+<td>50</td>
+
+</tr>
+
+<tr>
+
+<td>Convention over Configuration
+</td>
+
+
+
+<td>Allow for "zero configuration" web applications. No faces-config.xml, no
+web.xml. 
+</td>
+
+<td>50</td>
+
+</tr>
+
+<tr>
+
+<td>Mostly GET
+</td>
+
+
+
+<td>Allow for bookmarkable JSF pages. More broadly, if HTTP GET can be used,
+it should be used.
+</td>
+
+<td>80</td>
+
+</tr>
+
+<tr>
+
+<td>AnnotationFest
+</td>
+
+
+
+<td>Leverage annotations to declare JSF artifacts (components, managed
+beans, navigation rules, etc) to the runtime.
+</td>
+
+<td>25</td>
+
+</tr>
+
+<tr>
+
+<td>Declarative Rendering
+</td>
+
+
+
+<td>Declarative Renderers, otherwise known as Renderers without resorting to
+out.println().
+</td>
+
+<td>25</td>
+
+</tr>
+
+<tr>
+
+<td>Fix State Saving
+</td>
+
+
+
+<td>Re-do UIComponent state saving with a view towards making stateless
+components the default.
+</td>
+
+<td>80</td>
+
+</tr>
+
+<tr>
+
+<td>Skins
+</td>
+
+
+
+<td>"Skinning", or "Themeing" of components.  This also would include
+per-user personalizations that could be applied to the components.
+</td>
+
+<td>60</td>
+
+</tr>
+
+
+
+
+<tr>
+
+<td>Singleton Precedence
+</td>
+
+
+
+<td>ViewHandler (and other parts of JSF) ordering when there are multiple
+implementations -- also perhaps restrict to certain URLs
+</td>
+
+<td>40</td>
+
+</tr>
+
+<tr>
+
+<td>Validation++
+</td>
+
+
+
+<td>Decent inter-component and form-level validation
+</td>
+
+<td>15</td>
+
+</tr>
+
+<tr>
+
+<td>Programmatic Config Access
+</td>
+
+
+
+<td>Programmatic access to and modification of faces-config.xml and web.xml,
+perhaps as a DOM instance.
+</td>
+
+<td>50</td>
+
+</tr>
+
+<tr>
+
+<td>
+</td>
+
+<td><b>Total</b>
+</td>
+
+<td> <b>1000</b>
+</td>
+
+
+</tr>
+
+</tbody></table>
+
+
+<table style="margin:1%;float:left;" border="1">
+
+<caption>Table 2 - Purchased Features</caption>
+
+<tbody>
+
+<tr>
+
+<th>Feature Name
+</th>
+
+<th>Number of units purchased
+</th>
+
+</tr>
+
+<tr>
+
+<td>Ajax
+</td>
+
+<td>5
+</td>
+
+</tr>
+
+<tr>
+
+<td>Facelets
+</td>
+
+<td>4
+</td>
+
+</tr>
+
+<tr>
+
+<td>Annotations
+</td>
+
+<td>4
+</td>
+
+</tr>
+
+<tr>
+
+<td>State Saving
+</td>
+
+<td>4
+</td>
+
+</tr>
+
+<tr>
+
+<td>Validation
+</td>
+
+<td>4
+</td>
+
+</tr>
+
+<tr>
+
+<td>EZComp
+</td>
+
+<td>3
+</td>
+
+</tr>
+
+<tr>
+
+<td>Errors
+</td>
+
+<td>3
+</td>
+
+</tr>
+
+<tr>
+
+<td>Mostly GET
+</td>
+
+<td>3
+</td>
+
+</tr>
+
+<tr>
+
+<td>Singleton Precedence
+</td>
+
+<td>3
+</td>
+
+</tr>
+
+<tr>
+
+<td>MegaListeners
+</td>
+
+<td>2
+</td>
+
+</tr>
+
+<tr>
+
+<td>Declarative Renderers
+</td>
+
+<td>1
+</td>
+
+</tr>
+
+<tr>
+
+<td>Convention over Configuration
+</td>
+
+<td>1
+</td>
+
+</tr>
+
+<tr>
+
+<td>Skins
+</td>
+
+<td>1
+</td>
+
+</tr>
+
+</tbody>
+
+</table> 
+
+<h3>Playing the Game</h3>
+
+<p>We broke down into groups of four, and Roger Kitain, Dennis Byrne and
+I played the role of feature retailers.  Dennis Byrne, who works for
+world-famous XP Consulting firm <a href="http://www.martinfowler.com/bliki/">ThoughtWorks</a> remarked that
+his firm uses similar techniques to discover the preferences of clients.
+From his experience in playing such games, he was very pleased with the
+amount of high quality discussion in the groups, and so was I.  These
+people clearly had strong opinions about web application frameworks, but
+at the same time were professional in sharing them.  The collaboration
+aspect of the game was a success, which in itself is a good outcome to a
+JCP Expert Group kick-off meeting.</p>
+
+<p>After each of the four groups had completed their shopping, I
+collected the results which are summarized in the following table.</p>
+
+
+
+<h3>Conclusion</h3>
+
+<p>There were some problems with the exercise.  Ever the inveterate
+gamer, Howard Lewis-Ship pointed out (sadly, after the exercise was
+complete) that we had given too much money to each individual, which
+under-constrained the participants and thus masked their true feelings.
+This was an honest miscalculation, which I deeply regret.  In addition,
+participants complained of a lack of consistent level of detail among
+the menu items.  Some were very low level and specific, others high
+level and generic.  This required each group to re-define the generic
+items for their own purposes, and naturally each one did it in their own
+way.  Each menu item was not cleanly disjoint from all the others,
+leading to a participant to have to choose between items that both
+possesed <strong>some</strong> of what they were looking for.  In spite
+of these problems, I consider the exercise a success, for the experience
+in playing it for future meetings, and, to a lesser extent, for the hard
+data produced.</p>
+
+<h3>Postscript</h3>
+
+<p>Finally, I was delighted to have bumped into Jonathan Schwartz in the
+halls of the Sun building where the meeting was being held.  Having
+known Jonathan from my days at <a href="http://en.wikipedia.org/wiki/Lighthouse_Design">Lighthouse
+Design</a>, and knowing that deeply understands developers, I felt
+confident in asking him to stop by the meeting and thank the EG members
+for donating their time to the Java Community Process.  He went one step
+further and hung out for a little bit collecting data on how well the EG
+members felt the JCP was working.</p>
+
+
+<h3><a name="roster">Attendees</a></h3>
+
+<table border="1">
+
+<caption>Table 3 - Attendance Roster</caption>
+
+<tr>
+
+<th>Group
+</th>
+
+<th>Name
+</th>
+
+<th>Representing
+</th>
+
+</tr>
+
+<tr>
+
+<td rowspan="4">1
+</td>
+
+<td>Gavin King
+</td>
+
+<td>RedHat (from JBoss)
+</td>
+
+</tr>
+
+<tr>
+
+<td>Kito Mann
+</td>
+
+<td>Self
+</td>
+
+</tr>
+
+<tr>
+
+<td>Stephen Kenna
+</td>
+
+<td>IBM
+</td>
+
+</tr>
+
+<tr>
+
+<td>John ?
+</td>
+
+<td>Computer Associates
+</td>
+
+</tr>
+
+<tr>
+
+<td rowspan="4">2
+</td>
+
+<td>Jacob Hookom
+</td>
+
+<td>Self
+</td>
+
+</tr>
+
+<tr>
+
+<td>Howard Lewis-Ship
+</td>
+
+<td>Self
+</td>
+
+</tr>
+
+<tr>
+
+<td>Martin Marinscheck
+</td>
+
+<td>Apache Software Foundation
+</td>
+
+</tr>
+
+<tr>
+
+<td>Alexander Smirnov
+</td>
+
+<td>Exadel
+</td>
+
+</tr>
+
+<tr>
+
+<td rowspan="4">3
+</td>
+
+<td>Manfred Geiler
+</td>
+
+<td>Apache Software Foundation
+</td>
+
+</tr>
+
+<tr>
+
+<td>Keith Donald
+</td>
+
+<td>Interface 21
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Peter Yueng
+</td>
+
+<td>Ericsson
+</td>
+
+</tr>
+
+<tr>
+
+<td>Damien Garbarino
+</td>
+
+<td>ILOG
+</td>
+
+
+</tr>
+
+<tr>
+
+<td rowspan="4">4
+</td>
+
+<td>Cleo Baretto
+</td>
+
+<td>ILOG
+</td>
+
+</tr>
+
+<tr>
+
+<td>Howard Abrams
+</td>
+
+<td>Computer Associates
+</td>
+
+</tr>
+
+<tr>
+
+<td>Igor Shabylov
+</td>
+
+<td>Exadel
+</td>
+
+</tr>
+
+<tr>
+
+<td>Ted Goddard
+</td>
+
+<td>ICESoft
+</td>
+
+</tr>
+
+<tr>
+
+<td rowspan="3">Facilitators
+</td>
+
+<td>Ed Burns
+</td>
+
+<td>Sun
+</td>
+
+</tr>
+
+<tr>
+
+<td>Roger Kitain
+</td>
+
+<td>Sun
+</td>
+
+</tr>
+
+<tr>
+
+<td>Dennis Byrne
+</td>
+
+<td>Apache Software Foundation
+</td>
+
+
+</tr>
+
+
+</table>
+
+<h5>Comments</h5>
+<span class="small">Comments are listed in date ascending order (oldest first) | </span>
+<br/><br/>
+
+<ul>
+<li>
+<a name="26109"></a>
+<div id="c26109">
+Hi Ed. I liked reading your report. The results of the game astonished me at first as I would have spent my money way differently. I guess that the most distorting influence to a representative outcome (rather than an inappropriately chosen amount of allotted money) might have been the circumstance that the buyers were in most part simulated not by actual JSF customers but rather by JSF (-tool) vendors.
+
+I would like to suggest a minor but useful feature: 
+Within a given JSF view, it is most commonly the case that many attributes of components are set to the same values. For example, consider the style- or class- attribute on components of the same type in a portlet application. A view that has 20 labels, each to have it's class attribute set to portlet-section-text or whatever valid portlet style, each configured to have a tool tip with content fetched in the same way etc. A view is cluttered immensely by this reoccurring specification of common default settings on components. People focus much on how facelets reduce the complexity but I think a mechanism for setting attribute defaults for component types might have an even bigger effect. Consider the following sketch. 
+
+Before:
+<pre>
+&lt;f:view&gt;
+	&lt;x:comp1 header-style="portlet-section-header" inset-style="portlet-section-text" tooltip="#{lookup(me.id)}" value="first" /&gt;
+
+	&lt;x:comp1 header-style="portlet-section-header" inset-style="portlet-section-text" tooltip="#{lookup(me.id)}"  value="second"  /&gt;
+
+	&lt;x:manyMoreComponents /&gt;
+&lt;/f:view&gt;
+</pre>
+
+After:
+<pre>
+&lt;x:default attribute="comp1.header-style" value="portlet-section-header" /&gt;
+&lt;x:default attribute="comp1.inset-style" value="portlet-section-text" /&gt;
+&lt;x:default attribute="comp1.tooltip" value="#{lookup(me.id)}" /&gt;
+
+&lt;f:view&gt;
+	&lt;x:comp1 value="first" /&gt;
+	&lt;x:comp1 value="second"  /&gt;
+	&lt;x:manyMoreComponents /&gt;
+&lt;/f:view&gt;
+</pre>
+
+Or course, these examples need to be looked at with goodwill. The view content and attribute use is not profuse enough to illustrate the profit of specifying attribute defaults. Also, most components that vendors offer have a host of attributes and being able to set attribute defaults on application-level and page-level is a kind of customization that is easy to add and should make JSF appear even more powerful because one could showcase how impressive rendering results can be achieved with even less code.
+
+Last but not least, such a kind of attribute defaulting might also alleviate the need for a dedicated skinning functionality.
+
+--
+P.S.: a clever customer would only buy declarative renderers and furthering the useability of JSF for templating outside the context of web-applications 
+as this will buy him heaven thereby making them rich enough to buy all other features of all forthcoming releases :D
+<p class="posted"><span class="ltcaption1">Posted by: wtff  on May 15, 2007 at 08:09 AM</span></p>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<a name="26112"></a>
+<div id="c26112">
+BTW, one could also think of this proposal as "server-side style sheets". <br/>
+Directives outside of the actual page components that customize the components by setting default for them. 
+
+<pre>
+&lt;x:defaults&gt;
+     comp1 {
+           header-style: portlet-section-header;
+           inset-style: portlet-section-text;
+           tooltip: #lookup(me.id)
+      }
+&lt;/x:defaults&gt;
+</pre>
+
+What's right for the client can't be wrong for the server, right? The stylesheet metaphor might inspire further ideas around attribute defaulting, like inheritance among styles or contextualization of style directives as in h1.div { ... } etc
+<p class="posted"><span class="ltcaption1">Posted by: wtff  on May 15, 2007 at 08:33 AM</span></p>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<a name="26115"></a>
+<div id="c26115">
+<p>I am a JSF customer, and I find the voting to be right in line with my preferences.  I agree with the conclusion that of the "expensive" features, zero deploy time--while nice to have--doesn't have the same bang-for-buck as the others. (I assume it not making Table 2 suggests this.)  Would be great for those who really want it to be able to seek it out as an extension (JSF-Ext or otherwise), but I'd rather the spec focus on the other biggies.</p>
+<p>On the "Ajax" item- I love the idea of a client-based lifecycle, but I have a problem with allying this feature so closely with Ajax.  With Flex and potentially applets (with JavaFX) gaining traction, the spec should, at the very least, have a pluggable client-side architecture that allows different components/component sets to be comprised of non-Javascript entities.  For example, the spec should make it possible for an enterprising 3rd party to wrap the entire set of Flex 2 components (now open-source) into JSF counterparts, communicating back and forth using this pluggable client-side architecture.  This <i>could</i> be done today, by using a combintion of DynaFaces, Adobe's FABridge JS-Flex bridge, and a little glue code; but it would be great if JSF 2.0 provided extension points making it easier.</p>
+<p>Or, if you prefer, this being a Sun blog :), imagine that once the mean 'n' lean consumer JRE comes out mid '08, a Java.net project that marries JavaFX with JSF comes out, wrapping various rich client-side controls in JSF components that let you keep logic (and bizObjects) back on the server.</p>
+<p>I don't know ... the further these rich technologies come (Flex 2's MXML is a fantastic example of EZ component composition/extension/definition, b.t.w.), the more I wonder how much sense it makes to kill yourself building Ajaxified components like Trees and whatever else in DHTML/Javascript- or, at the very least, to define the JSF spec narrowly enough such that alternatives aren't facilitated.</p>
+<p class="posted"><span class="ltcaption1">Posted by: rogers_reilly  on May 15, 2007 at 09:09 AM</span></p>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<a name="26120"></a>
+<div id="c26120">
+&gt;&gt; On the "Ajax" item- I love the idea of a client-based lifecycle, but I have a problem with allying this feature so closely with Ajax.
+I fully agree. The JSF spec should be evolved with Ajax in head but shouldn't Ajax written anywhere on it.
+<p class="posted"><span class="ltcaption1">Posted by: wtff  on May 15, 2007 at 10:09 AM</span></p>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<a name="26121"></a>
+<div id="c26121">
+Components, Components, Components!
+<p>
+Creating components that works in any JSF container is as fun as coding bytecode directly. It is <b>very</b> hard to get ROI on a component unless you are a big company that can create its own component creation framework.</p>
+<p class="posted"><span class="ltcaption1">Posted by: mikaelgrev  on May 15, 2007 at 10:18 AM</span></p>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<a name="26124"></a>
+<div id="c26124">
+As one of the "facilitators" of this process I can say that I thought it was a refreshing change to the normal "sit back and white board it" approach.
+The process kept all EG members involved.
+Nice work Ed!
+
+-roger (JSF co-spec lead).
+<p class="posted"><span class="ltcaption1">Posted by: rogerk  on May 15, 2007 at 11:54 AM</span></p>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<a name="26141"></a>
+<div id="c26141">
+Better error reporting! In my experience, the Stack Trace from Hell does more to turn off people from JSF than anything else. It is such a relentless productivity killer. I am surprised that it didn't rise to the top instantly. You all have become too good at reading stack traces :-)
+<p class="posted"><span class="ltcaption1">Posted by: cayhorstmann  on May 15, 2007 at 09:41 PM</span></p>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<a name="26142"></a>
+<div id="c26142">
+cay, without a doubt, error *handling* is at the top of people's priorities, but when it came time to bet on what most of us assumed was an implementation detail not an API focus-- we'd vest our dollars elsewhere ;-)
+<p class="posted"><span class="ltcaption1">Posted by: jhook  on May 15, 2007 at 09:56 PM</span></p>
+</div>
+</li>
+</ul>
+<ul>
+<li>
+<a name="26143"></a>
+<div id="c26143">
+I'd have bought (in order of priority):
+<ul>
+<li>Facelets (esp master/client templating)</li>
+<li>Ajax<li>
+<li>EZComp (Declarative Rendering might have been included here)</li>
+<li>Mostly GET</li>
+<li>Fix state saving</li>
+</li></li></ul>
+That's $505. Did I overspend? The only additional items <a href="https://web.archive.org/web/20080105055453/http://www.ninthavenue.com.au/blog/jsf_2.0_ideas">from my list of ideas</a> I'd press for would be:
+<ul>
+<li>Conversation scope</li>
+<li>Page Lifecycle ala Shale ViewController</li>
+<li>Standard method to package and fetch component resource (e.g. images)</li>
+</ul>
+<p class="posted"><span class="ltcaption1">Posted by: rogerkeays  on May 16, 2007 at 12:54 AM</span></p>
+</div>
+</li>
+</ul>
+
+
+<br/><br/>
+
+  </div>
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

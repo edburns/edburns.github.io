@@ -1,5 +1,231 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-05-17T09:55:18-04:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">So long, and thanks for all the commits</title><link href="/blog/2017/05/11/java-net-sunset.html" rel="alternate" type="text/html" title="So long, and thanks for all the commits" /><published>2017-05-11T20:00:00-04:00</published><updated>2017-05-11T20:00:00-04:00</updated><id>/blog/2017/05/11/java-net-sunset</id><content type="html" xml:base="/blog/2017/05/11/java-net-sunset.html">&lt;p&gt;&lt;code&gt;Updated: 2017-05-16 18:07Z Added more images.&lt;/code&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-06-07T13:03:37-04:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Java Offheap Podcast Future of Java Part II at Goto Chicago 2017</title><link href="/blog/2017/06/05/javaoffheap-goto-part2.html" rel="alternate" type="text/html" title="Java Offheap Podcast Future of Java Part II at Goto Chicago 2017" /><published>2017-06-05T08:00:00-04:00</published><updated>2017-06-05T08:00:00-04:00</updated><id>/blog/2017/06/05/javaoffheap-goto-part2</id><content type="html" xml:base="/blog/2017/06/05/javaoffheap-goto-part2.html">&lt;p&gt;I had the honor to be a guest
+on &lt;a href=&quot;http://www.javaoffheap.com/&quot;&gt;Java OffHeap&lt;/a&gt;
+(&lt;a href=&quot;http://www.twitter.com/offheap&quot;&gt;@offheap&lt;/a&gt;) while
+attending &lt;a href=&quot;/blog/2017/04/19/goto-chicago-picks.html&quot;&gt;Goto Chicago 2017&lt;/a&gt;.  I am also
+happy to announce that I am in talks with the OffHeap guys to have an
+occasional guest segment on their program, tentatively called &quot;Mark and
+Sweep&quot; where we will feature audio content from the existing interviews
+from my book &lt;a href=&quot;http://ridingthecrest.com/purchase.html&quot;&gt;Secrets
+of the Rockstar Programmers&lt;/a&gt; as well as new interviews with
+additional thought leaders.&lt;/p&gt;
+
+&lt;p&gt;The link to the episode
+is &lt;code&gt;&amp;lt;&lt;a href=&quot;http://www.javaoffheap.com/2017/05/episode-24-nothing-like-sweet-home.html&quot;&gt;http://www.javaoffheap.com/2017/05/episode-24-nothing-like-sweet-home.html&lt;/a&gt;&amp;gt;&lt;/code&gt;,
+but this post is my summary and notes, including the segment with
+&lt;a href=&quot;https://twitter.com/javaFXpert&quot;&gt;Jim Weaver&lt;/a&gt;
+and &lt;a href=&quot;https://twitter.com/deanwampler&quot;&gt;Dean Wampler&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Part I, with &lt;a href=&quot;https://twitter.com/gsaab&quot;&gt;Georges Saab&lt;/a&gt;
+and &lt;a href=&quot;https://twitter.com/edburns&quot;&gt;I&lt;/a&gt;, is
+&lt;a href=&quot;/blog/2017/05/25/javaoffheap-goto-part1.html&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+
+
+&lt;h2&gt;Part II: Dean Wampler and Jim Weaver&lt;/h2&gt;
+
+&lt;p&gt;51:18 Introductions&lt;/p&gt;
+
+&lt;p&gt;53:38 Bob polls the audience about alternative JVM languages.&lt;/p&gt;
+
+&lt;p&gt;54:12 What happens if JDK 9 flops?  Dean asserts the microservices
+movement is a threat to the JVM because it exposes how bloated JVM apps
+typically are.  Go and Rust: are a factor of 10/100 smaller.  55:04 But
+why does it matter if it's not a cost savings?  55:42 Dean points out
+that it matters at google scale.  56:00 Bob: jlink can help with this.
+56:50 Freddy: if we use jlink with Jigsaw, will Scala be smaller?  57:24
+Dean answers, but not quite, and points out that Lightbend does track
+JDK releases closely, citing lambda integration in a recent Scala
+  release.&lt;/p&gt;
+
+&lt;p&gt;57:15 Freddy: other threats? 57:46
+  Bob: &lt;a href=&quot;https://www.meetup.com/en-AU/ChicagoJUG/events/237330076/&quot;&gt;Azul's
+  Paul Nauman&lt;/a&gt;: complexity of the JVM is the JVM's worst enemy.
+  58:28 Freddy, but that's true for every language.&lt;/p&gt;
+
+&lt;p&gt;59:20 Dean: another risk: Apparent with SPARK: the appeal of DSLs.
+  1:00:00 Bob: but what about debugging?  Also, SPARK and massive heap
+  sizes.  1:01:20 SPARK realized the JMM is great for general purpose,
+  but if you have a billion of the same thing, there is no need for that
+  complexity.  1:02:30 Bob: Code rot is another risk to the ecosystem.
+  People stop maintaining stuff, but the stuff is still very widely
+  used.  1:03:26 Freddy tells his JavaScript story: there's three of
+  everything: npm, bower do the same thing.  In spite of this JavaScript
+  is still #1.  1:05 Dean: npm is using Rust for its scalability behind
+  the scenes.  1:06:15 It's the old open vs. closed argument.&lt;/p&gt;
+
+&lt;p&gt;1:08:07 Bob ASF: Not a problem to have multiple projects that do the
+  same thing.  But you still need the JCP side to guarantee
+  interoperability. 1:08:49 Jim Weaver adds that competition is good.
+  1:09:50 when you run JDK on AWS, it is OpenJDK.  1:10:26 Bob: there
+  are things in place in the JDK to prevent fragmentation.&lt;/p&gt;
+
+&lt;p&gt;1:11:30 Freddy asks: What is your opinion of 9?  Dean: They try to
+track the latest version of Java for their Scala users.  1:12:50 Lambdas
+did slow the adoption of Scala because it took away the worst pain
+point.  1:13:20 Jim: the Spring mantra make jar not war is well
+supported by jigsaw.  1:14:31 Bob points out that Spring uses a lot of
+reflection, but Jigsaw allows blocking code execution across package
+boundaries, won't that cause problems?  1:15:33 Freddy points out that 9
+lets you get close to that 20M mark on size, but notes that with Spring
+boot, you may add a lot on top of that.  Jim did not address this.
+&lt;code&gt;1:17:00 Freddy lists a nice process for optimization that starts
+with coarse grained and ends up with using JMH.  This is a very valuable
+  nugget.&lt;/code&gt;  &lt;/p&gt;
+
+&lt;p&gt;1:19:24 Freddy asks to what extent Pivotal is going into machine
+learning.  Jim answered that Pivotal is into data flows, such as Spring
+  cloud data flow, which works with DeepLearning4J or Tensor Flow.&lt;/p&gt;
+
+&lt;p&gt;1:20:50 Freddy asks how Lightbend is doing machine learning.  They
+are looking at how to make it accessible to their developers. 1:22:04
+Bob ask how many are using Hadoop and is surprised with the small number
+  of hands.&lt;/p&gt;
+
+&lt;p&gt;1:23:25 Freddy asks Dean to share the Lightbend strategy for world
+dominance.  Answer: the tools they built, Akka, Play!, Lagom.  An
+opinionated microservices framework.  What they want to do is promote
+best practices and give them the tools to do it.  Bob: we need to figure
+out a better way to structure the ideas so that regular developers can
+use it.  1:25:44 Freddy observes how hard it is to do the reactive
+  manifesto correctly.&lt;/p&gt;
+
+&lt;p&gt;1:27:00 Discussion about the need to get knowledge out about best
+practices.  1:29:35 Bob observes that organizations need to change to
+adopt them.&lt;/p&gt;
+
+&lt;p&gt;1:32:10 Freddy asks, why is it so hard to get microservices right?
+James: 1:32:31 data is the hard part.  1:33:55 Dean: each microservices
+has its own persistence, but this poses a problem when you evolve a
+  system and data needs to change.&lt;/p&gt;
+
+&lt;p&gt;1:35:55 How have alternative JVM languages played out?  At Expedia,
+85% is just regular Java.  They do use a little Scala.  The bit that
+they do use, some developers avoid touching because they are not
+familiar with Scala.  1:37:40 Dean: about half of their devs use Scala.
+90% of the JVM usage is Java.  1:38:12 Container management and
+orchestration: Freddy: it's wild west right now.  1:39:45 Jim has a
+counter argument: perhaps use build packs instead of containers.
+1:40:10 Freddy, I wish we could settle down with the Docker stuff.&lt;/p&gt;</content><summary type="html">I had the honor to be a guest
+on Java OffHeap
+(@offheap) while
+attending Goto Chicago 2017.  I am also
+happy to announce that I am in talks with the OffHeap guys to have an
+occasional guest segment on their program, tentatively called &quot;Mark and
+Sweep&quot; where we will feature audio content from the existing interviews
+from my book Secrets
+of the Rockstar Programmers as well as new interviews with
+additional thought leaders.</summary></entry><entry><title type="html">Java Offheap Podcast Future of Java Part I at Goto Chicago 2017</title><link href="/blog/2017/05/25/javaoffheap-goto-part1.html" rel="alternate" type="text/html" title="Java Offheap Podcast Future of Java Part I at Goto Chicago 2017" /><published>2017-05-25T08:00:00-04:00</published><updated>2017-05-25T08:00:00-04:00</updated><id>/blog/2017/05/25/javaoffheap-goto-part1</id><content type="html" xml:base="/blog/2017/05/25/javaoffheap-goto-part1.html">&lt;p&gt;I had the honor to be a guest
+on &lt;a href=&quot;http://www.javaoffheap.com/&quot;&gt;Java OffHeap&lt;/a&gt;
+(&lt;a href=&quot;http://www.twitter.com/offheap&quot;&gt;@offheap&lt;/a&gt;) while
+attending &lt;a href=&quot;/blog/2017/04/19/goto-chicago-picks.html&quot;&gt;Goto Chicago 2017&lt;/a&gt;.  I am also
+happy to announce that I am in talks with the OffHeap guys to have an
+occasional guest segment on their program, tentatively called &quot;Mark and
+Sweep&quot; where we will feature audio content from the existing interviews
+from my book &lt;a href=&quot;http://ridingthecrest.com/purchase.html&quot;&gt;Secrets
+of the Rockstar Programmers&lt;/a&gt; as well as new interviews with
+additional thought leaders.&lt;/p&gt;
+
+&lt;p&gt;The link to the episode
+is &lt;code&gt;&amp;lt;&lt;a href=&quot;http://www.javaoffheap.com/2017/05/episode-24-nothing-like-sweet-home.html&quot;&gt;http://www.javaoffheap.com/2017/05/episode-24-nothing-like-sweet-home.html&lt;/a&gt;&amp;gt;&lt;/code&gt;,
+  but this post is my summary and notes.&lt;/p&gt;
+
+&lt;p&gt;Part II, with &lt;a href=&quot;https://twitter.com/javaFXpert&quot;&gt;Jim Weaver&lt;/a&gt;
+and &lt;a href=&quot;https://twitter.com/deanwampler&quot;&gt;Dean Wampler&lt;/a&gt;, is
+&lt;a href=&quot;/blog/2017/06/05/javaoffheap-goto-part2.html&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Part I: Georges Saab and I&lt;/h2&gt;
+
+&lt;p&gt;02:58 I talk about the java.net sunset.  03:54 I mention that the
+email lists were still not ready at the time of the recording
+(now &lt;a href=&quot;https://javaee.groups.io/g/javaee&quot;&gt;now they are&lt;/a&gt;).  I
+also mention the essential nature of the search archive for JCP mailing
+lists.  This gives an insight into one of the challenges of evolving a
+multi-year project over many releases.  04:37 I explain why we couldn't
+use Google Groups. 05:25 I call for a moment of silence for the memory
+of java.net.  05:58 I mention you can submit pull requests, but the
+governance process is not yet in place for external commits.  06:19
+Georges explains that openjdk was never running on java.net, and so is
+not impacted.  06:58 Georges explains why they are not moving to GitHub
+from Mercurial.  They have everything working well enough with
+Mercurial, so there is no need to move it over to GitHub.  07:58 I
+mention that we gave up using JIRA when moving to GitHub, and I asked if
+anyone was using &lt;a href=&quot;http://waffle.io/&quot;&gt;waffle.io&lt;/a&gt; as an agile
+  overlay on top of GitHub.  No one was.&lt;/p&gt;
+
+&lt;p&gt;08:58 Bob asked about the transition to the &quot;train release&quot;.  Georges
+mentioned that we work on things in OpenJDK, and then take it to JCP for
+standardization.  We're not changing that way of doing things.  10:32
+Georges tells the story of how there is a diversity of opinions
+regarding release cadence.  11:42 Many of the things in 9 enable the
+more rapid release model.  12:07 Freddy explains how this evolved across
+the java releases.  12:48 Georges explains the &quot;medicine to candy
+ratio&quot;.  9 has more medicine and not as much candy.  14:00 Georges
+explains how this benefits the community as a whole.  It enables the
+small things to get out more quickly without waiting for big blockbuster
+releases.  15:00 He uses the 2016 delay of 9 as how it blocked things
+like String compaction.  15:30 I mention the rapid sunset schedule for
+Java 8 itself.  16:00 George observed September 2017 is end of public
+updates for 8, but most of the criteria will not be met.  17:03 Bob
+provides some insight on the corporate adoption angle.  18:27 Georges
+pitches modularizaion's benefits.  It mitigates the need to
+call &lt;code&gt;sun.misc.unsafe&lt;/code&gt;.  21:11 Freddy mentioned why people
+use it: it makes it even &lt;b&gt;possible&lt;/b&gt; to consider Java.  It makes the
+performance &lt;b&gt;acceptable&lt;/b&gt; compared to alternatives.  22:27 Freddy
+mentioned that the current plan is to provide standard alternatives
+before removing &lt;code&gt;sun.misc.unsafe&lt;/code&gt;.  22:38 Georges talks about
+the support burden on unsafe and device driver control for
+  Minecraft.&lt;/p&gt;
+
+&lt;p&gt;26:24 Bob brings up the IBM and RedHat plan to vote no on Jigsaw, as
+it relates to language development.  Georges provides some color.  27:55
+Freddy asks what's the biggest complaint from IBM and RedHat.  28:59
+Georges mentions the perils of scope creep.  29:46 Freddy asks what was
+  the outcome?  30:42 Georges answers. &lt;/p&gt;
+
+&lt;p&gt;32:30 Freddy asks, if you want to have faster startups, do you have
+to use Jigsaw?  32:40 Georges answers use jlink and ahead of time
+compilation.  By using jlink, you are telling the system what you are
+actually using.  33:29 Bob points that JCP and jigsaw can conflict
+because the releasing of Java subsets is prohibited according to legal
+rules.  Georges answers: 8 introduced &quot;compact profiles&quot;.  Nobody has
+complained about that.  Jlink is essentially a program doing that.
+Jlink is for you to use to package the application.  35:20 Bob asks how
+  small can it get?&lt;/p&gt;
+
+&lt;p&gt;36:38 Ed tells the story of the acute need for a module system in EE.
+The notion of having of modules would have influenced the design of EE.
+37:35 Ed tells the story of the ALPN backport story.  Every decision
+that is made has ripple effects down the pipeline.  38:57 Georges
+elaborates more on the train idea.  &quot;Marbles stuck in the tube behind
+the basketball&quot;.  The heart of the train release idea is that when
+features are ready, they can be released.  To see what's coming, look at
+the JEPs.  There is a minimum amount of time for JCP releases.  They are
+looking at possibly shortening that minimum. &lt;code&gt;Ed personally notes:
+    &lt;a href=&quot;https://martinfowler.com/bliki/Yagni.html&quot;&gt;YAGNI&lt;/a&gt;.&lt;/code&gt;&lt;/p&gt;
+
+
+&lt;p&gt;42:49 Project Valhalla: value types and data representation.  45:15
+How this relates to the ends of the spectrum: micro services and really
+big data.  45:42 Freddy likes value types, in particular its cache
+  friendliness.&lt;/p&gt;
+
+&lt;p&gt;46:00 Project Panama: JNI done right.  Generate ability to call into
+java from header files.  47:35 this plus value types is pretty
+  compelling.&lt;/p&gt;
+
+&lt;p&gt;48:12 Status of JShell: it's in 9.  49:17 JShell removes all the
+ceremony of getting started with Java.  We'll use things we learn from
+  that to understand where we actually need the ceremony and don't.&lt;/p&gt;</content><summary type="html">I had the honor to be a guest
+on Java OffHeap
+(@offheap) while
+attending Goto Chicago 2017.  I am also
+happy to announce that I am in talks with the OffHeap guys to have an
+occasional guest segment on their program, tentatively called &quot;Mark and
+Sweep&quot; where we will feature audio content from the existing interviews
+from my book Secrets
+of the Rockstar Programmers as well as new interviews with
+additional thought leaders.</summary></entry><entry><title type="html">So long, and thanks for all the commits</title><link href="/blog/2017/05/11/java-net-sunset.html" rel="alternate" type="text/html" title="So long, and thanks for all the commits" /><published>2017-05-11T20:00:00-04:00</published><updated>2017-05-11T20:00:00-04:00</updated><id>/blog/2017/05/11/java-net-sunset</id><content type="html" xml:base="/blog/2017/05/11/java-net-sunset.html">&lt;p&gt;&lt;code&gt;Updated: 2017-05-16 18:07Z Added more images.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20170512-sunset.jpg&quot; alt=&quot;Image of sunset with java.net coffe beans spilling&quot; /&gt;&lt;sub&gt;Image credit (CC) &lt;a href=&quot;https://magnusbråth.se/&quot;&gt;Magnus Bråth&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt;
 
@@ -799,159 +1025,4 @@ refreshing it up with some new interviews.  Ahead of the conference I want
 years GOTO Chicago 2017
 conference.  I will be dusting off the old Rockstar Programmers talk and
 refreshing it up with some new interviews.  Ahead of the conference I want
-  to share my conference picks.</summary></entry><entry><title type="html">Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push</title><link href="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html" rel="alternate" type="text/html" title="Please test Mojarra 2.3.1-SNAPSHOT with Servlet 4.0 Server Push" /><published>2017-04-18T16:00:00-04:00</published><updated>2017-04-18T16:00:00-04:00</updated><id>/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push</id><content type="html" xml:base="/blog/2017/04/18/please-test-mojarra-2_3_1-with-server-push.html">&lt;p&gt;&lt;code&gt;Updated: 2017-04-19 11:46 -0500: Called out the need to use
-exactly JDK 1.8.0_121 and why.&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;I still recommend JSF 2.3 EG member and major Mojarra
-committer &lt;a href=&quot;http://arjan-tijms.omnifaces.org/p/jsf-23.html&quot;&gt;Arjan
-Tijms'&lt;/a&gt; blog post for a feature overview of JSF 2.3, but this post
-gives a brief look into a feature I consider a key validation of the two
-Java EE 8 specs to which I contribute: Servlet 4.0 and JSF 2.3.  The
-feature is HTTP/2 Server Push, and it's the biggest new feature in
-Servlet 4.0 in terms of API impact.  This blog post shows how Mojarra
-2.3.1-SNAPSHOT uses Servlet 4.0 Server Push and solicits testing of this
-feature for eventual inclusion in Mojarra 2.3.1, and hopefully into
-  GlassFish 5.0.&lt;/p&gt;
-
-&lt;h2&gt;The Origin of the Feature&lt;/h2&gt;
-
-&lt;p&gt;Way back at
-the &lt;a href=&quot;https://www.youtube.com/watch?v=fZR-HRP7HtI&quot;&gt;beginning of
-Servlet 4.0&lt;/a&gt; in July 2014, when HTTP/2 itself was not even yet final,
-the idea of using Server Push for JSF was already apparent.  After all,
-the whole point of the feature, from the HTTP/2 protocol level, is to
-increase the perceived performance of web pages by allowing the server
-to start sending the assets of the web page before the browser has even
-started parsing the web page to discover what assets it needs.  (I like
-to call this
-the &lt;a href=&quot;http://www.usccb.org/bible/matthew/6#48006008&quot;&gt;Matthew
-6:8&lt;/a&gt; feature of HTTP/2.)  Web Frameworks such as JSF are in a great
-position to automatically leverage this feature because the act of
-authoring the application causes the page author to explicitly indicate
-at runtime which assets go with which pages.  In other words, JSF users
-get this feature for free without having to change their app in the
-  least.&lt;/p&gt;
-
-&lt;h2&gt;The Specification of the Feature&lt;/h2&gt;
-
-&lt;p&gt;The Servlet Expert Group, in particular Greg Wilkins, has crafted an
-easy-to-use way to take advantage of Server Push: simply ask the
-current &lt;code&gt;HttpServletRequest&lt;/code&gt; for
-a &lt;code&gt;newPushBuilder&lt;/code&gt;, manipulate
-the &lt;a href=&quot;https://maven.java.net/service/local/repositories/releases/archive/javax/servlet/javax.servlet-api/4.0.0-b05/javax.servlet-api-4.0.0-b05-javadoc.jar/!/javax/servlet/http/PushBuilder.html&quot;&gt;PushBuilder&lt;/a&gt;
-API as desired, and then call &lt;code&gt;push()&lt;/code&gt; to initiate sending
-  the bytes of the resource to the client.&lt;/p&gt;
-
-&lt;p&gt;From the JSF side, the use of the feature is not captured in the
-JavaDoc.  Rather, it is in the spec PDF section 2.2.6.  This section is
-a high level overview of what happens in the Render Response phase of
-the request processing lifecycle.  We intentionally left the push
-requirements very high level to allow maximum latitude in
-implementation.  We also had to specify it well in advance of Servlet
-4.0 going final due to scheduling constraints with finishing JSF
-  2.3.&lt;/p&gt;
-
-&lt;h2&gt;The Implementation of the Feature&lt;/h2&gt;
-
-&lt;p&gt;I am very thankful to my co-spec
-lead &lt;a href=&quot;https://www.linkedin.com/in/shingwaichan/&quot;&gt;Dr. Shing Wai
-Chan&lt;/a&gt; for implementing the GlassFish side of this feature,
-and &lt;a href=&quot;http://www.notshabby.net/&quot;&gt;Ryan Lubke&lt;/a&gt; for implementing
-the underlying Grizzly support for HTTP/2, including push.  Ryan had to
-do several last minute tweaks to get the implementation this far, and
-  it's not 100% done yet.  That's why I'm hoping you'll try it.&lt;/p&gt;
-
-&lt;p&gt;On the JSF side, I modified the implementation
-of &lt;code&gt;ExternalContext.encodeResourceURL()&lt;/code&gt; to push the resource
-using the &lt;code&gt;PushBuilder&lt;/code&gt; API.  Because our tests run Mojarra
-against both GlassFish 4.1.1 and GlassFish 5.0 trunk, I had to code it
-such that the feature only kicks in if Servlet 4.0 is actually
-  available.&lt;/p&gt;
-
-&lt;h2&gt;Testing the Feature&lt;/h2&gt;
-
-&lt;p&gt;To test the feature, you must first make sure you are using exactly
-JDK 1.8.0_121, no more no less.  The reason for this precise requirement
-is explained in this
-email &lt;a href=&quot;https://java.net/projects/servlet-spec/lists/jsr369-experts/archive/2017-04/message/43&quot;&gt;to
-the Servlet EG&lt;/a&gt;.  Then, download the GlassFish nightly from
-&amp;lt;&lt;a href=&quot;http://download.oracle.com/glassfish/5.0/nightly/&quot;&gt;http://download.oracle.com/glassfish/5.0/nightly/&lt;/a&gt;&amp;gt;
-(from 2017-04-17 or later) and replace the &lt;code&gt;javax.faces.jar&lt;/code&gt;
-in the &lt;code&gt;modules&lt;/code&gt; directory
-with &lt;a href=&quot;https://maven.java.net/service/local/repositories/snapshots/content/org/glassfish/javax.faces/2.3.1-SNAPSHOT/javax.faces-2.3.1-20170417.161359-6.jar&quot;&gt;&lt;code&gt;org.glassfish:javax.faces:2.3.1-SNAPSHOT&lt;/code&gt;&lt;/a&gt;
-(or later).&lt;/p&gt;
-
-&lt;p&gt;Once your GlassFish has been patched to have the latest Mojarra,
-deploy an app that has lots of resources.  I suggest
-the &lt;a href=&quot;http://repository.primefaces.org/org/primefaces/showcase/6.0/showcase-6.0.war&quot;&gt;PrimeFaces
-6.0 showcase&lt;/a&gt;.  Once deployed the easiest way to see HTTP/2 in action
-is to use Chrome with Developer Tools to hit
-&amp;lt;https://localhost:8181/showcase-6.0/index.xhtml&amp;gt; Note that you
-have to jump through some extra hoops because Chrome finds it easiest to
-  only support HTTP/2 over TLS.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-chrome-https-localhost.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-chrome-https-localhost-02.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Once the PrimeFaces is being served over HTTPS to Chrome from your
-patched GlassFish 5.0, you can visit the &quot;Compare&quot; widget within the
-&quot;Multimedia&quot; section.  In another Chrome tab, open up
-&amp;lt;chrome://net-internals/#events&amp;q=type:HTTP2_SESSION&amp;gt;.  Find the
-lowest &lt;code&gt;HTTP2_SESSION&lt;/code&gt; item to localhost:8181 in the list and
-check the checkbox.  Do a find in page for &lt;code&gt;lara-ps3&lt;/code&gt;.  You
-  can see that this image was pushed with server push, as shown next.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/assets/20170418-net-internals-push.png&quot;&gt;&lt;img width=&quot;1024&quot; height=&quot;200&quot; src=&quot;/blog/assets/20170418-net-internals-push.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;You can use find in page to look for other hits
-on &lt;code&gt;HTTP2_SESSION_RECV_PUSH_PROMISE&lt;/code&gt; to see resources being
-  pushed.&lt;/p&gt;
-
-&lt;p&gt;Clicking over to View-&amp;gt;Developer-&amp;gt;Developer Tools, click the
-&quot;Disable cache&quot; checkbox and reload the page.  Look at the Waterfall
-column ta see the impact that push has on page load times.  You can see
-that some of the resources are being delivered before the page even
-finishes loading.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/blog/assets/20170418-devtools-push.png&quot;&gt;&lt;img width=&quot;1024&quot; height=&quot;273&quot; src=&quot;/blog/assets/20170418-devtools-push.png&quot; alt=&quot;Image of Chrome Your connection is not private warning&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-
-&lt;p&gt;It is beyond the scope of this article to explore this vital aspect
-of push, but I hope someone else will do so.  After all, what's the
-point of the
-feature &lt;a href=&quot;https://www.fastcompany.com/1825005/how-one-second-could-cost-amazon-16-billion-sales&quot;&gt;if
-it does not make page load times seem faster&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Summary&lt;/h2&gt;
-
-This feature is still in SNAPSHOT form.  I need testing to verify it
-works for some more cases.  If it causes any trouble at all, we may have
-to put it behind a &lt;code&gt;com.sun.faces context-param&lt;/code&gt;.  Please
-leave comments here with your findings.</content><summary type="html">Updated: 2017-04-19 11:46 -0500: Called out the need to use
-exactly JDK 1.8.0_121 and why.</summary></entry><entry><title type="html">Sun Ray GNOME Keyboard Stops Accepting Input</title><link href="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html" rel="alternate" type="text/html" title="Sun Ray GNOME Keyboard Stops Accepting Input" /><published>2017-04-18T11:00:00-04:00</published><updated>2017-04-18T11:00:00-04:00</updated><id>/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input</id><content type="html" xml:base="/blog/2017/04/18/sun-ray-gnome-keyboard-stops-accepting-input.html">&lt;p&gt;I was happily using my Sun Ray session one day and then it stopped
-accepting keyboard input.  Nothing I tried could make anything other
-than the BEL sound happen.  After posting to an internal list at Oracle
-carried over from the Sun days, the ever helpful and
-venerable &lt;a href=&quot;https://twitter.com/alanc&quot;&gt;Alan Coopersmith&lt;/a&gt; clued
-me in.  I must have held the shift key down for five seconds, turning on
-the &quot;only accept long keypresses&quot; feature.  This is great for people
-with Parkinson's but thankfully I'm not there yet.  But it's nice to
-  know GNOME has my back.&lt;/p&gt;
-
-&lt;p&gt;If you run into this problem you can disable it by going to
-System::Preferences::Keyboard, in the Accessibility tab, and ensuring
-the &quot;Slow Keys&quot; checkbox is not checked.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20170418-gnome-keyboard-preferences-accessibility.png&quot; alt=&quot;Image of GNOME Keyboard Preferences Accessibility Tab with the slow keys checkbox not checked&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You may also want to uncheck &quot;Accessibility features can be toggled
-with keyboard shortcuts.&lt;/p&gt;</content><summary type="html">I was happily using my Sun Ray session one day and then it stopped
-accepting keyboard input.  Nothing I tried could make anything other
-than the BEL sound happen.  After posting to an internal list at Oracle
-carried over from the Sun days, the ever helpful and
-venerable Alan Coopersmith clued
-me in.  I must have held the shift key down for five seconds, turning on
-the &quot;only accept long keypresses&quot; feature.  This is great for people
-with Parkinson's but thankfully I'm not there yet.  But it's nice to
-  know GNOME has my back.</summary></entry></feed>
+  to share my conference picks.</summary></entry></feed>

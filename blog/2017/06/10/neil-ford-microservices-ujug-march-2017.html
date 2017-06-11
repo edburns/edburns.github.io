@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Notes from Neil Ford Microservices at UJUG March 2017</title>
+  <meta name="description" content="One of the great things about working at Oracle is the high calibre of one&#39;s coworkers, and one of the best is my colleague Manfred Riem. Manfred shared this...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Notes from Neil Ford Microservices at UJUG March 2017</h1>
+    <p class="post-meta"><time datetime="2017-06-10T10:00:00-04:00" itemprop="datePublished">Jun 10, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>One of the great things about working at Oracle is the high calibre
+of one's coworkers, and one of the best is my
+colleague <a href="http://www.manorrock.com /blog/">Manfred Riem</a>.
+Manfred shared this <a href="http://ujug.org/about/">UJUG</a> recording
+of <a href="https://twitter.com/neal4d">Neal Ford's</a> talk at their
+March meeting:
+&lt;<a href="https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s">https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s</a>&gt;.
+  This blog post covers my notes and impressions of the session.</p>
+
+<h2>Introduction: What came before Microservices</h2>
+
+<p>Microservices cannot be divorced from the engineering practices, such as
+DevOps.</p>
+
+<p>Contrast Microservices with what came before: SOA.  Microservices is a label
+not description.  Contrast to SOA: which is gargantuan.</p>
+
+<p>SOA: abstract enterprise-level coarse-grained services.</p>
+
+<p>Implementation of these services: reusable as possible.  Enable the
+business users to compose the services because the services have been
+written so well to be reusable.<p>
+
+<p>Some one-off services as well: authentication, identity, etc.</p>
+
+<p>Message Bus: really important to enable this reuse.</p>
+
+<p>Why build these?  "Resume driven development"?  Goal: maximize reuse.
+Maximize canonicalitym aka DRY.  Aside: this appears to be a
+manifestation of Eric Evan's UNIVERSAL LANGUAGE concept.</p>
+
+<p>Constraints of SOA: incremental change is hard with SOA.  The context in
+which SOA grew up.  Predated Open Source.  Everything was proprietary.
+OS were very heavyweight: resources and licenses.  Operation was very
+complex.</p>
+
+<p>"<a href="http://nealford.com/memeagora/2015/03/30/architecture_is_abstract_until_operationalized.html">Architecture
+is an abstraction until you operationalize it.</a>"</p>
+
+<p>I like how he explicitly called out that a key aspect of the
+architecture is how it interacts with the environment around it.
+Analogy of taking the deployed system, unplugging it, putting it in the
+closet, waiting a year, and plugging it back in.  This brings in the
+dimension of time (2D -&gt; 3D -&gt; 4D) to the architecture.  This is
+what he means by operationalized.</p>
+
+<h2>What problem are we trying to solve with Microservices?</h2>
+
+<p>Plug for Evans DDD and Vaughn Vernon Implementing DDD.</p>
+
+<p>Defines the Bounded Context idea.  It's a business process, such as
+  "customer checkout".  No one outside the context is able to know the
+  impl details of the inside.  Combine this with Humble and Farley
+  (Continuous Delivery) and you get the Microservices Architecture.</p>
+
+<p>Diagram that shows API layer.  This is optional, but acts as a
+  facade that imposes the bounded context boundary.  It is not a part
+  of an ESB.  This is where he delivers the "everyone provides their
+  own persistence" requirement. </p>
+
+<h2>Characteristics</h2>
+
+<p>Monoliths vs. Microservices.  Difference in how the achieve scale.
+Monoliths, everyone shares the same stuff, so you achieve scale through
+clustering.  In Microservices, how you achieve scale is to add more
+instances.  This is a manifestation of the importance if putting things
+  in the right place.  In the SOA: scaling is an architectural
+  problem.  Really, it should be an ops problem.</p>
+
+<p>Products, not Projects.  This is the Conway's law thing.  You build
+  it, you run it.  Teams do not span products.  Teams maintain the same
+  product for their lifetime.  This responsibility makes people confront
+  the consequences of their actions.  <code>It eliminates the ability
+  to <a href="http://www.wisegeek.com/what-are-externalized-costs.htm">externalize
+  costs</a></code>.  He notes as an aside that propogating model changes
+  across services is very hard, though.</p>
+
+<p>"Inverse Conway Movement" Organize teams by bounded contexts, rather
+  than skillset.  Accept Conway's law as a fact of life, build teams
+  accordingly.</p>
+
+<p>Smart endpoints and dumb pipes.  REST or messaging (what about
+  gRPC?) Whatever you choose, you do have to standardize on it.
+  Embrace polyglot solutions where sensible.  (Plugs Sam Newman's
+  book).</p>
+
+<p>Aside on the challenges of "everyone provides their own persistence"
+  <a href="https://en.wikipedia.org/wiki/ACID">ACID</a>
+  vs. <a href="https://en.wikipedia.org/wiki/Eventual_consistency">BASE</a>
+  (CAP Theorem).  "We have made our users think that transactions are a
+  natural part of the universe, but they are not."  Starbucks example.
+  ATM example: batch reconciliation.  He takes pot shots at the need for
+  transactions, saying "maybe seats on an airplane" need them.  I
+  disagree.  Transactions are useful in any case where there is a lot of
+  contention: event tickets, auctions, manufacturing automation and
+  more.  But, with Microservices, you want to try to avoid transactions.
+  That I agree with.  <code>When defining bounded contexts, when you get
+  to the point when you say, "if we get any smaller than that, we'll
+  have to do a distributed transaction," that's when you stop
+  and <a href="https://www.reddit.com/r/gratefuldead/comments/1cxxk1/whats_your_favorite_rendition_of_take_a_step_back/">take
+  a step back</a> and that's where you have a boundary.</code>  This is
+  more reliable than your class diagram.</p>
+
+<p>Decentralized governance: an aside that you can change your
+  persistence within a bounded context and no-one outside it cares.
+  Without this, because everyone shares everything, we have to choose an
+  RDBMS that works for the aspect of the system that has the hardest
+  problems, while the rest of the system may not need that much
+  power.  Same for all aspects (MQ, etc).  Everyone is suffering from
+  the maximum complexity.  Microservices allows more fine grained
+  rightsizing.</p>
+
+<p>Brief plug for CICD.</p>
+
+<p>Microservices tries to avoid having something like a "customer
+  service".  Rather, each service has its own notion of customer.  It
+  turns out this is not as bad as you might think, because the right
+  decomposition of bounded contexts means that the notion of customer
+  can be conveyed as messages, without defining a customer as a
+  service.  </p>
+
+<p>"The more resuable code it is, the less usable it is."  In other
+  words, the more cases it serves, the less it is for one case.
+  Mentioned the old IBM San Francisco Project, which gave birth to
+  J2EE.  Neal felt it was the stupidest idea ever.  Well, I don't know
+  about that, but the idea did have very big consequences.</p>
+
+<p>Service orchestration.  This is necessary because we don't have
+  transactions.  This
+  is <a href="http://microservices.io/patterns/data/event-sourcing.html">Chris
+  Richardson's saga concept</a>.  </p>
+
+<h3>Benefits of Microservices</h3>
+
+<p>Maximize easy evolution.  Make changes without breaking
+  stuff.  <code>Microservices is the first architecture style developed
+  after the acceptance of continuous delivery (aka DevOps)</code>.
+  Also allows you to optimize only what matters.</p>
+
+<p>Tends to be asynchronous from birth.  This allows amazon to stay
+  within their boredom threshold, the point where users will lose
+  interest and go somewhere else, which is lost money.  "Prefer timely
+  partial over slow complete".</p>
+
+<p>Integration vs. disintegration.  "Complected deployments" to
+  intertwine things.  Components are deployed and features are released.
+  This allows us to monitor traffic and see which features are actually
+  needed, allowing empirical determination of which features you can
+  safely disintegrate.  (Economically, because features are teams, this
+  also means which employees you can lay off because they are not
+  delivering value.  I argue this is a more compelling reason for
+  companies.)</p>
+
+<p>How big?  The more services you have, the lower you drive down your
+  risk per service release.  But this does not address the complexity
+  tax of having all those services.</p>
+
+<h3>Engineering Practices</h3>
+
+<p>Design for failure, monitoring.  Monitoring is harder in
+  Microservices, but at least there is good tool support: ELK, etc.
+  This includes log aggregation.</p>
+
+<p>Mention of "synthetic transactions".  This plus monitoring is how
+  you debug.</p>
+
+<p>Mention of "correlation ids".  Again, debugging.</p>
+
+<p><a href="https://pragprog.com/book/mnee/release-it">Release It!</a>
+  "Everything in this book is considered bible in this world" Circuit
+  Breakers, bulkheads, timeouts.</p>
+
+<p><code>Engineering consistency.  Share nothing except: how the services
+  integrate (REST vs message bus vs. RPC).  The other is actual system
+  services technologies: monitoring, logging, identity.  This is the
+  "service template" idea.  Dropwizard or SpringBoot help with
+    this.</code></p>
+
+<p>Testing.  The testing pyramid.  Unit, Integration, Component,
+  End-to-end, exploratory.  Unit testing: sociable (real live objects)
+  and solitary (mocks).  Integration testing: gateway, protocol level.
+  Database integration.  Component testing: build a diagnostic mode into
+  your services.  Inproctester or plasma.  Consumer Driven Contracts:
+  Each endpoint defines the contract that the other side must adhere to
+  and codifies that into a test, which is a release gate for the other
+  endpoint.  This appears to be the microservices equivalent of an IDE
+  alerting you that when you change the signature of a method all the
+  callsites that now break.  Pact, Pacto, Janus.  Implicit assumption
+  that you have sufficient engineering maturity.  Eveyone is good at
+  writing tests, keeping the build green, etc.  End-to-end testing:
+  focus on personas and user journeys.  </p>
+
+<p>Deployment technologies.  As advanced as Docker containers or as
+  simple as executable jars.</p>
+
+<p>Don't let changes build up, get things into production as quickly as
+possible.  With all the other CD stuff, deploying is actually anti
+  risky, since you have feature toggles or routes.</p>
+
+<p>Service discovery: Consul, etcd, zookeeper.  Why service discovery?
+Neal says it's for elastic scaling.  I would have liked to have seen
+  more on this.</p>
+
+<p>Service visualization: Spigo, from Netflix.</p>
+
+<p>Tools: Plug
+  for <a href="http://devopsbookmarks.com/">http://devopsbookmarks.com/</a></p>
+
+<p>Neal asserts you must be doing all the things in Humble and Farley
+  before you even attempt microservices.  He enumerated what can happen
+  if you attempt it before mastery of Humble and Farley.  "If you get
+  sloppy, it gets bad fast". (A rescue consultant's
+  dream) See <a href="http://www.codingthearchitecture.com/presentations/sa2015-modular-monoliths">Simon
+  Brown's Modular Monoliths</a>
+  and <a href="http://www.adam-bien.com/roller/abien/entry/the_perfect_javaee_microservice">Adam
+  Bien's Java EE Microservice</a> for some things you might want to
+  look at before taking the jump to Microservices.  In both cases, the
+  question, "if you can't build a monolith correctly, what makes you
+  think that Microservices are the answer?" is implicitly asked.</p>
+
+<p>Is there a middle ground between SOA and Microservices?  Yes:
+  <a href="https://www.infoq.com/news/2016/10/service-based-architecture">service
+  based architectures</a>.  You have much fatter services.  The "every
+  service has its own persistence" rule is relaxed.  Integration
+  hub: the mere introduction of an ESB to a system. </p>
+
+<p>More migration paths.  Partitioning along natural boundaries.  Use
+  tools like xray or jdepend to anaylze your monolith to see how to
+  start decomposing.  Look at the transactional boundaries to see the
+  bounded contexts.  If your system relies heavily on transactions, it
+  may not be a good candidate for Microservices.  Maybe consider
+  service-based.  Start with a small number of larger services first.
+  Get the low hanging fruit.</p>
+
+<p>Trotted out the realestate.com.au example from Newman.  A great
+  example but I won't cover it here.</p>
+
+<p>Efferent coupling: first time I've heard this term since college.  I
+  must be two deep inside OS, language and runtime vendors.  Having low
+  efferent coupling means having a minimal number of dependencies.</p>
+
+<p>Neal's new
+  book: <a href="http://evolutionaryarchitecture.com/">Evolutionary Architecture</a>.</p>
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

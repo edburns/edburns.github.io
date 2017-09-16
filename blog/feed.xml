@@ -1,5 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-07-14T09:30:09-04:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Notes from Neil Ford Microservices at UJUG March 2017</title><link href="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html" rel="alternate" type="text/html" title="Notes from Neil Ford Microservices at UJUG March 2017" /><published>2017-06-10T10:00:00-04:00</published><updated>2017-06-10T10:00:00-04:00</updated><id>/blog/2017/06/10/neil-ford-microservices-ujug-march-2017</id><content type="html" xml:base="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html">&lt;p&gt;One of the great things about working at Oracle is the high calibre
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-09-16T15:36:31-04:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Podcast: Mark and Sweep Episode 1: James Gosling</title><link href="/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling.html" rel="alternate" type="text/html" title="Podcast: Mark and Sweep Episode 1: James Gosling" /><published>2017-09-16T10:00:00-04:00</published><updated>2017-09-16T10:00:00-04:00</updated><id>/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling</id><content type="html" xml:base="/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling.html">&lt;p&gt;&lt;img width=&quot;330&quot; height=&quot;294&quot; src=&quot;/blog/assets/rockstar-square-off-heap-5-people.jpeg&quot; alt=&quot;Image of
+movie theater with audience looking at rockstar book cover&quot; /&gt; I'm very
+pleased to announce the continuation of my &quot;Secrets of the Rockstar
+Programmers&quot; project in the form of a podcast.  This latest stage in the
+project is delivered using a guest-episode format graciously hosted by
+my good friends at &lt;a href=&quot;http://www.javaoffheap.com/&quot;&gt;The Java
+OffHeap Podcast&lt;/a&gt;.&lt;/p&gt;
+
+
+&lt;p&gt;The episodes will be a part of an occasional &quot;Mark and Sweep&quot; segment
+  where I will join the OffHeap gang to revisit and discuss audio clips
+  of his interviews with some of the early 21st century's top enterprise
+  programmers.  This occasional guest segment will include interviews
+  from my 2008 McGraw-Hill book
+  &quot;&lt;a href=&quot;http://ridingthecrest.com/&quot;&gt;Secrets of the Rock Star
+  Programmers&lt;/a&gt;&quot; as well as new interviews with contemporary experts.
+  The gang and I will reflect on the observations in the interview in
+  the contemporary context.
+&lt;/p&gt;
+
+&lt;p&gt;In the first episode, Freddy and I review the interview with James
+Gosling, &quot;Father of Java&quot;.  Topics explored include the subversive
+origin of Java, the benefit of starting in a new field as it is
+maturing, the origin of creativity, and the importance of telling signal
+  from noise.&lt;/p&gt;
+
+&lt;p&gt;Please use any of the following buttons to get the show.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;itms://itunes.apple.com/us/podcast/offheaps-mark-sweep-episode-1-lets-hear-about-beginning/id985064111?i=1000391898137&amp;mt=2&quot;&gt;&lt;img src=&quot;/blog/assets/itunes-podcast-button.png&quot; alt=&quot;Image of itunes podcast button&quot; /&gt;&lt;/a&gt;
+
+&lt;a href=&quot;http://www.javaoffheap.com/2017/09/offheaps-mark-and-sweep-episode-1-lets.html&quot;&gt;&lt;img src=&quot;/blog/assets/off-heap-button.gif&quot; alt=&quot;offheap podcast button&quot; /&gt;&lt;/a&gt;
+
+&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content><summary type="html">I'm very
+pleased to announce the continuation of my &quot;Secrets of the Rockstar
+Programmers&quot; project in the form of a podcast.  This latest stage in the
+project is delivered using a guest-episode format graciously hosted by
+my good friends at The Java
+OffHeap Podcast.</summary></entry><entry><title type="html">Notes from Neil Ford Microservices at UJUG March 2017</title><link href="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html" rel="alternate" type="text/html" title="Notes from Neil Ford Microservices at UJUG March 2017" /><published>2017-06-10T10:00:00-04:00</published><updated>2017-06-10T10:00:00-04:00</updated><id>/blog/2017/06/10/neil-ford-microservices-ujug-march-2017</id><content type="html" xml:base="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html">&lt;p&gt;One of the great things about working at Oracle is the high calibre
 of one's coworkers, and one of the best is my
 colleague &lt;a href=&quot;http://www.manorrock.com /blog/&quot;&gt;Manfred Riem&lt;/a&gt;.
 Manfred shared this &lt;a href=&quot;http://ujug.org/about/&quot;&gt;UJUG&lt;/a&gt; recording
@@ -1018,93 +1057,4 @@ doing it that way.  Try to stay focused on the future, what needs to
 
 &lt;p&gt;Thorough feedback is a gift of time and attention.  It's an
 investment in the projects you make and in your development as a
-creator.&lt;/p&gt;</content><summary type="html">Teaches people to collaborate to make art.</summary></entry><entry><title type="html">Goto Chicago 2017 Martin Fowler</title><link href="/blog/2017/05/01/goto-martin-fowler.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Martin Fowler" /><published>2017-05-01T10:00:00-04:00</published><updated>2017-05-01T10:00:00-04:00</updated><id>/blog/2017/05/01/goto-martin-fowler</id><content type="html" xml:base="/blog/2017/05/01/goto-martin-fowler.html">&lt;p&gt;Martin Fowler.&lt;/p&gt;
-
-&lt;p&gt;Event Driven Architectures.  What do people mean by it?  Common
-  theme: something called an event.  But really it's more open ended.&lt;/p&gt;
-
-&lt;p&gt;Thoughtworks internal conference in Denver.  &lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=aweV9FLTZkU&quot;&gt;Video&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;I. Event Notification&lt;/h2&gt;
-
-&lt;h3&gt;1. Event Notification: Dealing with subsystem coupling&lt;/h3&gt;
-
-&lt;p&gt;Turns things inside out and allows systems to be decoupled.&lt;/p&gt;
-
-&lt;p&gt;This pattern applies in at the macro (subsystems) and micro level
-  (text fields).&lt;/p&gt;
-
-&lt;h3&gt;2. Objectification of time: The event itself being a first class
-thingamajig.&lt;/h3&gt;
-
-&lt;p&gt;Encapsulates the time aspect nicely.  Objectifies the thing.&lt;/p&gt;
-
-&lt;p&gt;Events and commands.  What's the difference?  The naming things.&lt;/p&gt;
-
-&lt;p&gt;Events: something happened.  Commands: do something.&lt;/p&gt;
-
-&lt;p&gt;If you don't separate these things conceptually, it leads to
-  reasoning problems.&lt;/p&gt;
-
-&lt;h3&gt;3. Scale: Allows adding new throughput boosters without changing the architecture&lt;/h3&gt;
-
-&lt;p&gt;A downside: no statement of overall behavior.  Because it is not
-  imperative, the only way to understand is to observe the running it.&lt;/p&gt;
-
-&lt;h2&gt;II. Event-carried State Transfer&lt;/h2&gt;
-
-&lt;p&gt;It's not always possible to keep everything inside the event.  Or,
-deciding how much information to put in the event.  Can I put so much in
-there so the systems don't need to communicate directly.  Events: cause
-followon queries&lt;/p&gt;
-
-&lt;p&gt;a. Each subsystem keeps its data local.  b. each event has enough to
-  allow the local data to be updated and kept in sync.&lt;/p&gt;
-
-&lt;p&gt;But now you have the consistency problem.&lt;/p&gt;
-
-&lt;h2&gt;III. Event Sourcing&lt;/h2&gt;
-
-&lt;p&gt;Bring in the logs.  Test: If at any time, you can blow away the
-  current state, and replay the log, and you get back the same state.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Did a poll, &quot;who uses this&quot; was alarmed at the result.  Resorted
-    to observing that an SCM is an example of this.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;In the banking world, an accounting ledger is the perfect example of
-  this.&lt;/p&gt;
-
-&lt;p&gt;It's a combination of every single change, plus snapshots.&lt;/p&gt;
-
-&lt;p&gt;Some benefits: debugging is nicer.  You can make copies.  Can keep
-your system itself entirely in memory.  Gave the famous lmax
-  example.&lt;/p&gt;
-
-&lt;h2&gt;Some downsides&lt;/h2&gt;
-
-&lt;p&gt;Unfamiliar, External Systems, &lt;code&gt;Event schema&lt;/code&gt; (JSON to the
-  rescue?), Identifiers&lt;/p&gt;
-
-&lt;p&gt;Slip ups: trouble with event sourcing.  Felt he had to do twice as
-much work.  People conflate asynchrony with event sourcing.  It doesn't
-have to be.  It does add a lot of complexity.  (How do you do event
-sourcing without adding asynchrony?  Locking?)  Trouble with versioning
-events.  Easy refactoring: change the name of a function.  How do you
-get all the callsites?  Advice: Don't have any business logic between
-  your event and its storage.&lt;/p&gt;
-
-&lt;h2&gt;IV. CQRS&lt;/h2&gt;
-
-&lt;p&gt;Separate the components that read and write from your store.  You
-only ever write using the command thing.  You only ever read from the
-  query system.&lt;/p&gt;
-
-&lt;p&gt;You have to be wary of this pattern.  People seem to get in trouble
-with this pattern.  &quot;My sense is that it really has to be deep down in
-the toolbag to pull this one out.&quot;  He's been talking about having
-reporting databases for years; that's CQRS too.  Pure CQRS is the &quot;only
-  ever write using the command thing.&quot;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://martinfowler.com/articles/201701-event-driven.html&quot;&gt;original article.&lt;/a&gt;&lt;/p&gt;</content><summary type="html">Martin Fowler.</summary></entry></feed>
+creator.&lt;/p&gt;</content><summary type="html">Teaches people to collaborate to make art.</summary></entry></feed>

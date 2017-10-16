@@ -1,5 +1,189 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/blog/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-09-16T15:36:31-04:00</updated><id>/blog//</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Podcast: Mark and Sweep Episode 1: James Gosling</title><link href="/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling.html" rel="alternate" type="text/html" title="Podcast: Mark and Sweep Episode 1: James Gosling" /><published>2017-09-16T10:00:00-04:00</published><updated>2017-09-16T10:00:00-04:00</updated><id>/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling</id><content type="html" xml:base="/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling.html">&lt;p&gt;&lt;img width=&quot;330&quot; height=&quot;294&quot; src=&quot;/blog/assets/rockstar-square-off-heap-5-people.jpeg&quot; alt=&quot;Image of
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-10-16T19:05:28-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JAX-RS 2.1 New Feature Introduction: Server Sent Events Update</title><link href="/blog/2017/10/16/jax-rs-2_1-new-feature-update.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction: Server Sent Events Update" /><published>2017-10-16T10:00:00-04:00</published><updated>2017-10-16T10:00:00-04:00</updated><id>/blog/2017/10/16/jax-rs-2_1-new-feature-update</id><content type="html" xml:base="/blog/2017/10/16/jax-rs-2_1-new-feature-update.html">&lt;p&gt;I don't know what this says about my memory, but I was doing a little
+JAX-RS programming today and when I googled to remind myself of the
+particular feature I was using, I ran into &lt;a href=&quot;/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html&quot;&gt;my own blog
+post&lt;/a&gt; about that feature.  It took me a moment to recall that I had
+  written that earlier blog post.  I wonder if I'll forget writing this
+  one as well?&lt;/p&gt;
+
+&lt;p&gt;Anyhow, both that post and the other one I found, written
+  by &lt;a href=&quot;https://www.linkedin.com/in/pavel-bucek-16284614/&quot;&gt;JAX-RS
+  Spec Lead Pavel Bucek&lt;/a&gt;
+  &amp;lt;&lt;a href=&quot;https://blogs.oracle.com/pavelbucek/jax-rs-21-server-sent-events&quot;&gt;https://blogs.oracle.com/pavelbucek/jax-rs-21-server-sent-events&lt;/a&gt;&amp;gt;
+  are now stale with respect to the final version of JAX-RS 2.1.  I
+  looked into
+  the &lt;a href=&quot;https://github.com/javaee/glassfish-samples&quot;&gt;GlassFish
+  Samples&lt;/a&gt; for a similar and simple example, but found none, so I
+  took the opportunity to add two samples based on updated content from
+  Pavel's and my blog posts.  Please clone it to see the full source
+  code.  This blog post documents these two super simple samples.&lt;/p&gt;
+
+&lt;h2&gt;The Simplest JAX-RS SSE Example&lt;/h2&gt;
+
+&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt; SSESimpleResource &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Resource&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;private&lt;/span&gt; ManagedExecutorService executor&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @GET&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;eventStream&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Produces&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;MediaType.&lt;span style=&quot;color: #006633;&quot;&gt;SERVER_SENT_EVENTS&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; eventStream&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; @&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Acontext+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Context&lt;/span&gt;&lt;/a&gt; SseEventSink eventSink,&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; @&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Acontext+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Context&lt;/span&gt;&lt;/a&gt; Sse sse&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; executor.&lt;span style=&quot;color: #006633;&quot;&gt;execute&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;try&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;SseEventSink sink &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; eventSink&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;send&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEventBuilder&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;event1&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;build&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;send&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEventBuilder&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;event2&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;build&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;send&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEventBuilder&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;, &lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;event3&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;build&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;catch&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Athrowable+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Throwable&lt;/span&gt;&lt;/a&gt; e&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; e.&lt;span style=&quot;color: #006633;&quot;&gt;printStackTrace&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Asystem+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;System&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;out&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;
+
+  &lt;p&gt;Line 4 is a magic injection of
+  the &lt;code&gt;&lt;a href=&quot;https://javaee.github.io/javaee-spec/javadocs/javax/enterprise/concurrent/ManagedExecutorService.html&quot;&gt;ManagedExecutorService&lt;/a&gt;&lt;/code&gt;.
+  This class is only available in the full profile of Java EE, not the
+  web profile.  This sort of service is essential for doing SSE because
+  it's the easiest way to hand off the socket for the incoming SSE
+  subscription request to a service that can handle the scale of such a
+  resource intensive thing.&lt;/p&gt;
+
+  &lt;p&gt;Line 9 and neighboring annotations make it so the HTTP GET Request
+  to &quot;/eventStream&quot; will return content-type text/event-stream.  Lines
+  11 and 12 are more magic to get handles to the JAX-RS 2.1 APIs for
+  SSE.  &lt;code&gt;SseEventSink&lt;/code&gt; lets you send stuff down to the
+  browser.  &lt;code&gt;Sse&lt;/code&gt; is a factory for other classes in the SSE
+  API.  Line 14 is a try-with-resources that lets the sink be
+    autoclosable.&lt;/p&gt;
+
+&lt;p&gt;Let's take a look at the corresponding HTML.&lt;/p&gt;
+
+&lt;div class=&quot;xml&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;script&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;type&lt;/span&gt;=&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; if(typeof(EventSource) !== &amp;quot;undefined&amp;quot;) {&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; var source = new EventSource(&amp;quot;app/eventStream&amp;quot;);&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; source.onmessage = function(event) {&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; document.getElementById(&amp;quot;result&amp;quot;).innerHTML += event.data + &amp;quot;&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;br&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&amp;quot;;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; };&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; } else {&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; document.getElementById(&amp;quot;result&amp;quot;).innerHTML = &amp;quot;Sorry, your browser does not support server-sent events...&amp;quot;;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/script&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;h1&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;SSE sample&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/h1&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;id&lt;/span&gt;=&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;result&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;lt;/div&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;
+
+&lt;p&gt;The JavaScript on lines 1 - 10 connects to the server when the page
+  loads and installs an SSE event handler that appends the data of each
+  SSE to the div on line 14.&lt;/p&gt;
+
+&lt;h2&gt;Broadcasting to Multiple Clients&lt;/h2&gt;
+
+&lt;div class=&quot;java&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;@Singleton&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt; SSEBroadcastResource &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Acontext+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Context&lt;/span&gt;&lt;/a&gt; Sse sse&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;private&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;static&lt;/span&gt; SseBroadcaster sseBroadcaster&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;private&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;synchronized&lt;/span&gt; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;static&lt;/span&gt; SseBroadcaster getBroadcaster&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;Sse sse&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;null&lt;/span&gt; &lt;span style=&quot;color: #339933;&quot;&gt;==&lt;/span&gt; sseBroadcaster&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; sseBroadcaster &lt;span style=&quot;color: #339933;&quot;&gt;=&lt;/span&gt; sse.&lt;span style=&quot;color: #006633;&quot;&gt;newBroadcaster&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;return&lt;/span&gt; sseBroadcaster&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @GET&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;subscribe&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Produces&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;MediaType.&lt;span style=&quot;color: #006633;&quot;&gt;SERVER_SENT_EVENTS&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; subscribe&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;@&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Acontext+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;Context&lt;/span&gt;&lt;/a&gt; SseEventSink eventSink&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; eventSink.&lt;span style=&quot;color: #006633;&quot;&gt;send&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEvent&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;welcome!&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; getBroadcaster&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;register&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;eventSink&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @POST&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Path&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;broadcast&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; @Consumes&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;MediaType.&lt;span style=&quot;color: #006633;&quot;&gt;APPLICATION_FORM_URLENCODED&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;public&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight: bold;&quot;&gt;void&lt;/span&gt; broadcast&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;@FormParam&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #0000ff;&quot;&gt;&amp;quot;data&amp;quot;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt; event&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; getBroadcaster&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;broadcast&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;sse.&lt;span style=&quot;color: #006633;&quot;&gt;newEventBuilder&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;a href=&quot;http://www.google.com/search?hl=en&amp;amp;q=allinurl%3Astring+java.sun.com&amp;amp;btnI=I%27m%20Feeling%20Lucky&quot;&gt;&lt;span style=&quot;color: #003399;&quot;&gt;String&lt;/span&gt;&lt;/a&gt;.&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;class&lt;/span&gt;, event&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #006633;&quot;&gt;build&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #339933;&quot;&gt;;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;
+
+&lt;p&gt;Another example in Pavel's Blog that didn't quite work as written is
+  the &lt;code&gt;SseBroadcaster&lt;/code&gt; example.  Here's one that works,
+  though I'm not happy about having to do that &lt;code&gt;synchronized&lt;/code&gt;
+  method trick on lines 8 - 12, 20, and 27.  It would be better if
+  the &lt;code&gt;@Sse&lt;/code&gt; could be handed into the ctor, but that was
+  giving me a CDI error in GlassFish 5.0.&lt;/p&gt;
+
+&lt;p&gt;As with the first example, the GET request sets up the SSE, sending
+  an initial event.  The new thing is handing off the servicing of the
+  SSE to the handy &lt;code&gt;SseBroadcaster&lt;/code&gt; on line 20.&lt;/p&gt;
+
+&lt;p&gt;This resource also listens for POST requests.  It takes the form data
+  and simply broadcasts it out to the SSE.  The HTML is next.&lt;/p&gt;
+
+&lt;div class=&quot;html4strict&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;a href=&quot;http://december.com/html/4/element/script.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;script&lt;/span&gt;&lt;/a&gt; &lt;span style=&quot;color: #000066;&quot;&gt;type&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; var i = 1;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; if(typeof(EventSource) !== &amp;quot;undefined&amp;quot;) {&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; var source = new EventSource(&amp;quot;app/subscribe&amp;quot;);&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; source.onmessage = function(event) {&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; document.getElementById(&amp;quot;result&amp;quot;).innerHTML += event.data + &amp;quot;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;a href=&quot;http://december.com/html/4/element/br.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;br&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/span&gt;&amp;quot;;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; document.getElementById(&amp;quot;input&amp;quot;).value = i++ + &amp;quot; &amp;quot; +&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; navigator.userAgent;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; };&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; } else {&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; document.getElementById(&amp;quot;result&amp;quot;).innerHTML = &amp;quot;Sorry, your browser does not support server-sent events...&amp;quot;;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; function submit() {&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; var params = &amp;quot;data=&amp;quot; + document.getElementById(&amp;quot;input&amp;quot;).value;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; var url = document.getElementById(&amp;quot;form&amp;quot;).action;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; var xhr = new XMLHttpRequest();&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; xhr.open(&amp;quot;POST&amp;quot;, url);&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; xhr.setRequestHeader(&amp;quot;Content-type&amp;quot;, &amp;quot;application/x-www-form-urlencoded&amp;quot;);&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; xhr.send(params);&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; }&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;span style=&quot;color: #66cc66;&quot;&gt;/&lt;/span&gt;&lt;a href=&quot;http://december.com/html/4/element/script.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;script&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;a href=&quot;http://december.com/html/4/element/form.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;form&lt;/span&gt;&lt;/a&gt; &lt;span style=&quot;color: #000066;&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;form&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;method&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;POST&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;action&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;app/broadcast&amp;quot;&lt;/span&gt; &amp;nbsp;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;a href=&quot;http://december.com/html/4/element/input.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;input&lt;/span&gt;&lt;/a&gt; &lt;span style=&quot;color: #000066;&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;input&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;type&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;hidden&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;name&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;data&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;span style=&quot;color: #66cc66;&quot;&gt;/&lt;/span&gt;&lt;a href=&quot;http://december.com/html/4/element/form.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;form&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;a href=&quot;http://december.com/html/4/element/button.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;button&lt;/span&gt;&lt;/a&gt; &lt;span style=&quot;color: #000066;&quot;&gt;type&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;button&amp;quot;&lt;/span&gt; &lt;span style=&quot;color: #000066;&quot;&gt;onclick&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;submit()&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;POST&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;span style=&quot;color: #66cc66;&quot;&gt;/&lt;/span&gt;&lt;a href=&quot;http://december.com/html/4/element/button.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;button&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;a href=&quot;http://december.com/html/4/element/h1.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;h1&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/span&gt;SSE sample&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;span style=&quot;color: #66cc66;&quot;&gt;/&lt;/span&gt;&lt;a href=&quot;http://december.com/html/4/element/h1.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;h1&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #009900;&quot;&gt;&amp;lt;&lt;a href=&quot;http://december.com/html/4/element/div.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;div&lt;/span&gt;&lt;/a&gt; &lt;span style=&quot;color: #000066;&quot;&gt;id&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;result&amp;quot;&lt;/span&gt;&amp;gt;&amp;lt;&lt;span style=&quot;color: #66cc66;&quot;&gt;/&lt;/span&gt;&lt;a href=&quot;http://december.com/html/4/element/div.html&quot;&gt;&lt;span style=&quot;color: #000000; font-weight: bold;&quot;&gt;div&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;
+
+&lt;p&gt;Lines 1 - 12 are mostly the same as in the first example.  Lines 14 -
+  20 are new.  The &lt;code&gt;submit()&lt;/code&gt; function uses Ajax to send a
+  POST to the server (lines 23 - 28 in the Java listing).  The value of
+  the &lt;code&gt;data&lt;/code&gt; form data comes from the hidden field, and
+  is initialized on line 7.  I just
+  use &lt;code&gt;navigator.userAgent&lt;/code&gt; for novelty.&lt;/p&gt;
+
+&lt;p&gt;Each click of the &lt;code&gt;POST&lt;/code&gt; button causes a POST to be sent
+  to the server, which in turn causes an SSE to be sent back to the
+  client.  For extra fun, you could open up two tabs on the same page
+  and see that pressing POST on one causes the data to be updated on
+  both pages.&lt;/p&gt;
+
+&lt;p&gt;Thanks to Pavel Bucek
+  and &lt;a href=&quot;https://www.linkedin.com/in/santiago-pericas-geertsen-905685/&quot;&gt;Santigo
+  Pericas-Geertsen&lt;/a&gt; for stewarding the JAX-RS community to deliver a
+  very useful piece of Java EE 8.&lt;/p&gt;</content><author><name></name></author><summary type="html">I don't know what this says about my memory, but I was doing a little JAX-RS programming today and when I googled to remind myself of the particular feature I was using, I ran into my own blog post about that feature. It took me a moment to recall that I had written that earlier blog post. I wonder if I'll forget writing this one as well?</summary></entry><entry><title type="html">Podcast: Mark and Sweep Episode 1: James Gosling</title><link href="/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling.html" rel="alternate" type="text/html" title="Podcast: Mark and Sweep Episode 1: James Gosling" /><published>2017-09-16T10:00:00-04:00</published><updated>2017-09-16T10:00:00-04:00</updated><id>/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling</id><content type="html" xml:base="/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling.html">&lt;p&gt;&lt;img width=&quot;330&quot; height=&quot;294&quot; src=&quot;/blog/assets/rockstar-square-off-heap-5-people.jpeg&quot; alt=&quot;Image of
 movie theater with audience looking at rockstar book cover&quot; /&gt; I'm very
 pleased to announce the continuation of my &quot;Secrets of the Rockstar
 Programmers&quot; project in the form of a podcast.  This latest stage in the
@@ -33,12 +217,7 @@ maturing, the origin of creativity, and the importance of telling signal
 
 &lt;/p&gt;
 
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content><summary type="html">I'm very
-pleased to announce the continuation of my &quot;Secrets of the Rockstar
-Programmers&quot; project in the form of a podcast.  This latest stage in the
-project is delivered using a guest-episode format graciously hosted by
-my good friends at The Java
-OffHeap Podcast.</summary></entry><entry><title type="html">Notes from Neil Ford Microservices at UJUG March 2017</title><link href="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html" rel="alternate" type="text/html" title="Notes from Neil Ford Microservices at UJUG March 2017" /><published>2017-06-10T10:00:00-04:00</published><updated>2017-06-10T10:00:00-04:00</updated><id>/blog/2017/06/10/neil-ford-microservices-ujug-march-2017</id><content type="html" xml:base="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html">&lt;p&gt;One of the great things about working at Oracle is the high calibre
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content><author><name></name></author><summary type="html">I'm very pleased to announce the continuation of my &quot;Secrets of the Rockstar Programmers&quot; project in the form of a podcast. This latest stage in the project is delivered using a guest-episode format graciously hosted by my good friends at The Java OffHeap Podcast.</summary></entry><entry><title type="html">Notes from Neil Ford Microservices at UJUG March 2017</title><link href="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html" rel="alternate" type="text/html" title="Notes from Neil Ford Microservices at UJUG March 2017" /><published>2017-06-10T10:00:00-04:00</published><updated>2017-06-10T10:00:00-04:00</updated><id>/blog/2017/06/10/neil-ford-microservices-ujug-march-2017</id><content type="html" xml:base="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html">&lt;p&gt;One of the great things about working at Oracle is the high calibre
 of one's coworkers, and one of the best is my
 colleague &lt;a href=&quot;http://www.manorrock.com /blog/&quot;&gt;Manfred Riem&lt;/a&gt;.
 Manfred shared this &lt;a href=&quot;http://ujug.org/about/&quot;&gt;UJUG&lt;/a&gt; recording
@@ -280,14 +459,7 @@ Neal says it's for elastic scaling.  I would have liked to have seen
   efferent coupling means having a minimal number of dependencies.&lt;/p&gt;
 
 &lt;p&gt;Neal's new
-  book: &lt;a href=&quot;http://evolutionaryarchitecture.com/&quot;&gt;Evolutionary Architecture&lt;/a&gt;.&lt;/p&gt;</content><summary type="html">One of the great things about working at Oracle is the high calibre
-of one's coworkers, and one of the best is my
-colleague Manfred Riem.
-Manfred shared this UJUG recording
-of Neal Ford's talk at their
-March meeting:
-&amp;lt;https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s&amp;gt;.
-  This blog post covers my notes and impressions of the session.</summary></entry><entry><title type="html">Java Offheap Podcast Future of Java Part II at Goto Chicago 2017</title><link href="/blog/2017/06/05/javaoffheap-goto-part2.html" rel="alternate" type="text/html" title="Java Offheap Podcast Future of Java Part II at Goto Chicago 2017" /><published>2017-06-05T08:00:00-04:00</published><updated>2017-06-05T08:00:00-04:00</updated><id>/blog/2017/06/05/javaoffheap-goto-part2</id><content type="html" xml:base="/blog/2017/06/05/javaoffheap-goto-part2.html">&lt;p&gt;I had the honor to be a guest
+  book: &lt;a href=&quot;http://evolutionaryarchitecture.com/&quot;&gt;Evolutionary Architecture&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">One of the great things about working at Oracle is the high calibre of one's coworkers, and one of the best is my colleague Manfred Riem. Manfred shared this UJUG recording of Neal Ford's talk at their March meeting: &amp;lt;https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s&amp;gt;. This blog post covers my notes and impressions of the session.</summary></entry><entry><title type="html">Java Offheap Podcast Future of Java Part II at Goto Chicago 2017</title><link href="/blog/2017/06/05/javaoffheap-goto-part2.html" rel="alternate" type="text/html" title="Java Offheap Podcast Future of Java Part II at Goto Chicago 2017" /><published>2017-06-05T08:00:00-04:00</published><updated>2017-06-05T08:00:00-04:00</updated><id>/blog/2017/06/05/javaoffheap-goto-part2</id><content type="html" xml:base="/blog/2017/06/05/javaoffheap-goto-part2.html">&lt;p&gt;I had the honor to be a guest
 on &lt;a href=&quot;http://www.javaoffheap.com/&quot;&gt;Java OffHeap&lt;/a&gt;
 (&lt;a href=&quot;http://www.twitter.com/offheap&quot;&gt;@offheap&lt;/a&gt;) while
 attending &lt;a href=&quot;/blog/2017/04/19/goto-chicago-picks.html&quot;&gt;Goto Chicago 2017&lt;/a&gt;.  I am also
@@ -394,16 +566,7 @@ familiar with Scala.  1:37:40 Dean: about half of their devs use Scala.
 90% of the JVM usage is Java.  1:38:12 Container management and
 orchestration: Freddy: it's wild west right now.  1:39:45 Jim has a
 counter argument: perhaps use build packs instead of containers.
-1:40:10 Freddy, I wish we could settle down with the Docker stuff.&lt;/p&gt;</content><summary type="html">I had the honor to be a guest
-on Java OffHeap
-(@offheap) while
-attending Goto Chicago 2017.  I am also
-happy to announce that I am in talks with the OffHeap guys to have an
-occasional guest segment on their program, tentatively called &quot;Mark and
-Sweep&quot; where we will feature audio content from the existing interviews
-from my book Secrets
-of the Rockstar Programmers as well as new interviews with
-additional thought leaders.</summary></entry><entry><title type="html">Java Offheap Podcast Future of Java Part I at Goto Chicago 2017</title><link href="/blog/2017/05/25/javaoffheap-goto-part1.html" rel="alternate" type="text/html" title="Java Offheap Podcast Future of Java Part I at Goto Chicago 2017" /><published>2017-05-25T08:00:00-04:00</published><updated>2017-05-25T08:00:00-04:00</updated><id>/blog/2017/05/25/javaoffheap-goto-part1</id><content type="html" xml:base="/blog/2017/05/25/javaoffheap-goto-part1.html">&lt;p&gt;I had the honor to be a guest
+1:40:10 Freddy, I wish we could settle down with the Docker stuff.&lt;/p&gt;</content><author><name></name></author><summary type="html">I had the honor to be a guest on Java OffHeap (@offheap) while attending Goto Chicago 2017. I am also happy to announce that I am in talks with the OffHeap guys to have an occasional guest segment on their program, tentatively called &quot;Mark and Sweep&quot; where we will feature audio content from the existing interviews from my book Secrets of the Rockstar Programmers as well as new interviews with additional thought leaders.</summary></entry><entry><title type="html">Java Offheap Podcast Future of Java Part I at Goto Chicago 2017</title><link href="/blog/2017/05/25/javaoffheap-goto-part1.html" rel="alternate" type="text/html" title="Java Offheap Podcast Future of Java Part I at Goto Chicago 2017" /><published>2017-05-25T08:00:00-04:00</published><updated>2017-05-25T08:00:00-04:00</updated><id>/blog/2017/05/25/javaoffheap-goto-part1</id><content type="html" xml:base="/blog/2017/05/25/javaoffheap-goto-part1.html">&lt;p&gt;I had the honor to be a guest
 on &lt;a href=&quot;http://www.javaoffheap.com/&quot;&gt;Java OffHeap&lt;/a&gt;
 (&lt;a href=&quot;http://www.twitter.com/offheap&quot;&gt;@offheap&lt;/a&gt;) while
 attending &lt;a href=&quot;/blog/2017/04/19/goto-chicago-picks.html&quot;&gt;Goto Chicago 2017&lt;/a&gt;.  I am also
@@ -504,16 +667,7 @@ java from header files.  47:35 this plus value types is pretty
 
 &lt;p&gt;48:12 Status of JShell: it's in 9.  49:17 JShell removes all the
 ceremony of getting started with Java.  We'll use things we learn from
-  that to understand where we actually need the ceremony and don't.&lt;/p&gt;</content><summary type="html">I had the honor to be a guest
-on Java OffHeap
-(@offheap) while
-attending Goto Chicago 2017.  I am also
-happy to announce that I am in talks with the OffHeap guys to have an
-occasional guest segment on their program, tentatively called &quot;Mark and
-Sweep&quot; where we will feature audio content from the existing interviews
-from my book Secrets
-of the Rockstar Programmers as well as new interviews with
-additional thought leaders.</summary></entry><entry><title type="html">So long, and thanks for all the commits</title><link href="/blog/2017/05/11/java-net-sunset.html" rel="alternate" type="text/html" title="So long, and thanks for all the commits" /><published>2017-05-11T20:00:00-04:00</published><updated>2017-05-11T20:00:00-04:00</updated><id>/blog/2017/05/11/java-net-sunset</id><content type="html" xml:base="/blog/2017/05/11/java-net-sunset.html">&lt;p&gt;&lt;code&gt;Updated: 2017-05-16 18:07Z Added more images.&lt;/code&gt;&lt;/p&gt;
+  that to understand where we actually need the ceremony and don't.&lt;/p&gt;</content><author><name></name></author><summary type="html">I had the honor to be a guest on Java OffHeap (@offheap) while attending Goto Chicago 2017. I am also happy to announce that I am in talks with the OffHeap guys to have an occasional guest segment on their program, tentatively called &quot;Mark and Sweep&quot; where we will feature audio content from the existing interviews from my book Secrets of the Rockstar Programmers as well as new interviews with additional thought leaders.</summary></entry><entry><title type="html">So long, and thanks for all the commits</title><link href="/blog/2017/05/11/java-net-sunset.html" rel="alternate" type="text/html" title="So long, and thanks for all the commits" /><published>2017-05-11T20:00:00-04:00</published><updated>2017-05-11T20:00:00-04:00</updated><id>/blog/2017/05/11/java-net-sunset</id><content type="html" xml:base="/blog/2017/05/11/java-net-sunset.html">&lt;p&gt;&lt;code&gt;Updated: 2017-05-16 18:07Z Added more images.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20170512-sunset.jpg&quot; alt=&quot;Image of sunset with java.net coffe beans spilling&quot; /&gt;&lt;sub&gt;Image credit (CC) &lt;a href=&quot;https://magnusbråth.se/&quot;&gt;Magnus Bråth&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt;
 
@@ -570,7 +724,7 @@ people who have helped keep it running and migrate its content to new
 &lt;li&gt;Heather Vancura&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20170515-javanet-closed.png&quot; alt=&quot;Java.net closed message&quot; /&gt; &lt;img src=&quot;/blog/assets/20170516-eol.gif&quot; alt=&quot;END OF LINE&quot; /&gt;&lt;/p&gt;</content><summary type="html">Updated: 2017-05-16 18:07Z Added more images.</summary></entry><entry><title type="html">Goto Chicago 2017 Zhamak Dehghanil</title><link href="/blog/2017/05/02/goto-zhamak-dehghani.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Zhamak Dehghanil" /><published>2017-05-02T17:30:00-04:00</published><updated>2017-05-02T17:30:00-04:00</updated><id>/blog/2017/05/02/goto-zhamak-dehghani</id><content type="html" xml:base="/blog/2017/05/02/goto-zhamak-dehghani.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/zhamakd&quot;&gt;Zhamak Dehghanil&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20170515-javanet-closed.png&quot; alt=&quot;Java.net closed message&quot; /&gt; &lt;img src=&quot;/blog/assets/20170516-eol.gif&quot; alt=&quot;END OF LINE&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Updated: 2017-05-16 18:07Z Added more images.</summary></entry><entry><title type="html">Goto Chicago 2017 Zhamak Dehghanil</title><link href="/blog/2017/05/02/goto-zhamak-dehghani.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Zhamak Dehghanil" /><published>2017-05-02T17:30:00-04:00</published><updated>2017-05-02T17:30:00-04:00</updated><id>/blog/2017/05/02/goto-zhamak-dehghani</id><content type="html" xml:base="/blog/2017/05/02/goto-zhamak-dehghani.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/zhamakd&quot;&gt;Zhamak Dehghanil&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Getting to Microservices is a journey.  Looking for scale, get more
 capabilities, experimenting with improvements to their core business,
@@ -661,7 +815,7 @@ also &lt;a href=&quot;http://www.quebecoislibre.org/younkins6.html&quot;&gt;Real
 Not Optional: Thomas Sowell's Vision of Man and Society&lt;/a&gt;. Reuse
 vs. Build vs. Buy vs. Re-write. &lt;/p&gt;
 
-&lt;p&gt;Align organization: How is the funding.&lt;/p&gt;</content><summary type="html">Raw notes from Zhamak Dehghanil.</summary></entry><entry><title type="html">Goto Chicago 2017 Randy Shoup</title><link href="/blog/2017/05/02/goto-randy-shoup.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Randy Shoup" /><published>2017-05-02T15:30:00-04:00</published><updated>2017-05-02T15:30:00-04:00</updated><id>/blog/2017/05/02/goto-randy-shoup</id><content type="html" xml:base="/blog/2017/05/02/goto-randy-shoup.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/randyshoup&quot;&gt;Randy Shoup&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Align organization: How is the funding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Zhamak Dehghanil.</summary></entry><entry><title type="html">Goto Chicago 2017 Randy Shoup</title><link href="/blog/2017/05/02/goto-randy-shoup.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Randy Shoup" /><published>2017-05-02T15:30:00-04:00</published><updated>2017-05-02T15:30:00-04:00</updated><id>/blog/2017/05/02/goto-randy-shoup</id><content type="html" xml:base="/blog/2017/05/02/goto-randy-shoup.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/randyshoup&quot;&gt;Randy Shoup&lt;/a&gt;.&lt;/p&gt;
 
 
 &lt;p&gt;VP of engineering at Stitch Fix.  Did consulting in a &quot;CTO as a
@@ -764,7 +918,7 @@ systems already do this.  For example payment processing and approval
 
 &lt;p&gt;Ideal use for functions as a service.  Very lightweight logic,
 stateless, triggered by an event.  Healthy companies in the future will
-  be doing some or all of this.&lt;/p&gt;</content><summary type="html">Raw notes from Randy Shoup.</summary></entry><entry><title type="html">Goto Chicago 2017 Chris Heilmann</title><link href="/blog/2017/05/02/goto-chris-heilmann.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Chris Heilmann" /><published>2017-05-02T13:00:00-04:00</published><updated>2017-05-02T13:00:00-04:00</updated><id>/blog/2017/05/02/goto-chris-heilmann</id><content type="html" xml:base="/blog/2017/05/02/goto-chris-heilmann.html">&lt;p&gt;Chris Heilmann &lt;a href=&quot;https://twitter.com/codepo8&quot;&gt;codepo8&lt;/a&gt;  &lt;a href=&quot;https://www.christianheilmann.com/&quot;&gt;https://www.christianheilmann.com/&lt;/a&gt;&lt;/p&gt;
+  be doing some or all of this.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Randy Shoup.</summary></entry><entry><title type="html">Goto Chicago 2017 Chris Heilmann</title><link href="/blog/2017/05/02/goto-chris-heilmann.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Chris Heilmann" /><published>2017-05-02T13:00:00-04:00</published><updated>2017-05-02T13:00:00-04:00</updated><id>/blog/2017/05/02/goto-chris-heilmann</id><content type="html" xml:base="/blog/2017/05/02/goto-chris-heilmann.html">&lt;p&gt;Chris Heilmann &lt;a href=&quot;https://twitter.com/codepo8&quot;&gt;codepo8&lt;/a&gt;  &lt;a href=&quot;https://www.christianheilmann.com/&quot;&gt;https://www.christianheilmann.com/&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;The web is not doing that well right now.&lt;/p&gt;
 
@@ -862,7 +1016,7 @@ do these things. &lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;Great analogy: escalator&lt;/p&gt;
 
 &lt;p&gt;The great thing here is that progressive web apps is that it brings
-  back the power of the link.&lt;/p&gt;</content><summary type="html">Chris Heilmann codepo8  https://www.christianheilmann.com/</summary></entry><entry><title type="html">Goto Chicago 2017 Bryan Cantrill</title><link href="/blog/2017/05/02/goto-brian-cantrill.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Bryan Cantrill" /><published>2017-05-02T10:00:00-04:00</published><updated>2017-05-02T10:00:00-04:00</updated><id>/blog/2017/05/02/goto-brian-cantrill</id><content type="html" xml:base="/blog/2017/05/02/goto-brian-cantrill.html">&lt;p&gt;Raw notes.&lt;/p&gt;
+  back the power of the link.&lt;/p&gt;</content><author><name></name></author><summary type="html">Chris Heilmann codepo8 https://www.christianheilmann.com/</summary></entry><entry><title type="html">Goto Chicago 2017 Bryan Cantrill</title><link href="/blog/2017/05/02/goto-brian-cantrill.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Bryan Cantrill" /><published>2017-05-02T10:00:00-04:00</published><updated>2017-05-02T10:00:00-04:00</updated><id>/blog/2017/05/02/goto-brian-cantrill</id><content type="html" xml:base="/blog/2017/05/02/goto-brian-cantrill.html">&lt;p&gt;Raw notes.&lt;/p&gt;
 
 &lt;h2&gt;Recounting the story of a Joyent outage&lt;/h2&gt;
 
@@ -925,136 +1079,4 @@ time for building for debuggability.&lt;/p&gt;
 
 &lt;p&gt;When you have an outage you need to harvest all the useful
 information and learn for it.  Every outage presents an opportunity to
-  advance understanding.&lt;/p&gt;</content><summary type="html">Raw notes.</summary></entry><entry><title type="html">Goto Chicago 2017 Jennifer Peepas</title><link href="/blog/2017/05/01/goto-jennifer-peepas.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Jennifer Peepas" /><published>2017-05-01T13:00:00-04:00</published><updated>2017-05-01T13:00:00-04:00</updated><id>/blog/2017/05/01/goto-jennifer-peepas</id><content type="html" xml:base="/blog/2017/05/01/goto-jennifer-peepas.html">&lt;p&gt;Teaches people to collaborate to make art.&lt;/p&gt;
-
-&lt;p&gt;We grew up labeled as smart which is good, but sometimes people
-forget to teach us things because they assume you already know it or can
-  look it up yourself.&lt;/p&gt;
-
-&lt;p&gt;CaptainAwkward.com is about learning or re-learning stuff we think we
-&quot;should&quot; know, no shame about it.&lt;/p&gt;
-
-&lt;h2&gt;Anecdata&lt;/h2&gt;
-
-&lt;p&gt;People tell me their work feedback woes.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Managers&lt;/b&gt;: having to conform to HR feedback processes that are
-  overly brittle.  Or, the converse, there is no process.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Creators/Developers&lt;/b&gt;: &quot;Looks good to me&quot;.  This means they
-  haven't had time to look at the work.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Peer reviewers&lt;/b&gt;: some people can't take any criticism.  Some
-  people are too nitpicky.  &lt;/p&gt;
-
-&lt;h2&gt;Dealing with Feedback&lt;/h2&gt;
-
-&lt;p&gt;How she does feedback with her students.  Listed the steps.&lt;/p&gt;
-
-&lt;p&gt;Ask the creators why do feedback?  Make the work better.&lt;/p&gt;
-
-&lt;p&gt;Actually, the secret is an emotional component.  Actually, there is
-significant benefit to the reviewers in how they create their own
-  work.&lt;/p&gt;
-
-&lt;p&gt;You see your own work differently when you see how others respond to
-  it.&lt;/p&gt;
-
-&lt;h2&gt;How to do Feedback Better&lt;/h2&gt;
-
-&lt;p&gt;Liz Lerman's Critical Response Process.&lt;/p&gt;
-
-&lt;p&gt;1. View the work.  Work speaks for itself.&lt;/p&gt;
-
-&lt;p&gt;2. Audience describe what you observe without assigning a value
-  judgement.&lt;/p&gt;
-
-&lt;p&gt;3. Audience talks about what's working&lt;/p&gt;
-
-&lt;p&gt;4. Creator: ask advance prepared questions &lt;/p&gt;
-
-&lt;p&gt;5. Audience: identify things that aren't working, with the author's
-  consent.&lt;/p&gt;
-
-&lt;p&gt;This process forces people to slow down the process and look at the
-  big picture before diving into the details.&lt;/p&gt;
-
-&lt;h2&gt;Good Practices&lt;/h2&gt;
-
-&lt;p&gt;Critique sessions happen at regular intervals, with advance notice,
-  and a firm start and end time.  It's not a pop quiz.&lt;/p&gt;
-
-&lt;p&gt;Structure and ground rules are agreed-upon and transparent.&lt;/p&gt;
-
-&lt;p&gt;Can be in-person meeting or online discussion.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;No multitasking during the review.  No hiding in your
-    phone.&lt;/b&gt;&lt;/p&gt;
-
-&lt;p&gt;Have one person be responsible for facilitating the discussion.&lt;/p&gt;
-
-&lt;p&gt;Creators my introduce the work but not apologize for it.  Nobody
-  wants your shame spiral.&lt;/p&gt;
-
-&lt;p&gt;After work is presented, facilitator can give participants a few
-  minutes to write down/type up their thoughts before anyone speaks.&lt;/p&gt;
-
-&lt;p&gt;If you're the creator, use those minutes when everyone is writing to
-  generate and organize questions you have for the audience.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;The goal of the session is to generate the todo list to carry the
-    project forward.&lt;/b&gt;&lt;/p&gt;
-
-&lt;h2&gt;If you are giving feedback...&lt;/h2&gt;
-
-&lt;p&gt;If you could only five three notes, what would they be?&lt;/p&gt;
-
-&lt;p&gt;Focus on the work, and not the person or their individual performance
-  or abilities.&lt;/p&gt;
-
-&lt;p&gt;Avoid, &quot;That won't work because...&quot;.  Instead, as them why they are
-doing it that way.  Try to stay focused on the future, what needs to
-  happen next.&lt;/p&gt;
-
-&lt;p&gt;If you raise a problem, try to also propose a solution.&lt;/p&gt;
-
-&lt;p&gt;Facilitators make it safe for people to say, &quot;I don't know&quot;.&lt;/p&gt;
-
-&lt;p&gt;Is it true, is it necessary, is it kind.&lt;/p&gt;
-
-&lt;h2&gt;What if it really stinks&lt;/h2&gt;
-
-&lt;p&gt;Be brief, direct, and specific.&lt;/p&gt;
-
-&lt;p&gt;Shame and blame are performance killers.&lt;/p&gt;
-
-&lt;h2&gt;If you're receiving feedback&lt;/h2&gt;
-
-&lt;p&gt;Write it all down.  Write it down even if you disagree.&lt;/p&gt;
-
-&lt;p&gt;If you feel yourself getting flustered or defensive, cut yourself
-  slack, but also, stop talking.&lt;/p&gt;
-
-&lt;h2&gt;If you're the moderator&lt;/h2&gt;
-
-&lt;p&gt;Keep the discussion on time.&lt;/p&gt;
-
-&lt;p&gt;Amplifying the good quesions is a better strategy, than tamping down
-  on the negative one.&lt;/p&gt;
-
-&lt;p&gt;Aftercare for Creators&lt;/p&gt;
-
-&lt;p&gt;After the session, take a break.  Then refine the comments.
-  Prioritize the feedback, do the easy stuff first.&lt;/p&gt;
-
-&lt;p&gt;If you need to discard the feedback item, you can make a better
-  argument for doing so if you show you considered it.&lt;/p&gt;
-
-&lt;p&gt;Good feeedback doesn't just happen.  It needs a structure.&lt;/p&gt;
-
-&lt;p&gt;The best possible outcome from a response session is for the maker to
-  want to back to work.  Liz Lerman&lt;/p&gt;
-
-&lt;p&gt;Thorough feedback is a gift of time and attention.  It's an
-investment in the projects you make and in your development as a
-creator.&lt;/p&gt;</content><summary type="html">Teaches people to collaborate to make art.</summary></entry></feed>
+  advance understanding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes.</summary></entry></feed>

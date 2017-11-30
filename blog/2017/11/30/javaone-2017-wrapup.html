@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>JavaOne 2017 Wrap Up</title>
+  <meta name="description" content="Last year, at JavaOne 2016, I had the honor of unlocking the JavaOne Rockstar achievement. 2017 was my first JavaOne after that, and I can say that the exper...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2017/11/30/javaone-2017-wrapup.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">JavaOne 2017 Wrap Up</h1>
+    <p class="post-meta"><time datetime="2017-11-30T08:00:00-05:00" itemprop="datePublished">Nov 30, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Last year, at JavaOne 2016, I had the honor of unlocking
+the <a href="https://www.oracle.com/javaone/rock-star-wall-of-fame.html#burns">JavaOne
+Rockstar</a> achievement.  2017 was my first JavaOne after that, and I
+can say that the experience wasn't any different from the previous
+sixteen or so years I've been blessed to speak: exhausting, informative
+and inspiring.  This blog post reviews the sessions I attended and
+  presented and shares my thoughts and notes if I have them.</p>
+
+<h2>Sessions</h2>
+
+<p>The Sunday of JavaOne has always been a day for the Java community to
+  shine and share their work and highlights from the previous year.
+  This year, the day was formally labeled "Developer Community Day".
+  Some differences from last year: it was not formally billed as
+  "NetBeans Day", all the talks were from non-Oracle speakers, all from
+  the community, there was a whole lot of JUG content, there were
+  several "career focused" talks.</p>
+
+<h3>Sunday</h3>
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON2197&showEnrolled=false">Java, the JCP, and You [CON2197]</a></h4>
+
+<p>Heather Vancura, director of the JCP, asked me to co-present at this
+session about how to get involved in the JCP, the official way that the
+community brings its ideas into the Java platform.  The JCP is better
+than ever at this job, so with Java EE moving to the Eclipse Foundation
+as EE4J, it is a very exciting time for the Java Community Process.</p>
+
+<h4><a href="https://oracle.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON5074">Event Sourcing with JVM Languages [CON5074]</a></h4>
+
+<p>Rahul Somasunderam shared his experiences working with Event
+Sourcing, a technique of treating logs as the source of truth for a
+software system, rather than some other kind of persistent store such as
+a database.  Rahul has created
+the <a href="https://github.com/rahulsom/grooves">Grooves</a> framework
+to provide this abstraction.  Here are my raw notes.  The presentation
+  is available in the content catalog link above.  The presentation source is available at <a href="https://bit.ly/2017-es">bit.ly/2017-es</a></p>
+
+<ul>
+  
+<p>Needed a java based event sourcing solution, looked around in 2016,
+  nothing fit.</p>
+
+<p>Definition: treat your database like you treat your logs.</p>
+
+<p>Everyone is comfortable looking at logs.  Log files: you can create
+  entrys and read them.  You cannot update or delete entries.</p>
+
+<p>Bad example 1: bank account balance.  @Transactional usage.</p>
+
+<p>Scan of old school German bank passbook.  Great example of a log.
+  This is what event sourcing should be doing in any domain.</p>
+
+<p>But that was banking.  If you look at your logs and debug your
+application, you are doing event sourcing in your mind.  Banks defined
+  their business model hundreds of years ago.</p>
+
+<p>Aggregate: Account.  Events: Transcation, AtmWithdrawl.  Snapshot:
+  AccountSummary.</p>
+
+<p>Computing snapshots: S sub N = f(S0, E1..EN)</p>
+
+<p>The way to take your log and play it forward.</p>
+
+<p>Incremental snapshots.  Use an existing Snapshot as an input entry in
+  computing a new snapshot.</p>
+
+<p>Revert.  You can't delete events but you can have new events that
+  represent deletes.</p>
+
+<p>Bad Example 2: Joins in event sourcing.</p>
+
+<p>Grooves domain objects: Aggregates.  Also uses RxJava
+  Observables.</p>
+
+	<ul>
+
+	  <li>Some code examples that basically show how to do ORM using
+	  this thing.
+	  </li>
+
+
+          <li><p>There is an API for querying, creating snapshots, using
+          annotations.
+	  </p></li>
+
+          <li><p>Handling Errors.  Allows best effort approach.
+	  </p></li>
+
+
+	</ul>
+
+
+<p>Great example: Lance Armstrong Tour de France victories.  Question:
+How many Tour de France victories does he have?  The answer depends on
+  when you ask the question.</p>
+
+<p>Be very careful what your events look like.  It's very hard to modify
+  them.</p>
+
+<p>Non event sources of data.  When the intent of the user is not clear
+  from the datasource.</p>
+
+<p></p>
+
+<p></p>
+
+<p>Other Sessions of Note:</p>
+
+<p>Mon: 17:30 CON7474 ES, Distributed Systems, and CQRS with Java EE.</p>
+
+<p>Tue: 13:15 CON4083 Async by Default, Synchronous when Necessary</p>
+
+<p>Wed: 14:45 CON4277 Three Microservices Patterns to Tear Down Your Monoliths</p>
+
+<p>Needed a java based event sourcing solution, looked around in 2016,
+  nothing fit.</p>
+
+<p>Definition: treat your database like you treat your logs.</p>
+
+<p>Everyone is comfortable looking at logs.  Log files: you can create
+  entrys and read them.  You cannot update or delete entries.</p>
+
+<p>Bad example 1: bank account balance.  @Transactional usage.</p>
+
+<p>Scan of old school German bank passbook.  Great example of a log.
+  This is what event sourcing should be doing in any domain.</p>
+
+<p>But that was banking.  If you look at your logs and debug your
+application, you are doing event sourcing in your mind.  Banks defined
+  their business model hundreds of years ago.</p>
+
+<p>Aggregate: Account.  Events: Transcation, AtmWithdrawl.  Snapshot:
+  AccountSummary.</p>
+
+<p>Computing snapshots: S sub N = f(S0, E1..EN)</p>
+
+<p>The way to take your log and play it forward.</p>
+
+<p>Incremental snapshots.  Use an existing Snapshot as an input entry in
+  computing a new snapshot.</p>
+
+<p>Revert.  You can't delete events but you can have new events that
+  represent deletes.</p>
+
+<p>Bad Example 2: Joins in event sourcing.</p>
+
+<p>Grooves domain objects: Aggregates.  Also uses RxJava
+  Observables.</p>
+
+	<ul>
+
+	  <li>Some code examples that basically show how to do ORM using
+	  this thing.
+	  </li>
+
+
+          <li><p>There is an API for querying, creating snapshots, using
+          annotations.
+	  </p></li>
+
+          <li><p>Handling Errors.  Allows best effort approach.
+	  </p></li>
+
+
+	</ul>
+
+
+<p>Great example: Lance Armstrong Tour de France victories.  Question:
+How many Tour de France victories does he have?  The answer depends on
+  when you ask the question.</p>
+
+<p>Be very careful what your events look like.  It's very hard to modify
+  them.</p>
+
+<p>Non event sources of data.  When the intent of the user is not clear
+  from the datasource.</p>
+
+<p></p>
+
+<p></p>
+
+<p>Other Sessions of Note:</p>
+
+<p>Mon: 17:30 CON7474 ES, Distributed Systems, and CQRS with Java EE.</p>
+
+<p>Tue: 13:15 CON4083 Async by Default, Synchronous when Necessary</p>
+
+<p>Wed: 14:45 CON4277 Three Microservices Patterns to Tear Down Your Monoliths</p>
+</ul>
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON7615&showEnrolled=false">Secrets of Rock Star Developers (and How to Become One!) [CON7615]</a></h4>
+
+<p>I was invited to co-present at this session by my good
+friend <a href="https://code4.life/">Bruno Souza</a> regarding some
+lessons in my book <a href="http://ridingthecrest.com/">Secrets of the
+Rock Star Developers</a>.  Bruno also invited Yuji Kubota, a developer
+from NTT in Japan.  Yuji shared his experiences in achieving developer
+  proficiency in spite of his complete hearing impairment.</p>
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON7624&showEnrolled=false">Powerful Lessons from Top Java EE Experts [CON7624]
+</a></h4>
+
+<p>I was invited to participate in this panel discussion
+by <a href="http://eldermoraes.com/">Elder Moraes</a>, who is now
+working for Oracle to continue to advance Java EE 8 in the community in
+Brazil.  I was a bit skeptical about the prospects of this panel because
+Elder had invited fourteen (14!) people to be panelists.  Perhaps he did
+  not expect us all to show up, but 13 of us did.</p>
+
+<p><img src="/blog/assets/20171001-con7615.jpg" alt="Image of panelists" /></p>
+
+<p>My records show Elder, Adam Bien, Bruno Souza, David Heffelfinger,
+Edson Yanaga, Ivar Grimstad, Steve Millidge, Kevin Sutter, Reza Rahman,
+and Ruslan Synytsky</p>
+
+<p>With that large number of people, and only an hour, it was a wonder
+we were coherent at all, but I guess it speaks to the quality of the
+Java EE community's ability to collaborate that we had a productive and
+informative session.  Of course, the big news was the decision by Oracle
+to invest in handing off the IP of its Java EE JSRs, as of version Java
+EE 8, to the Eclipse Foundation to be the basis of a new top level
+project
+there: <a href="https://projects.eclipse.org/projects/ee4j">EE4J</a>.</p>
+
+<h3>Monday</h3>
+
+<p>I started the day off with booth duty.  This year, the conference was
+back at Moscone, but at Moscone West.  The exhibit area was much larger
+than the hotel space at the Hilton Union Square from previous years.  My
+booth demo was a part of the new Serverless Fn project booth, but it was
+only runnable when I was in the booth, as it was a last minute
+  addition.</p>
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON2022&showEnrolled=false">Servlet 4.0: A New Twist on an Old Favorite [CON2022]
+</a></h4>
+
+<p>This was one of my three conference sessions I had the opportunity to
+present.  The slides are in the content catalog at the previous
+link, and the video
+is <a href="https://www.youtube.com/watch?v=k4tSKHH63fE">at YouTube</a>.
+With the announcement of EE4J, Oracle is getting out of the business of
+leading Java EE specs, so this was very likely the last time I presented
+about Servlet at JavaOne.  You never know what the future holds, but I
+approached it that way and gave it my all.  I hope that comes across in
+  the video.</p>
+
+<h4><a href="https://www.oracle.com/javaone/keynotes.html#monday">Java Keynote</a></h4>
+
+<p>This was the big one.  The full video is
+at <a href="https://www.youtube.com/watch?v=UNg9lmk60sg">YouTube</a>.
+  Big announcements included:</p>
+
+	<ul>
+
+	  <li><p>EE4J
+	  </p></li>
+
+          <li><p>Debut of the <a href="https://fnproject.io">Fn Project</a>
+	  </p></li>
+
+          <li><p>Demonstration of Project Jafar, Cloud Performance
+          Tuning and flight recorder
+	  </p></li>
+
+	  <li><p>Demonstration
+	  of <a href="http://www.wercker.com/java">Oracle Wercker</a>
+	  cloud container native development pipeline system.  Wercker
+	  allows you to build, deploy, and operate Kubernetes based
+	  containerized cloud applications.
+	  </p></li>
+          
+	  <li><p>Java SE 9 final release overview
+	  </p></li>
+
+	  <li><p>Announcement of new release model for Java: every 6th
+	  months.  This brought along with it a new naming scheme: YY.M.
+	  That means the next release is 18.3.
+	  </p></li>
+
+          <li><p>There was also an interesting keynote from Intel VP of
+          System Technologies Michael Green.  Mr. Green's keynote starts at <a href="https://www.youtube.com/watch?v=UNg9lmk60sg#t=34m59s">34:59</a>
+	  </p></li>
+
+          <li><p>There were some nifty demos at the beginning of the
+          keynote.
+	  </p></li>
+
+	</ul>
+
+        <h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON3920&showEnrolled=false">Building a Serverless State Service for the Cloud with Java 9 [CON3920]</a></h4>
+
+<p>This session is the one I was most excited to give, because it is the
+future for me at Oracle.  After being allowed to finish Java EE 8
+(thanks in no small part to the community and Oracle's attentiveness to
+it), I was given the opportunity to join the team responsible
+for <a href="http://www.oracle.com/technetwork/middleware/coherence/overview/">Oracle
+Coherence</a>.  This team is building a new state service for the cloud,
+based on Coherence, but with a much simpler API.  In fact, you can think
+of it as an API-less service since it will be exposed with cloud enabled
+implementations of existing Java 8 collections data structures, with
+some additions for things not present in the case of an entirely local
+collection.  Unfortunately, this talk was not recorded, but the slides
+  are available in the content catalog link above.</p>
+
+<h3>Tuesday</h3>
+
+<p>I did another spell of booth duty in the morning, as well as a panel
+discussion on the DevLive stage with Heather Vancura, Antoine-Sabot
+Durand, and Linda DeMichiel.  The interview is
+  at <a href="https://www.youtube.com/watch?v=cTaBUu6C47U">YouTube</a>.</p>
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=IGN7979&showEnrolled=false">Ignite Session [IGN7979]: Java Your Next Theremin, among other talks</a></h4>
+
+<p>Kevin Nilson, leader of the Silicon Valley JUG and wonderful guy
+organized an "Ignite Session" again.  I'd never done one before, but
+after the one I attended at DevoxxUS in April I felt I could do it.  The
+idea with an Ignite session is you get 5 minutes to present your talk.
+In that five minutes you get 20 slides, each advancing every 15 seconds,
+on auto-advance.  I gave a talk
+about <a href="https://static.rainfocus.com/oracle/oow17/sess/1504978192376001CTLb/PF/20171003-javaone-lightning-theremin_1507731853795001sVbN.pptx">building
+a Theremin</a>.</p>
+
+<h3>Wednesday</h3>
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON2023&showEnrolled=false">Contemporary Java Web Applications with JSF 2.3 [CON2023]</a></h4>
+
+<p>This was the most monentous talk for me personally.  Fifteen years,
+six months, and seven days after giving my first JavaOne talk about JSF
+I gave what is likely to be my last, for the same reason as with
+Servlet.  But don't dismay, the future is bright for JSF.  JSF is in the
+first batch of projects to be handed off to EE4J, and it will very
+  likely be taken forward by JSF community expert Arjan Tijms.</p>
+
+<p>Slides are above and video is <a href="https://www.youtube.com/watch?v=yshXLB_HdhU">on YouTube</a>.</p>
+
+<h3>Thursday</h3>
+
+<p>Not having to deliver any sessions, speak to any customers, do any
+booth duty, or sit-in for any guest spots, I was able to attend sessions
+  today.</p>
+
+<h4><a href="https://www.oracle.com/javaone/keynotes.html#thursday">Java Community Keynote</a></h4>
+
+<p><img src="/blog/assets/20171005-community-keynote.jpg" alt="Image of Duke's Choice Award Winners" /></p>
+
+<p>This fun keynote is available
+at <a href="https://www.oracle.com/javaone/on-demand.html?bcid=5604479599001">Oracle</a>.</p>
+
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1706&showEnrolled=false">Services, Assemble! Apply MVP Principles to Create Microservices Without Chaos [CON1706]</a></h4>
+
+<p>This talk by my friend Mark Heckler talked about how to apply MVP
+  (Minimum Viable Product) principles to create cutting-edge
+  Microservices without chaos with Spring Cloud/Netflix OSS</p>
+
+<p>Here are my raw notes.</p>
+
+	<ul>
+
+<p>@MkHeck</p>
+
+<p>Glad you're here to the end.</p>
+
+<p>Listed some Pivotal products: Spring.</p>
+
+<p>Who am I silde.</p>
+
+<p>Likes Microservices, becuse it addresses many of the problems of the
+  Monoliths.</p>
+<p>Analogy of Microservices to the Avengers.  Together they are more
+than the sum of the parts.  They come together to form a resilient
+  system.</p>
+
+<p>Enablers: Monoliths are simpler from the outside.  Microservices
+introduces a lot of complexity.  Enablers: Spring Boot and Spring Cloud.
+Spring Boot is your onramp in becoming productive in the cloud.  Any
+  place you can deploy a JVM, you can deploy Spring Boot.</p>
+
+<p>Spring Cloud OSS</p>
+
+<p>Operational: config, service registry, circuit breaker, load
+balancer, intelligent router, asyc messaging, distributed tracing,
+security/oauth.</p>
+
+<p>Impl: Spring Cloud Config, Netflix Eureaka, Netflix Hystrix, Netflix
+Ribbon, Netflix Zuul, Spring Cloud Stream, Spring Cloud Sleuth, Spring
+  Cloud Security</p>
+
+<p>With a good circuit breaker, you can nest them.</p>
+
+<p>Demo: start.spring.io.  Lots of extolling the virtues of this web
+  app.</p>
+
+
+<p>application.properties, renamed to bootstrap.properties</p>
+
+<p>Pointed out 80/20 rule.</p>
+
+<p>Zuul plays a role of deompising a monolith.</p>
+
+</ul>
+
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1439&showEnrolled=false">Container: Check! But What About Persistent Data, Big Data, and Fast Data?! [CON1439]</a></h4>
+
+<p>This session, by two of the engineers behind Mesosphere and Apache
+Mesos, used the 16 bit video game "The Secret of Monkey Island" to
+explore the challenges in running stateless services at scale in the
+  real world that has state.  Here are my raw notes.</p>
+
+	<ul>
+
+<p>Joerg Schad and Johaness Unterstein</p>
+
+<p>Monkey Island theme.</p>
+
+<p>It all began with a monolith</p>
+
+<p>Hardware, OS, app</p>
+
+<p>Hardware, OS, web app</p>
+
+<p>add horizontal scaling: Hardware, OS, app</p>
+
+<p>add services under web app.</p>
+
+<p>Add VMs under OS, and IaaS underVMs</p>
+
+<p>Replace web app with finer services: Microservices.  Predefined
+  interfaces where each is defined to do one thing pretty good.</p>
+
+<p>Add containers on top of OS: Put more services on each OS
+node. Spreadsheet scheduling.</p>
+
+<p>Container scheduling comes into play.  Resource management.</p>
+
+<p>Service management: collections of containers.  Excellent pictures of
+  containers from container ships sitting in row boats.</p>
+
+<p>Health and readiness checks.  Health check, "I am ready to serve
+  traffic".</p>
+
+<p>But how do we get containers into production</p>
+
+<p>DC/OS maven plugin: mvn docker:build docker:push dcos:deploy</p>
+
+<p>Or mvn package dcos:uploadArtifact dcos:deployUCR</p>
+
+<p>MapReduce is crunching Data</p>
+
+<p>Data Processing: SMACK stack.  1. Events 2. Ingest (Kafka) 3. Store
+  (Cassandra) 4. Analyze (Spark) 5. Act (Akka)</p>
+
+<p>Demo of running DC/OS on AWS.  </p>
+
+	</ul>
+
+<h4><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1416&showEnrolled=false">Modern Java Recipes [CON1416]</a></h4>
+        
+<p>The last session of the show, for me, and for many folks, was given
+by my fripnd and
+fellow <a href="https://www.facebook.com/nullpointersband/">NullPointer</a>
+Ken Koussen.  Ken is an excellent instructor and is so good at
+explaining complex topics.  Ken has a new book of the same name as this
+talk, and he was kind enough to sport me a copy in exchange for a meal
+at
+cash-only <a href="https://www.yelp.com/biz/tommys-joynt-san-francisco">Tommy's
+Joynt</a>.</p>
+
+<p>Here are my raw notes.</p>
+
+<ul>
+
+  <p>Ken Koussen</p>
+
+<p>A few slides of self promition.</p>
+
+<p>github.com/koussen/java_8_recipes</p>
+
+<p>github.com/koussen/java_9_recipes</p>
+
+<p>The Basics</p>
+
+<p>streams, lambdas, method references</p>
+
+<p>Beyond the basics</p>
+
+<p>Lazy Streams</p>
+
+<p>The peek method</p>
+
+<p>Strings as Streams</p>
+
+<p>anyMatch, allMatch, noneMatch</p>
+
+<p>collect and reduce</p>
+
+<p>flatMap vs. Map</p>
+
+<p>Optional</p>
+
+<hr />
+
+<p>Functional interfaces</p>
+
+<p>taken as given</p>
+
+<p>Steam produces sequence of elements.  Does not store them.  Does not
+  modify them.  Produces new items.  Operations lazy when possible.
+  Once you hit a terminal, that stream is done.</p>
+
+<p>If you use a stream in a method, it should be created in that method.</p>
+
+<p>operations from source to pipeline.  No items are pulled from source
+  until terminal operation is reached.</p>
+
+<p>Shows the lazyness.  findFirst() is a short circuiting terminal
+  operations.</p>
+
+<p>Debugging with the peek() method.  IntelliJ has a nice plugin called
+  StreamDebugger.</p>
+
+<p>peek() is like .map(n -> { sop(n.entry); } );</p>
+
+<p>Strings as Streams</p>
+
+<p>aside: of() method.</p>
+
+<p>Workaround.  chars() and codePoints() on String.</p>
+
+<p>codePoints() returns a stream.  </p>
+
+<code><pre>
+    s.toLowerCase().codePoints().filter().collect(appendCodePoint).toString()
+</pre></code>
+
+<p>Three argument Collect.</p>
+
+</ul>
+
+<p>I was literally the last person to leave the conference baggage area,
+as shown in this pic of my lone bag with a member of the Marriott Hotel
+  Staff.</p>
+
+<p><img src="/blog/assets/20171005-last-bag.jpg" alt="Ed's Bag Is Last" /></p>
+
+<p>Goodbye JavaOne.  I hope to see you again next year.</p>
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,5 +1,552 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-10-17T15:36:02-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">JAX-RS 2.1 New Feature Introduction: Server Sent Events Update</title><link href="/blog/2017/10/16/jax-rs-2_1-new-feature-update.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction: Server Sent Events Update" /><published>2017-10-16T10:00:00-04:00</published><updated>2017-10-16T10:00:00-04:00</updated><id>/blog/2017/10/16/jax-rs-2_1-new-feature-update</id><content type="html" xml:base="/blog/2017/10/16/jax-rs-2_1-new-feature-update.html">&lt;p&gt;I don't know what this says about my memory, but I was doing a little
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-11-30T14:47:42-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JavaOne 2017 Wrap Up</title><link href="/blog/2017/11/30/javaone-2017-wrapup.html" rel="alternate" type="text/html" title="JavaOne 2017 Wrap Up" /><published>2017-11-30T08:00:00-05:00</published><updated>2017-11-30T08:00:00-05:00</updated><id>/blog/2017/11/30/javaone-2017-wrapup</id><content type="html" xml:base="/blog/2017/11/30/javaone-2017-wrapup.html">&lt;p&gt;Last year, at JavaOne 2016, I had the honor of unlocking
+the &lt;a href=&quot;https://www.oracle.com/javaone/rock-star-wall-of-fame.html#burns&quot;&gt;JavaOne
+Rockstar&lt;/a&gt; achievement.  2017 was my first JavaOne after that, and I
+can say that the experience wasn't any different from the previous
+sixteen or so years I've been blessed to speak: exhausting, informative
+and inspiring.  This blog post reviews the sessions I attended and
+  presented and shares my thoughts and notes if I have them.&lt;/p&gt;
+
+&lt;h2&gt;Sessions&lt;/h2&gt;
+
+&lt;p&gt;The Sunday of JavaOne has always been a day for the Java community to
+  shine and share their work and highlights from the previous year.
+  This year, the day was formally labeled &quot;Developer Community Day&quot;.
+  Some differences from last year: it was not formally billed as
+  &quot;NetBeans Day&quot;, all the talks were from non-Oracle speakers, all from
+  the community, there was a whole lot of JUG content, there were
+  several &quot;career focused&quot; talks.&lt;/p&gt;
+
+&lt;h3&gt;Sunday&lt;/h3&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON2197&amp;showEnrolled=false&quot;&gt;Java, the JCP, and You [CON2197]&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Heather Vancura, director of the JCP, asked me to co-present at this
+session about how to get involved in the JCP, the official way that the
+community brings its ideas into the Java platform.  The JCP is better
+than ever at this job, so with Java EE moving to the Eclipse Foundation
+as EE4J, it is a very exciting time for the Java Community Process.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://oracle.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON5074&quot;&gt;Event Sourcing with JVM Languages [CON5074]&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Rahul Somasunderam shared his experiences working with Event
+Sourcing, a technique of treating logs as the source of truth for a
+software system, rather than some other kind of persistent store such as
+a database.  Rahul has created
+the &lt;a href=&quot;https://github.com/rahulsom/grooves&quot;&gt;Grooves&lt;/a&gt; framework
+to provide this abstraction.  Here are my raw notes.  The presentation
+  is available in the content catalog link above.  The presentation source is available at &lt;a href=&quot;https://bit.ly/2017-es&quot;&gt;bit.ly/2017-es&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  
+&lt;p&gt;Needed a java based event sourcing solution, looked around in 2016,
+  nothing fit.&lt;/p&gt;
+
+&lt;p&gt;Definition: treat your database like you treat your logs.&lt;/p&gt;
+
+&lt;p&gt;Everyone is comfortable looking at logs.  Log files: you can create
+  entrys and read them.  You cannot update or delete entries.&lt;/p&gt;
+
+&lt;p&gt;Bad example 1: bank account balance.  @Transactional usage.&lt;/p&gt;
+
+&lt;p&gt;Scan of old school German bank passbook.  Great example of a log.
+  This is what event sourcing should be doing in any domain.&lt;/p&gt;
+
+&lt;p&gt;But that was banking.  If you look at your logs and debug your
+application, you are doing event sourcing in your mind.  Banks defined
+  their business model hundreds of years ago.&lt;/p&gt;
+
+&lt;p&gt;Aggregate: Account.  Events: Transcation, AtmWithdrawl.  Snapshot:
+  AccountSummary.&lt;/p&gt;
+
+&lt;p&gt;Computing snapshots: S sub N = f(S0, E1..EN)&lt;/p&gt;
+
+&lt;p&gt;The way to take your log and play it forward.&lt;/p&gt;
+
+&lt;p&gt;Incremental snapshots.  Use an existing Snapshot as an input entry in
+  computing a new snapshot.&lt;/p&gt;
+
+&lt;p&gt;Revert.  You can't delete events but you can have new events that
+  represent deletes.&lt;/p&gt;
+
+&lt;p&gt;Bad Example 2: Joins in event sourcing.&lt;/p&gt;
+
+&lt;p&gt;Grooves domain objects: Aggregates.  Also uses RxJava
+  Observables.&lt;/p&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;Some code examples that basically show how to do ORM using
+	  this thing.
+	  &lt;/li&gt;
+
+
+          &lt;li&gt;&lt;p&gt;There is an API for querying, creating snapshots, using
+          annotations.
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;Handling Errors.  Allows best effort approach.
+	  &lt;/p&gt;&lt;/li&gt;
+
+
+	&lt;/ul&gt;
+
+
+&lt;p&gt;Great example: Lance Armstrong Tour de France victories.  Question:
+How many Tour de France victories does he have?  The answer depends on
+  when you ask the question.&lt;/p&gt;
+
+&lt;p&gt;Be very careful what your events look like.  It's very hard to modify
+  them.&lt;/p&gt;
+
+&lt;p&gt;Non event sources of data.  When the intent of the user is not clear
+  from the datasource.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Other Sessions of Note:&lt;/p&gt;
+
+&lt;p&gt;Mon: 17:30 CON7474 ES, Distributed Systems, and CQRS with Java EE.&lt;/p&gt;
+
+&lt;p&gt;Tue: 13:15 CON4083 Async by Default, Synchronous when Necessary&lt;/p&gt;
+
+&lt;p&gt;Wed: 14:45 CON4277 Three Microservices Patterns to Tear Down Your Monoliths&lt;/p&gt;
+
+&lt;p&gt;Needed a java based event sourcing solution, looked around in 2016,
+  nothing fit.&lt;/p&gt;
+
+&lt;p&gt;Definition: treat your database like you treat your logs.&lt;/p&gt;
+
+&lt;p&gt;Everyone is comfortable looking at logs.  Log files: you can create
+  entrys and read them.  You cannot update or delete entries.&lt;/p&gt;
+
+&lt;p&gt;Bad example 1: bank account balance.  @Transactional usage.&lt;/p&gt;
+
+&lt;p&gt;Scan of old school German bank passbook.  Great example of a log.
+  This is what event sourcing should be doing in any domain.&lt;/p&gt;
+
+&lt;p&gt;But that was banking.  If you look at your logs and debug your
+application, you are doing event sourcing in your mind.  Banks defined
+  their business model hundreds of years ago.&lt;/p&gt;
+
+&lt;p&gt;Aggregate: Account.  Events: Transcation, AtmWithdrawl.  Snapshot:
+  AccountSummary.&lt;/p&gt;
+
+&lt;p&gt;Computing snapshots: S sub N = f(S0, E1..EN)&lt;/p&gt;
+
+&lt;p&gt;The way to take your log and play it forward.&lt;/p&gt;
+
+&lt;p&gt;Incremental snapshots.  Use an existing Snapshot as an input entry in
+  computing a new snapshot.&lt;/p&gt;
+
+&lt;p&gt;Revert.  You can't delete events but you can have new events that
+  represent deletes.&lt;/p&gt;
+
+&lt;p&gt;Bad Example 2: Joins in event sourcing.&lt;/p&gt;
+
+&lt;p&gt;Grooves domain objects: Aggregates.  Also uses RxJava
+  Observables.&lt;/p&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;Some code examples that basically show how to do ORM using
+	  this thing.
+	  &lt;/li&gt;
+
+
+          &lt;li&gt;&lt;p&gt;There is an API for querying, creating snapshots, using
+          annotations.
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;Handling Errors.  Allows best effort approach.
+	  &lt;/p&gt;&lt;/li&gt;
+
+
+	&lt;/ul&gt;
+
+
+&lt;p&gt;Great example: Lance Armstrong Tour de France victories.  Question:
+How many Tour de France victories does he have?  The answer depends on
+  when you ask the question.&lt;/p&gt;
+
+&lt;p&gt;Be very careful what your events look like.  It's very hard to modify
+  them.&lt;/p&gt;
+
+&lt;p&gt;Non event sources of data.  When the intent of the user is not clear
+  from the datasource.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Other Sessions of Note:&lt;/p&gt;
+
+&lt;p&gt;Mon: 17:30 CON7474 ES, Distributed Systems, and CQRS with Java EE.&lt;/p&gt;
+
+&lt;p&gt;Tue: 13:15 CON4083 Async by Default, Synchronous when Necessary&lt;/p&gt;
+
+&lt;p&gt;Wed: 14:45 CON4277 Three Microservices Patterns to Tear Down Your Monoliths&lt;/p&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON7615&amp;showEnrolled=false&quot;&gt;Secrets of Rock Star Developers (and How to Become One!) [CON7615]&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I was invited to co-present at this session by my good
+friend &lt;a href=&quot;https://code4.life/&quot;&gt;Bruno Souza&lt;/a&gt; regarding some
+lessons in my book &lt;a href=&quot;http://ridingthecrest.com/&quot;&gt;Secrets of the
+Rock Star Developers&lt;/a&gt;.  Bruno also invited Yuji Kubota, a developer
+from NTT in Japan.  Yuji shared his experiences in achieving developer
+  proficiency in spite of his complete hearing impairment.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON7624&amp;showEnrolled=false&quot;&gt;Powerful Lessons from Top Java EE Experts [CON7624]
+&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I was invited to participate in this panel discussion
+by &lt;a href=&quot;http://eldermoraes.com/&quot;&gt;Elder Moraes&lt;/a&gt;, who is now
+working for Oracle to continue to advance Java EE 8 in the community in
+Brazil.  I was a bit skeptical about the prospects of this panel because
+Elder had invited fourteen (14!) people to be panelists.  Perhaps he did
+  not expect us all to show up, but 13 of us did.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20171001-con7615.jpg&quot; alt=&quot;Image of panelists&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My records show Elder, Adam Bien, Bruno Souza, David Heffelfinger,
+Edson Yanaga, Ivar Grimstad, Steve Millidge, Kevin Sutter, Reza Rahman,
+and Ruslan Synytsky&lt;/p&gt;
+
+&lt;p&gt;With that large number of people, and only an hour, it was a wonder
+we were coherent at all, but I guess it speaks to the quality of the
+Java EE community's ability to collaborate that we had a productive and
+informative session.  Of course, the big news was the decision by Oracle
+to invest in handing off the IP of its Java EE JSRs, as of version Java
+EE 8, to the Eclipse Foundation to be the basis of a new top level
+project
+there: &lt;a href=&quot;https://projects.eclipse.org/projects/ee4j&quot;&gt;EE4J&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Monday&lt;/h3&gt;
+
+&lt;p&gt;I started the day off with booth duty.  This year, the conference was
+back at Moscone, but at Moscone West.  The exhibit area was much larger
+than the hotel space at the Hilton Union Square from previous years.  My
+booth demo was a part of the new Serverless Fn project booth, but it was
+only runnable when I was in the booth, as it was a last minute
+  addition.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON2022&amp;showEnrolled=false&quot;&gt;Servlet 4.0: A New Twist on an Old Favorite [CON2022]
+&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This was one of my three conference sessions I had the opportunity to
+present.  The slides are in the content catalog at the previous
+link, and the video
+is &lt;a href=&quot;https://www.youtube.com/watch?v=k4tSKHH63fE&quot;&gt;at YouTube&lt;/a&gt;.
+With the announcement of EE4J, Oracle is getting out of the business of
+leading Java EE specs, so this was very likely the last time I presented
+about Servlet at JavaOne.  You never know what the future holds, but I
+approached it that way and gave it my all.  I hope that comes across in
+  the video.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://www.oracle.com/javaone/keynotes.html#monday&quot;&gt;Java Keynote&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This was the big one.  The full video is
+at &lt;a href=&quot;https://www.youtube.com/watch?v=UNg9lmk60sg&quot;&gt;YouTube&lt;/a&gt;.
+  Big announcements included:&lt;/p&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;&lt;p&gt;EE4J
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;Debut of the &lt;a href=&quot;https://fnproject.io&quot;&gt;Fn Project&lt;/a&gt;
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;Demonstration of Project Jafar, Cloud Performance
+          Tuning and flight recorder
+	  &lt;/p&gt;&lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;Demonstration
+	  of &lt;a href=&quot;http://www.wercker.com/java&quot;&gt;Oracle Wercker&lt;/a&gt;
+	  cloud container native development pipeline system.  Wercker
+	  allows you to build, deploy, and operate Kubernetes based
+	  containerized cloud applications.
+	  &lt;/p&gt;&lt;/li&gt;
+          
+	  &lt;li&gt;&lt;p&gt;Java SE 9 final release overview
+	  &lt;/p&gt;&lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;Announcement of new release model for Java: every 6th
+	  months.  This brought along with it a new naming scheme: YY.M.
+	  That means the next release is 18.3.
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;There was also an interesting keynote from Intel VP of
+          System Technologies Michael Green.  Mr. Green's keynote starts at &lt;a href=&quot;https://www.youtube.com/watch?v=UNg9lmk60sg#t=34m59s&quot;&gt;34:59&lt;/a&gt;
+	  &lt;/p&gt;&lt;/li&gt;
+
+          &lt;li&gt;&lt;p&gt;There were some nifty demos at the beginning of the
+          keynote.
+	  &lt;/p&gt;&lt;/li&gt;
+
+	&lt;/ul&gt;
+
+        &lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON3920&amp;showEnrolled=false&quot;&gt;Building a Serverless State Service for the Cloud with Java 9 [CON3920]&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This session is the one I was most excited to give, because it is the
+future for me at Oracle.  After being allowed to finish Java EE 8
+(thanks in no small part to the community and Oracle's attentiveness to
+it), I was given the opportunity to join the team responsible
+for &lt;a href=&quot;http://www.oracle.com/technetwork/middleware/coherence/overview/&quot;&gt;Oracle
+Coherence&lt;/a&gt;.  This team is building a new state service for the cloud,
+based on Coherence, but with a much simpler API.  In fact, you can think
+of it as an API-less service since it will be exposed with cloud enabled
+implementations of existing Java 8 collections data structures, with
+some additions for things not present in the case of an entirely local
+collection.  Unfortunately, this talk was not recorded, but the slides
+  are available in the content catalog link above.&lt;/p&gt;
+
+&lt;h3&gt;Tuesday&lt;/h3&gt;
+
+&lt;p&gt;I did another spell of booth duty in the morning, as well as a panel
+discussion on the DevLive stage with Heather Vancura, Antoine-Sabot
+Durand, and Linda DeMichiel.  The interview is
+  at &lt;a href=&quot;https://www.youtube.com/watch?v=cTaBUu6C47U&quot;&gt;YouTube&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=IGN7979&amp;showEnrolled=false&quot;&gt;Ignite Session [IGN7979]: Java Your Next Theremin, among other talks&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Kevin Nilson, leader of the Silicon Valley JUG and wonderful guy
+organized an &quot;Ignite Session&quot; again.  I'd never done one before, but
+after the one I attended at DevoxxUS in April I felt I could do it.  The
+idea with an Ignite session is you get 5 minutes to present your talk.
+In that five minutes you get 20 slides, each advancing every 15 seconds,
+on auto-advance.  I gave a talk
+about &lt;a href=&quot;https://static.rainfocus.com/oracle/oow17/sess/1504978192376001CTLb/PF/20171003-javaone-lightning-theremin_1507731853795001sVbN.pptx&quot;&gt;building
+a Theremin&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Wednesday&lt;/h3&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON2023&amp;showEnrolled=false&quot;&gt;Contemporary Java Web Applications with JSF 2.3 [CON2023]&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This was the most monentous talk for me personally.  Fifteen years,
+six months, and seven days after giving my first JavaOne talk about JSF
+I gave what is likely to be my last, for the same reason as with
+Servlet.  But don't dismay, the future is bright for JSF.  JSF is in the
+first batch of projects to be handed off to EE4J, and it will very
+  likely be taken forward by JSF community expert Arjan Tijms.&lt;/p&gt;
+
+&lt;p&gt;Slides are above and video is &lt;a href=&quot;https://www.youtube.com/watch?v=yshXLB_HdhU&quot;&gt;on YouTube&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Thursday&lt;/h3&gt;
+
+&lt;p&gt;Not having to deliver any sessions, speak to any customers, do any
+booth duty, or sit-in for any guest spots, I was able to attend sessions
+  today.&lt;/p&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://www.oracle.com/javaone/keynotes.html#thursday&quot;&gt;Java Community Keynote&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20171005-community-keynote.jpg&quot; alt=&quot;Image of Duke's Choice Award Winners&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This fun keynote is available
+at &lt;a href=&quot;https://www.oracle.com/javaone/on-demand.html?bcid=5604479599001&quot;&gt;Oracle&lt;/a&gt;.&lt;/p&gt;
+
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1706&amp;showEnrolled=false&quot;&gt;Services, Assemble! Apply MVP Principles to Create Microservices Without Chaos [CON1706]&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This talk by my friend Mark Heckler talked about how to apply MVP
+  (Minimum Viable Product) principles to create cutting-edge
+  Microservices without chaos with Spring Cloud/Netflix OSS&lt;/p&gt;
+
+&lt;p&gt;Here are my raw notes.&lt;/p&gt;
+
+	&lt;ul&gt;
+
+&lt;p&gt;@MkHeck&lt;/p&gt;
+
+&lt;p&gt;Glad you're here to the end.&lt;/p&gt;
+
+&lt;p&gt;Listed some Pivotal products: Spring.&lt;/p&gt;
+
+&lt;p&gt;Who am I silde.&lt;/p&gt;
+
+&lt;p&gt;Likes Microservices, becuse it addresses many of the problems of the
+  Monoliths.&lt;/p&gt;
+&lt;p&gt;Analogy of Microservices to the Avengers.  Together they are more
+than the sum of the parts.  They come together to form a resilient
+  system.&lt;/p&gt;
+
+&lt;p&gt;Enablers: Monoliths are simpler from the outside.  Microservices
+introduces a lot of complexity.  Enablers: Spring Boot and Spring Cloud.
+Spring Boot is your onramp in becoming productive in the cloud.  Any
+  place you can deploy a JVM, you can deploy Spring Boot.&lt;/p&gt;
+
+&lt;p&gt;Spring Cloud OSS&lt;/p&gt;
+
+&lt;p&gt;Operational: config, service registry, circuit breaker, load
+balancer, intelligent router, asyc messaging, distributed tracing,
+security/oauth.&lt;/p&gt;
+
+&lt;p&gt;Impl: Spring Cloud Config, Netflix Eureaka, Netflix Hystrix, Netflix
+Ribbon, Netflix Zuul, Spring Cloud Stream, Spring Cloud Sleuth, Spring
+  Cloud Security&lt;/p&gt;
+
+&lt;p&gt;With a good circuit breaker, you can nest them.&lt;/p&gt;
+
+&lt;p&gt;Demo: start.spring.io.  Lots of extolling the virtues of this web
+  app.&lt;/p&gt;
+
+
+&lt;p&gt;application.properties, renamed to bootstrap.properties&lt;/p&gt;
+
+&lt;p&gt;Pointed out 80/20 rule.&lt;/p&gt;
+
+&lt;p&gt;Zuul plays a role of deompising a monolith.&lt;/p&gt;
+
+&lt;/ul&gt;
+
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1439&amp;showEnrolled=false&quot;&gt;Container: Check! But What About Persistent Data, Big Data, and Fast Data?! [CON1439]&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This session, by two of the engineers behind Mesosphere and Apache
+Mesos, used the 16 bit video game &quot;The Secret of Monkey Island&quot; to
+explore the challenges in running stateless services at scale in the
+  real world that has state.  Here are my raw notes.&lt;/p&gt;
+
+	&lt;ul&gt;
+
+&lt;p&gt;Joerg Schad and Johaness Unterstein&lt;/p&gt;
+
+&lt;p&gt;Monkey Island theme.&lt;/p&gt;
+
+&lt;p&gt;It all began with a monolith&lt;/p&gt;
+
+&lt;p&gt;Hardware, OS, app&lt;/p&gt;
+
+&lt;p&gt;Hardware, OS, web app&lt;/p&gt;
+
+&lt;p&gt;add horizontal scaling: Hardware, OS, app&lt;/p&gt;
+
+&lt;p&gt;add services under web app.&lt;/p&gt;
+
+&lt;p&gt;Add VMs under OS, and IaaS underVMs&lt;/p&gt;
+
+&lt;p&gt;Replace web app with finer services: Microservices.  Predefined
+  interfaces where each is defined to do one thing pretty good.&lt;/p&gt;
+
+&lt;p&gt;Add containers on top of OS: Put more services on each OS
+node. Spreadsheet scheduling.&lt;/p&gt;
+
+&lt;p&gt;Container scheduling comes into play.  Resource management.&lt;/p&gt;
+
+&lt;p&gt;Service management: collections of containers.  Excellent pictures of
+  containers from container ships sitting in row boats.&lt;/p&gt;
+
+&lt;p&gt;Health and readiness checks.  Health check, &quot;I am ready to serve
+  traffic&quot;.&lt;/p&gt;
+
+&lt;p&gt;But how do we get containers into production&lt;/p&gt;
+
+&lt;p&gt;DC/OS maven plugin: mvn docker:build docker:push dcos:deploy&lt;/p&gt;
+
+&lt;p&gt;Or mvn package dcos:uploadArtifact dcos:deployUCR&lt;/p&gt;
+
+&lt;p&gt;MapReduce is crunching Data&lt;/p&gt;
+
+&lt;p&gt;Data Processing: SMACK stack.  1. Events 2. Ingest (Kafka) 3. Store
+  (Cassandra) 4. Analyze (Spark) 5. Act (Akka)&lt;/p&gt;
+
+&lt;p&gt;Demo of running DC/OS on AWS.  &lt;/p&gt;
+
+	&lt;/ul&gt;
+
+&lt;h4&gt;&lt;a href=&quot;https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1416&amp;showEnrolled=false&quot;&gt;Modern Java Recipes [CON1416]&lt;/a&gt;&lt;/h4&gt;
+        
+&lt;p&gt;The last session of the show, for me, and for many folks, was given
+by my fripnd and
+fellow &lt;a href=&quot;https://www.facebook.com/nullpointersband/&quot;&gt;NullPointer&lt;/a&gt;
+Ken Koussen.  Ken is an excellent instructor and is so good at
+explaining complex topics.  Ken has a new book of the same name as this
+talk, and he was kind enough to sport me a copy in exchange for a meal
+at
+cash-only &lt;a href=&quot;https://www.yelp.com/biz/tommys-joynt-san-francisco&quot;&gt;Tommy's
+Joynt&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here are my raw notes.&lt;/p&gt;
+
+&lt;ul&gt;
+
+  &lt;p&gt;Ken Koussen&lt;/p&gt;
+
+&lt;p&gt;A few slides of self promition.&lt;/p&gt;
+
+&lt;p&gt;github.com/koussen/java_8_recipes&lt;/p&gt;
+
+&lt;p&gt;github.com/koussen/java_9_recipes&lt;/p&gt;
+
+&lt;p&gt;The Basics&lt;/p&gt;
+
+&lt;p&gt;streams, lambdas, method references&lt;/p&gt;
+
+&lt;p&gt;Beyond the basics&lt;/p&gt;
+
+&lt;p&gt;Lazy Streams&lt;/p&gt;
+
+&lt;p&gt;The peek method&lt;/p&gt;
+
+&lt;p&gt;Strings as Streams&lt;/p&gt;
+
+&lt;p&gt;anyMatch, allMatch, noneMatch&lt;/p&gt;
+
+&lt;p&gt;collect and reduce&lt;/p&gt;
+
+&lt;p&gt;flatMap vs. Map&lt;/p&gt;
+
+&lt;p&gt;Optional&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Functional interfaces&lt;/p&gt;
+
+&lt;p&gt;taken as given&lt;/p&gt;
+
+&lt;p&gt;Steam produces sequence of elements.  Does not store them.  Does not
+  modify them.  Produces new items.  Operations lazy when possible.
+  Once you hit a terminal, that stream is done.&lt;/p&gt;
+
+&lt;p&gt;If you use a stream in a method, it should be created in that method.&lt;/p&gt;
+
+&lt;p&gt;operations from source to pipeline.  No items are pulled from source
+  until terminal operation is reached.&lt;/p&gt;
+
+&lt;p&gt;Shows the lazyness.  findFirst() is a short circuiting terminal
+  operations.&lt;/p&gt;
+
+&lt;p&gt;Debugging with the peek() method.  IntelliJ has a nice plugin called
+  StreamDebugger.&lt;/p&gt;
+
+&lt;p&gt;peek() is like .map(n -&gt; { sop(n.entry); } );&lt;/p&gt;
+
+&lt;p&gt;Strings as Streams&lt;/p&gt;
+
+&lt;p&gt;aside: of() method.&lt;/p&gt;
+
+&lt;p&gt;Workaround.  chars() and codePoints() on String.&lt;/p&gt;
+
+&lt;p&gt;codePoints() returns a stream.  &lt;/p&gt;
+
+&lt;code&gt;&lt;pre&gt;
+    s.toLowerCase().codePoints().filter().collect(appendCodePoint).toString()
+&lt;/pre&gt;&lt;/code&gt;
+
+&lt;p&gt;Three argument Collect.&lt;/p&gt;
+
+&lt;/ul&gt;
+
+&lt;p&gt;I was literally the last person to leave the conference baggage area,
+as shown in this pic of my lone bag with a member of the Marriott Hotel
+  Staff.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20171005-last-bag.jpg&quot; alt=&quot;Ed's Bag Is Last&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Goodbye JavaOne.  I hope to see you again next year.&lt;/p&gt;</content><author><name></name></author><summary type="html">Last year, at JavaOne 2016, I had the honor of unlocking the JavaOne Rockstar achievement. 2017 was my first JavaOne after that, and I can say that the experience wasn't any different from the previous sixteen or so years I've been blessed to speak: exhausting, informative and inspiring. This blog post reviews the sessions I attended and presented and shares my thoughts and notes if I have them.</summary></entry><entry><title type="html">JAX-RS 2.1 New Feature Introduction: Server Sent Events Update</title><link href="/blog/2017/10/16/jax-rs-2_1-new-feature-update.html" rel="alternate" type="text/html" title="JAX-RS 2.1 New Feature Introduction: Server Sent Events Update" /><published>2017-10-16T10:00:00-04:00</published><updated>2017-10-16T10:00:00-04:00</updated><id>/blog/2017/10/16/jax-rs-2_1-new-feature-update</id><content type="html" xml:base="/blog/2017/10/16/jax-rs-2_1-new-feature-update.html">&lt;p&gt;I don't know what this says about my memory, but I was doing a little
 JAX-RS programming today and when I googled to remind myself of the
 particular feature I was using, I ran into &lt;a href=&quot;/blog/2017/02/22/jax-rs-2_1-new-feature-introduction.html&quot;&gt;my own blog
 post&lt;/a&gt; about that feature.  It took me a moment to recall that I had
@@ -1018,67 +1565,4 @@ do these things. &lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;Great analogy: escalator&lt;/p&gt;
 
 &lt;p&gt;The great thing here is that progressive web apps is that it brings
-  back the power of the link.&lt;/p&gt;</content><author><name></name></author><summary type="html">Chris Heilmann codepo8 https://www.christianheilmann.com/</summary></entry><entry><title type="html">Goto Chicago 2017 Bryan Cantrill</title><link href="/blog/2017/05/02/goto-brian-cantrill.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Bryan Cantrill" /><published>2017-05-02T10:00:00-04:00</published><updated>2017-05-02T10:00:00-04:00</updated><id>/blog/2017/05/02/goto-brian-cantrill</id><content type="html" xml:base="/blog/2017/05/02/goto-brian-cantrill.html">&lt;p&gt;Raw notes.&lt;/p&gt;
-
-&lt;h2&gt;Recounting the story of a Joyent outage&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.theregister.co.uk/2014/05/28/joyent_cloud_down/&quot;&gt;Here is the register piece on the outage.&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;How did we get here?&lt;/h2&gt;
-
-&lt;p&gt;He points out the flip side of such higly sophisticated automation:
-the stress upon the humans in the loop is amplified.  A human
-fallibility in a semi-automated system is worse than a human fallibility
-  in a non-automated system.&lt;/p&gt;
-
-&lt;h2&gt;Human fallibility in semi-automated systems&lt;/h2&gt;
-
-&lt;p&gt;Recounted the story of the Air Canada flight that ran out of fuel in
-flight.  767-200 in 1983.  The fuel mishap was due to the process of
-  converting from imperial to metric units at some place in the system.&lt;/p&gt;
-
-&lt;p&gt;Amazon S3 outage.&lt;/p&gt;
-
-&lt;h2&gt;Whither microservices?&lt;/h2&gt;
-
-&lt;p&gt;Microservices suffer from the amplification problem mentioned
-  above.&lt;/p&gt;
-
-&lt;h2&gt;Some non-IT illustrations&lt;/h2&gt;
-
-&lt;p&gt;1963 power outage in the northeast&lt;/p&gt;
-
-&lt;p&gt;This illustrates the notion of the load has to go somewhere.&lt;/p&gt;
-
-&lt;p&gt;Used the example of Three Mile Island.  When you have auxiliary
-systems, those systems are not checked.  The more alarms and alerts you
-  have, the more likely they will overload the operators.&lt;/p&gt;
-
-&lt;p&gt;We are gleefully deploying these distributed systems and telling
-  ourselves they will not fail.&lt;/p&gt;
-
-&lt;h2&gt;Debugging in the abstract&lt;/h2&gt;
-
-&lt;p&gt;Debugging is the process by which we understand pathological behavior
-  in the system.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;I like how he acknowledges that we have it easy in the software
-world, compared to the real world.  He is a very entertaining
-    speaker, but I don't like how he is yelling at us.&lt;/b&gt;&lt;/p&gt;
-
-&lt;p&gt;Debugging is the ability to be able to ask the right questions.  He
-  described the continually narrowing set of constraints.&lt;/p&gt;
-
-&lt;h2&gt;The craft of debuggable software&lt;/h2&gt;
-
-&lt;p&gt;One slide as a nod to what you need to do to make things
-  debuggable.&lt;/p&gt;
-
-&lt;h2&gt;A culture of debugging&lt;/h2&gt;
-
-&lt;p&gt;We must have an organizational culture that supports taking the extra
-time for building for debuggability.&lt;/p&gt;
-
-&lt;p&gt;When you have an outage you need to harvest all the useful
-information and learn for it.  Every outage presents an opportunity to
-  advance understanding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes.</summary></entry></feed>
+  back the power of the link.&lt;/p&gt;</content><author><name></name></author><summary type="html">Chris Heilmann codepo8 https://www.christianheilmann.com/</summary></entry></feed>

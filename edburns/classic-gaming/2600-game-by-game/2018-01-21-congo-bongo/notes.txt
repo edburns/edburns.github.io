@@ -1,0 +1,58 @@
+I. OTG Story
+
+  A lot of things are tying together in this audio submission, but the
+  first thing I want to mention is a new store I found at my local mall,
+  the Altamonte Mall: Hudsons Video Games.  I live in the Orlando FL
+  metro area and this place is a locally owned used video game store.
+  They have locations at several local malls.  Orlando had been without
+  a decent used video game store for a very long time and I was over the
+  moon delighted to find them when my son and I went to the mall to get
+  ice cream.  They have a constantly refreshed collection of Atari, SMS,
+  NES, SNES, Intellivision and more recent consoles as well.  I was very
+  impressed.  Please give them a follow on twitter @hudsonsgames.
+
+  So after my terrible experience of trying to play popeye on 2600.emu
+  on Android, I wondered if you could use an XBox 360 controller with
+  it, and of course you can.  However, you need a cheap little cable
+  called an OTG cable, for on-the-go.  I am re-learning how to optimize
+  my emulation experience after sixteen years of not messing with
+  emulation at all.  I dally in trying to get as close to the original
+  hardware as possible, while sticking to my absolute cheapo ethos.
+
+  The last time I messed with emulation it was 2002 or so.  I somehow
+  found instructions on the Internet for building an Atari 2600 to 15
+  pin PC joystick adapter by soldering some components onto a
+  breadboard.
+
+  Had another adapter to convert it to USB.  This worked well enough.
+
+  I used to love playing the Atari 8-bit games Star Raiders and Bruce
+  Lee.
+
+  Sixteen years later I found your podcast and I'm getting back into the
+  hobby, but still with the cheapo ethos.
+
+  Back to the OTG.  I plumped for one on Amazon for $2.50.  Combine that
+  with the exciting commercial viability of hudsonsgames and I was able
+  to walk in and buy a used XBox 360 controller that worked just fine
+  for Congo Bongo.
+
+II. Thoughts on the game.
+
+I watched a few videos, including the No Swear Gamer, and it seems like
+this one was ported to an insanely diverse selection of platforms.  I
+don't recall ever seeing Congo Bongo in the arcade back in the day.  So
+I don't think it was that popular, which makes me wonder why the full
+court press for home system ports?
+
+I liked the isometric first level, it was pretty impressive.  I liked
+the waterfall effects, I noticed how after you jump across the chasm to
+climb up to the monkey area, the ledge from which you jumped collapses,
+that is a nice touch.  The animation of your character climbing from
+platform to another was really smooth.  I liked how they approximate the
+scrolling between the levels of the arcade version.
+
+Finally, we come to the incinerating Congo Bongo scene.  I showed this
+to my 12 year old and he says it was more violent than Overwatch.  I
+thought that was funny.
+

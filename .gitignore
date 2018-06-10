@@ -1,3 +1,9 @@
 changebundle.txt
 status.txt
 blog/README
+*_data/*
+.DS_Store
+*.au
+*.aup
+*~
+*.zip

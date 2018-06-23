@@ -11,3 +11,5 @@ filter: flipv fliph;
 .complete { color: green }
 .authoractionrequired { color: red }
 .publisheractionrequired { color: blue }
+p { padding-right: 150px }
+li { padding-right: 150px }

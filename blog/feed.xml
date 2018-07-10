@@ -1,5 +1,218 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2017-11-30T14:47:42-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">JavaOne 2017 Wrap Up</title><link href="/blog/2017/11/30/javaone-2017-wrapup.html" rel="alternate" type="text/html" title="JavaOne 2017 Wrap Up" /><published>2017-11-30T08:00:00-05:00</published><updated>2017-11-30T08:00:00-05:00</updated><id>/blog/2017/11/30/javaone-2017-wrapup</id><content type="html" xml:base="/blog/2017/11/30/javaone-2017-wrapup.html">&lt;p&gt;Last year, at JavaOne 2016, I had the honor of unlocking
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-07-10T14:01:12-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Secrets of the Rockstar Programmers at Orlando JUG, 6pm Thursday 12 July 2018</title><link href="/blog/2018/07/10/orlando-jug-rockstar.html" rel="alternate" type="text/html" title="Secrets of the Rockstar Programmers at Orlando JUG, 6pm Thursday 12 July 2018" /><published>2018-07-10T13:00:00-04:00</published><updated>2018-07-10T13:00:00-04:00</updated><id>/blog/2018/07/10/orlando-jug-rockstar</id><content type="html" xml:base="/blog/2018/07/10/orlando-jug-rockstar.html">&lt;p&gt;I’m blessed with the opportunity to present the current version of my
+“Secrets of the Rockstar Programmers” talk at a special edition of the
+Orlando Java User’s Group.  JUG leader Mike Levin is even more blessed
+with the opportunity to visit &lt;a href=&quot;http://www.jcrete.org/&quot;&gt;JCrete&lt;/a&gt;, and so
+chose to re-schedule the July meeting rather than canceling it.&lt;/p&gt;
+
+&lt;p&gt;As usual, there is free pizza!&lt;/p&gt;
+
+&lt;h2 id=&quot;location&quot;&gt;Location&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Intrepid Conference Room
+Oracle America, Inc.
+7453 TG Lee Boulevard
+Orlando, FL 32822-4416
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://goo.gl/maps/QGYSUhGpHFS2&quot;&gt;Map Link&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;rsvps&quot;&gt;RSVPs&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.codetown.com/events/orlandojug-secrets-of-the-programming-rock-stars&quot;&gt;CODETOWN&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.meetup.com/OrlandoJUG/events/252475286/&quot;&gt;MeetUp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;abstract&quot;&gt;Abstract&lt;/h2&gt;
+
+&lt;p&gt;How in the world can I keep up with all this information coming at me
+every day?&lt;/p&gt;
+
+&lt;p&gt;What can I do to ensure that I keep bringing value to my employer or
+client and to help ensure continued career success?&lt;/p&gt;
+
+&lt;p&gt;What will the practice of software development look like in ten years
+time?&lt;/p&gt;
+
+&lt;p&gt;How do I know where to invest time and effort in stewarding my skillset?&lt;/p&gt;
+
+&lt;p&gt;In 2008, Ed Burns interviewed top programmers from a variety of software
+disciplines for the book “Secrets of the Rock Star Programmers”. Now
+in 2018, Ed revisits the cross section of secrets (aka character
+attributes) exhibited by these rockstars for the current world of
+programming.&lt;/p&gt;
+
+&lt;p&gt;Join this session to learn more about these characteristics that can
+help you become a better programmer.&lt;/p&gt;
+
+&lt;h2 id=&quot;purpose-of-the-talk&quot;&gt;Purpose of the Talk&lt;/h2&gt;
+
+&lt;p&gt;Ed interviews some of the best programmers of our time and shares their
+strategies for success.&lt;/p&gt;
+
+&lt;h2 id=&quot;target-audience&quot;&gt;Target Audience&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Any developer wanting to improve their career skills.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;audience-takeaway&quot;&gt;Audience Takeaway&lt;/h2&gt;
+
+&lt;p&gt;A set of concrete, actionable steps you can take right now to become a
+better developer.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m blessed with the opportunity to present the current version of my “Secrets of the Rockstar Programmers” talk at a special edition of the Orlando Java User’s Group. JUG leader Mike Levin is even more blessed with the opportunity to visit JCrete, and so chose to re-schedule the July meeting rather than canceling it.</summary></entry><entry><title type="html">JavaLand 2018 Holly Cummins</title><link href="/blog/2018/03/12/javaland-holly-cummins.html" rel="alternate" type="text/html" title="JavaLand 2018 Holly Cummins" /><published>2018-03-12T04:45:00-04:00</published><updated>2018-03-12T04:45:00-04:00</updated><id>/blog/2018/03/12/javaland-holly-cummins</id><content type="html" xml:base="/blog/2018/03/12/javaland-holly-cummins.html">&lt;p&gt;Holly leads the &quot;Cloud Garage&quot; at IBM, working with customers to
+  create solutions when moving to the cloud.&lt;/p&gt;
+
+&lt;p&gt;Holly gives the summary of the &quot;Cloudy With A Chance Of Meatballs&quot;
+  movie.&lt;/p&gt;
+
+&lt;p&gt;Story of the hero who wanted to make the world better, but ended up
+  making some mistakes.&lt;/p&gt;
+
+&lt;p&gt;Cites Joseph Campbell, who observed the commonalities among the
+world's myths.  He finds the recurring themes among them.  He formed the
+idea of the &quot;monomyth&quot;.  There is actually only one story: the
+  quest.&lt;/p&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;&lt;p&gt;all to action
+	  &lt;/p&gt;&lt;/li&gt;
+
+     	  &lt;li&gt;&lt;p&gt;obstacles
+	  &lt;/p&gt;&lt;/li&gt;
+          
+         &lt;li&gt;&lt;p&gt;reward
+	  &lt;/p&gt;&lt;/li&gt;
+
+	&lt;/ul&gt;
+
+&lt;p&gt;Observes we are the hero of our own story.&lt;/p&gt;
+
+&lt;p&gt;Some aspects of being that with respect to being a developer.&lt;/p&gt;
+
+&lt;p&gt;Listed some rockstar programmer skills: automate, tools mastery, etc.&lt;/p&gt;
+
+&lt;h2&gt;Hero stories for the cloud&lt;/h2&gt;
+
+&lt;p&gt;Long deploy times.&lt;/p&gt;
+
+&lt;h2&gt;But what about the obstacles&lt;/h2&gt;
+
+&lt;p&gt;Adoption is still not complete.  Relates this to the hero's &quot;call to
+  action&quot;.&lt;/p&gt;
+
+	&lt;ul&gt;
+
+	  &lt;li&gt;&lt;p&gt;Security fears&lt;/p&gt;
+
+            &lt;p&gt;Bank: Watson discovery.  The crawler that populates the
+              ML by putting all the data in the cloud.&lt;/p&gt;
+
+            &lt;p&gt;But you must encrypt it.&lt;/p&gt;
+
+            &lt;p&gt;In the traditional stack, the dev is responsible for the
+            security of their code.  In the cloud, the entire stack,
+            including the OS, is the built artifact.  So the developer
+            must take responsibility for OS patches, and everything on
+            up through the stack.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+	  &lt;li&gt;&lt;p&gt;Cloud-nativeness&lt;/p&gt;
+
+            &lt;p&gt;Definition: it's not just centralized computing.&lt;/p&gt;
+
+            &lt;p&gt;History lesson: tty, mirocomputer, client-server, PC,
+            Grid computing, laptops, cloud, edge computing.  She used a
+              sine wave to cover what I often depict as a pendulum.&lt;/p&gt;
+
+            &lt;p&gt;CNCF: Containerized, Dynamically orchestrated, microservices
+              oriented.&lt;/p&gt;
+
+            &lt;p&gt;Holly adds: elasticity and agility, as well as assuming
+              everything is unreliable.&lt;/p&gt;
+
+            &lt;p&gt;JVM considerations: the traditional Rafael Benevides
+              concerns: containers get killed.&lt;/p&gt;
+
+            &lt;p&gt;Logging: the need for data analytics simply to get access
+              to the logs.  Prometheus.&lt;/p&gt;
+
+            &lt;p&gt;Microservices are hard.  They seem like a great idea, but
+            when you try them.  Here is where she brings back in the
+              meatball movie.&lt;/p&gt;
+
+            &lt;p&gt;Cost for Kubernetes clusters, especially if you fail to
+              tear them down when you are done.&lt;/p&gt;
+
+            &lt;p&gt;Needing a cloud to manage your cloud.&lt;/p&gt;
+
+          &lt;/li&gt;
+
+	&lt;/ul&gt;
+
+        &lt;h3&gt;Trends&lt;/h3&gt;
+
+&lt;p&gt;QaaS quantum as a service&lt;/p&gt;
+
+&lt;p&gt;renewed interest in IaaS because the I can have super expensive
+  hardware, such as GPU loaded machines.&lt;/p&gt;
+
+&lt;h3&gt;Cloud Native Thinking&lt;/h3&gt;
+
+&lt;p&gt;Digital Native analogy&lt;/p&gt;</content><author><name></name></author><summary type="html">Holly leads the &quot;Cloud Garage&quot; at IBM, working with customers to create solutions when moving to the cloud.</summary></entry><entry><title type="html">JavaLand 2018 Arun Gupta Service Discovery In Container Orchestration Frameworks</title><link href="/blog/2018/03/12/javaland-arun-gupta.html" rel="alternate" type="text/html" title="JavaLand 2018 Arun Gupta Service Discovery In Container Orchestration Frameworks" /><published>2018-03-12T03:00:00-04:00</published><updated>2018-03-12T03:00:00-04:00</updated><id>/blog/2018/03/12/javaland-arun-gupta</id><content type="html" xml:base="/blog/2018/03/12/javaland-arun-gupta.html">&lt;p&gt;On a cold and wet morning in Phantasialand, my old pal Arun Gupta
+gave The first regular session at JavaLand 2018.  There was an
+impressive number of attendees, considering the early hour, even before
+  the opening greeting from DOAG CEO Fried Saacke.&lt;/p&gt;
+
+&lt;p&gt;Speaker Bio&lt;/p&gt;
+
+&lt;p&gt;The need for service discovery.  How else can services know how to
+communicate with other services?  The need for this is even more acute
+in the cloud when the location and cardinality of the services is highly
+dynamic.  This works best with stateless services.&lt;/p&gt;
+
+&lt;p&gt;Examples: Docker Swarm, Kubernetes, Amazon ECS, Mesosphere&lt;/p&gt;
+
+&lt;h2&gt;Docker Swarm&lt;/h2&gt;
+
+&lt;p&gt;Docker for AWS.  A cloud formation template, automatic multi-host
+cluster.  Well integrated with AWS constructs: autoscaling, load
+  balancing, logs in CloudWatch.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;docker service create --replicas 3 --name web jboss/wildfly&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The default: master and four nodes.  Three replicas mean you get
+  three replicas of the whole five nodes.&lt;/p&gt;
+
+&lt;h3&gt;Routing Mesh&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;docker service create --replicas 3 --name web -p 8080:8080 jboss/wildfly&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The addition of the port configures the load balancer&lt;/p&gt;
+
+&lt;h3&gt;Docker Compose File&lt;/h3&gt;
+
+&lt;p&gt;Defines the docker stack, containing your services.&lt;/p&gt;
+
+&lt;h2&gt;Kubernetes&lt;/h2&gt;
+
+&lt;p&gt;CNCF project&lt;/p&gt;
+
+&lt;p&gt;Box diagram of parts of the Kubernetes cluster.&lt;/p&gt;
+
+&lt;p&gt;Scheduler and Controller Manager watch the etcd, because the etcd is
+  easily watchable.&lt;/p&gt;
+
+&lt;p&gt;The labels are in etcd, this allows the pods and services to be
+  loosely coupled.&lt;/p&gt;
+
+&lt;p&gt;We need an ingress LB that allows your service to be seen from the
+  outside.&lt;/p&gt;
+
+&lt;p&gt;Arun: 57% of K8s in the world runs on AWS.&lt;/p&gt;</content><author><name></name></author><summary type="html">On a cold and wet morning in Phantasialand, my old pal Arun Gupta gave The first regular session at JavaLand 2018. There was an impressive number of attendees, considering the early hour, even before the opening greeting from DOAG CEO Fried Saacke.</summary></entry><entry><title type="html">JavaOne 2017 Wrap Up</title><link href="/blog/2017/11/30/javaone-2017-wrapup.html" rel="alternate" type="text/html" title="JavaOne 2017 Wrap Up" /><published>2017-11-30T08:00:00-05:00</published><updated>2017-11-30T08:00:00-05:00</updated><id>/blog/2017/11/30/javaone-2017-wrapup</id><content type="html" xml:base="/blog/2017/11/30/javaone-2017-wrapup.html">&lt;p&gt;Last year, at JavaOne 2016, I had the honor of unlocking
 the &lt;a href=&quot;https://www.oracle.com/javaone/rock-star-wall-of-fame.html#burns&quot;&gt;JavaOne
 Rockstar&lt;/a&gt; achievement.  2017 was my first JavaOne after that, and I
 can say that the experience wasn't any different from the previous
@@ -1273,296 +1486,4 @@ people who have helped keep it running and migrate its content to new
 &lt;li&gt;Heather Vancura&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20170515-javanet-closed.png&quot; alt=&quot;Java.net closed message&quot; /&gt; &lt;img src=&quot;/blog/assets/20170516-eol.gif&quot; alt=&quot;END OF LINE&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Updated: 2017-05-16 18:07Z Added more images.</summary></entry><entry><title type="html">Goto Chicago 2017 Zhamak Dehghanil</title><link href="/blog/2017/05/02/goto-zhamak-dehghani.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Zhamak Dehghanil" /><published>2017-05-02T17:30:00-04:00</published><updated>2017-05-02T17:30:00-04:00</updated><id>/blog/2017/05/02/goto-zhamak-dehghani</id><content type="html" xml:base="/blog/2017/05/02/goto-zhamak-dehghani.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/zhamakd&quot;&gt;Zhamak Dehghanil&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Getting to Microservices is a journey.  Looking for scale, get more
-capabilities, experimenting with improvements to their core business,
-  not just AB testing.&lt;/p&gt;
-
-&lt;p&gt;Nice simple image of a journey down the hill through the valley, and
-up the hill.&lt;/p&gt;
-
-&lt;p&gt;Deconstruct the monolith, unlock business capabilities.&lt;/p&gt;
-
-&lt;p&gt;Overview of microservices ecosystem.&lt;/p&gt;
-
-&lt;p&gt;1. Monolithic, 2. intelligently integrated, 3. layered, web app,
-  4. centrally integrated, 5. Microservices, 6. Microservices ecosystem
-  on a platform.&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;This timeline makes me think about step 7.  Perhaps when the microservices leave the enterprise and can be sold as standalone services?&lt;/b&gt;&lt;/p&gt;
-
-&lt;p&gt;Microservices around business capabilities.  API as a product, the
-fabric of integration.  Independently releaseable.  Teams aligned with
-  services.  Built on a self-served platform.&lt;/p&gt;
-
-&lt;h2&gt;Monolith Evolution: The Battle&lt;/h2&gt;
-
-&lt;h3&gt;1. Identify most constraining&lt;/h3&gt;
-
-&lt;p&gt;Decouple the most constraining factor early.  The Knot.  Apply the
-theory of constraints, as a chain is no stronger than its weakest
-link.  For example.  A monolith that makes heavy use of session.  Need to find out what is the logical meaning of those things.  Use structural analysis tool.&lt;/p&gt;
-
-&lt;h3&gt;2. Decouple capability, not code&lt;/h3&gt;
-
-&lt;p&gt;The cost of reusing compared to its value is often underestimated.
-  It might be worth re-writing.  Use toxcicity evaluation tool.&lt;/p&gt;
-
-&lt;h3&gt;3. Decouple what matters&lt;/h3&gt;
-
-&lt;p&gt;Decouple the capability that is lively, being used... use code
-  analysis tool such as CodeScene for finding lively components.&lt;/p&gt;
-
-&lt;h3&gt;4. Decouple vertically, release the data early&lt;/h3&gt;
-
-&lt;p&gt;Apply the first principle of microservices: independence of build and
-operation.  Because each microservice is self contained, including
-  state, you need to extract full stack.&lt;/p&gt;
-
-&lt;p&gt;the anti-patterns: only decouple facade, only decouple backend
-  services, never decouple data.&lt;/p&gt;
-
-&lt;h3&gt;5. Minimize dependency back to monolith&lt;/h3&gt;
-
-&lt;p&gt;When you extract, don't go back to the monolith.  Tool: expose API
-from monolith.  Use anti-corruption layer in service to use
-monolith.&lt;/p&gt;
-
-&lt;h3&gt;6. Go Macro first then go Micro&lt;/h3&gt;
-
-&lt;p&gt;Recognize that operating a large number of small services requires
-higher maturity.  Must walk before running.  Give yourself time to
-acquire those skills.  Tool: use hyperlinks to logical resources within
-or outside the physical service boundary.  HATEOAS: The apps can return
-links that initially point back to oneself, but then can be changed to
-point to other services, and the clients will not notice the
-transition.&lt;/p&gt;
-
-&lt;h3&gt;7. Migrate in atomic steps of architecture evolution, not devolution&lt;/h3&gt;
-
-&lt;p&gt;Make sure that every step takes you closer to your goal.  Sometimes
-  take a small step, sometimes take a large leap.  Tool: decouple,
-  redirect, retire.&lt;/p&gt;
-
-&lt;h2&gt;The climb&lt;/h2&gt;
-
-&lt;p&gt;Start with a clear outcome in mind.  Define a fitness function.
-  Experiment speed, security, throughput.  Radar chart.&lt;/p&gt;
-
-&lt;p&gt;Hypothesize and measure.  Identify metrics.  For example, measure
-number of applications built with the API, how quickly you can create
-  new APIs.&lt;/p&gt;
-
-&lt;p&gt;Enable with a self-service platform: Domain API, Data infrastructure,
-  Delivery Infrastructure.&lt;/p&gt;
-
-&lt;p&gt;Trade-offs instead of
-solutions. &lt;a href=&quot;https://www.youtube.com/watch?v=3_EtIWmja-4&quot;&gt;&quot;There
-are no solutions only tradeoffs&quot; &amp;mdash; Thomas Sowell&lt;/a&gt;.  See
-also &lt;a href=&quot;http://www.quebecoislibre.org/younkins6.html&quot;&gt;Reality is
-Not Optional: Thomas Sowell's Vision of Man and Society&lt;/a&gt;. Reuse
-vs. Build vs. Buy vs. Re-write. &lt;/p&gt;
-
-&lt;p&gt;Align organization: How is the funding.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Zhamak Dehghanil.</summary></entry><entry><title type="html">Goto Chicago 2017 Randy Shoup</title><link href="/blog/2017/05/02/goto-randy-shoup.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Randy Shoup" /><published>2017-05-02T15:30:00-04:00</published><updated>2017-05-02T15:30:00-04:00</updated><id>/blog/2017/05/02/goto-randy-shoup</id><content type="html" xml:base="/blog/2017/05/02/goto-randy-shoup.html">&lt;p&gt;Raw notes from &lt;a href=&quot;http://twitter.com/randyshoup&quot;&gt;Randy Shoup&lt;/a&gt;.&lt;/p&gt;
-
-
-&lt;p&gt;VP of engineering at Stitch Fix.  Did consulting in a &quot;CTO as a
-service&quot;, before that was Director of Engineering at Google and chief
-  engineer at eBay.&lt;/p&gt;
-
-&lt;p&gt;About Stitch Fix.  Reverse of standard retail.  Fill out style
-profile, get five handpicked items, keep what you like, return the
-  rest.&lt;/p&gt;
-
-&lt;p&gt;Behind the model is a lot of Art and Data Science.&lt;/p&gt;
-
-&lt;p&gt;1:1 Ratio of engineering and data scientists&lt;/p&gt;
-
-&lt;p&gt;Apply intelligence to &lt;b&gt;every&lt;/b&gt; part of the business&lt;/p&gt;
-
-&lt;p&gt;Buying, inventory management, logistics, styling, demand prediction&lt;/p&gt;
-
-&lt;p&gt;What is styling: personalized recommendations based on algorithmic
-  recommendations with a human curation layer.&lt;/p&gt;
-
-&lt;p&gt;Modern software dev: org, practices, culture, &lt;/p&gt;
-
-&lt;p&gt;small teams, devops&lt;/p&gt;
-
-&lt;p&gt;Small teams: aligned to domains, cross functional, depend on other
-  teams for help as well.&lt;/p&gt;
-
-&lt;p&gt;practices: TDD.  Motherhood and apple pie.  Continuous delivery: most
-applications deployed multiple times per day.  Release smaller units of
-  work, easier to roll back and role forward.  Better for AB testing.&lt;/p&gt;
-
-&lt;p&gt;Culture: The amazon model: you build it, you run it.&lt;/p&gt;
-
-&lt;h2&gt;Microservices&lt;/h2&gt;
-
-&lt;p&gt;Architecture Evolution&lt;/p&gt;
-
-&lt;p&gt;eBay: Monolithic Perl, Monolitic C++, Java, Microservices.&lt;/p&gt;
-
-&lt;p&gt;Twitter and Amazon had a similar evolution.  It's ok to start out as
-  a monolith.&lt;/p&gt;
-
-&lt;p&gt;The micro of microservice is: single purpose, simple well defined
-interface, isolated persistence (each one keeps its own state).  It's
-  SOA done right.&lt;/p&gt;
-
-&lt;p&gt;Approach 1: operate your own data store.  Store to your own Postgres, ie.&lt;/p&gt;
-
-&lt;p&gt;Approach 2: Use a persistence service and store to your own tables,
-  operated as a service on your behalf.  Slice is isolated.&lt;/p&gt;
-
-&lt;h3&gt;Maintaining interface stability&lt;/h3&gt;
-
-&lt;p&gt;backward/forward compatibility of interfaces.  Can never break your
-  client's code.  Semantic versioning.  major.minor.patch&lt;/p&gt;
-
-&lt;p&gt;Often maintaining multiple deployments and interface versions.  Need
-an explicit deprecation policy.&lt;/p&gt;
-
-&lt;p&gt;Went through procress from extracting services from the shared
-  DB.&lt;/p&gt;
-
-&lt;p&gt;Principle: single system of record.  There can be copies of that.&lt;/p&gt;
-
-&lt;p&gt;Approach 2: Async event+local cache.  Customer service sends events.
-  Order service listens to events.&lt;/p&gt;
-
-&lt;p&gt;Approach 3: Shared metadata library.  Read only metadata, basically
-  immutable.&lt;/p&gt;
-
-&lt;p&gt;Events as first class construct.  This was from Martin's talk.  Event
-  means: statement that something interesting has happened.&lt;/p&gt;
-
-&lt;p&gt;Fourth fundamental building block.  Presentation, Application,
-  Persistence, Events&lt;/p&gt;
-
-&lt;p&gt;Events and Microservices go well together.&lt;/p&gt;
-
-&lt;p&gt;Service interface includes: Synchronous request response.  Events the
-  service produces/consumes.&lt;/p&gt;
-
-&lt;p&gt;Joins: monolithic databases make joins very easily.  How to split it out?&lt;/p&gt;
-
-&lt;p&gt;Approach 1: Service that materializes the view.  Service that
-materializes the view.  &lt;/p&gt;
-
-&lt;p&gt;Approach 2: Join in the client.&lt;/p&gt;
-
-&lt;p&gt;Note that mashup style web apps do this.&lt;/p&gt;
-
-&lt;h3&gt;Microservice Techniques: Workflows and Sagas&lt;/h3&gt;
-
-&lt;p&gt;Problem: Monolithic apps make this trivially easy.  Splitting data
-across services is hard.  So, transactions turn into Sagas: Model the
-transaction as a series of steps coordinated by events.  It's like a
-workflow.  Rolllback by applying compensating operations.  Many common
-systems already do this.  For example payment processing and approval
-  workflows (expense reports).&lt;/p&gt;
-
-&lt;p&gt;Ideal use for functions as a service.  Very lightweight logic,
-stateless, triggered by an event.  Healthy companies in the future will
-  be doing some or all of this.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from Randy Shoup.</summary></entry><entry><title type="html">Goto Chicago 2017 Chris Heilmann</title><link href="/blog/2017/05/02/goto-chris-heilmann.html" rel="alternate" type="text/html" title="Goto Chicago 2017 Chris Heilmann" /><published>2017-05-02T13:00:00-04:00</published><updated>2017-05-02T13:00:00-04:00</updated><id>/blog/2017/05/02/goto-chris-heilmann</id><content type="html" xml:base="/blog/2017/05/02/goto-chris-heilmann.html">&lt;p&gt;Chris Heilmann &lt;a href=&quot;https://twitter.com/codepo8&quot;&gt;codepo8&lt;/a&gt;  &lt;a href=&quot;https://www.christianheilmann.com/&quot;&gt;https://www.christianheilmann.com/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The web is not doing that well right now.&lt;/p&gt;
-
-	&lt;ul&gt;
-
-	  &lt;li&gt;&lt;p&gt;Censorship
-	  &lt;/p&gt;&lt;/li&gt;
-
-          &lt;li&gt;&lt;p&gt;Bullying
-	  &lt;/p&gt;&lt;/li&gt;
-
-          &lt;li&gt;&lt;p&gt;Trolling
-	  &lt;/p&gt;&lt;/li&gt;
-
-          &lt;li&gt;&lt;p&gt;Malware
-	  &lt;/p&gt;&lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;Bloat
-	  &lt;/p&gt;&lt;/li&gt;
-          
-
-	&lt;/ul&gt;
-
-
-&lt;p&gt;He thinks bloat is a big problem.  He liked the simplicity of the
-  early web.&lt;/p&gt;
-
-&lt;p&gt;Most of the new end users are on mobile devices.&lt;/p&gt;
-
-&lt;p&gt;The web was not ready for the mobile form factor.  Initially the
-  mobile web was a throw back to the early web.&lt;/p&gt;
-
-&lt;h2&gt;The publisher's dilemma&lt;/h2&gt;
-
-&lt;p&gt;On the web, users are in control.&lt;/p&gt;
-
-&lt;p&gt;Users are contitioned to not pay for things but find ways around
-  paying.&lt;/p&gt;
-
-&lt;p&gt;Somehow you have to pay the bills&lt;/p&gt;
-
-&lt;h2&gt;Publishers like apps&lt;/h2&gt;
-
-&lt;p&gt;Control look and feel&lt;/p&gt;
-
-&lt;p&gt;Revenue resource&lt;/p&gt;
-
-&lt;p&gt;Built-in obsolescence&lt;/p&gt;
-
-&lt;p&gt;Control the environment, iOS first, android maybe&lt;/p&gt;
-
-&lt;h2&gt;Reality check for publishers&lt;/h2&gt;
-
-&lt;p&gt;Pricing race to the bottom&lt;/p&gt;
-
-&lt;p&gt;Lock-in to the marketplace&lt;/p&gt;
-
-&lt;p&gt;Revenue share with marketplace/OS&lt;/p&gt;
-
-&lt;p&gt;Updates are hard and may be delayed by marketplace rules.&lt;/p&gt;
-
-&lt;p&gt;94% of app revenue comes from 1% of publishers&lt;/p&gt;
-
-&lt;p&gt;80% of users who download an app fail to become active users.&lt;/p&gt;
-
-&lt;p&gt;In-app purchases are where the money is.&lt;/p&gt;
-
-&lt;p&gt;60% of the apps in the Google Play app store have never been
-  downloaded.&lt;/p&gt;
-
-&lt;h2&gt;Tips for making better mobile web apps: PWA Progressive Web Apps&lt;/h2&gt;
-
-&lt;p&gt;Small initial payload&lt;/p&gt;
-
-&lt;p&gt;Form factor supporting interfaces: big buttons&lt;/p&gt;
-
-&lt;p&gt;High contrast&lt;/p&gt;
-
-&lt;p&gt;Support offline/flaky connection&lt;/p&gt;
-
-&lt;p&gt;Taking advantage of the power of the end user device&lt;/p&gt;
-
-&lt;p&gt;Avoid interaction latency&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Chris let drop several pearls of wisdom during his talk about how
-he interacts with the digital world that left me with the desire to
-learn more about them.  For example: ad blocking and VPN location
-spoofing, how to serve your site over https.  People need to know how to
-do these things. &lt;/b&gt;&lt;/p&gt;
-
-&lt;p&gt;App Manifest, and Service Worker.&lt;/p&gt;
-
-&lt;h2&gt;Progressive Enhancement&lt;/h2&gt;
-
-&lt;p&gt;Great analogy: escalator&lt;/p&gt;
-
-&lt;p&gt;The great thing here is that progressive web apps is that it brings
-  back the power of the link.&lt;/p&gt;</content><author><name></name></author><summary type="html">Chris Heilmann codepo8 https://www.christianheilmann.com/</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20170515-javanet-closed.png&quot; alt=&quot;Java.net closed message&quot; /&gt; &lt;img src=&quot;/blog/assets/20170516-eol.gif&quot; alt=&quot;END OF LINE&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Updated: 2017-05-16 18:07Z Added more images.</summary></entry></feed>

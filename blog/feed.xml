@@ -1,5 +1,117 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-10-14T16:15:11-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Fetchmail Hangs: Approach to Debugging</title><link href="/blog/2018/10/14/fetchmail-hangs.html" rel="alternate" type="text/html" title="Fetchmail Hangs: Approach to Debugging" /><published>2018-10-14T11:00:00-04:00</published><updated>2018-10-14T11:00:00-04:00</updated><id>/blog/2018/10/14/fetchmail-hangs</id><content type="html" xml:base="/blog/2018/10/14/fetchmail-hangs.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-11-09T12:10:08-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Getting Started with Wireshark</title><link href="/blog/2018/10/29/wireshark-getting-started.html" rel="alternate" type="text/html" title="Getting Started with Wireshark" /><published>2018-10-29T14:00:00-04:00</published><updated>2018-10-29T14:00:00-04:00</updated><id>/blog/2018/10/29/wireshark-getting-started</id><content type="html" xml:base="/blog/2018/10/29/wireshark-getting-started.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
+
+&lt;p&gt;I had never used Wireshark in earnest before today.  Here are some notes
+for the next time I have to use it.&lt;/p&gt;
+
+&lt;h2 id=&quot;details&quot;&gt;Details&lt;/h2&gt;
+
+&lt;h3 id=&quot;create-a-launcher-that-lets-you-run-multiple-wireshark-windows-at-the-same-time&quot;&gt;Create a launcher that lets you run multiple Wireshark windows at the same time.&lt;/h3&gt;
+
+&lt;p&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;Automator&lt;/code&gt; with the &lt;code class=&quot;highlighter-rouge&quot;&gt;run shell script&lt;/code&gt; action to execute this command:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;open -n /Applications/Wireshark.app
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Put this in the dock.  Bonus points for using the Cmd-i copy/paste icon
+trick.&lt;/p&gt;
+
+&lt;h3 id=&quot;configure-some-useful-columns&quot;&gt;Configure some useful columns&lt;/h3&gt;
+
+&lt;p&gt;This five minute
+&lt;a href=&quot;http://quietube7.com/v.php/http://www.youtube.com/watch?v=FHO8SdKighY&quot;&gt;YouTube&lt;/a&gt;
+video shows some tips for initial setup of Wireshark.&lt;/p&gt;
+
+&lt;h3 id=&quot;make-sure-you-set-it-up-to-capture-http2&quot;&gt;Make sure you set it up to capture HTTP2&lt;/h3&gt;
+
+&lt;p&gt;From
+&lt;a href=&quot;https://github.com/tony612/grpc-elixir/wiki/How-to-capture-HTTP2-packages-using-Wireshark&quot;&gt;this blog post&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    gRPC is based on HTTP/2. So we have to analyze packages to solve some
+    difficult problems related to the protocol. This wiki introduces how
+    to do this using Wireshark because capturing packages of HTTP/2 is a
+    little different with HTTP/TCP.
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   Download Wireshark of recent versions.
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;       Add your port to HTTP protocols:
+           Open Preferences
+           Select Protocols&amp;gt;HTTP. HTTP2 works too, but HTTP is enough
+           Add your HTTP/2 port like(50051) to TCP ports
+           Click OK to save the config
+       Select(Double click) your network interfaces like Loopback: lo0(local)
+       Input http2 in the filter
+       Run your gRPC applications
+       Stop(Capture&amp;gt;Stop). Then you can analyze the packages or save to a file for using later.
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;how-does-it-work-in-general&quot;&gt;How does it work in general?&lt;/h3&gt;
+
+&lt;p&gt;When you start Wireshark, it asks you to select which network
+interface(s) from which to capture packets.  If you’re doing localhost
+stuff, just doubleclick &lt;code class=&quot;highlighter-rouge&quot;&gt;Loopback: lo0&lt;/code&gt;.  It will start showing data.
+You can quickly type some text in the “Apply a display filter …” text
+area at the top to constrain what sort of information is shown.  For
+example, type &lt;code class=&quot;highlighter-rouge&quot;&gt;http&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;http2&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;grpc&lt;/code&gt; and press enter.  From this
+point on, only traffic related to those protocols is shown.  The filter
+language is incredibly rich and powerful.&lt;/p&gt;
+
+&lt;h3 id=&quot;using-wireshark-to-debug-grpc-traffic&quot;&gt;Using Wireshark to debug gRPC traffic&lt;/h3&gt;
+
+&lt;p&gt;My current project involves gRPC.  My mentor
+&lt;a href=&quot;http://www.notshabby.net/author/Ryan/&quot;&gt;Ryan Lubke&lt;/a&gt; shared the
+follomwing tip when using Wireshark to inspect gRPC traffic, distilled
+here as an ordered list.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start Wireshark using the launcher above&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Double click &lt;code class=&quot;highlighter-rouge&quot;&gt;Loopback: lo0&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Type &lt;code class=&quot;highlighter-rouge&quot;&gt;grpc&lt;/code&gt; into the &lt;code class=&quot;highlighter-rouge&quot;&gt;..using this filter&lt;/code&gt; text area and press enter.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start your gRPC traffic generation.  The window should look like the
+following.  Every row in the top pane is a packet of traffic that
+passes the filter above.  &lt;img src=&quot;/blog/assets/20181029-wireshark-01.png&quot; alt=&quot;Wireshark image showing gRPC packets&quot; title=&quot;Wireshark with
+gRPC packets&quot; /&gt; Note that the title of the window is &lt;code class=&quot;highlighter-rouge&quot;&gt;Loopback: lo0&lt;/code&gt;.
+Each Wireshark session listens on one network interface.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To see the actual gRPC traffic, right click one packet (row) in the
+top pane, and choose &lt;code class=&quot;highlighter-rouge&quot;&gt;Follow &amp;gt; TCP Stream&lt;/code&gt;.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/blog/assets/20181029-wireshark-02.png&quot; alt=&quot;Wireshark showing follow TCP&quot; title=&quot;Wireshark showing follow
+TCP&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The actual HTTP/2 traffic sent over gRPC is shown here:  &lt;img src=&quot;/blog/assets/20181029-wireshark-03.png&quot; alt=&quot;Wireshark image showing gRPC packets&quot; title=&quot;Wireshark with
+gRPC packets&quot; /&gt;  The text search feature is extremely useful.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Wireshark is an incredibly powerful tool.  It’s worth your time to learn
+it well.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry><entry><title type="html">Fetchmail Hangs: Approach to Debugging</title><link href="/blog/2018/10/14/fetchmail-hangs.html" rel="alternate" type="text/html" title="Fetchmail Hangs: Approach to Debugging" /><published>2018-10-14T11:00:00-04:00</published><updated>2018-10-14T11:00:00-04:00</updated><id>/blog/2018/10/14/fetchmail-hangs</id><content type="html" xml:base="/blog/2018/10/14/fetchmail-hangs.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;Symptom&lt;/em&gt;: Fetchmail hangs when fetching messages.  When it happens in
 fetchmail, it happens in Thunderbird as well.&lt;/p&gt;
@@ -1396,105 +1508,4 @@ familiar with Scala.  1:37:40 Dean: about half of their devs use Scala.
 90% of the JVM usage is Java.  1:38:12 Container management and
 orchestration: Freddy: it's wild west right now.  1:39:45 Jim has a
 counter argument: perhaps use build packs instead of containers.
-1:40:10 Freddy, I wish we could settle down with the Docker stuff.&lt;/p&gt;</content><author><name></name></author><summary type="html">I had the honor to be a guest on Java OffHeap (@offheap) while attending Goto Chicago 2017. I am also happy to announce that I am in talks with the OffHeap guys to have an occasional guest segment on their program, tentatively called &quot;Mark and Sweep&quot; where we will feature audio content from the existing interviews from my book Secrets of the Rockstar Programmers as well as new interviews with additional thought leaders.</summary></entry><entry><title type="html">Java Offheap Podcast Future of Java Part I at Goto Chicago 2017</title><link href="/blog/2017/05/25/javaoffheap-goto-part1.html" rel="alternate" type="text/html" title="Java Offheap Podcast Future of Java Part I at Goto Chicago 2017" /><published>2017-05-25T08:00:00-04:00</published><updated>2017-05-25T08:00:00-04:00</updated><id>/blog/2017/05/25/javaoffheap-goto-part1</id><content type="html" xml:base="/blog/2017/05/25/javaoffheap-goto-part1.html">&lt;p&gt;I had the honor to be a guest
-on &lt;a href=&quot;http://www.javaoffheap.com/&quot;&gt;Java OffHeap&lt;/a&gt;
-(&lt;a href=&quot;http://www.twitter.com/offheap&quot;&gt;@offheap&lt;/a&gt;) while
-attending &lt;a href=&quot;/blog/2017/04/19/goto-chicago-picks.html&quot;&gt;Goto Chicago 2017&lt;/a&gt;.  I am also
-happy to announce that I am in talks with the OffHeap guys to have an
-occasional guest segment on their program, tentatively called &quot;Mark and
-Sweep&quot; where we will feature audio content from the existing interviews
-from my book &lt;a href=&quot;http://ridingthecrest.com/purchase.html&quot;&gt;Secrets
-of the Rockstar Programmers&lt;/a&gt; as well as new interviews with
-additional thought leaders.&lt;/p&gt;
-
-&lt;p&gt;The link to the episode
-is &lt;code&gt;&amp;lt;&lt;a href=&quot;http://www.javaoffheap.com/2017/05/episode-24-nothing-like-sweet-home.html&quot;&gt;http://www.javaoffheap.com/2017/05/episode-24-nothing-like-sweet-home.html&lt;/a&gt;&amp;gt;&lt;/code&gt;,
-  but this post is my summary and notes.&lt;/p&gt;
-
-&lt;p&gt;Part II, with &lt;a href=&quot;https://twitter.com/javaFXpert&quot;&gt;Jim Weaver&lt;/a&gt;
-and &lt;a href=&quot;https://twitter.com/deanwampler&quot;&gt;Dean Wampler&lt;/a&gt;, is
-&lt;a href=&quot;/blog/2017/06/05/javaoffheap-goto-part2.html&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;Part I: Georges Saab and I&lt;/h2&gt;
-
-&lt;p&gt;02:58 I talk about the java.net sunset.  03:54 I mention that the
-email lists were still not ready at the time of the recording
-(now &lt;a href=&quot;https://javaee.groups.io/g/javaee&quot;&gt;now they are&lt;/a&gt;).  I
-also mention the essential nature of the search archive for JCP mailing
-lists.  This gives an insight into one of the challenges of evolving a
-multi-year project over many releases.  04:37 I explain why we couldn't
-use Google Groups. 05:25 I call for a moment of silence for the memory
-of java.net.  05:58 I mention you can submit pull requests, but the
-governance process is not yet in place for external commits.  06:19
-Georges explains that openjdk was never running on java.net, and so is
-not impacted.  06:58 Georges explains why they are not moving to GitHub
-from Mercurial.  They have everything working well enough with
-Mercurial, so there is no need to move it over to GitHub.  07:58 I
-mention that we gave up using JIRA when moving to GitHub, and I asked if
-anyone was using &lt;a href=&quot;http://waffle.io/&quot;&gt;waffle.io&lt;/a&gt; as an agile
-  overlay on top of GitHub.  No one was.&lt;/p&gt;
-
-&lt;p&gt;08:58 Bob asked about the transition to the &quot;train release&quot;.  Georges
-mentioned that we work on things in OpenJDK, and then take it to JCP for
-standardization.  We're not changing that way of doing things.  10:32
-Georges tells the story of how there is a diversity of opinions
-regarding release cadence.  11:42 Many of the things in 9 enable the
-more rapid release model.  12:07 Freddy explains how this evolved across
-the java releases.  12:48 Georges explains the &quot;medicine to candy
-ratio&quot;.  9 has more medicine and not as much candy.  14:00 Georges
-explains how this benefits the community as a whole.  It enables the
-small things to get out more quickly without waiting for big blockbuster
-releases.  15:00 He uses the 2016 delay of 9 as how it blocked things
-like String compaction.  15:30 I mention the rapid sunset schedule for
-Java 8 itself.  16:00 George observed September 2017 is end of public
-updates for 8, but most of the criteria will not be met.  17:03 Bob
-provides some insight on the corporate adoption angle.  18:27 Georges
-pitches modularizaion's benefits.  It mitigates the need to
-call &lt;code&gt;sun.misc.unsafe&lt;/code&gt;.  21:11 Freddy mentioned why people
-use it: it makes it even &lt;b&gt;possible&lt;/b&gt; to consider Java.  It makes the
-performance &lt;b&gt;acceptable&lt;/b&gt; compared to alternatives.  22:27 Freddy
-mentioned that the current plan is to provide standard alternatives
-before removing &lt;code&gt;sun.misc.unsafe&lt;/code&gt;.  22:38 Georges talks about
-the support burden on unsafe and device driver control for
-  Minecraft.&lt;/p&gt;
-
-&lt;p&gt;26:24 Bob brings up the IBM and RedHat plan to vote no on Jigsaw, as
-it relates to language development.  Georges provides some color.  27:55
-Freddy asks what's the biggest complaint from IBM and RedHat.  28:59
-Georges mentions the perils of scope creep.  29:46 Freddy asks what was
-  the outcome?  30:42 Georges answers. &lt;/p&gt;
-
-&lt;p&gt;32:30 Freddy asks, if you want to have faster startups, do you have
-to use Jigsaw?  32:40 Georges answers use jlink and ahead of time
-compilation.  By using jlink, you are telling the system what you are
-actually using.  33:29 Bob points that JCP and jigsaw can conflict
-because the releasing of Java subsets is prohibited according to legal
-rules.  Georges answers: 8 introduced &quot;compact profiles&quot;.  Nobody has
-complained about that.  Jlink is essentially a program doing that.
-Jlink is for you to use to package the application.  35:20 Bob asks how
-  small can it get?&lt;/p&gt;
-
-&lt;p&gt;36:38 Ed tells the story of the acute need for a module system in EE.
-The notion of having of modules would have influenced the design of EE.
-37:35 Ed tells the story of the ALPN backport story.  Every decision
-that is made has ripple effects down the pipeline.  38:57 Georges
-elaborates more on the train idea.  &quot;Marbles stuck in the tube behind
-the basketball&quot;.  The heart of the train release idea is that when
-features are ready, they can be released.  To see what's coming, look at
-the JEPs.  There is a minimum amount of time for JCP releases.  They are
-looking at possibly shortening that minimum. &lt;code&gt;Ed personally notes:
-    &lt;a href=&quot;https://martinfowler.com/bliki/Yagni.html&quot;&gt;YAGNI&lt;/a&gt;.&lt;/code&gt;&lt;/p&gt;
-
-
-&lt;p&gt;42:49 Project Valhalla: value types and data representation.  45:15
-How this relates to the ends of the spectrum: micro services and really
-big data.  45:42 Freddy likes value types, in particular its cache
-  friendliness.&lt;/p&gt;
-
-&lt;p&gt;46:00 Project Panama: JNI done right.  Generate ability to call into
-java from header files.  47:35 this plus value types is pretty
-  compelling.&lt;/p&gt;
-
-&lt;p&gt;48:12 Status of JShell: it's in 9.  49:17 JShell removes all the
-ceremony of getting started with Java.  We'll use things we learn from
-  that to understand where we actually need the ceremony and don't.&lt;/p&gt;</content><author><name></name></author><summary type="html">I had the honor to be a guest on Java OffHeap (@offheap) while attending Goto Chicago 2017. I am also happy to announce that I am in talks with the OffHeap guys to have an occasional guest segment on their program, tentatively called &quot;Mark and Sweep&quot; where we will feature audio content from the existing interviews from my book Secrets of the Rockstar Programmers as well as new interviews with additional thought leaders.</summary></entry></feed>
+1:40:10 Freddy, I wish we could settle down with the Docker stuff.&lt;/p&gt;</content><author><name></name></author><summary type="html">I had the honor to be a guest on Java OffHeap (@offheap) while attending Goto Chicago 2017. I am also happy to announce that I am in talks with the OffHeap guys to have an occasional guest segment on their program, tentatively called &quot;Mark and Sweep&quot; where we will feature audio content from the existing interviews from my book Secrets of the Rockstar Programmers as well as new interviews with additional thought leaders.</summary></entry></feed>

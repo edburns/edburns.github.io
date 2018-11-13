@@ -1,5 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-11-09T12:10:08-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Getting Started with Wireshark</title><link href="/blog/2018/10/29/wireshark-getting-started.html" rel="alternate" type="text/html" title="Getting Started with Wireshark" /><published>2018-10-29T14:00:00-04:00</published><updated>2018-10-29T14:00:00-04:00</updated><id>/blog/2018/10/29/wireshark-getting-started</id><content type="html" xml:base="/blog/2018/10/29/wireshark-getting-started.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-11-13T06:51:32-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Git Tags and Semver</title><link href="/blog/2018/11/13/semvergittags.html" rel="alternate" type="text/html" title="Git Tags and Semver" /><published>2018-11-13T06:41:00-05:00</published><updated>2018-11-13T06:41:00-05:00</updated><id>/blog/2018/11/13/semvergittags</id><content type="html" xml:base="/blog/2018/11/13/semvergittags.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
+
+&lt;p&gt;Debugging a Swift &lt;code class=&quot;highlighter-rouge&quot;&gt;Package.swift&lt;/code&gt; problem that turned out to be
+incorrectly git tags that did not sort correctly with respect to semver.&lt;/p&gt;
+
+&lt;h2 id=&quot;details&quot;&gt;Details&lt;/h2&gt;
+
+&lt;p&gt;I was trying to run the steps in an internal README to create a “Hello
+World” for a simple Swift project and could not understand why some code
+that had been removed from an internal dependency was still showing up
+in the “Hello World”.  This code had been removed from the most recent
+release of the internal dependency.  Upon investigation it turned out
+that the git tags for the internal dependency, when sorted using
+&lt;a href=&quot;https://semver.org/&quot;&gt;semver&lt;/a&gt;, showed an old release as the most
+recent.&lt;/p&gt;
+
+&lt;p&gt;I found it useful to create an alias that outputs the git tags sorted by
+semver.  I used the handy &lt;code class=&quot;highlighter-rouge&quot;&gt;semver&lt;/code&gt; npm module:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo npm install --verbose --global semver
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;and with that the following bash function works:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function semvergittags() {
+  semver `git tag -l | tr '\n' ' '`
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For example:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ejburns$ semvergittags
+0.1.11
+1.0.0-ea07-b0
+1.0.0-ea07-b1
+1.0.0-ea08-b1
+1.0.0-ea11-b1
+1.0.0-ea12-b1
+1.0.0-ea13
+1.0.0-ea14
+1.0.0-ea15
+1.0.0-ea16
+1.0.0-ea17
+1.0.0-ea18
+1.0.0-ea19
+1.0.0-ea20
+1.0.0-ea21
+1.0.0-ea22
+1.0.0-ea23
+1.0.0-ea24
+1.0.0-ea25
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I fixed the git tags using this
+&lt;a href=&quot;https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag&quot;&gt;answer from stack overflow&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git tag new old
+git tag -d old
+git push origin :refs/tags/old
+git push --tags
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I gave the answer an upvote because they shared this additional tip:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Finally, make sure that the other users remove the deleted tag. Please
+tell them (co-workers) to run the following command:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git pull --prune --tags&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That’s the sort of thing that could easily be forgotten and cause more
+head scratching.&lt;/p&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry><entry><title type="html">Getting Started with Wireshark</title><link href="/blog/2018/10/29/wireshark-getting-started.html" rel="alternate" type="text/html" title="Getting Started with Wireshark" /><published>2018-10-29T14:00:00-04:00</published><updated>2018-10-29T14:00:00-04:00</updated><id>/blog/2018/10/29/wireshark-getting-started</id><content type="html" xml:base="/blog/2018/10/29/wireshark-getting-started.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
 
 &lt;p&gt;I had never used Wireshark in earnest before today.  Here are some notes
 for the next time I have to use it.&lt;/p&gt;
@@ -1401,111 +1479,4 @@ Neal says it's for elastic scaling.  I would have liked to have seen
   efferent coupling means having a minimal number of dependencies.&lt;/p&gt;
 
 &lt;p&gt;Neal's new
-  book: &lt;a href=&quot;http://evolutionaryarchitecture.com/&quot;&gt;Evolutionary Architecture&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">One of the great things about working at Oracle is the high calibre of one's coworkers, and one of the best is my colleague Manfred Riem. Manfred shared this UJUG recording of Neal Ford's talk at their March meeting: &amp;lt;https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s&amp;gt;. This blog post covers my notes and impressions of the session.</summary></entry><entry><title type="html">Java Offheap Podcast Future of Java Part II at Goto Chicago 2017</title><link href="/blog/2017/06/05/javaoffheap-goto-part2.html" rel="alternate" type="text/html" title="Java Offheap Podcast Future of Java Part II at Goto Chicago 2017" /><published>2017-06-05T08:00:00-04:00</published><updated>2017-06-05T08:00:00-04:00</updated><id>/blog/2017/06/05/javaoffheap-goto-part2</id><content type="html" xml:base="/blog/2017/06/05/javaoffheap-goto-part2.html">&lt;p&gt;I had the honor to be a guest
-on &lt;a href=&quot;http://www.javaoffheap.com/&quot;&gt;Java OffHeap&lt;/a&gt;
-(&lt;a href=&quot;http://www.twitter.com/offheap&quot;&gt;@offheap&lt;/a&gt;) while
-attending &lt;a href=&quot;/blog/2017/04/19/goto-chicago-picks.html&quot;&gt;Goto Chicago 2017&lt;/a&gt;.  I am also
-happy to announce that I am in talks with the OffHeap guys to have an
-occasional guest segment on their program, tentatively called &quot;Mark and
-Sweep&quot; where we will feature audio content from the existing interviews
-from my book &lt;a href=&quot;http://ridingthecrest.com/purchase.html&quot;&gt;Secrets
-of the Rockstar Programmers&lt;/a&gt; as well as new interviews with
-additional thought leaders.&lt;/p&gt;
-
-&lt;p&gt;The link to the episode
-is &lt;code&gt;&amp;lt;&lt;a href=&quot;http://www.javaoffheap.com/2017/05/episode-24-nothing-like-sweet-home.html&quot;&gt;http://www.javaoffheap.com/2017/05/episode-24-nothing-like-sweet-home.html&lt;/a&gt;&amp;gt;&lt;/code&gt;,
-but this post is my summary and notes, including the segment with
-&lt;a href=&quot;https://twitter.com/javaFXpert&quot;&gt;Jim Weaver&lt;/a&gt;
-and &lt;a href=&quot;https://twitter.com/deanwampler&quot;&gt;Dean Wampler&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Part I, with &lt;a href=&quot;https://twitter.com/gsaab&quot;&gt;Georges Saab&lt;/a&gt;
-and &lt;a href=&quot;https://twitter.com/edburns&quot;&gt;I&lt;/a&gt;, is
-&lt;a href=&quot;/blog/2017/05/25/javaoffheap-goto-part1.html&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-
-
-&lt;h2&gt;Part II: Dean Wampler and Jim Weaver&lt;/h2&gt;
-
-&lt;p&gt;51:18 Introductions&lt;/p&gt;
-
-&lt;p&gt;53:38 Bob polls the audience about alternative JVM languages.&lt;/p&gt;
-
-&lt;p&gt;54:12 What happens if JDK 9 flops?  Dean asserts the microservices
-movement is a threat to the JVM because it exposes how bloated JVM apps
-typically are.  Go and Rust: are a factor of 10/100 smaller.  55:04 But
-why does it matter if it's not a cost savings?  55:42 Dean points out
-that it matters at google scale.  56:00 Bob: jlink can help with this.
-56:50 Freddy: if we use jlink with Jigsaw, will Scala be smaller?  57:24
-Dean answers, but not quite, and points out that Lightbend does track
-JDK releases closely, citing lambda integration in a recent Scala
-  release.&lt;/p&gt;
-
-&lt;p&gt;57:15 Freddy: other threats? 57:46
-  Bob: &lt;a href=&quot;https://www.meetup.com/en-AU/ChicagoJUG/events/237330076/&quot;&gt;Azul's
-  Paul Nauman&lt;/a&gt;: complexity of the JVM is the JVM's worst enemy.
-  58:28 Freddy, but that's true for every language.&lt;/p&gt;
-
-&lt;p&gt;59:20 Dean: another risk: Apparent with SPARK: the appeal of DSLs.
-  1:00:00 Bob: but what about debugging?  Also, SPARK and massive heap
-  sizes.  1:01:20 SPARK realized the JMM is great for general purpose,
-  but if you have a billion of the same thing, there is no need for that
-  complexity.  1:02:30 Bob: Code rot is another risk to the ecosystem.
-  People stop maintaining stuff, but the stuff is still very widely
-  used.  1:03:26 Freddy tells his JavaScript story: there's three of
-  everything: npm, bower do the same thing.  In spite of this JavaScript
-  is still #1.  1:05 Dean: npm is using Rust for its scalability behind
-  the scenes.  1:06:15 It's the old open vs. closed argument.&lt;/p&gt;
-
-&lt;p&gt;1:08:07 Bob ASF: Not a problem to have multiple projects that do the
-  same thing.  But you still need the JCP side to guarantee
-  interoperability. 1:08:49 Jim Weaver adds that competition is good.
-  1:09:50 when you run JDK on AWS, it is OpenJDK.  1:10:26 Bob: there
-  are things in place in the JDK to prevent fragmentation.&lt;/p&gt;
-
-&lt;p&gt;1:11:30 Freddy asks: What is your opinion of 9?  Dean: They try to
-track the latest version of Java for their Scala users.  1:12:50 Lambdas
-did slow the adoption of Scala because it took away the worst pain
-point.  1:13:20 Jim: the Spring mantra make jar not war is well
-supported by jigsaw.  1:14:31 Bob points out that Spring uses a lot of
-reflection, but Jigsaw allows blocking code execution across package
-boundaries, won't that cause problems?  1:15:33 Freddy points out that 9
-lets you get close to that 20M mark on size, but notes that with Spring
-boot, you may add a lot on top of that.  Jim did not address this.
-&lt;code&gt;1:17:00 Freddy lists a nice process for optimization that starts
-with coarse grained and ends up with using JMH.  This is a very valuable
-  nugget.&lt;/code&gt;  &lt;/p&gt;
-
-&lt;p&gt;1:19:24 Freddy asks to what extent Pivotal is going into machine
-learning.  Jim answered that Pivotal is into data flows, such as Spring
-  cloud data flow, which works with DeepLearning4J or Tensor Flow.&lt;/p&gt;
-
-&lt;p&gt;1:20:50 Freddy asks how Lightbend is doing machine learning.  They
-are looking at how to make it accessible to their developers. 1:22:04
-Bob ask how many are using Hadoop and is surprised with the small number
-  of hands.&lt;/p&gt;
-
-&lt;p&gt;1:23:25 Freddy asks Dean to share the Lightbend strategy for world
-dominance.  Answer: the tools they built, Akka, Play!, Lagom.  An
-opinionated microservices framework.  What they want to do is promote
-best practices and give them the tools to do it.  Bob: we need to figure
-out a better way to structure the ideas so that regular developers can
-use it.  1:25:44 Freddy observes how hard it is to do the reactive
-  manifesto correctly.&lt;/p&gt;
-
-&lt;p&gt;1:27:00 Discussion about the need to get knowledge out about best
-practices.  1:29:35 Bob observes that organizations need to change to
-adopt them.&lt;/p&gt;
-
-&lt;p&gt;1:32:10 Freddy asks, why is it so hard to get microservices right?
-James: 1:32:31 data is the hard part.  1:33:55 Dean: each microservices
-has its own persistence, but this poses a problem when you evolve a
-  system and data needs to change.&lt;/p&gt;
-
-&lt;p&gt;1:35:55 How have alternative JVM languages played out?  At Expedia,
-85% is just regular Java.  They do use a little Scala.  The bit that
-they do use, some developers avoid touching because they are not
-familiar with Scala.  1:37:40 Dean: about half of their devs use Scala.
-90% of the JVM usage is Java.  1:38:12 Container management and
-orchestration: Freddy: it's wild west right now.  1:39:45 Jim has a
-counter argument: perhaps use build packs instead of containers.
-1:40:10 Freddy, I wish we could settle down with the Docker stuff.&lt;/p&gt;</content><author><name></name></author><summary type="html">I had the honor to be a guest on Java OffHeap (@offheap) while attending Goto Chicago 2017. I am also happy to announce that I am in talks with the OffHeap guys to have an occasional guest segment on their program, tentatively called &quot;Mark and Sweep&quot; where we will feature audio content from the existing interviews from my book Secrets of the Rockstar Programmers as well as new interviews with additional thought leaders.</summary></entry></feed>
+  book: &lt;a href=&quot;http://evolutionaryarchitecture.com/&quot;&gt;Evolutionary Architecture&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">One of the great things about working at Oracle is the high calibre of one's coworkers, and one of the best is my colleague Manfred Riem. Manfred shared this UJUG recording of Neal Ford's talk at their March meeting: &amp;lt;https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s&amp;gt;. This blog post covers my notes and impressions of the session.</summary></entry></feed>

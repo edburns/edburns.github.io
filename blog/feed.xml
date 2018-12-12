@@ -1,5 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-11-13T06:51:32-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Git Tags and Semver</title><link href="/blog/2018/11/13/semvergittags.html" rel="alternate" type="text/html" title="Git Tags and Semver" /><published>2018-11-13T06:41:00-05:00</published><updated>2018-11-13T06:41:00-05:00</updated><id>/blog/2018/11/13/semvergittags</id><content type="html" xml:base="/blog/2018/11/13/semvergittags.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-12-12T15:32:06-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Inline RxSwift Observer implementation</title><link href="/blog/2018/12/11/rxswift-observer-inline-impl.html" rel="alternate" type="text/html" title="Inline RxSwift Observer implementation" /><published>2018-12-11T16:00:00-05:00</published><updated>2018-12-11T16:00:00-05:00</updated><id>/blog/2018/12/11/rxswift-observer-inline-impl</id><content type="html" xml:base="/blog/2018/12/11/rxswift-observer-inline-impl.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
+
+&lt;p&gt;My ignorance of the Swift custom of using the &lt;code class=&quot;highlighter-rouge&quot;&gt;extension&lt;/code&gt; feature to
+explode the definition of a single protocol across several source files
+lead me to misunderstand how to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt; method in RxSwift.&lt;/p&gt;
+
+&lt;h2 id=&quot;details&quot;&gt;Details&lt;/h2&gt;
+
+&lt;p&gt;As I’ve said &lt;a href=&quot;/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html&quot;&gt;before&lt;/a&gt;, one of the
+things I love about working on my current team at Oracle is the
+opportunity to learn new things and put them in practice.  Currently
+this means learing Swift and RxSwift.  While doing the usual TDD, I
+needed to write several tests that exercise the contract of Rx.  This
+required a concise way to pass an argument to the &lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt; method of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Observable&lt;/code&gt; that allowed making assertions for the &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt;,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;onCompleted&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;onError&lt;/code&gt; cases.  As I say in my talk “Programming
+Platform Growth: Table Stakes or Deal Makes?” (which I am blessed to be
+giving as a keynote at
+&lt;a href=&quot;https://programm.javaland.eu/2019/#/scheduledEvent/570246&quot;&gt;JavaLand 2019&lt;/a&gt;),
+a key ingredient of programming platform growth is the welcoming culture
+of its developer community.  I have a concrete example here that speaks
+well of the Swift community in that regard.&lt;/p&gt;
+
+&lt;p&gt;I was looking for examples of passing an obsever to the &lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt;
+method, but all of them passed a single &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt; handler.
+&lt;a href=&quot;http://swiftpearls.com/RxSwift-for-dummies-1-Observables.html&quot;&gt;This post&lt;/a&gt;
+while educational, is indicative of what I could find.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;observable.subscribe(onNext: {(element) in
+  print(element)
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;What I wanted was to pass a complete implementation of the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ObserverType&lt;/code&gt; with inline methods for its &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;onCompleted&lt;/code&gt;, and
+&lt;code class=&quot;highlighter-rouge&quot;&gt;onError&lt;/code&gt; functions.  I posed the question in the
+&lt;a href=&quot;https://rxswift.slack.com/archives/C051G5Y6T/p1544558825273100&quot;&gt;RxSwift slack channel&lt;/a&gt;
+and the
+&lt;a href=&quot;https://forums.swift.org/t/closure-or-dynamic-protocol-implementation/18739/2&quot;&gt;Swift #Using forum&lt;/a&gt;
+and received helpful answers from each.  As a beginner, I failed to
+grasp that what looks like an anonymous interface implementation in Java
+is actually in invocation of an overloaded method.  You see, in Swift,
+it is common to spread out the actual surface area of an API over many
+different source files using the Swift &lt;code class=&quot;highlighter-rouge&quot;&gt;extension&lt;/code&gt; feature.  This was
+pointed out to me in the swift.org forum post from Adrian Zubarev.  So,
+there is an overloaded &lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt; method defined in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;ObservableType+Extensions.swift&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public func subscribe(onNext: ((E) -&amp;gt; Void)? = nil,
+                      onError: ((Swift.Error) -&amp;gt; Void)? = nil,
+                      onCompleted: (() -&amp;gt; Void)? = nil,
+                      onDisposed: (() -&amp;gt; Void)? = nil)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This is simply a bunch of optional closure parameters, each with their
+own signature and default value of &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Meanwhile, on the real-time help front, danielt1263 and Jeremy offered
+some very helpful answers that supplement the answer from swift.org, and
+which I actually decided to use.  They suggested using the variant of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt; that takes a closure that takes an &lt;code class=&quot;highlighter-rouge&quot;&gt;Event&lt;/code&gt; and returns
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Void&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;smalltalk&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;let sub &lt;span style=&quot;color: #000066; font-weight:bold;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #00007f;&quot;&gt;try&lt;/span&gt; getObservable&lt;span style=&quot;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #00007f;&quot;&gt;subscribe&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#123;&lt;/span&gt; event in&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;switch event &lt;span style=&quot;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;case let .&lt;span style=&quot;color: #00007f;&quot;&gt;next&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #00007f;&quot;&gt;value&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;:&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #00007f;&quot;&gt;onNextCalled&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight:bold;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #00007f;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;color: #7f007f;&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;case let .&lt;span style=&quot;color: #00007f;&quot;&gt;error&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #00007f;&quot;&gt;error&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;:&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #00007f;&quot;&gt;onErrorCalled&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight:bold;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #00007f;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;color: #7f007f;&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;case .&lt;span style=&quot;color: #00007f;&quot;&gt;completed&lt;/span&gt;:&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #00007f;&quot;&gt;onCompletedCalled&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight:bold;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #00007f;&quot;&gt;&lt;/span&gt;true&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;&lt;span style=&quot;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry><entry><title type="html">Git Tags and Semver</title><link href="/blog/2018/11/13/semvergittags.html" rel="alternate" type="text/html" title="Git Tags and Semver" /><published>2018-11-13T06:41:00-05:00</published><updated>2018-11-13T06:41:00-05:00</updated><id>/blog/2018/11/13/semvergittags</id><content type="html" xml:base="/blog/2018/11/13/semvergittags.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
 
 &lt;p&gt;Debugging a Swift &lt;code class=&quot;highlighter-rouge&quot;&gt;Package.swift&lt;/code&gt; problem that turned out to be
 incorrectly git tags that did not sort correctly with respect to semver.&lt;/p&gt;
@@ -1237,246 +1313,4 @@ maturing, the origin of creativity, and the importance of telling signal
 
 &lt;/p&gt;
 
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content><author><name></name></author><summary type="html">I'm very pleased to announce the continuation of my &quot;Secrets of the Rockstar Programmers&quot; project in the form of a podcast. This latest stage in the project is delivered using a guest-episode format graciously hosted by my good friends at The Java OffHeap Podcast.</summary></entry><entry><title type="html">Notes from Neil Ford Microservices at UJUG March 2017</title><link href="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html" rel="alternate" type="text/html" title="Notes from Neil Ford Microservices at UJUG March 2017" /><published>2017-06-10T10:00:00-04:00</published><updated>2017-06-10T10:00:00-04:00</updated><id>/blog/2017/06/10/neil-ford-microservices-ujug-march-2017</id><content type="html" xml:base="/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html">&lt;p&gt;One of the great things about working at Oracle is the high calibre
-of one's coworkers, and one of the best is my
-colleague &lt;a href=&quot;http://www.manorrock.com /blog/&quot;&gt;Manfred Riem&lt;/a&gt;.
-Manfred shared this &lt;a href=&quot;http://ujug.org/about/&quot;&gt;UJUG&lt;/a&gt; recording
-of &lt;a href=&quot;https://twitter.com/neal4d&quot;&gt;Neal Ford's&lt;/a&gt; talk at their
-March meeting:
-&amp;lt;&lt;a href=&quot;https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s&quot;&gt;https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s&lt;/a&gt;&amp;gt;.
-  This blog post covers my notes and impressions of the session.&lt;/p&gt;
-
-&lt;h2&gt;Introduction: What came before Microservices&lt;/h2&gt;
-
-&lt;p&gt;Microservices cannot be divorced from the engineering practices, such as
-DevOps.&lt;/p&gt;
-
-&lt;p&gt;Contrast Microservices with what came before: SOA.  Microservices is a label
-not description.  Contrast to SOA: which is gargantuan.&lt;/p&gt;
-
-&lt;p&gt;SOA: abstract enterprise-level coarse-grained services.&lt;/p&gt;
-
-&lt;p&gt;Implementation of these services: reusable as possible.  Enable the
-business users to compose the services because the services have been
-written so well to be reusable.&lt;p&gt;
-
-&lt;p&gt;Some one-off services as well: authentication, identity, etc.&lt;/p&gt;
-
-&lt;p&gt;Message Bus: really important to enable this reuse.&lt;/p&gt;
-
-&lt;p&gt;Why build these?  &quot;Resume driven development&quot;?  Goal: maximize reuse.
-Maximize canonicalitym aka DRY.  Aside: this appears to be a
-manifestation of Eric Evan's UNIVERSAL LANGUAGE concept.&lt;/p&gt;
-
-&lt;p&gt;Constraints of SOA: incremental change is hard with SOA.  The context in
-which SOA grew up.  Predated Open Source.  Everything was proprietary.
-OS were very heavyweight: resources and licenses.  Operation was very
-complex.&lt;/p&gt;
-
-&lt;p&gt;&quot;&lt;a href=&quot;http://nealford.com/memeagora/2015/03/30/architecture_is_abstract_until_operationalized.html&quot;&gt;Architecture
-is an abstraction until you operationalize it.&lt;/a&gt;&quot;&lt;/p&gt;
-
-&lt;p&gt;I like how he explicitly called out that a key aspect of the
-architecture is how it interacts with the environment around it.
-Analogy of taking the deployed system, unplugging it, putting it in the
-closet, waiting a year, and plugging it back in.  This brings in the
-dimension of time (2D -&amp;gt; 3D -&amp;gt; 4D) to the architecture.  This is
-what he means by operationalized.&lt;/p&gt;
-
-&lt;h2&gt;What problem are we trying to solve with Microservices?&lt;/h2&gt;
-
-&lt;p&gt;Plug for Evans DDD and Vaughn Vernon Implementing DDD.&lt;/p&gt;
-
-&lt;p&gt;Defines the Bounded Context idea.  It's a business process, such as
-  &quot;customer checkout&quot;.  No one outside the context is able to know the
-  impl details of the inside.  Combine this with Humble and Farley
-  (Continuous Delivery) and you get the Microservices Architecture.&lt;/p&gt;
-
-&lt;p&gt;Diagram that shows API layer.  This is optional, but acts as a
-  facade that imposes the bounded context boundary.  It is not a part
-  of an ESB.  This is where he delivers the &quot;everyone provides their
-  own persistence&quot; requirement. &lt;/p&gt;
-
-&lt;h2&gt;Characteristics&lt;/h2&gt;
-
-&lt;p&gt;Monoliths vs. Microservices.  Difference in how the achieve scale.
-Monoliths, everyone shares the same stuff, so you achieve scale through
-clustering.  In Microservices, how you achieve scale is to add more
-instances.  This is a manifestation of the importance if putting things
-  in the right place.  In the SOA: scaling is an architectural
-  problem.  Really, it should be an ops problem.&lt;/p&gt;
-
-&lt;p&gt;Products, not Projects.  This is the Conway's law thing.  You build
-  it, you run it.  Teams do not span products.  Teams maintain the same
-  product for their lifetime.  This responsibility makes people confront
-  the consequences of their actions.  &lt;code&gt;It eliminates the ability
-  to &lt;a href=&quot;http://www.wisegeek.com/what-are-externalized-costs.htm&quot;&gt;externalize
-  costs&lt;/a&gt;&lt;/code&gt;.  He notes as an aside that propogating model changes
-  across services is very hard, though.&lt;/p&gt;
-
-&lt;p&gt;&quot;Inverse Conway Movement&quot; Organize teams by bounded contexts, rather
-  than skillset.  Accept Conway's law as a fact of life, build teams
-  accordingly.&lt;/p&gt;
-
-&lt;p&gt;Smart endpoints and dumb pipes.  REST or messaging (what about
-  gRPC?) Whatever you choose, you do have to standardize on it.
-  Embrace polyglot solutions where sensible.  (Plugs Sam Newman's
-  book).&lt;/p&gt;
-
-&lt;p&gt;Aside on the challenges of &quot;everyone provides their own persistence&quot;
-  &lt;a href=&quot;https://en.wikipedia.org/wiki/ACID&quot;&gt;ACID&lt;/a&gt;
-  vs. &lt;a href=&quot;https://en.wikipedia.org/wiki/Eventual_consistency&quot;&gt;BASE&lt;/a&gt;
-  (CAP Theorem).  &quot;We have made our users think that transactions are a
-  natural part of the universe, but they are not.&quot;  Starbucks example.
-  ATM example: batch reconciliation.  He takes pot shots at the need for
-  transactions, saying &quot;maybe seats on an airplane&quot; need them.  I
-  disagree.  Transactions are useful in any case where there is a lot of
-  contention: event tickets, auctions, manufacturing automation and
-  more.  But, with Microservices, you want to try to avoid transactions.
-  That I agree with.  &lt;code&gt;When defining bounded contexts, when you get
-  to the point when you say, &quot;if we get any smaller than that, we'll
-  have to do a distributed transaction,&quot; that's when you stop
-  and &lt;a href=&quot;https://www.reddit.com/r/gratefuldead/comments/1cxxk1/whats_your_favorite_rendition_of_take_a_step_back/&quot;&gt;take
-  a step back&lt;/a&gt; and that's where you have a boundary.&lt;/code&gt;  This is
-  more reliable than your class diagram.&lt;/p&gt;
-
-&lt;p&gt;Decentralized governance: an aside that you can change your
-  persistence within a bounded context and no-one outside it cares.
-  Without this, because everyone shares everything, we have to choose an
-  RDBMS that works for the aspect of the system that has the hardest
-  problems, while the rest of the system may not need that much
-  power.  Same for all aspects (MQ, etc).  Everyone is suffering from
-  the maximum complexity.  Microservices allows more fine grained
-  rightsizing.&lt;/p&gt;
-
-&lt;p&gt;Brief plug for CICD.&lt;/p&gt;
-
-&lt;p&gt;Microservices tries to avoid having something like a &quot;customer
-  service&quot;.  Rather, each service has its own notion of customer.  It
-  turns out this is not as bad as you might think, because the right
-  decomposition of bounded contexts means that the notion of customer
-  can be conveyed as messages, without defining a customer as a
-  service.  &lt;/p&gt;
-
-&lt;p&gt;&quot;The more resuable code it is, the less usable it is.&quot;  In other
-  words, the more cases it serves, the less it is for one case.
-  Mentioned the old IBM San Francisco Project, which gave birth to
-  J2EE.  Neal felt it was the stupidest idea ever.  Well, I don't know
-  about that, but the idea did have very big consequences.&lt;/p&gt;
-
-&lt;p&gt;Service orchestration.  This is necessary because we don't have
-  transactions.  This
-  is &lt;a href=&quot;http://microservices.io/patterns/data/event-sourcing.html&quot;&gt;Chris
-  Richardson's saga concept&lt;/a&gt;.  &lt;/p&gt;
-
-&lt;h3&gt;Benefits of Microservices&lt;/h3&gt;
-
-&lt;p&gt;Maximize easy evolution.  Make changes without breaking
-  stuff.  &lt;code&gt;Microservices is the first architecture style developed
-  after the acceptance of continuous delivery (aka DevOps)&lt;/code&gt;.
-  Also allows you to optimize only what matters.&lt;/p&gt;
-
-&lt;p&gt;Tends to be asynchronous from birth.  This allows amazon to stay
-  within their boredom threshold, the point where users will lose
-  interest and go somewhere else, which is lost money.  &quot;Prefer timely
-  partial over slow complete&quot;.&lt;/p&gt;
-
-&lt;p&gt;Integration vs. disintegration.  &quot;Complected deployments&quot; to
-  intertwine things.  Components are deployed and features are released.
-  This allows us to monitor traffic and see which features are actually
-  needed, allowing empirical determination of which features you can
-  safely disintegrate.  (Economically, because features are teams, this
-  also means which employees you can lay off because they are not
-  delivering value.  I argue this is a more compelling reason for
-  companies.)&lt;/p&gt;
-
-&lt;p&gt;How big?  The more services you have, the lower you drive down your
-  risk per service release.  But this does not address the complexity
-  tax of having all those services.&lt;/p&gt;
-
-&lt;h3&gt;Engineering Practices&lt;/h3&gt;
-
-&lt;p&gt;Design for failure, monitoring.  Monitoring is harder in
-  Microservices, but at least there is good tool support: ELK, etc.
-  This includes log aggregation.&lt;/p&gt;
-
-&lt;p&gt;Mention of &quot;synthetic transactions&quot;.  This plus monitoring is how
-  you debug.&lt;/p&gt;
-
-&lt;p&gt;Mention of &quot;correlation ids&quot;.  Again, debugging.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://pragprog.com/book/mnee/release-it&quot;&gt;Release It!&lt;/a&gt;
-  &quot;Everything in this book is considered bible in this world&quot; Circuit
-  Breakers, bulkheads, timeouts.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;Engineering consistency.  Share nothing except: how the services
-  integrate (REST vs message bus vs. RPC).  The other is actual system
-  services technologies: monitoring, logging, identity.  This is the
-  &quot;service template&quot; idea.  Dropwizard or SpringBoot help with
-    this.&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Testing.  The testing pyramid.  Unit, Integration, Component,
-  End-to-end, exploratory.  Unit testing: sociable (real live objects)
-  and solitary (mocks).  Integration testing: gateway, protocol level.
-  Database integration.  Component testing: build a diagnostic mode into
-  your services.  Inproctester or plasma.  Consumer Driven Contracts:
-  Each endpoint defines the contract that the other side must adhere to
-  and codifies that into a test, which is a release gate for the other
-  endpoint.  This appears to be the microservices equivalent of an IDE
-  alerting you that when you change the signature of a method all the
-  callsites that now break.  Pact, Pacto, Janus.  Implicit assumption
-  that you have sufficient engineering maturity.  Eveyone is good at
-  writing tests, keeping the build green, etc.  End-to-end testing:
-  focus on personas and user journeys.  &lt;/p&gt;
-
-&lt;p&gt;Deployment technologies.  As advanced as Docker containers or as
-  simple as executable jars.&lt;/p&gt;
-
-&lt;p&gt;Don't let changes build up, get things into production as quickly as
-possible.  With all the other CD stuff, deploying is actually anti
-  risky, since you have feature toggles or routes.&lt;/p&gt;
-
-&lt;p&gt;Service discovery: Consul, etcd, zookeeper.  Why service discovery?
-Neal says it's for elastic scaling.  I would have liked to have seen
-  more on this.&lt;/p&gt;
-
-&lt;p&gt;Service visualization: Spigo, from Netflix.&lt;/p&gt;
-
-&lt;p&gt;Tools: Plug
-  for &lt;a href=&quot;http://devopsbookmarks.com/&quot;&gt;http://devopsbookmarks.com/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Neal asserts you must be doing all the things in Humble and Farley
-  before you even attempt microservices.  He enumerated what can happen
-  if you attempt it before mastery of Humble and Farley.  &quot;If you get
-  sloppy, it gets bad fast&quot;. (A rescue consultant's
-  dream) See &lt;a href=&quot;http://www.codingthearchitecture.com/presentations/sa2015-modular-monoliths&quot;&gt;Simon
-  Brown's Modular Monoliths&lt;/a&gt;
-  and &lt;a href=&quot;http://www.adam-bien.com/roller/abien/entry/the_perfect_javaee_microservice&quot;&gt;Adam
-  Bien's Java EE Microservice&lt;/a&gt; for some things you might want to
-  look at before taking the jump to Microservices.  In both cases, the
-  question, &quot;if you can't build a monolith correctly, what makes you
-  think that Microservices are the answer?&quot; is implicitly asked.&lt;/p&gt;
-
-&lt;p&gt;Is there a middle ground between SOA and Microservices?  Yes:
-  &lt;a href=&quot;https://www.infoq.com/news/2016/10/service-based-architecture&quot;&gt;service
-  based architectures&lt;/a&gt;.  You have much fatter services.  The &quot;every
-  service has its own persistence&quot; rule is relaxed.  Integration
-  hub: the mere introduction of an ESB to a system. &lt;/p&gt;
-
-&lt;p&gt;More migration paths.  Partitioning along natural boundaries.  Use
-  tools like xray or jdepend to anaylze your monolith to see how to
-  start decomposing.  Look at the transactional boundaries to see the
-  bounded contexts.  If your system relies heavily on transactions, it
-  may not be a good candidate for Microservices.  Maybe consider
-  service-based.  Start with a small number of larger services first.
-  Get the low hanging fruit.&lt;/p&gt;
-
-&lt;p&gt;Trotted out the realestate.com.au example from Newman.  A great
-  example but I won't cover it here.&lt;/p&gt;
-
-&lt;p&gt;Efferent coupling: first time I've heard this term since college.  I
-  must be two deep inside OS, language and runtime vendors.  Having low
-  efferent coupling means having a minimal number of dependencies.&lt;/p&gt;
-
-&lt;p&gt;Neal's new
-  book: &lt;a href=&quot;http://evolutionaryarchitecture.com/&quot;&gt;Evolutionary Architecture&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">One of the great things about working at Oracle is the high calibre of one's coworkers, and one of the best is my colleague Manfred Riem. Manfred shared this UJUG recording of Neal Ford's talk at their March meeting: &amp;lt;https://www.periscope.tv/UtahJava/1OdJrgAkgRnxX?t=11m59s&amp;gt;. This blog post covers my notes and impressions of the session.</summary></entry></feed>
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content><author><name></name></author><summary type="html">I'm very pleased to announce the continuation of my &quot;Secrets of the Rockstar Programmers&quot; project in the form of a podcast. This latest stage in the project is delivered using a guest-episode format graciously hosted by my good friends at The Java OffHeap Podcast.</summary></entry></feed>

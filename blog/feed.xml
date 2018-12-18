@@ -1,5 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-12-12T15:32:06-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Inline RxSwift Observer implementation</title><link href="/blog/2018/12/11/rxswift-observer-inline-impl.html" rel="alternate" type="text/html" title="Inline RxSwift Observer implementation" /><published>2018-12-11T16:00:00-05:00</published><updated>2018-12-11T16:00:00-05:00</updated><id>/blog/2018/12/11/rxswift-observer-inline-impl</id><content type="html" xml:base="/blog/2018/12/11/rxswift-observer-inline-impl.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-12-18T15:13:31-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Annoyance about learning Swift</title><link href="/blog/2018/12/18/swift-annoyance.html" rel="alternate" type="text/html" title="Annoyance about learning Swift" /><published>2018-12-18T14:30:00-05:00</published><updated>2018-12-18T14:30:00-05:00</updated><id>/blog/2018/12/18/swift-annoyance</id><content type="html" xml:base="/blog/2018/12/18/swift-annoyance.html">&lt;p&gt;I’m pretty sure this is a tell about my mental capacity, but I gotta say
+that several features in Swift have the following annoying pattern, at
+least in the way they are explained in the official
+&lt;a href=&quot;https://docs.swift.org/swift-book/&quot;&gt;Swift Book&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;They explain the full syntax of the feature.  This is very nice,
+compact, and readily grasped.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;But wait, you can do the same thing but simpler with this more
+concise syntax.  This starts to get obtuse.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;But wait, you can do it even more simply with this super concise
+syntax.  At this point the syntax itself makes little sense and I
+find it hard to grasp.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Perhaps it would be better to not spring the 2 and 3 level
+simplifications on the reader until they have firmly grasped 1?&lt;/p&gt;
+
+&lt;h2 id=&quot;case-1-closures&quot;&gt;Case 1: Closures&lt;/h2&gt;
+
+&lt;p&gt;The Swift Book helpfully provides the full syntax of closures right at
+the front.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(parameters)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;statements&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;However, they then go through several, progressively more compact (and
+less readily grasped for a beginner) iterations.  At each step along the
+way, they point out why the more compact syntax still works, but you
+have to keep in your mind other language concepts that are in play to
+enable the simplification.  Then there is this cheeky statement:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There’s actually an even shorter way to write the closure expression above.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;reversedNames = names.sorted(by: &amp;gt;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So, you know all that parameter list, arrow, return type, &lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; keyword?
+In some special cases, you simply don’t need ‘em.  Perhaps if I get
+heavily into Swift I will come to like the fact that all that seemingly
+important stuff can sometimes be omitted, but for now I would rather not
+have to learn when it’s possible to use the compact syntax and just have
+to do the verbose syntax all the time.  Stuff like this just seems like
+the language is taking on some things I usually let the IDE do.&lt;/p&gt;
+
+&lt;h2 id=&quot;case-2-computed-properties&quot;&gt;Case 2: Computed Properties&lt;/h2&gt;
+
+&lt;p&gt;The Swift Book again shows the full syntax of a computed property, but
+only by example.  Then it says, “By the way, if your computed property
+happens to be read-only, you can simplify the declaration of a read-only
+computed property by removing the get keyword and its braces.”&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;This is certainly not new to Swift.  Indeed I’ve lamented the same thing
+about &lt;a href=&quot;/blog/2010/03/03/perils-8220there8217s-more-one-way-do-it8221.html&quot;&gt;Perl&lt;/a&gt;.  I just
+think this “look at how powerful my syntax is with the beautiful
+abstractions I’ve made that allow me to state things so simply”
+mentality can be taken a bit too far.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m pretty sure this is a tell about my mental capacity, but I gotta say that several features in Swift have the following annoying pattern, at least in the way they are explained in the official Swift Book.</summary></entry><entry><title type="html">Inline RxSwift Observer implementation</title><link href="/blog/2018/12/11/rxswift-observer-inline-impl.html" rel="alternate" type="text/html" title="Inline RxSwift Observer implementation" /><published>2018-12-11T16:00:00-05:00</published><updated>2018-12-11T16:00:00-05:00</updated><id>/blog/2018/12/11/rxswift-observer-inline-impl</id><content type="html" xml:base="/blog/2018/12/11/rxswift-observer-inline-impl.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
 
 &lt;p&gt;My ignorance of the Swift custom of using the &lt;code class=&quot;highlighter-rouge&quot;&gt;extension&lt;/code&gt; feature to
 explode the definition of a single protocol across several source files
@@ -1279,38 +1349,4 @@ post&lt;/a&gt; about that feature.  It took me a moment to recall that I had
 &lt;p&gt;Thanks to Pavel Bucek
   and &lt;a href=&quot;https://www.linkedin.com/in/santiago-pericas-geertsen-905685/&quot;&gt;Santigo
   Pericas-Geertsen&lt;/a&gt; for stewarding the JAX-RS community to deliver a
-  very useful piece of Java EE 8.&lt;/p&gt;</content><author><name></name></author><summary type="html">I don't know what this says about my memory, but I was doing a little JAX-RS programming today and when I googled to remind myself of the particular feature I was using, I ran into my own blog post about that feature. It took me a moment to recall that I had written that earlier blog post. I wonder if I'll forget writing this one as well?</summary></entry><entry><title type="html">Podcast: Mark and Sweep Episode 1: James Gosling</title><link href="/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling.html" rel="alternate" type="text/html" title="Podcast: Mark and Sweep Episode 1: James Gosling" /><published>2017-09-16T10:00:00-04:00</published><updated>2017-09-16T10:00:00-04:00</updated><id>/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling</id><content type="html" xml:base="/blog/2017/09/16/mark-and-sweep-episode-01-james-gosling.html">&lt;p&gt;&lt;img width=&quot;330&quot; height=&quot;294&quot; src=&quot;/blog/assets/rockstar-square-off-heap-5-people.jpeg&quot; alt=&quot;Image of
-movie theater with audience looking at rockstar book cover&quot; /&gt; I'm very
-pleased to announce the continuation of my &quot;Secrets of the Rockstar
-Programmers&quot; project in the form of a podcast.  This latest stage in the
-project is delivered using a guest-episode format graciously hosted by
-my good friends at &lt;a href=&quot;http://www.javaoffheap.com/&quot;&gt;The Java
-OffHeap Podcast&lt;/a&gt;.&lt;/p&gt;
-
-
-&lt;p&gt;The episodes will be a part of an occasional &quot;Mark and Sweep&quot; segment
-  where I will join the OffHeap gang to revisit and discuss audio clips
-  of his interviews with some of the early 21st century's top enterprise
-  programmers.  This occasional guest segment will include interviews
-  from my 2008 McGraw-Hill book
-  &quot;&lt;a href=&quot;http://ridingthecrest.com/&quot;&gt;Secrets of the Rock Star
-  Programmers&lt;/a&gt;&quot; as well as new interviews with contemporary experts.
-  The gang and I will reflect on the observations in the interview in
-  the contemporary context.
-&lt;/p&gt;
-
-&lt;p&gt;In the first episode, Freddy and I review the interview with James
-Gosling, &quot;Father of Java&quot;.  Topics explored include the subversive
-origin of Java, the benefit of starting in a new field as it is
-maturing, the origin of creativity, and the importance of telling signal
-  from noise.&lt;/p&gt;
-
-&lt;p&gt;Please use any of the following buttons to get the show.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;itms://itunes.apple.com/us/podcast/offheaps-mark-sweep-episode-1-lets-hear-about-beginning/id985064111?i=1000391898137&amp;mt=2&quot;&gt;&lt;img src=&quot;/blog/assets/itunes-podcast-button.png&quot; alt=&quot;Image of itunes podcast button&quot; /&gt;&lt;/a&gt;
-
-&lt;a href=&quot;http://www.javaoffheap.com/2017/09/offheaps-mark-and-sweep-episode-1-lets.html&quot;&gt;&lt;img src=&quot;/blog/assets/off-heap-button.gif&quot; alt=&quot;offheap podcast button&quot; /&gt;&lt;/a&gt;
-
-&lt;/p&gt;
-
-&lt;p&gt;&amp;nbsp;&lt;/p&gt;</content><author><name></name></author><summary type="html">I'm very pleased to announce the continuation of my &quot;Secrets of the Rockstar Programmers&quot; project in the form of a podcast. This latest stage in the project is delivered using a guest-episode format graciously hosted by my good friends at The Java OffHeap Podcast.</summary></entry></feed>
+  very useful piece of Java EE 8.&lt;/p&gt;</content><author><name></name></author><summary type="html">I don't know what this says about my memory, but I was doing a little JAX-RS programming today and when I googled to remind myself of the particular feature I was using, I ran into my own blog post about that feature. It took me a moment to recall that I had written that earlier blog post. I wonder if I'll forget writing this one as well?</summary></entry></feed>

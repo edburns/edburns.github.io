@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-12-18T15:13:31-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2018-12-18T15:25:42-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Annoyance about learning Swift</title><link href="/blog/2018/12/18/swift-annoyance.html" rel="alternate" type="text/html" title="Annoyance about learning Swift" /><published>2018-12-18T14:30:00-05:00</published><updated>2018-12-18T14:30:00-05:00</updated><id>/blog/2018/12/18/swift-annoyance</id><content type="html" xml:base="/blog/2018/12/18/swift-annoyance.html">&lt;p&gt;I’m pretty sure this is a tell about my mental capacity, but I gotta say
 that several features in Swift have the following annoying pattern, at
 least in the way they are explained in the official
@@ -62,6 +62,27 @@ the language is taking on some things I usually let the IDE do.&lt;/p&gt;
 only by example.  Then it says, “By the way, if your computed property
 happens to be read-only, you can simplify the declaration of a read-only
 computed property by removing the get keyword and its braces.”&lt;/p&gt;
+
+&lt;h2 id=&quot;case-3-property-observers-and-the-default-parameter-name&quot;&gt;Case 3: Property Observers and the default parameter name&lt;/h2&gt;
+
+&lt;p&gt;I like the concept of property observers but wonder why they felt the
+need to define the &lt;code class=&quot;highlighter-rouge&quot;&gt;oldValue&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;newValue&lt;/code&gt; default parameter names for
+the getter and setter.  Such as:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You can specify a name for this parameter as part of your willSet
+implementation. If you don’t write the parameter name and parentheses
+within your implementation, the parameter is made available with a
+default parameter name of newValue.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;if you implement a didSet observer, it’s passed a constant parameter
+containing the old property value. You can name the parameter or use
+the default parameter name of oldValue.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
 

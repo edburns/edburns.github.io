@@ -1,5 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-01-18T16:13:46-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Stacktraces and deinitializers in Swift</title><link href="/blog/2019/01/17/swift-callstack.html" rel="alternate" type="text/html" title="Stacktraces and deinitializers in Swift" /><published>2019-01-17T13:00:00-05:00</published><updated>2019-01-17T13:00:00-05:00</updated><id>/blog/2019/01/17/swift-callstack</id><content type="html" xml:base="/blog/2019/01/17/swift-callstack.html">&lt;p&gt;While continuing to make my way through
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-01-29T18:41:47-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">I’m Speaking at Orlando JUG on Wednesday 27 February</title><link href="/blog/2019/01/29/ojug-2019-02-27.html" rel="alternate" type="text/html" title="I'm Speaking at Orlando JUG on Wednesday 27 February" /><published>2019-01-29T18:00:00-05:00</published><updated>2019-01-29T18:00:00-05:00</updated><id>/blog/2019/01/29/ojug-2019-02-27</id><content type="html" xml:base="/blog/2019/01/29/ojug-2019-02-27.html">&lt;p&gt;My local Java User’s Group is getting off to a great start in 2019.  As
+was mentioned on
+&lt;a href=&quot;https://twitter.com/mgrygles/status/1088190088100700185&quot;&gt;twitter&lt;/a&gt;, we
+had &lt;a href=&quot;https://twitter.com/cjug&quot;&gt;Chicago JUG&lt;/a&gt;’s own
+&lt;a href=&quot;https://twitter.com/mgrygles&quot;&gt;Mary Grygleski&lt;/a&gt; in January, I’ll be
+speaking in February, and shortly thereafter we’ll have my colleage
+Santiago Pericas-Geertsen in March.&lt;/p&gt;
+
+&lt;p&gt;My talk is chance to see what I’ll be presenting as a keynote at
+&lt;a href=&quot;https://javaland.eu&quot;&gt;JavaLand&lt;/a&gt; this year.  You can read more about it
+at the following places:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.meetup.com/OrlandoJUG/events/258490920/&quot;&gt;MeetUp&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://codetown.com/events/orlandojug-programming-platform-growth-table-stakes-or-deal-makes&quot;&gt;CodeTown&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But briefly, my talk draws from my 25 years of professional programming
+experience, spanning many languages, operating systems, and platforms,
+to survey what it takes to make a programming language platform
+successful in terms of widespread use. I’ll look at Java, Python,
+Node, Go, and Swift and evaluate the ingredients that brought each one
+its own form of success. Finally, I’ll draw some lessons that apply
+to anyone trying to grow their computing platform, because, at some
+level, we are all in the platform business.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Wednesday 27 February 2019&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;6pm - 8pm&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Starter Studio Orlando&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://www.google.com/maps/search/?api=1&amp;amp;query=28.540941%2C-81.381256&quot;&gt;101 South Garland Avenue Suite 108, Orlando, FL&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I’ll have some copies of
+&lt;a href=&quot;http://ridingthecrest.com/&quot;&gt;Secrets of the Rockstar Programmers&lt;/a&gt; on
+hand for sale for USD $15 each.&lt;/p&gt;
+
+&lt;h2 id=&quot;coming-on-march-7th-project-helidon&quot;&gt;Coming on March 7th: Project Helidon&lt;/h2&gt;
+
+&lt;p&gt;My colleague, and former JAX-RS spec lead, Santiago Pericas-Geertsen
+will be presenting the new and exciting
+&lt;a href=&quot;https://helidon.io/#/&quot;&gt;Oracle Project Helidon&lt;/a&gt;.  Helidon is a
+Microprofile friendly Java powered collection of cohesive libraries for
+writing software for the microservices style.  You may also know
+Santiago as the man behind the innovative
+&lt;a href=&quot;https://www.n-k.de/2014/05/project-avatar-twitterwall-demo.html&quot;&gt;Oracle Project Avatar&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Santiago’s talk will be at the same place as my 27 February talk.&lt;/p&gt;</content><author><name></name></author><summary type="html">My local Java User’s Group is getting off to a great start in 2019. As was mentioned on twitter, we had Chicago JUG’s own Mary Grygleski in January, I’ll be speaking in February, and shortly thereafter we’ll have my colleage Santiago Pericas-Geertsen in March.</summary></entry><entry><title type="html">Stacktraces and deinitializers in Swift</title><link href="/blog/2019/01/17/swift-callstack.html" rel="alternate" type="text/html" title="Stacktraces and deinitializers in Swift" /><published>2019-01-17T13:00:00-05:00</published><updated>2019-01-17T13:00:00-05:00</updated><id>/blog/2019/01/17/swift-callstack</id><content type="html" xml:base="/blog/2019/01/17/swift-callstack.html">&lt;p&gt;While continuing to make my way through
 &lt;a href=&quot;https://docs.swift.org/swift-book/&quot;&gt;the Swift Book&lt;/a&gt;, I finally reached
 the definition of &lt;code class=&quot;highlighter-rouge&quot;&gt;Deinitialization&lt;/code&gt;.  The authors wait until almost
 halfway through the pagecount before introducing this concept.  Since
@@ -717,54 +777,4 @@ idea of the &quot;monomyth&quot;.  There is actually only one story: the
 
 &lt;h3&gt;Cloud Native Thinking&lt;/h3&gt;
 
-&lt;p&gt;Digital Native analogy&lt;/p&gt;</content><author><name></name></author><summary type="html">Holly leads the &quot;Cloud Garage&quot; at IBM, working with customers to create solutions when moving to the cloud.</summary></entry><entry><title type="html">JavaLand 2018 Arun Gupta Service Discovery In Container Orchestration Frameworks</title><link href="/blog/2018/03/12/javaland-arun-gupta.html" rel="alternate" type="text/html" title="JavaLand 2018 Arun Gupta Service Discovery In Container Orchestration Frameworks" /><published>2018-03-12T03:00:00-04:00</published><updated>2018-03-12T03:00:00-04:00</updated><id>/blog/2018/03/12/javaland-arun-gupta</id><content type="html" xml:base="/blog/2018/03/12/javaland-arun-gupta.html">&lt;p&gt;On a cold and wet morning in Phantasialand, my old pal Arun Gupta
-gave The first regular session at JavaLand 2018.  There was an
-impressive number of attendees, considering the early hour, even before
-  the opening greeting from DOAG CEO Fried Saacke.&lt;/p&gt;
-
-&lt;p&gt;Speaker Bio&lt;/p&gt;
-
-&lt;p&gt;The need for service discovery.  How else can services know how to
-communicate with other services?  The need for this is even more acute
-in the cloud when the location and cardinality of the services is highly
-dynamic.  This works best with stateless services.&lt;/p&gt;
-
-&lt;p&gt;Examples: Docker Swarm, Kubernetes, Amazon ECS, Mesosphere&lt;/p&gt;
-
-&lt;h2&gt;Docker Swarm&lt;/h2&gt;
-
-&lt;p&gt;Docker for AWS.  A cloud formation template, automatic multi-host
-cluster.  Well integrated with AWS constructs: autoscaling, load
-  balancing, logs in CloudWatch.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;docker service create --replicas 3 --name web jboss/wildfly&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The default: master and four nodes.  Three replicas mean you get
-  three replicas of the whole five nodes.&lt;/p&gt;
-
-&lt;h3&gt;Routing Mesh&lt;/h3&gt;
-
-&lt;p&gt;&lt;code&gt;docker service create --replicas 3 --name web -p 8080:8080 jboss/wildfly&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The addition of the port configures the load balancer&lt;/p&gt;
-
-&lt;h3&gt;Docker Compose File&lt;/h3&gt;
-
-&lt;p&gt;Defines the docker stack, containing your services.&lt;/p&gt;
-
-&lt;h2&gt;Kubernetes&lt;/h2&gt;
-
-&lt;p&gt;CNCF project&lt;/p&gt;
-
-&lt;p&gt;Box diagram of parts of the Kubernetes cluster.&lt;/p&gt;
-
-&lt;p&gt;Scheduler and Controller Manager watch the etcd, because the etcd is
-  easily watchable.&lt;/p&gt;
-
-&lt;p&gt;The labels are in etcd, this allows the pods and services to be
-  loosely coupled.&lt;/p&gt;
-
-&lt;p&gt;We need an ingress LB that allows your service to be seen from the
-  outside.&lt;/p&gt;
-
-&lt;p&gt;Arun: 57% of K8s in the world runs on AWS.&lt;/p&gt;</content><author><name></name></author><summary type="html">On a cold and wet morning in Phantasialand, my old pal Arun Gupta gave The first regular session at JavaLand 2018. There was an impressive number of attendees, considering the early hour, even before the opening greeting from DOAG CEO Fried Saacke.</summary></entry></feed>
+&lt;p&gt;Digital Native analogy&lt;/p&gt;</content><author><name></name></author><summary type="html">Holly leads the &quot;Cloud Garage&quot; at IBM, working with customers to create solutions when moving to the cloud.</summary></entry></feed>

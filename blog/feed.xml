@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-01-29T18:41:47-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">I’m Speaking at Orlando JUG on Wednesday 27 February</title><link href="/blog/2019/01/29/ojug-2019-02-27.html" rel="alternate" type="text/html" title="I'm Speaking at Orlando JUG on Wednesday 27 February" /><published>2019-01-29T18:00:00-05:00</published><updated>2019-01-29T18:00:00-05:00</updated><id>/blog/2019/01/29/ojug-2019-02-27</id><content type="html" xml:base="/blog/2019/01/29/ojug-2019-02-27.html">&lt;p&gt;My local Java User’s Group is getting off to a great start in 2019.  As
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-02-08T15:11:01-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">I’m Speaking at Orlando JUG on Thursday 7 March</title><link href="/blog/2019/01/29/ojug-2019-02-27.html" rel="alternate" type="text/html" title="I'm Speaking at Orlando JUG on Thursday 7 March" /><published>2019-01-29T18:00:00-05:00</published><updated>2019-01-29T18:00:00-05:00</updated><id>/blog/2019/01/29/ojug-2019-02-27</id><content type="html" xml:base="/blog/2019/01/29/ojug-2019-02-27.html">&lt;p&gt;My local Java User’s Group is getting off to a great start in 2019.  As
 was mentioned on
 &lt;a href=&quot;https://twitter.com/mgrygles/status/1088190088100700185&quot;&gt;twitter&lt;/a&gt;, we
 had &lt;a href=&quot;https://twitter.com/cjug&quot;&gt;Chicago JUG&lt;/a&gt;’s own
 &lt;a href=&quot;https://twitter.com/mgrygles&quot;&gt;Mary Grygleski&lt;/a&gt; in January, I’ll be
-speaking in February, and shortly thereafter we’ll have my colleage
-Santiago Pericas-Geertsen in March.&lt;/p&gt;
+speaking in March, and shortly thereafter we’ll have my colleage
+Santiago Pericas-Geertsen in April.&lt;/p&gt;
 
 &lt;p&gt;My talk is chance to see what I’ll be presenting as a keynote at
 &lt;a href=&quot;https://javaland.eu&quot;&gt;JavaLand&lt;/a&gt; this year.  You can read more about it
@@ -30,7 +30,7 @@ to anyone trying to grow their computing platform, because, at some
 level, we are all in the platform business.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Wednesday 27 February 2019&lt;/p&gt;
+  &lt;p&gt;Thursday 7 March 2019&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
@@ -49,7 +49,7 @@ level, we are all in the platform business.&lt;/p&gt;
 &lt;a href=&quot;http://ridingthecrest.com/&quot;&gt;Secrets of the Rockstar Programmers&lt;/a&gt; on
 hand for sale for USD $15 each.&lt;/p&gt;
 
-&lt;h2 id=&quot;coming-on-march-7th-project-helidon&quot;&gt;Coming on March 7th: Project Helidon&lt;/h2&gt;
+&lt;h2 id=&quot;coming-in-april-project-helidon&quot;&gt;Coming In April: Project Helidon&lt;/h2&gt;
 
 &lt;p&gt;My colleague, and former JAX-RS spec lead, Santiago Pericas-Geertsen
 will be presenting the new and exciting
@@ -59,7 +59,7 @@ writing software for the microservices style.  You may also know
 Santiago as the man behind the innovative
 &lt;a href=&quot;https://www.n-k.de/2014/05/project-avatar-twitterwall-demo.html&quot;&gt;Oracle Project Avatar&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Santiago’s talk will be at the same place as my 27 February talk.&lt;/p&gt;</content><author><name></name></author><summary type="html">My local Java User’s Group is getting off to a great start in 2019. As was mentioned on twitter, we had Chicago JUG’s own Mary Grygleski in January, I’ll be speaking in February, and shortly thereafter we’ll have my colleage Santiago Pericas-Geertsen in March.</summary></entry><entry><title type="html">Stacktraces and deinitializers in Swift</title><link href="/blog/2019/01/17/swift-callstack.html" rel="alternate" type="text/html" title="Stacktraces and deinitializers in Swift" /><published>2019-01-17T13:00:00-05:00</published><updated>2019-01-17T13:00:00-05:00</updated><id>/blog/2019/01/17/swift-callstack</id><content type="html" xml:base="/blog/2019/01/17/swift-callstack.html">&lt;p&gt;While continuing to make my way through
+&lt;p&gt;Santiago’s talk will be at the same place as my 7 March talk.&lt;/p&gt;</content><author><name></name></author><summary type="html">My local Java User’s Group is getting off to a great start in 2019. As was mentioned on twitter, we had Chicago JUG’s own Mary Grygleski in January, I’ll be speaking in March, and shortly thereafter we’ll have my colleage Santiago Pericas-Geertsen in April.</summary></entry><entry><title type="html">Stacktraces and deinitializers in Swift</title><link href="/blog/2019/01/17/swift-callstack.html" rel="alternate" type="text/html" title="Stacktraces and deinitializers in Swift" /><published>2019-01-17T13:00:00-05:00</published><updated>2019-01-17T13:00:00-05:00</updated><id>/blog/2019/01/17/swift-callstack</id><content type="html" xml:base="/blog/2019/01/17/swift-callstack.html">&lt;p&gt;While continuing to make my way through
 &lt;a href=&quot;https://docs.swift.org/swift-book/&quot;&gt;the Swift Book&lt;/a&gt;, I finally reached
 the definition of &lt;code class=&quot;highlighter-rouge&quot;&gt;Deinitialization&lt;/code&gt;.  The authors wait until almost
 halfway through the pagecount before introducing this concept.  Since

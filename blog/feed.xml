@@ -1,5 +1,168 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-02-08T15:11:01-05:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">I’m Speaking at Orlando JUG on Thursday 7 March</title><link href="/blog/2019/01/29/ojug-2019-02-27.html" rel="alternate" type="text/html" title="I'm Speaking at Orlando JUG on Thursday 7 March" /><published>2019-01-29T18:00:00-05:00</published><updated>2019-01-29T18:00:00-05:00</updated><id>/blog/2019/01/29/ojug-2019-02-27</id><content type="html" xml:base="/blog/2019/01/29/ojug-2019-02-27.html">&lt;p&gt;My local Java User’s Group is getting off to a great start in 2019.  As
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-11T19:48:59-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JavaLand 2019 Conference Picks</title><link href="/blog/2019/03/11/javaland-2019-picks.html" rel="alternate" type="text/html" title="JavaLand 2019 Conference Picks" /><published>2019-03-11T17:30:00-04:00</published><updated>2019-03-11T17:30:00-04:00</updated><id>/blog/2019/03/11/javaland-2019-picks</id><content type="html" xml:base="/blog/2019/03/11/javaland-2019-picks.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/JavaLand-2019-Banner-800x643-Twitter-Schulungspartner-ENG.jpg&quot; alt=&quot;I'm teaching at JavaLand 2019&quot; title=&quot;I'm teaching at JavaLand 2019&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s time for my favorite of the year: JavaLand!  This year I have the
+great blessing to be &lt;a href=&quot;https://www.heise.de/developer/artikel/Ed-Burns-Container-waren-zur-rechten-Zeit-am-rechten-Ort-4303141.html&quot;&gt;giving the Tuesday
+keynote&lt;/a&gt;.
+I consider it a great honor to be in such esteemed company as Martin
+Thompson, Holly Cummins, Adam Gowdiak (though I shan’t be dissing on
+anyone’s &lt;a href=&quot;http://www.security-explorations.com/materials/se-javaland.pdf&quot;&gt;security
+practices&lt;/a&gt;),
+and other past keynote speakers.  I hope I’m up to the task.  I’ve been
+&lt;a href=&quot;/blog/2019/01/29/ojug-2019-02-27.html&quot;&gt;practicing&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I also am very happy to be teaching a class with my long time training
+partner Oliver Szymanski.  This year we are teaching about &lt;a href=&quot;https://programm.javaland.eu/2019/#/scheduledEvent/569084&quot;&gt;Docker and
+Kubernetes&lt;/a&gt;.
+The title of the workshop is “Cloud Perspective: Kubernetes is like an
+App Server, but more Cloudy”, but I saw a funny tweet last week that
+sums it up more humorously: &lt;a href=&quot;https://twitter.com/spezam/status/1104293618720878595&quot;&gt;Kubernetes is the Websphere of the
+millenials&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This post lists my conference session picks.  I hope to attend as many
+of these as possible, but there is so much going on that I may not be
+able to make it.  There were many times when multiple sessions that I
+want to attend were scheduled at the same time, apologies to the
+speakers of the one’s not chosen.  Take a look at &lt;a href=&quot;https://programm.javaland.eu/2019/#/schedule&quot;&gt;program
+yourself&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;tuesday&quot;&gt;Tuesday&lt;/h3&gt;
+
+&lt;h4 id=&quot;0830-wintergarden---test-driven-architecture---peter-gafert&quot;&gt;08:30 Wintergarden - Test Driven Architecture - &lt;a href=&quot;https://twitter.com/codecholeric&quot;&gt;Peter Gafert&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This talk promises to take what we all love about TDD and apply it to
+microservices based architectures.  This seems a tall order, so I’m keen
+to see what it’s about.&lt;/p&gt;
+
+&lt;h4 id=&quot;1100-wintergarden---community-controlled-jakarta-ee-with-jax-rs-and-mvc---christan-kaltepoth-and-friends&quot;&gt;11:00 Wintergarden - Community-Controlled Jakarta EE with JAX-RS and MVC - &lt;a href=&quot;https://twitter.com/chkal&quot;&gt;Christan Kaltepoth and friends&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;It’s been more than two years since Jakarta EE was announced and things
+are really rolling now.  MVC is a great example of what can be done in
+this new approach to developing the standard for enterprise Java.&lt;/p&gt;
+
+&lt;h4 id=&quot;1200-rotunde---master-your-java-applications-in-kubernetes---andy-moncsek&quot;&gt;12:00 Rotunde - Master your Java Applications in Kubernetes - &lt;a href=&quot;https://twitter.com/AndyAHCP&quot;&gt;Andy Moncsek&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Ever since seeing Ray Tsang’s talk about &lt;a href=&quot;/blog/2017/02/23/ray-tsang-docker-tips-notes.html&quot;&gt;Docker Tips and Tricks&lt;/a&gt; at
+DevNexus 2017, people have been trying to avoid pitfall when combining
+Java and Docker.  I think the same things need to be said about Java and
+Kubernetes, and I expect Andy will say them.&lt;/p&gt;
+
+&lt;h4 id=&quot;1300-stocks---jenkins-x-continuously-driving-the-kloud---gerd-aschemann&quot;&gt;13:00 STOCKs - Jenkins X Continuously Driving the Kloud - &lt;a href=&quot;https://twitter.com/GerdAschemann&quot;&gt;Gerd Aschemann&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I vividly remember the first time Kohsuke showed my Hudson, back in 2005
+or so.  Even back then, it was clear that CI was going to be the way
+things work in the future.  Nowadays, the CI space is more crowded than
+ever: TravisCI, GitLab, CircleCI, and many many more.  I’d like to see
+what Gerd has to say about the state of Jenkins and the new Jenkins X.&lt;/p&gt;
+
+&lt;h4 id=&quot;1400-tie&quot;&gt;14:00 TIE:&lt;/h4&gt;
+
+&lt;p&gt;I can’t let a JavaLand go by without seeing a talk by &lt;a href=&quot;https://twitter.com/dasniko&quot;&gt;Das
+Niko&lt;/a&gt;, but on the other hand, &lt;a href=&quot;https://twitter.com/svenpet&quot;&gt;Sven
+Peters&lt;/a&gt; is also a very excellent speaker,
+with a compelling topic.  So I’ll list both and see which one I can
+make.&lt;/p&gt;
+
+&lt;h5 id=&quot;1400-silverado-theater---das-geheimnis-erfolgreicher-teams---sven-peters&quot;&gt;14:00 Silverado Theater - Das Geheimnis erfolgreicher Teams - &lt;a href=&quot;https://twitter.com/svenpet&quot;&gt;Sven Peters&lt;/a&gt;&lt;/h5&gt;
+
+&lt;p&gt;Having written and thought extensively about so-called Rockstar
+Programmers, and in particular their role in successful teams, I want to
+hear what Sven has to say about the whole thing.&lt;/p&gt;
+
+&lt;h5 id=&quot;1400-schauspielhaus---container-vs-serverless---the-good-the-bad--the-ugly---das-niko&quot;&gt;14:00 Schauspielhaus - Container vs. Serverless - the Good, the Bad &amp;amp; the Ugly - &lt;a href=&quot;https://twitter.com/dasniko&quot;&gt;Das Niko&lt;/a&gt;&lt;/h5&gt;
+
+&lt;p&gt;I love Niko’s talks because he sticks straight to the technical, and
+he’s not afraid to challenge conventional wisdom.  That always makes for
+a good talk.&lt;/p&gt;
+
+&lt;h4 id=&quot;1500-quantum-12---visual-studio-code-for-java-and-spring-devs---bruno-borges&quot;&gt;15:00 Quantum 1+2 - Visual Studio Code for Java and Spring Devs - &lt;a href=&quot;https://twitter.com/brunoborges&quot;&gt;Bruno Borges&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This quote alone from the abstract is striking for its honesty and
+candor: “Installing the right extensions in VS Code results in a
+powerful yet lightweight code editing experience that comes close to the
+feature richness of existing Java IDEs.”  Having been experienced with
+NetBeans and, to a lesser extent IntelliJ idea, I am certainly willing
+to try other tools.  Let’s see what VS Code for Java has to show.&lt;/p&gt;
+
+&lt;h4 id=&quot;1600-lecture-tent---datenflut-ertrinken-oder-auf-der-welle-reiten-tanja-schmidt&quot;&gt;16:00 Lecture Tent - Datenflut: Ertrinken oder auf der Welle reiten? &lt;a href=&quot;https://programm.javaland.eu/2019/#/speaker/382558&quot;&gt;Tanja Schmidt&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I’m excited to understand how to go fishing in a Data Lake.  I expect
+Tanja will explain it all and more.&lt;/p&gt;
+
+&lt;h4 id=&quot;1700-wintergarden---panel-zukunft-java&quot;&gt;17:00 Wintergarden - Panel: Zukunft Java&lt;/h4&gt;
+
+&lt;p&gt;There is a lot to talk about here. Knowing
+&lt;a href=&quot;https://twitter.com/hendrikEbbers&quot;&gt;Hendrik&lt;/a&gt; it will be entertaining and
+informative.&lt;/p&gt;
+
+&lt;h4 id=&quot;1800-quantum-12---the-future-of-java-and-you---heather-vancura&quot;&gt;18:00 Quantum 1+2 - The Future of Java and You - &lt;a href=&quot;https://twitter.com/heathervc&quot;&gt;Heather Vancura&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;If you’ve wondered about the continuing role of the JCP in a world where
+plain-ole-Open Source (PooS) and the Jakarta Project are also valid
+governance choices, this talk should answer your questions.&lt;/p&gt;
+
+&lt;h4 id=&quot;1900-wintergarden---revisiting-effective-java-in-2019-edson-yanaga&quot;&gt;19:00 Wintergarden - Revisiting Effective Java in 2019 &lt;a href=&quot;https://twitter.com/yanaga&quot;&gt;Edson Yanaga&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I’ve long felt that Java’s biggest education problem is the challenge of
+teaching only the good stuff.  The classic book on which this talk is
+based does that very well.  I look forward to hearing Edson’s
+perspective on Josh Bloch’s java gem.&lt;/p&gt;
+
+&lt;h3 id=&quot;wednesday&quot;&gt;Wednesday&lt;/h3&gt;
+
+&lt;h4 id=&quot;0900-rotunde---welcome-failure-leichter-gesagt-als-getan-sabine-wojcieszak&quot;&gt;09:00 Rotunde - Welcome Failure Leichter gesagt als getan! &lt;a href=&quot;https://twitter.com/SabineBendixen&quot;&gt;Sabine Wojcieszak&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I’ve never seen a session from this speaker, but she seems like an
+excellent speaker and the talk promises to tease apart blame from
+responsibility.  It’s an ambitious agenda for 40 minutes, but a great
+chance to meet and talk about this important topic more, perhaps over an
+ice cream across the way from Quantum 1+2.&lt;/p&gt;
+
+&lt;h4 id=&quot;1000-schauspielhaus---wie-fit-ist-java-für-die-cloud---roland-huß&quot;&gt;10:00 Schauspielhaus - Wie fit ist Java für die Cloud? - &lt;a href=&quot;https://www.twitter.com/ro14nd&quot;&gt;Roland Huß&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I’m choosing this talk just based on the experience of the speaker and
+the topic.  Roland is the man behing the Docker Maven Plugin.  I expect
+to see a critical assesment of Java and the cloud.&lt;/p&gt;
+
+&lt;h4 id=&quot;1100-silverado---community-keynote-kampf-der-giganten&quot;&gt;11:00 Silverado - Community-Keynote: Kampf der Giganten&lt;/h4&gt;
+
+&lt;p&gt;The community keynote at JavaOne is often a humorous and informative
+look at what’s has happened in the Java community in the past year.  I
+expect this will be similar.  I’ve been invited to participate!&lt;/p&gt;
+
+&lt;h4 id=&quot;1200-stocks---kubernetes-runtime-security-when-contaniers-go-bad---jen-tong&quot;&gt;12:00 STOCKs - Kubernetes Runtime Security: When Contaniers Go Bad - &lt;a href=&quot;https://twitter.com/MimmingCodes&quot;&gt;Jen Tong&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Knowing how many people allow their Docker &lt;code class=&quot;highlighter-rouge&quot;&gt;ENTRYPOINT&lt;/code&gt; to run as root,
+I’m curious to see what Jen has to say about security in containers.&lt;/p&gt;
+
+&lt;h4 id=&quot;1300-quantum-12---java-webstart-ist-tot---wie-geht-es-nun-weiter---hendrik-ebbers&quot;&gt;13:00 Quantum 1+2 - Java WebStart ist tot - Wie geht es nun weiter? - &lt;a href=&quot;https://twitter.com/hendrikEbbers&quot;&gt;Hendrik Ebbers&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I have nothing to do with client side Java any more, but I remember
+really loving Java WebStart back in the day.  I wonder where it will go
+now?&lt;/p&gt;
+
+&lt;h4 id=&quot;1400-stocks---when-technology-and-humanly-collides---marieme-jamme&quot;&gt;14:00 STOCKs - When Technology and humanly collides - &lt;a href=&quot;https://twitter.com/mjamme&quot;&gt;Marieme Jamme&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;We need more talks like this about the societal impact of what we do as
+programmers.  I can’t wait to see this one.  Even though the abstract is
+very sparse, I’m sure it’s worth attending.&lt;/p&gt;
+
+&lt;h4 id=&quot;1500-schauspielhaus---java-hacker-und-zwillingsmama---martina-baumer&quot;&gt;15:00 Schauspielhaus - Java-Hacker und Zwillingsmama - &lt;a href=&quot;https://programm.javaland.eu/2019/#/speaker/381980&quot;&gt;Martina Baumer&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Work and life balance was a theme I explored in the Rockstar Programmer
+book.  Unfortunately, all the people I interviewed were men.  I can’t
+wait to see Martina’s female perspectives on this important topic.&lt;/p&gt;
+
+&lt;h4 id=&quot;1600-quantum-34---testing-java-microservices---andy-gumbrecht&quot;&gt;16:00 Quantum 3+4 - Testing Java Microservices - &lt;a href=&quot;https://twitter.com/AndyGeeDe&quot;&gt;Andy Gumbrecht&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Andy has written an excellent book from which he is extracting this
+talk.  I’ve seen it before and it’s great.  You should see it too.&lt;/p&gt;
+
+&lt;h4 id=&quot;1700-wintergarden---the-dark-side-of-java-8---grzegorz-piwowarek&quot;&gt;17:00 Wintergarden - The Dark Side of Java 8 - &lt;a href=&quot;https://twitter.com/pivovarit&quot;&gt;Grzegorz Piwowarek&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I love to get outside perspectives on the success or failure of our Java
+releases.  I’m wondering what he thinks is wrong with the Stream API?
+We’ll see!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">I’m Speaking at Orlando JUG on Thursday 7 March</title><link href="/blog/2019/01/29/ojug-2019-02-27.html" rel="alternate" type="text/html" title="I'm Speaking at Orlando JUG on Thursday 7 March" /><published>2019-01-29T18:00:00-05:00</published><updated>2019-01-29T18:00:00-05:00</updated><id>/blog/2019/01/29/ojug-2019-02-27</id><content type="html" xml:base="/blog/2019/01/29/ojug-2019-02-27.html">&lt;p&gt;My local Java User’s Group is getting off to a great start in 2019.  As
 was mentioned on
 &lt;a href=&quot;https://twitter.com/mgrygles/status/1088190088100700185&quot;&gt;twitter&lt;/a&gt;, we
 had &lt;a href=&quot;https://twitter.com/cjug&quot;&gt;Chicago JUG&lt;/a&gt;’s own
@@ -676,105 +839,4 @@ strategies for success.&lt;/p&gt;
 &lt;h2 id=&quot;audience-takeaway&quot;&gt;Audience Takeaway&lt;/h2&gt;
 
 &lt;p&gt;A set of concrete, actionable steps you can take right now to become a
-better developer.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m blessed with the opportunity to present the current version of my “Secrets of the Rockstar Programmers” talk at a special edition of the Orlando Java User’s Group. JUG leader Mike Levin is even more blessed with the opportunity to visit JCrete, and so chose to re-schedule the July meeting rather than canceling it.</summary></entry><entry><title type="html">JavaLand 2018 Holly Cummins</title><link href="/blog/2018/03/12/javaland-holly-cummins.html" rel="alternate" type="text/html" title="JavaLand 2018 Holly Cummins" /><published>2018-03-12T04:45:00-04:00</published><updated>2018-03-12T04:45:00-04:00</updated><id>/blog/2018/03/12/javaland-holly-cummins</id><content type="html" xml:base="/blog/2018/03/12/javaland-holly-cummins.html">&lt;p&gt;Holly leads the &quot;Cloud Garage&quot; at IBM, working with customers to
-  create solutions when moving to the cloud.&lt;/p&gt;
-
-&lt;p&gt;Holly gives the summary of the &quot;Cloudy With A Chance Of Meatballs&quot;
-  movie.&lt;/p&gt;
-
-&lt;p&gt;Story of the hero who wanted to make the world better, but ended up
-  making some mistakes.&lt;/p&gt;
-
-&lt;p&gt;Cites Joseph Campbell, who observed the commonalities among the
-world's myths.  He finds the recurring themes among them.  He formed the
-idea of the &quot;monomyth&quot;.  There is actually only one story: the
-  quest.&lt;/p&gt;
-
-	&lt;ul&gt;
-
-	  &lt;li&gt;&lt;p&gt;all to action
-	  &lt;/p&gt;&lt;/li&gt;
-
-     	  &lt;li&gt;&lt;p&gt;obstacles
-	  &lt;/p&gt;&lt;/li&gt;
-          
-         &lt;li&gt;&lt;p&gt;reward
-	  &lt;/p&gt;&lt;/li&gt;
-
-	&lt;/ul&gt;
-
-&lt;p&gt;Observes we are the hero of our own story.&lt;/p&gt;
-
-&lt;p&gt;Some aspects of being that with respect to being a developer.&lt;/p&gt;
-
-&lt;p&gt;Listed some rockstar programmer skills: automate, tools mastery, etc.&lt;/p&gt;
-
-&lt;h2&gt;Hero stories for the cloud&lt;/h2&gt;
-
-&lt;p&gt;Long deploy times.&lt;/p&gt;
-
-&lt;h2&gt;But what about the obstacles&lt;/h2&gt;
-
-&lt;p&gt;Adoption is still not complete.  Relates this to the hero's &quot;call to
-  action&quot;.&lt;/p&gt;
-
-	&lt;ul&gt;
-
-	  &lt;li&gt;&lt;p&gt;Security fears&lt;/p&gt;
-
-            &lt;p&gt;Bank: Watson discovery.  The crawler that populates the
-              ML by putting all the data in the cloud.&lt;/p&gt;
-
-            &lt;p&gt;But you must encrypt it.&lt;/p&gt;
-
-            &lt;p&gt;In the traditional stack, the dev is responsible for the
-            security of their code.  In the cloud, the entire stack,
-            including the OS, is the built artifact.  So the developer
-            must take responsibility for OS patches, and everything on
-            up through the stack.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-	  &lt;li&gt;&lt;p&gt;Cloud-nativeness&lt;/p&gt;
-
-            &lt;p&gt;Definition: it's not just centralized computing.&lt;/p&gt;
-
-            &lt;p&gt;History lesson: tty, mirocomputer, client-server, PC,
-            Grid computing, laptops, cloud, edge computing.  She used a
-              sine wave to cover what I often depict as a pendulum.&lt;/p&gt;
-
-            &lt;p&gt;CNCF: Containerized, Dynamically orchestrated, microservices
-              oriented.&lt;/p&gt;
-
-            &lt;p&gt;Holly adds: elasticity and agility, as well as assuming
-              everything is unreliable.&lt;/p&gt;
-
-            &lt;p&gt;JVM considerations: the traditional Rafael Benevides
-              concerns: containers get killed.&lt;/p&gt;
-
-            &lt;p&gt;Logging: the need for data analytics simply to get access
-              to the logs.  Prometheus.&lt;/p&gt;
-
-            &lt;p&gt;Microservices are hard.  They seem like a great idea, but
-            when you try them.  Here is where she brings back in the
-              meatball movie.&lt;/p&gt;
-
-            &lt;p&gt;Cost for Kubernetes clusters, especially if you fail to
-              tear them down when you are done.&lt;/p&gt;
-
-            &lt;p&gt;Needing a cloud to manage your cloud.&lt;/p&gt;
-
-          &lt;/li&gt;
-
-	&lt;/ul&gt;
-
-        &lt;h3&gt;Trends&lt;/h3&gt;
-
-&lt;p&gt;QaaS quantum as a service&lt;/p&gt;
-
-&lt;p&gt;renewed interest in IaaS because the I can have super expensive
-  hardware, such as GPU loaded machines.&lt;/p&gt;
-
-&lt;h3&gt;Cloud Native Thinking&lt;/h3&gt;
-
-&lt;p&gt;Digital Native analogy&lt;/p&gt;</content><author><name></name></author><summary type="html">Holly leads the &quot;Cloud Garage&quot; at IBM, working with customers to create solutions when moving to the cloud.</summary></entry></feed>
+better developer.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m blessed with the opportunity to present the current version of my “Secrets of the Rockstar Programmers” talk at a special edition of the Orlando Java User’s Group. JUG leader Mike Levin is even more blessed with the opportunity to visit JCrete, and so chose to re-schedule the July meeting rather than canceling it.</summary></entry></feed>

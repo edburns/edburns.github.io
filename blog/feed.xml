@@ -1,5 +1,360 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-19T06:43:20-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC</title><link href="/blog/2019/03/19/javaland-jax-rs-mvc-picks.html" rel="alternate" type="text/html" title="Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC" /><published>2019-03-19T06:00:00-04:00</published><updated>2019-03-19T06:00:00-04:00</updated><id>/blog/2019/03/19/javaland-jax-rs-mvc-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-jax-rs-mvc-picks.html">&lt;h3 id=&quot;raw-notes-community-controlled-jakarta-ee-with-jax-rs-and-mvc-christian-kaltepoth-markus-karg-ivar-gramstad&quot;&gt;Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC, Christian Kaltepoth, Markus Karg, Ivar Gramstad&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-19T07:41:39-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Raw Notes: Master your Java Applications in Kubernetes</title><link href="/blog/2019/03/19/javaland-kubernetes-picks.html" rel="alternate" type="text/html" title="Raw Notes: Master your Java Applications in Kubernetes" /><published>2019-03-19T06:45:00-04:00</published><updated>2019-03-19T06:45:00-04:00</updated><id>/blog/2019/03/19/javaland-kubernetes-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-kubernetes-picks.html">&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;CV Slide.  History from consulting, banks, insurance, on-prem&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Cloud is not his history, but now he’s all about it.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Agenda&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Choose your Java runtime&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Build and execute your app&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Create your image&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Run in K8s&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Final thoughts&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How to decide to go with k8s&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Top down or bottom up?&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;How to integreate?&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Slow startup: naieve impl of monolith decomposition.  Take EE app,
+put it in container, run on k8s.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;K8s is for horizontal scaling, not vertical scaling&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;You can horizontally scale infinitely, until the first bill comes
+in!&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;More hands working with K8s&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Choosing the Java runtime&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Support&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;LTS&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Container aware?&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Since 8u131 &amp;amp; JDK 9&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Changes in 8u191 &amp;amp; JDK10&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;CommentL what does he mean with container aware?&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Many options out there.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;OpenJ9 is the IBM JDK&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Contributed to Eclipse in 2017&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Take OpenJDK, replace Hotspot&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Small memory footprint and fast startup.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;GraalVM&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Universal VM for running various langauges&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Removes isolation and enables interop&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;How is this related to K8s&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;JVM needs to be aware of containers CPU and memory&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Keep the memory and size footprint small&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Keep it with fast startup time.  You can burn money for no good.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;“Basic” container specific flags&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/k8s-runtime-flags-01.jpg&quot; alt=&quot;Flags 01&quot; title=&quot;Flags 01&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/k8s-runtime-flags-02.jpg&quot; alt=&quot;Flags 02&quot; title=&quot;Flags 02&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ahead of time compilation (AOT)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Application Class Data Sharing&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Since JDK10 (JEP310)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Flag &lt;em&gt;UseAppCDS&lt;/em&gt; (automatically enabled in JDK12)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Reduce memory footprint startup time&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Needs two prep steps&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;DEMO&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Start a vertx app&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Create AppCDS, &lt;code class=&quot;highlighter-rouge&quot;&gt;class.lst&lt;/code&gt;, but does not include all the classes.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Create archive file from &lt;code class=&quot;highlighter-rouge&quot;&gt;class.lst&lt;/code&gt;.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;COMMENT: this is really great.  Explore this.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CDS and AOT in OpenJ9&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;enable class data sharing and AOT is enabled by default&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Looks like it does the preceding for you automatically.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Native compilation&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Based on Graal compiler&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Download GraaLVM&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Build fat jar&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;native-image -jar app.jar &amp;amp;&amp;amp; ./app&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Works with Micronaut, Spark Java, Vert.X.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Not there yet.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Benchmarks: Always do your own&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create your images&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Shrink your images to a minimum&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;FROM openjdk:12-ea-jdk-alpine3.8: as builder&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;jlink –add-modules … –output /opt/jre-minimal&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;COPY –from=builder /opt/jre-minimal /opt-jre-minimal&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Create lean images&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;put most changeable stuff lowest at bottom of Dockerfile&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;FROM adoptopenjdk/openjdk11-openj9:alpine-slim&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Think about your images&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Try to avoid “fat” jars and wars.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Choosing your top level FROM image&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Look for vendor-specific images&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Don’t use :latest, or no tag.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;DEMO: Graal Native&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;A bunch of &lt;code class=&quot;highlighter-rouge&quot;&gt;docker run&lt;/code&gt;.  Then &lt;code class=&quot;highlighter-rouge&quot;&gt;docker stats&lt;/code&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Run the app in K8s.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Share your CDS files in K8s&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Set resource request limits.  PodSpec: &lt;code class=&quot;highlighter-rouge&quot;&gt;resources.requests.{memory,cpu}
+resources.requests.limits.{memory,cpu}&lt;/code&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Apply quotas on Namepsace level.  &lt;code class=&quot;highlighter-rouge&quot;&gt;kind:ResourceQuota&lt;/code&gt;&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;ConfigMaps &amp;amp; Secrets to externalize your config&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Final thoughts&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Avoid infrastructure code in your applications&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Service mesh with circuit breaker&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Service discovery using DNS or Labels in K8s&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Configuration via ConfigMap&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Helm charts to ship your application&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Package manager like “apt” in Debian&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Kubernetes Operators helps you manage upgrades, lifecycle, and
+insights.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Don’t overlook serverless&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Better utilization of your cluster: accomodate different workloads&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Knative, an operator from Google and Pivotal&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;GraalVM and other projects focusing on low footprint &amp;amp; fast startup&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Why optimize?  COSTS.  Smaller footprint, CPU, cycles, pay per use.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;lifecycle has changed.  Startup is now critical.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">CV Slide. History from consulting, banks, insurance, on-prem</summary></entry><entry><title type="html">Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC</title><link href="/blog/2019/03/19/javaland-jax-rs-mvc-picks.html" rel="alternate" type="text/html" title="Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC" /><published>2019-03-19T06:00:00-04:00</published><updated>2019-03-19T06:00:00-04:00</updated><id>/blog/2019/03/19/javaland-jax-rs-mvc-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-jax-rs-mvc-picks.html">&lt;h3 id=&quot;raw-notes-community-controlled-jakarta-ee-with-jax-rs-and-mvc-christian-kaltepoth-markus-karg-ivar-gramstad&quot;&gt;Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC, Christian Kaltepoth, Markus Karg, Ivar Gramstad&lt;/h3&gt;
 
 &lt;h4 id=&quot;jax-rs&quot;&gt;JAX-RS&lt;/h4&gt;
 
@@ -31,7 +386,7 @@ since it was somewhat transferred to Jakarta&lt;/p&gt;
         &lt;p&gt;Spec doc still under Oracle sole control!&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;COMMENT: It seems like this effort is&lt;/p&gt;
+        &lt;p&gt;COMMENT: It seems like this effort is stalled&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
@@ -878,72 +1233,4 @@ it well.&lt;/p&gt;
 
 &lt;p&gt; &lt;/p&gt;
 
-&lt;p&gt; &lt;/p&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry><entry><title type="html">Fetchmail Hangs: Approach to Debugging</title><link href="/blog/2018/10/14/fetchmail-hangs.html" rel="alternate" type="text/html" title="Fetchmail Hangs: Approach to Debugging" /><published>2018-10-14T11:00:00-04:00</published><updated>2018-10-14T11:00:00-04:00</updated><id>/blog/2018/10/14/fetchmail-hangs</id><content type="html" xml:base="/blog/2018/10/14/fetchmail-hangs.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;Symptom&lt;/em&gt;: Fetchmail hangs when fetching messages.  When it happens in
-fetchmail, it happens in Thunderbird as well.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Cause&lt;/em&gt;: Certain messages seem to cause the &lt;code class=&quot;highlighter-rouge&quot;&gt;stbeehive.oracle.com&lt;/code&gt; IMAP
-server to hang when fetching headers with the IMAP
-(&lt;a href=&quot;https://tools.ietf.org/html/draft-ietf-imap-imap4-06&quot;&gt;RFC-1730&lt;/a&gt;)
-&lt;code class=&quot;highlighter-rouge&quot;&gt;FETCH 1 RFC822.HEADER&lt;/code&gt; command.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Resolution&lt;/em&gt;: This is a cheezy workaround: delete the message that
-causes the hang and it seems to unblock the rest of the fetching.  You
-can do this in Thunderbird or with IMAP directly.&lt;/p&gt;
-
-&lt;h2 id=&quot;details&quot;&gt;Details&lt;/h2&gt;
-
-&lt;p&gt;For the past fifteen years I have been trying to avoid
-&lt;a href=&quot;https://www.poets.org/poetsorg/poem/do-not-go-gentle-good-night&quot;&gt;going quietly into that good night&lt;/a&gt;
-of using another email program other than my beloved and highly
-customized Emacs/VM.  This means occasionally things will just stop
-working as the world around me changes and I try to stay the same (at
-least as far as
-&lt;a href=&quot;https://searchnetworking.techtarget.com/definition/mail-user-agent&quot;&gt;MUAs&lt;/a&gt;
-go).  This happened this week: fetchmail would hang.  I observed that
-Thunderbird would hang also.&lt;/p&gt;
-
-&lt;h3 id=&quot;diagnosis-steps&quot;&gt;Diagnosis steps&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Enable verbose when fetching.
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fetchmail -v -v -f fetchmailrc-oracle
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Observe the IMAP protocol interaction with the server.  For example:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fetchmail: IMAP&amp;gt; A0122 FETCH 1 RFC822.HEADER
-fetchmail: IMAP&amp;lt; * 1 FETCH (RFC822.HEADER {734}
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;p&gt;In this the case of this particular bug, it would hang on just such a
-  header fetch.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Experiment with direct IMAP interaction, using the IMAP protocol
-interation from the preceding step as a guide.  Log in to the IMAP
-server with the following commands:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;openssl s_client -crlf -connect stbeehive.oracle.com:993
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-    &lt;p&gt;With this transcript:&lt;/p&gt;
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;A0001 CAPABILITY
-+* CAPABILITY IMAP4REV1 IDLE AUTH=PLAIN
-+A0001 OK CAPABILITY completed
-A0002 LOGIN &quot;email address&quot; &amp;lt;PASSWORD HERE&amp;gt;
-+A0002 OK LOGIN completed
-A0003 SELECT &quot;INBOX&quot;
-+* 90 EXISTS
-+* 0 RECENT
-+* OK [UIDVALIDITY 4094122] UID validity status
-+* OK [UIDNEXT 326362] Predicted next UID
-+* FLAGS (\Seen \Deleted \Answered \Forwarded \Redirected \Flagged \Hidden \Draft $MDNSent)
-+* OK [PERMANENTFLAGS (\Seen \Deleted \Answered \Forwarded \Redirected \Flagged \Hidden \Draft $MDNSent)] Permanent flags
-+A0003 OK [READ-WRITE] SELECT completed
-A0004 EXPUNGE
-&lt;/code&gt;&lt;/pre&gt;
-    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;This technique enabled me to see what was going on.&lt;/p&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry></feed>
+&lt;p&gt; &lt;/p&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry></feed>

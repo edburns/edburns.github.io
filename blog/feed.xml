@@ -1,5 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-11T19:59:10-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">JavaLand 2019 Conference Picks</title><link href="/blog/2019/03/11/javaland-2019-picks.html" rel="alternate" type="text/html" title="JavaLand 2019 Conference Picks" /><published>2019-03-11T17:30:00-04:00</published><updated>2019-03-11T17:30:00-04:00</updated><id>/blog/2019/03/11/javaland-2019-picks</id><content type="html" xml:base="/blog/2019/03/11/javaland-2019-picks.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/JavaLand-2019-Banner-800x643-Twitter-Schulungspartner-ENG.jpg&quot; alt=&quot;I'm teaching at JavaLand 2019&quot; title=&quot;I'm teaching at JavaLand 2019&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-19T06:43:20-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC</title><link href="/blog/2019/03/19/javaland-jax-rs-mvc-picks.html" rel="alternate" type="text/html" title="Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC" /><published>2019-03-19T06:00:00-04:00</published><updated>2019-03-19T06:00:00-04:00</updated><id>/blog/2019/03/19/javaland-jax-rs-mvc-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-jax-rs-mvc-picks.html">&lt;h3 id=&quot;raw-notes-community-controlled-jakarta-ee-with-jax-rs-and-mvc-christian-kaltepoth-markus-karg-ivar-gramstad&quot;&gt;Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC, Christian Kaltepoth, Markus Karg, Ivar Gramstad&lt;/h3&gt;
+
+&lt;h4 id=&quot;jax-rs&quot;&gt;JAX-RS&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Arrived late, Markus was sharing what has happened on the JAX-RS spec
+since it was somewhat transferred to Jakarta&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;COMMENT: Could not read the slides.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;A fair amount of complaining about the roadblocks.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Oracle is still the official lead&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;We must not use the terms “Java” and “JAX-RS”.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Must not publish any new features.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;TCK still not under their control&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Spec doc still under Oracle sole control!&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;COMMENT: It seems like this effort is&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Getting into gear&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Fix the above problems&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;pruning commiters to only active people&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Publish the roadmap.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;COMMENT: again, cannot read the slides.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;mvc&quot;&gt;MVC&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Christian Kaltepoth.  Bio.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Reviewing the old Java EE 8 survey, the creation of MVC, in 2014!&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What happened next&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Relicense under Apache 2&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Migrate project structure&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Finished RI&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Created TCK&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JCP stuff.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Challenges&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Trademark issues&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Eclipse Development Process (EDP)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Clean intellectual property&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Using the infrastructure from Eclipse.  Works well enough.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What’s next?&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Finish the spec thru JCP: in the next month!&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Migrate spec and TCK to Eclipse EE4J&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;First real release of Jakarta EE8&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Become a part of Jakarta EE 9!&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;https://www.mvc-spec.org/&quot;&gt;contribute https://www.mvc-spec.org/&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;jakarta-ee&quot;&gt;Jakarta EE&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;There is a lot going on, but we have not conveyed it to the community.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;COMMENT: I like how he owns that they need to do better about
+communicating the mission.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Loved the timeline.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/jakarta-ee-timeline.jpg&quot; alt=&quot;Jakarta EE TImeline&quot; title=&quot;Timeline&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;TCK note: use a bottom up process&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IMPORTANT: Eclipse Foundation Specification Process&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Plan to finalize at the meeting today!  JavaLand is timely again.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Showed the scrum board.  Awesome.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;See &lt;a href=&quot;https://jakarta.ee/&quot;&gt;https://jakarta.ee/&lt;/a&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Especially the &lt;a href=&quot;https://jakartablogs.ee/&quot;&gt;blog https://jakartablogs.ee/&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC, Christian Kaltepoth, Markus Karg, Ivar Gramstad</summary></entry><entry><title type="html">JavaLand 2019 Conference Picks</title><link href="/blog/2019/03/11/javaland-2019-picks.html" rel="alternate" type="text/html" title="JavaLand 2019 Conference Picks" /><published>2019-03-11T17:30:00-04:00</published><updated>2019-03-11T17:30:00-04:00</updated><id>/blog/2019/03/11/javaland-2019-picks</id><content type="html" xml:base="/blog/2019/03/11/javaland-2019-picks.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/JavaLand-2019-Banner-800x643-Twitter-Schulungspartner-ENG.jpg&quot; alt=&quot;I'm teaching at JavaLand 2019&quot; title=&quot;I'm teaching at JavaLand 2019&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It’s time for my favorite of the year: JavaLand!  This year I have the
 great blessing to be &lt;a href=&quot;https://www.heise.de/developer/artikel/Ed-Burns-Container-waren-zur-rechten-Zeit-am-rechten-Ort-4303141.html&quot;&gt;giving the Tuesday
@@ -777,66 +946,4 @@ A0004 EXPUNGE
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;This technique enabled me to see what was going on.&lt;/p&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry><entry><title type="html">Secrets of the Rockstar Programmers at Orlando JUG, 6pm Thursday 12 July 2018</title><link href="/blog/2018/07/10/orlando-jug-rockstar.html" rel="alternate" type="text/html" title="Secrets of the Rockstar Programmers at Orlando JUG, 6pm Thursday 12 July 2018" /><published>2018-07-10T13:00:00-04:00</published><updated>2018-07-10T13:00:00-04:00</updated><id>/blog/2018/07/10/orlando-jug-rockstar</id><content type="html" xml:base="/blog/2018/07/10/orlando-jug-rockstar.html">&lt;p&gt;I’m blessed with the opportunity to present the current version of my
-“Secrets of the Rockstar Programmers” talk at a special edition of the
-Orlando Java User’s Group.  JUG leader Mike Levin is even more blessed
-with the opportunity to visit &lt;a href=&quot;http://www.jcrete.org/&quot;&gt;JCrete&lt;/a&gt;, and so
-chose to re-schedule the July meeting rather than canceling it.&lt;/p&gt;
-
-&lt;p&gt;As usual, there is free pizza!&lt;/p&gt;
-
-&lt;h2 id=&quot;location&quot;&gt;Location&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Intrepid Conference Room
-Oracle America, Inc.
-7453 TG Lee Boulevard
-Orlando, FL 32822-4416
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://goo.gl/maps/QGYSUhGpHFS2&quot;&gt;Map Link&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;rsvps&quot;&gt;RSVPs&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.codetown.com/events/orlandojug-secrets-of-the-programming-rock-stars&quot;&gt;CODETOWN&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.meetup.com/OrlandoJUG/events/252475286/&quot;&gt;MeetUp&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;abstract&quot;&gt;Abstract&lt;/h2&gt;
-
-&lt;p&gt;How in the world can I keep up with all this information coming at me
-every day?&lt;/p&gt;
-
-&lt;p&gt;What can I do to ensure that I keep bringing value to my employer or
-client and to help ensure continued career success?&lt;/p&gt;
-
-&lt;p&gt;What will the practice of software development look like in ten years
-time?&lt;/p&gt;
-
-&lt;p&gt;How do I know where to invest time and effort in stewarding my skillset?&lt;/p&gt;
-
-&lt;p&gt;In 2008, Ed Burns interviewed top programmers from a variety of software
-disciplines for the book “Secrets of the Rock Star Programmers”. Now
-in 2018, Ed revisits the cross section of secrets (aka character
-attributes) exhibited by these rockstars for the current world of
-programming.&lt;/p&gt;
-
-&lt;p&gt;Join this session to learn more about these characteristics that can
-help you become a better programmer.&lt;/p&gt;
-
-&lt;h2 id=&quot;purpose-of-the-talk&quot;&gt;Purpose of the Talk&lt;/h2&gt;
-
-&lt;p&gt;Ed interviews some of the best programmers of our time and shares their
-strategies for success.&lt;/p&gt;
-
-&lt;h2 id=&quot;target-audience&quot;&gt;Target Audience&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Any developer wanting to improve their career skills.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;audience-takeaway&quot;&gt;Audience Takeaway&lt;/h2&gt;
-
-&lt;p&gt;A set of concrete, actionable steps you can take right now to become a
-better developer.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m blessed with the opportunity to present the current version of my “Secrets of the Rockstar Programmers” talk at a special edition of the Orlando Java User’s Group. JUG leader Mike Levin is even more blessed with the opportunity to visit JCrete, and so chose to re-schedule the July meeting rather than canceling it.</summary></entry></feed>
+&lt;p&gt;This technique enabled me to see what was going on.&lt;/p&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry></feed>

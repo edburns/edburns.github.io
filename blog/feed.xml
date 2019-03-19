@@ -1,5 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-19T10:45:26-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Raw Notes: Visual Studio Code</title><link href="/blog/2019/03/19/javaland-vscode-picks.html" rel="alternate" type="text/html" title="Raw Notes: Visual Studio Code" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-vscode-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-vscode-picks.html">&lt;h1 id=&quot;vscode&quot;&gt;VSCode&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-19T14:47:27-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Raw Notes: Revisiting Effective Java in 2019</title><link href="/blog/2019/03/19/javaland-effective-java-picks.html" rel="alternate" type="text/html" title="Raw Notes: Revisiting Effective Java in 2019" /><published>2019-03-19T13:45:00-04:00</published><updated>2019-03-19T13:45:00-04:00</updated><id>/blog/2019/03/19/javaland-effective-java-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-effective-java-picks.html">&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Credentials&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://developers.redhat.com/promotions/migrating-to-microservice-databases&quot;&gt;Plugged his book&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ANZXvXVa1Lg&quot;&gt;Has a three hour version of the talk&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Lambdas&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Streams&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Optionals&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Default methods in interfaces&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;try with resources&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;factory methods&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Minimize mutability&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Comparable(14)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Live coding&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Minimize mutability.  Value object class.  Why?  Easier to reason
+about.  Reduces the chance that the system gets into an
+inconsistent state.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Make as many of things &lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt; as possible&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;No ctor, use factory method: &lt;code class=&quot;highlighter-rouge&quot;&gt;of&lt;/code&gt;.  Easier for refactoring.
+Allows you to change the cardinality, maybe re-use objects with
+an object pool.  Flyweight class.  &lt;code class=&quot;highlighter-rouge&quot;&gt;BigDecimal.valueOf()&lt;/code&gt;
+implementation is an example.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;COMMENT: what about making the zero arg ctor private?&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;He used Google Guava, but noted that they have violated backward
+compatibility in the past.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Advised to implement &lt;code class=&quot;highlighter-rouge&quot;&gt;equals&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode&lt;/code&gt;. Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;Objects&lt;/code&gt;
+class in the JDK.  I thas an &lt;code class=&quot;highlighter-rouge&quot;&gt;equals&lt;/code&gt; method.  Handles all that
+&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt; checking.  But beware of the performance penalty of
+autoboxing.  For hashcode, there is &lt;code class=&quot;highlighter-rouge&quot;&gt;Objects.hash&lt;/code&gt;.  This is
+even worse for performance.  If you use the generator for
+&lt;code class=&quot;highlighter-rouge&quot;&gt;equals&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;hashcode&lt;/code&gt; make sure to keep the impls up to date
+as the class evolved.&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;for hashcode, because it is immutable, you can do it in the
+ctor. If you use an object as a key to a hashmap, it must be
+immutable.  If you can’t do that, you can make a
+&lt;code class=&quot;highlighter-rouge&quot;&gt;toHashKey()&lt;/code&gt; method.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;toString()&lt;/code&gt;.  It’s for developers.  Guava
+&lt;code class=&quot;highlighter-rouge&quot;&gt;MoreObjects.toStringHelper()&lt;/code&gt;.  Not for “business strings”.
+For busness strings, use &lt;code class=&quot;highlighter-rouge&quot;&gt;formatTo&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;Formatter&lt;/code&gt; and
+&lt;code class=&quot;highlighter-rouge&quot;&gt;Formattable&lt;/code&gt;.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Comparable&lt;/code&gt;.  &lt;code class=&quot;highlighter-rouge&quot;&gt;Comparator&lt;/code&gt; interface.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Functional Interfaces.  &lt;code class=&quot;highlighter-rouge&quot;&gt;@FunctionalInterface&lt;/code&gt;.  Constrains your
+code to conform to functional interfaces.  Favor &lt;em&gt;Strategy&lt;/em&gt; over
+&lt;em&gt;Template Method&lt;/em&gt;.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;You should not need to create a new functional interface.  There
+are 41 already in the JDK.  It’s likely it will be in there
+already.  Learn these six well: &lt;code class=&quot;highlighter-rouge&quot;&gt;UnaryOperator, BinaryOperator,
+Predicate, Function, Supplier, Consumer&lt;/code&gt;.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Method References.  Five different types&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;static, ie &lt;code class=&quot;highlighter-rouge&quot;&gt;Integer::parseInt()&lt;/code&gt;&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;bounded and unbounded method reference.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Enums&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Can use lambdas or function references in enum initializer.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Credentials</summary></entry><entry><title type="html">Raw Notes: Visual Studio Code</title><link href="/blog/2019/03/19/javaland-vscode-picks.html" rel="alternate" type="text/html" title="Raw Notes: Visual Studio Code" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-vscode-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-vscode-picks.html">&lt;h1 id=&quot;vscode&quot;&gt;VSCode&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -1399,80 +1519,4 @@ the default parameter name of oldValue.&lt;/p&gt;
 about &lt;a href=&quot;/blog/2010/03/03/perils-8220there8217s-more-one-way-do-it8221.html&quot;&gt;Perl&lt;/a&gt;.  I just
 think this “look at how powerful my syntax is with the beautiful
 abstractions I’ve made that allow me to state things so simply”
-mentality can be taken a bit too far.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m pretty sure this is a tell about my mental capacity, but I gotta say that several features in Swift have the following annoying pattern, at least in the way they are explained in the official Swift Book.</summary></entry><entry><title type="html">Inline RxSwift Observer implementation</title><link href="/blog/2018/12/11/rxswift-observer-inline-impl.html" rel="alternate" type="text/html" title="Inline RxSwift Observer implementation" /><published>2018-12-11T16:00:00-05:00</published><updated>2018-12-11T16:00:00-05:00</updated><id>/blog/2018/12/11/rxswift-observer-inline-impl</id><content type="html" xml:base="/blog/2018/12/11/rxswift-observer-inline-impl.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
-
-&lt;p&gt;My ignorance of the Swift custom of using the &lt;code class=&quot;highlighter-rouge&quot;&gt;extension&lt;/code&gt; feature to
-explode the definition of a single protocol across several source files
-lead me to misunderstand how to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt; method in RxSwift.&lt;/p&gt;
-
-&lt;h2 id=&quot;details&quot;&gt;Details&lt;/h2&gt;
-
-&lt;p&gt;As I’ve said &lt;a href=&quot;/blog/2017/06/10/neil-ford-microservices-ujug-march-2017.html&quot;&gt;before&lt;/a&gt;, one of the
-things I love about working on my current team at Oracle is the
-opportunity to learn new things and put them in practice.  Currently
-this means learing Swift and RxSwift.  While doing the usual TDD, I
-needed to write several tests that exercise the contract of Rx.  This
-required a concise way to pass an argument to the &lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt; method of
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Observable&lt;/code&gt; that allowed making assertions for the &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt;,
-&lt;code class=&quot;highlighter-rouge&quot;&gt;onCompleted&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;onError&lt;/code&gt; cases.  As I say in my talk “Programming
-Platform Growth: Table Stakes or Deal Makes?” (which I am blessed to be
-giving as a keynote at
-&lt;a href=&quot;https://programm.javaland.eu/2019/#/scheduledEvent/570246&quot;&gt;JavaLand 2019&lt;/a&gt;),
-a key ingredient of programming platform growth is the welcoming culture
-of its developer community.  I have a concrete example here that speaks
-well of the Swift community in that regard.&lt;/p&gt;
-
-&lt;p&gt;I was looking for examples of passing an obsever to the &lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt;
-method, but all of them passed a single &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt; handler.
-&lt;a href=&quot;http://swiftpearls.com/RxSwift-for-dummies-1-Observables.html&quot;&gt;This post&lt;/a&gt;
-while educational, is indicative of what I could find.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;observable.subscribe(onNext: {(element) in
-  print(element)
-})
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;What I wanted was to pass a complete implementation of the
-&lt;code class=&quot;highlighter-rouge&quot;&gt;ObserverType&lt;/code&gt; with inline methods for its &lt;code class=&quot;highlighter-rouge&quot;&gt;onNext&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;onCompleted&lt;/code&gt;, and
-&lt;code class=&quot;highlighter-rouge&quot;&gt;onError&lt;/code&gt; functions.  I posed the question in the
-&lt;a href=&quot;https://rxswift.slack.com/archives/C051G5Y6T/p1544558825273100&quot;&gt;RxSwift slack channel&lt;/a&gt;
-and the
-&lt;a href=&quot;https://forums.swift.org/t/closure-or-dynamic-protocol-implementation/18739/2&quot;&gt;Swift #Using forum&lt;/a&gt;
-and received helpful answers from each.  As a beginner, I failed to
-grasp that what looks like an anonymous interface implementation in Java
-is actually in invocation of an overloaded method.  You see, in Swift,
-it is common to spread out the actual surface area of an API over many
-different source files using the Swift &lt;code class=&quot;highlighter-rouge&quot;&gt;extension&lt;/code&gt; feature.  This was
-pointed out to me in the swift.org forum post from Adrian Zubarev.  So,
-there is an overloaded &lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt; method defined in
-&lt;code class=&quot;highlighter-rouge&quot;&gt;ObservableType+Extensions.swift&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public func subscribe(onNext: ((E) -&amp;gt; Void)? = nil,
-                      onError: ((Swift.Error) -&amp;gt; Void)? = nil,
-                      onCompleted: (() -&amp;gt; Void)? = nil,
-                      onDisposed: (() -&amp;gt; Void)? = nil)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This is simply a bunch of optional closure parameters, each with their
-own signature and default value of &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Meanwhile, on the real-time help front, danielt1263 and Jeremy offered
-some very helpful answers that supplement the answer from swift.org, and
-which I actually decided to use.  They suggested using the variant of
-&lt;code class=&quot;highlighter-rouge&quot;&gt;subscribe&lt;/code&gt; that takes a closure that takes an &lt;code class=&quot;highlighter-rouge&quot;&gt;Event&lt;/code&gt; and returns
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Void&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class=&quot;smalltalk&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;let sub &lt;span style=&quot;color: #000066; font-weight:bold;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #00007f;&quot;&gt;try&lt;/span&gt; getObservable&lt;span style=&quot;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;.&lt;span style=&quot;color: #00007f;&quot;&gt;subscribe&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#123;&lt;/span&gt; event in&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;switch event &lt;span style=&quot;&quot;&gt;&amp;#123;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;case let .&lt;span style=&quot;color: #00007f;&quot;&gt;next&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #00007f;&quot;&gt;value&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;:&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #00007f;&quot;&gt;onNextCalled&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight:bold;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #00007f;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;color: #7f007f;&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;case let .&lt;span style=&quot;color: #00007f;&quot;&gt;error&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #00007f;&quot;&gt;error&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;:&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #00007f;&quot;&gt;onErrorCalled&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight:bold;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #00007f;&quot;&gt;&lt;/span&gt;&lt;span style=&quot;color: #7f007f;&quot;&gt;true&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;case .&lt;span style=&quot;color: #00007f;&quot;&gt;completed&lt;/span&gt;:&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #00007f;&quot;&gt;onCompletedCalled&lt;/span&gt; &lt;span style=&quot;color: #000066; font-weight:bold;&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #00007f;&quot;&gt;&lt;/span&gt;true&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;&lt;span style=&quot;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry></feed>
+mentality can be taken a bit too far.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m pretty sure this is a tell about my mental capacity, but I gotta say that several features in Swift have the following annoying pattern, at least in the way they are explained in the official Swift Book.</summary></entry></feed>

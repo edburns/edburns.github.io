@@ -1,5 +1,169 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-19T09:42:34-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Raw Notes: Das Geheimnis erfolgreicher Teams</title><link href="/blog/2019/03/19/javaland-successful-teams-picks.html" rel="alternate" type="text/html" title="Raw Notes: Das Geheimnis erfolgreicher Teams" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-successful-teams-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-successful-teams-picks.html">&lt;ul&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-19T10:45:26-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Raw Notes: Visual Studio Code</title><link href="/blog/2019/03/19/javaland-vscode-picks.html" rel="alternate" type="text/html" title="Raw Notes: Visual Studio Code" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-vscode-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-vscode-picks.html">&lt;h1 id=&quot;vscode&quot;&gt;VSCode&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Started by saying their goal is not to convert IntelliJ, Eclipse,
+NetBeans devs.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Editors&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;TextEdit&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;SublimeText&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;jEdit&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Had huge plugin ecosystem.  From sourceforge&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;a href=&quot;https://atom.io/&quot;&gt;Atom Editor&lt;/a&gt;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;On the other end of the spectrum you have IDEs.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Text editors&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Keyboard centric&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Lightweight/fast&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Files/folders&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IDEs&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Project systems&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Integrated build&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Debug&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;VCS&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Code understandig&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What about something in the middle?&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;VS Code is an editor, but has some capabilities from the IDS&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Code understanding&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Debug&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Everything from the Text editors&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you want to stick to one editor, VSCode + extensions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Spring Initializr&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IntelliCode&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;AI-assited pattern recognition&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;demos&quot;&gt;DEMOS&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Setting it up.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;code --user-dir empty --extensions-dir empty/extensions
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Some basic things you can do&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Maven projects&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Had some demo issues&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;spring&quot;&gt;Spring&lt;/h1&gt;
+
+&lt;h2 id=&quot;demos-1&quot;&gt;DEMOS&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;SpringBoot &lt;code class=&quot;highlighter-rouge&quot;&gt;@RestController&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Initializr&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Go-to-symbol works with Spring beans&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;PetClinic&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;AzureDevSpaces&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Rapidly iterate and debug containers in Kubernetes&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Showed how you can drop in a new Service-B in the midst of other
+existing services.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/vs-code-blog.jpg&quot; alt=&quot;Jakarta EE TImeline&quot; title=&quot;Timeline&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">VSCode</summary></entry><entry><title type="html">Raw Notes: Das Geheimnis erfolgreicher Teams</title><link href="/blog/2019/03/19/javaland-successful-teams-picks.html" rel="alternate" type="text/html" title="Raw Notes: Das Geheimnis erfolgreicher Teams" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-successful-teams-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-successful-teams-picks.html">&lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;Successful teams come from successful people&lt;/p&gt;
 
@@ -1311,82 +1475,4 @@ which I actually decided to use.  They suggested using the variant of
 &lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;&lt;span style=&quot;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;&quot;&gt;&amp;#125;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry><entry><title type="html">Git Tags and Semver</title><link href="/blog/2018/11/13/semvergittags.html" rel="alternate" type="text/html" title="Git Tags and Semver" /><published>2018-11-13T06:41:00-05:00</published><updated>2018-11-13T06:41:00-05:00</updated><id>/blog/2018/11/13/semvergittags</id><content type="html" xml:base="/blog/2018/11/13/semvergittags.html">&lt;h2 id=&quot;executive-summary&quot;&gt;Executive Summary&lt;/h2&gt;
-
-&lt;p&gt;Debugging a Swift &lt;code class=&quot;highlighter-rouge&quot;&gt;Package.swift&lt;/code&gt; problem that turned out to be
-incorrectly git tags that did not sort correctly with respect to semver.&lt;/p&gt;
-
-&lt;h2 id=&quot;details&quot;&gt;Details&lt;/h2&gt;
-
-&lt;p&gt;I was trying to run the steps in an internal README to create a “Hello
-World” for a simple Swift project and could not understand why some code
-that had been removed from an internal dependency was still showing up
-in the “Hello World”.  This code had been removed from the most recent
-release of the internal dependency.  Upon investigation it turned out
-that the git tags for the internal dependency, when sorted using
-&lt;a href=&quot;https://semver.org/&quot;&gt;semver&lt;/a&gt;, showed an old release as the most
-recent.&lt;/p&gt;
-
-&lt;p&gt;I found it useful to create an alias that outputs the git tags sorted by
-semver.  I used the handy &lt;code class=&quot;highlighter-rouge&quot;&gt;semver&lt;/code&gt; npm module:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo npm install --verbose --global semver
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;and with that the following bash function works:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function semvergittags() {
-  semver `git tag -l | tr '\n' ' '`
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;For example:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ejburns$ semvergittags
-0.1.11
-1.0.0-ea07-b0
-1.0.0-ea07-b1
-1.0.0-ea08-b1
-1.0.0-ea11-b1
-1.0.0-ea12-b1
-1.0.0-ea13
-1.0.0-ea14
-1.0.0-ea15
-1.0.0-ea16
-1.0.0-ea17
-1.0.0-ea18
-1.0.0-ea19
-1.0.0-ea20
-1.0.0-ea21
-1.0.0-ea22
-1.0.0-ea23
-1.0.0-ea24
-1.0.0-ea25
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I fixed the git tags using this
-&lt;a href=&quot;https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag&quot;&gt;answer from stack overflow&lt;/a&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git tag new old
-git tag -d old
-git push origin :refs/tags/old
-git push --tags
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I gave the answer an upvote because they shared this additional tip:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Finally, make sure that the other users remove the deleted tag. Please
-tell them (co-workers) to run the following command:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git pull --prune --tags&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;That’s the sort of thing that could easily be forgotten and cause more
-head scratching.&lt;/p&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry></feed>
+&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Executive Summary</summary></entry></feed>

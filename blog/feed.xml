@@ -1,5 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-03-19T14:47:27-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Raw Notes: Revisiting Effective Java in 2019</title><link href="/blog/2019/03/19/javaland-effective-java-picks.html" rel="alternate" type="text/html" title="Raw Notes: Revisiting Effective Java in 2019" /><published>2019-03-19T13:45:00-04:00</published><updated>2019-03-19T13:45:00-04:00</updated><id>/blog/2019/03/19/javaland-effective-java-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-effective-java-picks.html">&lt;ul&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-04-20T15:12:26-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">TDC 2019 Florianópolis</title><link href="/blog/2019/04/20/tdc-floripa-2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis" /><published>2019-04-20T14:00:00-04:00</published><updated>2019-04-20T14:00:00-04:00</updated><id>/blog/2019/04/20/tdc-floripa-2019</id><content type="html" xml:base="/blog/2019/04/20/tdc-floripa-2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I am blessed to have the opportunity to speak for the &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;fourth
+time&lt;/a&gt; at the
+GlobalCode Developer’s conference.  My last time there was in November
+2009!  I can’t believe it’s been that long.  It was a huge event then,
+and it’s even bigger now.  It’s the largest software developer
+conference, by number of attendees, in Brazil, and that’s saying a lot.
+There are at &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilhas&quot;&gt;least &lt;strong&gt;49&lt;/strong&gt;
+tracks&lt;/a&gt;
+over &lt;strong&gt;five days&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here are some links to my two talks.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;10:10 STADIUM and Java Architecture Track &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-arquitetura-java&quot;&gt;Table Stakes, Deal Makes: Programming Language Platform Growth&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;14:10 South Center Career Track &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria&quot;&gt;Career Tips from Someone Who Knows a Lot of Rockstar Programmers&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Raw Notes: Revisiting Effective Java in 2019</title><link href="/blog/2019/03/19/javaland-effective-java-picks.html" rel="alternate" type="text/html" title="Raw Notes: Revisiting Effective Java in 2019" /><published>2019-03-19T13:45:00-04:00</published><updated>2019-03-19T13:45:00-04:00</updated><id>/blog/2019/03/19/javaland-effective-java-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-effective-java-picks.html">&lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;Credentials&lt;/p&gt;
   &lt;/li&gt;
@@ -1428,95 +1449,4 @@ How does it differ from “design by contract”?&lt;/p&gt;
 
 &lt;p&gt;I searched the ACM Digital Library for “Protocol Oriented Programming”.
 None of the top 50 hits were about the actual thing that Apple’s Swift
-developers are talking about.&lt;/p&gt;</content><author><name></name></author><summary type="html">One thing I noticed learning Swift is how it’s approach to object orientation differs from the classical approach I was taught in college, back when OO was the dominant way of designing software. This post</summary></entry><entry><title type="html">Annoyance about learning Swift</title><link href="/blog/2018/12/18/swift-annoyance.html" rel="alternate" type="text/html" title="Annoyance about learning Swift" /><published>2018-12-18T14:30:00-05:00</published><updated>2018-12-18T14:30:00-05:00</updated><id>/blog/2018/12/18/swift-annoyance</id><content type="html" xml:base="/blog/2018/12/18/swift-annoyance.html">&lt;p&gt;I’m pretty sure this is a tell about my mental capacity, but I gotta say
-that several features in Swift have the following annoying pattern, at
-least in the way they are explained in the official
-&lt;a href=&quot;https://docs.swift.org/swift-book/&quot;&gt;Swift Book&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;They explain the full syntax of the feature.  This is very nice,
-compact, and readily grasped.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;But wait, you can do the same thing but simpler with this more
-concise syntax.  This starts to get obtuse.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;But wait, you can do it even more simply with this super concise
-syntax.  At this point the syntax itself makes little sense and I
-find it hard to grasp.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Perhaps it would be better to not spring the 2 and 3 level
-simplifications on the reader until they have firmly grasped 1?&lt;/p&gt;
-
-&lt;h2 id=&quot;case-1-closures&quot;&gt;Case 1: Closures&lt;/h2&gt;
-
-&lt;p&gt;The Swift Book helpfully provides the full syntax of closures right at
-the front.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(parameters)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;statements&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;However, they then go through several, progressively more compact (and
-less readily grasped for a beginner) iterations.  At each step along the
-way, they point out why the more compact syntax still works, but you
-have to keep in your mind other language concepts that are in play to
-enable the simplification.  Then there is this cheeky statement:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;There’s actually an even shorter way to write the closure expression above.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;reversedNames = names.sorted(by: &amp;gt;)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;So, you know all that parameter list, arrow, return type, &lt;code class=&quot;highlighter-rouge&quot;&gt;in&lt;/code&gt; keyword?
-In some special cases, you simply don’t need ‘em.  Perhaps if I get
-heavily into Swift I will come to like the fact that all that seemingly
-important stuff can sometimes be omitted, but for now I would rather not
-have to learn when it’s possible to use the compact syntax and just have
-to do the verbose syntax all the time.  Stuff like this just seems like
-the language is taking on some things I usually let the IDE do.&lt;/p&gt;
-
-&lt;h2 id=&quot;case-2-computed-properties&quot;&gt;Case 2: Computed Properties&lt;/h2&gt;
-
-&lt;p&gt;The Swift Book again shows the full syntax of a computed property, but
-only by example.  Then it says, “By the way, if your computed property
-happens to be read-only, you can simplify the declaration of a read-only
-computed property by removing the get keyword and its braces.”&lt;/p&gt;
-
-&lt;h2 id=&quot;case-3-property-observers-and-the-default-parameter-name&quot;&gt;Case 3: Property Observers and the default parameter name&lt;/h2&gt;
-
-&lt;p&gt;I like the concept of property observers but wonder why they felt the
-need to define the &lt;code class=&quot;highlighter-rouge&quot;&gt;oldValue&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;newValue&lt;/code&gt; default parameter names for
-the getter and setter.  Such as:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;You can specify a name for this parameter as part of your willSet
-implementation. If you don’t write the parameter name and parentheses
-within your implementation, the parameter is made available with a
-default parameter name of newValue.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;and&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;if you implement a didSet observer, it’s passed a constant parameter
-containing the old property value. You can name the parameter or use
-the default parameter name of oldValue.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-
-&lt;p&gt;This is certainly not new to Swift.  Indeed I’ve lamented the same thing
-about &lt;a href=&quot;/blog/2010/03/03/perils-8220there8217s-more-one-way-do-it8221.html&quot;&gt;Perl&lt;/a&gt;.  I just
-think this “look at how powerful my syntax is with the beautiful
-abstractions I’ve made that allow me to state things so simply”
-mentality can be taken a bit too far.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m pretty sure this is a tell about my mental capacity, but I gotta say that several features in Swift have the following annoying pattern, at least in the way they are explained in the official Swift Book.</summary></entry></feed>
+developers are talking about.&lt;/p&gt;</content><author><name></name></author><summary type="html">One thing I noticed learning Swift is how it’s approach to object orientation differs from the classical approach I was taught in college, back when OO was the dominant way of designing software. This post</summary></entry></feed>

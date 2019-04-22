@@ -1,5 +1,198 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-04-20T15:12:26-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">TDC 2019 Florianópolis</title><link href="/blog/2019/04/20/tdc-floripa-2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis" /><published>2019-04-20T14:00:00-04:00</published><updated>2019-04-20T14:00:00-04:00</updated><id>/blog/2019/04/20/tdc-floripa-2019</id><content type="html" xml:base="/blog/2019/04/20/tdc-floripa-2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-04-22T08:05:51-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers</title><link href="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers" /><published>2019-04-21T19:00:00-04:00</published><updated>2019-04-21T19:00:00-04:00</updated><id>/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019</id><content type="html" xml:base="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In my talk at 14:10 South Center Career Track, &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria&quot;&gt;Career Tips from Someone
+Who Knows a Lot of Rockstar
+Programmers&lt;/a&gt;,
+I will share some of the lessons I learned from the people I interviewed
+for the &lt;a href=&quot;&quot;&gt;Secrets of the Rockstar Programmers&lt;/a&gt; book, and
+also include some tips of my own.  Though I don’t claim to be a rockstar
+programmer myself (or the newer term: “10x programmer”), I can honestly
+say I know plenty of people that who are.&lt;/p&gt;
+
+&lt;p&gt;Working for big companies such as IBM, SGI, Sun, and Oracle, I’ve had
+the chance to sample many useful corporate trainings.  Even the most
+mundane of these, such as “Insider Trading”, offer at least one nugget
+of novelty.  The corporate training I want to talk about here is one I
+took at Sun at least twelve years ago.  It was called “Communicating
+Your Value Add” and it was all about how to articulate your contribution
+to your company at performance review time.  The class included a handout,
+“Behavior/Performance-Based Questions” whose complete text I reproduce
+below.  For discussion and reference, let’s call this &lt;code class=&quot;highlighter-rouge&quot;&gt;perf_handout&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s the basic idea.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Get in the habit of producing written weekly status reports as simple
+text files.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Annnotate some of the things you’ve done with &lt;code class=&quot;highlighter-rouge&quot;&gt;perf_handout.N&lt;/code&gt; Where
+&lt;code class=&quot;highlighter-rouge&quot;&gt;N&lt;/code&gt; is the number of the corresponding list item below.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;When performance review time comes around, you can grep through your
+status reports for &lt;code class=&quot;highlighter-rouge&quot;&gt;perf_handout&lt;/code&gt; and your performance review
+practically writes itself.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For example, if I successfully introduced a new code review process, my
+weekly status report would have a line like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;perf_handout.6: Designed and implemented a new code review process.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Once you do this for a month or so, you’ll notice some areas you are
+missing.  Try to fill those in, or if you can’t try to partner with
+someone who you observe is able to do those things and learn from them.&lt;/p&gt;
+
+&lt;p&gt;Here now is the complete &lt;code class=&quot;highlighter-rouge&quot;&gt;perf_handout&lt;/code&gt; content.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;behaviorperformance-based-questions&quot;&gt;Behavior/Performance-Based Questions&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   A sampling of the types of questions that might be used to explore
+   your level of accomplishment for specific skills are listed below.
+   These questions provide a platform for *communcating your
+   achievements* in skill areas such as leadership, decision-making,
+   persuasiveness, coping, creativity, tolerance for ambiguity,
+   organizational savvy, technical knowledge, and influencing.
+   
+   1. Describe a time when voicing your opinion was uncomfortable or
+   could have had serious consequences, but you did it because you
+   believed so strongly in the value of your perspective.
+   
+   2. What was the most creative idea you introduced on the job?  How
+   did you persuade your superior?.
+   
+   3. Give me an example of the most complex project/assignment you have
+   had, including your role and the outcome.
+   
+   4. Describe a situation at work when you had to make a decision and
+   were uncertain about the outcome.
+   
+   5. What do you when you are communicating with someone and it becomes
+   apparent that they don't understand what you are saying or vice
+   versa?
+   
+   6. Describe a situation in which you developed a group into a strong
+   working team?
+   
+   7. Communication and leadership go hand in hand.  Tell me about a
+   time when your communication skills enabled you to influence the way
+   others thought or acted, even in a very difficult situation.
+   
+   8. What important goals have you set in the past, and how were you
+   able to work towards accomplishing them successfully?
+   
+   9. Describe how you delegate responsibility in your current job.
+   
+   10. Have you ever had to take over a leadership role unexpectedly?
+   How did it work out?
+   
+   11. Sometimes it is important to disagree with others, particularly
+   your boss, in order to prevent a mistake from being made.  Tell me
+   about a time when you were willing to disagree with another person in
+   order to build a positive outcome.
+   
+   12. Describe a time when you had to sell an idea to your boss or
+   another authority figure.
+   
+   13. Give me an example taken from your experiences in report writing,
+   preparation of memos, or general correspondence which illustrates
+   the extent of your written communication skills.
+   
+   14. Building rapport can be a very challenging thing to do.  Give an
+   example of a time when you were able to build rapport with an
+   individual or group at work, even when the situation was difficult
+   and the odds were against you.
+   
+   15. Solving problems requires more than good plans, it means taking
+   action.  Give me an example of a time when you were able to take
+   meaningful action in resolving a problem.
+   
+   16. In many problem situations, it is often tempting to jump to a
+   conclusion to build a solution quickly.  Tell me about at time when
+   you resisted this temptation and obtained all the facts about the
+   problem before coming to a decision.
+   
+   17. Sometimes it is necessary to work in unsettled or rapidly
+   changing circumstances.  When have you found yourself in this
+   position?  Tell me exactly whay you did.
+   
+   18. Solving a problem often necessitates evalutation of alternative
+   solutions. Give me an example of a time when you actively defined
+   several solutions to a single problem using any tools such as
+   research, brainstorming, or mathematics.
+   
+   19. Just about anybody can give a routine, standard answer to common
+   problems; however, the payoff is often in the development of unique
+   solutions to common problems.  Give me an example of one of your
+   unique problem solutions.
+   
+   20. Describe an assigmnent that represented a unique challenge to
+   you.
+   
+   21. Tell me about a time when you had to cope with strict deadlines
+   or time demands.
+   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;performance-review-questions&quot;&gt;Performance Review Questions&lt;/h3&gt;
+
+&lt;p&gt;The pre-discussion forms include the questions below which are listed
+   under the following categories: Results, Quality, Reliability,
+   Leadership, Decision Making, Functional/Technical Skills &amp;amp; Knowledge,
+   Communication and Teamwork, and Resourcefulness &amp;amp; Creativity.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+   22. Based on established goals and objectives, for our group, what
+   results did you achieve?  If a goal changed, how much progress did
+   you make toward the revised goal?
+   
+   23. What additional contributions did you make?  Were there
+   accoplishments that were definitely outstanding?
+   
+   24. What examples can you recall of instances in which you were
+   responsive to your customer or successful in completing a quality
+   job?
+   
+   25. What leadership and decision making abilities have you
+   demonstrated?
+   
+   26. Give me an example of a major decision you've made and the
+   outcome.
+   
+   27. Give me an example of any project you have led and the outcome.
+   
+   28. How have you improved existing processes and procedures?
+   
+   29. In what ways have you added unique value to your job?
+   
+   30. Give me an example of when you have demonstrated technical or
+   functional expertise.
+   
+   31. Tell me about what measures you have taken to ensure that your
+   skills are state-of-the-art.
+   
+   32. Give me an example of an effective presentation you have made.
+   
+   33. Give me an example of how cooperative interaction with other
+   members of the Sun team have been a part of your work.
+   
+   34. Give me an example of a time when others have been able to count
+   on your &quot;being-there&quot; time after time, project after project.
+   
+   35. Give me an example of when you used strategic thinking in moving
+   toward achieving a goal.
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">TDC 2019 Florianópolis</title><link href="/blog/2019/04/20/tdc-floripa-2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis" /><published>2019-04-20T14:00:00-04:00</published><updated>2019-04-20T14:00:00-04:00</updated><id>/blog/2019/04/20/tdc-floripa-2019</id><content type="html" xml:base="/blog/2019/04/20/tdc-floripa-2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I am blessed to have the opportunity to speak for the &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;fourth
 time&lt;/a&gt; at the
@@ -1440,13 +1633,4 @@ main code.&lt;/p&gt;
 &lt;p&gt;I’m sure there is more to reveal about runtime stack inspection, but
 mastering the diagnostic and debugging techniques of a programming
 language platform is an important component of proficiency.  It pays to
-pick up and save such tips when they come along.&lt;/p&gt;</content><author><name></name></author><summary type="html">While continuing to make my way through the Swift Book, I finally reached the definition of Deinitialization. The authors wait until almost halfway through the pagecount before introducing this concept. Since this is the first time in the book a code sample has code that is called by the runtime rather than the reader, I wanted to print a stack trace in the deinitializer and see what it looked like.</summary></entry><entry><title type="html">Swift and Object Oriented Programming</title><link href="/blog/2018/12/21/swift-and-oo.html" rel="alternate" type="text/html" title="Swift and Object Oriented Programming" /><published>2018-12-21T16:30:00-05:00</published><updated>2018-12-21T16:30:00-05:00</updated><id>/blog/2018/12/21/swift-and-oo</id><content type="html" xml:base="/blog/2018/12/21/swift-and-oo.html">&lt;p&gt;One thing I noticed learning Swift is how it’s approach to object
-orientation differs from the classical approach I was taught in college,
-back when OO was the dominant way of designing software.  This post&lt;/p&gt;
-
-&lt;p&gt;I can’t find any academic papers about “protocol oriented programming”.
-How does it differ from “design by contract”?&lt;/p&gt;
-
-&lt;p&gt;I searched the ACM Digital Library for “Protocol Oriented Programming”.
-None of the top 50 hits were about the actual thing that Apple’s Swift
-developers are talking about.&lt;/p&gt;</content><author><name></name></author><summary type="html">One thing I noticed learning Swift is how it’s approach to object orientation differs from the classical approach I was taught in college, back when OO was the dominant way of designing software. This post</summary></entry></feed>
+pick up and save such tips when they come along.&lt;/p&gt;</content><author><name></name></author><summary type="html">While continuing to make my way through the Swift Book, I finally reached the definition of Deinitialization. The authors wait until almost halfway through the pagecount before introducing this concept. Since this is the first time in the book a code sample has code that is called by the runtime rather than the reader, I wanted to print a stack trace in the deinitializer and see what it looked like.</summary></entry></feed>

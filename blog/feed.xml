@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-04-22T08:05:51-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-04-22T08:23:03-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers</title><link href="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers" /><published>2019-04-21T19:00:00-04:00</published><updated>2019-04-21T19:00:00-04:00</updated><id>/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019</id><content type="html" xml:base="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In my talk at 14:10 South Center Career Track, &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria&quot;&gt;Career Tips from Someone
 Who Knows a Lot of Rockstar
 Programmers&lt;/a&gt;,
 I will share some of the lessons I learned from the people I interviewed
-for the &lt;a href=&quot;&quot;&gt;Secrets of the Rockstar Programmers&lt;/a&gt; book, and
+for the &lt;a href=&quot;/&quot;&gt;Secrets of the Rockstar Programmers&lt;/a&gt; book, and
 also include some tips of my own.  Though I don’t claim to be a rockstar
 programmer myself (or the newer term: “10x programmer”), I can honestly
 say I know plenty of people that who are.&lt;/p&gt;

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 02: Timesheets</title>
+  <title>TDC 2019 Florianópolis: Raw Notes: Serverless with Knative: Mete Atamel</title>
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <![endif]-->
   <link rel="stylesheet" href="/blog/assets/main.css">
-  <link rel="canonical" href="/blog/2019/04/23/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers-2019-02.html">
+  <link rel="canonical" href="/blog/2019/04/25/tdc-floripa-knative.html">
   <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
   
   
@@ -77,83 +77,132 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 02: Timesheets</h1>
-    <p class="post-meta"><time datetime="2019-04-23T08:00:00-04:00" itemprop="datePublished">Apr 23, 2019</time></p>
+    <h1 class="post-title" itemprop="name headline">TDC 2019 Florianópolis: Raw Notes: Serverless with Knative: Mete Atamel</h1>
+    <p class="post-meta"><time datetime="2019-04-25T09:45:00-04:00" itemprop="datePublished">Apr 25, 2019</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p><img src="/blog/assets/tdc-logo.png" alt="I'm speaking at TDC 2019" title="I'm speaking at TDC 2019" /></p>
 
-<p>In my talk at 14:10 South Center Career Track, <a href="http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria">Career Tips from Someone
-Who Knows a Lot of Rockstar
-Programmers</a>,
-I will share some of the lessons I learned from the people I interviewed
-for the <a href="/">Secrets of the Rockstar Programmers</a> book, and
-also include some tips of my own.  Though I don’t claim to be a rockstar
-programmer myself (or the newer term: “10x programmer”), I can honestly
-say I know plenty of people that who are.</p>
+<p>Talk from <a href="https://twitter.com/meteatamel">Mete Atamel</a>.</p>
 
-<p>I have been extremely blessed to have been a full time telecommuter
-since 2002, first for Sun, and now for Oracle.  Working in this way
-presents some unique challenges, and over the years I have developed
-some techniques to maintain productivity and forward career momentum,
-preserving the personal benefits of telecommuting while continuing to
-give the company value for their money.  Perhaps I can do another post
-on the broader topic of telecommuting tips, but this post is about one
-practical technique that applies to telecommuters and office workers
-alike: keeping a personal timesheet.</p>
+<p>Also take a look at <a href="https://github.com/meteatamel/knative-tutorial">his
+tutorial</a>.</p>
 
-<p>Here’s the basic idea.</p>
+<p>Pronounced “kay native”.</p>
 
-<ol>
+<h1 id="introduction">Introduction</h1>
+
+<p>K8s open source building blocks for serverless.</p>
+
+<p>Points out that K8s is all about servers.  But Knative hides that.</p>
+
+<p>What is Serverless?</p>
+
+<ul>
   <li>
-    <p>Have a spreadsheet that is set up as a timesheet.</p>
+    <p>Servers are someone else’s problem</p>
   </li>
   <li>
-    <p>Each time a new month comes around, save the previous month as the
-current month.</p>
+    <p>Functions should be idomatic, meaning already familiar to you</p>
   </li>
   <li>
-    <p>Keep track of all of the time you spend working and a couple words
-about what you did.</p>
+    <p>Event driven</p>
   </li>
-</ol>
+  <li>
+    <p>Portable to other clouds</p>
+  </li>
+</ul>
 
-<p>I’ve been doing this since I started telecommuting in 2002, so I have
-seventeen years of monthly spreadsheets.  Here is a sample spreadsheet you can download and customize: <a href="/blog/assets/201904-timesheet.xlsx" title="201904-timesheet.xlsx">201904-timesheet.xlsx</a>.</p>
+<p>Asserts Knative ticks all these boxes.</p>
 
-<p>Like my previous post about status reports, this seems mundane and
-annoying, but over time, it adds up to a valuable searchable resource.</p>
+<h2 id="gave-a-bit-of-kubernetes-background">Gave a bit of Kubernetes Background</h2>
+
+<p>How K8s uses a <code class="highlighter-rouge">Service</code> with a stable IP…</p>
+
+<p>Developers want serverless.  Operators want Kubernetes.  Knative tries
+to bridge the gap.</p>
+
+<p>Knative is open source <a href="http://github.com/knative">github</a>.</p>
+
+<h2 id="picture-high-level-diagram">Picture: high level Diagram</h2>
+
+<p><img src="/blog/assets/20190425-tdc-floripa-knative-01-stack.JPG" alt="Knative Stack" title="Knative Stack" /></p>
+
+<p>Uses Istio for network, but he feels Istio is too heavyweight for what
+they use it for, so they now use Gloo, but even he did not know what
+that is.  (This space is moving so fast).</p>
+
+<h2 id="how-to-install">How to install</h2>
+
+<p>Cloud Run or Cloud Run on GKE or Knative Everywhere</p>
+
+<p>A bunch of steps at the command line, mostly with <code class="highlighter-rouge">kubectl</code>.</p>
+
+<p>The different parts of knative run in different namespaces.</p>
+
+<h2 id="one-part-is-knative-serving">One part is Knative Serving?</h2>
+
+<p>Rapid deployment of serverless containers.  Automatic scaling, traffic
+routing, including directing per revisions.  I guess this means it
+supports canary, etc.</p>
+
+<h2 id="picture-serving-primitives">Picture: Serving Primitives</h2>
+
+<p><img src="/blog/assets/20190425-tdc-floripa-knative-02-serving-primitives.JPG" alt="Knative Serving Primitives" title="Knative Serving Primitives" /></p>
+
+<h2 id="going-through-steps-in-tutorial">Going through steps in tutorial</h2>
+
+<p>Before we’ve even seen any functions, we have a ton of network stuff to
+do.  I would like to see the <code class="highlighter-rouge">Dockerfile</code> for the <code class="highlighter-rouge">helloworld-csharp</code> C#
+Service.</p>
+
+<p>It’s been a while since I worked with <code class="highlighter-rouge">Fn</code>, but Knative seems to have a
+lot more friction.  For example, the <code class="highlighter-rouge">Fn</code> command line tool builds the
+docker container around your function for you.  Here you appear to have
+to do that yourself.</p>
+
+<p>He used the term “traffic splitting” instead of “blue green” or some
+other term.</p>
+
+<p>I don’t understand whey he is doing a bunch of <code class="highlighter-rouge">kubectl apply</code> to set it
+up instead of them having Helm chart(s) for this.  I can understand
+using <code class="highlighter-rouge">apply</code> for quick updates when the service is already deployed and
+you want to update it.</p>
+
+<p>He didn’t mention anything about the overhead, if any, of C# in a
+serverless environment.</p>
+
+<p>Showed how <code class="highlighter-rouge">annotations</code> are used to convey autoscaling.</p>
+
+<h2 id="fun-show-integration-with-twilio">Fun: Show integration with Twilio.</h2>
+
+<p>Learned that you can put a comma separated list as the argument to
+<code class="highlighter-rouge">kubectl get</code>.</p>
+
+<h1 id="knative-eventing">Knative Eventing</h1>
+
+<p>Connect producers to consumers with stuff in the middle.</p>
+
+<p>Example 1 was not interesting.</p>
+
+<p>Example 2: Integrate Cloud Storage to Vision API</p>
+
+<p>Here comes something like the license plate demo!</p>
+
+<p>All of his examples are in C#.  Is that the only language supported?</p>
+
+<h1 id="knative-build">Knative Build</h1>
+
+<p>Enables you to build and push the images <em>within your K8s cluster</em>.
+This is a novel idea.  I talked to <a href="http://twitter.com/yanaga">Edson
+Yanaga</a> last night, he was saying this is the
+thing that makes Jenkins obsolete.</p>
+
+<p>RedHat has a <a href="https://blog.openshift.com/knative-building-your-serverless-service/">tutorial on this</a></p>
+
 
   </div>
-
-
-
-  
-
-   
-
-  <div id="disqus_thread"></div>
-  <script>
-    var disqus_config = function () {
-      this.page.url = '';
-      this.page.identifier = '';
-    };
-
-    (function() {
-      var d = document, s = d.createElement('script');
-
-      s.src = 'https://edburns-blog.disqus.com/embed.js';
-
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-
-
-  
 
   
   

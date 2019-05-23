@@ -1,5 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-04-25T11:03:13-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">TDC 2019 Florianópolis: Raw Notes: Serverless with Knative: Mete Atamel</title><link href="/blog/2019/04/25/tdc-floripa-knative.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis: Raw Notes: Serverless with Knative: Mete Atamel" /><published>2019-04-25T09:45:00-04:00</published><updated>2019-04-25T09:45:00-04:00</updated><id>/blog/2019/04/25/tdc-floripa-knative</id><content type="html" xml:base="/blog/2019/04/25/tdc-floripa-knative.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-05-23T14:26:30-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Joining Microsoft</title><link href="/blog/2019/05/23/joining-microsoft.html" rel="alternate" type="text/html" title="Joining Microsoft" /><published>2019-05-23T14:01:00-04:00</published><updated>2019-05-23T14:01:00-04:00</updated><id>/blog/2019/05/23/joining-microsoft</id><content type="html" xml:base="/blog/2019/05/23/joining-microsoft.html">&lt;p&gt;I am so excited to be joining Microsoft as Principal Java Architect in
+their Java Tooling and Experiences team.  I hope to help to make the
+future Java on Azure, by establishing Azure as the preferred cloud for
+all Java workloads.&lt;/p&gt;
+
+&lt;p&gt;I’ve been fortunate to have worked at Sun during their heyday, and I
+recall from that time a great admiration for the way Microsoft focused
+on developers (developers developers developers).  In particular, the
+Project Rave/JavaStudio Creator effort was heavily influenced by
+VisualBasic and its associated tooling.  I look forward to being a part
+of that kind of company again.&lt;/p&gt;
+
+&lt;p&gt;I will be working with my old pal and colleague Reza Rahman to enable
+Java EE and Jakarta EE developers on Azure.  We’re hoping to also
+support Microprofile as well.&lt;/p&gt;
+
+&lt;p&gt;There is a mountain of new stuff for me here, so if I’ve ever asked you
+for technical help in the past, I will likely ask you again in the very near
+future, and I’ll offer the same help in return, as best I can.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am so excited to be joining Microsoft as Principal Java Architect in their Java Tooling and Experiences team. I hope to help to make the future Java on Azure, by establishing Azure as the preferred cloud for all Java workloads.</summary></entry><entry><title type="html">Leaving Oracle</title><link href="/blog/2019/05/23/leaving-oracle.html" rel="alternate" type="text/html" title="Leaving Oracle" /><published>2019-05-23T14:00:00-04:00</published><updated>2019-05-23T14:00:00-04:00</updated><id>/blog/2019/05/23/leaving-oracle</id><content type="html" xml:base="/blog/2019/05/23/leaving-oracle.html">&lt;p&gt;It’s still unreal to me that I’m writing this, but here it is.  After
+over 22 years at Oracle (13 at Sun), I’m moving on to another company.
+In my time at Oracle, I have had a chance to help shape technologies
+that have had a positive impact on our industry and lives.&lt;/p&gt;
+
+&lt;p&gt;I’m not into bragging, humble or otherwise, but I do want to call out a
+few projects with which I am especially thankful to have been involved.
+I am not going to name names for fear of leaving someone out, but I am
+deeply thankful for all my friends who have helped me over the years.&lt;/p&gt;
+
+&lt;h2 id=&quot;anything-to-do-with-jcp&quot;&gt;Anything to do with JCP&lt;/h2&gt;
+
+&lt;p&gt;I’m very glad for my chance to contribute to and validate the Java
+Community Process (&lt;a href=&quot;https://jcp.org/&quot;&gt;JCP&lt;/a&gt;) as a demonstrably successful way to allow a broad
+spectrum of contributors to practically influence the Java they use in
+their own jobs.  Oracle practices a culture of diversity, and this is
+one area where the practice was apparent.&lt;/p&gt;
+
+&lt;p&gt;The most rewarding part of my career so far was working on JSF as part
+of the JCP.  The technology we built, and the community we built around
+it, is very special.  There have been many highpoints but one that
+sticks out for me personally was the gathering at my house after
+the JSFSummit in December 2008 in Orlando.&lt;/p&gt;
+
+&lt;p&gt;There are several other JCP specs that I’ve had the chance to work on,
+including Servlet and Bean Validation.  Those have been very rewarding
+as well.&lt;/p&gt;
+
+&lt;h2 id=&quot;conference-speaking&quot;&gt;Conference Speaking&lt;/h2&gt;
+
+&lt;p&gt;I had my first taste of conference speaking at JavaOne 2002, and my
+&lt;a href=&quot;https://javaserverfaces.github.io/presentations/w-jax-keynote-de-en.pdf&quot;&gt;first keynote opportunity&lt;/a&gt;
+in 2005.  Since then I’ve been very blessed to continue speaking.&lt;/p&gt;
+
+&lt;h2 id=&quot;book-opportunities&quot;&gt;Book Opportunities&lt;/h2&gt;
+
+&lt;p&gt;I’m very grateful for the chance to co-author several books about Java
+technologies.  Those opportunities were possible thanks to the awesome
+community around Java.&lt;/p&gt;
+
+&lt;h2 id=&quot;nullpointers&quot;&gt;NullPointers&lt;/h2&gt;
+
+&lt;p&gt;If you’ve ever seen my Rockstar talk, you know about my fondness for
+Buckaroo Banzai and his part-time rockstar ways.  Having a chance to act
+that out during some fun times at JavaOne, GoTo, and DevNexus was the
+fulfillment of a career dream.&lt;/p&gt;
+
+&lt;h2 id=&quot;netscape-6-and-oji&quot;&gt;Netscape 6 and OJI&lt;/h2&gt;
+
+&lt;p&gt;Back in the heady days of the &lt;a href=&quot;http://edition.cnn.com/TECH/computing/9811/24/aolnetjava.idg/index.html?_s=PM:TECH&quot;&gt;Sun-Netscape-AOL
+Alliance&lt;/a&gt;,
+I was part of a small group of people from Sun that went into the client
+side of that deal.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;AOL and Sun together will develop the next version of Netscape’s
+Navigator and Communicator software clients and AOL will use Java in
+its e-commerce offerings, the company said.”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This gave me a first hand look at the birth of JavaScript and the
+management decisions around Java in the browser that eventually lead to
+the rise and fall of Applet, JavaFX, and even Java on the desktop.&lt;/p&gt;
+
+&lt;h2 id=&quot;creating-opportunities&quot;&gt;Creating Opportunities&lt;/h2&gt;
+
+&lt;p&gt;Finally, I’m very thankful to work on technologies that create
+opportunities for others to create things.  Those of us who work on
+programming platforms can honestly say that we allow individuals and
+entrepeneurs to create their own businesses (often employing many
+people, sometimes paying a very good wage) that create solutions for
+&lt;em&gt;their&lt;/em&gt; customers.  This position in at a lower-level of the value chain
+is a great place to be.&lt;/p&gt;
+
+&lt;p&gt;Oracle was and is a great place to work, and they have trusted me to
+contribute in the above areas and several others.  In return, I have
+deep trust in my management chain at Oracle.  I have nothing but good
+things to say about working there.&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s still unreal to me that I’m writing this, but here it is. After over 22 years at Oracle (13 at Sun), I’m moving on to another company. In my time at Oracle, I have had a chance to help shape technologies that have had a positive impact on our industry and lives.</summary></entry><entry><title type="html">TDC 2019 Florianópolis: Raw Notes: Serverless with Knative: Mete Atamel</title><link href="/blog/2019/04/25/tdc-floripa-knative.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis: Raw Notes: Serverless with Knative: Mete Atamel" /><published>2019-04-25T09:45:00-04:00</published><updated>2019-04-25T09:45:00-04:00</updated><id>/blog/2019/04/25/tdc-floripa-knative</id><content type="html" xml:base="/blog/2019/04/25/tdc-floripa-knative.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Talk from &lt;a href=&quot;https://twitter.com/meteatamel&quot;&gt;Mete Atamel&lt;/a&gt;.&lt;/p&gt;
 
@@ -1278,336 +1373,4 @@ insights.&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">CV Slide. History from consulting, banks, insurance, on-prem</summary></entry><entry><title type="html">Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC</title><link href="/blog/2019/03/19/javaland-jax-rs-mvc-picks.html" rel="alternate" type="text/html" title="Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC" /><published>2019-03-19T06:00:00-04:00</published><updated>2019-03-19T06:00:00-04:00</updated><id>/blog/2019/03/19/javaland-jax-rs-mvc-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-jax-rs-mvc-picks.html">&lt;h3 id=&quot;raw-notes-community-controlled-jakarta-ee-with-jax-rs-and-mvc-christian-kaltepoth-markus-karg-ivar-gramstad&quot;&gt;Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC, Christian Kaltepoth, Markus Karg, Ivar Gramstad&lt;/h3&gt;
-
-&lt;h4 id=&quot;jax-rs&quot;&gt;JAX-RS&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Arrived late, Markus was sharing what has happened on the JAX-RS spec
-since it was somewhat transferred to Jakarta&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;COMMENT: Could not read the slides.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A fair amount of complaining about the roadblocks.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Oracle is still the official lead&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;We must not use the terms “Java” and “JAX-RS”.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Must not publish any new features.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;TCK still not under their control&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Spec doc still under Oracle sole control!&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;COMMENT: It seems like this effort is stalled&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Getting into gear&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Fix the above problems&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;pruning commiters to only active people&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Publish the roadmap.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;COMMENT: again, cannot read the slides.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;mvc&quot;&gt;MVC&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Christian Kaltepoth.  Bio.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reviewing the old Java EE 8 survey, the creation of MVC, in 2014!&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What happened next&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Relicense under Apache 2&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Migrate project structure&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Finished RI&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Created TCK&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;JCP stuff.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Challenges&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Trademark issues&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Eclipse Development Process (EDP)&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Clean intellectual property&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Using the infrastructure from Eclipse.  Works well enough.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What’s next?&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Finish the spec thru JCP: in the next month!&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Migrate spec and TCK to Eclipse EE4J&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;First real release of Jakarta EE8&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Become a part of Jakarta EE 9!&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;a href=&quot;https://www.mvc-spec.org/&quot;&gt;contribute https://www.mvc-spec.org/&lt;/a&gt;&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;jakarta-ee&quot;&gt;Jakarta EE&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;There is a lot going on, but we have not conveyed it to the community.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;COMMENT: I like how he owns that they need to do better about
-communicating the mission.&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;Loved the timeline.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/jakarta-ee-timeline.jpg&quot; alt=&quot;Jakarta EE TImeline&quot; title=&quot;Timeline&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;TCK note: use a bottom up process&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;IMPORTANT: Eclipse Foundation Specification Process&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Plan to finalize at the meeting today!  JavaLand is timely again.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Showed the scrum board.  Awesome.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;See &lt;a href=&quot;https://jakarta.ee/&quot;&gt;https://jakarta.ee/&lt;/a&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Especially the &lt;a href=&quot;https://jakartablogs.ee/&quot;&gt;blog https://jakartablogs.ee/&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes: Community-Controlled Jakarta EE with JAX-RS and MVC, Christian Kaltepoth, Markus Karg, Ivar Gramstad</summary></entry><entry><title type="html">JavaLand 2019 Conference Picks</title><link href="/blog/2019/03/11/javaland-2019-picks.html" rel="alternate" type="text/html" title="JavaLand 2019 Conference Picks" /><published>2019-03-11T17:30:00-04:00</published><updated>2019-03-11T17:30:00-04:00</updated><id>/blog/2019/03/11/javaland-2019-picks</id><content type="html" xml:base="/blog/2019/03/11/javaland-2019-picks.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/JavaLand-2019-Banner-800x643-Twitter-Schulungspartner-ENG.jpg&quot; alt=&quot;I'm teaching at JavaLand 2019&quot; title=&quot;I'm teaching at JavaLand 2019&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It’s time for my favorite of the year: JavaLand!  This year I have the
-great blessing to be &lt;a href=&quot;https://www.heise.de/developer/artikel/Ed-Burns-Container-waren-zur-rechten-Zeit-am-rechten-Ort-4303141.html&quot;&gt;giving the Tuesday
-keynote&lt;/a&gt;.
-I consider it a great honor to be in such esteemed company as Martin
-Thompson, Holly Cummins, Adam Gowdiak (though I shan’t be dissing on
-anyone’s &lt;a href=&quot;http://www.security-explorations.com/materials/se-javaland.pdf&quot;&gt;security
-practices&lt;/a&gt;),
-and other past keynote speakers.  I hope I’m up to the task.  I’ve been
-&lt;a href=&quot;/blog/2019/01/29/ojug-2019-02-27.html&quot;&gt;practicing&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I also am very happy to be teaching a class with my long time training
-partner Oliver Szymanski.  This year we are teaching about &lt;a href=&quot;https://programm.javaland.eu/2019/#/scheduledEvent/569084&quot;&gt;Docker and
-Kubernetes&lt;/a&gt;.
-The title of the workshop is “Cloud Perspective: Kubernetes is like an
-App Server, but more Cloudy”, but I saw a funny tweet last week that
-sums it up more humorously: &lt;a href=&quot;https://twitter.com/spezam/status/1104293618720878595&quot;&gt;Kubernetes is the Websphere of the
-millenials&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;This post lists my conference session picks.  I hope to attend as many
-of these as possible, but there is so much going on that I may not be
-able to make it.  There were many times when multiple sessions that I
-want to attend were scheduled at the same time, apologies to the
-speakers of the one’s not chosen.  Take a look at &lt;a href=&quot;https://programm.javaland.eu/2019/#/schedule&quot;&gt;program
-yourself&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;tuesday&quot;&gt;Tuesday&lt;/h3&gt;
-
-&lt;h4 id=&quot;0830-wintergarden---test-driven-architecture---peter-gafert&quot;&gt;08:30 Wintergarden - Test Driven Architecture - &lt;a href=&quot;https://twitter.com/codecholeric&quot;&gt;Peter Gafert&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This talk promises to take what we all love about TDD and apply it to
-microservices based architectures.  This seems a tall order, so I’m keen
-to see what it’s about.&lt;/p&gt;
-
-&lt;h4 id=&quot;1100-wintergarden---community-controlled-jakarta-ee-with-jax-rs-and-mvc---christan-kaltepoth-and-friends&quot;&gt;11:00 Wintergarden - Community-Controlled Jakarta EE with JAX-RS and MVC - &lt;a href=&quot;https://twitter.com/chkal&quot;&gt;Christan Kaltepoth and friends&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;It’s been more than two years since Jakarta EE was announced and things
-are really rolling now.  MVC is a great example of what can be done in
-this new approach to developing the standard for enterprise Java.&lt;/p&gt;
-
-&lt;h4 id=&quot;1200-rotunde---master-your-java-applications-in-kubernetes---andy-moncsek&quot;&gt;12:00 Rotunde - Master your Java Applications in Kubernetes - &lt;a href=&quot;https://twitter.com/AndyAHCP&quot;&gt;Andy Moncsek&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Ever since seeing Ray Tsang’s talk about &lt;a href=&quot;/blog/2017/02/23/ray-tsang-docker-tips-notes.html&quot;&gt;Docker Tips and Tricks&lt;/a&gt; at
-DevNexus 2017, people have been trying to avoid pitfall when combining
-Java and Docker.  I think the same things need to be said about Java and
-Kubernetes, and I expect Andy will say them.&lt;/p&gt;
-
-&lt;h4 id=&quot;1300-stocks---jenkins-x-continuously-driving-the-kloud---gerd-aschemann&quot;&gt;13:00 STOCKs - Jenkins X Continuously Driving the Kloud - &lt;a href=&quot;https://twitter.com/GerdAschemann&quot;&gt;Gerd Aschemann&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I vividly remember the first time Kohsuke showed my Hudson, back in 2005
-or so.  Even back then, it was clear that CI was going to be the way
-things work in the future.  Nowadays, the CI space is more crowded than
-ever: TravisCI, GitLab, CircleCI, and many many more.  I’d like to see
-what Gerd has to say about the state of Jenkins and the new Jenkins X.&lt;/p&gt;
-
-&lt;h4 id=&quot;1400-tie&quot;&gt;14:00 TIE:&lt;/h4&gt;
-
-&lt;p&gt;I can’t let a JavaLand go by without seeing a talk by &lt;a href=&quot;https://twitter.com/dasniko&quot;&gt;Das
-Niko&lt;/a&gt;, but on the other hand, &lt;a href=&quot;https://twitter.com/svenpet&quot;&gt;Sven
-Peters&lt;/a&gt; is also a very excellent speaker,
-with a compelling topic.  So I’ll list both and see which one I can
-make.&lt;/p&gt;
-
-&lt;h5 id=&quot;1400-silverado-theater---das-geheimnis-erfolgreicher-teams---sven-peters&quot;&gt;14:00 Silverado Theater - Das Geheimnis erfolgreicher Teams - &lt;a href=&quot;https://twitter.com/svenpet&quot;&gt;Sven Peters&lt;/a&gt;&lt;/h5&gt;
-
-&lt;p&gt;Having written and thought extensively about so-called Rockstar
-Programmers, and in particular their role in successful teams, I want to
-hear what Sven has to say about the whole thing.&lt;/p&gt;
-
-&lt;h5 id=&quot;1400-schauspielhaus---container-vs-serverless---the-good-the-bad--the-ugly---das-niko&quot;&gt;14:00 Schauspielhaus - Container vs. Serverless - the Good, the Bad &amp;amp; the Ugly - &lt;a href=&quot;https://twitter.com/dasniko&quot;&gt;Das Niko&lt;/a&gt;&lt;/h5&gt;
-
-&lt;p&gt;I love Niko’s talks because he sticks straight to the technical, and
-he’s not afraid to challenge conventional wisdom.  That always makes for
-a good talk.&lt;/p&gt;
-
-&lt;h4 id=&quot;1500-quantum-12---visual-studio-code-for-java-and-spring-devs---bruno-borges&quot;&gt;15:00 Quantum 1+2 - Visual Studio Code for Java and Spring Devs - &lt;a href=&quot;https://twitter.com/brunoborges&quot;&gt;Bruno Borges&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This quote alone from the abstract is striking for its honesty and
-candor: “Installing the right extensions in VS Code results in a
-powerful yet lightweight code editing experience that comes close to the
-feature richness of existing Java IDEs.”  Having been experienced with
-NetBeans and, to a lesser extent IntelliJ idea, I am certainly willing
-to try other tools.  Let’s see what VS Code for Java has to show.&lt;/p&gt;
-
-&lt;h4 id=&quot;1600-lecture-tent---datenflut-ertrinken-oder-auf-der-welle-reiten-tanja-schmidt&quot;&gt;16:00 Lecture Tent - Datenflut: Ertrinken oder auf der Welle reiten? &lt;a href=&quot;https://programm.javaland.eu/2019/#/speaker/382558&quot;&gt;Tanja Schmidt&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I’m excited to understand how to go fishing in a Data Lake.  I expect
-Tanja will explain it all and more.&lt;/p&gt;
-
-&lt;h4 id=&quot;1700-wintergarden---panel-zukunft-java&quot;&gt;17:00 Wintergarden - Panel: Zukunft Java&lt;/h4&gt;
-
-&lt;p&gt;There is a lot to talk about here. Knowing
-&lt;a href=&quot;https://twitter.com/hendrikEbbers&quot;&gt;Hendrik&lt;/a&gt; it will be entertaining and
-informative.&lt;/p&gt;
-
-&lt;h4 id=&quot;1800-quantum-12---the-future-of-java-and-you---heather-vancura&quot;&gt;18:00 Quantum 1+2 - The Future of Java and You - &lt;a href=&quot;https://twitter.com/heathervc&quot;&gt;Heather Vancura&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;If you’ve wondered about the continuing role of the JCP in a world where
-plain-ole-Open Source (PooS) and the Jakarta Project are also valid
-governance choices, this talk should answer your questions.&lt;/p&gt;
-
-&lt;h4 id=&quot;1900-wintergarden---revisiting-effective-java-in-2019-edson-yanaga&quot;&gt;19:00 Wintergarden - Revisiting Effective Java in 2019 &lt;a href=&quot;https://twitter.com/yanaga&quot;&gt;Edson Yanaga&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I’ve long felt that Java’s biggest education problem is the challenge of
-teaching only the good stuff.  The classic book on which this talk is
-based does that very well.  I look forward to hearing Edson’s
-perspective on Josh Bloch’s java gem.&lt;/p&gt;
-
-&lt;h3 id=&quot;wednesday&quot;&gt;Wednesday&lt;/h3&gt;
-
-&lt;h4 id=&quot;0900-rotunde---welcome-failure-leichter-gesagt-als-getan-sabine-wojcieszak&quot;&gt;09:00 Rotunde - Welcome Failure Leichter gesagt als getan! &lt;a href=&quot;https://twitter.com/SabineBendixen&quot;&gt;Sabine Wojcieszak&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I’ve never seen a session from this speaker, but she seems like an
-excellent speaker and the talk promises to tease apart blame from
-responsibility.  It’s an ambitious agenda for 40 minutes, but a great
-chance to meet and talk about this important topic more, perhaps over an
-ice cream across the way from Quantum 1+2.&lt;/p&gt;
-
-&lt;h4 id=&quot;1000-schauspielhaus---wie-fit-ist-java-für-die-cloud---roland-huß&quot;&gt;10:00 Schauspielhaus - Wie fit ist Java für die Cloud? - &lt;a href=&quot;https://www.twitter.com/ro14nd&quot;&gt;Roland Huß&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I’m choosing this talk just based on the experience of the speaker and
-the topic.  Roland is the man behing the Docker Maven Plugin.  I expect
-to see a critical assesment of Java and the cloud.&lt;/p&gt;
-
-&lt;h4 id=&quot;1100-silverado---community-keynote-kampf-der-giganten&quot;&gt;11:00 Silverado - Community-Keynote: Kampf der Giganten&lt;/h4&gt;
-
-&lt;p&gt;The community keynote at JavaOne is often a humorous and informative
-look at what’s has happened in the Java community in the past year.  I
-expect this will be similar.  I’ve been invited to participate!&lt;/p&gt;
-
-&lt;h4 id=&quot;1200-stocks---kubernetes-runtime-security-when-contaniers-go-bad---jen-tong&quot;&gt;12:00 STOCKs - Kubernetes Runtime Security: When Contaniers Go Bad - &lt;a href=&quot;https://twitter.com/MimmingCodes&quot;&gt;Jen Tong&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Knowing how many people allow their Docker &lt;code class=&quot;highlighter-rouge&quot;&gt;ENTRYPOINT&lt;/code&gt; to run as root,
-I’m curious to see what Jen has to say about security in containers.&lt;/p&gt;
-
-&lt;h4 id=&quot;1300-quantum-12---java-webstart-ist-tot---wie-geht-es-nun-weiter---hendrik-ebbers&quot;&gt;13:00 Quantum 1+2 - Java WebStart ist tot - Wie geht es nun weiter? - &lt;a href=&quot;https://twitter.com/hendrikEbbers&quot;&gt;Hendrik Ebbers&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I have nothing to do with client side Java any more, but I remember
-really loving Java WebStart back in the day.  I wonder where it will go
-now?&lt;/p&gt;
-
-&lt;h4 id=&quot;1400-stocks---when-technology-and-humanly-collides---marieme-jamme&quot;&gt;14:00 STOCKs - When Technology and humanly collides - &lt;a href=&quot;https://twitter.com/mjamme&quot;&gt;Marieme Jamme&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;We need more talks like this about the societal impact of what we do as
-programmers.  I can’t wait to see this one.  Even though the abstract is
-very sparse, I’m sure it’s worth attending.&lt;/p&gt;
-
-&lt;h4 id=&quot;1500-schauspielhaus---java-hacker-und-zwillingsmama---martina-baumer&quot;&gt;15:00 Schauspielhaus - Java-Hacker und Zwillingsmama - &lt;a href=&quot;https://programm.javaland.eu/2019/#/speaker/381980&quot;&gt;Martina Baumer&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Work and life balance was a theme I explored in the Rockstar Programmer
-book.  Unfortunately, all the people I interviewed were men.  I can’t
-wait to see Martina’s female perspectives on this important topic.&lt;/p&gt;
-
-&lt;h4 id=&quot;1600-quantum-34---testing-java-microservices---andy-gumbrecht&quot;&gt;16:00 Quantum 3+4 - Testing Java Microservices - &lt;a href=&quot;https://twitter.com/AndyGeeDe&quot;&gt;Andy Gumbrecht&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Andy has written an excellent book from which he is extracting this
-talk.  I’ve seen it before and it’s great.  You should see it too.&lt;/p&gt;
-
-&lt;h4 id=&quot;1700-wintergarden---the-dark-side-of-java-8---grzegorz-piwowarek&quot;&gt;17:00 Wintergarden - The Dark Side of Java 8 - &lt;a href=&quot;https://twitter.com/pivovarit&quot;&gt;Grzegorz Piwowarek&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I love to get outside perspectives on the success or failure of our Java
-releases.  I’m wondering what he thinks is wrong with the Stream API?
-We’ll see!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">CV Slide. History from consulting, banks, insurance, on-prem</summary></entry></feed>

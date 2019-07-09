@@ -1,5 +1,533 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-05-23T14:26:30-04:00</updated><id>/blog/</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Joining Microsoft</title><link href="/blog/2019/05/23/joining-microsoft.html" rel="alternate" type="text/html" title="Joining Microsoft" /><published>2019-05-23T14:01:00-04:00</published><updated>2019-05-23T14:01:00-04:00</updated><id>/blog/2019/05/23/joining-microsoft</id><content type="html" xml:base="/blog/2019/05/23/joining-microsoft.html">&lt;p&gt;I am so excited to be joining Microsoft as Principal Java Architect in
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-09T17:09:11-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Java EE in Azure Marketplace: What’s Currently Available?</title><link href="/blog/2019/07/07/wls-azure-marketplace.html" rel="alternate" type="text/html" title="Java EE in Azure Marketplace: What's Currently Available?" /><published>2019-07-07T12:00:00-04:00</published><updated>2019-07-07T12:00:00-04:00</updated><id>/blog/2019/07/07/wls-azure-marketplace</id><content type="html" xml:base="/blog/2019/07/07/wls-azure-marketplace.html">&lt;p&gt;As mentioned in my &lt;a href=&quot;/blog/2019/05/23/joining-microsoft.html&quot;&gt;previous post&lt;/a&gt;, I joined Microsoft “to
+enable Java EE developers on Azure.”  The team I joined at Microsoft has
+already been working on this goal for some time, so naturally I need to
+take stock of the current offerings, whatever they may be.  As African
+American tennis great Arthur Ashe said, “&lt;a href=&quot;https://www.brainyquote.com/quotes/arthur_ashe_371527&quot;&gt;Start where you are. Use what
+you have. Do what you
+can.&lt;/a&gt;” It turns
+out there is an existing template in the &lt;a href=&quot;https://azuremarketplace.microsoft.com/en-us/marketplace/&quot;&gt;Azure
+Marketplace&lt;/a&gt;
+for &lt;a href=&quot;https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Oracle.OracleWebLogicServer12cEnterprise?tab=Overview&quot;&gt;Oracle WebLogic Server
+12.1.2&lt;/a&gt;.
+Now, this is admittedly ancient, supporting only Java EE 6 (&lt;a href=&quot;https://docs.oracle.com/middleware/1212/wls/NOTES/whatsnew.htm#BGGGHCJD&quot;&gt;Servlet
+3.0, JSF 2.1, CDI 1.0,
+etc&lt;/a&gt;).
+Microsoft will be doing &lt;strong&gt;much&lt;/strong&gt; better than this very soon, but this post
+documents how to get WLS 12.1.2 up and running on Azure as it stands
+today.  This post will show how to do the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create a VM for WLS 12.1.2 from the existing Azure Marketplace
+template provided by Oracle.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Expose the necessary network ports.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SSH into the machine and create the WLS domain.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start the WLS server.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Access the WLS console from the public Internet.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use the console to deploy a simple &lt;code class=&quot;highlighter-rouge&quot;&gt;.war&lt;/code&gt; file.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Validate the &lt;code class=&quot;highlighter-rouge&quot;&gt;.war&lt;/code&gt; works.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Shut down the server.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;De-allocate the Azure resources.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;creating-and-configuring-the-iaas-vm-within-the-azure-portal&quot;&gt;Creating and Configuring the IaaS VM Within the Azure Portal&lt;/h2&gt;
+&lt;!-- use H4 because it's smaller --&gt;
+
+&lt;h4 id=&quot;1-log-in-to-the-portal&quot;&gt;1. Log in to the portal&lt;/h4&gt;
+
+&lt;p&gt;Visit &lt;a href=&quot;https://portal.azure.com/&quot;&gt;portal.azure.com&lt;/a&gt; and either sign
+up or log in.  This is your portal to all of the features of Azure to
+which you have a subscription.  Everything you do within Azure
+happens within a subscription.  If you are just getting started, you
+can get a free trial subscription with &lt;a href=&quot;https://visualstudio.microsoft.com/dev-essentials/&quot;&gt;Visual Studio Dev
+Essentials&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-filter-to-your-subscription&quot;&gt;2. Filter to your subscription&lt;/h4&gt;
+
+&lt;p&gt;It is possible to have multiple subscriptions within your Azure
+account.  If your Azure account is associated with multiple
+subscriptions, you’ll need to adjust the portal so it only takes
+action on resources within that subscription.  Use this this control
+to apply the filter.  &lt;img src=&quot;/blog/assets/20190707-subscription-filter.PNG&quot; alt=&quot;Azure subscription filter&quot; title=&quot;Azure subscription filter&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;3-create-a-resource-group&quot;&gt;3. Create a resource group&lt;/h4&gt;
+
+&lt;p&gt;The left side of the Azure portal is a handy parking lot for actions
+you can take.  It’s kinda like the dock in macOS or the task bar in
+Windows.  Let’s create a “Resource Group”.  You can think of a
+“Resource Group” as a box for grouping related Azure things together.
+In this post, we’ll create a resource group to hold our WLS 12.1.2
+related resources.  Click the “Resource Groups” icon:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-resource-group-icon.PNG&quot; alt=&quot;Resource Group
+Icon&quot; title=&quot;Resource Group Icon&quot; /&gt;  &lt;/p&gt;
+
+&lt;p&gt;Then the “+ Add” button at the top.  Fill in “Resource group with a
+descriptive name.  Such as “20190707-wls1212”.  Leave “Subscription” and
+“Region” as default, as shown here.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-resource-group-pane.PNG&quot; alt=&quot;Azure subscription filter&quot; title=&quot;Azure subscription
+filter&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click “Review + Create”, then “Create”.  You will see a “Resource Group
+Created” notification, which will quickly disappear.  You can get this
+and all other notifications back by clicking on the “bell” icon, next to
+the “Filter your subscription” icon you clicked on in step 2.  Do this
+now and you’ll see something like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-resource-group-created.PNG&quot; alt=&quot;Resource Group Created&quot; title=&quot;Resource Group Created&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click on the “Go to resource group”.  Take some time to play around with
+the resource group view.  As we create things, they will show up here.&lt;/p&gt;
+
+&lt;h4 id=&quot;4-create-the-weblogic-1212-service&quot;&gt;4. Create the WebLogic 12.1.2 Service&lt;/h4&gt;
+
+&lt;p&gt;Click on the friendly green plus icon at the top of the left navigation
+pane.  This will expose the “Azure Marketplace”, a huge library of
+things that run on Azure.  Eventually there will be more Java EE related
+things in here, but for now place the cursor in the “Search the
+Marketplace” box and type &lt;code class=&quot;highlighter-rouge&quot;&gt;Oracle WebLogic Server 12.1.2&lt;/code&gt; and press
+Enter.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212.PNG&quot; alt=&quot;wls1212&quot; title=&quot;wls1212&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Under the covers, this is an Azure Resource Manager (ARM) template,
+created by Oracle and inserted into the Azure Marketplace way back
+in 2013.  You can create your own ARM templates.  Check out my colleague Rick Claus’s &lt;a href=&quot;https://regularitguy.com/2016/06/06/how-to-create-an-azure-resource-manager-arm-template-from-scratch/&quot;&gt;blog about ARM templates&lt;/a&gt; for more.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-create-a-virtual-machine&quot;&gt;A. Create a Virtual Machine&lt;/h5&gt;
+
+&lt;p&gt;Fill in this form with the following values.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resource group&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;The resource group you created in step 3.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Virtual Machine Name&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;The same as the resource group.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Within the &lt;code class=&quot;highlighter-rouge&quot;&gt;Administrator account&lt;/code&gt; section, change the &lt;code class=&quot;highlighter-rouge&quot;&gt;Authentication
+type&lt;/code&gt; to be “Password”.  Set the values as follows.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Username&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;adminadmin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Password and Confirm Password&lt;/strong&gt;: &lt;code class=&quot;highlighter-rouge&quot;&gt;3hu6Lfomu4#&amp;amp;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Naturally you can use whatever you like for password.&lt;/p&gt;
+
+&lt;p&gt;Within the &lt;code class=&quot;highlighter-rouge&quot;&gt;Inbound Port Rules&lt;/code&gt; section, leave “None” selected, we will
+tune the rules later.&lt;/p&gt;
+
+&lt;p&gt;Click “Next: Disks &amp;gt;”.  This is important because the default is to
+create the VM with expensive premium SSD disk.  This post is
+optimized for cheapness, not speed!&lt;/p&gt;
+
+&lt;p&gt;Set the “OS disk type” to be “Standard HDD”.  Then click the “Review +
+create”, then “Create”.  You will see “Your deployment is underway”.
+This should only take a couple minutes to complete.&lt;/p&gt;
+
+&lt;h5 id=&quot;b-tune-the-network-settings-to-allow-ssh-and-console-access&quot;&gt;B. Tune the Network Settings To Allow SSH and Console Access&lt;/h5&gt;
+
+&lt;p&gt;Click on “Resource Groups” then select the Resource group you created in
+step 3.  This will show you the many different resources that were
+created by the ARM template for WLS 12.1.2.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-resources.PNG&quot; alt=&quot;wls-1212-resources&quot; title=&quot;wls-1212-resources&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We are going to allow SSH and WLS Console access.  Securing an Internet
+facing resource is a huge and important topic, but far beyond the scope
+of this simple blog post.  Just know that we are doing some things here
+that almost certainly are not security best practices.&lt;/p&gt;
+
+&lt;p&gt;Within the items in the Resource group, click on the “Network security
+group”, &lt;code class=&quot;highlighter-rouge&quot;&gt;20190707-wls1212-nsg&lt;/code&gt;.  In the “Settings” section of the middle
+pane, select “Inbound security rules”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-nsg.PNG&quot; alt=&quot;Network Security Groups&quot; title=&quot;Network Security Groups&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This exposes the panel where we can customize the allowable network
+connections &lt;strong&gt;into&lt;/strong&gt; the VM (known as “inbound” connections).  There is
+an analogous panel for configuring network connections &lt;strong&gt;out&lt;/strong&gt; of the VM
+(“outbound” connections).  You declare whether or not a particular
+connection is allowed or dis-allowed by writing “rules”.  This exercise
+is going to allow just enough to accomplish the goals of the blog post.
+In the table below, rules can be added by clicking the “+ Add” button.
+They can be edited by single clicking the row in the table.  When
+adding or editing a rule make sure to scroll up and down to make sure
+you haven’t missed any fields.  Before you add any rules, let’s examine
+the pre-configured ones.  Note that the rows are sorted by increasing
+priority.  When Azure detects an inbound connection to the VM, Azure
+runs through each row of the inbound rules, in order of priority, to see
+if the connection matches the rule.  If it does, the rule is applied and
+traversal of the rule table stops.  If it does not, Azure keeps going
+through the rows until either a match is found or the table ends.  Note
+that Azure has pre-added a &lt;code class=&quot;highlighter-rouge&quot;&gt;DenyAllInbound&lt;/code&gt; rule with the lowest
+priority.  This effectively means “if nothing else, deny the inbound
+connection”.  Use the UI to make it so the rules look like the table
+shown next.  The rows in the red box are the rows you need to add.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-nsg-modified.PNG&quot; alt=&quot;Desired Inbound Rules&quot; title=&quot;Desired Inbound Rules&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Digital Ocean has a great primer on networking terminology at
+&lt;a href=&quot;https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking&quot;&gt;https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;c-optional-disable-the-auto-shutdown&quot;&gt;C. (Optional) Disable the Auto Shutdown&lt;/h5&gt;
+
+&lt;p&gt;As a nod to the U.S. Government’s National Institute of Standards
+(NIST) offical definition of cloud computing (which &lt;a href=&quot;https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf&quot;&gt;everyone should
+read&lt;/a&gt;)
+your VM is pre-configured to auto shut-down at 19:00 UTC.  To disable
+this potentially inconvenient setting, go to the Resource Group, click
+on the “Virtual machine” row, then type “Auto-shutdown” in the search
+box and click on the “Auto-shutdown” hit, as shown in this diagram.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-auto-shutdown.PNG&quot; alt=&quot;wls-1212-auto-shutdown&quot; title=&quot;wls-1212-auto-shutdown&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Toggle the enabled to “Off”.&lt;/p&gt;
+
+&lt;h4 id=&quot;5-ssh-into-the-machine-to-complete-the-configuration&quot;&gt;5. SSH Into the Machine to Complete the Configuration&lt;/h4&gt;
+
+&lt;p&gt;Because we enabled port 22 &lt;a href=&quot;#b-tune-the-network-settings-to-allow-ssh-and-console-access&quot;&gt;in step B
+above&lt;/a&gt;, we
+can SSH into the host, assuming we know it’s IP address.  This can be
+discovered by going to the Resource Group, clicking on the “Virtual
+machine” resource.  If you mouse over the IP address, shown in the red
+box next, you will see a button that copies the IP address to the
+clipboard.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-ip-address.PNG&quot; alt=&quot;IP Address&quot; title=&quot;IP Address&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Open a “Cloud Shell” by clicking on the “Cloud Shell” icon on the top
+menu bar of the panel.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-cloud-shell.PNG&quot; alt=&quot;Cloud Shell&quot; title=&quot;Cloud Shell&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tip: This action opens up a new shell at the bottom of the current
+portal browser tab.  I prefer to have a full tab for the shell.  Click
+on the “Open new session” button to get one.  You may close the bottom
+shell if you like.  In the cloud shell, SSH into the machine as shown
+next.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-cloud-shell-02.PNG&quot; alt=&quot;Cloud Shell&quot; title=&quot;Cloud Shell&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The remaining actions are documented in more detail &lt;a href=&quot;https://docs.oracle.com/middleware/1212/wls/WLAZU/toc.htm&quot;&gt;at
+Oracle&lt;/a&gt;, but
+that documentation references a version of the Azure console that has
+long since ceased to be.  Therefore, this section will update that
+content for the simple case of a single WLS domain node.  After doing
+these steps, it should be simple to use the out-of-date Oracle
+documentation to perform the more advanced configuration, such as
+&lt;a href=&quot;https://docs.oracle.com/middleware/1212/wls/WLAZU/toc.htm#CBABAADH&quot;&gt;Creating a Multi-Machine Virtual Network for WebLogic
+Server&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-set-the-env-vars&quot;&gt;A. Set the ENV Vars&lt;/h5&gt;
+
+&lt;p&gt;In the Azure Cloud Shell, ensure the &lt;code class=&quot;highlighter-rouge&quot;&gt;adminadmin&lt;/code&gt; user owns the
+necessary directories and files:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo chown -R adminadmin /opt/oracle
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Enter &lt;code class=&quot;highlighter-rouge&quot;&gt;cat &amp;gt; wls-env.sh&lt;/code&gt; then paste the following lines, followed by
+control-D.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export ORACLE_HOME=/opt/oracle/products/Middleware
+export WL_HOME=/opt/oracle/products/Middleware/wlserver
+export JAVA_HOME=/opt/oracle/products/jdk1.7.0_25
+${WL_HOME}/common/derby/bin/startNetworkServer.sh || true
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;|| true&lt;/code&gt; causes the script to continue even if the Derby server
+doesn’t start, for example because it’s already started.&lt;/p&gt;
+
+&lt;p&gt;Execute the script:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;. ./wls-env.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This will set the necessary environment variables, and also start the
+built-in Derby database.  This should cause someting like the following
+to appear in the Azure Cloud Shell:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Mon Jul 08 15:06:33 EDT 2019 : Security manager installed using the Basic server security policy.
+Mon Jul 08 15:06:34 EDT 2019 : Apache Derby Network Server - 10.8.2.2 -
+(1181258) started and ready to accept connections on port 1527
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note that this port is not accessible to the public Internet because you
+have not created an inbound rule for it.  It is, however, accessible
+within the Virtual Network (vnet) created by the ARM template for Oracle
+WLS 12.1.2.&lt;/p&gt;
+
+&lt;h5 id=&quot;b-create-the-domain&quot;&gt;B. Create the Domain&lt;/h5&gt;
+
+&lt;p&gt;We will modify the included &lt;code class=&quot;highlighter-rouge&quot;&gt;basicWLSDomain.py&lt;/code&gt; WLST script to make to
+create a domain to which we can log in to the admin console.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This directory contains some built-in WebLogic Scripting Template (WLST)
+scripts provided by Oracle.  Copy the &lt;code class=&quot;highlighter-rouge&quot;&gt;basicWLSDomain.py&lt;/code&gt; so we can
+safely edit it.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp basicWLSDomain.py 20190709_basicWLSDomain.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Find the line with &lt;code class=&quot;highlighter-rouge&quot;&gt;# Please set password here before using this script,
+e.g. cmo.setPassword('value')&lt;/code&gt; and insert this line before it.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmo.setPassword('3hu6Lfomu4#&amp;amp;')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note, you can use any password you like.  I’m using the same password as
+earlier for convenience.  Save the file.&lt;/p&gt;
+
+&lt;p&gt;Change to the directory containing the &lt;code class=&quot;highlighter-rouge&quot;&gt;wlst.sh&lt;/code&gt; tool and execute it:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /opt/oracle/products/Middleware/oracle_common/common/bin
+./wlst.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;At the prompt, execute the script file you just edited:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wls:/offline&amp;gt; execfile('/opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst/20190709_basicWLSDomain.py')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This will cause
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain&lt;/code&gt;
+to be created.  Append the following line to your existing
+&lt;code class=&quot;highlighter-rouge&quot;&gt;~/wls-env.sh&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nohup /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/bin/startWebLogic.sh &amp;gt; ~/wls-log.txt &amp;amp; 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you examine the contents of &lt;code class=&quot;highlighter-rouge&quot;&gt;~/wls-log.txt&lt;/code&gt; you should see it ends
+with output similar to the following.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Jul 9, 2019 11:28:54 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Security&amp;gt; &amp;lt;BEA-090171&amp;gt; &amp;lt;Loading the identity certificate and private key stored under the alias DemoIdentity from the jks keystore file /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/security/DemoIdentity.jks.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Security&amp;gt; &amp;lt;BEA-090169&amp;gt; &amp;lt;Loading trusted certificates from the jks keystore file /opt/oracle/products/Middleware/wlserver/server/lib/DemoTrust.jks.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Security&amp;gt; &amp;lt;BEA-090169&amp;gt; &amp;lt;Loading trusted certificates from the jks keystore file /opt/oracle/products/jdk1.7.0_25/jre/lib/security/cacerts.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;DefaultSecure[1]&quot; is now listening on fe80:0:0:0:20d:3aff:fe54:2fff:7002 for protocols iiops, t3s, ldaps, https.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;DefaultSecure[3]&quot; is now listening on 127.0.0.1:7002 for protocolsiiops, t3s, ldaps, https.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;Default[1]&quot; is now listening on fe80:0:0:0:20d:3aff:fe54:2fff:7001for protocols iiop, t3, ldap, snmp, http.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;DefaultSecure[2]&quot; is now listening on 0:0:0:0:0:0:0:1:7002 for protocols iiops, t3s, ldaps, https.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;Default&quot; is now listening on 10.0.2.4:7001 for protocols iiop, t3,ldap, snmp, http.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Warning&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002611&amp;gt; &amp;lt;The hostname &quot;localhost&quot;, maps to multiple IP addresses: 127.0.0.1, 0:0:0:0:0:0:0:1.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;DefaultSecure&quot; is now listening on 10.0.2.4:7002 for protocols iiops, t3s, ldaps, https.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;Default[3]&quot; is now listening on 127.0.0.1:7001 for protocols iiop,t3, ldap, snmp, http.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;Default[2]&quot; is now listening on 0:0:0:0:0:0:0:1:7001 for protocolsiiop, t3, ldap, snmp, http.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;WebLogicServer&amp;gt; &amp;lt;BEA-000331&amp;gt; &amp;lt;Started the WebLogic Server Administration Server &quot;AdminServer&quot; fordomain &quot;basicWLSDomain&quot; running in development mode.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:57 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;WebLogicServer&amp;gt; &amp;lt;BEA-000365&amp;gt; &amp;lt;Server state changed to RUNNING.&amp;gt;
+&amp;lt;Jul 9, 2019 11:28:57 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;WebLogicServer&amp;gt; &amp;lt;BEA-000360&amp;gt; &amp;lt;The server started in RUNNING mode.&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;access-the-admin-gui-to-deploy-a-java-ee-6-war&quot;&gt;Access the Admin GUI to deploy a Java EE 6 WAR.&lt;/h2&gt;
+
+&lt;p&gt;Assuming you see the all important &lt;code class=&quot;highlighter-rouge&quot;&gt;The server started in RUNNING
+mode.&lt;/code&gt;, you may safely exit the SSH shell, and, if desired, disable the
+inbound rule for SSH.&lt;/p&gt;
+
+&lt;p&gt;Obtain the public IP address for the host as shown
+&lt;a href=&quot;5-ssh-into-the-machine-to-complete-the-configuration&quot;&gt;earlier&lt;/a&gt; and log
+in to &lt;code class=&quot;highlighter-rouge&quot;&gt;http://&amp;lt;ip address&amp;gt;:7001/console&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If everything worked correctly, you should see the following login UI.
+I have filled in &lt;code class=&quot;highlighter-rouge&quot;&gt;weblogic&lt;/code&gt; as the &lt;code class=&quot;highlighter-rouge&quot;&gt;Username&lt;/code&gt;, since this is what the
+template uses.  Provide the pasword you used when you ran &lt;code class=&quot;highlighter-rouge&quot;&gt;execfile&lt;/code&gt; and
+log in to the console.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-console.PNG&quot; alt=&quot;WLS Console&quot; title=&quot;WLS Console&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;1-install-the-simplest-war-that-will-possibly-work&quot;&gt;1. Install the simplest WAR that will possibly work.&lt;/h4&gt;
+
+&lt;p&gt;For simplicity, let’s install the simple guessNumber 2.0 war into the
+running WLS 12.1.2.  You can download the war &lt;a href=&quot;/blog/assets/jsf-guessNumber-2.0.war&quot;&gt;from this blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The following steps will guide you to install the guessNumber war using
+the WLS Admin GUI.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click on “Deployments” in the “Domain Structure” panel on the left.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click on “Install” as shown next.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-console-install-01.PNG&quot; alt=&quot;WLS Console&quot; title=&quot;WLS Console&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click on the hyperlink “upload your file(s)” and upload the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;jsf-guessNumber-2.0.war&lt;/code&gt;.  Click “Browse” and use the file chooser to
+select the WAR.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Next”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;On the “Install Application Assistant”, ensure the
+“jsf-guessNumber-2.0.war” is selected, and click “Next”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;On the “Choose targeting style” page, select “Install this deployment as an
+application” and click “Next”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;On the “Optional Settings” page, click “Finish”.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Your console should have the following appearance, especially the green
+text in the “Messages” section.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190707-wls-1212-console-install-02.PNG&quot; alt=&quot;WLS Console&quot; title=&quot;WLS Console&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that we are installing the WAR into the &lt;code class=&quot;highlighter-rouge&quot;&gt;AdminServer&lt;/code&gt; target.  This
+is not something one would normally do, but because the &lt;code class=&quot;highlighter-rouge&quot;&gt;basicWLSDomain&lt;/code&gt;
+is set up with just the one server by default, this is what we will use.&lt;/p&gt;
+
+&lt;h4 id=&quot;2-view-the-deployed-app&quot;&gt;2. View the Deployed App&lt;/h4&gt;
+
+&lt;p&gt;Construct a URL based on the public IP and the context-root of the app.
+For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;http://&amp;lt;ip address&amp;gt;:7001/jsf-guessNumber-2.0/&lt;/code&gt;.  Note that
+the port is &lt;code class=&quot;highlighter-rouge&quot;&gt;7001&lt;/code&gt;, not 8080.  This is because we installed the app in
+the &lt;code class=&quot;highlighter-rouge&quot;&gt;AdminServer&lt;/code&gt; target.  If the deployment was successful, you should
+see the simple GuessNumber JSF 2.0 app.&lt;/p&gt;
+
+&lt;h4 id=&quot;3-shut-down-the-wls-server&quot;&gt;3. Shut Down the WLS Server&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;In the “Domain Structure” browser, expand “Environment” and click “Servers”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;In the “Summary of Servers” panel, click the “Control” tab.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click the checkbox next to “AdminServer(admin)”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Pull down the “Shutdown” dropdown and select “when work completes”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Thiss will shut down the WLS server.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;4-shut-down-the-vm&quot;&gt;4. Shut down the VM&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Back in the Azure portal click “Resource groups” and select the
+Resource group you created to hold this demo.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click on the “Virtual machine” type row.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Stop”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “OK”.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;5-optional-delete-the-resource-group&quot;&gt;5. (Optional) Delete the Resource group.&lt;/h5&gt;
+
+&lt;p&gt;If you don’t need this server any more, or you want to start over and
+try some other experiments, you can delete the entire Resource group
+with one action.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;In the Azure console, click on Resource groups.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Check the checkbox next to your Resource group, and click the ellipsis
+at the right end of the row.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Choose “Delete Resource group”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;As a measure to prevent accidental deletion, you have to type the
+Resource group name, then click “Delete”&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This will delete the VM, network, network rules, disk, and the resource
+group itself.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Even though this is very old software, it’s running on the most modern
+and flexible cloud environment in the world.  In this post we did the
+following.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Create a VM for WLS 12.1.2 from the existing Azure Marketplace
+template provided by Oracle.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Expose the necessary network ports.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SSH into the machine and create the WLS domain.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start the WLS server.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Access the WLS console from the public Internet.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use the console to deploy a simple &lt;code class=&quot;highlighter-rouge&quot;&gt;.war&lt;/code&gt; file.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Validate the &lt;code class=&quot;highlighter-rouge&quot;&gt;.war&lt;/code&gt; works.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Shut down the server.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;De-allocate the Azure resources.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Watch this space, and the twitters account
+&lt;a href=&quot;https://twitter.com/edburns/&quot;&gt;@edburns&lt;/a&gt; and
+&lt;a href=&quot;https://twitter.com/reza_rahman&quot;&gt;@reza_rahman&lt;/a&gt;, for upcoming
+announcments about Microsoft’s plans for Java EE on Azure.&lt;/p&gt;</content><author><name></name></author><summary type="html">As mentioned in my previous post, I joined Microsoft “to enable Java EE developers on Azure.” The team I joined at Microsoft has already been working on this goal for some time, so naturally I need to take stock of the current offerings, whatever they may be. As African American tennis great Arthur Ashe said, “Start where you are. Use what you have. Do what you can.” It turns out there is an existing template in the Azure Marketplace for Oracle WebLogic Server 12.1.2. Now, this is admittedly ancient, supporting only Java EE 6 (Servlet 3.0, JSF 2.1, CDI 1.0, etc). Microsoft will be doing much better than this very soon, but this post documents how to get WLS 12.1.2 up and running on Azure as it stands today. This post will show how to do the following:</summary></entry><entry><title type="html">Joining Microsoft</title><link href="/blog/2019/05/23/joining-microsoft.html" rel="alternate" type="text/html" title="Joining Microsoft" /><published>2019-05-23T14:01:00-04:00</published><updated>2019-05-23T14:01:00-04:00</updated><id>/blog/2019/05/23/joining-microsoft</id><content type="html" xml:base="/blog/2019/05/23/joining-microsoft.html">&lt;p&gt;I am so excited to be joining Microsoft as Principal Java Architect in
 their Java Tooling and Experiences team.  I hope to help to make the
 future Java on Azure, by establishing Azure as the preferred cloud for
 all Java workloads.&lt;/p&gt;
@@ -252,7 +780,7 @@ about what you did.&lt;/p&gt;
 seventeen years of monthly spreadsheets.  Here is a sample spreadsheet you can download and customize: &lt;a href=&quot;/blog/assets/201904-timesheet.xlsx&quot; title=&quot;201904-timesheet.xlsx&quot;&gt;201904-timesheet.xlsx&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Like my previous post about status reports, this seems mundane and
-annoying, but over time, it adds up to a valuable searchable resource.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 01: Communicating Your Value Add</title><link href="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 01: Communicating Your Value Add" /><published>2019-04-21T18:00:00-04:00</published><updated>2019-04-21T18:00:00-04:00</updated><id>/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019</id><content type="html" xml:base="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
+annoying, but over time, it adds up to a valuable searchable resource.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">UPDATED: 2019-07-01: TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 01: Communicating Your Value Add</title><link href="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html" rel="alternate" type="text/html" title="UPDATED: 2019-07-01: TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 01: Communicating Your Value Add" /><published>2019-04-21T18:00:00-04:00</published><updated>2019-04-21T18:00:00-04:00</updated><id>/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019</id><content type="html" xml:base="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In my talk at 14:10 South Center Career Track, &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria&quot;&gt;Career Tips from Someone
 Who Knows a Lot of Rockstar
@@ -445,6 +973,211 @@ someone who you observe is able to do those things and learn from them.&lt;/p&gt
    toward achieving a goal.
 
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;update-2019-07-01-microsoft-perf-handout&quot;&gt;UPDATE: 2019-07-01 Microsoft Perf Handout&lt;/h3&gt;
+
+&lt;p&gt;Here are some additional similar questions that I see at Microsoft:&lt;/p&gt;
+
+&lt;h4 id=&quot;adaptability&quot;&gt;Adaptability&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;36. Tell me about a time when you experienced a major organizational
+change (for example, a reorganization, a new supervisor or a new
+procedure) that created stress.
+
+37. Describe a time when you proposed a major change in your work
+process or job duties. How did others respond to your proposal?
+
+38. Describe a time when you had to complete a project in which you were
+provided with very little information or guidance.
+
+39. Tell me about a time when you had to change your priorities in
+response to the demands of a changing situation. 
+
+40. Tell me about a time when a project, product, or service
+implementation did not go according to plan. 
+
+41. Describe a time when you presented a proposal or provided a service
+that was given an unfavorable response by stakeholders. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;collaboration&quot;&gt;Collaboration&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;42. Describe a time when you worked on a challenging cross-functional
+team that produced an exceptional deliverable. 
+
+43. Tell me about a time when you developed a relationship with another
+area of the company that had no previous history of collaboration. 
+
+44. Describe how you have collaborated with others outside of your
+immediate team to resolve a critical issue. 
+
+45. Tell me about a time when you experienced conflict with a team
+member. 
+
+46. Describe your most recent experience working with a virtual
+team. What were the challenges you faced and how did you work through
+them? 
+
+47. Tell me about a time when your attempt to collaborate across teams
+was unsuccessful. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;customer-focus&quot;&gt;Customer Focus&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;48. Describe a time when you were involved in the resolution of a
+complaint from either an internal or an external customer. 
+
+49. Describe a time when you provided outstanding service to an internal
+or external customer by anticipating their needs. 
+
+50. Describe a time when you had difficulty determining the needs of a
+customer to provide them with a product or service that met their
+expectations. 
+
+51. Tell me about a time when you fell short of meeting a customer's
+needs. 
+
+52. Describe the strategies you have used to gather information that
+increased your understanding of current and future customer needs. 
+
+53. Provide an example of a time when you initiated a change in a
+process or policy to improve the quality of customer service 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;drive-for-results&quot;&gt;Drive for Results&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;54. Describe a time when you uncovered something that could be
+problematic for your organization or team. How did you correct the
+situation before it became an issue? 
+
+55. Describe a time when you tried to achieve a difficult professional
+goal. What obstacles did you encounter that made the goal difficult? 
+
+56. Tell me about a time when you successfully removed an obstacle that
+interfered with your ability to complete a task effectively. 
+
+57. Describe a long-term project or assignment of which you took
+ownership. How did you make sure each milestone was achieved in a timely
+manner? 
+
+58. Provide an example of a time when you had to motivate others to
+complete a challenging deliverable. 
+
+59. What has been the most difficult assignment or task in your career
+so far? 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;influencing-for-impact&quot;&gt;Influencing for Impact&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;60. Tell me about the most challenging situation that you have
+experienced, when you had to persuade someone to accept your
+point-of-view. 
+
+61. Describe a time when you had to persuade someone to complete a task,
+but had no formal authority over their work. 
+
+62. Tell me about a time when you had to convince others to implement a
+new procedure or process. 
+
+63. Tell me about a time when you successfully influenced multiple
+stakeholders with varying agendas. 
+
+64. Give me an example of a relationship that you developed through
+networking that had a positive impact on your work. 
+
+65. Give an example of a successful method (for example, research
+findings, anecdotes, stories, metaphors, or analogies) that you have
+used to convince a stakeholder to support an idea. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;judgement&quot;&gt;Judgement&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;66. Describe a time when you made a critical error in your work. 
+
+67. Describe a situation when you had to make a major decision under
+time constraints. 
+
+68. Tell me about an unpopular decision you've had to make. 
+
+69. Tell me about a time when you had to make an important decision but
+had no policies or procedures in place to support it 
+
+70. Tell me about a situation when you had multiple alternatives from
+which to choose. What steps did you take to determine the most
+appropriate alternative? 
+
+71. Tell me about a situation that required you to build your knowledge
+base before solving a complex problem. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;end-to-end-innovation&quot;&gt;End-to-End Innovation&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;71.  Give an example of an idea that you suggested that led to
+improvements within your organization. 
+
+72. Tell me about a time when you presented a new idea that successfully
+addressed a customer’s end-to-end product experience. 
+
+73. Tell me about a time when you identified a risk and offered a unique
+method of addressing the risk. 
+
+74. Tell me about a time when you contributed to the development of an
+innovative idea that impacted the market, industry, and ecosystem. 
+
+75. Tell me about a time when an innovative product or service you
+worked on failed. Looking back, what would you have done differently to
+ensure success? 
+
+76. Tell me about a time when you had to make adjustments to a feature
+or product, based on considerations of the overall customer experience. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;planning-organizing-and-executing&quot;&gt;Planning, Organizing, and Executing&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;77.Describe a situation when you made progress on a project or
+assignment despite ambiguity. 
+
+78. Describe a situation when you managed the impact of a change on
+schedule, processes, and project goals. 
+
+79. Describe a situation when you led a project with a geographically or
+functionally diverse team. 
+
+80. Tell me about a time when you aligned multiple stakeholders to
+achieve an objective. 
+
+81. Tell me about a time when you did not meet a planned milestone. 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;technical-excellence&quot;&gt;Technical Excellence&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;82. Describe a situation when you came up-to-speed quickly on new tools,
+methods, or processes. 
+
+83. Describe a situation when you were able to create improvements in
+code, designs, content property, or media assets. 
+
+85. Describe a situation when you sought out a new engineering or
+project/program management challenge beyond your role requirements. 
+
+85. Tell me about a time when you sought out a challenging technical
+problem. 
+
+86. Tell me about a time when you mentored others in your area of
+technical expertise. 
+
+87. Tell me about a time when you had to learn a new technology. What
+did you do to gain expertise? 
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">TDC 2019 Florianópolis</title><link href="/blog/2019/04/20/tdc-floripa-2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis" /><published>2019-04-20T14:00:00-04:00</published><updated>2019-04-20T14:00:00-04:00</updated><id>/blog/2019/04/20/tdc-floripa-2019</id><content type="html" xml:base="/blog/2019/04/20/tdc-floripa-2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I am blessed to have the opportunity to speak for the &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;fourth
@@ -586,171 +1319,7 @@ Predicate, Function, Supplier, Consumer&lt;/code&gt;.&lt;/li&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Credentials</summary></entry><entry><title type="html">Raw Notes: Visual Studio Code</title><link href="/blog/2019/03/19/javaland-vscode-picks.html" rel="alternate" type="text/html" title="Raw Notes: Visual Studio Code" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-vscode-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-vscode-picks.html">&lt;h1 id=&quot;vscode&quot;&gt;VSCode&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Started by saying their goal is not to convert IntelliJ, Eclipse,
-NetBeans devs.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Editors&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;TextEdit&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;SublimeText&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;jEdit&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;Had huge plugin ecosystem.  From sourceforge&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;a href=&quot;https://atom.io/&quot;&gt;Atom Editor&lt;/a&gt;&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;On the other end of the spectrum you have IDEs.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Text editors&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Keyboard centric&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Lightweight/fast&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Files/folders&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;IDEs&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Project systems&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Integrated build&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Debug&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;VCS&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Code understandig&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What about something in the middle?&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;VS Code is an editor, but has some capabilities from the IDS&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Code understanding&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Debug&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Everything from the Text editors&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;If you want to stick to one editor, VSCode + extensions.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Spring Initializr&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;IntelliCode&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;AI-assited pattern recognition&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;demos&quot;&gt;DEMOS&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Setting it up.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;code --user-dir empty --extensions-dir empty/extensions
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Some basic things you can do&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Maven projects&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Had some demo issues&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;spring&quot;&gt;Spring&lt;/h1&gt;
-
-&lt;h2 id=&quot;demos-1&quot;&gt;DEMOS&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;SpringBoot &lt;code class=&quot;highlighter-rouge&quot;&gt;@RestController&lt;/code&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Initializr&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Go-to-symbol works with Spring beans&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;PetClinic&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;AzureDevSpaces&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Rapidly iterate and debug containers in Kubernetes&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Showed how you can drop in a new Service-B in the midst of other
-existing services.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/vs-code-blog.jpg&quot; alt=&quot;Jakarta EE TImeline&quot; title=&quot;Timeline&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">VSCode</summary></entry><entry><title type="html">Raw Notes: Das Geheimnis erfolgreicher Teams</title><link href="/blog/2019/03/19/javaland-successful-teams-picks.html" rel="alternate" type="text/html" title="Raw Notes: Das Geheimnis erfolgreicher Teams" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-successful-teams-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-successful-teams-picks.html">&lt;ul&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Credentials</summary></entry><entry><title type="html">Raw Notes: Das Geheimnis erfolgreicher Teams</title><link href="/blog/2019/03/19/javaland-successful-teams-picks.html" rel="alternate" type="text/html" title="Raw Notes: Das Geheimnis erfolgreicher Teams" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-successful-teams-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-successful-teams-picks.html">&lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;Successful teams come from successful people&lt;/p&gt;
 
@@ -1018,359 +1587,168 @@ Create a team playbook.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;right-people--right-tools--right-practices--great-team&quot;&gt;Right people + Right tools + right practices = great team&lt;/h2&gt;</content><author><name></name></author><summary type="html">Successful teams come from successful people</summary></entry><entry><title type="html">Raw Notes: Master your Java Applications in Kubernetes</title><link href="/blog/2019/03/19/javaland-kubernetes-picks.html" rel="alternate" type="text/html" title="Raw Notes: Master your Java Applications in Kubernetes" /><published>2019-03-19T06:45:00-04:00</published><updated>2019-03-19T06:45:00-04:00</updated><id>/blog/2019/03/19/javaland-kubernetes-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-kubernetes-picks.html">&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;CV Slide.  History from consulting, banks, insurance, on-prem&lt;/p&gt;
+&lt;h2 id=&quot;right-people--right-tools--right-practices--great-team&quot;&gt;Right people + Right tools + right practices = great team&lt;/h2&gt;</content><author><name></name></author><summary type="html">Successful teams come from successful people</summary></entry><entry><title type="html">Raw Notes: Visual Studio Code</title><link href="/blog/2019/03/19/javaland-vscode-picks.html" rel="alternate" type="text/html" title="Raw Notes: Visual Studio Code" /><published>2019-03-19T08:45:00-04:00</published><updated>2019-03-19T08:45:00-04:00</updated><id>/blog/2019/03/19/javaland-vscode-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-vscode-picks.html">&lt;h1 id=&quot;vscode&quot;&gt;VSCode&lt;/h1&gt;
 
-    &lt;ul&gt;
-      &lt;li&gt;Cloud is not his history, but now he’s all about it.&lt;/li&gt;
-    &lt;/ul&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Started by saying their goal is not to convert IntelliJ, Eclipse,
+NetBeans devs.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Agenda&lt;/p&gt;
+    &lt;p&gt;Editors&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;
-        &lt;p&gt;Choose your Java runtime&lt;/p&gt;
+        &lt;p&gt;TextEdit&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;Build and execute your app&lt;/p&gt;
+        &lt;p&gt;SublimeText&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;Create your image&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Run in K8s&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Final thoughts&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;How to decide to go with k8s&lt;/p&gt;
+        &lt;p&gt;jEdit&lt;/p&gt;
 
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Top down or bottom up?&lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Had huge plugin ecosystem.  From sourceforge&lt;/li&gt;
+        &lt;/ul&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;How to integreate?&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Slow startup: naieve impl of monolith decomposition.  Take EE app,
-put it in container, run on k8s.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;K8s is for horizontal scaling, not vertical scaling&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;You can horizontally scale infinitely, until the first bill comes
-in!&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;More hands working with K8s&lt;/p&gt;
+        &lt;p&gt;&lt;a href=&quot;https://atom.io/&quot;&gt;Atom Editor&lt;/a&gt;&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Choosing the Java runtime&lt;/p&gt;
+    &lt;p&gt;On the other end of the spectrum you have IDEs.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Text editors&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;
-        &lt;p&gt;Support&lt;/p&gt;
+        &lt;p&gt;Keyboard centric&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;LTS&lt;/p&gt;
+        &lt;p&gt;Lightweight/fast&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;Container aware?&lt;/p&gt;
+        &lt;p&gt;Files/folders&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IDEs&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Project systems&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Integrated build&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Debug&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;VCS&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Code understandig&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What about something in the middle?&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;VS Code is an editor, but has some capabilities from the IDS&lt;/p&gt;
 
         &lt;ul&gt;
           &lt;li&gt;
-            &lt;p&gt;Since 8u131 &amp;amp; JDK 9&lt;/p&gt;
+            &lt;p&gt;Code understanding&lt;/p&gt;
           &lt;/li&gt;
           &lt;li&gt;
-            &lt;p&gt;Changes in 8u191 &amp;amp; JDK10&lt;/p&gt;
+            &lt;p&gt;Debug&lt;/p&gt;
           &lt;/li&gt;
           &lt;li&gt;
-            &lt;p&gt;CommentL what does he mean with container aware?&lt;/p&gt;
+            &lt;p&gt;Everything from the Text editors&lt;/p&gt;
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Many options out there.&lt;/p&gt;
+    &lt;p&gt;If you want to stick to one editor, VSCode + extensions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Spring Initializr&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;IntelliCode&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;AI-assited pattern recognition&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;demos&quot;&gt;DEMOS&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Setting it up.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;code --user-dir empty --extensions-dir empty/extensions
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Some basic things you can do&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;
-        &lt;p&gt;OpenJ9 is the IBM JDK&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Contributed to Eclipse in 2017&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Take OpenJDK, replace Hotspot&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Small memory footprint and fast startup.&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
+        &lt;p&gt;Maven projects&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;GraalVM&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Universal VM for running various langauges&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Removes isolation and enables interop&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;How is this related to K8s&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;JVM needs to be aware of containers CPU and memory&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Keep the memory and size footprint small&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Keep it with fast startup time.  You can burn money for no good.&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;“Basic” container specific flags&lt;/p&gt;
+        &lt;p&gt;Had some demo issues&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/k8s-runtime-flags-01.jpg&quot; alt=&quot;Flags 01&quot; title=&quot;Flags 01&quot; /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;spring&quot;&gt;Spring&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/k8s-runtime-flags-02.jpg&quot; alt=&quot;Flags 02&quot; title=&quot;Flags 02&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;demos-1&quot;&gt;DEMOS&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;Ahead of time compilation (AOT)&lt;/p&gt;
+    &lt;p&gt;SpringBoot &lt;code class=&quot;highlighter-rouge&quot;&gt;@RestController&lt;/code&gt;.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Application Class Data Sharing&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Since JDK10 (JEP310)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Flag &lt;em&gt;UseAppCDS&lt;/em&gt; (automatically enabled in JDK12)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Reduce memory footprint startup time&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Needs two prep steps&lt;/p&gt;
+    &lt;p&gt;Initializr&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;
-        &lt;p&gt;DEMO&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Start a vertx app&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Create AppCDS, &lt;code class=&quot;highlighter-rouge&quot;&gt;class.lst&lt;/code&gt;, but does not include all the classes.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Create archive file from &lt;code class=&quot;highlighter-rouge&quot;&gt;class.lst&lt;/code&gt;.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;COMMENT: this is really great.  Explore this.&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
+        &lt;p&gt;Go-to-symbol works with Spring beans&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;PetClinic&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;CDS and AOT in OpenJ9&lt;/p&gt;
+    &lt;p&gt;AzureDevSpaces&lt;/p&gt;
 
     &lt;ul&gt;
       &lt;li&gt;
-        &lt;p&gt;enable class data sharing and AOT is enabled by default&lt;/p&gt;
+        &lt;p&gt;Rapidly iterate and debug containers in Kubernetes&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;Looks like it does the preceding for you automatically.&lt;/p&gt;
+        &lt;p&gt;Showed how you can drop in a new Service-B in the midst of other
+existing services.&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Native compilation&lt;/p&gt;
+&lt;/ul&gt;
 
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Based on Graal compiler&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Download GraaLVM&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Build fat jar&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;native-image -jar app.jar &amp;amp;&amp;amp; ./app&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Works with Micronaut, Spark Java, Vert.X.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Not there yet.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Benchmarks: Always do your own&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Create your images&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Shrink your images to a minimum&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;FROM openjdk:12-ea-jdk-alpine3.8: as builder&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;jlink –add-modules … –output /opt/jre-minimal&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;COPY –from=builder /opt/jre-minimal /opt-jre-minimal&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Create lean images&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;put most changeable stuff lowest at bottom of Dockerfile&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;FROM adoptopenjdk/openjdk11-openj9:alpine-slim&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Think about your images&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;Try to avoid “fat” jars and wars.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Choosing your top level FROM image&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Look for vendor-specific images&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Don’t use :latest, or no tag.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;DEMO: Graal Native&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;A bunch of &lt;code class=&quot;highlighter-rouge&quot;&gt;docker run&lt;/code&gt;.  Then &lt;code class=&quot;highlighter-rouge&quot;&gt;docker stats&lt;/code&gt;.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Run the app in K8s.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Share your CDS files in K8s&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Set resource request limits.  PodSpec: &lt;code class=&quot;highlighter-rouge&quot;&gt;resources.requests.{memory,cpu}
-resources.requests.limits.{memory,cpu}&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Apply quotas on Namepsace level.  &lt;code class=&quot;highlighter-rouge&quot;&gt;kind:ResourceQuota&lt;/code&gt;&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;ConfigMaps &amp;amp; Secrets to externalize your config&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Final thoughts&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Avoid infrastructure code in your applications&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Service mesh with circuit breaker&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Service discovery using DNS or Labels in K8s&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Configuration via ConfigMap&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Helm charts to ship your application&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Package manager like “apt” in Debian&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Kubernetes Operators helps you manage upgrades, lifecycle, and
-insights.&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Don’t overlook serverless&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Better utilization of your cluster: accomodate different workloads&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Knative, an operator from Google and Pivotal&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;GraalVM and other projects focusing on low footprint &amp;amp; fast startup&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Why optimize?  COSTS.  Smaller footprint, CPU, cycles, pay per use.&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;lifecycle has changed.  Startup is now critical.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">CV Slide. History from consulting, banks, insurance, on-prem</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/blog/assets/vs-code-blog.jpg&quot; alt=&quot;Jakarta EE TImeline&quot; title=&quot;Timeline&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">VSCode</summary></entry></feed>

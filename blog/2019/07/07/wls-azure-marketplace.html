@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Java EE in Azure Marketplace: What&#39;s Currently Available?</title>
+  <meta name="description" content="As mentioned in my previous post, I joined Microsoft “to enable Java EE developers on Azure.” The team I joined at Microsoft has already been working on this...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2019/07/07/wls-azure-marketplace.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Java EE in Azure Marketplace: What&#39;s Currently Available?</h1>
+    <p class="post-meta"><time datetime="2019-07-07T12:00:00-04:00" itemprop="datePublished">Jul 7, 2019</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>As mentioned in my <a href="/blog/2019/05/23/joining-microsoft.html">previous post</a>, I joined Microsoft “to
+enable Java EE developers on Azure.”  The team I joined at Microsoft has
+already been working on this goal for some time, so naturally I need to
+take stock of the current offerings, whatever they may be.  As African
+American tennis great Arthur Ashe said, “<a href="https://www.brainyquote.com/quotes/arthur_ashe_371527">Start where you are. Use what
+you have. Do what you
+can.</a>” It turns
+out there is an existing template in the <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/">Azure
+Marketplace</a>
+for <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Oracle.OracleWebLogicServer12cEnterprise?tab=Overview">Oracle WebLogic Server
+12.1.2</a>.
+Now, this is admittedly ancient, supporting only Java EE 6 (<a href="https://docs.oracle.com/middleware/1212/wls/NOTES/whatsnew.htm#BGGGHCJD">Servlet
+3.0, JSF 2.1, CDI 1.0,
+etc</a>).
+Microsoft will be doing <strong>much</strong> better than this very soon, but this post
+documents how to get WLS 12.1.2 up and running on Azure as it stands
+today.  This post will show how to do the following:</p>
+
+<ul>
+  <li>
+    <p>Create a VM for WLS 12.1.2 from the existing Azure Marketplace
+template provided by Oracle.</p>
+  </li>
+  <li>
+    <p>Expose the necessary network ports.</p>
+  </li>
+  <li>
+    <p>SSH into the machine and create the WLS domain.</p>
+  </li>
+  <li>
+    <p>Start the WLS server.</p>
+  </li>
+  <li>
+    <p>Access the WLS console from the public Internet.</p>
+  </li>
+  <li>
+    <p>Use the console to deploy a simple <code class="highlighter-rouge">.war</code> file.</p>
+  </li>
+  <li>
+    <p>Validate the <code class="highlighter-rouge">.war</code> works.</p>
+  </li>
+  <li>
+    <p>Shut down the server.</p>
+  </li>
+  <li>
+    <p>De-allocate the Azure resources.</p>
+  </li>
+</ul>
+
+<h2 id="creating-and-configuring-the-iaas-vm-within-the-azure-portal">Creating and Configuring the IaaS VM Within the Azure Portal</h2>
+<!-- use H4 because it's smaller -->
+
+<h4 id="1-log-in-to-the-portal">1. Log in to the portal</h4>
+
+<p>Visit <a href="https://portal.azure.com/">portal.azure.com</a> and either sign
+up or log in.  This is your portal to all of the features of Azure to
+which you have a subscription.  Everything you do within Azure
+happens within a subscription.  If you are just getting started, you
+can get a free trial subscription with <a href="https://visualstudio.microsoft.com/dev-essentials/">Visual Studio Dev
+Essentials</a>.</p>
+
+<h4 id="2-filter-to-your-subscription">2. Filter to your subscription</h4>
+
+<p>It is possible to have multiple subscriptions within your Azure
+account.  If your Azure account is associated with multiple
+subscriptions, you’ll need to adjust the portal so it only takes
+action on resources within that subscription.  Use this this control
+to apply the filter.  <img src="/blog/assets/20190707-subscription-filter.PNG" alt="Azure subscription filter" title="Azure subscription filter" /></p>
+
+<h4 id="3-create-a-resource-group">3. Create a resource group</h4>
+
+<p>The left side of the Azure portal is a handy parking lot for actions
+you can take.  It’s kinda like the dock in macOS or the task bar in
+Windows.  Let’s create a “Resource Group”.  You can think of a
+“Resource Group” as a box for grouping related Azure things together.
+In this post, we’ll create a resource group to hold our WLS 12.1.2
+related resources.  Click the “Resource Groups” icon:</p>
+
+<p><img src="/blog/assets/20190707-resource-group-icon.PNG" alt="Resource Group
+Icon" title="Resource Group Icon" />  </p>
+
+<p>Then the “+ Add” button at the top.  Fill in “Resource group with a
+descriptive name.  Such as “20190707-wls1212”.  Leave “Subscription” and
+“Region” as default, as shown here.</p>
+
+<p><img src="/blog/assets/20190707-resource-group-pane.PNG" alt="Azure subscription filter" title="Azure subscription
+filter" /></p>
+
+<p>Click “Review + Create”, then “Create”.  You will see a “Resource Group
+Created” notification, which will quickly disappear.  You can get this
+and all other notifications back by clicking on the “bell” icon, next to
+the “Filter your subscription” icon you clicked on in step 2.  Do this
+now and you’ll see something like this.</p>
+
+<p><img src="/blog/assets/20190707-resource-group-created.PNG" alt="Resource Group Created" title="Resource Group Created" /></p>
+
+<p>Click on the “Go to resource group”.  Take some time to play around with
+the resource group view.  As we create things, they will show up here.</p>
+
+<h4 id="4-create-the-weblogic-1212-service">4. Create the WebLogic 12.1.2 Service</h4>
+
+<p>Click on the friendly green plus icon at the top of the left navigation
+pane.  This will expose the “Azure Marketplace”, a huge library of
+things that run on Azure.  Eventually there will be more Java EE related
+things in here, but for now place the cursor in the “Search the
+Marketplace” box and type <code class="highlighter-rouge">Oracle WebLogic Server 12.1.2</code> and press
+Enter.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212.PNG" alt="wls1212" title="wls1212" /></p>
+
+<p>Under the covers, this is an Azure Resource Manager (ARM) template,
+created by Oracle and inserted into the Azure Marketplace way back
+in 2013.  You can create your own ARM templates.  Check out my colleague Rick Claus’s <a href="https://regularitguy.com/2016/06/06/how-to-create-an-azure-resource-manager-arm-template-from-scratch/">blog about ARM templates</a> for more.</p>
+
+<h5 id="a-create-a-virtual-machine">A. Create a Virtual Machine</h5>
+
+<p>Fill in this form with the following values.</p>
+
+<p><strong>Resource group</strong>: <code class="highlighter-rouge">The resource group you created in step 3.</code></p>
+
+<p><strong>Virtual Machine Name</strong>: <code class="highlighter-rouge">The same as the resource group.</code></p>
+
+<p>Within the <code class="highlighter-rouge">Administrator account</code> section, change the <code class="highlighter-rouge">Authentication
+type</code> to be “Password”.  Set the values as follows.</p>
+
+<p><strong>Username</strong>: <code class="highlighter-rouge">adminadmin</code></p>
+
+<p><strong>Password and Confirm Password</strong>: <code class="highlighter-rouge">3hu6Lfomu4#&amp;</code></p>
+
+<p>Naturally you can use whatever you like for password.</p>
+
+<p>Within the <code class="highlighter-rouge">Inbound Port Rules</code> section, leave “None” selected, we will
+tune the rules later.</p>
+
+<p>Click “Next: Disks &gt;”.  This is important because the default is to
+create the VM with expensive premium SSD disk.  This post is
+optimized for cheapness, not speed!</p>
+
+<p>Set the “OS disk type” to be “Standard HDD”.  Then click the “Review +
+create”, then “Create”.  You will see “Your deployment is underway”.
+This should only take a couple minutes to complete.</p>
+
+<h5 id="b-tune-the-network-settings-to-allow-ssh-and-console-access">B. Tune the Network Settings To Allow SSH and Console Access</h5>
+
+<p>Click on “Resource Groups” then select the Resource group you created in
+step 3.  This will show you the many different resources that were
+created by the ARM template for WLS 12.1.2.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-resources.PNG" alt="wls-1212-resources" title="wls-1212-resources" /></p>
+
+<p>We are going to allow SSH and WLS Console access.  Securing an Internet
+facing resource is a huge and important topic, but far beyond the scope
+of this simple blog post.  Just know that we are doing some things here
+that almost certainly are not security best practices.</p>
+
+<p>Within the items in the Resource group, click on the “Network security
+group”, <code class="highlighter-rouge">20190707-wls1212-nsg</code>.  In the “Settings” section of the middle
+pane, select “Inbound security rules”.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-nsg.PNG" alt="Network Security Groups" title="Network Security Groups" /></p>
+
+<p>This exposes the panel where we can customize the allowable network
+connections <strong>into</strong> the VM (known as “inbound” connections).  There is
+an analogous panel for configuring network connections <strong>out</strong> of the VM
+(“outbound” connections).  You declare whether or not a particular
+connection is allowed or dis-allowed by writing “rules”.  This exercise
+is going to allow just enough to accomplish the goals of the blog post.
+In the table below, rules can be added by clicking the “+ Add” button.
+They can be edited by single clicking the row in the table.  When
+adding or editing a rule make sure to scroll up and down to make sure
+you haven’t missed any fields.  Before you add any rules, let’s examine
+the pre-configured ones.  Note that the rows are sorted by increasing
+priority.  When Azure detects an inbound connection to the VM, Azure
+runs through each row of the inbound rules, in order of priority, to see
+if the connection matches the rule.  If it does, the rule is applied and
+traversal of the rule table stops.  If it does not, Azure keeps going
+through the rows until either a match is found or the table ends.  Note
+that Azure has pre-added a <code class="highlighter-rouge">DenyAllInbound</code> rule with the lowest
+priority.  This effectively means “if nothing else, deny the inbound
+connection”.  Use the UI to make it so the rules look like the table
+shown next.  The rows in the red box are the rows you need to add.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-nsg-modified.PNG" alt="Desired Inbound Rules" title="Desired Inbound Rules" /></p>
+
+<p>Digital Ocean has a great primer on networking terminology at
+<a href="https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking">https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking</a>.</p>
+
+<h5 id="c-optional-disable-the-auto-shutdown">C. (Optional) Disable the Auto Shutdown</h5>
+
+<p>As a nod to the U.S. Government’s National Institute of Standards
+(NIST) offical definition of cloud computing (which <a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf">everyone should
+read</a>)
+your VM is pre-configured to auto shut-down at 19:00 UTC.  To disable
+this potentially inconvenient setting, go to the Resource Group, click
+on the “Virtual machine” row, then type “Auto-shutdown” in the search
+box and click on the “Auto-shutdown” hit, as shown in this diagram.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-auto-shutdown.PNG" alt="wls-1212-auto-shutdown" title="wls-1212-auto-shutdown" /></p>
+
+<p>Toggle the enabled to “Off”.</p>
+
+<h4 id="5-ssh-into-the-machine-to-complete-the-configuration">5. SSH Into the Machine to Complete the Configuration</h4>
+
+<p>Because we enabled port 22 <a href="#b-tune-the-network-settings-to-allow-ssh-and-console-access">in step B
+above</a>, we
+can SSH into the host, assuming we know it’s IP address.  This can be
+discovered by going to the Resource Group, clicking on the “Virtual
+machine” resource.  If you mouse over the IP address, shown in the red
+box next, you will see a button that copies the IP address to the
+clipboard.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-ip-address.PNG" alt="IP Address" title="IP Address" /></p>
+
+<p>Open a “Cloud Shell” by clicking on the “Cloud Shell” icon on the top
+menu bar of the panel.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-cloud-shell.PNG" alt="Cloud Shell" title="Cloud Shell" /></p>
+
+<p>Tip: This action opens up a new shell at the bottom of the current
+portal browser tab.  I prefer to have a full tab for the shell.  Click
+on the “Open new session” button to get one.  You may close the bottom
+shell if you like.  In the cloud shell, SSH into the machine as shown
+next.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-cloud-shell-02.PNG" alt="Cloud Shell" title="Cloud Shell" /></p>
+
+<p>The remaining actions are documented in more detail <a href="https://docs.oracle.com/middleware/1212/wls/WLAZU/toc.htm">at
+Oracle</a>, but
+that documentation references a version of the Azure console that has
+long since ceased to be.  Therefore, this section will update that
+content for the simple case of a single WLS domain node.  After doing
+these steps, it should be simple to use the out-of-date Oracle
+documentation to perform the more advanced configuration, such as
+<a href="https://docs.oracle.com/middleware/1212/wls/WLAZU/toc.htm#CBABAADH">Creating a Multi-Machine Virtual Network for WebLogic
+Server</a>.</p>
+
+<h5 id="a-set-the-env-vars">A. Set the ENV Vars</h5>
+
+<p>In the Azure Cloud Shell, ensure the <code class="highlighter-rouge">adminadmin</code> user owns the
+necessary directories and files:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo chown -R adminadmin /opt/oracle
+</code></pre>
+</div>
+
+<p>Enter <code class="highlighter-rouge">cat &gt; wls-env.sh</code> then paste the following lines, followed by
+control-D.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>export ORACLE_HOME=/opt/oracle/products/Middleware
+export WL_HOME=/opt/oracle/products/Middleware/wlserver
+export JAVA_HOME=/opt/oracle/products/jdk1.7.0_25
+${WL_HOME}/common/derby/bin/startNetworkServer.sh || true
+</code></pre>
+</div>
+
+<p>The <code class="highlighter-rouge">|| true</code> causes the script to continue even if the Derby server
+doesn’t start, for example because it’s already started.</p>
+
+<p>Execute the script:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>. ./wls-env.sh
+</code></pre>
+</div>
+
+<p>This will set the necessary environment variables, and also start the
+built-in Derby database.  This should cause someting like the following
+to appear in the Azure Cloud Shell:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Mon Jul 08 15:06:33 EDT 2019 : Security manager installed using the Basic server security policy.
+Mon Jul 08 15:06:34 EDT 2019 : Apache Derby Network Server - 10.8.2.2 -
+(1181258) started and ready to accept connections on port 1527
+</code></pre>
+</div>
+
+<p>Note that this port is not accessible to the public Internet because you
+have not created an inbound rule for it.  It is, however, accessible
+within the Virtual Network (vnet) created by the ARM template for Oracle
+WLS 12.1.2.</p>
+
+<h5 id="b-create-the-domain">B. Create the Domain</h5>
+
+<p>We will modify the included <code class="highlighter-rouge">basicWLSDomain.py</code> WLST script to make to
+create a domain to which we can log in to the admin console.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd /opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst
+</code></pre>
+</div>
+
+<p>This directory contains some built-in WebLogic Scripting Template (WLST)
+scripts provided by Oracle.  Copy the <code class="highlighter-rouge">basicWLSDomain.py</code> so we can
+safely edit it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cp basicWLSDomain.py 20190709_basicWLSDomain.py
+</code></pre>
+</div>
+
+<p>Find the line with <code class="highlighter-rouge"># Please set password here before using this script,
+e.g. cmo.setPassword('value')</code> and insert this line before it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cmo.setPassword('3hu6Lfomu4#&amp;')
+</code></pre>
+</div>
+
+<p>Note, you can use any password you like.  I’m using the same password as
+earlier for convenience.  Save the file.</p>
+
+<p>Change to the directory containing the <code class="highlighter-rouge">wlst.sh</code> tool and execute it:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cd /opt/oracle/products/Middleware/oracle_common/common/bin
+./wlst.sh
+</code></pre>
+</div>
+
+<p>At the prompt, execute the script file you just edited:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>wls:/offline&gt; execfile('/opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst/20190709_basicWLSDomain.py')
+</code></pre>
+</div>
+
+<p>This will cause
+<code class="highlighter-rouge">/opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain</code>
+to be created.  Append the following line to your existing
+<code class="highlighter-rouge">~/wls-env.sh</code> file:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nohup /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/bin/startWebLogic.sh &gt; ~/wls-log.txt &amp; 2&gt;&amp;1
+</code></pre>
+</div>
+
+<p>If you examine the contents of <code class="highlighter-rouge">~/wls-log.txt</code> you should see it ends
+with output similar to the following.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;Jul 9, 2019 11:28:54 AM EDT&gt; &lt;Notice&gt; &lt;Security&gt; &lt;BEA-090171&gt; &lt;Loading the identity certificate and private key stored under the alias DemoIdentity from the jks keystore file /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/security/DemoIdentity.jks.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Security&gt; &lt;BEA-090169&gt; &lt;Loading trusted certificates from the jks keystore file /opt/oracle/products/Middleware/wlserver/server/lib/DemoTrust.jks.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Security&gt; &lt;BEA-090169&gt; &lt;Loading trusted certificates from the jks keystore file /opt/oracle/products/jdk1.7.0_25/jre/lib/security/cacerts.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "DefaultSecure[1]" is now listening on fe80:0:0:0:20d:3aff:fe54:2fff:7002 for protocols iiops, t3s, ldaps, https.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "DefaultSecure[3]" is now listening on 127.0.0.1:7002 for protocolsiiops, t3s, ldaps, https.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "Default[1]" is now listening on fe80:0:0:0:20d:3aff:fe54:2fff:7001for protocols iiop, t3, ldap, snmp, http.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "DefaultSecure[2]" is now listening on 0:0:0:0:0:0:0:1:7002 for protocols iiops, t3s, ldaps, https.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "Default" is now listening on 10.0.2.4:7001 for protocols iiop, t3,ldap, snmp, http.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Warning&gt; &lt;Server&gt; &lt;BEA-002611&gt; &lt;The hostname "localhost", maps to multiple IP addresses: 127.0.0.1, 0:0:0:0:0:0:0:1.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "DefaultSecure" is now listening on 10.0.2.4:7002 for protocols iiops, t3s, ldaps, https.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "Default[3]" is now listening on 127.0.0.1:7001 for protocols iiop,t3, ldap, snmp, http.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "Default[2]" is now listening on 0:0:0:0:0:0:0:1:7001 for protocolsiiop, t3, ldap, snmp, http.&gt;
+&lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;WebLogicServer&gt; &lt;BEA-000331&gt; &lt;Started the WebLogic Server Administration Server "AdminServer" fordomain "basicWLSDomain" running in development mode.&gt;
+&lt;Jul 9, 2019 11:28:57 AM EDT&gt; &lt;Notice&gt; &lt;WebLogicServer&gt; &lt;BEA-000365&gt; &lt;Server state changed to RUNNING.&gt;
+&lt;Jul 9, 2019 11:28:57 AM EDT&gt; &lt;Notice&gt; &lt;WebLogicServer&gt; &lt;BEA-000360&gt; &lt;The server started in RUNNING mode.&gt;
+</code></pre>
+</div>
+
+<h2 id="access-the-admin-gui-to-deploy-a-java-ee-6-war">Access the Admin GUI to deploy a Java EE 6 WAR.</h2>
+
+<p>Assuming you see the all important <code class="highlighter-rouge">The server started in RUNNING
+mode.</code>, you may safely exit the SSH shell, and, if desired, disable the
+inbound rule for SSH.</p>
+
+<p>Obtain the public IP address for the host as shown
+<a href="5-ssh-into-the-machine-to-complete-the-configuration">earlier</a> and log
+in to <code class="highlighter-rouge">http://&lt;ip address&gt;:7001/console</code>.</p>
+
+<p>If everything worked correctly, you should see the following login UI.
+I have filled in <code class="highlighter-rouge">weblogic</code> as the <code class="highlighter-rouge">Username</code>, since this is what the
+template uses.  Provide the pasword you used when you ran <code class="highlighter-rouge">execfile</code> and
+log in to the console.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-console.PNG" alt="WLS Console" title="WLS Console" /></p>
+
+<h4 id="1-install-the-simplest-war-that-will-possibly-work">1. Install the simplest WAR that will possibly work.</h4>
+
+<p>For simplicity, let’s install the simple guessNumber 2.0 war into the
+running WLS 12.1.2.  You can download the war <a href="/blog/assets/jsf-guessNumber-2.0.war">from this blog</a>.</p>
+
+<p>The following steps will guide you to install the guessNumber war using
+the WLS Admin GUI.</p>
+
+<ul>
+  <li>
+    <p>Click on “Deployments” in the “Domain Structure” panel on the left.</p>
+  </li>
+  <li>
+    <p>Click on “Install” as shown next.</p>
+  </li>
+</ul>
+
+<p><img src="/blog/assets/20190707-wls-1212-console-install-01.PNG" alt="WLS Console" title="WLS Console" /></p>
+
+<ul>
+  <li>
+    <p>Click on the hyperlink “upload your file(s)” and upload the
+<code class="highlighter-rouge">jsf-guessNumber-2.0.war</code>.  Click “Browse” and use the file chooser to
+select the WAR.</p>
+  </li>
+  <li>
+    <p>Click “Next”.</p>
+  </li>
+  <li>
+    <p>On the “Install Application Assistant”, ensure the
+“jsf-guessNumber-2.0.war” is selected, and click “Next”.</p>
+  </li>
+  <li>
+    <p>On the “Choose targeting style” page, select “Install this deployment as an
+application” and click “Next”.</p>
+  </li>
+  <li>
+    <p>On the “Optional Settings” page, click “Finish”.</p>
+  </li>
+</ul>
+
+<p>Your console should have the following appearance, especially the green
+text in the “Messages” section.</p>
+
+<p><img src="/blog/assets/20190707-wls-1212-console-install-02.PNG" alt="WLS Console" title="WLS Console" /></p>
+
+<p>Note that we are installing the WAR into the <code class="highlighter-rouge">AdminServer</code> target.  This
+is not something one would normally do, but because the <code class="highlighter-rouge">basicWLSDomain</code>
+is set up with just the one server by default, this is what we will use.</p>
+
+<h4 id="2-view-the-deployed-app">2. View the Deployed App</h4>
+
+<p>Construct a URL based on the public IP and the context-root of the app.
+For example, <code class="highlighter-rouge">http://&lt;ip address&gt;:7001/jsf-guessNumber-2.0/</code>.  Note that
+the port is <code class="highlighter-rouge">7001</code>, not 8080.  This is because we installed the app in
+the <code class="highlighter-rouge">AdminServer</code> target.  If the deployment was successful, you should
+see the simple GuessNumber JSF 2.0 app.</p>
+
+<h4 id="3-shut-down-the-wls-server">3. Shut Down the WLS Server</h4>
+
+<ul>
+  <li>
+    <p>In the “Domain Structure” browser, expand “Environment” and click “Servers”.</p>
+  </li>
+  <li>
+    <p>In the “Summary of Servers” panel, click the “Control” tab.</p>
+  </li>
+  <li>
+    <p>Click the checkbox next to “AdminServer(admin)”.</p>
+  </li>
+  <li>
+    <p>Pull down the “Shutdown” dropdown and select “when work completes”.</p>
+  </li>
+  <li>
+    <p>Thiss will shut down the WLS server.</p>
+  </li>
+</ul>
+
+<h4 id="4-shut-down-the-vm">4. Shut down the VM</h4>
+
+<ul>
+  <li>
+    <p>Back in the Azure portal click “Resource groups” and select the
+Resource group you created to hold this demo.</p>
+  </li>
+  <li>
+    <p>Click on the “Virtual machine” type row.</p>
+  </li>
+  <li>
+    <p>Click “Stop”.</p>
+  </li>
+  <li>
+    <p>Click “OK”.</p>
+  </li>
+</ul>
+
+<h5 id="5-optional-delete-the-resource-group">5. (Optional) Delete the Resource group.</h5>
+
+<p>If you don’t need this server any more, or you want to start over and
+try some other experiments, you can delete the entire Resource group
+with one action.</p>
+
+<ul>
+  <li>
+    <p>In the Azure console, click on Resource groups.</p>
+  </li>
+  <li>
+    <p>Check the checkbox next to your Resource group, and click the ellipsis
+at the right end of the row.</p>
+  </li>
+  <li>
+    <p>Choose “Delete Resource group”.</p>
+  </li>
+  <li>
+    <p>As a measure to prevent accidental deletion, you have to type the
+Resource group name, then click “Delete”</p>
+  </li>
+</ul>
+
+<p>This will delete the VM, network, network rules, disk, and the resource
+group itself.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Even though this is very old software, it’s running on the most modern
+and flexible cloud environment in the world.  In this post we did the
+following.</p>
+
+<ul>
+  <li>
+    <p>Create a VM for WLS 12.1.2 from the existing Azure Marketplace
+template provided by Oracle.</p>
+  </li>
+  <li>
+    <p>Expose the necessary network ports.</p>
+  </li>
+  <li>
+    <p>SSH into the machine and create the WLS domain.</p>
+  </li>
+  <li>
+    <p>Start the WLS server.</p>
+  </li>
+  <li>
+    <p>Access the WLS console from the public Internet.</p>
+  </li>
+  <li>
+    <p>Use the console to deploy a simple <code class="highlighter-rouge">.war</code> file.</p>
+  </li>
+  <li>
+    <p>Validate the <code class="highlighter-rouge">.war</code> works.</p>
+  </li>
+  <li>
+    <p>Shut down the server.</p>
+  </li>
+  <li>
+    <p>De-allocate the Azure resources.</p>
+  </li>
+</ul>
+
+<p>Watch this space, and the twitters account
+<a href="https://twitter.com/edburns/">@edburns</a> and
+<a href="https://twitter.com/reza_rahman">@reza_rahman</a>, for upcoming
+announcments about Microsoft’s plans for Java EE on Azure.</p>
+
+  </div>
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              Ed Burns Blog
+            
+            </li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">edburns</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

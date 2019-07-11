@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-10T15:40:01-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Productivity: Use Outlook Search Folders</title><link href="/blog/2019/07/10/productiviy-outlook-search-folders.html" rel="alternate" type="text/html" title="Productivity: Use Outlook Search Folders" /><published>2019-07-10T12:00:00-04:00</published><updated>2019-07-10T12:00:00-04:00</updated><id>/blog/2019/07/10/productiviy-outlook-search-folders</id><content type="html" xml:base="/blog/2019/07/10/productiviy-outlook-search-folders.html">&lt;p&gt;I’ve been an emacs user since 1991, and from 1995 until 2019-06-10 I
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-11T00:53:40-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Productivity: Use Outlook Search Folders</title><link href="/blog/2019/07/10/productiviy-outlook-search-folders.html" rel="alternate" type="text/html" title="Productivity: Use Outlook Search Folders" /><published>2019-07-10T12:00:00-04:00</published><updated>2019-07-10T12:00:00-04:00</updated><id>/blog/2019/07/10/productiviy-outlook-search-folders</id><content type="html" xml:base="/blog/2019/07/10/productiviy-outlook-search-folders.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/20190710-outlook-one-weird-trick.PNG&quot; alt=&quot;One Weird Trick&quot; title=&quot;One Weird Trick&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve been an emacs user since 1991, and from 1993 until 2019-06-10 I
 used &lt;a href=&quot;http://www.nongnu.org/viewmail/&quot;&gt;Emacs VM mode&lt;/a&gt; to read email.  I
 still use it for my personal email, but I’ve given up using it for
 Microsoft mail and instead started using Outlook.  The most essential
@@ -10,15 +12,29 @@ ViewMailFolders) with various filters applied to select which messages
 to include.&quot;&lt;/code&gt; My favorite aspect of this feature was that you could use
 regular expressions to specify the filters.&lt;/p&gt;
 
-&lt;p&gt;Outlook has a similar feature, &lt;a href=&quot;https://support.office.com/en-us/article/Use-Search-Folders-to-find-messages-or-other-Outlook-items-c1807038-01e4-475e-8869-0ccab0a56dc5&quot;&gt;called “Search
-Folders”&lt;/a&gt;.
-The only shortcoming appears to be that you cannot use regular
-expressions.&lt;/p&gt;
+&lt;p&gt;I used the feature to craft a 7 level, prioritized new mail reading
+process in line with “First things first” techniques espoused by &lt;a href=&quot;http://eisenhower-matrix.com/first-things-first/&quot;&gt;Steven
+Covey&lt;/a&gt;.  When I would
+do my main email session of the day, I’d go through the 7 virtual
+folders to make sure I acted on the important emails first.&lt;/p&gt;
 
-&lt;p&gt;The help page linked above shows how to do it, but my secret sauce is my
-ordered list of virtual folders, prevented in abbreviated form here.  I
-have used the “Search Folders” feature to approximate what I had with
-VM.&lt;/p&gt;
+&lt;p&gt;Outlook has a similar feature, called “Search Folders”.  The only
+shortcoming appears to be that you cannot use regular expressions.  That
+and the fact that Emacs VM had the feature in 1993, while Outlook for
+Windows 3.1 was only in its very early version at that point.&lt;/p&gt;
+
+&lt;p&gt;This blog post shows how to approximate the VM Virtual Folders feature
+with Outlook Search Folders.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-emacs-vm-side&quot;&gt;The Emacs VM side.&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://support.office.com/en-us/article/Use-Search-Folders-to-find-messages-or-other-Outlook-items-c1807038-01e4-475e-8869-0ccab0a56dc5&quot;&gt;“Search
+Folders”&lt;/a&gt;
+help page shows how to do it, but my secret sauce is my ordered list of
+virtual folders, prevented in abbreviated form here.  I have used the
+“Search Folders” feature to approximate what I had with VM.  After this
+bunch of lisp, I’ll show how I created search folders for some of these
+virtual folders.&lt;/p&gt;
 
 &lt;div class=&quot;lisp&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #b1b100;&quot;&gt;setq&lt;/span&gt; vm-virtual-folder-alist&lt;/div&gt;&lt;/li&gt;
 &lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;'&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
@@ -303,7 +319,138 @@ VM.&lt;/p&gt;
 &lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">I’ve been an emacs user since 1991, and from 1995 until 2019-06-10 I used Emacs VM mode to read email. I still use it for my personal email, but I’ve given up using it for Microsoft mail and instead started using Outlook. The most essential feature I need is what VM mode called Virtual Folders: &quot;Virtual folders contain messages from one or more real folders (see ViewMailFolders) with various filters applied to select which messages to include.&quot; My favorite aspect of this feature was that you could use regular expressions to specify the filters.</summary></entry><entry><title type="html">Java EE in Azure Marketplace: What’s Currently Available?</title><link href="/blog/2019/07/07/wls-azure-marketplace.html" rel="alternate" type="text/html" title="Java EE in Azure Marketplace: What's Currently Available?" /><published>2019-07-07T12:00:00-04:00</published><updated>2019-07-07T12:00:00-04:00</updated><id>/blog/2019/07/07/wls-azure-marketplace</id><content type="html" xml:base="/blog/2019/07/07/wls-azure-marketplace.html">&lt;p&gt;As mentioned in my &lt;a href=&quot;/blog/2019/05/23/joining-microsoft.html&quot;&gt;previous post&lt;/a&gt;, I joined Microsoft “to
+&lt;/ol&gt;&lt;/div&gt;
+
+&lt;p&gt;I only use the “numbered” virtual folders in my daily email scan.  But
+if you have an enormous volume of incoming mail, as I did when I was the
+spec lead of several JSRs at the same time, the other ones were very
+helpful.  I will say that since the advent of tools like Slack and
+Microsoft Teams, the volume of email is less.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-outlook-side&quot;&gt;The Outlook Side&lt;/h2&gt;
+
+&lt;h3 id=&quot;create-your-first-search-folder-1-urgent&quot;&gt;Create your First Search Folder: 1-urgent&lt;/h3&gt;
+
+&lt;p&gt;Click the “Folder” menu, then the “New Search Folder” button, as shown next.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190710-outlook-new-search-folder.PNG&quot; alt=&quot;New Search Folder&quot; title=&quot;New Search Folder&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the “New Search Folder” dialog that appears, scroll the content of
+the “Select a Search Folder” pane down to the bottom and select “Create
+a custom Search Folder”.  Click “Choose…”.&lt;/p&gt;
+
+&lt;p&gt;In the “Name” field, type &lt;code class=&quot;highlighter-rouge&quot;&gt;1-urgent&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Click the “Browse…” button just beneath the “Mail from these folders
+will be included in this Search Folder: heading.  Uncheck the
+ridiculously tiny little checkbox next to your account name and check
+the ridiculously tiny little checkbox next to “Inbox”.  Make sure
+“Search subfolders” is checked, as shown next.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190710-outlook-select-folders.PNG&quot; alt=&quot;Select Folder(s)&quot; title=&quot;Select Folder(s)&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is important, otherwise you’ll see “Deleted”, “Sent”, “Drafts”,
+“Junk” and other undesirable nonsense in your Search Folders.  Click “OK”.&lt;/p&gt;
+
+&lt;p&gt;Click “Criteria”.  Selct the “More Choices” Tab.  Check the checkbox next
+to “Only items that are:” and change the value to “unread”.  If you
+neglect this step you’ll see things you’ve already seen, which defeats
+the purpose of the exercise.&lt;/p&gt;
+
+&lt;p&gt;Select the “Advanced” tab.  Drop down the “Field”
+menu, mouse over “Frequently-used fields”, and mouse over to “Subject”.
+Click on “Subject”.  Leave the “Condition” as &lt;code class=&quot;highlighter-rouge&quot;&gt;contains&lt;/code&gt;.  In the value
+enter “urgent”.  Click “Add to List”.&lt;/p&gt;
+
+&lt;p&gt;Do this again and again for lines 6 - 13 in the lisp above.  The matches
+are case-insensitive by default, and this thing doesn’t appear to accept
+regexp anyway, so that’s why you don’t need the goofy looking
+&lt;code class=&quot;highlighter-rouge&quot;&gt;.*[uU][rR][gG][eE][nN][tT].*&lt;/code&gt; type syntax.  However, as you’ll see,
+this is a lot more clicking than just writing some simple regexps.  I’d
+rather the regexps.&lt;/p&gt;
+
+&lt;p&gt;After adding all the subject variants click “OK”, then click “OK”
+again.  This will cause the “1-urgent” Search folder to appear in the
+“Search Folders” section on the left navigation, as shown next.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190710-outlook-left-nav.PNG&quot; alt=&quot;Left Nav&quot; title=&quot;Left Nav&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I like to add the Search Folders to my favorites.  To do this, right
+click on the Search Folder and choose “Add to Favorites”.&lt;/p&gt;
+
+&lt;p&gt;   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+   &lt;br /&gt;
+ &lt;/p&gt;
+
+&lt;h3 id=&quot;create-your-second-search-folder-2-important-people-a&quot;&gt;Create Your Second Search Folder: 2-important-people-a&lt;/h3&gt;
+
+&lt;p&gt;Right click the “Search Folders” heading in the left nav bar and choose
+“New Search Folder”.  Type the name “2-important-people-a” and do the
+“Browse…” ridiculously tiny little checkbox trick again.&lt;/p&gt;
+
+&lt;p&gt;Click “Criteria”.  Select the “Advanced” tab.  Drop down the “Field”
+menu, mouse over “Address fields”, and mouse over to “From”.  Click on
+“From”.  Leave the “Condition” as &lt;code class=&quot;highlighter-rouge&quot;&gt;contains&lt;/code&gt;.  In the value enter the
+name of the important person.  Click “Add to List”.&lt;/p&gt;
+
+&lt;p&gt;After adding all the important people, click “OK”, then click “OK”
+again.  This will cause the “2-important-people-a” Search folder to
+appear in the “Search Folders” section on the left navigation.  Add this
+to the favorites as well.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-your-third-search-folder-2-important-people-b&quot;&gt;Create Your Third Search Folder: 2-important-people-b&lt;/h3&gt;
+
+&lt;p&gt;This is just the same as the preceding step, but for people that are not
+as important to you as &lt;code class=&quot;highlighter-rouge&quot;&gt;important-people-a&lt;/code&gt;.  I find having two levels
+of important people is enough for me, but YMMV.  I tend to put bosses
+and their bosses in the “a” category and my important collaborators in
+the “b” category.  Everyone else falls into the timed categories I’ll
+show later.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-your-fourth-search-folder-3-your-name&quot;&gt;Create Your Fourth Search Folder: 3-&amp;lt;your name&amp;gt;&lt;/h3&gt;
+
+&lt;p&gt;This folder is for messages sent directly to you, not messages that you
+receive by virtue of being on a mailing list.&lt;/p&gt;
+
+&lt;p&gt;Create this using the steps as for the preceding Search Folders, but
+when you get to the “Criteria” step, it’s different.  In the “Messages”
+tab, In the text field next to “Sent To…”, fill in a semicolon
+separated list of the identifiers for your email address.  In my case, I
+put &lt;code class=&quot;highlighter-rouge&quot;&gt;Ed Burns &amp;lt;Edward.Burns@microsoft.com&amp;gt;; Edward Burns;
+edburns@microsoft.com; edward.burns@microsoft.com&lt;/code&gt; because these are all
+I can be reached.&lt;/p&gt;
+
+&lt;h3 id=&quot;create-the-date-based-search-folders-7-lastmonth-8-lastweek-9-yesterday&quot;&gt;Create the “date based” Search Folders: 7-lastMonth, 8-lastWeek, 9-yesterday&lt;/h3&gt;
+
+&lt;p&gt;Create these folders in a similar fashion as above, but when you get to
+criteria selection, Drop down the “Field” menu, mouse over “Date/Time
+fields”, and mouse over to “Sent”.  Click on “Sent”.  Change the value
+of “Condition” to “Last Month”.  Click “Add to List”.  Click “OK” and “OK”.&lt;/p&gt;
+
+&lt;p&gt;Create Search Folders for “Last Week” and “Yesterday” in a similar
+manner.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;One of the &lt;a href=&quot;https://ridingthecrest.com/&quot;&gt;rockstar programmer&lt;/a&gt; skills I
+found is “mastery of tools”.  All of us, not just programmers, need to
+have mastery of email.  I hope this one weird trick helps you save time
+on email.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Java EE in Azure Marketplace: What’s Currently Available?</title><link href="/blog/2019/07/07/wls-azure-marketplace.html" rel="alternate" type="text/html" title="Java EE in Azure Marketplace: What's Currently Available?" /><published>2019-07-07T12:00:00-04:00</published><updated>2019-07-07T12:00:00-04:00</updated><id>/blog/2019/07/07/wls-azure-marketplace</id><content type="html" xml:base="/blog/2019/07/07/wls-azure-marketplace.html">&lt;p&gt;As mentioned in my &lt;a href=&quot;/blog/2019/05/23/joining-microsoft.html&quot;&gt;previous post&lt;/a&gt;, I joined Microsoft “to
 enable Java EE developers on Azure.”  The team I joined at Microsoft has
 already been working on this goal for some time, so naturally I need to
 take stock of the current offerings, whatever they may be.  As African

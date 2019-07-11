@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Productivity: Use Outlook Search Folders</title>
-  <meta name="description" content="I’ve been an emacs user since 1991, and from 1995 until 2019-06-10 I used Emacs VM mode to read email. I still use it for my personal email, but I’ve given u...">
+  <meta name="description" content="">
 
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <!--[if IE]>
@@ -82,7 +82,9 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>I’ve been an emacs user since 1991, and from 1995 until 2019-06-10 I
+    <p><img src="/blog/assets/20190710-outlook-one-weird-trick.PNG" alt="One Weird Trick" title="One Weird Trick" /></p>
+
+<p>I’ve been an emacs user since 1991, and from 1993 until 2019-06-10 I
 used <a href="http://www.nongnu.org/viewmail/">Emacs VM mode</a> to read email.  I
 still use it for my personal email, but I’ve given up using it for
 Microsoft mail and instead started using Outlook.  The most essential
@@ -93,15 +95,29 @@ ViewMailFolders) with various filters applied to select which messages
 to include."</code> My favorite aspect of this feature was that you could use
 regular expressions to specify the filters.</p>
 
-<p>Outlook has a similar feature, <a href="https://support.office.com/en-us/article/Use-Search-Folders-to-find-messages-or-other-Outlook-items-c1807038-01e4-475e-8869-0ccab0a56dc5">called “Search
-Folders”</a>.
-The only shortcoming appears to be that you cannot use regular
-expressions.</p>
+<p>I used the feature to craft a 7 level, prioritized new mail reading
+process in line with “First things first” techniques espoused by <a href="http://eisenhower-matrix.com/first-things-first/">Steven
+Covey</a>.  When I would
+do my main email session of the day, I’d go through the 7 virtual
+folders to make sure I acted on the important emails first.</p>
 
-<p>The help page linked above shows how to do it, but my secret sauce is my
-ordered list of virtual folders, prevented in abbreviated form here.  I
-have used the “Search Folders” feature to approximate what I had with
-VM.</p>
+<p>Outlook has a similar feature, called “Search Folders”.  The only
+shortcoming appears to be that you cannot use regular expressions.  That
+and the fact that Emacs VM had the feature in 1993, while Outlook for
+Windows 3.1 was only in its very early version at that point.</p>
+
+<p>This blog post shows how to approximate the VM Virtual Folders feature
+with Outlook Search Folders.</p>
+
+<h2 id="the-emacs-vm-side">The Emacs VM side.</h2>
+
+<p>The <a href="https://support.office.com/en-us/article/Use-Search-Folders-to-find-messages-or-other-Outlook-items-c1807038-01e4-475e-8869-0ccab0a56dc5">“Search
+Folders”</a>
+help page shows how to do it, but my secret sauce is my ordered list of
+virtual folders, prevented in abbreviated form here.  I have used the
+“Search Folders” feature to approximate what I had with VM.  After this
+bunch of lisp, I’ll show how I created search folders for some of these
+virtual folders.</p>
 
 <div class="lisp" style="font-family:monospace;"><ol><li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">setq</span> vm-virtual-folder-alist</div></li>
 <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp; &nbsp;'<span style="color: #66cc66;">&#40;</span></div></li>
@@ -387,6 +403,138 @@ VM.</p>
 <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #66cc66;">&#41;</span></div></li>
 <li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
 </ol></div>
+
+<p>I only use the “numbered” virtual folders in my daily email scan.  But
+if you have an enormous volume of incoming mail, as I did when I was the
+spec lead of several JSRs at the same time, the other ones were very
+helpful.  I will say that since the advent of tools like Slack and
+Microsoft Teams, the volume of email is less.</p>
+
+<h2 id="the-outlook-side">The Outlook Side</h2>
+
+<h3 id="create-your-first-search-folder-1-urgent">Create your First Search Folder: 1-urgent</h3>
+
+<p>Click the “Folder” menu, then the “New Search Folder” button, as shown next.</p>
+
+<p><img src="/blog/assets/20190710-outlook-new-search-folder.PNG" alt="New Search Folder" title="New Search Folder" /></p>
+
+<p>In the “New Search Folder” dialog that appears, scroll the content of
+the “Select a Search Folder” pane down to the bottom and select “Create
+a custom Search Folder”.  Click “Choose…”.</p>
+
+<p>In the “Name” field, type <code class="highlighter-rouge">1-urgent</code>.</p>
+
+<p>Click the “Browse…” button just beneath the “Mail from these folders
+will be included in this Search Folder: heading.  Uncheck the
+ridiculously tiny little checkbox next to your account name and check
+the ridiculously tiny little checkbox next to “Inbox”.  Make sure
+“Search subfolders” is checked, as shown next.</p>
+
+<p><img src="/blog/assets/20190710-outlook-select-folders.PNG" alt="Select Folder(s)" title="Select Folder(s)" /></p>
+
+<p>This is important, otherwise you’ll see “Deleted”, “Sent”, “Drafts”,
+“Junk” and other undesirable nonsense in your Search Folders.  Click “OK”.</p>
+
+<p>Click “Criteria”.  Selct the “More Choices” Tab.  Check the checkbox next
+to “Only items that are:” and change the value to “unread”.  If you
+neglect this step you’ll see things you’ve already seen, which defeats
+the purpose of the exercise.</p>
+
+<p>Select the “Advanced” tab.  Drop down the “Field”
+menu, mouse over “Frequently-used fields”, and mouse over to “Subject”.
+Click on “Subject”.  Leave the “Condition” as <code class="highlighter-rouge">contains</code>.  In the value
+enter “urgent”.  Click “Add to List”.</p>
+
+<p>Do this again and again for lines 6 - 13 in the lisp above.  The matches
+are case-insensitive by default, and this thing doesn’t appear to accept
+regexp anyway, so that’s why you don’t need the goofy looking
+<code class="highlighter-rouge">.*[uU][rR][gG][eE][nN][tT].*</code> type syntax.  However, as you’ll see,
+this is a lot more clicking than just writing some simple regexps.  I’d
+rather the regexps.</p>
+
+<p>After adding all the subject variants click “OK”, then click “OK”
+again.  This will cause the “1-urgent” Search folder to appear in the
+“Search Folders” section on the left navigation, as shown next.</p>
+
+<p><img src="/blog/assets/20190710-outlook-left-nav.PNG" alt="Left Nav" title="Left Nav" /></p>
+
+<p>I like to add the Search Folders to my favorites.  To do this, right
+click on the Search Folder and choose “Add to Favorites”.</p>
+
+<p>   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+   <br />
+ </p>
+
+<h3 id="create-your-second-search-folder-2-important-people-a">Create Your Second Search Folder: 2-important-people-a</h3>
+
+<p>Right click the “Search Folders” heading in the left nav bar and choose
+“New Search Folder”.  Type the name “2-important-people-a” and do the
+“Browse…” ridiculously tiny little checkbox trick again.</p>
+
+<p>Click “Criteria”.  Select the “Advanced” tab.  Drop down the “Field”
+menu, mouse over “Address fields”, and mouse over to “From”.  Click on
+“From”.  Leave the “Condition” as <code class="highlighter-rouge">contains</code>.  In the value enter the
+name of the important person.  Click “Add to List”.</p>
+
+<p>After adding all the important people, click “OK”, then click “OK”
+again.  This will cause the “2-important-people-a” Search folder to
+appear in the “Search Folders” section on the left navigation.  Add this
+to the favorites as well.</p>
+
+<h3 id="create-your-third-search-folder-2-important-people-b">Create Your Third Search Folder: 2-important-people-b</h3>
+
+<p>This is just the same as the preceding step, but for people that are not
+as important to you as <code class="highlighter-rouge">important-people-a</code>.  I find having two levels
+of important people is enough for me, but YMMV.  I tend to put bosses
+and their bosses in the “a” category and my important collaborators in
+the “b” category.  Everyone else falls into the timed categories I’ll
+show later.</p>
+
+<h3 id="create-your-fourth-search-folder-3-your-name">Create Your Fourth Search Folder: 3-&lt;your name&gt;</h3>
+
+<p>This folder is for messages sent directly to you, not messages that you
+receive by virtue of being on a mailing list.</p>
+
+<p>Create this using the steps as for the preceding Search Folders, but
+when you get to the “Criteria” step, it’s different.  In the “Messages”
+tab, In the text field next to “Sent To…”, fill in a semicolon
+separated list of the identifiers for your email address.  In my case, I
+put <code class="highlighter-rouge">Ed Burns &lt;Edward.Burns@microsoft.com&gt;; Edward Burns;
+edburns@microsoft.com; edward.burns@microsoft.com</code> because these are all
+I can be reached.</p>
+
+<h3 id="create-the-date-based-search-folders-7-lastmonth-8-lastweek-9-yesterday">Create the “date based” Search Folders: 7-lastMonth, 8-lastWeek, 9-yesterday</h3>
+
+<p>Create these folders in a similar fashion as above, but when you get to
+criteria selection, Drop down the “Field” menu, mouse over “Date/Time
+fields”, and mouse over to “Sent”.  Click on “Sent”.  Change the value
+of “Condition” to “Last Month”.  Click “Add to List”.  Click “OK” and “OK”.</p>
+
+<p>Create Search Folders for “Last Week” and “Yesterday” in a similar
+manner.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>One of the <a href="https://ridingthecrest.com/">rockstar programmer</a> skills I
+found is “mastery of tools”.  All of us, not just programmers, need to
+have mastery of email.  I hope this one weird trick helps you save time
+on email.</p>
+
 
   </div>
 

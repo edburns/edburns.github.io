@@ -276,13 +276,12 @@ thinks they ended up with the right decision.</p>
 
 <hr />
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@Controller
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Controller
 @Path("hello")
 public class HelloController {
 
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Every method in this class is a controller, because the annotation is at
 the class level.</p>
@@ -291,7 +290,7 @@ the class level.</p>
 
 <p>Views</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@Controller
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Controller
 @Path("hello")
 public class HelloController {
 
@@ -311,8 +310,7 @@ public class HelloController {
 
 
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><code class="highlighter-rouge">hello.jsp</code> is in the “views” folder.</p>
 
@@ -320,7 +318,7 @@ public class HelloController {
 
 <p>Models</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@Controller
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Controller
 @Path("hello")
 public class HelloController {
 
@@ -343,14 +341,13 @@ public class HelloController {
 
 
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
 <p>Validation</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@Controller
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Controller
 @Path("hello")
 public class HelloController {
 
@@ -363,14 +360,13 @@ public class HelloController {
   }
 
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Can use the ExceptionMapper feature, but it is overly broad.</p>
 
 <p>They added support for binding results.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  @Inject private BindingResult br;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  @Inject private BindingResult br;
 
   @POST
   public Response formPost(@Valid @BeanParam FormDataBean f) {
@@ -379,8 +375,7 @@ public class HelloController {
   } else {
     return Response.status(OK)...
   }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 
@@ -388,15 +383,14 @@ public class HelloController {
 
 <p>CDI discovery is used to figure out which engine is used.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>public interface ViewEngine {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public interface ViewEngine {
 
 boolean supports(String view);
 
 void processView(ViewEngineContext context) thows ViewEngineException
 
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>You can use <code class="highlighter-rouge">@Priority</code> to control which View Engine is used.</p>
 
@@ -445,7 +439,7 @@ POST Redirect Get with the <code class="highlighter-rouge">@RedirectScoped</code
 
 <p>Request Locale.  Can be used for any request Locale.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@Inject
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Inject
 private MvcContext mvc;
 
 @GET
@@ -453,8 +447,7 @@ public String get() {
   Locale locale = mvc.getLocale();
 }
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <hr />
 

@@ -112,26 +112,23 @@ Thunderbird would hang also.</p>
 
 <ol>
   <li>Enable verbose when fetching.
-    <div class="highlighter-rouge"><pre class="highlight"><code>fetchmail -v -v -f fetchmailrc-oracle
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fetchmail -v -v -f fetchmailrc-oracle
+</code></pre></div>    </div>
   </li>
   <li>Observe the IMAP protocol interaction with the server.  For example:
-    <div class="highlighter-rouge"><pre class="highlight"><code>fetchmail: IMAP&gt; A0122 FETCH 1 RFC822.HEADER
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fetchmail: IMAP&gt; A0122 FETCH 1 RFC822.HEADER
 fetchmail: IMAP&lt; * 1 FETCH (RFC822.HEADER {734}
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>In this the case of this particular bug, it would hang on just such a
   header fetch.</p>
   </li>
   <li>Experiment with direct IMAP interaction, using the IMAP protocol
 interation from the preceding step as a guide.  Log in to the IMAP
 server with the following commands:
-    <div class="highlighter-rouge"><pre class="highlight"><code>openssl s_client -crlf -connect stbeehive.oracle.com:993
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl s_client -crlf -connect stbeehive.oracle.com:993
+</code></pre></div>    </div>
     <p>With this transcript:</p>
-    <div class="highlighter-rouge"><pre class="highlight"><code>A0001 CAPABILITY
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A0001 CAPABILITY
 +* CAPABILITY IMAP4REV1 IDLE AUTH=PLAIN
 +A0001 OK CAPABILITY completed
 A0002 LOGIN "email address" &lt;PASSWORD HERE&gt;
@@ -145,8 +142,7 @@ A0003 SELECT "INBOX"
 +* OK [PERMANENTFLAGS (\Seen \Deleted \Answered \Forwarded \Redirected \Flagged \Hidden \Draft $MDNSent)] Permanent flags
 +A0003 OK [READ-WRITE] SELECT completed
 A0004 EXPUNGE
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ol>
 

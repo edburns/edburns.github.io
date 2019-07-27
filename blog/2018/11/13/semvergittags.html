@@ -101,21 +101,19 @@ recent.</p>
 <p>I found it useful to create an alias that outputs the git tags sorted by
 semver.  I used the handy <code class="highlighter-rouge">semver</code> npm module:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo npm install --verbose --global semver
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo npm install --verbose --global semver
+</code></pre></div></div>
 
 <p>and with that the following bash function works:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>function semvergittags() {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function semvergittags() {
   semver `git tag -l | tr '\n' ' '`
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>For example:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ejburns$ semvergittags
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ejburns$ semvergittags
 0.1.11
 1.0.0-ea07-b0
 1.0.0-ea07-b1
@@ -135,18 +133,16 @@ semver.  I used the handy <code class="highlighter-rouge">semver</code> npm modu
 1.0.0-ea23
 1.0.0-ea24
 1.0.0-ea25
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>I fixed the git tags using this
 <a href="https://stackoverflow.com/questions/1028649/how-do-you-rename-a-git-tag">answer from stack overflow</a>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>git tag new old
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git tag new old
 git tag -d old
 git push origin :refs/tags/old
 git push --tags
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>I gave the answer an upvote because they shared this additional tip:</p>
 

@@ -184,18 +184,16 @@ properties of <code class="highlighter-rouge">Thread</code>.  Some useful class 
 
 <p>Let’s add this line to the beginning of the code listing:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Thread.current.name = "Main Game Thread"
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread.current.name = "Main Game Thread"
+</code></pre></div></div>
 
 <p>Modifying the above code to print out these properties, the new output
 is:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>isMultiThreaded: false
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>isMultiThreaded: false
 current.isMainThread: true
 current.name: Main Game Thread
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>So we can see that the deinitializer is called on the same thread as the
 main code.</p>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-27T17:04:49-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-27T17:31:31-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Learning Azure: Build 2018 Sessions</title><link href="/blog/2019/07/26/learning-azure-build-2018-sessions.html" rel="alternate" type="text/html" title="Learning Azure: Build 2018 Sessions" /><published>2019-07-26T17:00:00-04:00</published><updated>2019-07-26T17:00:00-04:00</updated><id>/blog/2019/07/26/learning-azure-build-2018-sessions</id><content type="html" xml:base="/blog/2019/07/26/learning-azure-build-2018-sessions.html">&lt;p&gt;I am ardently learning how to be productive on the inside of Azure and
 this involves reading docs.  My current focus is the Azure Marketplace,
 and I observed that several of the docs pages, &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/marketplace/cloud-partner-portal/azure-applications/cpp-azure-app-offer&quot;&gt;such as this one about
@@ -882,38 +882,34 @@ Server&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;In the Azure Cloud Shell, ensure the &lt;code class=&quot;highlighter-rouge&quot;&gt;adminadmin&lt;/code&gt; user owns the
 necessary directories and files:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo chown -R adminadmin /opt/oracle
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo chown -R adminadmin /opt/oracle
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Enter &lt;code class=&quot;highlighter-rouge&quot;&gt;cat &amp;gt; wls-env.sh&lt;/code&gt; then paste the following lines, followed by
 control-D.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export ORACLE_HOME=/opt/oracle/products/Middleware
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export ORACLE_HOME=/opt/oracle/products/Middleware
 export WL_HOME=/opt/oracle/products/Middleware/wlserver
 export JAVA_HOME=/opt/oracle/products/jdk1.7.0_25
 ${WL_HOME}/common/derby/bin/startNetworkServer.sh || true
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;|| true&lt;/code&gt; causes the script to continue even if the Derby server
 doesn’t start, for example because it’s already started.&lt;/p&gt;
 
 &lt;p&gt;Execute the script:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;. ./wls-env.sh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;. ./wls-env.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This will set the necessary environment variables, and also start the
 built-in Derby database.  This should cause someting like the following
 to appear in the Azure Cloud Shell:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Mon Jul 08 15:06:33 EDT 2019 : Security manager installed using the Basic server security policy.
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Mon Jul 08 15:06:33 EDT 2019 : Security manager installed using the Basic server security policy.
 Mon Jul 08 15:06:34 EDT 2019 : Apache Derby Network Server - 10.8.2.2 -
 (1181258) started and ready to accept connections on port 1527
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Note that this port is not accessible to the public Internet because you
 have not created an inbound rule for it.  It is, however, accessible
@@ -925,54 +921,48 @@ WLS 12.1.2.&lt;/p&gt;
 &lt;p&gt;We will modify the included &lt;code class=&quot;highlighter-rouge&quot;&gt;basicWLSDomain.py&lt;/code&gt; WLST script to make to
 create a domain to which we can log in to the admin console.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This directory contains some built-in WebLogic Scripting Template (WLST)
 scripts provided by Oracle.  Copy the &lt;code class=&quot;highlighter-rouge&quot;&gt;basicWLSDomain.py&lt;/code&gt; so we can
 safely edit it.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp basicWLSDomain.py 20190709_basicWLSDomain.py
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cp basicWLSDomain.py 20190709_basicWLSDomain.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Find the line with &lt;code class=&quot;highlighter-rouge&quot;&gt;# Please set password here before using this script,
 e.g. cmo.setPassword('value')&lt;/code&gt; and insert this line before it.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmo.setPassword('3hu6Lfomu4#&amp;amp;')
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cmo.setPassword('3hu6Lfomu4#&amp;amp;')
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Note, you can use any password you like.  I’m using the same password as
 earlier for convenience.  Save the file.&lt;/p&gt;
 
 &lt;p&gt;Change to the directory containing the &lt;code class=&quot;highlighter-rouge&quot;&gt;wlst.sh&lt;/code&gt; tool and execute it:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /opt/oracle/products/Middleware/oracle_common/common/bin
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cd /opt/oracle/products/Middleware/oracle_common/common/bin
 ./wlst.sh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;At the prompt, execute the script file you just edited:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wls:/offline&amp;gt; execfile('/opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst/20190709_basicWLSDomain.py')
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wls:/offline&amp;gt; execfile('/opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst/20190709_basicWLSDomain.py')
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This will cause
 &lt;code class=&quot;highlighter-rouge&quot;&gt;/opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain&lt;/code&gt;
 to be created.  Append the following line to your existing
 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/wls-env.sh&lt;/code&gt; file:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nohup /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/bin/startWebLogic.sh &amp;gt; ~/wls-log.txt &amp;amp; 2&amp;gt;&amp;amp;1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nohup /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/bin/startWebLogic.sh &amp;gt; ~/wls-log.txt &amp;amp; 2&amp;gt;&amp;amp;1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;If you examine the contents of &lt;code class=&quot;highlighter-rouge&quot;&gt;~/wls-log.txt&lt;/code&gt; you should see it ends
 with output similar to the following.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Jul 9, 2019 11:28:54 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Security&amp;gt; &amp;lt;BEA-090171&amp;gt; &amp;lt;Loading the identity certificate and private key stored under the alias DemoIdentity from the jks keystore file /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/security/DemoIdentity.jks.&amp;gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Jul 9, 2019 11:28:54 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Security&amp;gt; &amp;lt;BEA-090171&amp;gt; &amp;lt;Loading the identity certificate and private key stored under the alias DemoIdentity from the jks keystore file /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/security/DemoIdentity.jks.&amp;gt;
 &amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Security&amp;gt; &amp;lt;BEA-090169&amp;gt; &amp;lt;Loading trusted certificates from the jks keystore file /opt/oracle/products/Middleware/wlserver/server/lib/DemoTrust.jks.&amp;gt;
 &amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Security&amp;gt; &amp;lt;BEA-090169&amp;gt; &amp;lt;Loading trusted certificates from the jks keystore file /opt/oracle/products/jdk1.7.0_25/jre/lib/security/cacerts.&amp;gt;
 &amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;Server&amp;gt; &amp;lt;BEA-002613&amp;gt; &amp;lt;Channel &quot;DefaultSecure[1]&quot; is now listening on fe80:0:0:0:20d:3aff:fe54:2fff:7002 for protocols iiops, t3s, ldaps, https.&amp;gt;
@@ -987,8 +977,7 @@ with output similar to the following.&lt;/p&gt;
 &amp;lt;Jul 9, 2019 11:28:56 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;WebLogicServer&amp;gt; &amp;lt;BEA-000331&amp;gt; &amp;lt;Started the WebLogic Server Administration Server &quot;AdminServer&quot; fordomain &quot;basicWLSDomain&quot; running in development mode.&amp;gt;
 &amp;lt;Jul 9, 2019 11:28:57 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;WebLogicServer&amp;gt; &amp;lt;BEA-000365&amp;gt; &amp;lt;Server state changed to RUNNING.&amp;gt;
 &amp;lt;Jul 9, 2019 11:28:57 AM EDT&amp;gt; &amp;lt;Notice&amp;gt; &amp;lt;WebLogicServer&amp;gt; &amp;lt;BEA-000360&amp;gt; &amp;lt;The server started in RUNNING mode.&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;access-the-admin-gui-to-deploy-a-java-ee-6-war&quot;&gt;Access the Admin GUI to deploy a Java EE 6 WAR.&lt;/h2&gt;
 
@@ -1464,9 +1453,8 @@ practically writes itself.&lt;/p&gt;
 &lt;p&gt;For example, if I successfully introduced a new code review process, my
 weekly status report would have a line like this:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;perf_handout.6: Designed and implemented a new code review process.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;perf_handout.6: Designed and implemented a new code review process.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Once you do this for a month or so, you’ll notice some areas you are
 missing.  Try to fill those in, or if you can’t try to partner with
@@ -1478,7 +1466,7 @@ someone who you observe is able to do those things and learn from them.&lt;/p&gt
 
 &lt;h3 id=&quot;behaviorperformance-based-questions&quot;&gt;Behavior/Performance-Based Questions&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   A sampling of the types of questions that might be used to explore
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   A sampling of the types of questions that might be used to explore
    your level of accomplishment for specific skills are listed below.
    These questions provide a platform for *communcating your
    achievements* in skill areas such as leadership, decision-making,
@@ -1563,8 +1551,7 @@ someone who you observe is able to do those things and learn from them.&lt;/p&gt
    21. Tell me about a time when you had to cope with strict deadlines
    or time demands.
    
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;performance-review-questions&quot;&gt;Performance Review Questions&lt;/h3&gt;
 
@@ -1573,7 +1560,7 @@ someone who you observe is able to do those things and learn from them.&lt;/p&gt
    Leadership, Decision Making, Functional/Technical Skills &amp;amp; Knowledge,
    Communication and Teamwork, and Resourcefulness &amp;amp; Creativity.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
    22. Based on established goals and objectives, for our group, what
    results did you achieve?  If a goal changed, how much progress did
    you make toward the revised goal?
@@ -1614,8 +1601,7 @@ someone who you observe is able to do those things and learn from them.&lt;/p&gt
    35. Give me an example of when you used strategic thinking in moving
    toward achieving a goal.
 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;update-2019-07-01-microsoft-perf-handout&quot;&gt;UPDATE: 2019-07-01 Microsoft Perf Handout&lt;/h3&gt;
 
@@ -1623,7 +1609,7 @@ someone who you observe is able to do those things and learn from them.&lt;/p&gt
 
 &lt;h4 id=&quot;adaptability&quot;&gt;Adaptability&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;36. Tell me about a time when you experienced a major organizational
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;36. Tell me about a time when you experienced a major organizational
 change (for example, a reorganization, a new supervisor or a new
 procedure) that created stress.
 
@@ -1641,12 +1627,11 @@ implementation did not go according to plan.
 
 41. Describe a time when you presented a proposal or provided a service
 that was given an unfavorable response by stakeholders. 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;collaboration&quot;&gt;Collaboration&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;42. Describe a time when you worked on a challenging cross-functional
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;42. Describe a time when you worked on a challenging cross-functional
 team that produced an exceptional deliverable. 
 
 43. Tell me about a time when you developed a relationship with another
@@ -1664,12 +1649,11 @@ them?
 
 47. Tell me about a time when your attempt to collaborate across teams
 was unsuccessful. 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;customer-focus&quot;&gt;Customer Focus&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;48. Describe a time when you were involved in the resolution of a
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;48. Describe a time when you were involved in the resolution of a
 complaint from either an internal or an external customer. 
 
 49. Describe a time when you provided outstanding service to an internal
@@ -1687,12 +1671,11 @@ increased your understanding of current and future customer needs.
 
 53. Provide an example of a time when you initiated a change in a
 process or policy to improve the quality of customer service 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;drive-for-results&quot;&gt;Drive for Results&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;54. Describe a time when you uncovered something that could be
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;54. Describe a time when you uncovered something that could be
 problematic for your organization or team. How did you correct the
 situation before it became an issue? 
 
@@ -1711,12 +1694,11 @@ complete a challenging deliverable.
 
 59. What has been the most difficult assignment or task in your career
 so far? 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;influencing-for-impact&quot;&gt;Influencing for Impact&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;60. Tell me about the most challenging situation that you have
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;60. Tell me about the most challenging situation that you have
 experienced, when you had to persuade someone to accept your
 point-of-view. 
 
@@ -1735,12 +1717,11 @@ networking that had a positive impact on your work.
 65. Give an example of a successful method (for example, research
 findings, anecdotes, stories, metaphors, or analogies) that you have
 used to convince a stakeholder to support an idea. 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;judgement&quot;&gt;Judgement&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;66. Describe a time when you made a critical error in your work. 
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;66. Describe a time when you made a critical error in your work. 
 
 67. Describe a situation when you had to make a major decision under
 time constraints. 
@@ -1756,12 +1737,11 @@ appropriate alternative?
 
 71. Tell me about a situation that required you to build your knowledge
 base before solving a complex problem. 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;end-to-end-innovation&quot;&gt;End-to-End Innovation&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;71.  Give an example of an idea that you suggested that led to
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;71.  Give an example of an idea that you suggested that led to
 improvements within your organization. 
 
 72. Tell me about a time when you presented a new idea that successfully
@@ -1779,12 +1759,11 @@ ensure success?
 
 76. Tell me about a time when you had to make adjustments to a feature
 or product, based on considerations of the overall customer experience. 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;planning-organizing-and-executing&quot;&gt;Planning, Organizing, and Executing&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;77.Describe a situation when you made progress on a project or
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;77.Describe a situation when you made progress on a project or
 assignment despite ambiguity. 
 
 78. Describe a situation when you managed the impact of a change on
@@ -1797,12 +1776,11 @@ functionally diverse team.
 achieve an objective. 
 
 81. Tell me about a time when you did not meet a planned milestone. 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;technical-excellence&quot;&gt;Technical Excellence&lt;/h4&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;82. Describe a situation when you came up-to-speed quickly on new tools,
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;82. Describe a situation when you came up-to-speed quickly on new tools,
 methods, or processes. 
 
 83. Describe a situation when you were able to create improvements in
@@ -1819,8 +1797,7 @@ technical expertise.
 
 87. Tell me about a time when you had to learn a new technology. What
 did you do to gain expertise? 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">TDC 2019 Florianópolis</title><link href="/blog/2019/04/20/tdc-floripa-2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis" /><published>2019-04-20T14:00:00-04:00</published><updated>2019-04-20T14:00:00-04:00</updated><id>/blog/2019/04/20/tdc-floripa-2019</id><content type="html" xml:base="/blog/2019/04/20/tdc-floripa-2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">TDC 2019 Florianópolis</title><link href="/blog/2019/04/20/tdc-floripa-2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis" /><published>2019-04-20T14:00:00-04:00</published><updated>2019-04-20T14:00:00-04:00</updated><id>/blog/2019/04/20/tdc-floripa-2019</id><content type="html" xml:base="/blog/2019/04/20/tdc-floripa-2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I am blessed to have the opportunity to speak for the &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;fourth
 time&lt;/a&gt; at the

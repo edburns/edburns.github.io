@@ -323,38 +323,34 @@ Server</a>.</p>
 <p>In the Azure Cloud Shell, ensure the <code class="highlighter-rouge">adminadmin</code> user owns the
 necessary directories and files:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo chown -R adminadmin /opt/oracle
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chown -R adminadmin /opt/oracle
+</code></pre></div></div>
 
 <p>Enter <code class="highlighter-rouge">cat &gt; wls-env.sh</code> then paste the following lines, followed by
 control-D.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>export ORACLE_HOME=/opt/oracle/products/Middleware
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>export ORACLE_HOME=/opt/oracle/products/Middleware
 export WL_HOME=/opt/oracle/products/Middleware/wlserver
 export JAVA_HOME=/opt/oracle/products/jdk1.7.0_25
 ${WL_HOME}/common/derby/bin/startNetworkServer.sh || true
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The <code class="highlighter-rouge">|| true</code> causes the script to continue even if the Derby server
 doesn’t start, for example because it’s already started.</p>
 
 <p>Execute the script:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>. ./wls-env.sh
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. ./wls-env.sh
+</code></pre></div></div>
 
 <p>This will set the necessary environment variables, and also start the
 built-in Derby database.  This should cause someting like the following
 to appear in the Azure Cloud Shell:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Mon Jul 08 15:06:33 EDT 2019 : Security manager installed using the Basic server security policy.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mon Jul 08 15:06:33 EDT 2019 : Security manager installed using the Basic server security policy.
 Mon Jul 08 15:06:34 EDT 2019 : Apache Derby Network Server - 10.8.2.2 -
 (1181258) started and ready to accept connections on port 1527
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Note that this port is not accessible to the public Internet because you
 have not created an inbound rule for it.  It is, however, accessible
@@ -366,54 +362,48 @@ WLS 12.1.2.</p>
 <p>We will modify the included <code class="highlighter-rouge">basicWLSDomain.py</code> WLST script to make to
 create a domain to which we can log in to the admin console.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd /opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst
+</code></pre></div></div>
 
 <p>This directory contains some built-in WebLogic Scripting Template (WLST)
 scripts provided by Oracle.  Copy the <code class="highlighter-rouge">basicWLSDomain.py</code> so we can
 safely edit it.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cp basicWLSDomain.py 20190709_basicWLSDomain.py
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cp basicWLSDomain.py 20190709_basicWLSDomain.py
+</code></pre></div></div>
 
 <p>Find the line with <code class="highlighter-rouge"># Please set password here before using this script,
 e.g. cmo.setPassword('value')</code> and insert this line before it.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cmo.setPassword('3hu6Lfomu4#&amp;')
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmo.setPassword('3hu6Lfomu4#&amp;')
+</code></pre></div></div>
 
 <p>Note, you can use any password you like.  I’m using the same password as
 earlier for convenience.  Save the file.</p>
 
 <p>Change to the directory containing the <code class="highlighter-rouge">wlst.sh</code> tool and execute it:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>cd /opt/oracle/products/Middleware/oracle_common/common/bin
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd /opt/oracle/products/Middleware/oracle_common/common/bin
 ./wlst.sh
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>At the prompt, execute the script file you just edited:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>wls:/offline&gt; execfile('/opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst/20190709_basicWLSDomain.py')
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wls:/offline&gt; execfile('/opt/oracle/products/Middleware/wlserver/common/templates/scripts/wlst/20190709_basicWLSDomain.py')
+</code></pre></div></div>
 
 <p>This will cause
 <code class="highlighter-rouge">/opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain</code>
 to be created.  Append the following line to your existing
 <code class="highlighter-rouge">~/wls-env.sh</code> file:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>nohup /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/bin/startWebLogic.sh &gt; ~/wls-log.txt &amp; 2&gt;&amp;1
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nohup /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/bin/startWebLogic.sh &gt; ~/wls-log.txt &amp; 2&gt;&amp;1
+</code></pre></div></div>
 
 <p>If you examine the contents of <code class="highlighter-rouge">~/wls-log.txt</code> you should see it ends
 with output similar to the following.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;Jul 9, 2019 11:28:54 AM EDT&gt; &lt;Notice&gt; &lt;Security&gt; &lt;BEA-090171&gt; &lt;Loading the identity certificate and private key stored under the alias DemoIdentity from the jks keystore file /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/security/DemoIdentity.jks.&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;Jul 9, 2019 11:28:54 AM EDT&gt; &lt;Notice&gt; &lt;Security&gt; &lt;BEA-090171&gt; &lt;Loading the identity certificate and private key stored under the alias DemoIdentity from the jks keystore file /opt/oracle/products/Middleware/user_projects/domains/basicWLSDomain/security/DemoIdentity.jks.&gt;
 &lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Security&gt; &lt;BEA-090169&gt; &lt;Loading trusted certificates from the jks keystore file /opt/oracle/products/Middleware/wlserver/server/lib/DemoTrust.jks.&gt;
 &lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Security&gt; &lt;BEA-090169&gt; &lt;Loading trusted certificates from the jks keystore file /opt/oracle/products/jdk1.7.0_25/jre/lib/security/cacerts.&gt;
 &lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;Server&gt; &lt;BEA-002613&gt; &lt;Channel "DefaultSecure[1]" is now listening on fe80:0:0:0:20d:3aff:fe54:2fff:7002 for protocols iiops, t3s, ldaps, https.&gt;
@@ -428,8 +418,7 @@ with output similar to the following.</p>
 &lt;Jul 9, 2019 11:28:56 AM EDT&gt; &lt;Notice&gt; &lt;WebLogicServer&gt; &lt;BEA-000331&gt; &lt;Started the WebLogic Server Administration Server "AdminServer" fordomain "basicWLSDomain" running in development mode.&gt;
 &lt;Jul 9, 2019 11:28:57 AM EDT&gt; &lt;Notice&gt; &lt;WebLogicServer&gt; &lt;BEA-000365&gt; &lt;Server state changed to RUNNING.&gt;
 &lt;Jul 9, 2019 11:28:57 AM EDT&gt; &lt;Notice&gt; &lt;WebLogicServer&gt; &lt;BEA-000360&gt; &lt;The server started in RUNNING mode.&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="access-the-admin-gui-to-deploy-a-java-ee-6-war">Access the Admin GUI to deploy a Java EE 6 WAR.</h2>
 

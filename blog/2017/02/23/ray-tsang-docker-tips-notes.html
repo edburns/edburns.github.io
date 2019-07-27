@@ -129,9 +129,8 @@ layer created for each line.</p>
 <p>Created a war live coding style with SpringBoot and Groovy.
 @RestController.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>spring war helloworld.war
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>spring war helloworld.war
+</code></pre></div></div>
 
 <p>TIP: Use COPY instead of ADD in your Dockerfile.</p>
 
@@ -159,10 +158,9 @@ version of things.</p>
 
 <p>He uses useradd or adduser in the Dockerfile.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>RUN useradd tomcat
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN useradd tomcat
 USER tomcat
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>TIP: Use <code class="highlighter-rouge">curl url | tar zxvf -</code>.  This removes the need for the removal
 of the tar.x`</p>
@@ -175,9 +173,8 @@ of the tar.x`</p>
 
 <p>Talks about using the image as a custom base image.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>FROM tomcat-base-image
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM tomcat-base-image
+</code></pre></div></div>
 
 <p>Because of the layers, the base image does not consume more space the
 more images are built from it.</p>

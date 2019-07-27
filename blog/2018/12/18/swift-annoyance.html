@@ -111,11 +111,10 @@ simplifications on the reader until they have firmly grasped 1?</p>
 <p>The Swift Book helpfully provides the full syntax of closures right at
 the front.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w"> </span><span class="err">(parameters)</span><span class="w"> </span><span class="err">-&gt;</span><span class="w"> </span><span class="err">return</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">in</span><span class="w">
-    </span><span class="err">statements</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ (parameters) -&gt; return type in
+    statements
+}
+</code></pre></div></div>
 
 <p>However, they then go through several, progressively more compact (and
 less readily grasped for a beginner) iterations.  At each step along the
@@ -127,9 +126,8 @@ enable the simplification.  Then there is this cheeky statement:</p>
   <p>There’s actually an even shorter way to write the closure expression above.</p>
 </blockquote>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>reversedNames = names.sorted(by: &gt;)
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>reversedNames = names.sorted(by: &gt;)
+</code></pre></div></div>
 
 <p>So, you know all that parameter list, arrow, return type, <code class="highlighter-rouge">in</code> keyword?
 In some special cases, you simply don’t need ‘em.  Perhaps if I get

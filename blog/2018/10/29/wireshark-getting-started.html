@@ -93,9 +93,8 @@ for the next time I have to use it.</p>
 
 <p>Use <code class="highlighter-rouge">Automator</code> with the <code class="highlighter-rouge">run shell script</code> action to execute this command:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>open -n /Applications/Wireshark.app
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>open -n /Applications/Wireshark.app
+</code></pre></div></div>
 
 <p>Put this in the dock.  Bonus points for using the Cmd-i copy/paste icon
 trick.</p>
@@ -112,22 +111,20 @@ video shows some tips for initial setup of Wireshark.</p>
 <a href="https://github.com/tony612/grpc-elixir/wiki/How-to-capture-HTTP2-packages-using-Wireshark">this blog post</a>:</p>
 
 <blockquote>
-  <div class="highlighter-rouge"><pre class="highlight"><code>    gRPC is based on HTTP/2. So we have to analyze packages to solve some
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    gRPC is based on HTTP/2. So we have to analyze packages to solve some
     difficult problems related to the protocol. This wiki introduces how
     to do this using Wireshark because capturing packages of HTTP/2 is a
     little different with HTTP/TCP.
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 </blockquote>
 
 <blockquote>
-  <div class="highlighter-rouge"><pre class="highlight"><code>   Download Wireshark of recent versions.
-</code></pre>
-  </div>
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   Download Wireshark of recent versions.
+</code></pre></div>  </div>
 </blockquote>
 
 <blockquote>
-  <div class="highlighter-rouge"><pre class="highlight"><code>       Add your port to HTTP protocols:
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       Add your port to HTTP protocols:
            Open Preferences
            Select Protocols&gt;HTTP. HTTP2 works too, but HTTP is enough
            Add your HTTP/2 port like(50051) to TCP ports
@@ -136,8 +133,7 @@ video shows some tips for initial setup of Wireshark.</p>
        Input http2 in the filter
        Run your gRPC applications
        Stop(Capture&gt;Stop). Then you can analyze the packages or save to a file for using later.
-</code></pre>
-  </div>
+</code></pre></div>  </div>
 
 </blockquote>
 

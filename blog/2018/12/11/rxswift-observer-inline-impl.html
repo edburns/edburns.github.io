@@ -110,11 +110,10 @@ method, but all of them passed a single <code class="highlighter-rouge">onNext</
 <a href="http://swiftpearls.com/RxSwift-for-dummies-1-Observables.html">This post</a>
 while educational, is indicative of what I could find.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>observable.subscribe(onNext: {(element) in
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>observable.subscribe(onNext: {(element) in
   print(element)
 })
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>What I wanted was to pass a complete implementation of the
 <code class="highlighter-rouge">ObserverType</code> with inline methods for its <code class="highlighter-rouge">onNext</code>, <code class="highlighter-rouge">onCompleted</code>, and
@@ -131,12 +130,11 @@ pointed out to me in the swift.org forum post from Adrian Zubarev.  So,
 there is an overloaded <code class="highlighter-rouge">subscribe</code> method defined in
 <code class="highlighter-rouge">ObservableType+Extensions.swift</code>:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>public func subscribe(onNext: ((E) -&gt; Void)? = nil,
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public func subscribe(onNext: ((E) -&gt; Void)? = nil,
                       onError: ((Swift.Error) -&gt; Void)? = nil,
                       onCompleted: (() -&gt; Void)? = nil,
                       onDisposed: (() -&gt; Void)? = nil)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>This is simply a bunch of optional closure parameters, each with their
 own signature and default value of <code class="highlighter-rouge">nil</code>.</p>

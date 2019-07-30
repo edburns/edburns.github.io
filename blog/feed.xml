@@ -1,5 +1,276 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-30T11:50:26-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">J4K-2019: Paul Parkinson: Helidon and Kubernetes</title><link href="/blog/2019/07/30/paul-parkinson-helidon.html" rel="alternate" type="text/html" title="J4K-2019: Paul Parkinson: Helidon and Kubernetes" /><published>2019-07-30T11:00:00-04:00</published><updated>2019-07-30T11:00:00-04:00</updated><id>/blog/2019/07/30/paul-parkinson-helidon</id><content type="html" xml:base="/blog/2019/07/30/paul-parkinson-helidon.html">&lt;p&gt;Raw Notes from Paul Parkinson’s session.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-30T17:04:05-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">J4K-2019: Ivar Grimstad: Microprofile</title><link href="/blog/2019/07/30/ivar-grimstad-microprofile.html" rel="alternate" type="text/html" title="J4K-2019: Ivar Grimstad: Microprofile" /><published>2019-07-30T16:20:00-04:00</published><updated>2019-07-30T16:20:00-04:00</updated><id>/blog/2019/07/30/ivar-grimstad-microprofile</id><content type="html" xml:base="/blog/2019/07/30/ivar-grimstad-microprofile.html">&lt;p&gt;Raw Notes from Ivar Grimstad’s session.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-ivar-grimstad.jpg&quot; alt=&quot;Ivar Grimstad&quot; title=&quot;Ivar Grimstad&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;microprofile&quot;&gt;Microprofile&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;microprofile.io&quot;&gt;microprofile.io&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;3.0 now available&lt;/p&gt;
+
+&lt;h2 id=&quot;microservice-patterns&quot;&gt;Microservice patterns&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;microservices.io&quot;&gt;microservices.io&lt;/a&gt; Chris Richardson&lt;/p&gt;
+
+&lt;h2 id=&quot;configuration&quot;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;The Config spec.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;System Properties&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Env Vars&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Application Configuration&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;META-INF/microprofile-config.properties
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Demoed with Helidon.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;healthcheck&quot;&gt;Healthcheck&lt;/h2&gt;
+
+&lt;p&gt;MicroProfile Healthcheck API&lt;/p&gt;
+
+&lt;p&gt;Demoed with Thorntail.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Did explicitily mention there are two healthchecks: 1. I’m
+alive (liveness) 2. I’m ready to receive requests. (Readiness)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Automatically adds &lt;code class=&quot;highlighter-rouge&quot;&gt;/health&lt;/code&gt; endpoint.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Demoed &lt;code class=&quot;highlighter-rouge&quot;&gt;@Liveness&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;@Readiness&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;metrics&quot;&gt;Metrics&lt;/h2&gt;
+
+&lt;p&gt;MicroProfile Metrics&lt;/p&gt;
+
+&lt;h2 id=&quot;access-token&quot;&gt;Access Token&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Basic Auth&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;OAuth 2.0&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;distributed-tracing&quot;&gt;Distributed Tracing&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Zipkin&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Jaeger&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;OpenTracing 1.3&lt;/p&gt;
+
+&lt;h2 id=&quot;everything-together&quot;&gt;Everything Together&lt;/h2&gt;
+
+&lt;p&gt;Three microservices&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Capitalize&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Birthday&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hello&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nice example because it shows circuit breaker, RBAC,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@RegisterRestClient&lt;/code&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;@Retry&lt;/code&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;@RolesAllowed&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;jwt.io&quot;&gt;jwt.io&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This talk was really awesome.  The fact that everything he demoed was
+available without any fancy service mesh, load balancer, container
+orchestration, is so nice and understandable.  I like how he mapped all
+the microservices patterns to the microprofile specs.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-microprofile-resources.jpg&quot; alt=&quot;Resources&quot; title=&quot;Resources&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw Notes from Ivar Grimstad’s session.</summary></entry><entry><title type="html">J4K-2019: Arun Gupta: Machine Learning on Kubernetes</title><link href="/blog/2019/07/30/arun-gupta-machine-learning.html" rel="alternate" type="text/html" title="J4K-2019: Arun Gupta: Machine Learning on Kubernetes" /><published>2019-07-30T14:00:00-04:00</published><updated>2019-07-30T14:00:00-04:00</updated><id>/blog/2019/07/30/arun-gupta-machine-learning</id><content type="html" xml:base="/blog/2019/07/30/arun-gupta-machine-learning.html">&lt;p&gt;Raw Notes from Arun Gupta’s session.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-arun-gupta.jpg&quot; alt=&quot;Arun Gupta&quot; title=&quot;Arun Gupta&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;machine-learning-101&quot;&gt;Machine Learning 101&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-ml-101.jpg&quot; alt=&quot;ML 101&quot; title=&quot;ML 101&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bottom-layer&quot;&gt;Bottom Layer&lt;/h2&gt;
+
+&lt;p&gt;ML Frameworks and Infrastructures.  For the ML expert practitioners.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;This is where Kubernetes fits&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;middle-layer&quot;&gt;Middle Layer&lt;/h2&gt;
+
+&lt;p&gt;ML Services.  Commoditized, managed services.  You don’t have time to
+train for your own models.&lt;/p&gt;
+
+&lt;h2 id=&quot;top-layer&quot;&gt;Top Layer&lt;/h2&gt;
+
+&lt;p&gt;AI Services.  Cognitive services: Vision, Speech, Lanugaue, Chatbots,
+Forecasting, Recommendation.&lt;/p&gt;
+
+&lt;h2 id=&quot;storage&quot;&gt;Storage&lt;/h2&gt;
+
+&lt;h2 id=&quot;why-ml-on-kubernetes&quot;&gt;Why ML on Kubernetes&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Composability&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Portability&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Scalability&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Mentioned that ML is Stateful&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;amazon-eks&quot;&gt;Amazon EKS&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Managed Kubernetes control plane, attach data plane&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Managed data plane coming this year&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Native upstream Kubernetes experience.  No forking, patching.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Integration with additional AWS services.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;exsctl&lt;/code&gt;  Installable with brew.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew tap weaveworks/tap
+brew install weaveworks/tap/exsctl
+eksctl create cluster --node-type=p2.xlarge (GPU powered cluster)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Does not install kubectl.  That has to be there already.&lt;/p&gt;
+
+&lt;h2 id=&quot;set-up-kubernetes-for-ml-option-1&quot;&gt;Set up Kubernetes for ML Option 1&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Train: Set up control plane, EKS cluster.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Set up as autoscaling group&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Inference: Set up another control plane, EKS cluster&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is the dedicated K8s&lt;/p&gt;
+
+&lt;h2 id=&quot;set-up-kubernetes-for-ml-option-2&quot;&gt;Set up Kubernetes for ML Option 2&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use two separate node groups in one EKS cluster&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nodeSelector role:train&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This is the unified K8s&lt;/p&gt;
+
+&lt;h2 id=&quot;scaling-the-cluster&quot;&gt;Scaling the cluster&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Cluster autoscaler: burstable workloads.  Scale up based on metrics.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Escalator: Batch or job-based workloads.  More suited to ML.  ML jobs
+run for a long time.  You don’t want Kubernetes messing with your
+cluster while a job is running.  Agressively scale up to reduce
+wait-time for pods.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;They both take over the auto-scaling knob.&lt;/p&gt;
+
+&lt;h2 id=&quot;challenges-in-setting-up-containers-for-ml&quot;&gt;Challenges in setting up containers for ML&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Takes days to configure and test.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Must optimized for performance and scale.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Re-build and re-optimize.&lt;/p&gt;
+
+&lt;h2 id=&quot;aws-deep-learning-containers&quot;&gt;AWS Deep Learning Containers&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Optimized and customizable containers for known domains.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use these as your base images.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;touts-twice-as-fast-tensorflow-training-with-aws-optimized-tensorflow&quot;&gt;Touts twice as fast TensorFlow training with AWS-Optimized Tensorflow.&lt;/h2&gt;
+
+&lt;h2 id=&quot;ml-on-k8s&quot;&gt;ML on K8s&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Without KubeFlow&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Jupyter Notebook&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;key-repo&quot;&gt;Key Repo&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://github.com/aws-samples/machine-learning-using-k8s&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Arun Gupta’s session.</summary></entry><entry><title type="html">J4K-2019: Paul Parkinson: Helidon and Kubernetes</title><link href="/blog/2019/07/30/paul-parkinson-helidon.html" rel="alternate" type="text/html" title="J4K-2019: Paul Parkinson: Helidon and Kubernetes" /><published>2019-07-30T11:00:00-04:00</published><updated>2019-07-30T11:00:00-04:00</updated><id>/blog/2019/07/30/paul-parkinson-helidon</id><content type="html" xml:base="/blog/2019/07/30/paul-parkinson-helidon.html">&lt;p&gt;Raw Notes from Paul Parkinson’s session.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-paul-parkinson.jpg&quot; alt=&quot;Paul Parkinson&quot; title=&quot;Paul Parkinson&quot; /&gt;&lt;/p&gt;
 
@@ -1627,431 +1898,4 @@ This is a novel idea.  I talked to &lt;a href=&quot;http://twitter.com/yanaga&qu
 Yanaga&lt;/a&gt; last night, he was saying this is the
 thing that makes Jenkins obsolete.&lt;/p&gt;
 
-&lt;p&gt;RedHat has a &lt;a href=&quot;https://blog.openshift.com/knative-building-your-serverless-service/&quot;&gt;tutorial on this&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 02: Timesheets</title><link href="/blog/2019/04/23/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers-2019-02.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 02: Timesheets" /><published>2019-04-23T08:00:00-04:00</published><updated>2019-04-23T08:00:00-04:00</updated><id>/blog/2019/04/23/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers-2019-02</id><content type="html" xml:base="/blog/2019/04/23/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers-2019-02.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In my talk at 14:10 South Center Career Track, &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria&quot;&gt;Career Tips from Someone
-Who Knows a Lot of Rockstar
-Programmers&lt;/a&gt;,
-I will share some of the lessons I learned from the people I interviewed
-for the &lt;a href=&quot;/&quot;&gt;Secrets of the Rockstar Programmers&lt;/a&gt; book, and
-also include some tips of my own.  Though I don’t claim to be a rockstar
-programmer myself (or the newer term: “10x programmer”), I can honestly
-say I know plenty of people that who are.&lt;/p&gt;
-
-&lt;p&gt;I have been extremely blessed to have been a full time telecommuter
-since 2002, first for Sun, and now for Oracle.  Working in this way
-presents some unique challenges, and over the years I have developed
-some techniques to maintain productivity and forward career momentum,
-preserving the personal benefits of telecommuting while continuing to
-give the company value for their money.  Perhaps I can do another post
-on the broader topic of telecommuting tips, but this post is about one
-practical technique that applies to telecommuters and office workers
-alike: keeping a personal timesheet.&lt;/p&gt;
-
-&lt;p&gt;Here’s the basic idea.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Have a spreadsheet that is set up as a timesheet.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Each time a new month comes around, save the previous month as the
-current month.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Keep track of all of the time you spend working and a couple words
-about what you did.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I’ve been doing this since I started telecommuting in 2002, so I have
-seventeen years of monthly spreadsheets.  Here is a sample spreadsheet you can download and customize: &lt;a href=&quot;/blog/assets/201904-timesheet.xlsx&quot; title=&quot;201904-timesheet.xlsx&quot;&gt;201904-timesheet.xlsx&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Like my previous post about status reports, this seems mundane and
-annoying, but over time, it adds up to a valuable searchable resource.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">UPDATED: 2019-07-01: TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 01: Communicating Your Value Add</title><link href="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html" rel="alternate" type="text/html" title="UPDATED: 2019-07-01: TDC 2019 Florianópolis: Career Tips from Someone Who Knows a lot of Rockstar Programmers 01: Communicating Your Value Add" /><published>2019-04-21T18:00:00-04:00</published><updated>2019-04-21T18:00:00-04:00</updated><id>/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019</id><content type="html" xml:base="/blog/2019/04/21/tdc-floripa-career-tips-from-someone-who-knows-a-lot-of-rockstar-programmers.2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In my talk at 14:10 South Center Career Track, &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria&quot;&gt;Career Tips from Someone
-Who Knows a Lot of Rockstar
-Programmers&lt;/a&gt;,
-I will share some of the lessons I learned from the people I interviewed
-for the &lt;a href=&quot;/&quot;&gt;Secrets of the Rockstar Programmers&lt;/a&gt; book, and
-also include some tips of my own.  Though I don’t claim to be a rockstar
-programmer myself (or the newer term: “10x programmer”), I can honestly
-say I know plenty of people that who are.&lt;/p&gt;
-
-&lt;p&gt;Working for big companies such as IBM, SGI, Sun, and Oracle, I’ve had
-the chance to sample many useful corporate trainings.  Even the most
-mundane of these, such as “Insider Trading”, offer at least one nugget
-of novelty.  The corporate training I want to talk about here is one I
-took at Sun at least twelve years ago.  It was called “Communicating
-Your Value Add” and it was all about how to articulate your contribution
-to your company at performance review time.  The class included a handout,
-“Behavior/Performance-Based Questions” whose complete text I reproduce
-below.  For discussion and reference, let’s call this &lt;code class=&quot;highlighter-rouge&quot;&gt;perf_handout&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here’s the basic idea.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Get in the habit of producing written weekly status reports as simple
-text files.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Annnotate some of the things you’ve done with &lt;code class=&quot;highlighter-rouge&quot;&gt;perf_handout.N&lt;/code&gt; Where
-&lt;code class=&quot;highlighter-rouge&quot;&gt;N&lt;/code&gt; is the number of the corresponding list item below.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;When performance review time comes around, you can grep through your
-status reports for &lt;code class=&quot;highlighter-rouge&quot;&gt;perf_handout&lt;/code&gt; and your performance review
-practically writes itself.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;For example, if I successfully introduced a new code review process, my
-weekly status report would have a line like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;perf_handout.6: Designed and implemented a new code review process.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Once you do this for a month or so, you’ll notice some areas you are
-missing.  Try to fill those in, or if you can’t try to partner with
-someone who you observe is able to do those things and learn from them.&lt;/p&gt;
-
-&lt;p&gt;Here now is the complete &lt;code class=&quot;highlighter-rouge&quot;&gt;perf_handout&lt;/code&gt; content.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;behaviorperformance-based-questions&quot;&gt;Behavior/Performance-Based Questions&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   A sampling of the types of questions that might be used to explore
-   your level of accomplishment for specific skills are listed below.
-   These questions provide a platform for *communcating your
-   achievements* in skill areas such as leadership, decision-making,
-   persuasiveness, coping, creativity, tolerance for ambiguity,
-   organizational savvy, technical knowledge, and influencing.
-   
-   1. Describe a time when voicing your opinion was uncomfortable or
-   could have had serious consequences, but you did it because you
-   believed so strongly in the value of your perspective.
-   
-   2. What was the most creative idea you introduced on the job?  How
-   did you persuade your superior?.
-   
-   3. Give me an example of the most complex project/assignment you have
-   had, including your role and the outcome.
-   
-   4. Describe a situation at work when you had to make a decision and
-   were uncertain about the outcome.
-   
-   5. What do you when you are communicating with someone and it becomes
-   apparent that they don't understand what you are saying or vice
-   versa?
-   
-   6. Describe a situation in which you developed a group into a strong
-   working team?
-   
-   7. Communication and leadership go hand in hand.  Tell me about a
-   time when your communication skills enabled you to influence the way
-   others thought or acted, even in a very difficult situation.
-   
-   8. What important goals have you set in the past, and how were you
-   able to work towards accomplishing them successfully?
-   
-   9. Describe how you delegate responsibility in your current job.
-   
-   10. Have you ever had to take over a leadership role unexpectedly?
-   How did it work out?
-   
-   11. Sometimes it is important to disagree with others, particularly
-   your boss, in order to prevent a mistake from being made.  Tell me
-   about a time when you were willing to disagree with another person in
-   order to build a positive outcome.
-   
-   12. Describe a time when you had to sell an idea to your boss or
-   another authority figure.
-   
-   13. Give me an example taken from your experiences in report writing,
-   preparation of memos, or general correspondence which illustrates
-   the extent of your written communication skills.
-   
-   14. Building rapport can be a very challenging thing to do.  Give an
-   example of a time when you were able to build rapport with an
-   individual or group at work, even when the situation was difficult
-   and the odds were against you.
-   
-   15. Solving problems requires more than good plans, it means taking
-   action.  Give me an example of a time when you were able to take
-   meaningful action in resolving a problem.
-   
-   16. In many problem situations, it is often tempting to jump to a
-   conclusion to build a solution quickly.  Tell me about at time when
-   you resisted this temptation and obtained all the facts about the
-   problem before coming to a decision.
-   
-   17. Sometimes it is necessary to work in unsettled or rapidly
-   changing circumstances.  When have you found yourself in this
-   position?  Tell me exactly whay you did.
-   
-   18. Solving a problem often necessitates evalutation of alternative
-   solutions. Give me an example of a time when you actively defined
-   several solutions to a single problem using any tools such as
-   research, brainstorming, or mathematics.
-   
-   19. Just about anybody can give a routine, standard answer to common
-   problems; however, the payoff is often in the development of unique
-   solutions to common problems.  Give me an example of one of your
-   unique problem solutions.
-   
-   20. Describe an assigmnent that represented a unique challenge to
-   you.
-   
-   21. Tell me about a time when you had to cope with strict deadlines
-   or time demands.
-   
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;performance-review-questions&quot;&gt;Performance Review Questions&lt;/h3&gt;
-
-&lt;p&gt;The pre-discussion forms include the questions below which are listed
-   under the following categories: Results, Quality, Reliability,
-   Leadership, Decision Making, Functional/Technical Skills &amp;amp; Knowledge,
-   Communication and Teamwork, and Resourcefulness &amp;amp; Creativity.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-   22. Based on established goals and objectives, for our group, what
-   results did you achieve?  If a goal changed, how much progress did
-   you make toward the revised goal?
-   
-   23. What additional contributions did you make?  Were there
-   accoplishments that were definitely outstanding?
-   
-   24. What examples can you recall of instances in which you were
-   responsive to your customer or successful in completing a quality
-   job?
-   
-   25. What leadership and decision making abilities have you
-   demonstrated?
-   
-   26. Give me an example of a major decision you've made and the
-   outcome.
-   
-   27. Give me an example of any project you have led and the outcome.
-   
-   28. How have you improved existing processes and procedures?
-   
-   29. In what ways have you added unique value to your job?
-   
-   30. Give me an example of when you have demonstrated technical or
-   functional expertise.
-   
-   31. Tell me about what measures you have taken to ensure that your
-   skills are state-of-the-art.
-   
-   32. Give me an example of an effective presentation you have made.
-   
-   33. Give me an example of how cooperative interaction with other
-   members of the Sun team have been a part of your work.
-   
-   34. Give me an example of a time when others have been able to count
-   on your &quot;being-there&quot; time after time, project after project.
-   
-   35. Give me an example of when you used strategic thinking in moving
-   toward achieving a goal.
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;update-2019-07-01-microsoft-perf-handout&quot;&gt;UPDATE: 2019-07-01 Microsoft Perf Handout&lt;/h3&gt;
-
-&lt;p&gt;Here are some additional similar questions that I see at Microsoft:&lt;/p&gt;
-
-&lt;h4 id=&quot;adaptability&quot;&gt;Adaptability&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;36. Tell me about a time when you experienced a major organizational
-change (for example, a reorganization, a new supervisor or a new
-procedure) that created stress.
-
-37. Describe a time when you proposed a major change in your work
-process or job duties. How did others respond to your proposal?
-
-38. Describe a time when you had to complete a project in which you were
-provided with very little information or guidance.
-
-39. Tell me about a time when you had to change your priorities in
-response to the demands of a changing situation. 
-
-40. Tell me about a time when a project, product, or service
-implementation did not go according to plan. 
-
-41. Describe a time when you presented a proposal or provided a service
-that was given an unfavorable response by stakeholders. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;collaboration&quot;&gt;Collaboration&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;42. Describe a time when you worked on a challenging cross-functional
-team that produced an exceptional deliverable. 
-
-43. Tell me about a time when you developed a relationship with another
-area of the company that had no previous history of collaboration. 
-
-44. Describe how you have collaborated with others outside of your
-immediate team to resolve a critical issue. 
-
-45. Tell me about a time when you experienced conflict with a team
-member. 
-
-46. Describe your most recent experience working with a virtual
-team. What were the challenges you faced and how did you work through
-them? 
-
-47. Tell me about a time when your attempt to collaborate across teams
-was unsuccessful. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;customer-focus&quot;&gt;Customer Focus&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;48. Describe a time when you were involved in the resolution of a
-complaint from either an internal or an external customer. 
-
-49. Describe a time when you provided outstanding service to an internal
-or external customer by anticipating their needs. 
-
-50. Describe a time when you had difficulty determining the needs of a
-customer to provide them with a product or service that met their
-expectations. 
-
-51. Tell me about a time when you fell short of meeting a customer's
-needs. 
-
-52. Describe the strategies you have used to gather information that
-increased your understanding of current and future customer needs. 
-
-53. Provide an example of a time when you initiated a change in a
-process or policy to improve the quality of customer service 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;drive-for-results&quot;&gt;Drive for Results&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;54. Describe a time when you uncovered something that could be
-problematic for your organization or team. How did you correct the
-situation before it became an issue? 
-
-55. Describe a time when you tried to achieve a difficult professional
-goal. What obstacles did you encounter that made the goal difficult? 
-
-56. Tell me about a time when you successfully removed an obstacle that
-interfered with your ability to complete a task effectively. 
-
-57. Describe a long-term project or assignment of which you took
-ownership. How did you make sure each milestone was achieved in a timely
-manner? 
-
-58. Provide an example of a time when you had to motivate others to
-complete a challenging deliverable. 
-
-59. What has been the most difficult assignment or task in your career
-so far? 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;influencing-for-impact&quot;&gt;Influencing for Impact&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;60. Tell me about the most challenging situation that you have
-experienced, when you had to persuade someone to accept your
-point-of-view. 
-
-61. Describe a time when you had to persuade someone to complete a task,
-but had no formal authority over their work. 
-
-62. Tell me about a time when you had to convince others to implement a
-new procedure or process. 
-
-63. Tell me about a time when you successfully influenced multiple
-stakeholders with varying agendas. 
-
-64. Give me an example of a relationship that you developed through
-networking that had a positive impact on your work. 
-
-65. Give an example of a successful method (for example, research
-findings, anecdotes, stories, metaphors, or analogies) that you have
-used to convince a stakeholder to support an idea. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;judgement&quot;&gt;Judgement&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;66. Describe a time when you made a critical error in your work. 
-
-67. Describe a situation when you had to make a major decision under
-time constraints. 
-
-68. Tell me about an unpopular decision you've had to make. 
-
-69. Tell me about a time when you had to make an important decision but
-had no policies or procedures in place to support it 
-
-70. Tell me about a situation when you had multiple alternatives from
-which to choose. What steps did you take to determine the most
-appropriate alternative? 
-
-71. Tell me about a situation that required you to build your knowledge
-base before solving a complex problem. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;end-to-end-innovation&quot;&gt;End-to-End Innovation&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;71.  Give an example of an idea that you suggested that led to
-improvements within your organization. 
-
-72. Tell me about a time when you presented a new idea that successfully
-addressed a customer’s end-to-end product experience. 
-
-73. Tell me about a time when you identified a risk and offered a unique
-method of addressing the risk. 
-
-74. Tell me about a time when you contributed to the development of an
-innovative idea that impacted the market, industry, and ecosystem. 
-
-75. Tell me about a time when an innovative product or service you
-worked on failed. Looking back, what would you have done differently to
-ensure success? 
-
-76. Tell me about a time when you had to make adjustments to a feature
-or product, based on considerations of the overall customer experience. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;planning-organizing-and-executing&quot;&gt;Planning, Organizing, and Executing&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;77.Describe a situation when you made progress on a project or
-assignment despite ambiguity. 
-
-78. Describe a situation when you managed the impact of a change on
-schedule, processes, and project goals. 
-
-79. Describe a situation when you led a project with a geographically or
-functionally diverse team. 
-
-80. Tell me about a time when you aligned multiple stakeholders to
-achieve an objective. 
-
-81. Tell me about a time when you did not meet a planned milestone. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;technical-excellence&quot;&gt;Technical Excellence&lt;/h4&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;82. Describe a situation when you came up-to-speed quickly on new tools,
-methods, or processes. 
-
-83. Describe a situation when you were able to create improvements in
-code, designs, content property, or media assets. 
-
-85. Describe a situation when you sought out a new engineering or
-project/program management challenge beyond your role requirements. 
-
-85. Tell me about a time when you sought out a challenging technical
-problem. 
-
-86. Tell me about a time when you mentored others in your area of
-technical expertise. 
-
-87. Tell me about a time when you had to learn a new technology. What
-did you do to gain expertise? 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;RedHat has a &lt;a href=&quot;https://blog.openshift.com/knative-building-your-serverless-service/&quot;&gt;tutorial on this&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

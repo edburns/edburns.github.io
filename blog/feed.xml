@@ -1,5 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-27T17:31:31-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Learning Azure: Build 2018 Sessions</title><link href="/blog/2019/07/26/learning-azure-build-2018-sessions.html" rel="alternate" type="text/html" title="Learning Azure: Build 2018 Sessions" /><published>2019-07-26T17:00:00-04:00</published><updated>2019-07-26T17:00:00-04:00</updated><id>/blog/2019/07/26/learning-azure-build-2018-sessions</id><content type="html" xml:base="/blog/2019/07/26/learning-azure-build-2018-sessions.html">&lt;p&gt;I am ardently learning how to be productive on the inside of Azure and
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-30T11:16:20-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus</title><link href="/blog/2019/07/30/adam-bien-jakarta-ee.html" rel="alternate" type="text/html" title="J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus" /><published>2019-07-30T10:00:00-04:00</published><updated>2019-07-30T10:00:00-04:00</updated><id>/blog/2019/07/30/adam-bien-jakarta-ee</id><content type="html" xml:base="/blog/2019/07/30/adam-bien-jakarta-ee.html">&lt;p&gt;Raw Notes from Adam Bien’s session.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-adam-bien.JPG&quot; alt=&quot;Adam Bien&quot; title=&quot;Adam Bien&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;local&quot;&gt;Local&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ran archetype for simple Jakarta EE.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Stated, “no-one cares about distinction between Jakarta EE and
+Microprofile, they just use what’s there.”&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;“Time to first commit”: needs to be &amp;lt; 30 seconds.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Showed dependencies.  2: EE8 Jar, and Microprofile Jar&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Started WebSphere OpenLiberty&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Made a change to the rest endpoint, saw that the app was updated.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Demonstrates that the ThinWar needs to be less than 3kB.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;His little script rebuilt and deployed it.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;local-cloud&quot;&gt;Local Cloud&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;OpenShift, with minishift&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Then scaled with &lt;code class=&quot;highlighter-rouge&quot;&gt;oc scale dc j4k&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Then added Prometheus metrics, with &lt;code class=&quot;highlighter-rouge&quot;&gt;@Metered&lt;/code&gt; annotation on the REST
+endpoint.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Drive home again the “start with everytning (Jakarta EE) and strip it
+down as needed” idea&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Added metrics with &lt;code class=&quot;highlighter-rouge&quot;&gt;microprofile.metrics.MetricRegistry&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Side story: Hystrix for circuit breaker.  Netflix pulled support.
+However, Microprofile had it, so it was ok.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Skipped the actual impl of metrics.  Went to Quarkus.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;quarkus&quot;&gt;Quarkus&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ran quarkus maven archetype&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ran quarkus runner.  Examined what was in the runner.  The &lt;code class=&quot;highlighter-rouge&quot;&gt;lib&lt;/code&gt;
+directory is like the base docker image.  The business logic is what
+changes and small.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hit the “one war one server” message.  No need for hot deploy.  Just
+re-start the server.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;He thinks Quarkus takes the app server one step further because of its
+agility: Quarkus EE.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Added CDI.  Added Metrics.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;docker-native&quot;&gt;Docker Native&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Create a native Docker image on your machine.  This is comporable to &lt;code class=&quot;highlighter-rouge&quot;&gt;go&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Adam Bien’s session.</summary></entry><entry><title type="html">Learning Azure: Build 2018 Sessions</title><link href="/blog/2019/07/26/learning-azure-build-2018-sessions.html" rel="alternate" type="text/html" title="Learning Azure: Build 2018 Sessions" /><published>2019-07-26T17:00:00-04:00</published><updated>2019-07-26T17:00:00-04:00</updated><id>/blog/2019/07/26/learning-azure-build-2018-sessions</id><content type="html" xml:base="/blog/2019/07/26/learning-azure-build-2018-sessions.html">&lt;p&gt;I am ardently learning how to be productive on the inside of Azure and
 this involves reading docs.  My current focus is the Azure Marketplace,
 and I observed that several of the docs pages, &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/marketplace/cloud-partner-portal/azure-applications/cpp-azure-app-offer&quot;&gt;such as this one about
 the “solution template” Azure Marketplace offer
@@ -1818,124 +1916,4 @@ over &lt;strong&gt;five days&lt;/strong&gt;.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;14:10 South Center Career Track &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria&quot;&gt;Career Tips from Someone Who Knows a Lot of Rockstar Programmers&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Raw Notes: Revisiting Effective Java in 2019</title><link href="/blog/2019/03/19/javaland-effective-java-picks.html" rel="alternate" type="text/html" title="Raw Notes: Revisiting Effective Java in 2019" /><published>2019-03-19T13:45:00-04:00</published><updated>2019-03-19T13:45:00-04:00</updated><id>/blog/2019/03/19/javaland-effective-java-picks</id><content type="html" xml:base="/blog/2019/03/19/javaland-effective-java-picks.html">&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Credentials&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://developers.redhat.com/promotions/migrating-to-microservice-databases&quot;&gt;Plugged his book&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ANZXvXVa1Lg&quot;&gt;Has a three hour version of the talk&lt;/a&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Lambdas&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Streams&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Optionals&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Default methods in interfaces&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;try with resources&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;factory methods&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Minimize mutability&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Comparable(14)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Live coding&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Minimize mutability.  Value object class.  Why?  Easier to reason
-about.  Reduces the chance that the system gets into an
-inconsistent state.&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;Make as many of things &lt;code class=&quot;highlighter-rouge&quot;&gt;final&lt;/code&gt; as possible&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;No ctor, use factory method: &lt;code class=&quot;highlighter-rouge&quot;&gt;of&lt;/code&gt;.  Easier for refactoring.
-Allows you to change the cardinality, maybe re-use objects with
-an object pool.  Flyweight class.  &lt;code class=&quot;highlighter-rouge&quot;&gt;BigDecimal.valueOf()&lt;/code&gt;
-implementation is an example.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;COMMENT: what about making the zero arg ctor private?&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;He used Google Guava, but noted that they have violated backward
-compatibility in the past.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Advised to implement &lt;code class=&quot;highlighter-rouge&quot;&gt;equals&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;hashCode&lt;/code&gt;. Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;Objects&lt;/code&gt;
-class in the JDK.  I thas an &lt;code class=&quot;highlighter-rouge&quot;&gt;equals&lt;/code&gt; method.  Handles all that
-&lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt; checking.  But beware of the performance penalty of
-autoboxing.  For hashcode, there is &lt;code class=&quot;highlighter-rouge&quot;&gt;Objects.hash&lt;/code&gt;.  This is
-even worse for performance.  If you use the generator for
-&lt;code class=&quot;highlighter-rouge&quot;&gt;equals&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;hashcode&lt;/code&gt; make sure to keep the impls up to date
-as the class evolved.&lt;/p&gt;
-
-            &lt;ul&gt;
-              &lt;li&gt;for hashcode, because it is immutable, you can do it in the
-ctor. If you use an object as a key to a hashmap, it must be
-immutable.  If you can’t do that, you can make a
-&lt;code class=&quot;highlighter-rouge&quot;&gt;toHashKey()&lt;/code&gt; method.&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;toString()&lt;/code&gt;.  It’s for developers.  Guava
-&lt;code class=&quot;highlighter-rouge&quot;&gt;MoreObjects.toStringHelper()&lt;/code&gt;.  Not for “business strings”.
-For busness strings, use &lt;code class=&quot;highlighter-rouge&quot;&gt;formatTo&lt;/code&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;Formatter&lt;/code&gt; and
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Formattable&lt;/code&gt;.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Comparable&lt;/code&gt;.  &lt;code class=&quot;highlighter-rouge&quot;&gt;Comparator&lt;/code&gt; interface.&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Functional Interfaces.  &lt;code class=&quot;highlighter-rouge&quot;&gt;@FunctionalInterface&lt;/code&gt;.  Constrains your
-code to conform to functional interfaces.  Favor &lt;em&gt;Strategy&lt;/em&gt; over
-&lt;em&gt;Template Method&lt;/em&gt;.&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;You should not need to create a new functional interface.  There
-are 41 already in the JDK.  It’s likely it will be in there
-already.  Learn these six well: &lt;code class=&quot;highlighter-rouge&quot;&gt;UnaryOperator, BinaryOperator,
-Predicate, Function, Supplier, Consumer&lt;/code&gt;.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Method References.  Five different types&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;static, ie &lt;code class=&quot;highlighter-rouge&quot;&gt;Integer::parseInt()&lt;/code&gt;&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;bounded and unbounded method reference.&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Enums&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;Can use lambdas or function references in enum initializer.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Credentials</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

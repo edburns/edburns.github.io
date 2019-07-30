@@ -6,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus</title>
-  <meta name="description" content="Raw Notes from Adam Bien’s session.">
+  <title>J4K-2019: Paul Parkinson: Helidon and Kubernetes</title>
+  <meta name="description" content="Raw Notes from Paul Parkinson’s session.">
 
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <!--[if IE]>
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <![endif]-->
   <link rel="stylesheet" href="/blog/assets/main.css">
-  <link rel="canonical" href="/blog/2019/07/30/adam-bien-jakarta-ee.html">
+  <link rel="canonical" href="/blog/2019/07/30/paul-parkinson-helidon.html">
   <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
   
   
@@ -77,110 +77,171 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus</h1>
-    <p class="post-meta"><time datetime="2019-07-30T10:00:00-04:00" itemprop="datePublished">Jul 30, 2019</time></p>
+    <h1 class="post-title" itemprop="name headline">J4K-2019: Paul Parkinson: Helidon and Kubernetes</h1>
+    <p class="post-meta"><time datetime="2019-07-30T11:00:00-04:00" itemprop="datePublished">Jul 30, 2019</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>Raw Notes from Adam Bien’s session.</p>
+    <p>Raw Notes from Paul Parkinson’s session.</p>
 
-<p><img src="/blog/assets/20190730-adam-bien.jpg" alt="Adam Bien" title="Adam Bien" /></p>
+<p><img src="/blog/assets/20190730-paul-parkinson.jpg" alt="Paul Parkinson" title="Paul Parkinson" /></p>
 
-<h1 id="local">Local</h1>
+<h2 id="workflow-of-getting-into-kubernetes">Workflow of Getting into Kubernetes</h2>
 
 <ul>
   <li>
-    <p>Ran archetype for simple Jakarta EE.</p>
+    <p>Service Broker, Kubernetes Secret, Microservice</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">CloudEvents</code> standard</p>
+  </li>
+  <li>
+    <p>ServiceMesh, Istio, Envoy Data Plane</p>
+  </li>
+  <li>
+    <p>Side note: Tracing has become easier.  <code class="highlighter-rouge">Kiali</code>.  Uses opentracing,
+Jaeger, Zipkin.</p>
+
+    <ul>
+      <li>Gave some background on Jaeger.</li>
+    </ul>
+  </li>
+  <li>
+    <p>WebLogic Kubernetes Operator</p>
+  </li>
+  <li>
+    <p>Helidon SE</p>
 
     <ul>
       <li>
-        <p>Stated, “no-one cares about distinction between Jakarta EE and
-Microprofile, they just use what’s there.”</p>
+        <p>Microframework</p>
       </li>
       <li>
-        <p>“Time to first commit”: needs to be &lt; 30 seconds.</p>
+        <p>Functional</p>
       </li>
       <li>
-        <p>Showed dependencies.  2: EE8 Jar, and Microprofile Jar</p>
+        <p>Reactive</p>
+      </li>
+      <li>
+        <p>Tracing</p>
+      </li>
+      <li>
+        <p>No annotations</p>
+      </li>
+      <li>
+        <p>Messaging client</p>
       </li>
     </ul>
   </li>
   <li>
-    <p>Started WebSphere OpenLiberty</p>
-  </li>
-  <li>
-    <p>Made a change to the rest endpoint, saw that the app was updated.</p>
+    <p>Helidon MP</p>
 
     <ul>
       <li>
-        <p>Demonstrates that the ThinWar needs to be less than 3kB.</p>
+        <p>Full Microprofile standard</p>
       </li>
       <li>
-        <p>His little script rebuilt and deployed it.</p>
+        <p>Familiar to Java EE Devs</p>
+      </li>
+      <li>
+        <p>Tracing</p>
+      </li>
+      <li>
+        <p>JTA/JPA</p>
+      </li>
+      <li>
+        <p>Oracle DB feature integration</p>
+      </li>
+      <li>
+        <p>Long Running Activities</p>
       </li>
     </ul>
   </li>
 </ul>
 
-<h1 id="local-cloud">Local Cloud</h1>
+<h2 id="long-running-activities">Long Running Activities</h2>
 
 <ul>
   <li>
-    <p>OpenShift, with minishift</p>
+    <p>Annotations <code class="highlighter-rouge">@LRA</code>.  These are the newer version of JTA</p>
   </li>
   <li>
-    <p>Then scaled with <code class="highlighter-rouge">oc scale dc j4k</code></p>
-  </li>
-  <li>
-    <p>Then added Prometheus metrics, with <code class="highlighter-rouge">@Metered</code> annotation on the REST
-endpoint.</p>
-  </li>
-  <li>
-    <p>Drive home again the “start with everytning (Jakarta EE) and strip it
-down as needed” idea</p>
-  </li>
-  <li>
-    <p>Added metrics with <code class="highlighter-rouge">microprofile.metrics.MetricRegistry</code>.</p>
-  </li>
-  <li>
-    <p>Side story: Hystrix for circuit breaker.  Netflix pulled support.
-However, Microprofile had it, so it was ok.</p>
-  </li>
-  <li>
-    <p>Skipped the actual impl of metrics.  Went to Quarkus.</p>
+    <p>Ties in to DDD Bounded Contexts.  When decomposing the monolith and
+the DB in particular, this is where migration efforts fail.  Close
+attention needs to be paid.</p>
   </li>
 </ul>
 
-<h1 id="quarkus">Quarkus</h1>
+<h2 id="microservices-data-management-patterns">Microservices Data Management Patterns</h2>
 
 <ul>
   <li>
-    <p>Ran quarkus maven archetype</p>
+    <p>CQRS</p>
   </li>
   <li>
-    <p>Ran quarkus runner.  Examined what was in the runner.  The <code class="highlighter-rouge">lib</code>
-directory is like the base docker image.  The business logic is what
-changes and small.</p>
+    <p>Access thru public APIs onlt</p>
   </li>
   <li>
-    <p>Hit the “one war one server” message.  No need for hot deploy.  Just
-re-start the server.</p>
+    <p>Database per service</p>
+  </li>
+</ul>
+
+<h2 id="microservices-communication">Microservices Communication</h2>
+
+<ul>
+  <li>
+    <p>No locking</p>
   </li>
   <li>
-    <p>He thinks Quarkus takes the app server one step further because of its
-agility: Quarkus EE.</p>
+    <p>Event based integration</p>
 
     <ul>
-      <li>Added CDI.  Added Metrics.</li>
+      <li>
+        <p>Pub/sub</p>
+      </li>
+      <li>
+        <p>Event Sourcing</p>
+
+        <ul>
+          <li>Gave basic definition, illustrated how it works.</li>
+        </ul>
+      </li>
+      <li>
+        <p>CQRS</p>
+
+        <ul>
+          <li>Same story, gave definition and illustrated how it works.</li>
+        </ul>
+      </li>
+      <li>
+        <p>Atomicity of Persisting Events and Database States</p>
+
+        <ul>
+          <li>Oracle Advanced Queue: A messing system in the database.  16
+year old technology, but fits really well with Microservices.
+Guaranteed once delivery.  Idempotency for free.</li>
+        </ul>
+      </li>
+      <li>
+        <p>SAGA Pattern</p>
+
+        <ul>
+          <li>
+            <p>A saga is a sequence of local transactions.  Two
+flavors. Choreography and Orchestration.  The latter is you have
+an orchestrator that controls the actions of the participants.</p>
+          </li>
+          <li>
+            <p>Compensating transactions.  Showed some code slides of
+complexity with and without AQ.</p>
+          </li>
+        </ul>
+      </li>
     </ul>
   </li>
 </ul>
 
-<h1 id="docker-native">Docker Native</h1>
-
-<ul>
-  <li>Create a native Docker image on your machine.  This is comporable to <code class="highlighter-rouge">go</code>.</li>
-</ul>
+<h2 id="demo">Demo</h2>
 
 
   </div>

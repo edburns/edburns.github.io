@@ -1,7 +1,166 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-30T11:16:20-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus</title><link href="/blog/2019/07/30/adam-bien-jakarta-ee.html" rel="alternate" type="text/html" title="J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus" /><published>2019-07-30T10:00:00-04:00</published><updated>2019-07-30T10:00:00-04:00</updated><id>/blog/2019/07/30/adam-bien-jakarta-ee</id><content type="html" xml:base="/blog/2019/07/30/adam-bien-jakarta-ee.html">&lt;p&gt;Raw Notes from Adam Bien’s session.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-30T11:50:26-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">J4K-2019: Paul Parkinson: Helidon and Kubernetes</title><link href="/blog/2019/07/30/paul-parkinson-helidon.html" rel="alternate" type="text/html" title="J4K-2019: Paul Parkinson: Helidon and Kubernetes" /><published>2019-07-30T11:00:00-04:00</published><updated>2019-07-30T11:00:00-04:00</updated><id>/blog/2019/07/30/paul-parkinson-helidon</id><content type="html" xml:base="/blog/2019/07/30/paul-parkinson-helidon.html">&lt;p&gt;Raw Notes from Paul Parkinson’s session.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-adam-bien.JPG&quot; alt=&quot;Adam Bien&quot; title=&quot;Adam Bien&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-paul-parkinson.jpg&quot; alt=&quot;Paul Parkinson&quot; title=&quot;Paul Parkinson&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;workflow-of-getting-into-kubernetes&quot;&gt;Workflow of Getting into Kubernetes&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Service Broker, Kubernetes Secret, Microservice&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CloudEvents&lt;/code&gt; standard&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ServiceMesh, Istio, Envoy Data Plane&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Side note: Tracing has become easier.  &lt;code class=&quot;highlighter-rouge&quot;&gt;Kiali&lt;/code&gt;.  Uses opentracing,
+Jaeger, Zipkin.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Gave some background on Jaeger.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;WebLogic Kubernetes Operator&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Helidon SE&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Microframework&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Functional&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Reactive&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Tracing&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;No annotations&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Messaging client&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Helidon MP&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Full Microprofile standard&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Familiar to Java EE Devs&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Tracing&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JTA/JPA&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Oracle DB feature integration&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Long Running Activities&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;long-running-activities&quot;&gt;Long Running Activities&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Annotations &lt;code class=&quot;highlighter-rouge&quot;&gt;@LRA&lt;/code&gt;.  These are the newer version of JTA&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ties in to DDD Bounded Contexts.  When decomposing the monolith and
+the DB in particular, this is where migration efforts fail.  Close
+attention needs to be paid.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;microservices-data-management-patterns&quot;&gt;Microservices Data Management Patterns&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;CQRS&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Access thru public APIs onlt&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Database per service&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;microservices-communication&quot;&gt;Microservices Communication&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;No locking&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Event based integration&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Pub/sub&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Event Sourcing&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Gave basic definition, illustrated how it works.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CQRS&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Same story, gave definition and illustrated how it works.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Atomicity of Persisting Events and Database States&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Oracle Advanced Queue: A messing system in the database.  16
+year old technology, but fits really well with Microservices.
+Guaranteed once delivery.  Idempotency for free.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;SAGA Pattern&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;A saga is a sequence of local transactions.  Two
+flavors. Choreography and Orchestration.  The latter is you have
+an orchestrator that controls the actions of the participants.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Compensating transactions.  Showed some code slides of
+complexity with and without AQ.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;</content><author><name></name></author><summary type="html">Raw Notes from Paul Parkinson’s session.</summary></entry><entry><title type="html">J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus</title><link href="/blog/2019/07/30/adam-bien-jakarta-ee.html" rel="alternate" type="text/html" title="J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus" /><published>2019-07-30T10:00:00-04:00</published><updated>2019-07-30T10:00:00-04:00</updated><id>/blog/2019/07/30/adam-bien-jakarta-ee</id><content type="html" xml:base="/blog/2019/07/30/adam-bien-jakarta-ee.html">&lt;p&gt;Raw Notes from Adam Bien’s session.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-adam-bien.jpg&quot; alt=&quot;Adam Bien&quot; title=&quot;Adam Bien&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;local&quot;&gt;Local&lt;/h1&gt;
 
@@ -1895,25 +2054,4 @@ technical expertise.
 
 87. Tell me about a time when you had to learn a new technology. What
 did you do to gain expertise? 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">TDC 2019 Florianópolis</title><link href="/blog/2019/04/20/tdc-floripa-2019.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis" /><published>2019-04-20T14:00:00-04:00</published><updated>2019-04-20T14:00:00-04:00</updated><id>/blog/2019/04/20/tdc-floripa-2019</id><content type="html" xml:base="/blog/2019/04/20/tdc-floripa-2019.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I am blessed to have the opportunity to speak for the &lt;a href=&quot;http://purl.oclc.org/NET/edburns/speaking-engagements/&quot;&gt;fourth
-time&lt;/a&gt; at the
-GlobalCode Developer’s conference.  My last time there was in November
-2009!  I can’t believe it’s been that long.  It was a huge event then,
-and it’s even bigger now.  It’s the largest software developer
-conference, by number of attendees, in Brazil, and that’s saying a lot.
-There are at &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilhas&quot;&gt;least &lt;strong&gt;49&lt;/strong&gt;
-tracks&lt;/a&gt;
-over &lt;strong&gt;five days&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here are some links to my two talks.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;10:10 STADIUM and Java Architecture Track &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-arquitetura-java&quot;&gt;Table Stakes, Deal Makes: Programming Language Platform Growth&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;14:10 South Center Career Track &lt;a href=&quot;http://www.thedevelopersconference.com.br/tdc/2019/florianopolis/trilha-carreiras-e-mentoria&quot;&gt;Career Tips from Someone Who Knows a Lot of Rockstar Programmers&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

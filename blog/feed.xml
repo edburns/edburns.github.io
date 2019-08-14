@@ -1,5 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-07-30T17:04:05-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">J4K-2019: Ivar Grimstad: Microprofile</title><link href="/blog/2019/07/30/ivar-grimstad-microprofile.html" rel="alternate" type="text/html" title="J4K-2019: Ivar Grimstad: Microprofile" /><published>2019-07-30T16:20:00-04:00</published><updated>2019-07-30T16:20:00-04:00</updated><id>/blog/2019/07/30/ivar-grimstad-microprofile</id><content type="html" xml:base="/blog/2019/07/30/ivar-grimstad-microprofile.html">&lt;p&gt;Raw Notes from Ivar Grimstad’s session.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-08-14T15:17:57-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Microsoft Edge Dev, Windows Subsystem for Linux, Emacs Markdown Mode, and URLs</title><link href="/blog/2019/08/14/emacs-edge-dev.html" rel="alternate" type="text/html" title="Microsoft Edge Dev, Windows Subsystem for Linux, Emacs Markdown Mode, and URLs" /><published>2019-08-14T15:00:00-04:00</published><updated>2019-08-14T15:00:00-04:00</updated><id>/blog/2019/08/14/emacs-edge-dev</id><content type="html" xml:base="/blog/2019/08/14/emacs-edge-dev.html">&lt;p&gt;This post shows how to make it so clicking on a hyperlink in GNU Emacs
+running in the Windows Subsystem for Linux (WSL) on Windows 10 causes
+the link to open up in Microsoft Edge Insider’s Edition.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install WSL&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install GNU Emacs&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Markdown mode&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.microsoftedgeinsider.com&quot;&gt;Install Microsoft Edge Insider&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Make a shell script.  I put mine in &lt;code class=&quot;highlighter-rouge&quot;&gt;/home/edburns/bin/runedge.sh&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge\ Dev/Application/msedge.exe $1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Put this in your &lt;code class=&quot;highlighter-rouge&quot;&gt;.emacs&lt;/code&gt;:&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;lisp&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #b1b100;&quot;&gt;defun&lt;/span&gt; browse-url-edge &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;url &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;amp;&lt;/span&gt;optional new-window&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;shell-command&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;concat &lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;/home/edburns/bin/runedge.sh &amp;quot;&lt;/span&gt; url&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
+&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #b1b100;&quot;&gt;setq&lt;/span&gt; browse-url-browser-&lt;span style=&quot;color: #b1b100;&quot;&gt;function&lt;/span&gt; 'browse-url-edge&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">This post shows how to make it so clicking on a hyperlink in GNU Emacs running in the Windows Subsystem for Linux (WSL) on Windows 10 causes the link to open up in Microsoft Edge Insider’s Edition.</summary></entry><entry><title type="html">J4K-2019: Ivar Grimstad: Microprofile</title><link href="/blog/2019/07/30/ivar-grimstad-microprofile.html" rel="alternate" type="text/html" title="J4K-2019: Ivar Grimstad: Microprofile" /><published>2019-07-30T16:20:00-04:00</published><updated>2019-07-30T16:20:00-04:00</updated><id>/blog/2019/07/30/ivar-grimstad-microprofile</id><content type="html" xml:base="/blog/2019/07/30/ivar-grimstad-microprofile.html">&lt;p&gt;Raw Notes from Ivar Grimstad’s session.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-ivar-grimstad.jpg&quot; alt=&quot;Ivar Grimstad&quot; title=&quot;Ivar Grimstad&quot; /&gt;&lt;/p&gt;
 
@@ -1781,121 +1814,4 @@ is a great place to be.&lt;/p&gt;
 &lt;p&gt;Oracle was and is a great place to work, and they have trusted me to
 contribute in the above areas and several others.  In return, I have
 deep trust in my management chain at Oracle.  I have nothing but good
-things to say about working there.&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s still unreal to me that I’m writing this, but here it is. After over 22 years at Oracle (13 at Sun), I’m moving on to another company. In my time at Oracle, I have had a chance to help shape technologies that have had a positive impact on our industry and lives.</summary></entry><entry><title type="html">TDC 2019 Florianópolis: Raw Notes: Serverless with Knative: Mete Atamel</title><link href="/blog/2019/04/25/tdc-floripa-knative.html" rel="alternate" type="text/html" title="TDC 2019 Florianópolis: Raw Notes: Serverless with Knative: Mete Atamel" /><published>2019-04-25T09:45:00-04:00</published><updated>2019-04-25T09:45:00-04:00</updated><id>/blog/2019/04/25/tdc-floripa-knative</id><content type="html" xml:base="/blog/2019/04/25/tdc-floripa-knative.html">&lt;p&gt;&lt;img src=&quot;/blog/assets/tdc-logo.png&quot; alt=&quot;I'm speaking at TDC 2019&quot; title=&quot;I'm speaking at TDC 2019&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Talk from &lt;a href=&quot;https://twitter.com/meteatamel&quot;&gt;Mete Atamel&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Also take a look at &lt;a href=&quot;https://github.com/meteatamel/knative-tutorial&quot;&gt;his
-tutorial&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Pronounced “kay native”.&lt;/p&gt;
-
-&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
-
-&lt;p&gt;K8s open source building blocks for serverless.&lt;/p&gt;
-
-&lt;p&gt;Points out that K8s is all about servers.  But Knative hides that.&lt;/p&gt;
-
-&lt;p&gt;What is Serverless?&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Servers are someone else’s problem&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Functions should be idomatic, meaning already familiar to you&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Event driven&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Portable to other clouds&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Asserts Knative ticks all these boxes.&lt;/p&gt;
-
-&lt;h2 id=&quot;gave-a-bit-of-kubernetes-background&quot;&gt;Gave a bit of Kubernetes Background&lt;/h2&gt;
-
-&lt;p&gt;How K8s uses a &lt;code class=&quot;highlighter-rouge&quot;&gt;Service&lt;/code&gt; with a stable IP…&lt;/p&gt;
-
-&lt;p&gt;Developers want serverless.  Operators want Kubernetes.  Knative tries
-to bridge the gap.&lt;/p&gt;
-
-&lt;p&gt;Knative is open source &lt;a href=&quot;http://github.com/knative&quot;&gt;github&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;picture-high-level-diagram&quot;&gt;Picture: high level Diagram&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190425-tdc-floripa-knative-01-stack.JPG&quot; alt=&quot;Knative Stack&quot; title=&quot;Knative Stack&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Uses Istio for network, but he feels Istio is too heavyweight for what
-they use it for, so they now use Gloo, but even he did not know what
-that is.  (This space is moving so fast).&lt;/p&gt;
-
-&lt;h2 id=&quot;how-to-install&quot;&gt;How to install&lt;/h2&gt;
-
-&lt;p&gt;Cloud Run or Cloud Run on GKE or Knative Everywhere&lt;/p&gt;
-
-&lt;p&gt;A bunch of steps at the command line, mostly with &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The different parts of knative run in different namespaces.&lt;/p&gt;
-
-&lt;h2 id=&quot;one-part-is-knative-serving&quot;&gt;One part is Knative Serving?&lt;/h2&gt;
-
-&lt;p&gt;Rapid deployment of serverless containers.  Automatic scaling, traffic
-routing, including directing per revisions.  I guess this means it
-supports canary, etc.&lt;/p&gt;
-
-&lt;h2 id=&quot;picture-serving-primitives&quot;&gt;Picture: Serving Primitives&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190425-tdc-floripa-knative-02-serving-primitives.JPG&quot; alt=&quot;Knative Serving Primitives&quot; title=&quot;Knative Serving Primitives&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;going-through-steps-in-tutorial&quot;&gt;Going through steps in tutorial&lt;/h2&gt;
-
-&lt;p&gt;Before we’ve even seen any functions, we have a ton of network stuff to
-do.  I would like to see the &lt;code class=&quot;highlighter-rouge&quot;&gt;Dockerfile&lt;/code&gt; for the &lt;code class=&quot;highlighter-rouge&quot;&gt;helloworld-csharp&lt;/code&gt; C#
-Service.&lt;/p&gt;
-
-&lt;p&gt;It’s been a while since I worked with &lt;code class=&quot;highlighter-rouge&quot;&gt;Fn&lt;/code&gt;, but Knative seems to have a
-lot more friction.  For example, the &lt;code class=&quot;highlighter-rouge&quot;&gt;Fn&lt;/code&gt; command line tool builds the
-docker container around your function for you.  Here you appear to have
-to do that yourself.&lt;/p&gt;
-
-&lt;p&gt;He used the term “traffic splitting” instead of “blue green” or some
-other term.&lt;/p&gt;
-
-&lt;p&gt;I don’t understand whey he is doing a bunch of &lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl apply&lt;/code&gt; to set it
-up instead of them having Helm chart(s) for this.  I can understand
-using &lt;code class=&quot;highlighter-rouge&quot;&gt;apply&lt;/code&gt; for quick updates when the service is already deployed and
-you want to update it.&lt;/p&gt;
-
-&lt;p&gt;He didn’t mention anything about the overhead, if any, of C# in a
-serverless environment.&lt;/p&gt;
-
-&lt;p&gt;Showed how &lt;code class=&quot;highlighter-rouge&quot;&gt;annotations&lt;/code&gt; are used to convey autoscaling.&lt;/p&gt;
-
-&lt;h2 id=&quot;fun-show-integration-with-twilio&quot;&gt;Fun: Show integration with Twilio.&lt;/h2&gt;
-
-&lt;p&gt;Learned that you can put a comma separated list as the argument to
-&lt;code class=&quot;highlighter-rouge&quot;&gt;kubectl get&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h1 id=&quot;knative-eventing&quot;&gt;Knative Eventing&lt;/h1&gt;
-
-&lt;p&gt;Connect producers to consumers with stuff in the middle.&lt;/p&gt;
-
-&lt;p&gt;Example 1 was not interesting.&lt;/p&gt;
-
-&lt;p&gt;Example 2: Integrate Cloud Storage to Vision API&lt;/p&gt;
-
-&lt;p&gt;Here comes something like the license plate demo!&lt;/p&gt;
-
-&lt;p&gt;All of his examples are in C#.  Is that the only language supported?&lt;/p&gt;
-
-&lt;h1 id=&quot;knative-build&quot;&gt;Knative Build&lt;/h1&gt;
-
-&lt;p&gt;Enables you to build and push the images &lt;em&gt;within your K8s cluster&lt;/em&gt;.
-This is a novel idea.  I talked to &lt;a href=&quot;http://twitter.com/yanaga&quot;&gt;Edson
-Yanaga&lt;/a&gt; last night, he was saying this is the
-thing that makes Jenkins obsolete.&lt;/p&gt;
-
-&lt;p&gt;RedHat has a &lt;a href=&quot;https://blog.openshift.com/knative-building-your-serverless-service/&quot;&gt;tutorial on this&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+things to say about working there.&lt;/p&gt;</content><author><name></name></author><summary type="html">It’s still unreal to me that I’m writing this, but here it is. After over 22 years at Oracle (13 at Sun), I’m moving on to another company. In my time at Oracle, I have had a chance to help shape technologies that have had a positive impact on our industry and lives.</summary></entry></feed>

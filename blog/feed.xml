@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-08-26T08:54:17-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-08-26T23:43:08-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Oracle Code One 2019 Conference Picks</title><link href="/blog/2019/08/26/oracle-code-one-2019-picks.html" rel="alternate" type="text/html" title="Oracle Code One 2019 Conference Picks" /><published>2019-08-26T03:00:00-04:00</published><updated>2019-08-26T03:00:00-04:00</updated><id>/blog/2019/08/26/oracle-code-one-2019-picks</id><content type="html" xml:base="/blog/2019/08/26/oracle-code-one-2019-picks.html">&lt;p&gt;I’m very happy to be speaking at Oracle Code One for my first time.
 Even though I have been to more than a few &lt;a href=&quot;/blog/assets/20151027-megabadge.jpg&quot;&gt;JavaOnes&lt;/a&gt;, I’ve never been to its
 successor.  Looking through the &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19&quot;&gt;content catalog&lt;/a&gt;, here are my day by day picks.  I’m including my sessions for reference, but also picking the one I’d attend if I wasn’t speaking at that timeslot.&lt;/p&gt;
@@ -44,9 +44,10 @@ really well.  His delivery is crisp and uncompromising.&lt;/p&gt;
 
 &lt;h4 id=&quot;0230-pm---0315-pm--moscone-south---room-202---evolving-java-for-the-microservice-and-serverless-era-dev2556---graeme-rocher&quot;&gt;02:30 PM - 03:15 PM | Moscone South - Room 202 - Evolving Java for the Microservice and Serverless Era [DEV2556] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV2556&quot;&gt;Graeme Rocher&lt;/a&gt;&lt;/h4&gt;
 
-&lt;p&gt;Quarkus, Micronaut, Helidon are the big three Java microservices
-players.  This one will likely give you the Micronaut perspective.  Take
-a side of Quarkus and Helidon with this and call me in the morning.&lt;/p&gt;
+&lt;p&gt;Quarkus, Micronaut, Helidon are the big three Java microservices players
+&lt;em&gt;new since 2017&lt;/em&gt;.  This one will likely give you the Micronaut
+perspective.  Take a side of Quarkus and Helidon with this and call me
+in the morning.&lt;/p&gt;
 
 &lt;h4 id=&quot;0400-pm---0445-pm--moscone-south---room-204---supersonic-subatomic-java-with-quarkus-dev1799---burr-sutter&quot;&gt;04:00 PM - 04:45 PM | Moscone South - Room 204 - Supersonic, Subatomic Java with Quarkus [DEV1799] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV1799&quot;&gt;Burr Sutter&lt;/a&gt;&lt;/h4&gt;
 
@@ -218,7 +219,7 @@ programming jobs so fun and rewarding.&lt;/p&gt;
 &lt;h4 id=&quot;0315-pm---0400-pm--moscone-south---room-314---our-experience-in-writing-a-kubernetes-operator-dev5377---mark-nelson-ryan-eberhard&quot;&gt;03:15 PM - 04:00 PM | Moscone South - Room 314 - Our Experience in Writing a Kubernetes Operator [DEV5377] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV5337&quot;&gt;Mark Nelson, Ryan Eberhard&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;Operators are the future of the future.  These guys wrote one from the
-outside in.  Their lessons are valuable.&lt;/p&gt;</content><author><name></name></author><summary type="html">I’m very happy to be speaking at Oracle Code One for my first time. Even though I have been to more than a few JavaOnes, I’ve never been to its successor. Looking through the content catalog, here are my day by day picks. I’m including my sessions for reference, but also picking the one I’d attend if I wasn’t speaking at that timeslot.</summary></entry><entry><title type="html">Microsoft Edge Dev, Windows Subsystem for Linux, Emacs Markdown Mode, and URLs</title><link href="/blog/2019/08/14/emacs-edge-dev.html" rel="alternate" type="text/html" title="Microsoft Edge Dev, Windows Subsystem for Linux, Emacs Markdown Mode, and URLs" /><published>2019-08-14T15:00:00-04:00</published><updated>2019-08-14T15:00:00-04:00</updated><id>/blog/2019/08/14/emacs-edge-dev</id><content type="html" xml:base="/blog/2019/08/14/emacs-edge-dev.html">&lt;p&gt;This post shows how to make it so clicking on a hyperlink in GNU Emacs
+outside in.  Their lessons are valuable.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Microsoft Edge Dev, Windows Subsystem for Linux, Emacs Markdown Mode, and URLs</title><link href="/blog/2019/08/14/emacs-edge-dev.html" rel="alternate" type="text/html" title="Microsoft Edge Dev, Windows Subsystem for Linux, Emacs Markdown Mode, and URLs" /><published>2019-08-14T15:00:00-04:00</published><updated>2019-08-14T15:00:00-04:00</updated><id>/blog/2019/08/14/emacs-edge-dev</id><content type="html" xml:base="/blog/2019/08/14/emacs-edge-dev.html">&lt;p&gt;This post shows how to make it so clicking on a hyperlink in GNU Emacs
 running in the Windows Subsystem for Linux (WSL) on Windows 10 causes
 the link to open up in Microsoft Edge Insider’s Edition.&lt;/p&gt;
 

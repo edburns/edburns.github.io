@@ -1,5 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-08-26T23:43:08-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Oracle Code One 2019 Conference Picks</title><link href="/blog/2019/08/26/oracle-code-one-2019-picks.html" rel="alternate" type="text/html" title="Oracle Code One 2019 Conference Picks" /><published>2019-08-26T03:00:00-04:00</published><updated>2019-08-26T03:00:00-04:00</updated><id>/blog/2019/08/26/oracle-code-one-2019-picks</id><content type="html" xml:base="/blog/2019/08/26/oracle-code-one-2019-picks.html">&lt;p&gt;I’m very happy to be speaking at Oracle Code One for my first time.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-16T12:47:49-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Oracle Code One 2019: Venkat Subramanium</title><link href="/blog/2019/09/15/oracle-code-one-2019-venkat-JVM-languages.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Venkat Subramanium" /><published>2019-09-15T18:00:00-04:00</published><updated>2019-09-15T18:00:00-04:00</updated><id>/blog/2019/09/15/oracle-code-one-2019-venkat-JVM-languages</id><content type="html" xml:base="/blog/2019/09/15/oracle-code-one-2019-venkat-JVM-languages.html">&lt;p&gt;Raw notes from Venkat’s @venkat_s session.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-venkat.jpg&quot; alt=&quot;Venkat Subramaniam&quot; title=&quot;Venkat&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.agiledeveloper.com/downloads.html&quot;&gt;Download code samples&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;programming-languages-are-like-vehicles&quot;&gt;Programming Languages are like Vehicles&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mastery of the “polyglot” tool.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;accessing-files&quot;&gt;Accessing Files&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Groovy and Scala&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Showing how to do simple file io in different languages.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The only JVM language that insists on checked exceptions is Java.  The
+other ones don’t.  “The other languages treat programmers as adults”.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;interacting-with-a-process&quot;&gt;Interacting with a process&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Groovy&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Garbage collection has a few mistakes.  For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;finalize&lt;/code&gt;.  GC
+is unpredictable.  “If they want to rename &lt;code class=&quot;highlighter-rouge&quot;&gt;finalize&lt;/code&gt; it should be
+renamed &lt;code class=&quot;highlighter-rouge&quot;&gt;badIdea&lt;/code&gt;.  So it has been deprecated.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;System.gc() does nothing.  They should rename it to &lt;code class=&quot;highlighter-rouge&quot;&gt;hope&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;why-is-this-more-java-than-others&quot;&gt;Why is this more Java than others?&lt;/h1&gt;
+
+&lt;p&gt;I tuned out to get the picture above, but when I looked up it was still
+Java language.  For example, autoclosable.  Showed how to use a factory
+method that applies the “execute around method” pattern, but without any
+annotation stuff.&lt;/p&gt;
+
+&lt;p&gt;In Scala it is the &lt;code class=&quot;highlighter-rouge&quot;&gt;loan&lt;/code&gt; pattern.&lt;/p&gt;
+
+&lt;p&gt;This is useful for policy enforcement.  “One of my most favorite
+patterns in programming”.&lt;/p&gt;
+
+&lt;h1 id=&quot;traits-in-scala&quot;&gt;Traits in Scala&lt;/h1&gt;
+
+&lt;h2 id=&quot;highlights&quot;&gt;Highlights&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;trait Friend {
+  def listen(name: String) = println(&quot;I'm listening...&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Compiles down to an interface.  What’s the big deal?  How does this
+differ from default methods in interfaces?  Traits can be “stackable”.
+You can take multiple traits and stack them for a given object.  When
+you call a method on a trait, if it’s not implemented it goes up the
+chain. Seems like the Action Responder chain in Objective C.&lt;/p&gt;
+
+&lt;p&gt;This leads to the ability to do “mixins”.&lt;/p&gt;
+
+&lt;h1 id=&quot;joining-strings-in-java-8&quot;&gt;Joining Strings in Java 8&lt;/h1&gt;
+
+&lt;h2 id=&quot;print-a-list-of-strings-in-uppercase-that-are-of-length-5&quot;&gt;Print a list of strings, in uppercase, that are of length 5.&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The stupid comma at the end.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;StringBuilder vs. StringBuffer&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;This is an example of simple code that gets too complex.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The Streams API is easier.  &lt;code class=&quot;highlighter-rouge&quot;&gt;Collectors&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;“When I learned about &lt;code class=&quot;highlighter-rouge&quot;&gt;joining&lt;/code&gt;, I cried that night.”&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;lazy-in-scala-and-kotlin-short-circuiting&quot;&gt;lazy in Scala and Kotlin, Short Circuiting&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The function is not called when it’s not needed.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;argument-matching-in-kotlin&quot;&gt;Argument Matching in Kotlin&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-venkat-arg-matching.jpg&quot; alt=&quot;arg&quot; title=&quot;arg&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I am pretty sure Venkat should take up stand up comedy.&lt;/p&gt;
+
+&lt;h1 id=&quot;auto-casting-in-kotlin&quot;&gt;Auto Casting in Kotlin&lt;/h1&gt;
+
+&lt;h1 id=&quot;creating-xml-documents-in-groovy&quot;&gt;Creating XML Documents in Groovy&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;nice way to generate XML from code.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-venkat-groovy-xml.jpg&quot; alt=&quot;xml&quot; title=&quot;xml&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;tail-call-optimization-in-scala&quot;&gt;Tail call optimization in Scala&lt;/h1&gt;
+
+&lt;p&gt;No time&lt;/p&gt;
+
+&lt;h1 id=&quot;extension-methods-in-kotlin&quot;&gt;Extension methods in Kotlin&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Extension functions do not modify the bytecode.  They become static
+methods somewhere else.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Paves the way to create fluency in your DSLs&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Venkat’s @venkat_s session.</summary></entry><entry><title type="html">Oracle Code One 2019 Conference Picks</title><link href="/blog/2019/08/26/oracle-code-one-2019-picks.html" rel="alternate" type="text/html" title="Oracle Code One 2019 Conference Picks" /><published>2019-08-26T03:00:00-04:00</published><updated>2019-08-26T03:00:00-04:00</updated><id>/blog/2019/08/26/oracle-code-one-2019-picks</id><content type="html" xml:base="/blog/2019/08/26/oracle-code-one-2019-picks.html">&lt;p&gt;I’m very happy to be speaking at Oracle Code One for my first time.
 Even though I have been to more than a few &lt;a href=&quot;/blog/assets/20151027-megabadge.jpg&quot;&gt;JavaOnes&lt;/a&gt;, I’ve never been to its
 successor.  Looking through the &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19&quot;&gt;content catalog&lt;/a&gt;, here are my day by day picks.  I’m including my sessions for reference, but also picking the one I’d attend if I wasn’t speaking at that timeslot.&lt;/p&gt;
 
@@ -1939,22 +2067,4 @@ template provided by Oracle.&lt;/p&gt;
 &lt;p&gt;Watch this space, and the twitters account
 &lt;a href=&quot;https://twitter.com/edburns/&quot;&gt;@edburns&lt;/a&gt; and
 &lt;a href=&quot;https://twitter.com/reza_rahman&quot;&gt;@reza_rahman&lt;/a&gt;, for upcoming
-announcments about Microsoft’s plans for Java EE on Azure.&lt;/p&gt;</content><author><name></name></author><summary type="html">As mentioned in my previous post, I joined Microsoft “to enable Java EE developers on Azure.” The team I joined at Microsoft has already been working on this goal for some time, so naturally I need to take stock of the current offerings, whatever they may be. As African American tennis great Arthur Ashe said, “Start where you are. Use what you have. Do what you can.” It turns out there is an existing template in the Azure Marketplace for Oracle WebLogic Server 12.1.2. Now, this is admittedly ancient, supporting only Java EE 6 (Servlet 3.0, JSF 2.1, CDI 1.0, etc). Microsoft will be doing much better than this very soon, but this post documents how to get WLS 12.1.2 up and running on Azure as it stands today. This post will show how to do the following:</summary></entry><entry><title type="html">Joining Microsoft</title><link href="/blog/2019/05/23/joining-microsoft.html" rel="alternate" type="text/html" title="Joining Microsoft" /><published>2019-05-23T14:01:00-04:00</published><updated>2019-05-23T14:01:00-04:00</updated><id>/blog/2019/05/23/joining-microsoft</id><content type="html" xml:base="/blog/2019/05/23/joining-microsoft.html">&lt;p&gt;I am so excited to be joining Microsoft as Principal Java Architect in
-their Java Tooling and Experiences team.  I hope to help to make the
-future Java on Azure, by establishing Azure as the preferred cloud for
-all Java workloads.&lt;/p&gt;
-
-&lt;p&gt;I’ve been fortunate to have worked at Sun during their heyday, and I
-recall from that time a great admiration for the way Microsoft focused
-on developers (developers developers developers).  In particular, the
-Project Rave/JavaStudio Creator effort was heavily influenced by
-VisualBasic and its associated tooling.  I look forward to being a part
-of that kind of company again.&lt;/p&gt;
-
-&lt;p&gt;I will be working with my old pal and colleague Reza Rahman to enable
-Java EE and Jakarta EE developers on Azure.  We’re hoping to also
-support Microprofile as well.&lt;/p&gt;
-
-&lt;p&gt;There is a mountain of new stuff for me here, so if I’ve ever asked you
-for technical help in the past, I will likely ask you again in the very near
-future, and I’ll offer the same help in return, as best I can.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am so excited to be joining Microsoft as Principal Java Architect in their Java Tooling and Experiences team. I hope to help to make the future Java on Azure, by establishing Azure as the preferred cloud for all Java workloads.</summary></entry></feed>
+announcments about Microsoft’s plans for Java EE on Azure.&lt;/p&gt;</content><author><name></name></author><summary type="html">As mentioned in my previous post, I joined Microsoft “to enable Java EE developers on Azure.” The team I joined at Microsoft has already been working on this goal for some time, so naturally I need to take stock of the current offerings, whatever they may be. As African American tennis great Arthur Ashe said, “Start where you are. Use what you have. Do what you can.” It turns out there is an existing template in the Azure Marketplace for Oracle WebLogic Server 12.1.2. Now, this is admittedly ancient, supporting only Java EE 6 (Servlet 3.0, JSF 2.1, CDI 1.0, etc). Microsoft will be doing much better than this very soon, but this post documents how to get WLS 12.1.2 up and running on Azure as it stands today. This post will show how to do the following:</summary></entry></feed>

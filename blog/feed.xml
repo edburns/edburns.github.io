@@ -1,5 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-16T17:18:00-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Oracle Code One 2019: Elliotte Rusty Harold Bugs</title><link href="/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Elliotte Rusty Harold Bugs" /><published>2019-09-15T21:30:00-04:00</published><updated>2019-09-15T21:30:00-04:00</updated><id>/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs</id><content type="html" xml:base="/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs.html">&lt;p&gt;Raw notes from Elliotte Rusty Harold’s &lt;a href=&quot;https://twitter.com/elharo&quot;&gt;@elharo&lt;/a&gt; session&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-17T15:59:28-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Oracle Code One 2019: Martijn Verburg, Koichi Sakata, Mattias Karlsson</title><link href="/blog/2019/09/16/oracle-code-one-2019-martijn-matthias-koichi.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Martijn Verburg, Koichi Sakata, Mattias Karlsson" /><published>2019-09-16T21:30:00-04:00</published><updated>2019-09-16T21:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-martijn-matthias-koichi</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-martijn-matthias-koichi.html">&lt;p&gt;Raw notes from @jyukutyo, @matkar, @karianna&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190917-bcbcbl.jpg&quot; alt=&quot;Mattias, Martijn, and Koichi&quot; title=&quot;MMK&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;building-code&quot;&gt;Building Code&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190917-bcbcbl-code.jpg&quot; alt=&quot;code&quot; title=&quot;code&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190917-bcbcbl-code-01.jpg&quot; alt=&quot;code 01&quot; title=&quot;code 01&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;interesting-aspects-of-the-discission&quot;&gt;Interesting aspects of the discission&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;English vs. Local language in code.  For example if your time is all
+fluent in Kanji, it might be great to just write the actual code in
+Kanji.  However, if you want to consider diversity and inclusion,
+doing so may be a barrier to entry.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Open Source while being employed, you need to consider who owns the
+code?  Your employment contract is the authority on this matter.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;build-community&quot;&gt;Build Community&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Mattias told the origin myth of Jfokus: started as a JUG, then became
+a juggernaut of Nordic conferences.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Koichi talked about the KanJava JUG.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Battery running out!&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @jyukutyo, @matkar, @karianna</summary></entry><entry><title type="html">Oracle Code One 2019: Elliotte Rusty Harold Bugs</title><link href="/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Elliotte Rusty Harold Bugs" /><published>2019-09-15T21:30:00-04:00</published><updated>2019-09-15T21:30:00-04:00</updated><id>/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs</id><content type="html" xml:base="/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs.html">&lt;p&gt;Raw notes from Elliotte Rusty Harold’s &lt;a href=&quot;https://twitter.com/elharo&quot;&gt;@elharo&lt;/a&gt; session&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-elliotte.jpg&quot; alt=&quot;Elliotte&quot; title=&quot;Elliotte&quot; /&gt;&lt;/p&gt;
 
@@ -1250,195 +1287,4 @@ agility: Quarkus EE.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Create a native Docker image on your machine.  This is comporable to &lt;code class=&quot;highlighter-rouge&quot;&gt;go&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Adam Bien’s session.</summary></entry><entry><title type="html">Learning Azure: Build 2018 Sessions</title><link href="/blog/2019/07/26/learning-azure-build-2018-sessions.html" rel="alternate" type="text/html" title="Learning Azure: Build 2018 Sessions" /><published>2019-07-26T17:00:00-04:00</published><updated>2019-07-26T17:00:00-04:00</updated><id>/blog/2019/07/26/learning-azure-build-2018-sessions</id><content type="html" xml:base="/blog/2019/07/26/learning-azure-build-2018-sessions.html">&lt;p&gt;I am ardently learning how to be productive on the inside of Azure and
-this involves reading docs.  My current focus is the Azure Marketplace,
-and I observed that several of the docs pages, &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/marketplace/cloud-partner-portal/azure-applications/cpp-azure-app-offer&quot;&gt;such as this one about
-the “solution template” Azure Marketplace offer
-type&lt;/a&gt;
-included videos from Microsoft Build 2018.  This prompted me to wonder,
-“what other useful Azure related talks happened at Build 2018?”  So, I
-went over to &lt;a href=&quot;https://www.youtube.com/playlist?list=PLlrxD0HtieHg7uB3_amVXvaRgxIcXLtYD&quot;&gt;the YouTube channel of all the Build 2018
-videos&lt;/a&gt;
-and scraped this list, which I’ve sorted into categories in decreasing
-order of relevance to my work.&lt;/p&gt;
-
-&lt;h3 id=&quot;azure-related-sessions&quot;&gt;Azure Related Sessions&lt;/h3&gt;
-
-&lt;h4 id=&quot;azure-marketplace-related-sessions&quot;&gt;Azure Marketplace Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=h2CyGDpmSs8&quot;&gt;Building Apps and Services for Azure Marketplace and AppSource&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=uySuOZJTmkM&quot;&gt;Building Solution Templates and Managed Applications for the Azure Marketplace&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=9r2zvZWZ4fw&quot;&gt;Making production deployments safe and repeatable using declarative infrastructure and Azure&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;azure-kubernetes-related-sessions&quot;&gt;Azure Kubernetes Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ZazUJTXZFiY&quot;&gt;Why Kubernetes on Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=-cqSl084Jl4&quot;&gt;Best Practices with Azure &amp;amp; Kubernetes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;containers-related-sessions&quot;&gt;Containers Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=X4Puu0BS3GE&quot;&gt;Building custom container images with VSTS and registering them with Azure Container Registry (ACR)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=EthBRXMcWao&quot;&gt;Easily run containers on Azure using Azure Container Instances (ACI)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=lyKrj1gt5Ws&quot;&gt;Getting started with containers on Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=YuPioav_xCc&quot;&gt;Modernize applications and reduce TCO with Windows containers on Azure Service Fabric&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=izMd9qZLq-E&quot;&gt;Modernizing existing .NET applications with Windows Containers and Azure cloud&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=DVwqi0JHNbI&quot;&gt;Multiplayer Server Scaling with Azure Container Instances&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;microservices-related-sessions&quot;&gt;Microservices Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=0ab2wIGMbpY&quot;&gt;Azure Service Fabric: The road ahead for microservices&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=_5HBBlU0vCA&quot;&gt;Building Resilient Microservices with .NET Core and Azure Container Services (AKS)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=I_UIsbLKBpg&quot;&gt;Microservices and Serverless with Azure and Visual Studio Code&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;data-and-database-related-sessions&quot;&gt;Data and Database Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Zq3EIFy3_Xw&quot;&gt;A Developer’s Introduction to Big Data Processing with Azure Databricks&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=D51Ku0lPF78&quot;&gt;Azure SQL DB Managed Instances - Built to easily modernize application data layer&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=pEdoiamnvW8&quot;&gt;Azure SQL Database the intelligent database  Your database on Autopilot&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=SEwufCE0nyc&quot;&gt;Build a Wordpress app using Azure Database for MySQL service&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=6Q9wrVCZYSM&quot;&gt;Build modern and intelligent applications using Azure Database for PostgreSQL&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=mv-kq6fzBes&quot;&gt;Develop scalable Web Apps with Azure Database for MySQL and MariaDB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=AZtmbCsRhjs&quot;&gt;Develop scalable analytical solutions with Azure Data Factory &amp;amp; Azure SQL Data Warehouse&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ZUtrQS-s1Zg&quot;&gt;Ingestion in data pipelines with Managed Kafka Clusters in Azure HDInsight&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=XlVhJ9BPqYc&quot;&gt;Securing your data with Azure SQL DB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=GjnzIVbl0K4&quot;&gt;Building event-driven Serverless Apps with Azure Functions and Azure Cosmos DB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=tBollT76thk&quot;&gt;Explore Azure Cosmos DB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=O_7UYwRa2IQ&quot;&gt;How to migrate your existing MongoDB and Cassandra Apps to Azure Cosmos DB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=aCfWtSlG86s&quot;&gt;How to take advantage of scale out graph in Azure Cosmos DB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=SkF2VXmSNwQ&quot;&gt;Tales from the trenches with Azure SQL DB: Best practices from real customer deployments&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=V_C7DlKVofc&quot;&gt;Technical overview of Azure Cosmos DB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=XGwMP6J19V0&quot;&gt;Understanding Operations of Azure Cosmos DB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=iBHRlYFGLSM&quot;&gt;Streaming Big Data in Azure with Kafka and Event Hubs&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=YIb_xpfZB-s&quot;&gt;Easily migrate MySQL/PostgreSQL apps to Azure managed service&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=2DYpa5YWoWk&quot;&gt;Migrating and modernizing your data estate to Azure with Data Migration Services&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;ai-related-sessions&quot;&gt;AI Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=5ljZlJX3Eq4&quot;&gt;AI for Earth : Analyzing Global Data with Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=EzHOsqpWgwI&quot;&gt;Building Custom AI Models on Azure using TensorFlow and Keras&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=vu6cPISxj9Q&quot;&gt;Find Security Flaws with AI using Microsoft Security Risk Detection, VSTS, and Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=q9P-ucbplbg&quot;&gt;Deep learning at scale in Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=hg1bkjX8Xsg&quot;&gt;From Remote Graphics Workstation to Machine Learning  GPU for every workload in Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=oyLy5Ac4ru4&quot;&gt;ISV Showcase: End-to-end Machine Learning using H2O on Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=iKfqZZnyrZs&quot;&gt;Migrating Existing Open Source Machine Learning to Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=_GUrl-BCmAc&quot;&gt;Smart Insights with Machine Learning from Azure Monitoring&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=5hJfLr5hvOI&quot;&gt;What’s new with Azure Machine Learning&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=BMgQAHIx2eY&quot;&gt;Hyperscale hardware: ML at scale on top of Azure + FPGA&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;devops-related-sessions&quot;&gt;DevOps Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Glh27rgDXjE&quot;&gt;Azure DevOps VSTS&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=P72xfZLkFJ0&quot;&gt;Azure DevOps with VSTS&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=RD2cC-eWBOA&quot;&gt;Container DevOps in Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=vPZiwi-15_U&quot;&gt;Continuous Monitoring for DevOps with Azure Application Insights &amp;amp; Log Analytics&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=_YGR9hOR_PI&quot;&gt;Enabling a CI/CD pipeline for Azure DevOps Projects and VSTS for your existing ASP.NET 4 website&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=itwqMf9aR0w&quot;&gt;Getting started with Azure DevOps Projects to setup CI/CD pipeline for ASP.NET Core &amp;amp; Containers&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=3etwjubReJs&quot;&gt;Getting started with Azure DevOps Projects to setup your CI/CD pipeline for Node.js and Containers&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=HMIxLaisKiI&quot;&gt;Getting started with CI/CD &amp;amp; Azure Container Service (AKS) powered by VSTS&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=35XZDf_Y62Y&quot;&gt;Tooling and DevOps for the Hybrid Cloud with Azure and Azure Stack&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;security-related-sessions&quot;&gt;Security Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=dxMaYF2GB7o&quot;&gt;Govern your Azure environment through Azure Policy&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=BfGgrvLYJks&quot;&gt;Lock down access to Azure using identity&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=XLascx3LsXA&quot;&gt;Secure and manage your Azure resources&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=yozSfPp_R3k&quot;&gt;Secure and power the intelligent edge with Azure Sphere&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;event-and-messaging-related-sessions&quot;&gt;Event and Messaging Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=AbMyhxIK8Ug&quot;&gt;Azure Messaging and event based architecture in the real world: Lessons learned rebuilding&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=tNB7MMyhADs&quot;&gt;Azure Service Bus and Logic Apps for messaging and process automation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;iot-related-sessions&quot;&gt;IoT Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=01kHKNN3z-0&quot;&gt;Azure IoT Edge: a breakthrough platform and service running cloud intelligence on any device.&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=1wyC8Sg6Jow&quot;&gt;Azure IoT Platform services - The modern IoT developer toolbox&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=4YRgmlYFBC8&quot;&gt;Azure IoT Solutions - Get your IoT project started in minutes with SaaS and preconfigured&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;functions-related-sessions&quot;&gt;Functions Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=D7kGwrp68eI&quot;&gt;Azure Functions and Microsoft Graph&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=N5I59z3qY0A&quot;&gt;Identity and secure resource access in App Service and Azure Functions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=R_MHXdcEE9U&quot;&gt;Mobile apps built with Xamarin, using a serverless Azure Functions back-end&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=sqnAqFFZmGM&quot;&gt;Smarter data analysis with JavaScript and Azure ML functions in Excel&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=fFT2IYlJbNY&quot;&gt;What’s New in Azure Serverless&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=gSEz7ppOB_Q&quot;&gt;What’s new for Serverless Computing in Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=yVnuIpAUAoE&quot;&gt;Azure has your back! Keeping PaaS and Serverless apps responsive and stable&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;tips-and-tricks-type-sessions&quot;&gt;Tips and Tricks Type Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=088e5IUqF6g&quot;&gt;Azure Tips and Tricks: Become more productive with azure in 20 minutes&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=mG0BbX3LpTM&quot;&gt;5 Azure services every developers needs to know about&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=hMFrXa8sONM&quot;&gt;Great Tools Make for a Productive Azure Experience&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=G9615XmUfas&quot;&gt;Technology Keynote: Microsoft Azure&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;programming-platform-related-sessions&quot;&gt;Programming Platform Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=9w9-BmNs12Y&quot;&gt;From Zero to Azure with Python and Visual Studio Code&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=N2S1sGr5fUc&quot;&gt;Node.js with CI on Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=2xepWzZdEJg&quot;&gt;Cloud-connected apps with Visual Studio, Xamarin, and Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=dEZkQNNpSIQ&quot;&gt;Media Streaming Apps with Azure and Xamarin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;cross-cloud-related-sessions&quot;&gt;Cross Cloud Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=_uoIFJLY5Ts&quot;&gt;Hybrid multi-cloud strategies using Terraform OSS with Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=I5y0sracIB8&quot;&gt;Be an integration superhero with Azure and build API-enabled and connected enterprises&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=pl2ZkkoTLQ8&quot;&gt;Using Pivotal Cloud Foundry across Azure and Azure Stack&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=kcHhMjymt_0&quot;&gt;App Modernization with Microsoft Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=zCc3wu3oMho&quot;&gt;Architecting and Building Hybrid Cloud Apps for Azure and Azure Stack&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;business-related-sessions&quot;&gt;Business Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=5k6Ema0m2Ys&quot;&gt;Friction Free Onboarding with Azure Monitor to Enable Monitoring Your Apps and Infrastructure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=Pzbnd4tNwNU&quot;&gt;Managing global ecommerce at hyperscale with Azure&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=4hCHv4UzvuQ&quot;&gt;Transforming Manufacturing, Energy &amp;amp; Utilities industries with Azure Stream Analytics&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ZuQxkE0Xf8g&quot;&gt;Increase customer conversion rates by customizing your Sign In Experience with Azure AD B2C&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;reliability-related-sessions&quot;&gt;Reliability Related Sessions&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=GoXqEwvCM9k&quot;&gt;Design your applications that are “always-on” using Azure Availability Zones and Regions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=161ZvEQWsQQ&quot;&gt;Developing large-scale parallel compute and HPC solutions with Azure Batch&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=t3Vo37V9oU8&quot;&gt;Inside Azure Datacenter Architecture with Mark Russinovich&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;misc&quot;&gt;Misc&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=NRL4DenZL9I&quot;&gt;Azure Blockchain  Create and deploy multi-party applications with Workbench&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=s1MwAwwqCAE&quot;&gt;Build and manage real-time applications easily with the all new Azure SignalR Service&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=JEfeBbgh_gM&quot;&gt;Build intelligent analytics apps with Microsoft Graph and Azure capabilities&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=yjKZVlC--qk&quot;&gt;Leveraging Azure Databricks to minimize time to insight by combining Batch and Stream&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=RB6FZN_kWMU&quot;&gt;Microsoft Graph Workflows to Automate Azure AD User and Group Management&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=HG3FD_gdTCo&quot;&gt;Supercharging your workflow with App Center and Azure&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">I am ardently learning how to be productive on the inside of Azure and this involves reading docs. My current focus is the Azure Marketplace, and I observed that several of the docs pages, such as this one about the “solution template” Azure Marketplace offer type included videos from Microsoft Build 2018. This prompted me to wonder, “what other useful Azure related talks happened at Build 2018?” So, I went over to the YouTube channel of all the Build 2018 videos and scraped this list, which I’ve sorted into categories in decreasing order of relevance to my work.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Adam Bien’s session.</summary></entry></feed>

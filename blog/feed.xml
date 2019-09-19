@@ -1,5 +1,130 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-19T12:02:33-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Oracle Code One 2019: Takin’ Care of Business, Java Edition</title><link href="/blog/2019/09/19/oracle-code-one-2019-tcb.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Takin' Care of Business, Java Edition" /><published>2019-09-19T11:00:00-04:00</published><updated>2019-09-19T11:00:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-tcb</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-tcb.html">&lt;p&gt;&lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Copyright 2016&lt;/a&gt; Ed Burns. &lt;img src=&quot;/blog/assets/ccby.png&quot; alt=&quot;ccby&quot; title=&quot;ccby&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-19T17:15:20-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Oracle Code One 2019: Reza Rahman: Jakarta EE Recepies</title><link href="/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Reza Rahman: Jakarta EE Recepies" /><published>2019-09-19T16:15:00-04:00</published><updated>2019-09-19T16:15:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee.html">&lt;p&gt;Raw notes from @reza_rahman Jakarta EE Recepies.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza.jpg&quot; alt=&quot;Reza&quot; title=&quot;Reza&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;servlet-4&quot;&gt;Servlet 4&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Value add: HTTP/2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;json-binding&quot;&gt;JSON Binding&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;JSON is now a first class citizen of the platform.  Provides built-in
+way to support “application/json” for POJOs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;json-pointer-json-patch&quot;&gt;JSON Pointer JSON Patch&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;This one is really valuable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza-json-patch.jpg&quot; alt=&quot;Patch&quot; title=&quot;Patch&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;server-sent-events&quot;&gt;Server Sent Events&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Another important part of HTML5 in EE.  Along with WebSockets.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jakarta-security&quot;&gt;Jakarta Security&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Addresses a long festering problem: Security was never addressed
+cohesively.  As a result it was always vendor specific.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Took a cross cutting look at all the specs and how they did security.
+Unified it as well as possible.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Introduced a &lt;code class=&quot;highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; concept.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;cdi-2&quot;&gt;CDI 2&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Allows it to be used from Java SE, outside of EE. &lt;strong&gt;This is vital for
+allowing CDI to be used from Microprofile&lt;/strong&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Portable SPI simplifications and enhancements.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;adopting-java-se-8&quot;&gt;Adopting Java SE 8&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza-se8-ee8.jpg&quot; alt=&quot;se8&quot; title=&quot;se8&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;impls&quot;&gt;Impls&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jakarta.ee/compatibility&quot;&gt;https://jakarta.ee/compatibility&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Eclipse GlassFish&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;WildFly&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Open Liberty&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;microprofile&quot;&gt;Microprofile&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://microprofile.io/&quot;&gt;https://microprofile.io/&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Jakarta EE 8 covers most of what you need in monolithic applications&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Microprofile has kept Server Side Java alive and relevant while the
+hard, no technical Jakarta EE 8 work happened.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;community-questions&quot;&gt;Community Questions&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza-questions.jpg&quot; alt=&quot;questions&quot; title=&quot;questions&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://bit.ly/2mhatfl&quot;&gt;http://bit.ly/2mhatfl&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;jakartaeenext&quot;&gt;JakartaEE.next&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Jakarta NoSQL&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Deprecating EJB&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;OAuth2, OpenID Connect, JWT&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ManagedServiceExecutorServiceDefinition&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Java SE alignment&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Jakarta Concurrency&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MVC&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Other ideas.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @reza_rahman Jakarta EE Recepies.</summary></entry><entry><title type="html">Oracle Code One 2019: Takin’ Care of Business, Java Edition</title><link href="/blog/2019/09/19/oracle-code-one-2019-tcb.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Takin' Care of Business, Java Edition" /><published>2019-09-19T11:00:00-04:00</published><updated>2019-09-19T11:00:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-tcb</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-tcb.html">&lt;p&gt;&lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Copyright 2016&lt;/a&gt; Ed Burns. &lt;img src=&quot;/blog/assets/ccby.png&quot; alt=&quot;ccby&quot; title=&quot;ccby&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If you attended the JCP party Monday this week and were able to hear
 &lt;a href=&quot;http://www.kousenit.com/&quot;&gt;Ken Kousen&lt;/a&gt; singing “Takin’ Care of
@@ -1133,163 +1258,4 @@ wait-time for pods.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;https://github.com/aws-samples/machine-learning-using-k8s&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Arun Gupta’s session.</summary></entry><entry><title type="html">J4K-2019: Paul Parkinson: Helidon and Kubernetes</title><link href="/blog/2019/07/30/paul-parkinson-helidon.html" rel="alternate" type="text/html" title="J4K-2019: Paul Parkinson: Helidon and Kubernetes" /><published>2019-07-30T11:00:00-04:00</published><updated>2019-07-30T11:00:00-04:00</updated><id>/blog/2019/07/30/paul-parkinson-helidon</id><content type="html" xml:base="/blog/2019/07/30/paul-parkinson-helidon.html">&lt;p&gt;Raw Notes from Paul Parkinson’s session.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-paul-parkinson.jpg&quot; alt=&quot;Paul Parkinson&quot; title=&quot;Paul Parkinson&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;workflow-of-getting-into-kubernetes&quot;&gt;Workflow of Getting into Kubernetes&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Service Broker, Kubernetes Secret, Microservice&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CloudEvents&lt;/code&gt; standard&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ServiceMesh, Istio, Envoy Data Plane&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Side note: Tracing has become easier.  &lt;code class=&quot;highlighter-rouge&quot;&gt;Kiali&lt;/code&gt;.  Uses opentracing,
-Jaeger, Zipkin.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Gave some background on Jaeger.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;WebLogic Kubernetes Operator&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Helidon SE&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Microframework&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Functional&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Reactive&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Tracing&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;No annotations&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Messaging client&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Helidon MP&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Full Microprofile standard&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Familiar to Java EE Devs&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Tracing&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;JTA/JPA&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Oracle DB feature integration&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Long Running Activities&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;long-running-activities&quot;&gt;Long Running Activities&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Annotations &lt;code class=&quot;highlighter-rouge&quot;&gt;@LRA&lt;/code&gt;.  These are the newer version of JTA&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ties in to DDD Bounded Contexts.  When decomposing the monolith and
-the DB in particular, this is where migration efforts fail.  Close
-attention needs to be paid.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;microservices-data-management-patterns&quot;&gt;Microservices Data Management Patterns&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;CQRS&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Access thru public APIs onlt&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Database per service&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;microservices-communication&quot;&gt;Microservices Communication&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;No locking&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Event based integration&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Pub/sub&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Event Sourcing&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;Gave basic definition, illustrated how it works.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;CQRS&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;Same story, gave definition and illustrated how it works.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Atomicity of Persisting Events and Database States&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;Oracle Advanced Queue: A messing system in the database.  16
-year old technology, but fits really well with Microservices.
-Guaranteed once delivery.  Idempotency for free.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;SAGA Pattern&lt;/p&gt;
-
-        &lt;ul&gt;
-          &lt;li&gt;
-            &lt;p&gt;A saga is a sequence of local transactions.  Two
-flavors. Choreography and Orchestration.  The latter is you have
-an orchestrator that controls the actions of the participants.&lt;/p&gt;
-          &lt;/li&gt;
-          &lt;li&gt;
-            &lt;p&gt;Compensating transactions.  Showed some code slides of
-complexity with and without AQ.&lt;/p&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;</content><author><name></name></author><summary type="html">Raw Notes from Paul Parkinson’s session.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Arun Gupta’s session.</summary></entry></feed>

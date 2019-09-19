@@ -1,5 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-17T15:59:28-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Oracle Code One 2019: Martijn Verburg, Koichi Sakata, Mattias Karlsson</title><link href="/blog/2019/09/16/oracle-code-one-2019-martijn-matthias-koichi.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Martijn Verburg, Koichi Sakata, Mattias Karlsson" /><published>2019-09-16T21:30:00-04:00</published><updated>2019-09-16T21:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-martijn-matthias-koichi</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-martijn-matthias-koichi.html">&lt;p&gt;Raw notes from @jyukutyo, @matkar, @karianna&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-19T12:02:33-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Oracle Code One 2019: Takin’ Care of Business, Java Edition</title><link href="/blog/2019/09/19/oracle-code-one-2019-tcb.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Takin' Care of Business, Java Edition" /><published>2019-09-19T11:00:00-04:00</published><updated>2019-09-19T11:00:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-tcb</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-tcb.html">&lt;p&gt;&lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Copyright 2016&lt;/a&gt; Ed Burns. &lt;img src=&quot;/blog/assets/ccby.png&quot; alt=&quot;ccby&quot; title=&quot;ccby&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you attended the JCP party Monday this week and were able to hear
+&lt;a href=&quot;http://www.kousenit.com/&quot;&gt;Ken Kousen&lt;/a&gt; singing “Takin’ Care of
+Business”, you may have noticed the lyrics were different.  If you are
+curious, here they are.&lt;/p&gt;
+
+&lt;h2 id=&quot;takin-care-of-business-java-edition&quot;&gt;Takin’ Care of Business, Java Edition&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;you get up Tuesday morning
+with the build system warning
+get the vpn into the server
+
+You identify the systems
+check the daemons, logs and pids,
+and the build, it's not lookin pretty
+
+There's a NullPointerException
+From some broken introspection
+And the findbugs report
+is looking gritty
+
+so you start to get annoyed
+at the hackers we employed
+but they like to work at java all day
+
+And you've been takin care of business
+every day
+takin care of business
+every way, you been
+takin care of business
+it's all right
+takin care of business
+debugging overtime, work out.
+
+jam
+
+So understand the ClassLoader
+if you wanna be a coder
+and the code you write runs without an error
+
+Get an open source debugger
+and you'll be a Java slugger
+and all the bugs will run away in terror
+
+People see you havin fun
+Just a codin in the sun
+Tell them that you like it that way
+
+It's the bugs that we avoid
+and we're all well employed
+We love to work at java all day
+and we be
+
+And you've been takin care of business
+every day
+takin care of business
+every way, you been
+takin care of business
+it's all right
+takin care of business
+debugging overtime, work out.
+
+jam
+
+drum and clap break
+
+take good care
+of our business
+every day
+every way
+
+jam
+
+repeat first verse
+
+you get up Tuesday morning
+with the build system warning
+get the vpn into the server
+
+You identify the systems
+check the daemons, logs and pids,
+and the build, it's not lookin pretty
+
+There's a NullPointerException
+From some broken introspection
+And the findbugs report
+is looking gritty
+
+so you start to get annoyed
+at the hackers we employed
+but they like to work at java all day
+
+And you've been takin care of business
+every day
+takin care of business
+every way, you been
+takin care of business
+it's all right
+takin care of business
+debugging overtime, work out.
+
+jam
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Copyright 2016 Ed Burns.</summary></entry><entry><title type="html">Oracle Code One 2019: Martijn Verburg, Koichi Sakata, Mattias Karlsson</title><link href="/blog/2019/09/17/oracle-code-one-2019-martijn-matthias-koichi.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Martijn Verburg, Koichi Sakata, Mattias Karlsson" /><published>2019-09-17T15:30:00-04:00</published><updated>2019-09-17T15:30:00-04:00</updated><id>/blog/2019/09/17/oracle-code-one-2019-martijn-matthias-koichi</id><content type="html" xml:base="/blog/2019/09/17/oracle-code-one-2019-martijn-matthias-koichi.html">&lt;p&gt;Raw notes from @jyukutyo, @matkar, @karianna&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190917-bcbcbl.jpg&quot; alt=&quot;Mattias, Martijn, and Koichi&quot; title=&quot;MMK&quot; /&gt;&lt;/p&gt;
 
@@ -36,7 +139,7 @@ a juggernaut of Nordic conferences.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Battery running out!&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @jyukutyo, @matkar, @karianna</summary></entry><entry><title type="html">Oracle Code One 2019: Elliotte Rusty Harold Bugs</title><link href="/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Elliotte Rusty Harold Bugs" /><published>2019-09-15T21:30:00-04:00</published><updated>2019-09-15T21:30:00-04:00</updated><id>/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs</id><content type="html" xml:base="/blog/2019/09/15/oracle-code-one-2019-elliotte-bugs.html">&lt;p&gt;Raw notes from Elliotte Rusty Harold’s &lt;a href=&quot;https://twitter.com/elharo&quot;&gt;@elharo&lt;/a&gt; session&lt;/p&gt;
+&lt;p&gt;Battery running out!&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @jyukutyo, @matkar, @karianna</summary></entry><entry><title type="html">Oracle Code One 2019: Elliotte Rusty Harold Bugs</title><link href="/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Elliotte Rusty Harold Bugs" /><published>2019-09-16T15:30:00-04:00</published><updated>2019-09-16T15:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs.html">&lt;p&gt;Raw notes from Elliotte Rusty Harold’s &lt;a href=&quot;https://twitter.com/elharo&quot;&gt;@elharo&lt;/a&gt; session&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-elliotte.jpg&quot; alt=&quot;Elliotte&quot; title=&quot;Elliotte&quot; /&gt;&lt;/p&gt;
 
@@ -245,7 +348,7 @@ attention to that.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;Label bugs as “Ready”, “Good First Issue” and “Help wanted”&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Elliotte Rusty Harold’s @elharo session</summary></entry><entry><title type="html">Oracle Code One 2019: Ray Tsang</title><link href="/blog/2019/09/15/oracle-code-one-2019-ray-kubernetes.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Ray Tsang" /><published>2019-09-15T21:30:00-04:00</published><updated>2019-09-15T21:30:00-04:00</updated><id>/blog/2019/09/15/oracle-code-one-2019-ray-kubernetes</id><content type="html" xml:base="/blog/2019/09/15/oracle-code-one-2019-ray-kubernetes.html">&lt;p&gt;Raw notes from Ray’s @saturnism session.  Ray is always in motion.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Elliotte Rusty Harold’s @elharo session</summary></entry><entry><title type="html">Oracle Code One 2019: Ray Tsang</title><link href="/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Ray Tsang" /><published>2019-09-16T15:30:00-04:00</published><updated>2019-09-16T15:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes.html">&lt;p&gt;Raw notes from Ray’s @saturnism session.  Ray is always in motion.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray.jpg&quot; alt=&quot;Ray Tsang&quot; title=&quot;Ray Tsang&quot; /&gt;&lt;/p&gt;
 
@@ -378,7 +481,7 @@ security group around it.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;kustomization.yaml&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Ray’s @saturnism session. Ray is always in motion.</summary></entry><entry><title type="html">Oracle Code One 2019: Venkat Subramanium</title><link href="/blog/2019/09/15/oracle-code-one-2019-venkat-JVM-languages.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Venkat Subramanium" /><published>2019-09-15T18:00:00-04:00</published><updated>2019-09-15T18:00:00-04:00</updated><id>/blog/2019/09/15/oracle-code-one-2019-venkat-JVM-languages</id><content type="html" xml:base="/blog/2019/09/15/oracle-code-one-2019-venkat-JVM-languages.html">&lt;p&gt;Raw notes from Venkat’s @venkat_s session.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Ray’s @saturnism session. Ray is always in motion.</summary></entry><entry><title type="html">Oracle Code One 2019: Venkat Subramanium</title><link href="/blog/2019/09/16/oracle-code-one-2019-venkat-JVM-languages.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Venkat Subramanium" /><published>2019-09-16T12:00:00-04:00</published><updated>2019-09-16T12:00:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-venkat-JVM-languages</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-venkat-JVM-languages.html">&lt;p&gt;Raw notes from Venkat’s @venkat_s session.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-venkat.jpg&quot; alt=&quot;Venkat Subramaniam&quot; title=&quot;Venkat&quot; /&gt;&lt;/p&gt;
 
@@ -1189,102 +1292,4 @@ complexity with and without AQ.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;</content><author><name></name></author><summary type="html">Raw Notes from Paul Parkinson’s session.</summary></entry><entry><title type="html">J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus</title><link href="/blog/2019/07/30/adam-bien-jakarta-ee.html" rel="alternate" type="text/html" title="J4K-2019: Adam Bien: Jakarta EE - Microprofile - Quarkus" /><published>2019-07-30T10:00:00-04:00</published><updated>2019-07-30T10:00:00-04:00</updated><id>/blog/2019/07/30/adam-bien-jakarta-ee</id><content type="html" xml:base="/blog/2019/07/30/adam-bien-jakarta-ee.html">&lt;p&gt;Raw Notes from Adam Bien’s session.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-adam-bien.jpg&quot; alt=&quot;Adam Bien&quot; title=&quot;Adam Bien&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;local&quot;&gt;Local&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ran archetype for simple Jakarta EE.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Stated, “no-one cares about distinction between Jakarta EE and
-Microprofile, they just use what’s there.”&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;“Time to first commit”: needs to be &amp;lt; 30 seconds.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Showed dependencies.  2: EE8 Jar, and Microprofile Jar&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Started WebSphere OpenLiberty&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Made a change to the rest endpoint, saw that the app was updated.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Demonstrates that the ThinWar needs to be less than 3kB.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;His little script rebuilt and deployed it.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;local-cloud&quot;&gt;Local Cloud&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;OpenShift, with minishift&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Then scaled with &lt;code class=&quot;highlighter-rouge&quot;&gt;oc scale dc j4k&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Then added Prometheus metrics, with &lt;code class=&quot;highlighter-rouge&quot;&gt;@Metered&lt;/code&gt; annotation on the REST
-endpoint.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Drive home again the “start with everytning (Jakarta EE) and strip it
-down as needed” idea&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Added metrics with &lt;code class=&quot;highlighter-rouge&quot;&gt;microprofile.metrics.MetricRegistry&lt;/code&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Side story: Hystrix for circuit breaker.  Netflix pulled support.
-However, Microprofile had it, so it was ok.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Skipped the actual impl of metrics.  Went to Quarkus.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;quarkus&quot;&gt;Quarkus&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ran quarkus maven archetype&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Ran quarkus runner.  Examined what was in the runner.  The &lt;code class=&quot;highlighter-rouge&quot;&gt;lib&lt;/code&gt;
-directory is like the base docker image.  The business logic is what
-changes and small.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Hit the “one war one server” message.  No need for hot deploy.  Just
-re-start the server.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;He thinks Quarkus takes the app server one step further because of its
-agility: Quarkus EE.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Added CDI.  Added Metrics.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;docker-native&quot;&gt;Docker Native&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Create a native Docker image on your machine.  This is comporable to &lt;code class=&quot;highlighter-rouge&quot;&gt;go&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Adam Bien’s session.</summary></entry></feed>
+&lt;h2 id=&quot;demo&quot;&gt;Demo&lt;/h2&gt;</content><author><name></name></author><summary type="html">Raw Notes from Paul Parkinson’s session.</summary></entry></feed>

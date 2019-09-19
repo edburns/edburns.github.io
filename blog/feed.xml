@@ -1,5 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-19T17:15:20-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Oracle Code One 2019: Reza Rahman: Jakarta EE Recepies</title><link href="/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Reza Rahman: Jakarta EE Recepies" /><published>2019-09-19T16:15:00-04:00</published><updated>2019-09-19T16:15:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee.html">&lt;p&gt;Raw notes from @reza_rahman Jakarta EE Recepies.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-19T18:01:02-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Oracle Code One 2019: Rafael Benevides</title><link href="/blog/2019/09/19/oracle-code-one-2019-rafa.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Rafael Benevides" /><published>2019-09-19T17:15:00-04:00</published><updated>2019-09-19T17:15:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-rafa</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-rafa.html">&lt;p&gt;Raw notes from @rafabene Quarkus&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-rafa.jpg&quot; alt=&quot;Rafa&quot; title=&quot;Rafa&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://bit.ly/quarkus&quot;&gt;https://bit.ly/quarkus&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;java-is-not-dead-yet&quot;&gt;Java is Not Dead Yet&lt;/h2&gt;
+
+&lt;h2 id=&quot;it-is-showing-its-age&quot;&gt;It is showing its age&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;When Java started, containers were not yet popular.  As a result, Java
+went and grabbed as much resources it could to maximize&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-rafa-containers.jpg&quot; alt=&quot;containers&quot; title=&quot;containers&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-rafa-timeline.jpg&quot; alt=&quot;timeline&quot; title=&quot;timeline&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;framework-optimizations&quot;&gt;Framework optimizations&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Moved as much as possible to the build phase&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Allows you to build a native binary&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;into-live-coding-portion&quot;&gt;Into live coding portion&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Gave a great tour of the important features&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I found this one a little bit hard to follow.  Could be I was tired, but
+I found it hard to remain focused on it.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://developers.redhat.com/courses/quarkus/panache/&quot;&gt;Panache&lt;/a&gt;
+brings Hibernate (&lt;strong&gt;not&lt;/strong&gt; JPA) to Quarkus,&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Has built in support for Swagger/OpenAPI.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from @rafabene Quarkus</summary></entry><entry><title type="html">Oracle Code One 2019: Reza Rahman: Jakarta EE Recepies</title><link href="/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Reza Rahman: Jakarta EE Recepies" /><published>2019-09-19T16:15:00-04:00</published><updated>2019-09-19T16:15:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee.html">&lt;p&gt;Raw notes from @reza_rahman Jakarta EE Recepies.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza.jpg&quot; alt=&quot;Reza&quot; title=&quot;Reza&quot; /&gt;&lt;/p&gt;
 
@@ -1100,162 +1147,4 @@ available without any fancy service mesh, load balancer, container
 orchestration, is so nice and understandable.  I like how he mapped all
 the microservices patterns to the microprofile specs.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-microprofile-resources.jpg&quot; alt=&quot;Resources&quot; title=&quot;Resources&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw Notes from Ivar Grimstad’s session.</summary></entry><entry><title type="html">J4K-2019: Arun Gupta: Machine Learning on Kubernetes</title><link href="/blog/2019/07/30/arun-gupta-machine-learning.html" rel="alternate" type="text/html" title="J4K-2019: Arun Gupta: Machine Learning on Kubernetes" /><published>2019-07-30T14:00:00-04:00</published><updated>2019-07-30T14:00:00-04:00</updated><id>/blog/2019/07/30/arun-gupta-machine-learning</id><content type="html" xml:base="/blog/2019/07/30/arun-gupta-machine-learning.html">&lt;p&gt;Raw Notes from Arun Gupta’s session.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-arun-gupta.jpg&quot; alt=&quot;Arun Gupta&quot; title=&quot;Arun Gupta&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;machine-learning-101&quot;&gt;Machine Learning 101&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-ml-101.jpg&quot; alt=&quot;ML 101&quot; title=&quot;ML 101&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;bottom-layer&quot;&gt;Bottom Layer&lt;/h2&gt;
-
-&lt;p&gt;ML Frameworks and Infrastructures.  For the ML expert practitioners.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;This is where Kubernetes fits&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;middle-layer&quot;&gt;Middle Layer&lt;/h2&gt;
-
-&lt;p&gt;ML Services.  Commoditized, managed services.  You don’t have time to
-train for your own models.&lt;/p&gt;
-
-&lt;h2 id=&quot;top-layer&quot;&gt;Top Layer&lt;/h2&gt;
-
-&lt;p&gt;AI Services.  Cognitive services: Vision, Speech, Lanugaue, Chatbots,
-Forecasting, Recommendation.&lt;/p&gt;
-
-&lt;h2 id=&quot;storage&quot;&gt;Storage&lt;/h2&gt;
-
-&lt;h2 id=&quot;why-ml-on-kubernetes&quot;&gt;Why ML on Kubernetes&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Composability&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Portability&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Scalability&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Mentioned that ML is Stateful&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;amazon-eks&quot;&gt;Amazon EKS&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Managed Kubernetes control plane, attach data plane&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Managed data plane coming this year&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Native upstream Kubernetes experience.  No forking, patching.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Integration with additional AWS services.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;exsctl&lt;/code&gt;  Installable with brew.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew tap weaveworks/tap
-brew install weaveworks/tap/exsctl
-eksctl create cluster --node-type=p2.xlarge (GPU powered cluster)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Does not install kubectl.  That has to be there already.&lt;/p&gt;
-
-&lt;h2 id=&quot;set-up-kubernetes-for-ml-option-1&quot;&gt;Set up Kubernetes for ML Option 1&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Train: Set up control plane, EKS cluster.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;Set up as autoscaling group&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Inference: Set up another control plane, EKS cluster&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This is the dedicated K8s&lt;/p&gt;
-
-&lt;h2 id=&quot;set-up-kubernetes-for-ml-option-2&quot;&gt;Set up Kubernetes for ML Option 2&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Use two separate node groups in one EKS cluster&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nodeSelector role:train&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;This is the unified K8s&lt;/p&gt;
-
-&lt;h2 id=&quot;scaling-the-cluster&quot;&gt;Scaling the cluster&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Cluster autoscaler: burstable workloads.  Scale up based on metrics.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Escalator: Batch or job-based workloads.  More suited to ML.  ML jobs
-run for a long time.  You don’t want Kubernetes messing with your
-cluster while a job is running.  Agressively scale up to reduce
-wait-time for pods.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;They both take over the auto-scaling knob.&lt;/p&gt;
-
-&lt;h2 id=&quot;challenges-in-setting-up-containers-for-ml&quot;&gt;Challenges in setting up containers for ML&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Takes days to configure and test.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Must optimized for performance and scale.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Re-build and re-optimize.&lt;/p&gt;
-
-&lt;h2 id=&quot;aws-deep-learning-containers&quot;&gt;AWS Deep Learning Containers&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Optimized and customizable containers for known domains.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Use these as your base images.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;touts-twice-as-fast-tensorflow-training-with-aws-optimized-tensorflow&quot;&gt;Touts twice as fast TensorFlow training with AWS-Optimized Tensorflow.&lt;/h2&gt;
-
-&lt;h2 id=&quot;ml-on-k8s&quot;&gt;ML on K8s&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Without KubeFlow&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Jupyter Notebook&lt;/strong&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;key-repo&quot;&gt;Key Repo&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://github.com/aws-samples/machine-learning-using-k8s&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Arun Gupta’s session.</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-microprofile-resources.jpg&quot; alt=&quot;Resources&quot; title=&quot;Resources&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw Notes from Ivar Grimstad’s session.</summary></entry></feed>

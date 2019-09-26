@@ -1,5 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-19T18:01:02-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Oracle Code One 2019: Rafael Benevides</title><link href="/blog/2019/09/19/oracle-code-one-2019-rafa.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Rafael Benevides" /><published>2019-09-19T17:15:00-04:00</published><updated>2019-09-19T17:15:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-rafa</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-rafa.html">&lt;p&gt;Raw notes from @rafabene Quarkus&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-26T17:10:57-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">How to add audio to a video in ‘Photos for Windows 10’</title><link href="/blog/2019/09/26/windows-10-photos-add-audio-to-video.html" rel="alternate" type="text/html" title="How to add audio to a video in 'Photos for Windows 10'" /><published>2019-09-26T17:00:00-04:00</published><updated>2019-09-26T17:00:00-04:00</updated><id>/blog/2019/09/26/windows-10-photos-add-audio-to-video</id><content type="html" xml:base="/blog/2019/09/26/windows-10-photos-add-audio-to-video.html">&lt;h2 id=&quot;how-to-add-audio-to-a-video-in-photos-for-windows-10&quot;&gt;How to add audio to a video in “Photos for Windows 10”.&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start Photos&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click Video Projects&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Custom audio” in the top right of the window, Between
+“Background music” and “Sync to OneDrive”.-&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Set the “in” marker in the timeline where you want the audio to start.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You may need to work with the audio before you add it.  I used these
+steps.&lt;/p&gt;
+
+    &lt;p&gt;a. The audio file in my case was a narration I recorded using Windows
+   10 Voice Recorder.  This gives you files in &lt;code class=&quot;highlighter-rouge&quot;&gt;.m4a&lt;/code&gt; format.&lt;/p&gt;
+
+    &lt;p&gt;b. I wanted to trim the file so I had to convert it to WAV so I could
+   edit it with Audacity.&lt;/p&gt;
+
+    &lt;p&gt;c. I installed ffmpeg for windows from
+   &lt;a href=&quot;https://lame.buanzo.org/#lamewindl&quot;&gt;https://lame.buanzo.org/#lamewindl&lt;/a&gt;.
+   This gives you &lt;code class=&quot;highlighter-rouge&quot;&gt;ffmpeg.exe&lt;/code&gt; which you can use from the command
+   prompt.&lt;/p&gt;
+
+    &lt;p&gt;d. CD to the directory containing the &lt;code class=&quot;highlighter-rouge&quot;&gt;.m4a&lt;/code&gt; file.&lt;/p&gt;
+
+    &lt;p&gt;e. Convert it like this: &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\PROGRA~2\FFMPEG~1\ffmpeg.exe -i input.m4a output.wav&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Add audio file”, select the &lt;code class=&quot;highlighter-rouge&quot;&gt;output.wav&lt;/code&gt; file in the file
+browser, click ok, click Done.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Finish video” and select a place to save the file.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">How to add audio to a video in “Photos for Windows 10”.</summary></entry><entry><title type="html">Oracle Code One 2019: Rafael Benevides</title><link href="/blog/2019/09/19/oracle-code-one-2019-rafa.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Rafael Benevides" /><published>2019-09-19T17:15:00-04:00</published><updated>2019-09-19T17:15:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-rafa</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-rafa.html">&lt;p&gt;Raw notes from @rafabene Quarkus&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-rafa.jpg&quot; alt=&quot;Rafa&quot; title=&quot;Rafa&quot; /&gt;&lt;/p&gt;
 
@@ -1034,117 +1076,4 @@ the link to open up in Microsoft Edge Insider’s Edition.&lt;/p&gt;
 &lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;concat &lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;/home/edburns/bin/runedge.sh &amp;quot;&lt;/span&gt; url&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
 &lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #b1b100;&quot;&gt;setq&lt;/span&gt; browse-url-browser-&lt;span style=&quot;color: #b1b100;&quot;&gt;function&lt;/span&gt; 'browse-url-edge&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">This post shows how to make it so clicking on a hyperlink in GNU Emacs running in the Windows Subsystem for Linux (WSL) on Windows 10 causes the link to open up in Microsoft Edge Insider’s Edition.</summary></entry><entry><title type="html">J4K-2019: Ivar Grimstad: Microprofile</title><link href="/blog/2019/07/30/ivar-grimstad-microprofile.html" rel="alternate" type="text/html" title="J4K-2019: Ivar Grimstad: Microprofile" /><published>2019-07-30T16:20:00-04:00</published><updated>2019-07-30T16:20:00-04:00</updated><id>/blog/2019/07/30/ivar-grimstad-microprofile</id><content type="html" xml:base="/blog/2019/07/30/ivar-grimstad-microprofile.html">&lt;p&gt;Raw Notes from Ivar Grimstad’s session.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-ivar-grimstad.jpg&quot; alt=&quot;Ivar Grimstad&quot; title=&quot;Ivar Grimstad&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;microprofile&quot;&gt;Microprofile&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;microprofile.io&quot;&gt;microprofile.io&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;3.0 now available&lt;/p&gt;
-
-&lt;h2 id=&quot;microservice-patterns&quot;&gt;Microservice patterns&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;microservices.io&quot;&gt;microservices.io&lt;/a&gt; Chris Richardson&lt;/p&gt;
-
-&lt;h2 id=&quot;configuration&quot;&gt;Configuration&lt;/h2&gt;
-
-&lt;p&gt;The Config spec.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;System Properties&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Env Vars&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Application Configuration&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;META-INF/microprofile-config.properties
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Demoed with Helidon.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;healthcheck&quot;&gt;Healthcheck&lt;/h2&gt;
-
-&lt;p&gt;MicroProfile Healthcheck API&lt;/p&gt;
-
-&lt;p&gt;Demoed with Thorntail.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Did explicitily mention there are two healthchecks: 1. I’m
-alive (liveness) 2. I’m ready to receive requests. (Readiness)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Automatically adds &lt;code class=&quot;highlighter-rouge&quot;&gt;/health&lt;/code&gt; endpoint.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Demoed &lt;code class=&quot;highlighter-rouge&quot;&gt;@Liveness&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;@Readiness&lt;/code&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;metrics&quot;&gt;Metrics&lt;/h2&gt;
-
-&lt;p&gt;MicroProfile Metrics&lt;/p&gt;
-
-&lt;h2 id=&quot;access-token&quot;&gt;Access Token&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Basic Auth&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;OAuth 2.0&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;distributed-tracing&quot;&gt;Distributed Tracing&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Zipkin&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Jaeger&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;OpenTracing 1.3&lt;/p&gt;
-
-&lt;h2 id=&quot;everything-together&quot;&gt;Everything Together&lt;/h2&gt;
-
-&lt;p&gt;Three microservices&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Capitalize&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Birthday&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Hello&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Nice example because it shows circuit breaker, RBAC,&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;@RegisterRestClient&lt;/code&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;@Retry&lt;/code&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;@RolesAllowed&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;jwt.io&quot;&gt;jwt.io&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This talk was really awesome.  The fact that everything he demoed was
-available without any fancy service mesh, load balancer, container
-orchestration, is so nice and understandable.  I like how he mapped all
-the microservices patterns to the microprofile specs.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190730-microprofile-resources.jpg&quot; alt=&quot;Resources&quot; title=&quot;Resources&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw Notes from Ivar Grimstad’s session.</summary></entry></feed>
+&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">This post shows how to make it so clicking on a hyperlink in GNU Emacs running in the Windows Subsystem for Linux (WSL) on Windows 10 causes the link to open up in Microsoft Edge Insider’s Edition.</summary></entry></feed>

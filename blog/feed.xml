@@ -1,5 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-26T17:10:57-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">How to add audio to a video in ‘Photos for Windows 10’</title><link href="/blog/2019/09/26/windows-10-photos-add-audio-to-video.html" rel="alternate" type="text/html" title="How to add audio to a video in 'Photos for Windows 10'" /><published>2019-09-26T17:00:00-04:00</published><updated>2019-09-26T17:00:00-04:00</updated><id>/blog/2019/09/26/windows-10-photos-add-audio-to-video</id><content type="html" xml:base="/blog/2019/09/26/windows-10-photos-add-audio-to-video.html">&lt;h2 id=&quot;how-to-add-audio-to-a-video-in-photos-for-windows-10&quot;&gt;How to add audio to a video in “Photos for Windows 10”.&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-27T12:15:59-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">General Notes on Security Training</title><link href="/blog/2019/09/27/security-training-public-general-notes.html" rel="alternate" type="text/html" title="General Notes on Security Training" /><published>2019-09-27T10:54:00-04:00</published><updated>2019-09-27T10:54:00-04:00</updated><id>/blog/2019/09/27/security-training-public-general-notes</id><content type="html" xml:base="/blog/2019/09/27/security-training-public-general-notes.html">&lt;p&gt;I took the security training today.  Here are some general notes.  Notes
+with a classification higher than Public are on my internal blog.&lt;/p&gt;
+
+&lt;p&gt;Data Classification: Public&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;I mean this in the best way possible, because I do believe that baby
+boomers have poisoned the future with their entitlement for all of us,
+but wow, this is very millenial.  The course providers worked hard and
+successfully to make it engaging to people with little tolerance for
+dry content.  And who likes dry content?  For example:&lt;/p&gt;
+
+    &lt;p&gt;“That’s true for rashes and customer data.”&lt;/p&gt;
+
+    &lt;p&gt;“You look like a lawyer in a 90’s movie”.  Hey now.  That’s a bit ageist. :)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It is also patronizing.  “We’re going to have a little quiz, which I
+know you’re going to great on, because we’re going to give you all the
+answers.”  Is this necessary?&lt;/p&gt;
+
+    &lt;p&gt;“Focus on the kitty.”  “What would the kitty do?”&lt;/p&gt;
+
+    &lt;p&gt;When I think of my iGen kids taking this course, I feel it is talking
+down to them.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.vox.com/policy-and-politics/2018/7/16/17575940/russian-election-hack-democrats-trump-putin-diagram&quot;&gt;Phishing helped give us Trump&lt;/a&gt;.
+Recognizing it is important, so I am glad this training exists.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I still don’t like it when they refer to slashes as “whacks”.  “whack
+whack reportitnow”?  Is this more millenialism?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I like the ctrl-alt-n keyboard shortcut.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;This was a great use for my treadmill desk.  &lt;img src=&quot;/blog/assets/20190625-treadmill-desk.jpg&quot; alt=&quot;treadmill desk&quot; title=&quot;treadmill desk&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">I took the security training today. Here are some general notes. Notes with a classification higher than Public are on my internal blog.</summary></entry><entry><title type="html">How to add audio to a video in ‘Photos for Windows 10’</title><link href="/blog/2019/09/26/windows-10-photos-add-audio-to-video.html" rel="alternate" type="text/html" title="How to add audio to a video in 'Photos for Windows 10'" /><published>2019-09-26T17:00:00-04:00</published><updated>2019-09-26T17:00:00-04:00</updated><id>/blog/2019/09/26/windows-10-photos-add-audio-to-video</id><content type="html" xml:base="/blog/2019/09/26/windows-10-photos-add-audio-to-video.html">&lt;h2 id=&quot;how-to-add-audio-to-a-video-in-photos-for-windows-10&quot;&gt;How to add audio to a video in “Photos for Windows 10”.&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -1043,37 +1084,4 @@ programming jobs so fun and rewarding.&lt;/p&gt;
 &lt;h4 id=&quot;0315-pm---0400-pm--moscone-south---room-314---our-experience-in-writing-a-kubernetes-operator-dev5377---mark-nelson-ryan-eberhard&quot;&gt;03:15 PM - 04:00 PM | Moscone South - Room 314 - Our Experience in Writing a Kubernetes Operator [DEV5377] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV5337&quot;&gt;Mark Nelson, Ryan Eberhard&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;Operators are the future of the future.  These guys wrote one from the
-outside in.  Their lessons are valuable.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Microsoft Edge Dev, Windows Subsystem for Linux, Emacs Markdown Mode, and URLs</title><link href="/blog/2019/08/14/emacs-edge-dev.html" rel="alternate" type="text/html" title="Microsoft Edge Dev, Windows Subsystem for Linux, Emacs Markdown Mode, and URLs" /><published>2019-08-14T15:00:00-04:00</published><updated>2019-08-14T15:00:00-04:00</updated><id>/blog/2019/08/14/emacs-edge-dev</id><content type="html" xml:base="/blog/2019/08/14/emacs-edge-dev.html">&lt;p&gt;This post shows how to make it so clicking on a hyperlink in GNU Emacs
-running in the Windows Subsystem for Linux (WSL) on Windows 10 causes
-the link to open up in Microsoft Edge Insider’s Edition.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Install WSL&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Install GNU Emacs&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Install Markdown mode&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.microsoftedgeinsider.com&quot;&gt;Install Microsoft Edge Insider&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Make a shell script.  I put mine in &lt;code class=&quot;highlighter-rouge&quot;&gt;/home/edburns/bin/runedge.sh&lt;/code&gt;&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge\ Dev/Application/msedge.exe $1
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Put this in your &lt;code class=&quot;highlighter-rouge&quot;&gt;.emacs&lt;/code&gt;:&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;div class=&quot;lisp&quot; style=&quot;font-family:monospace;&quot;&gt;&lt;ol&gt;&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #b1b100;&quot;&gt;defun&lt;/span&gt; browse-url-edge &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;url &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;amp;&lt;/span&gt;optional new-window&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;shell-command&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;concat &lt;span style=&quot;color: #ff0000;&quot;&gt;&amp;quot;/home/edburns/bin/runedge.sh &amp;quot;&lt;/span&gt; url&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #f0f0f0;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp;&lt;/div&gt;&lt;/li&gt;
-&lt;li style=&quot;background: #fcfcfc;&quot;&gt;&lt;div style=&quot;font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;&quot;&gt;&amp;nbsp; &amp;nbsp; &lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#40;&lt;/span&gt;&lt;span style=&quot;color: #b1b100;&quot;&gt;setq&lt;/span&gt; browse-url-browser-&lt;span style=&quot;color: #b1b100;&quot;&gt;function&lt;/span&gt; 'browse-url-edge&lt;span style=&quot;color: #66cc66;&quot;&gt;&amp;#41;&lt;/span&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;/ol&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">This post shows how to make it so clicking on a hyperlink in GNU Emacs running in the Windows Subsystem for Linux (WSL) on Windows 10 causes the link to open up in Microsoft Edge Insider’s Edition.</summary></entry></feed>
+outside in.  Their lessons are valuable.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

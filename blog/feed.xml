@@ -1,5 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-09-27T12:15:59-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">General Notes on Security Training</title><link href="/blog/2019/09/27/security-training-public-general-notes.html" rel="alternate" type="text/html" title="General Notes on Security Training" /><published>2019-09-27T10:54:00-04:00</published><updated>2019-09-27T10:54:00-04:00</updated><id>/blog/2019/09/27/security-training-public-general-notes</id><content type="html" xml:base="/blog/2019/09/27/security-training-public-general-notes.html">&lt;p&gt;I took the security training today.  Here are some general notes.  Notes
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-10-02T15:07:31-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Using Java EE? Want to explore Azure? Free POC from Reza and I</title><link href="/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft.html" rel="alternate" type="text/html" title="Using Java EE? Want to explore Azure? Free POC from Reza and I" /><published>2019-10-02T13:36:00-04:00</published><updated>2019-10-02T13:36:00-04:00</updated><id>/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft</id><content type="html" xml:base="/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft.html">&lt;p&gt;I’ve been very busy bringing Java EE to Azure since I &lt;a href=&quot;/2019/05/23/joining-microsoft.html&quot;&gt;joined Microsoft this June&lt;/a&gt;.  I have devoted a fair chunk of that time to learning Azure fundamentals, &lt;a href=&quot;https://blogs.microsoft.com/blog/2019/08/19/microsoft-acquires-jclarity-to-help-optimize-java-workloads-on-azure/&quot;&gt;getting to know the broader Java team&lt;/a&gt;, building the team, partnering with Oracle, and working with my Program Manager Reza Rahman to help identify and develop customers interested in Java EE on Azure.  This last point is the subject of this blog post.&lt;/p&gt;
+
+&lt;h3 id=&quot;announcing-free-gratis-high-touch-proof-of-concept-for-migrating-your-j2eejava-ee-software-to-azure&quot;&gt;Announcing: Free (Gratis) High-Touch Proof of Concept for Migrating your J2EE/Java EE Software to Azure&lt;/h3&gt;
+
+&lt;p&gt;If you’re running Java EE or J2EE in your enterprise and you want to
+explore migrating that software to Azure, we want to hear from you!
+More than that, we want to help you.&lt;br /&gt;
+&lt;a href=&quot;https://microsoft.qualtrics.com/jfe/form/SV_0OCM4TNkiQC4scJ&quot;&gt;Fill out this survey&lt;/a&gt; and
+we’ll get in touch to help build a POC of your software running on Azure.  No strings attached.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://microsoft.qualtrics.com/jfe/form/SV_0OCM4TNkiQC4scJ&quot;&gt;&lt;img src=&quot;/blog/assets/20191002-free-poc.PNG&quot; alt=&quot;Free POC&quot; title=&quot;Free POC&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;update-weblogic-server-on-azure-iaas&quot;&gt;Update WebLogic Server on Azure IaaS&lt;/h3&gt;
+
+&lt;p&gt;Back in July, I documented the state of WLS on Azure &lt;a href=&quot;https://aka.ms/NISTSays&quot;&gt;IaaS&lt;/a&gt; in a &lt;a href=&quot;/2019/07/07/wls-azure-marketplace.html&quot;&gt;blog post&lt;/a&gt;.  I’m happy to say that we have made great progress since then in partnership with Oracle to update the offer, which you can read more about in Jacob Thomas’s post on &lt;a href=&quot;https://blogs.oracle.com/weblogicserver/oracle-weblogic-server-on-microsoft-azure-iaas&quot;&gt;the WebLogic Blog&lt;/a&gt;.  Here is a video walk through of the IaaS offer for WLS.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/m7evI4lObcI&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Please click on the “Contact Me” link if you want to be notified when
+the templates become available.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://aka.ms/azurewls&quot;&gt;&lt;img src=&quot;/blog/assets/20191002-wls-contactme.PNG&quot; alt=&quot;contact me&quot; title=&quot;contact me&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt; 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ &lt;/p&gt;</content><author><name></name></author><summary type="html">I’ve been very busy bringing Java EE to Azure since I joined Microsoft this June. I have devoted a fair chunk of that time to learning Azure fundamentals, getting to know the broader Java team, building the team, partnering with Oracle, and working with my Program Manager Reza Rahman to help identify and develop customers interested in Java EE on Azure. This last point is the subject of this blog post.</summary></entry><entry><title type="html">General Notes on Security Training</title><link href="/blog/2019/09/27/security-training-public-general-notes.html" rel="alternate" type="text/html" title="General Notes on Security Training" /><published>2019-09-27T10:54:00-04:00</published><updated>2019-09-27T10:54:00-04:00</updated><id>/blog/2019/09/27/security-training-public-general-notes</id><content type="html" xml:base="/blog/2019/09/27/security-training-public-general-notes.html">&lt;p&gt;I took the security training today.  Here are some general notes.  Notes
 with a classification higher than Public are on my internal blog.&lt;/p&gt;
 
 &lt;p&gt;Data Classification: Public&lt;/p&gt;
@@ -864,224 +905,4 @@ methods somewhere else.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;Paves the way to create fluency in your DSLs&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Venkat’s @venkat_s session.</summary></entry><entry><title type="html">Oracle Code One 2019 Conference Picks</title><link href="/blog/2019/08/26/oracle-code-one-2019-picks.html" rel="alternate" type="text/html" title="Oracle Code One 2019 Conference Picks" /><published>2019-08-26T03:00:00-04:00</published><updated>2019-08-26T03:00:00-04:00</updated><id>/blog/2019/08/26/oracle-code-one-2019-picks</id><content type="html" xml:base="/blog/2019/08/26/oracle-code-one-2019-picks.html">&lt;p&gt;I’m very happy to be speaking at Oracle Code One for my first time.
-Even though I have been to more than a few &lt;a href=&quot;/blog/assets/20151027-megabadge.jpg&quot;&gt;JavaOnes&lt;/a&gt;, I’ve never been to its
-successor.  Looking through the &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19&quot;&gt;content catalog&lt;/a&gt;, here are my day by day picks.  I’m including my sessions for reference, but also picking the one I’d attend if I wasn’t speaking at that timeslot.&lt;/p&gt;
-
-&lt;p&gt;There are 511 sessions at Oracle Code One.  Here are the 34 that look
-good to me, and also my sessions.&lt;/p&gt;
-
-&lt;h3 id=&quot;monday-16-september-2019&quot;&gt;Monday 16 September 2019&lt;/h3&gt;
-
-&lt;h4 id=&quot;0900-am---0945-am--moscone-south---room-207208---a-dozen-cool-things-you-can-do-with-jvm-languages-dev3888---venkat-subramaniam&quot;&gt;09:00 AM - 09:45 AM | Moscone South - Room 207/208 - A Dozen Cool Things You Can Do with JVM Languages [DEV3888] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV3888&quot;&gt;Venkat Subramaniam&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Never miss a chance to see Venkat.  It’s that simple.  Java is not the
-only runtime to have multiple languages, but the language ecosystem on
-the Java VM is the most diverse and vibrant of all such ecosystems.&lt;/p&gt;
-
-&lt;h4 id=&quot;1000-am---1200-pm--moscone-north---hall-f---the-java-keynote-key1099---georges-saab-brian-goetz-sharat-chander&quot;&gt;10:00 AM - 12:00 PM | Moscone North - Hall F - The Java Keynote [KEY1099] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=KEY1099&quot;&gt;Georges Saab, Brian Goetz, Sharat Chander&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This is the big keynote.  Expect surprises.&lt;/p&gt;
-
-&lt;h4 id=&quot;1230-pm---0115-pm--moscone-south---room-308---introducing-the-oracle-extension-for-visual-studio-code-dev3241---kris-rice&quot;&gt;12:30 PM - 01:15 PM | Moscone South - Room 308 - Introducing the Oracle Extension for Visual Studio Code [DEV3241] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV3241&quot;&gt;Kris Rice&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;It’s very nice to see Oracle picking up on Microsoft technology at the
-same time as Microsoft is picking up on Oracle technology.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;TIE&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;1230-pm---0115-pm--moscone-south---room-305---bug-triage-and-issue-management-bof1292-elliotte-rusty-harold&quot;&gt;12:30 PM - 01:15 PM | Moscone South - Room 305 - Bug Triage and Issue Management [BOF1292] &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=BOF1292&quot;&gt;Elliotte Rusty Harold&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Google has a lot of code, and therefore a lot of bugs, so I can’t wait
-to see some tips for managing them.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;TIE&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;1230-pm---0115-pm--moscone-south---room-303---java-modules-why-and-how-dev3873---venkat-subramaniam&quot;&gt;12:30 PM - 01:15 PM | Moscone South - Room 303 - Java Modules: Why and How? [DEV3873] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV3873&quot;&gt;Venkat Subramaniam&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;The 12:30 - 13:15 slot is insane.  I don’t know who to choose.  Great
-topics, famous speakers, or, in this case, both.&lt;/p&gt;
-
-&lt;h4 id=&quot;0130-pm---0215-pm--moscone-south---room-303---best-practices-from-java-to-kubernetes-easier-and-faster-dev2712---ray-tsang&quot;&gt;01:30 PM - 02:15 PM | Moscone South - Room 303 - Best Practices from Java to Kubernetes: Easier and Faster [DEV2712] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV2712&quot;&gt;Ray Tsang&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Ray has been covering this beat for a long time, and he knows his stuff
-really well.  His delivery is crisp and uncompromising.&lt;/p&gt;
-
-&lt;h4 id=&quot;0230-pm---0315-pm--moscone-south---room-202---evolving-java-for-the-microservice-and-serverless-era-dev2556---graeme-rocher&quot;&gt;02:30 PM - 03:15 PM | Moscone South - Room 202 - Evolving Java for the Microservice and Serverless Era [DEV2556] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV2556&quot;&gt;Graeme Rocher&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Quarkus, Micronaut, Helidon are the big three Java microservices players
-&lt;em&gt;new since 2017&lt;/em&gt;.  This one will likely give you the Micronaut
-perspective.  Take a side of Quarkus and Helidon with this and call me
-in the morning.&lt;/p&gt;
-
-&lt;h4 id=&quot;0400-pm---0445-pm--moscone-south---room-204---supersonic-subatomic-java-with-quarkus-dev1799---burr-sutter&quot;&gt;04:00 PM - 04:45 PM | Moscone South - Room 204 - Supersonic, Subatomic Java with Quarkus [DEV1799] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV1799&quot;&gt;Burr Sutter&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;For as long as Ray has been covering the Java Kubernetes beat, Burr has
-bene covering the Java Microservices beat.  Previously with Vert.X and
-now Quarkus.  A great followup to the previous session.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;TIE&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;0400-pm---0445-pm--moscone-south---room-203---graalvm-vision-and-roadmap-dev3726---thomas-wuerthinger&quot;&gt;04:00 PM - 04:45 PM | Moscone South - Room 203 - GraalVM Vision and Roadmap [DEV3726] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV3276&quot;&gt;Thomas Wuerthinger&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This is &lt;em&gt;the&lt;/em&gt; Graal talk.  I would go so far as to say that if this
-conference was GraalOne (someone should make that) this would be the
-keynote.&lt;/p&gt;
-
-&lt;h4 id=&quot;0500-pm---0645-pm--moscone-south---room-209---ignite-session-lots-of-people&quot;&gt;05:00 PM - 06:45 PM | Moscone South - Room 209 - Ignite Session &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=IGN6313&quot;&gt;Lots of people&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This session usually features beer.  Also, the talks are fun.  I did one
-in 2017 about building a Theremin.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;TIE&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;0500-pm---0700-pm--moscone-west---room-3024b---building-microservices-with-helidon---byol-hol5409---laird-nelson-joe-dipolromain-grecourt--co&quot;&gt;05:00 PM - 07:00 PM | Moscone West - Room 3024B - Building Microservices with Helidon - BYOL [HOL5409] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=HOL5409&quot;&gt;Laird Nelson, Joe Dipol,Romain Grecourt, &amp;amp; co.&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;The 17:00 -19:00 slot is also chock packed with lots of other good
-talks, though.  This one would round out the Java Microservices
-trifecta.&lt;/p&gt;
-
-&lt;h4 id=&quot;0600-pm---0645-pm--moscone-south---room-214---go-microservices-and-all-the-joy-dev2089---andrzej-grzesik&quot;&gt;06:00 PM - 06:45 PM | Moscone South - Room 214 - Go, Microservices, and All the Joy [DEV2089] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEVDEV2089&quot;&gt;Andrzej Grzesik&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Ags has been doing Go talks since 2010.  Who else was giving Go talks
-back then.  Go’s approach to polymorphism may come into play here, but
-who knows.&lt;/p&gt;
-
-&lt;h4 id=&quot;0700-pm---1000-pm--moscone-south-level-3---the-terrace---groundbreakers-unconference-unc1101---you&quot;&gt;07:00 PM - 10:00 PM | Moscone South (Level 3) - The Terrace - Groundbreakers Unconference [UNC1101] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=UNC1101&quot;&gt;&lt;em&gt;YOU&lt;/em&gt;&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This is an unconference, so that means you get to call the shots.  I
-don’t know about you but after a full day of sessions I may rather drink
-shots than call them, but we’ll see.&lt;/p&gt;
-
-&lt;h3 id=&quot;tuesday-17-september-2019&quot;&gt;Tuesday 17 September 2019&lt;/h3&gt;
-
-&lt;h4 id=&quot;0845-am---1045-am--moscone-south---room-214---java-5-6-7-8-9-10-11-12-13-what-have-you-missed-tut3781-henri-tremblay&quot;&gt;08:45 AM - 10:45 AM | Moscone South - Room 214 - Java 5, 6, 7, 8, 9, 10, 11, 12, 13: What Have You Missed? [TUT3781] &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=TUT3781&quot;&gt;Henri Tremblay&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Tuesday morning is the tutorial time.&lt;/p&gt;
-
-&lt;p&gt;Even though I’ve been working in Java for all of these, I so enjoy the
-idea of contemporizing Java that this one looks great.&lt;/p&gt;
-
-&lt;h4 id=&quot;1130-am---1215-pm--moscone-south---room-203---java-language-futures-2019-edition-dev5937---brian-goetz&quot;&gt;11:30 AM - 12:15 PM | Moscone South - Room 203 - Java Language Futures: 2019 Edition [DEV5937] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV5937&quot;&gt;Brian Goetz&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;A regular technical session with Brian Goetz?  It’s like TSSJS again!&lt;/p&gt;
-
-&lt;h4 id=&quot;1230-pm---0115-pm--moscone-south---room-312---build-code-build-communities-build-lives-dev5994---mattias-karlsson-martijn-verburgkoichi-sakata&quot;&gt;12:30 PM - 01:15 PM | Moscone South - Room 312 - Build Code, Build Communities, Build Lives [DEV5994] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV5994&quot;&gt;Mattias Karlsson, Martijn Verburg,Koichi Sakata&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This is another “IT is a very accessible way to prosperity” session, but
-I’ve never seen this particular group’s take on it.  It may be an old
-meme, but certainly not a tired one.&lt;/p&gt;
-
-&lt;h4 id=&quot;0130-pm---0215-pm--moscone-south---room-303---beyond-jakarta-ee-8-dev1391-mark-little-will-lyons-ian-robinson&quot;&gt;01:30 PM - 02:15 PM | Moscone South - Room 303 - Beyond Jakarta EE 8 [DEV1391] &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV1391&quot;&gt;Mark Little, Will Lyons, Ian Robinson&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I see this as the evolution of the Java EE BOF, which used to see
-gigantic number of Java leaders sitting on a single stage.  The stage
-was literally overflowing.  With only three there will be a lot more
-room.&lt;/p&gt;
-
-&lt;p&gt;But seriously, Jakarta EE is very important to the future of Java and
-this session should answer questions about how solid that future is.&lt;/p&gt;
-
-&lt;h4 id=&quot;0500-pm---0700-pm--moscone-west---room-3024c---lambda-streams-and-collectors-programming-laboratory---byol-hol1803-stuart-marks--co&quot;&gt;05:00 PM - 07:00 PM | Moscone West - Room 3024C - Lambda, Streams, and Collectors Programming Laboratory - BYOL [HOL1803] &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=HOL1803&quot;&gt;Stuart Marks &amp;amp; Co.&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;A HOL with Stuart Marks?  Dr. Deprecator himself?  Yes please.&lt;/p&gt;
-
-&lt;h4 id=&quot;0700-pm---1000-pm--moscone-south-level-3---the-terrace---groundbreakers-unconference-unc1104---you&quot;&gt;07:00 PM - 10:00 PM | Moscone South (Level 3) - The Terrace - Groundbreakers Unconference [UNC1104] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=UNC1104&quot;&gt;&lt;em&gt;YOU&lt;/em&gt;&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This is an unconference, so that means you get to call the shots.  I
-don’t know about you but after a full day of sessions I may rather drink
-shots than call them, but we’ll see.&lt;/p&gt;
-
-&lt;h3 id=&quot;wednesday-18-september-2019&quot;&gt;Wednesday 18 September 2019&lt;/h3&gt;
-
-&lt;h4 id=&quot;0900-am---1030-am--moscone-north---hall-f---code-one-community-keynote-game-on-key1108---vincent-mayers&quot;&gt;09:00 AM - 10:30 AM | Moscone North - Hall F - Code One Community Keynote: Game On [KEY1108] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=KEY1108&quot;&gt;Vincent Mayers&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This is the first Code One since the departure of Stephen Chin from
-Oracle.  As big as an event as that seemed at the time, I still remember
-when John Gage had the job.  Vincent will do an excellent job.&lt;/p&gt;
-
-&lt;h4 id=&quot;1130-am---1215-pm--moscone-south---room-313---fast-efficient-jakarta-ee-for-the-cloud-dev4576---alasdair-nottingham-paul-buck&quot;&gt;11:30 AM - 12:15 PM | Moscone South - Room 313 - Fast, Efficient Jakarta EE for the Cloud [DEV4576] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV4576&quot;&gt;Alasdair Nottingham, Paul Buck&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This technical session will put some meat on the Jakarta EE skeleton.&lt;/p&gt;
-
-&lt;h4 id=&quot;1230-pm---0230-pm--moscone-west---room-3024b---hands-on-java-ee-with-docker-and-kubernetes---byol-hol1138---reza-rahman-ahmad-gohar-hillmer-chona&quot;&gt;12:30 PM - 02:30 PM | Moscone West - Room 3024B - Hands-on Java EE with Docker and Kubernetes - BYOL [HOL1138] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=HOL1138&quot;&gt;Reza Rahman, Ahmad Gohar, Hillmer Chona&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This technical session will bring you up to speed on using Java
-Kubernetes (which of course implies Docker).&lt;/p&gt;
-
-&lt;h4 id=&quot;0230-pm---0315-pm--moscone-south---room-308---machine-learning-for-java-developers-in-45-minutes-dev1260---frank-greco-zoran-sevarac&quot;&gt;02:30 PM - 03:15 PM | Moscone South - Room 308 - Machine Learning for Java Developers in 45 Minutes [DEV1260] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV1260&quot;&gt;Frank Greco, Zoran Sevarac&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Frank and Zoran were leaders in the Visual Recognition JSR and have been
-working in Machine Learning for several years.  This intro talk is sure
-to set you up for more learning in ML.&lt;/p&gt;
-
-&lt;h4 id=&quot;0400-pm---0445-pm--moscone-south---room-302---surviving-dependency-hell-dev2715---ray-tsang-robert-scholte&quot;&gt;04:00 PM - 04:45 PM | Moscone South - Room 302 - Surviving Dependency Hell [DEV2715] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV2715&quot;&gt;Ray Tsang, Robert Scholte&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I hope they cover the special kind of hell that results when transitive
-dependencies conflict.&lt;/p&gt;
-
-&lt;h4 id=&quot;0500-pm---0545-pm--moscone-south---room-305---jakarta-ee-community-bof-bof4151---reza-rahman-ivar-grimstad&quot;&gt;05:00 PM - 05:45 PM | Moscone South - Room 305 - Jakarta EE Community BOF [BOF4151] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=BOF4151&quot;&gt;Reza Rahman, Ivar Grimstad&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;It’s now or never for Jakarta EE.  EE4J was announced at &lt;a href=&quot;/blog/2017/11/30/javaone-2017-wrapup.html&quot;&gt;JavaOne 2017
-(the last JavaOne ever)&lt;/a&gt;.  Two whole years down the road, if the community has not been able to push out the first full community release, then the whole enterprise could be considered at risk. This BOF is where you can ask the tough questions about the current status and future prospects of the last best hope for community driven open standard enterprise Java.&lt;/p&gt;
-
-&lt;h4 id=&quot;0600-pm---0645-pm--moscone-south---room-309---memory-efficient-java-dev4398---kirk-pepperdine&quot;&gt;06:00 PM - 06:45 PM | Moscone South - Room 309 - Memory-Efficient Java [DEV4398] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV4398&quot;&gt;Kirk Pepperdine&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I do apologize for loading this up with my Microsoft colleagues, but
-Kirk is a globally recognized leader in Java memory management, and also
-a great speaker.&lt;/p&gt;
-
-&lt;h3 id=&quot;thursday-19-september-2019&quot;&gt;Thursday 19 September 2019&lt;/h3&gt;
-
-&lt;h4 id=&quot;0900-am---0945-am--moscone-south---room-314---modern-development-how-containers-are-changing-everything-dev2849---steve-poole-andy-watson&quot;&gt;09:00 AM - 09:45 AM | Moscone South - Room 314 - Modern Development: How Containers Are Changing Everything [DEV2849] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV2849&quot;&gt;Steve Poole, Andy Watson&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This abstract features the question, “Are the days of just being able to
-write code running out?”.  I too have been wondering about that for a
-few years now.  It seems coding now is more about connecting boxes than
-it is about writing the code within them.  The component re-use heaven
-has arrived, but it’s not what I expected it would back when I was using
-XPCOM.&lt;/p&gt;
-
-&lt;h4 id=&quot;1000-am---1045-am--moscone-south---room-305---java-on-azure-bof-bof1167---reza-rahman-asir-selvasingh&quot;&gt;10:00 AM - 10:45 AM | Moscone South - Room 305 - Java on Azure BOF [BOF1167] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=BOF1167&quot;&gt;Reza Rahman, Asir Selvasingh&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;If you’re wondering what Microsoft is doing with Java on Azure, this BOF
-from my close colleagues will answer all your questions.  I’ll be there
-too, and can answer questions as well.&lt;/p&gt;
-
-&lt;h4 id=&quot;1115-am---1200-pm--moscone-south---room-206---mastering-regular-expressions-everything-you-should-know-dev6020---fernando-babadopulos&quot;&gt;11:15 AM - 12:00 PM | Moscone South - Room 206 - Mastering Regular Expressions: (^.*$)(?#everything) You Should Know [DEV6020] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV6020&quot;&gt;Fernando Babadopulos&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I love Regexps.&lt;/p&gt;
-
-&lt;h4 id=&quot;1215-pm---0100-pm--moscone-south---room-303---jakarta-ee-a-quick-overview-dev1049---phillip-kruger-ed-burns&quot;&gt;12:15 PM - 01:00 PM | Moscone South - Room 303 - Jakarta EE: A Quick Overview [DEV1049] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV1049&quot;&gt;Phillip Kruger, Ed Burns&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Phillip was gracious enough to allow me to consult and contribute to
-this session, but it’s mostly him, and it’s a good one.  The demo app is
-a great tour of the most popular features in EE.&lt;/p&gt;
-
-&lt;p&gt;If your aversion to my talks is so strong that even the smooth Afrikaans
-accent of Phillip Kruger is not enough to overcome it, I recommend this
-one:&lt;/p&gt;
-
-&lt;h4 id=&quot;1215-pm---0100-pm--moscone-south---room-203---enhanced-java-flight-recorder-at-alibaba-dev3667-sanhong-li--co&quot;&gt;12:15 PM - 01:00 PM | Moscone South - Room 203 - Enhanced Java Flight Recorder at Alibaba [DEV3667] &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV3667&quot;&gt;Sanhong Li &amp;amp; Co.&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Alibaba is a huge Java shop.  These guys know how Java works there.
-I’d love to see this myself.&lt;/p&gt;
-
-&lt;h4 id=&quot;0115-pm---0200-pm--moscone-south---room-312---descending-the-testing-pyramid-effective-testing-strategies-for-microservices-dev1776---chris-richardson&quot;&gt;01:15 PM - 02:00 PM | Moscone South - Room 312 - Descending the Testing Pyramid: Effective Testing Strategies for Microservices [DEV1776] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV1776&quot;&gt;Chris Richardson&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Chris Richardson is an expert on Microservices patterns, and an
-excellent speaker.  Don’t miss this one.&lt;/p&gt;
-
-&lt;h4 id=&quot;0315-pm---0400-pm--moscone-south---room-308---be-the-leader-of-your-own-career-dev5996---bruno-souza-thodoris-bais-ed-burns&quot;&gt;03:15 PM - 04:00 PM | Moscone South - Room 308 - Be the Leader of Your Own Career [DEV5996] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV5996&quot;&gt;Bruno Souza, Thodoris Bais, Ed Burns&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Bruno has been focusing for several years very very upstream in the
-software value chain: on becoming a better developer.  This focus fits
-in with mine as well, as I continue to take an interest in what makes
-programming jobs so fun and rewarding.&lt;/p&gt;
-
-&lt;p&gt;If you’ve had enough career talks, I recommend this one.&lt;/p&gt;
-
-&lt;h4 id=&quot;0315-pm---0400-pm--moscone-south---room-314---our-experience-in-writing-a-kubernetes-operator-dev5377---mark-nelson-ryan-eberhard&quot;&gt;03:15 PM - 04:00 PM | Moscone South - Room 314 - Our Experience in Writing a Kubernetes Operator [DEV5377] - &lt;a href=&quot;https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=DEV5337&quot;&gt;Mark Nelson, Ryan Eberhard&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Operators are the future of the future.  These guys wrote one from the
-outside in.  Their lessons are valuable.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Venkat’s @venkat_s session.</summary></entry></feed>

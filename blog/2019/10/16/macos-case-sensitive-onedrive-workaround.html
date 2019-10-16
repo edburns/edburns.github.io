@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How to use Microsoft OneDrive when your mac HD is Case Sensitive</title>
+  <meta name="description" content="How to use Microsoft OneDrive when your mac HD is Case Sensitive">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2019/10/16/macos-case-sensitive-onedrive-workaround.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="http://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">How to use Microsoft OneDrive when your mac HD is Case Sensitive</h1>
+    <p class="post-meta"><time datetime="2019-10-16T10:15:00-04:00" itemprop="datePublished">Oct 16, 2019</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="how-to-use-microsoft-onedrive-when-your-mac-hd-is-case-sensitive">How to use Microsoft OneDrive when your mac HD is Case Sensitive</h2>
+
+<p>As a Unix user since 1990 I know that file systems should be case
+sensitive.  So whenever I get a new Mac, I make sure to set it up with
+a case sensitive filesystem.  After doing this with my Microsoft
+supplied Mac, I was a bit surprised to learn that the Microsoft
+OneDrive macOS client does not allow you to place your OneDrive folder
+on a case sensitive volume, nor on an external volume.</p>
+
+<p>No worries!</p>
+
+<p>I was able to create an APFS case insensitive volume internal and put
+the OneDrive folder there.</p>
+
+<h3 id="part-1-create-the-volume">Part 1: Create the Volume</h3>
+
+<ol>
+  <li>
+    <p>Start Disk Utility</p>
+  </li>
+  <li>
+    <p>In the left navigation pane, context click (right click) <code class="highlighter-rouge">Macintosh
+HD - Data</code></p>
+  </li>
+  <li>
+    <p>Choose “Add APFS Volume…”</p>
+  </li>
+  <li>
+    <p>For Name choose <code class="highlighter-rouge">OneDrive</code></p>
+  </li>
+  <li>
+    <p>For Format choose APFS or APFS (Encrypted).  I chose Encrypted for
+added security.</p>
+
+    <p><img src="/blog/assets/apfs-volume.png" alt="APFS volume" title="APFS volume" /></p>
+  </li>
+  <li>
+    <p>Click “Size Options…”.  Choose an appropriate size.  I chose 2GB
+for Reserve and Quota Size.  Click OK.</p>
+  </li>
+  <li>
+    <p>Click “Add”.</p>
+  </li>
+  <li>
+    <p>Click “Done”.</p>
+  </li>
+</ol>
+
+<h3 id="part-2-connect-onedrive">Part 2: Connect OneDrive</h3>
+
+<ol>
+  <li>
+    <p>When you start OneDrive on the Mac, it should prompt you to “Set up
+One Drive”.  Go through the login procedures, which may include two
+factor authentication.</p>
+  </li>
+  <li>
+    <p>When you get to the “This Is Your OneDrive Folder” page, click
+“Change Location”.</p>
+  </li>
+  <li>
+    <p>In the file browser that pops up, choose “OneDrive” then click
+“Choose this locatin”, as shown here.</p>
+
+    <p><img src="/blog/assets/onedrive-choose-location.png" alt="OneDrive Choose Location" title="OneDrive Choose Location" /></p>
+  </li>
+  <li>
+    <p>Click “Next” then click “Next”.</p>
+  </li>
+  <li>
+    <p>Then click “Open my OneDrive Folder”.</p>
+  </li>
+</ol>
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

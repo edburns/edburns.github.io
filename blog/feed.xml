@@ -1,5 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-10-14T11:45:30-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Using Java EE? Want to explore Azure? Free POC from Reza and I</title><link href="/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft.html" rel="alternate" type="text/html" title="Using Java EE? Want to explore Azure? Free POC from Reza and I" /><published>2019-10-02T13:36:00-04:00</published><updated>2019-10-02T13:36:00-04:00</updated><id>/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft</id><content type="html" xml:base="/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft.html">&lt;p&gt;I’ve been very busy bringing Java EE to Azure since I &lt;a href=&quot;/2019/05/23/joining-microsoft.html&quot;&gt;joined Microsoft this June&lt;/a&gt;.  I have devoted a fair chunk of that time to learning Azure fundamentals, &lt;a href=&quot;https://blogs.microsoft.com/blog/2019/08/19/microsoft-acquires-jclarity-to-help-optimize-java-workloads-on-azure/&quot;&gt;getting to know the broader Java team&lt;/a&gt;, building the team, partnering with Oracle, and working with my Program Manager Reza Rahman to help identify and develop customers interested in Java EE on Azure.  This last point is the subject of this blog post.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-10-16T10:53:49-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">How to use Microsoft OneDrive when your mac HD is Case Sensitive</title><link href="/blog/2019/10/16/macos-case-sensitive-onedrive-workaround.html" rel="alternate" type="text/html" title="How to use Microsoft OneDrive when your mac HD is Case Sensitive" /><published>2019-10-16T10:15:00-04:00</published><updated>2019-10-16T10:15:00-04:00</updated><id>/blog/2019/10/16/macos-case-sensitive-onedrive-workaround</id><content type="html" xml:base="/blog/2019/10/16/macos-case-sensitive-onedrive-workaround.html">&lt;h2 id=&quot;how-to-use-microsoft-onedrive-when-your-mac-hd-is-case-sensitive&quot;&gt;How to use Microsoft OneDrive when your mac HD is Case Sensitive&lt;/h2&gt;
+
+&lt;p&gt;As a Unix user since 1990 I know that file systems should be case
+sensitive.  So whenever I get a new Mac, I make sure to set it up with
+a case sensitive filesystem.  After doing this with my Microsoft
+supplied Mac, I was a bit surprised to learn that the Microsoft
+OneDrive macOS client does not allow you to place your OneDrive folder
+on a case sensitive volume, nor on an external volume.&lt;/p&gt;
+
+&lt;p&gt;No worries!&lt;/p&gt;
+
+&lt;p&gt;I was able to create an APFS case insensitive volume internal and put
+the OneDrive folder there.&lt;/p&gt;
+
+&lt;h3 id=&quot;part-1-create-the-volume&quot;&gt;Part 1: Create the Volume&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Start Disk Utility&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;In the left navigation pane, context click (right click) &lt;code class=&quot;highlighter-rouge&quot;&gt;Macintosh
+HD - Data&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Choose “Add APFS Volume…”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For Name choose &lt;code class=&quot;highlighter-rouge&quot;&gt;OneDrive&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For Format choose APFS or APFS (Encrypted).  I chose Encrypted for
+added security.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/blog/assets/apfs-volume.png&quot; alt=&quot;APFS volume&quot; title=&quot;APFS volume&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Size Options…”.  Choose an appropriate size.  I chose 2GB
+for Reserve and Quota Size.  Click OK.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Add”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Done”.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;part-2-connect-onedrive&quot;&gt;Part 2: Connect OneDrive&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;When you start OneDrive on the Mac, it should prompt you to “Set up
+One Drive”.  Go through the login procedures, which may include two
+factor authentication.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;When you get to the “This Is Your OneDrive Folder” page, click
+“Change Location”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;In the file browser that pops up, choose “OneDrive” then click
+“Choose this locatin”, as shown here.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/blog/assets/onedrive-choose-location.png&quot; alt=&quot;OneDrive Choose Location&quot; title=&quot;OneDrive Choose Location&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click “Next” then click “Next”.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Then click “Open my OneDrive Folder”.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">How to use Microsoft OneDrive when your mac HD is Case Sensitive</summary></entry><entry><title type="html">Using Java EE? Want to explore Azure? Free POC from Reza and I</title><link href="/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft.html" rel="alternate" type="text/html" title="Using Java EE? Want to explore Azure? Free POC from Reza and I" /><published>2019-10-02T13:36:00-04:00</published><updated>2019-10-02T13:36:00-04:00</updated><id>/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft</id><content type="html" xml:base="/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft.html">&lt;p&gt;I’ve been very busy bringing Java EE to Azure since I &lt;a href=&quot;/blog/2019/05/23/joining-microsoft.html&quot;&gt;joined Microsoft this June&lt;/a&gt;.  I have devoted a fair chunk of that time to learning Azure fundamentals, &lt;a href=&quot;https://blogs.microsoft.com/blog/2019/08/19/microsoft-acquires-jclarity-to-help-optimize-java-workloads-on-azure/&quot;&gt;getting to know the broader Java team&lt;/a&gt;, building the team, partnering with Oracle, and working with my Program Manager Reza Rahman to help identify and develop customers interested in Java EE on Azure.  This last point is the subject of this blog post.&lt;/p&gt;
 
 &lt;h3 id=&quot;announcing-free-gratis-high-touch-proof-of-concept-for-migrating-your-j2eejava-ee-software-to-azure&quot;&gt;Announcing: Free (Gratis) High-Touch Proof of Concept for Migrating your J2EE/Java EE Software to Azure&lt;/h3&gt;
 
@@ -13,7 +85,7 @@ we’ll get in touch to help build a POC of your software running on Azure.  No 
 
 &lt;h3 id=&quot;update-weblogic-server-on-azure-iaas&quot;&gt;Update WebLogic Server on Azure IaaS&lt;/h3&gt;
 
-&lt;p&gt;Back in July, I documented the state of WLS on Azure &lt;a href=&quot;https://aka.ms/NISTSays&quot;&gt;IaaS&lt;/a&gt; in a &lt;a href=&quot;/blog/2019/07/07/wls-azure-marketplace.html&quot;&gt;blog post&lt;/a&gt;.  I’m happy to say that we have made great progress since then in partnership with Oracle to update the offer, which you can read more about in Jacob Thomas’s post on &lt;a href=&quot;https://blogs.oracle.com/weblogicserver/oracle-weblogic-server-on-microsoft-azure-iaas&quot;&gt;the WebLogic Blog&lt;/a&gt;.  Here is a video walk through of the IaaS offer for WLS.&lt;/p&gt;
+&lt;p&gt;Back in July, I documented the state of WLS on Azure &lt;a href=&quot;https://aka.ms/NISTSays&quot;&gt;IaaS&lt;/a&gt; in a &lt;a href=&quot;/blog/blog/2019/07/07/wls-azure-marketplace.html&quot;&gt;blog post&lt;/a&gt;.  I’m happy to say that we have made great progress since then in partnership with Oracle to update the offer, which you can read more about in Jacob Thomas’s post on &lt;a href=&quot;https://blogs.oracle.com/weblogicserver/oracle-weblogic-server-on-microsoft-azure-iaas&quot;&gt;the WebLogic Blog&lt;/a&gt;.  Here is a video walk through of the IaaS offer for WLS.&lt;/p&gt;
 
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/m7evI4lObcI&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
 
@@ -435,7 +507,140 @@ a juggernaut of Nordic conferences.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Battery running out!&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @jyukutyo, @matkar, @karianna</summary></entry><entry><title type="html">Oracle Code One 2019: Elliotte Rusty Harold Bugs</title><link href="/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Elliotte Rusty Harold Bugs" /><published>2019-09-16T15:30:00-04:00</published><updated>2019-09-16T15:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs.html">&lt;p&gt;Raw notes from Elliotte Rusty Harold’s &lt;a href=&quot;https://twitter.com/elharo&quot;&gt;@elharo&lt;/a&gt; session&lt;/p&gt;
+&lt;p&gt;Battery running out!&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @jyukutyo, @matkar, @karianna</summary></entry><entry><title type="html">Oracle Code One 2019: Ray Tsang</title><link href="/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Ray Tsang" /><published>2019-09-16T15:30:00-04:00</published><updated>2019-09-16T15:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes.html">&lt;p&gt;Raw notes from Ray’s @saturnism session.  Ray is always in motion.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray.jpg&quot; alt=&quot;Ray Tsang&quot; title=&quot;Ray Tsang&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Surprised that he spent some minutes of his valuable time on the old
+“oasis in the desert” story.  Don’t get me wrong, it’s a great story,
+and he tells it very well, but these sessions are only 45 minutes long.
+He only spent 3 minutes on it, so I guess it’s fine.&lt;/p&gt;
+
+&lt;h1 id=&quot;your-app&quot;&gt;Your App&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Don’t start with necessarily start with Kubernetes.  Follow best
+practices.  Start with the Twelve-Factore App!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray-test.jpg&quot; alt=&quot;Test&quot; title=&quot;test&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;containers&quot;&gt;Containers&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Runtime environment is your responsibility now.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You’ll need a dedicated team for container hygiene.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;choose-a-jdk&quot;&gt;Choose a JDK&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Container aware&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;OpenJDK 8u192 or above&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Showed the &lt;code class=&quot;highlighter-rouge&quot;&gt;MaxHeap&lt;/code&gt; problem: if you don’t specify, it will take the
+entire available memory, causing Docker to kill you, to illustrate the
+non-container aware JDK problem.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;-XX:+UseParallelGC&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Two types of memory usage in Java: Heap, Native Memory Usage&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray-memorycalculator.jpg&quot; alt=&quot;Memory&quot; title=&quot;Memory&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;docker-tips-and-tricks&quot;&gt;Docker Tips and Tricks&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://ridingthecrest.com/blog/2017/02/23/ray-tsang-docker-tips-notes.html&quot;&gt;http://ridingthecrest.com/blog/2017/02/23/ray-tsang-docker-tips-notes.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;just-jib-it&quot;&gt;Just Jib It&lt;/h1&gt;
+
+&lt;p&gt;Jib is a maven plugin, that creates a Docker container .  &lt;code class=&quot;highlighter-rouge&quot;&gt;jib-maven-plugin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray-jib.jpg&quot; alt=&quot;Ray Tsang&quot; title=&quot;Ray Tsang&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;This jib thing looks really awesome.  It has full configuration and
+much easier than any docker maven thing I’ve seen.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin&quot;&gt;https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;local-kubernetes&quot;&gt;Local Kubernetes&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;k3s, k3d, kind, minikube&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;k3s is good for linux environments.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;But it looks like the Docker for Mac built-in Kubernetes.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;keep-base-deployment-simple&quot;&gt;Keep Base Deployment Simple&lt;/h1&gt;
+
+&lt;p&gt;The hardest part is to write the yaml file.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;k create deployment -oyaml --dry-run
+k create svc -oyaml --dry-run
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Still need to configure &lt;code class=&quot;highlighter-rouge&quot;&gt;resources&lt;/code&gt; dictionary.  requests, limits, memory, etc.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Still need to configure liveness (are you alive) and readiness (are
+you ready to accept traffic) probes.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lifecycle&lt;/code&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;SIGTERM.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;preStop&lt;/code&gt;, httpGet, exec tcpSocket&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Put the healthchecks on a separate port, so you can put a network
+security group around it.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;some-skaffold-thing&quot;&gt;Some skaffold thing&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Supports debugging.  Very nice.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;kustomize&quot;&gt;kustomize&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;kustomization.yaml&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Ray’s @saturnism session. Ray is always in motion.</summary></entry><entry><title type="html">Oracle Code One 2019: Elliotte Rusty Harold Bugs</title><link href="/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Elliotte Rusty Harold Bugs" /><published>2019-09-16T15:30:00-04:00</published><updated>2019-09-16T15:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs.html">&lt;p&gt;Raw notes from Elliotte Rusty Harold’s &lt;a href=&quot;https://twitter.com/elharo&quot;&gt;@elharo&lt;/a&gt; session&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-elliotte.jpg&quot; alt=&quot;Elliotte&quot; title=&quot;Elliotte&quot; /&gt;&lt;/p&gt;
 
@@ -644,265 +849,4 @@ attention to that.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;Label bugs as “Ready”, “Good First Issue” and “Help wanted”&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Elliotte Rusty Harold’s @elharo session</summary></entry><entry><title type="html">Oracle Code One 2019: Ray Tsang</title><link href="/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Ray Tsang" /><published>2019-09-16T15:30:00-04:00</published><updated>2019-09-16T15:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-ray-kubernetes.html">&lt;p&gt;Raw notes from Ray’s @saturnism session.  Ray is always in motion.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray.jpg&quot; alt=&quot;Ray Tsang&quot; title=&quot;Ray Tsang&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Surprised that he spent some minutes of his valuable time on the old
-“oasis in the desert” story.  Don’t get me wrong, it’s a great story,
-and he tells it very well, but these sessions are only 45 minutes long.
-He only spent 3 minutes on it, so I guess it’s fine.&lt;/p&gt;
-
-&lt;h1 id=&quot;your-app&quot;&gt;Your App&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Don’t start with necessarily start with Kubernetes.  Follow best
-practices.  Start with the Twelve-Factore App!&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray-test.jpg&quot; alt=&quot;Test&quot; title=&quot;test&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;containers&quot;&gt;Containers&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Runtime environment is your responsibility now.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;You’ll need a dedicated team for container hygiene.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;choose-a-jdk&quot;&gt;Choose a JDK&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Container aware&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;OpenJDK 8u192 or above&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Showed the &lt;code class=&quot;highlighter-rouge&quot;&gt;MaxHeap&lt;/code&gt; problem: if you don’t specify, it will take the
-entire available memory, causing Docker to kill you, to illustrate the
-non-container aware JDK problem.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;-XX:+UseParallelGC&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Two types of memory usage in Java: Heap, Native Memory Usage&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray-memorycalculator.jpg&quot; alt=&quot;Memory&quot; title=&quot;Memory&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;docker-tips-and-tricks&quot;&gt;Docker Tips and Tricks&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://ridingthecrest.com/blog/2017/02/23/ray-tsang-docker-tips-notes.html&quot;&gt;http://ridingthecrest.com/blog/2017/02/23/ray-tsang-docker-tips-notes.html&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;just-jib-it&quot;&gt;Just Jib It&lt;/h1&gt;
-
-&lt;p&gt;Jib is a maven plugin, that creates a Docker container .  &lt;code class=&quot;highlighter-rouge&quot;&gt;jib-maven-plugin&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-ray-jib.jpg&quot; alt=&quot;Ray Tsang&quot; title=&quot;Ray Tsang&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;This jib thing looks really awesome.  It has full configuration and
-much easier than any docker maven thing I’ve seen.&lt;/p&gt;
-
-    &lt;p&gt;&lt;a href=&quot;https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin&quot;&gt;https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;local-kubernetes&quot;&gt;Local Kubernetes&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;k3s, k3d, kind, minikube&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;k3s is good for linux environments.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;But it looks like the Docker for Mac built-in Kubernetes.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;keep-base-deployment-simple&quot;&gt;Keep Base Deployment Simple&lt;/h1&gt;
-
-&lt;p&gt;The hardest part is to write the yaml file.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;k create deployment -oyaml --dry-run
-k create svc -oyaml --dry-run
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Still need to configure &lt;code class=&quot;highlighter-rouge&quot;&gt;resources&lt;/code&gt; dictionary.  requests, limits, memory, etc.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Still need to configure liveness (are you alive) and readiness (are
-you ready to accept traffic) probes.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;lifecycle&lt;/code&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;SIGTERM.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;preStop&lt;/code&gt;, httpGet, exec tcpSocket&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Put the healthchecks on a separate port, so you can put a network
-security group around it.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;some-skaffold-thing&quot;&gt;Some skaffold thing&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Supports debugging.  Very nice.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;kustomize&quot;&gt;kustomize&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;kustomization.yaml&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Ray’s @saturnism session. Ray is always in motion.</summary></entry><entry><title type="html">Oracle Code One 2019: Venkat Subramanium</title><link href="/blog/2019/09/16/oracle-code-one-2019-venkat-JVM-languages.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Venkat Subramanium" /><published>2019-09-16T12:00:00-04:00</published><updated>2019-09-16T12:00:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-venkat-JVM-languages</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-venkat-JVM-languages.html">&lt;p&gt;Raw notes from Venkat’s @venkat_s session.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-venkat.jpg&quot; alt=&quot;Venkat Subramaniam&quot; title=&quot;Venkat&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.agiledeveloper.com/downloads.html&quot;&gt;Download code samples&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;programming-languages-are-like-vehicles&quot;&gt;Programming Languages are like Vehicles&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Mastery of the “polyglot” tool.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;accessing-files&quot;&gt;Accessing Files&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Groovy and Scala&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Showing how to do simple file io in different languages.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The only JVM language that insists on checked exceptions is Java.  The
-other ones don’t.  “The other languages treat programmers as adults”.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;interacting-with-a-process&quot;&gt;Interacting with a process&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Groovy&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Garbage collection has a few mistakes.  For example, &lt;code class=&quot;highlighter-rouge&quot;&gt;finalize&lt;/code&gt;.  GC
-is unpredictable.  “If they want to rename &lt;code class=&quot;highlighter-rouge&quot;&gt;finalize&lt;/code&gt; it should be
-renamed &lt;code class=&quot;highlighter-rouge&quot;&gt;badIdea&lt;/code&gt;.  So it has been deprecated.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;System.gc() does nothing.  They should rename it to &lt;code class=&quot;highlighter-rouge&quot;&gt;hope&lt;/code&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;why-is-this-more-java-than-others&quot;&gt;Why is this more Java than others?&lt;/h1&gt;
-
-&lt;p&gt;I tuned out to get the picture above, but when I looked up it was still
-Java language.  For example, autoclosable.  Showed how to use a factory
-method that applies the “execute around method” pattern, but without any
-annotation stuff.&lt;/p&gt;
-
-&lt;p&gt;In Scala it is the &lt;code class=&quot;highlighter-rouge&quot;&gt;loan&lt;/code&gt; pattern.&lt;/p&gt;
-
-&lt;p&gt;This is useful for policy enforcement.  “One of my most favorite
-patterns in programming”.&lt;/p&gt;
-
-&lt;h1 id=&quot;traits-in-scala&quot;&gt;Traits in Scala&lt;/h1&gt;
-
-&lt;h2 id=&quot;highlights&quot;&gt;Highlights&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;trait Friend {
-  def listen(name: String) = println(&quot;I'm listening...&quot;)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Compiles down to an interface.  What’s the big deal?  How does this
-differ from default methods in interfaces?  Traits can be “stackable”.
-You can take multiple traits and stack them for a given object.  When
-you call a method on a trait, if it’s not implemented it goes up the
-chain. Seems like the Action Responder chain in Objective C.&lt;/p&gt;
-
-&lt;p&gt;This leads to the ability to do “mixins”.&lt;/p&gt;
-
-&lt;h1 id=&quot;joining-strings-in-java-8&quot;&gt;Joining Strings in Java 8&lt;/h1&gt;
-
-&lt;h2 id=&quot;print-a-list-of-strings-in-uppercase-that-are-of-length-5&quot;&gt;Print a list of strings, in uppercase, that are of length 5.&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;The stupid comma at the end.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;StringBuilder vs. StringBuffer&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;This is an example of simple code that gets too complex.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The Streams API is easier.  &lt;code class=&quot;highlighter-rouge&quot;&gt;Collectors&lt;/code&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;“When I learned about &lt;code class=&quot;highlighter-rouge&quot;&gt;joining&lt;/code&gt;, I cried that night.”&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;lazy-in-scala-and-kotlin-short-circuiting&quot;&gt;lazy in Scala and Kotlin, Short Circuiting&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;The function is not called when it’s not needed.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;argument-matching-in-kotlin&quot;&gt;Argument Matching in Kotlin&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-venkat-arg-matching.jpg&quot; alt=&quot;arg&quot; title=&quot;arg&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I am pretty sure Venkat should take up stand up comedy.&lt;/p&gt;
-
-&lt;h1 id=&quot;auto-casting-in-kotlin&quot;&gt;Auto Casting in Kotlin&lt;/h1&gt;
-
-&lt;h1 id=&quot;creating-xml-documents-in-groovy&quot;&gt;Creating XML Documents in Groovy&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;nice way to generate XML from code.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-venkat-groovy-xml.jpg&quot; alt=&quot;xml&quot; title=&quot;xml&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;tail-call-optimization-in-scala&quot;&gt;Tail call optimization in Scala&lt;/h1&gt;
-
-&lt;p&gt;No time&lt;/p&gt;
-
-&lt;h1 id=&quot;extension-methods-in-kotlin&quot;&gt;Extension methods in Kotlin&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Extension functions do not modify the bytecode.  They become static
-methods somewhere else.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Paves the way to create fluency in your DSLs&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Venkat’s @venkat_s session.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Elliotte Rusty Harold’s @elharo session</summary></entry></feed>

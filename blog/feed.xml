@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-11-20T06:37:58-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-11-20T06:46:34-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">JVM-CON 2019 Picks</title><link href="/blog/2019/11/20/jvm-con-picks.html" rel="alternate" type="text/html" title="JVM-CON 2019 Picks" /><published>2019-11-20T05:37:00-05:00</published><updated>2019-11-20T05:37:00-05:00</updated><id>/blog/2019/11/20/jvm-con-picks</id><content type="html" xml:base="/blog/2019/11/20/jvm-con-picks.html">&lt;p&gt;I am very blessed to have the opportunity to give keynotes at the two
 premiere Java conferences in Germany this year,
 &lt;a href=&quot;https://www.javaland.eu/de/home/news/details/?tx_news_pi1%5Bnews%5D=1898&amp;amp;tx_news_pi1%5Bcontroller%5D=News&amp;amp;tx_news_pi1%5Baction%5D=detail&amp;amp;cHash=50964b6ba343f83b9eb803af1df039b5&quot;&gt;JavaLand&lt;/a&gt;
@@ -31,29 +31,29 @@ This one is worth a look in.&lt;/p&gt;
 &lt;p&gt;Both are great speakers with wealth of real-world application
 knowledge.  Really, you can’t go wrong with either in this timeslot.&lt;/p&gt;
 
-&lt;h4 id=&quot;1140---1240--ballsall-a--the-need-for-speed--data-streaming-in-the-cloud-with-kafka&quot;&gt;11:40 - 12:40 | Ballsall A | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/the-need-for-speed-data-streaming-in-the-cloud-with-kafka&quot;&gt;The need for speed  Data streaming in the Cloud with Kafka&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;1140---1240--ballsall-a--the-need-for-speed--data-streaming-in-the-cloud-with-kafka-frank-pientka&quot;&gt;11:40 - 12:40 | Ballsall A | The need for speed  Data streaming in the Cloud with Kafka &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/the-need-for-speed-data-streaming-in-the-cloud-with-kafka&quot;&gt;Frank Pientka&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;Kafka is one of those things everyone should know.  Take 60 minutes and
 listen to Frank about it.&lt;/p&gt;
 
-&lt;h4 id=&quot;1400---1500--ballsall-b--e-health-und-e-government-aber-sicher-mit-java&quot;&gt;14:00 - 15:00 | Ballsall B | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/n-n&quot;&gt;E-Health und E-Government, aber „sicher” mit Java&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;1400---1500--ballsall-b--e-health-und-e-government-aber-sicher-mit-java-werner-keil&quot;&gt;14:00 - 15:00 | Ballsall B | E-Health und E-Government, aber „sicher” mit Java &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/n-n&quot;&gt;Werner Keil&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;Werner has been around this block a few times and it is worthwhile
 hearing his insights.&lt;/p&gt;
 
-&lt;h4 id=&quot;1510---1610--ballsall-a--jakarta-ee--past-present-and-future&quot;&gt;15:10 - 16:10 | Ballsall A | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/jakarta-ee-past-present-and-future&quot;&gt;Jakarta EE  Past, Present and Future&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;1510---1610--ballsall-a--jakarta-ee--past-present-and-future-christian-kaltepoth&quot;&gt;15:10 - 16:10 | Ballsall A | Jakarta EE  Past, Present and Future &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/jakarta-ee-past-present-and-future&quot;&gt;Christian Kaltepoth&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;Christian has stuck with Jakarta EE for a long time, with MVC and
 JAX-RS.  I have a stake in seeing Java EE succeed, so I am biased in its
 favor.  But I can objectively say that Christian is well qualified to
 give this important talk.&lt;/p&gt;
 
-&lt;h4 id=&quot;1645---1745--ballsall-a--reacting-to-the-future-of-application-architecture&quot;&gt;16:45 - 17:45 | Ballsall A | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/reacting-to-the-future-of-application-architecture&quot;&gt;Reacting to the future of application architecture&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;1645---1745--ballsall-a---reacting-to-the-future-of-application-architecture-grace-jansen&quot;&gt;16:45 - 17:45 | Ballsall A |  Reacting to the future of application architecture &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/reacting-to-the-future-of-application-architecture&quot;&gt;Grace Jansen&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;This abstract is very high level, but I am interested in hearing a fresh
 take on this high level topic.&lt;/p&gt;
 
-&lt;h4 id=&quot;1755---1900--ballsall-b--graalvm-in-practice-at-the-dutch-national-police-running-r-from-scala-in-spring-boot-2&quot;&gt;17:55 - 19:00 | Ballsall B | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/graalvm-in-practice-at-the-dutch-national-police-running-r-from-scala-in-spring-boot-2&quot;&gt;GraalVM in practice at the Dutch National Police: running R from Scala in Spring Boot 2&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;1755---1900--ballsall-b--graalvm-in-practice-at-the-dutch-national-police-running-r-from-scala-in-spring-boot-2-nathan-perdijk&quot;&gt;17:55 - 19:00 | Ballsall B | GraalVM in practice at the Dutch National Police: running R from Scala in Spring Boot 2 &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/graalvm-in-practice-at-the-dutch-national-police-running-r-from-scala-in-spring-boot-2&quot;&gt;Nathan Perdijk&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;The Dutch government have long been at the forefront of using enterprise
 Java.  Yes really.  I remember when they were using lots of JSF.  Heck,
@@ -61,14 +61,14 @@ they maybe still are.  It works well, right?  Anyhow, I see the trend
 continues with Graal.  Good for them.  The Cops from the Low Countries
 are hip to the high tech.&lt;/p&gt;
 
-&lt;h4 id=&quot;1930---2130--ballsall-b--nightsession-ein-tag-in-der-ux-hölle&quot;&gt;19:30 - 21:30 | Ballsall B | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/nightsession-tba&quot;&gt;Nightsession: Ein Tag in der UX-Hölle&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;1930---2130--ballsall-b--nightsession-ein-tag-in-der-ux-hölle-armin-reuter&quot;&gt;19:30 - 21:30 | Ballsall B | Nightsession: Ein Tag in der UX-Hölle &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/nightsession-tba&quot;&gt;Armin Reuter&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;As someone who bears responsibility for some UX Hölle of my own, I want
 to see this one.&lt;/p&gt;
 
 &lt;h3 id=&quot;wednesday-27-november-2019&quot;&gt;Wednesday 27 November 2019&lt;/h3&gt;
 
-&lt;h4 id=&quot;0900---1700--raum-dom-iii--hands-on-cloud-native-java-with-microprofile&quot;&gt;09:00 - 17:00 | Raum Dom I+II | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/full-day-workshop-hands-on-cloud-native-java-with-microprofile&quot;&gt;Hands-on cloud-native Java with MicroProfile&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;0900---1700--raum-dom-iii--hands-on-cloud-native-java-with-microprofile-emily-jiang&quot;&gt;09:00 - 17:00 | Raum Dom I+II | Hands-on cloud-native Java with MicroProfile &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/full-day-workshop-hands-on-cloud-native-java-with-microprofile&quot;&gt;Emily Jiang&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;I am working on a cloud native Java thing at Microsoft.  If will be good
 to get Emily’s take.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am very blessed to have the opportunity to give keynotes at the two premiere Java conferences in Germany this year, JavaLand and JVM-CON. Of course another amazing blessing is that the former was as an Oracle employee and the latter as Microsoft, but both of them are about Java.</summary></entry><entry><title type="html">How to use quickly extract text from an image with Microsoft OneNote</title><link href="/blog/2019/11/05/windows-extract-text-from-image.html" rel="alternate" type="text/html" title="How to use quickly extract text from an image with Microsoft OneNote" /><published>2019-11-05T10:15:00-05:00</published><updated>2019-11-05T10:15:00-05:00</updated><id>/blog/2019/11/05/windows-extract-text-from-image</id><content type="html" xml:base="/blog/2019/11/05/windows-extract-text-from-image.html">&lt;p&gt;I frequently use the extract text feature on my Samsung Galaxy Note 9

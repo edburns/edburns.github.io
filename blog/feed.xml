@@ -1,5 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-11-05T18:41:13-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">How to use quickly extract text from an image with Microsoft OneNote</title><link href="/blog/2019/11/05/windows-extract-text-from-image.html" rel="alternate" type="text/html" title="How to use quickly extract text from an image with Microsoft OneNote" /><published>2019-11-05T10:15:00-05:00</published><updated>2019-11-05T10:15:00-05:00</updated><id>/blog/2019/11/05/windows-extract-text-from-image</id><content type="html" xml:base="/blog/2019/11/05/windows-extract-text-from-image.html">&lt;p&gt;I frequently use the extract text feature on my Samsung Galaxy Note 9
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-11-20T06:37:58-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JVM-CON 2019 Picks</title><link href="/blog/2019/11/20/jvm-con-picks.html" rel="alternate" type="text/html" title="JVM-CON 2019 Picks" /><published>2019-11-20T05:37:00-05:00</published><updated>2019-11-20T05:37:00-05:00</updated><id>/blog/2019/11/20/jvm-con-picks</id><content type="html" xml:base="/blog/2019/11/20/jvm-con-picks.html">&lt;p&gt;I am very blessed to have the opportunity to give keynotes at the two
+premiere Java conferences in Germany this year,
+&lt;a href=&quot;https://www.javaland.eu/de/home/news/details/?tx_news_pi1%5Bnews%5D=1898&amp;amp;tx_news_pi1%5Bcontroller%5D=News&amp;amp;tx_news_pi1%5Baction%5D=detail&amp;amp;cHash=50964b6ba343f83b9eb803af1df039b5&quot;&gt;JavaLand&lt;/a&gt;
+and &lt;a href=&quot;https://www.jvm-con.de/speakers/#/speaker/6825-ed-burns&quot;&gt;JVM-CON&lt;/a&gt;.
+Of course another amazing blessing is that the former was as an Oracle
+employee and the latter as Microsoft, but both of them are about Java.&lt;/p&gt;
+
+&lt;p&gt;After reviewing the program, here are my picks.&lt;/p&gt;
+
+&lt;h3 id=&quot;monday-25-november-2019&quot;&gt;Monday 25 November 2019&lt;/h3&gt;
+
+&lt;p&gt;Workshop Day&lt;/p&gt;
+
+&lt;h4 id=&quot;0900---1300--ballsall-b--altanwendungen-wieder-testbar-machen-daniel-kräer&quot;&gt;09:00 - 13:00 | Ballsall B | Altanwendungen wieder testbar machen &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/altanwendungen-wieder-testbar-machen&quot;&gt;Daniel Kräer&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;As a contributor to old apps, and the testing thereof, I am happy to see
+a talk about how to continue to test them.  I wonder if the Cactus tests
+I wrote for JSF in 2004 will still work?&lt;/p&gt;
+
+&lt;h4 id=&quot;1400---1800--ballsall-a--jee-microservices-mit-quarkus-eine-einführung-dirk-weil&quot;&gt;14:00 - 18:00 | Ballsall A | JEE-Microservices mit Quarkus eine Einführung &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/jee-microservices-mit-quarkus-eine-einfuhrung&quot;&gt;Dirk Weil&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;While I would rather see Jakarta EE as the future of Enterprise Java, it
+seems Quarkus has a fair amount of buzz, RedHat sponsored or otherwise.
+This one is worth a look in.&lt;/p&gt;
+
+&lt;h3 id=&quot;tuesday-26-november-2019&quot;&gt;Tuesday 26 November 2019&lt;/h3&gt;
+
+&lt;h4 id=&quot;1030---1130--tie--ballsall-a-b--anatole-tresch-nicholas-frankel-respectively&quot;&gt;10:30 - 11:30 | Tie | Ballsall A, B | Anatole Tresch, Nicholas Frankel (respectively)&lt;/h4&gt;
+
+&lt;p&gt;Both are great speakers with wealth of real-world application
+knowledge.  Really, you can’t go wrong with either in this timeslot.&lt;/p&gt;
+
+&lt;h4 id=&quot;1140---1240--ballsall-a--the-need-for-speed--data-streaming-in-the-cloud-with-kafka&quot;&gt;11:40 - 12:40 | Ballsall A | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/the-need-for-speed-data-streaming-in-the-cloud-with-kafka&quot;&gt;The need for speed  Data streaming in the Cloud with Kafka&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Kafka is one of those things everyone should know.  Take 60 minutes and
+listen to Frank about it.&lt;/p&gt;
+
+&lt;h4 id=&quot;1400---1500--ballsall-b--e-health-und-e-government-aber-sicher-mit-java&quot;&gt;14:00 - 15:00 | Ballsall B | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/n-n&quot;&gt;E-Health und E-Government, aber „sicher” mit Java&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Werner has been around this block a few times and it is worthwhile
+hearing his insights.&lt;/p&gt;
+
+&lt;h4 id=&quot;1510---1610--ballsall-a--jakarta-ee--past-present-and-future&quot;&gt;15:10 - 16:10 | Ballsall A | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/jakarta-ee-past-present-and-future&quot;&gt;Jakarta EE  Past, Present and Future&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;Christian has stuck with Jakarta EE for a long time, with MVC and
+JAX-RS.  I have a stake in seeing Java EE succeed, so I am biased in its
+favor.  But I can objectively say that Christian is well qualified to
+give this important talk.&lt;/p&gt;
+
+&lt;h4 id=&quot;1645---1745--ballsall-a--reacting-to-the-future-of-application-architecture&quot;&gt;16:45 - 17:45 | Ballsall A | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/reacting-to-the-future-of-application-architecture&quot;&gt;Reacting to the future of application architecture&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;This abstract is very high level, but I am interested in hearing a fresh
+take on this high level topic.&lt;/p&gt;
+
+&lt;h4 id=&quot;1755---1900--ballsall-b--graalvm-in-practice-at-the-dutch-national-police-running-r-from-scala-in-spring-boot-2&quot;&gt;17:55 - 19:00 | Ballsall B | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/graalvm-in-practice-at-the-dutch-national-police-running-r-from-scala-in-spring-boot-2&quot;&gt;GraalVM in practice at the Dutch National Police: running R from Scala in Spring Boot 2&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;The Dutch government have long been at the forefront of using enterprise
+Java.  Yes really.  I remember when they were using lots of JSF.  Heck,
+they maybe still are.  It works well, right?  Anyhow, I see the trend
+continues with Graal.  Good for them.  The Cops from the Low Countries
+are hip to the high tech.&lt;/p&gt;
+
+&lt;h4 id=&quot;1930---2130--ballsall-b--nightsession-ein-tag-in-der-ux-hölle&quot;&gt;19:30 - 21:30 | Ballsall B | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/nightsession-tba&quot;&gt;Nightsession: Ein Tag in der UX-Hölle&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;As someone who bears responsibility for some UX Hölle of my own, I want
+to see this one.&lt;/p&gt;
+
+&lt;h3 id=&quot;wednesday-27-november-2019&quot;&gt;Wednesday 27 November 2019&lt;/h3&gt;
+
+&lt;h4 id=&quot;0900---1700--raum-dom-iii--hands-on-cloud-native-java-with-microprofile&quot;&gt;09:00 - 17:00 | Raum Dom I+II | &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/full-day-workshop-hands-on-cloud-native-java-with-microprofile&quot;&gt;Hands-on cloud-native Java with MicroProfile&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;I am working on a cloud native Java thing at Microsoft.  If will be good
+to get Emily’s take.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am very blessed to have the opportunity to give keynotes at the two premiere Java conferences in Germany this year, JavaLand and JVM-CON. Of course another amazing blessing is that the former was as an Oracle employee and the latter as Microsoft, but both of them are about Java.</summary></entry><entry><title type="html">How to use quickly extract text from an image with Microsoft OneNote</title><link href="/blog/2019/11/05/windows-extract-text-from-image.html" rel="alternate" type="text/html" title="How to use quickly extract text from an image with Microsoft OneNote" /><published>2019-11-05T10:15:00-05:00</published><updated>2019-11-05T10:15:00-05:00</updated><id>/blog/2019/11/05/windows-extract-text-from-image</id><content type="html" xml:base="/blog/2019/11/05/windows-extract-text-from-image.html">&lt;p&gt;I frequently use the extract text feature on my Samsung Galaxy Note 9
 phone and recently asked myself, “hey, I wonder if I can do this on
 Windows also?”  Of course you can.  Here’s how I do it.  Perhaps there’s
 an easier way.  If so, please let me know in the comments.&lt;/p&gt;
@@ -781,213 +853,4 @@ a juggernaut of Nordic conferences.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Battery running out!&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @jyukutyo, @matkar, @karianna</summary></entry><entry><title type="html">Oracle Code One 2019: Elliotte Rusty Harold Bugs</title><link href="/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Elliotte Rusty Harold Bugs" /><published>2019-09-16T15:30:00-04:00</published><updated>2019-09-16T15:30:00-04:00</updated><id>/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs</id><content type="html" xml:base="/blog/2019/09/16/oracle-code-one-2019-elliotte-bugs.html">&lt;p&gt;Raw notes from Elliotte Rusty Harold’s &lt;a href=&quot;https://twitter.com/elharo&quot;&gt;@elharo&lt;/a&gt; session&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-elliotte.jpg&quot; alt=&quot;Elliotte&quot; title=&quot;Elliotte&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;plugged-getting-things-done&quot;&gt;Plugged Getting Things Done&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;The importance of making lists.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Mind like water&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;every-non-trivial-problem-belongs-in-the-tracker&quot;&gt;Every non-trivial problem belongs in the tracker&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Bugs&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;New features&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Code health issues&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Docs needed&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;no-todos-in-code&quot;&gt;No TODOs in code&lt;/h1&gt;
-
-&lt;h1 id=&quot;if-you-must-use-a-todo-have-it-be-a-link-in-the-bug-tracker&quot;&gt;If you must use a TODO, have it be a link in the bug tracker&lt;/h1&gt;
-
-&lt;h1 id=&quot;make-it-as-easy-as-possible-to-file-bugs&quot;&gt;Make it as easy as possible to file bugs&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Prefer GitHub Issue Tracker&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;All info should be optional&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;what-to-do-with-the-issues-once-they-come-in&quot;&gt;What to do with the issues once they come in?&lt;/h1&gt;
-
-&lt;h2 id=&quot;initial-triage&quot;&gt;Initial Triage&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Schedule a rotating team member to prioritize and assign every bug
-within 24 hours.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Redirect bugs to appropriate component as needed.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;assignment&quot;&gt;Assignment&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Assign bugs to individual people, never a team or a group&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;When a person leaves, bugs automatically enter the triage queue for
-reassignment.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Everyone reviews and updates bugs assigned to them at least monthly,
-preferably weekly.  (He only has 8 bugs assigned to him at Google).&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Distinguish between assigned bugs and active bugs.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;ongoing-triage&quot;&gt;Ongoing Triage&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190916-elliotte-states.jpg&quot; alt=&quot;Elliotte&quot; title=&quot;Elliotte&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;“Google doesn’t do a good job of” pushed.&lt;/p&gt;
-
-&lt;h1 id=&quot;prioritization&quot;&gt;Prioritization&lt;/h1&gt;
-
-&lt;p&gt;He thinks 5 levels is good.  He also doesn’t think it’s worthwhile to
-separate severity and priority.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;P0: the world is on fire.  IE User data loss. You will spend the money
-it takes to fix this bug.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Emergency cherrypick and push to fix&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;There should be none of these in your bug tracker at any time.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;P1: The world is broken.  Drop everything else, but you don’t have to
-work nights and weekends.&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Push to production can wait for the next release if it’s not too
-far away.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;There should not be a lot of these.  If there are more P1s than
-engineers to fix them, re-prioritize or escalate for more
-resources.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;P2: the world is incomplete&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Major functionality is missing but users can workaround it.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Schedule and prioritize, don’t burn yourself out.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;Higher priority than new features&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;P4: Trivia&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;Minor technical debt.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;These can be good on-ramps for new open source contributors.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;“Have a stack of these to give out to new developers”.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;10x-developer--bug-hoarder&quot;&gt;10X developer == bug hoarder&lt;/h1&gt;
-
-&lt;h1 id=&quot;dont-freeze-your-code&quot;&gt;Don’t freeze your code&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;You should be able to commit while a release is in QA or release cut.
-There should not be a time where someone says, “Don’t push top master,
-I’m cutting a release.”&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;when-there-are-too-many-bugs-to-handle&quot;&gt;When there are too many bugs to handle&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Re-prioritize&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;What about bug voting?  I don’t get the impression developers pay much
-attention to that.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;do-not-declare-bug-bankruptcy-do-not-close-bugs-due-to-inactivity&quot;&gt;Do not declare bug bankruptcy! Do not close bugs due to inactivity&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;It is a very bad thing.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;It is rude.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;People spent a lot of time submitting the bug.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;anti-patterns-that-cause-bug-bankruptcy&quot;&gt;Anti patterns that cause bug bankruptcy&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Every uncaught exception files a bug.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Unmeetable SLA and metrics based on bug count.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;open-source-specific-issues&quot;&gt;Open source specific issues&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Be friendly to volunteers&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Label bugs as “Ready”, “Good First Issue” and “Help wanted”&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from Elliotte Rusty Harold’s @elharo session</summary></entry></feed>
+&lt;p&gt;Battery running out!&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @jyukutyo, @matkar, @karianna</summary></entry></feed>

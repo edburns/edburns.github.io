@@ -1,5 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-11-20T06:46:34-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">JVM-CON 2019 Picks</title><link href="/blog/2019/11/20/jvm-con-picks.html" rel="alternate" type="text/html" title="JVM-CON 2019 Picks" /><published>2019-11-20T05:37:00-05:00</published><updated>2019-11-20T05:37:00-05:00</updated><id>/blog/2019/11/20/jvm-con-picks</id><content type="html" xml:base="/blog/2019/11/20/jvm-con-picks.html">&lt;p&gt;I am very blessed to have the opportunity to give keynotes at the two
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-11-26T05:27:26-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">JVM-CON 2019 Anatole Tresch: How Not To Build An App</title><link href="/blog/2019/11/25/jvm-con-anatole.html" rel="alternate" type="text/html" title="JVM-CON 2019 Anatole Tresch: How Not To Build An App" /><published>2019-11-25T04:30:00-05:00</published><updated>2019-11-25T04:30:00-05:00</updated><id>/blog/2019/11/25/jvm-con-anatole</id><content type="html" xml:base="/blog/2019/11/25/jvm-con-anatole.html">&lt;p&gt;Raw Notes from Anatole Tresch’s session&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20191125-anatole.jpg&quot; alt=&quot;Anatole Tresch&quot; title=&quot;Anatole Tresch&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The talk took several aspects of building enterprise software and for
+each aspect Anatole shared some bad things, aka anti-patterns from his
+experience.  It was delivered as a “question/answer” framework.  The
+questions resonated with developers.&lt;/p&gt;
+
+&lt;h2 id=&quot;management&quot;&gt;Management&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Unrealstic deployment expectations, that ignore and even insult the
+engineers working on the deployment.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Q: &lt;code class=&quot;highlighter-rouge&quot;&gt;Can't we just build a private cluster in the public cloud&lt;/code&gt;?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Q: &lt;code class=&quot;highlighter-rouge&quot;&gt;Where's Benni today&lt;/code&gt;: Not on this project any more.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Not good management of human responsibilities.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-human-factor&quot;&gt;The Human Factor&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Good employees are…&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Good managers are…&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;try-not-to-laugh-challenge&quot;&gt;Try not to laugh challenge…&lt;/h3&gt;
+
+&lt;p&gt;Building on the meme from YouTube.&lt;/p&gt;
+
+&lt;p&gt;Some actual code examples.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-system&quot;&gt;The System&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Listed the runtime SLA requirements for a system.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;architecture&quot;&gt;Architecture&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;modern Browser based&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Java&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Performance better than fat client system&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Functions as a blueprint for other applications&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;architecture-decisions&quot;&gt;Architecture decisions&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The decisions made during the development.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;reality-check&quot;&gt;Reality check&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Some problems encountered&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Spring Boot likes Tomcat standalone, does not behave exactly the same when in JBoss&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Application monitoring doesn’t work that way&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Redundant and incompatible security mechanisms&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;One monolithic build for whole project&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Can’t separate the generalized artifacts and the original application&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Stateless&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Caused high complexity in the UI&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Duplication of backend logic on the business-tier.  For example: value objects.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Choice to use subversion&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Quality and stability problem&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Huge merge problems&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Ended up building the git workflow anyway.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Database&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Database version not under control of project team&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Problems with unrelated runtime changes&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Backend&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Complex OSGi based installation&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Not scalable 5 parallel users on one instance.  Too expensive.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Took a couple weeks to get the back end updated to a new version&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;&lt;img src=&quot;/blog/assets/20191125-anatole-01.jpg&quot; alt=&quot;backend&quot; title=&quot;backend&quot; /&gt;&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Anatole Tresch’s session</summary></entry><entry><title type="html">JVM-CON 2019 Picks</title><link href="/blog/2019/11/20/jvm-con-picks.html" rel="alternate" type="text/html" title="JVM-CON 2019 Picks" /><published>2019-11-20T05:37:00-05:00</published><updated>2019-11-20T05:37:00-05:00</updated><id>/blog/2019/11/20/jvm-con-picks</id><content type="html" xml:base="/blog/2019/11/20/jvm-con-picks.html">&lt;p&gt;I am very blessed to have the opportunity to give keynotes at the two
 premiere Java conferences in Germany this year,
 &lt;a href=&quot;https://www.javaland.eu/de/home/news/details/?tx_news_pi1%5Bnews%5D=1898&amp;amp;tx_news_pi1%5Bcontroller%5D=News&amp;amp;tx_news_pi1%5Baction%5D=detail&amp;amp;cHash=50964b6ba343f83b9eb803af1df039b5&quot;&gt;JavaLand&lt;/a&gt;
 and &lt;a href=&quot;https://www.jvm-con.de/speakers/#/speaker/6825-ed-burns&quot;&gt;JVM-CON&lt;/a&gt;.
@@ -816,41 +972,4 @@ takin care of business
 debugging overtime, work out.
 
 jam
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Copyright 2016 Ed Burns.</summary></entry><entry><title type="html">Oracle Code One 2019: Martijn Verburg, Koichi Sakata, Mattias Karlsson</title><link href="/blog/2019/09/17/oracle-code-one-2019-martijn-matthias-koichi.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Martijn Verburg, Koichi Sakata, Mattias Karlsson" /><published>2019-09-17T15:30:00-04:00</published><updated>2019-09-17T15:30:00-04:00</updated><id>/blog/2019/09/17/oracle-code-one-2019-martijn-matthias-koichi</id><content type="html" xml:base="/blog/2019/09/17/oracle-code-one-2019-martijn-matthias-koichi.html">&lt;p&gt;Raw notes from @jyukutyo, @matkar, @karianna&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190917-bcbcbl.jpg&quot; alt=&quot;Mattias, Martijn, and Koichi&quot; title=&quot;MMK&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;building-code&quot;&gt;Building Code&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190917-bcbcbl-code.jpg&quot; alt=&quot;code&quot; title=&quot;code&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190917-bcbcbl-code-01.jpg&quot; alt=&quot;code 01&quot; title=&quot;code 01&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;interesting-aspects-of-the-discission&quot;&gt;Interesting aspects of the discission&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;English vs. Local language in code.  For example if your time is all
-fluent in Kanji, it might be great to just write the actual code in
-Kanji.  However, if you want to consider diversity and inclusion,
-doing so may be a barrier to entry.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Open Source while being employed, you need to consider who owns the
-code?  Your employment contract is the authority on this matter.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;build-community&quot;&gt;Build Community&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Mattias told the origin myth of Jfokus: started as a JUG, then became
-a juggernaut of Nordic conferences.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Koichi talked about the KanJava JUG.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Battery running out!&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @jyukutyo, @matkar, @karianna</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Copyright 2016 Ed Burns.</summary></entry></feed>

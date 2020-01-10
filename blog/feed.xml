@@ -1,5 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2019-11-26T05:27:26-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">JVM-CON 2019 Anatole Tresch: How Not To Build An App</title><link href="/blog/2019/11/25/jvm-con-anatole.html" rel="alternate" type="text/html" title="JVM-CON 2019 Anatole Tresch: How Not To Build An App" /><published>2019-11-25T04:30:00-05:00</published><updated>2019-11-25T04:30:00-05:00</updated><id>/blog/2019/11/25/jvm-con-anatole</id><content type="html" xml:base="/blog/2019/11/25/jvm-con-anatole.html">&lt;p&gt;Raw Notes from Anatole Tresch’s session&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-01-09T15:11:40-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">How to Check if Something in Azure Marketplace is Available in Azure Stack</title><link href="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html" rel="alternate" type="text/html" title="How to Check if Something in Azure Marketplace is Available in Azure Stack" /><published>2020-01-09T15:00:00-05:00</published><updated>2020-01-09T15:00:00-05:00</updated><id>/blog/2020/01/09/azure-stack-vs-azure-marketplace</id><content type="html" xml:base="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html">&lt;p&gt;I was recently asked if the &lt;a href=&quot;https://devblogs.microsoft.com/java/java-ee-on-azure-with-weblogic-and-linux-virtual-machines/&quot;&gt;WebLogic on Azure Virtual
+Machines&lt;/a&gt;
+Azure Marketplace Offers were available on &lt;a href=&quot;https://azure.microsoft.com/en-us/overview/azure-stack/&quot;&gt;Azure
+Stack&lt;/a&gt;.  I was
+told the best way to discover this was to look at &lt;a href=&quot;https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-marketplace-azure-items?view=azs-1910&quot;&gt;Azure Marketplace
+items available for Azure
+Stack&lt;/a&gt;.
+Apparently this page is updated via syndication from Azure Marketplace,
+but I don’t know exactly how.&lt;/p&gt;
+
+&lt;p&gt;To answer the question: as of this writing, no, the offers are not
+available in Azure Stack.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was recently asked if the WebLogic on Azure Virtual Machines Azure Marketplace Offers were available on Azure Stack. I was told the best way to discover this was to look at Azure Marketplace items available for Azure Stack. Apparently this page is updated via syndication from Azure Marketplace, but I don’t know exactly how.</summary></entry><entry><title type="html">JVM-CON 2019 Anatole Tresch: How Not To Build An App</title><link href="/blog/2019/11/25/jvm-con-anatole.html" rel="alternate" type="text/html" title="JVM-CON 2019 Anatole Tresch: How Not To Build An App" /><published>2019-11-25T04:30:00-05:00</published><updated>2019-11-25T04:30:00-05:00</updated><id>/blog/2019/11/25/jvm-con-anatole</id><content type="html" xml:base="/blog/2019/11/25/jvm-con-anatole.html">&lt;p&gt;Raw Notes from Anatole Tresch’s session&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/blog/assets/20191125-anatole.jpg&quot; alt=&quot;Anatole Tresch&quot; title=&quot;Anatole Tresch&quot; /&gt;&lt;/p&gt;
 
@@ -869,107 +880,4 @@ hard, no technical Jakarta EE 8 work happened.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Other ideas.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @reza_rahman Jakarta EE Recepies.</summary></entry><entry><title type="html">Oracle Code One 2019: Takin’ Care of Business, Java Edition</title><link href="/blog/2019/09/19/oracle-code-one-2019-tcb.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Takin' Care of Business, Java Edition" /><published>2019-09-19T11:00:00-04:00</published><updated>2019-09-19T11:00:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-tcb</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-tcb.html">&lt;p&gt;&lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Copyright 2016&lt;/a&gt; Ed Burns. &lt;img src=&quot;/blog/assets/ccby.png&quot; alt=&quot;ccby&quot; title=&quot;ccby&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you attended the JCP party Monday this week and were able to hear
-&lt;a href=&quot;http://www.kousenit.com/&quot;&gt;Ken Kousen&lt;/a&gt; singing “Takin’ Care of
-Business”, you may have noticed the lyrics were different.  If you are
-curious, here they are.&lt;/p&gt;
-
-&lt;h2 id=&quot;takin-care-of-business-java-edition&quot;&gt;Takin’ Care of Business, Java Edition&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;you get up Tuesday morning
-with the build system warning
-get the vpn into the server
-
-You identify the systems
-check the daemons, logs and pids,
-and the build, it's not lookin pretty
-
-There's a NullPointerException
-From some broken introspection
-And the findbugs report
-is looking gritty
-
-so you start to get annoyed
-at the hackers we employed
-but they like to work at java all day
-
-And you've been takin care of business
-every day
-takin care of business
-every way, you been
-takin care of business
-it's all right
-takin care of business
-debugging overtime, work out.
-
-jam
-
-So understand the ClassLoader
-if you wanna be a coder
-and the code you write runs without an error
-
-Get an open source debugger
-and you'll be a Java slugger
-and all the bugs will run away in terror
-
-People see you havin fun
-Just a codin in the sun
-Tell them that you like it that way
-
-It's the bugs that we avoid
-and we're all well employed
-We love to work at java all day
-and we be
-
-And you've been takin care of business
-every day
-takin care of business
-every way, you been
-takin care of business
-it's all right
-takin care of business
-debugging overtime, work out.
-
-jam
-
-drum and clap break
-
-take good care
-of our business
-every day
-every way
-
-jam
-
-repeat first verse
-
-you get up Tuesday morning
-with the build system warning
-get the vpn into the server
-
-You identify the systems
-check the daemons, logs and pids,
-and the build, it's not lookin pretty
-
-There's a NullPointerException
-From some broken introspection
-And the findbugs report
-is looking gritty
-
-so you start to get annoyed
-at the hackers we employed
-but they like to work at java all day
-
-And you've been takin care of business
-every day
-takin care of business
-every way, you been
-takin care of business
-it's all right
-takin care of business
-debugging overtime, work out.
-
-jam
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Copyright 2016 Ed Burns.</summary></entry></feed>
+&lt;p&gt;Other ideas.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @reza_rahman Jakarta EE Recepies.</summary></entry></feed>

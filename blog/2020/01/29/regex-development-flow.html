@@ -6,15 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>How to Check if Something in Azure Marketplace is Available in Azure Stack</title>
-  <meta name="description" content="I was recently asked if the WebLogic on Azure Virtual Machines Azure Marketplace Offers were available on Azure Stack. I was told the best way to discover th...">
+  <title>Flow for developing regular expressions (regex) of moderate complexity</title>
+  <meta name="description" content="I recently had to add a feature to the UI for the Azure Marketplace Offers for Oracle WebLogic Server. The UI for marketplace entries is written in JSON. As ...">
 
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <!--[if IE]>
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <![endif]-->
   <link rel="stylesheet" href="/blog/assets/main.css">
-  <link rel="canonical" href="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html">
+  <link rel="canonical" href="/blog/2020/01/29/regex-development-flow.html">
   <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
   
   
@@ -77,23 +77,106 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">How to Check if Something in Azure Marketplace is Available in Azure Stack</h1>
-    <p class="post-meta"><time datetime="2020-01-09T15:00:00-05:00" itemprop="datePublished">Jan 9, 2020</time></p>
+    <h1 class="post-title" itemprop="name headline">Flow for developing regular expressions (regex) of moderate complexity</h1>
+    <p class="post-meta"><time datetime="2020-01-29T10:40:00-05:00" itemprop="datePublished">Jan 29, 2020</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>I was recently asked if the <a href="https://devblogs.microsoft.com/java/java-ee-on-azure-with-weblogic-and-linux-virtual-machines/">WebLogic on Azure Virtual
-Machines</a>
-Azure Marketplace Offers were available on <a href="https://azure.microsoft.com/en-us/overview/azure-stack/">Azure
-Stack</a>.  I was
-told the best way to discover this was to look at <a href="https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-marketplace-azure-items?view=azs-1910">Azure Marketplace
-items available for Azure
-Stack</a>.
-Apparently this page is updated via syndication from Azure Marketplace,
-but I don’t know exactly how.</p>
+    <p>I recently had to add a feature to the UI for the <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=weblogic%2012.2.1.3&amp;page=1">Azure Marketplace
+Offers for Oracle WebLogic
+Server</a>.
+The UI for marketplace entries is written in JSON.  As I stated in <a href="/blog/2020/01/25/arm-development-faster-iteration-time.html">my
+previous post</a>, JSON is an awful
+choice for a DSL for deploying things to Azure.  It is also an awful
+choice for declaring a wizard-style UI, but at least the particular use case of <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/create-uidefinition-overview">building the UI for an Azure Marketplace offer</a> allows easy <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/microsoft-common-textbox#remarks">incorporation of regular expressions</a>.</p>
 
-<p>To answer the question: as of this writing, no, the offers are not
-available in Azure Stack.</p>
+<p>This post shows a technique for iteratively developing a moderately
+complex regular expression (regex).</p>
+
+<p>In my case, I want a regex that validates that a string is a comma
+separated list of numbers or hyphen separated numbers.  The list must
+have no whitespace and not have a trailing comma.  For example,
+<code class="highlighter-rouge">80,443,7001,7002,8000-8100</code> is valid while
+<code class="highlighter-rouge">80,443,7001,7002,8000-8100,</code> is not.</p>
+
+<p>Spoiler: here is the final regex.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>^((([0-9]+-[0-9]+)|([0-9]+))[,]?)+[^,]$
+</code></pre></div></div>
+
+<p>I developed this moderately complex regex using this process.</p>
+
+<ol>
+  <li>
+    <p>Use <a href="https://regexr.com/">https://regexr.com/</a> to iteratively develop.</p>
+  </li>
+  <li>
+    <p>Write an English language statement of the regex: “I want a regex
+that validates that a string is a comma separated list of numbers or
+hyphen separated numbers.  The list must have no whitespace and not have
+a trailing comma.”</p>
+  </li>
+  <li>
+    <p>Decompose the English into its parts.</p>
+
+    <p>a. no whitespace</p>
+
+    <p>b. numbers</p>
+
+    <p>c. hyphen separated numbers</p>
+
+    <p>d. comma separated list</p>
+
+    <p>e. not have a trailing comma</p>
+  </li>
+  <li>
+    <p>Write a regex for each part.</p>
+
+    <p>a. <code class="highlighter-rouge">no whitespace</code>.  You get this for free with regex by not putting
+   any whitespace in the regex.</p>
+
+    <p>b. <code class="highlighter-rouge">numbers</code>. <code class="highlighter-rouge">^([0-9]+)$</code></p>
+
+    <p>c. <code class="highlighter-rouge">hyphen separated numbers</code>. <code class="highlighter-rouge">^([0-9]+-[0-9]+)$</code></p>
+
+    <p>d. <code class="highlighter-rouge">comma separated list</code>. <code class="highlighter-rouge">^((.*)[,]?)+$</code></p>
+
+    <p>e. <code class="highlighter-rouge">not have a trailing comma</code>. <code class="highlighter-rouge">^(.*)[^,]$</code></p>
+  </li>
+  <li>
+    <p>Combine the parts in a way that works.  Here it was vitally important to make correct use of 
+parenthesis (“capturing groups” in regex lingo), and the “or” operator <code class="highlighter-rouge">|</code>.</p>
+
+    <p>Using the parts above, a pseudo regex looks like:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>^(((c.)|(b.))d.)d.'e$
+</code></pre></div>    </div>
+
+    <p>I used “d.” and “d.’” (d and d prime) in my pseudo regex because the
+comma separated list needed to be expressed that way.  Also note that
+“a.” is met by the absence of any whitespace in the regex, so it is
+not present in the regex itself.</p>
+
+    <p>Carefully making the necessary substitutions, the following
+unreadable mess is a regex that matches a bunch of number ranges or
+numbers, separated by commas, disallowing a trailing comma.</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>^((([0-9]+-[0-9]+)|([0-9]+))[,]?)+[^,]$
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>This expression successfully validates strings like <code class="highlighter-rouge">80,443,7001,7002,8000-8100</code>.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Developing a moderately complex regular expression is easier when you break it down and iteratively develop each part using <a href="https://regexr.com/">https://regexr.com/</a> by <a href="https://twitter.com/gskinner_team">gskinner</a>.</p>
+
+<h2 id="addendum">Addendum</h2>
+
+<p>If you need your regexs as part of an azure <code class="highlighter-rouge">createUiDefinition.json</code>,
+save time by testing the whole thing using the <a href="https://portal.azure.com/?feature.customPortal=false#blade/Microsoft_Azure_CreateUIDef/SandboxBlade">Create UI Definition
+Sandbox</a>.</p>
 
   </div>
 

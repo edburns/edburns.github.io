@@ -1,5 +1,238 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-01-09T15:11:40-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">How to Check if Something in Azure Marketplace is Available in Azure Stack</title><link href="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html" rel="alternate" type="text/html" title="How to Check if Something in Azure Marketplace is Available in Azure Stack" /><published>2020-01-09T15:00:00-05:00</published><updated>2020-01-09T15:00:00-05:00</updated><id>/blog/2020/01/09/azure-stack-vs-azure-marketplace</id><content type="html" xml:base="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html">&lt;p&gt;I was recently asked if the &lt;a href=&quot;https://devblogs.microsoft.com/java/java-ee-on-azure-with-weblogic-and-linux-virtual-machines/&quot;&gt;WebLogic on Azure Virtual
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-01-29T11:32:26-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Flow for developing regular expressions (regex) of moderate complexity</title><link href="/blog/2020/01/29/regex-development-flow.html" rel="alternate" type="text/html" title="Flow for developing regular expressions (regex) of moderate complexity" /><published>2020-01-29T10:40:00-05:00</published><updated>2020-01-29T10:40:00-05:00</updated><id>/blog/2020/01/29/regex-development-flow</id><content type="html" xml:base="/blog/2020/01/29/regex-development-flow.html">&lt;p&gt;I recently had to add a feature to the UI for the &lt;a href=&quot;https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=weblogic%2012.2.1.3&amp;amp;page=1&quot;&gt;Azure Marketplace
+Offers for Oracle WebLogic
+Server&lt;/a&gt;.
+The UI for marketplace entries is written in JSON.  As I stated in &lt;a href=&quot;/blog/2020/01/25/arm-development-faster-iteration-time.html&quot;&gt;my
+previous post&lt;/a&gt;, JSON is an awful
+choice for a DSL for deploying things to Azure.  It is also an awful
+choice for declaring a wizard-style UI, but at least the particular use case of &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/create-uidefinition-overview&quot;&gt;building the UI for an Azure Marketplace offer&lt;/a&gt; allows easy &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/microsoft-common-textbox#remarks&quot;&gt;incorporation of regular expressions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This post shows a technique for iteratively developing a moderately
+complex regular expression (regex).&lt;/p&gt;
+
+&lt;p&gt;In my case, I want a regex that validates that a string is a comma
+separated list of numbers or hyphen separated numbers.  The list must
+have no whitespace and not have a trailing comma.  For example,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;80,443,7001,7002,8000-8100&lt;/code&gt; is valid while
+&lt;code class=&quot;highlighter-rouge&quot;&gt;80,443,7001,7002,8000-8100,&lt;/code&gt; is not.&lt;/p&gt;
+
+&lt;p&gt;Spoiler: here is the final regex.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^((([0-9]+-[0-9]+)|([0-9]+))[,]?)+[^,]$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I developed this moderately complex regex using this process.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use &lt;a href=&quot;https://regexr.com/&quot;&gt;https://regexr.com/&lt;/a&gt; to iteratively develop.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Write an English language statement of the regex: “I want a regex
+that validates that a string is a comma separated list of numbers or
+hyphen separated numbers.  The list must have no whitespace and not have
+a trailing comma.”&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Decompose the English into its parts.&lt;/p&gt;
+
+    &lt;p&gt;a. no whitespace&lt;/p&gt;
+
+    &lt;p&gt;b. numbers&lt;/p&gt;
+
+    &lt;p&gt;c. hyphen separated numbers&lt;/p&gt;
+
+    &lt;p&gt;d. comma separated list&lt;/p&gt;
+
+    &lt;p&gt;e. not have a trailing comma&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Write a regex for each part.&lt;/p&gt;
+
+    &lt;p&gt;a. &lt;code class=&quot;highlighter-rouge&quot;&gt;no whitespace&lt;/code&gt;.  You get this for free with regex by not putting
+   any whitespace in the regex.&lt;/p&gt;
+
+    &lt;p&gt;b. &lt;code class=&quot;highlighter-rouge&quot;&gt;numbers&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;^([0-9]+)$&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;c. &lt;code class=&quot;highlighter-rouge&quot;&gt;hyphen separated numbers&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;^([0-9]+-[0-9]+)$&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;d. &lt;code class=&quot;highlighter-rouge&quot;&gt;comma separated list&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;^((.*)[,]?)+$&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;e. &lt;code class=&quot;highlighter-rouge&quot;&gt;not have a trailing comma&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;^(.*)[^,]$&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Combine the parts in a way that works.  Here it was vitally important to make correct use of 
+parenthesis (“capturing groups” in regex lingo), and the “or” operator &lt;code class=&quot;highlighter-rouge&quot;&gt;|&lt;/code&gt;.&lt;/p&gt;
+
+    &lt;p&gt;Using the parts above, a pseudo regex looks like:&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^(((c.)|(b.))d.)d.'e$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;I used “d.” and “d.’” (d and d prime) in my pseudo regex because the
+comma separated list needed to be expressed that way.  Also note that
+“a.” is met by the absence of any whitespace in the regex, so it is
+not present in the regex itself.&lt;/p&gt;
+
+    &lt;p&gt;Carefully making the necessary substitutions, the following
+unreadable mess is a regex that matches a bunch of number ranges or
+numbers, separated by commas, disallowing a trailing comma.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;^((([0-9]+-[0-9]+)|([0-9]+))[,]?)+[^,]$
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This expression successfully validates strings like &lt;code class=&quot;highlighter-rouge&quot;&gt;80,443,7001,7002,8000-8100&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Developing a moderately complex regular expression is easier when you break it down and iteratively develop each part using &lt;a href=&quot;https://regexr.com/&quot;&gt;https://regexr.com/&lt;/a&gt; by &lt;a href=&quot;https://twitter.com/gskinner_team&quot;&gt;gskinner&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;addendum&quot;&gt;Addendum&lt;/h2&gt;
+
+&lt;p&gt;If you need your regexs as part of an azure &lt;code class=&quot;highlighter-rouge&quot;&gt;createUiDefinition.json&lt;/code&gt;,
+save time by testing the whole thing using the &lt;a href=&quot;https://portal.azure.com/?feature.customPortal=false#blade/Microsoft_Azure_CreateUIDef/SandboxBlade&quot;&gt;Create UI Definition
+Sandbox&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I recently had to add a feature to the UI for the Azure Marketplace Offers for Oracle WebLogic Server. The UI for marketplace entries is written in JSON. As I stated in my previous post, JSON is an awful choice for a DSL for deploying things to Azure. It is also an awful choice for declaring a wizard-style UI, but at least the particular use case of building the UI for an Azure Marketplace offer allows easy incorporation of regular expressions.</summary></entry><entry><title type="html">Tips for faster iteration times developing ARM templates</title><link href="/blog/2020/01/25/arm-development-faster-iteration-time.html" rel="alternate" type="text/html" title="Tips for faster iteration times developing ARM templates" /><published>2020-01-25T14:40:00-05:00</published><updated>2020-01-25T14:40:00-05:00</updated><id>/blog/2020/01/25/arm-development-faster-iteration-time</id><content type="html" xml:base="/blog/2020/01/25/arm-development-faster-iteration-time.html">&lt;p&gt;If you found your way to this post and your first reaction is 
+“&lt;a href=&quot;https://www.urbandictionary.com/define.php?term=Thank%20you%20Captain%20Obvious&quot;&gt;well duh&lt;/a&gt;”,
+please leave a comment, because I’d love to know how you came upon your
+knowledge which caused you to respond this way.  This was hard-won knowledge
+for me, but I suspect I’m missing out on some fundamental bit of
+training in the art of efficient ARM template development.&lt;/p&gt;
+
+&lt;p&gt;An ARM template encodes instructions that the &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/&quot;&gt;Azure Resource
+Manager&lt;/a&gt;
+executes which result in some stuff being deployed to Azure.  As such,
+an ARM template is a
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Domain-specific_language&quot;&gt;DSL&lt;/a&gt; for the
+domain of Azure.  Unfortunately, as DSLs go, it’s awful.  It’s a bigass
+JSON file, with all of the pitfalls that entails, such as:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;It’s a challenge to manage complexity.  Things can spiral out of
+control very quickly unless you are very disciplined while authoring.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The instructions in an ARM template execute over time, in a sequence,
+imperatively, but JSON is absolutely not an imperative syntax.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;It’s very easy to make stupid mistakes at authoring time.  You can
+opt-in to using &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/use-vs-code-to-create-template&quot;&gt;some
+tooling&lt;/a&gt;
+to catch some stupid mistakes at authoring time, but a proper DSL
+would do a better job of it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;You &lt;a href=&quot;https://github.com/Azure/azure-resource-manager-schemas/issues/851&quot;&gt;can’t even put comments in there&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As a DSL for Azure, I think Terraform may be a better fit.  Indeed
+&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/terraform/terraform-overview&quot;&gt;Terraform is well supported by
+Azure&lt;/a&gt;,
+but you can’t use it when authoring for the Azure marketplace.  Accept
+JSON and move on.  Here are some tips to ease your acceptance.&lt;/p&gt;
+
+&lt;h2 id=&quot;accept-json&quot;&gt;Accept JSON&lt;/h2&gt;
+
+&lt;p&gt;This blog post shares some tips I’ve developed to get faster development
+cycle times when iteratively developing ARM templates.  The cycle looks
+like this:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Get your &lt;code class=&quot;highlighter-rouge&quot;&gt;mainTemplate.json&lt;/code&gt; somehow.  Write it yourself, export it
+from the Azure portal, start with a quickstart, etc.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Deploy it to Azure with the Azure CLI.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Look at what happened.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I want to minimize the time between steps 2 and 3.&lt;/p&gt;
+
+&lt;h2 id=&quot;tips-for-step-1&quot;&gt;Tips for step 1&lt;/h2&gt;
+
+&lt;h3 id=&quot;use-the-export-template-feature-as-a-jump-start&quot;&gt;Use the “export template” feature as a jump start&lt;/h3&gt;
+
+&lt;p&gt;Create the system you want to have in the portal, then use the 
+&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-portal&quot;&gt;export template&lt;/a&gt; 
+feature of the portal to download the ARM template JSON file.  You may
+want to do this for each big chunk of functionality in your system, then
+stitch them together.  Iterate at the command line using the technique
+in the next tip.&lt;/p&gt;
+
+&lt;h3 id=&quot;start-with-one-of-the-templates-from-azure-quickstart-templates&quot;&gt;Start with one of the templates from &lt;code class=&quot;highlighter-rouge&quot;&gt;azure-quickstart-templates&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;My extremely helpful colleague &lt;a href=&quot;https://github.com/bmoore-msft&quot;&gt;Brian
+Moore&lt;/a&gt; leads a team that curates this
+&lt;a href=&quot;https://github.com/Azure/azure-quickstart-templates&quot;&gt;vast resource of
+templates&lt;/a&gt;, and
+&lt;a href=&quot;https://github.com/Azure/azure-quickstart-templates/tree/master/test/arm-ttk&quot;&gt;tests for
+templates&lt;/a&gt;.
+The templates are organized by the kind of thing you want to deploy to
+Azure.  For example, here is one for &lt;a href=&quot;https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-waf&quot;&gt;Azure Application
+Gateway&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;tips-for-step-2&quot;&gt;Tips for step 2&lt;/h2&gt;
+
+&lt;h3 id=&quot;always-use-the---debug-argument-to-commands-for-which-you-need-to-iterate--like-this&quot;&gt;Always use the &lt;code class=&quot;highlighter-rouge&quot;&gt;--debug&lt;/code&gt; argument to commands for which you need to iterate.  Like this&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;az group deployment create --debug --resource-group ejb012405c --parameters @20200124-dd-1052162-gateway-parameters.json --template-file arm-oraclelinux-wls-cluster/arm-oraclelinux-wls-cluster/src/main/arm/mainTemplate.json &amp;gt; azure.out 2&amp;gt;&amp;amp;1 &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This also causes the output to be redirected to a file, in the
+background, capturing stdout and stderr.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-tale-of-two-tails&quot;&gt;A tale of two tails&lt;/h3&gt;
+
+&lt;p&gt;Use some tails to observe the output as the command runs.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Grep through the outfile for some low frequency string.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tail -f azure.out | grep &quot;INFO: Accepted&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;In a separate terminal window, just tail the output for everything,
+so you can see if the command simply failed.&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tail -f azure.out
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;extract-the-properties-template--json-object-from-azureout-so-you-can-interpret-column-offsets-correctly&quot;&gt;Extract the &lt;code class=&quot;highlighter-rouge&quot;&gt;{&quot;properties&quot;: {&quot;template&quot;: &lt;/code&gt; JSON object from &lt;code class=&quot;highlighter-rouge&quot;&gt;azure.out&lt;/code&gt;, so you can interpret column offsets correctly&lt;/h3&gt;
+
+&lt;p&gt;The template you pass to &lt;code class=&quot;highlighter-rouge&quot;&gt;az group deployment create&lt;/code&gt; will have all
+formatting removed before Azure sees it, so when Azure gives you error
+messages, they are usually expressed like “error on line 1 column
+60299”.  You need to translate that to “line N” in your human readable
+JSON.  If you save aside the &lt;code class=&quot;highlighter-rouge&quot;&gt;{&quot;properties&quot;: {&quot;template&quot;: &lt;/code&gt; JSON object
+from the &lt;code class=&quot;highlighter-rouge&quot;&gt;azure.out&lt;/code&gt; file, you can seek to that column, and then derive
+where the error is in your human readable JSON file.&lt;/p&gt;
+
+&lt;h3 id=&quot;even-though-you-ultimately-need-to-produce-maintemplatejson-iterate-with-smaller-disjoint-files&quot;&gt;Even though you ultimately need to produce &lt;code class=&quot;highlighter-rouge&quot;&gt;mainTemplate.json&lt;/code&gt; iterate with smaller, disjoint files&lt;/h3&gt;
+
+&lt;p&gt;If you are building a template that ultimately deploys an entire
+datacenter, such as with an &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/marketplace/marketplace-solution-templates&quot;&gt;Azure
+Application&lt;/a&gt;
+you should consider breaking the template into smaller nested templates,
+as described in &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/linked-templates&quot;&gt;Using linked and nested templates when deploying Azure
+resources&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Developing ARM templates can be very frustrating, especilaly if you are
+used to the rapid compile-edit-debug cycle that many actual programming
+languages offer.&lt;/p&gt;</content><author><name></name></author><summary type="html">If you found your way to this post and your first reaction is “well duh”, please leave a comment, because I’d love to know how you came upon your knowledge which caused you to respond this way. This was hard-won knowledge for me, but I suspect I’m missing out on some fundamental bit of training in the art of efficient ARM template development.</summary></entry><entry><title type="html">How to Check if Something in Azure Marketplace is Available in Azure Stack</title><link href="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html" rel="alternate" type="text/html" title="How to Check if Something in Azure Marketplace is Available in Azure Stack" /><published>2020-01-09T15:00:00-05:00</published><updated>2020-01-09T15:00:00-05:00</updated><id>/blog/2020/01/09/azure-stack-vs-azure-marketplace</id><content type="html" xml:base="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html">&lt;p&gt;I was recently asked if the &lt;a href=&quot;https://devblogs.microsoft.com/java/java-ee-on-azure-with-weblogic-and-linux-virtual-machines/&quot;&gt;WebLogic on Azure Virtual
 Machines&lt;/a&gt;
 Azure Marketplace Offers were available on &lt;a href=&quot;https://azure.microsoft.com/en-us/overview/azure-stack/&quot;&gt;Azure
 Stack&lt;/a&gt;.  I was
@@ -708,176 +941,4 @@ browser, click ok, click Done.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;Click “Finish video” and select a place to save the file.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><summary type="html">How to add audio to a video in “Photos for Windows 10”.</summary></entry><entry><title type="html">Oracle Code One 2019: Rafael Benevides</title><link href="/blog/2019/09/19/oracle-code-one-2019-rafa.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Rafael Benevides" /><published>2019-09-19T17:15:00-04:00</published><updated>2019-09-19T17:15:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-rafa</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-rafa.html">&lt;p&gt;Raw notes from @rafabene Quarkus&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-rafa.jpg&quot; alt=&quot;Rafa&quot; title=&quot;Rafa&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://bit.ly/quarkus&quot;&gt;https://bit.ly/quarkus&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;java-is-not-dead-yet&quot;&gt;Java is Not Dead Yet&lt;/h2&gt;
-
-&lt;h2 id=&quot;it-is-showing-its-age&quot;&gt;It is showing its age&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;When Java started, containers were not yet popular.  As a result, Java
-went and grabbed as much resources it could to maximize&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-rafa-containers.jpg&quot; alt=&quot;containers&quot; title=&quot;containers&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-rafa-timeline.jpg&quot; alt=&quot;timeline&quot; title=&quot;timeline&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;framework-optimizations&quot;&gt;Framework optimizations&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Moved as much as possible to the build phase&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Allows you to build a native binary&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;into-live-coding-portion&quot;&gt;Into live coding portion&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Gave a great tour of the important features&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I found this one a little bit hard to follow.  Could be I was tired, but
-I found it hard to remain focused on it.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://developers.redhat.com/courses/quarkus/panache/&quot;&gt;Panache&lt;/a&gt;
-brings Hibernate (&lt;strong&gt;not&lt;/strong&gt; JPA) to Quarkus,&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Has built in support for Swagger/OpenAPI.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw notes from @rafabene Quarkus</summary></entry><entry><title type="html">Oracle Code One 2019: Reza Rahman: Jakarta EE Recepies</title><link href="/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee.html" rel="alternate" type="text/html" title="Oracle Code One 2019: Reza Rahman: Jakarta EE Recepies" /><published>2019-09-19T16:15:00-04:00</published><updated>2019-09-19T16:15:00-04:00</updated><id>/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee</id><content type="html" xml:base="/blog/2019/09/19/oracle-code-one-2019-reza-jakarta-ee.html">&lt;p&gt;Raw notes from @reza_rahman Jakarta EE Recepies.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza.jpg&quot; alt=&quot;Reza&quot; title=&quot;Reza&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;servlet-4&quot;&gt;Servlet 4&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Value add: HTTP/2&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;json-binding&quot;&gt;JSON Binding&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;JSON is now a first class citizen of the platform.  Provides built-in
-way to support “application/json” for POJOs.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;json-pointer-json-patch&quot;&gt;JSON Pointer JSON Patch&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;This one is really valuable.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza-json-patch.jpg&quot; alt=&quot;Patch&quot; title=&quot;Patch&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;server-sent-events&quot;&gt;Server Sent Events&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Another important part of HTML5 in EE.  Along with WebSockets.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;jakarta-security&quot;&gt;Jakarta Security&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Addresses a long festering problem: Security was never addressed
-cohesively.  As a result it was always vendor specific.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Took a cross cutting look at all the specs and how they did security.
-Unified it as well as possible.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Introduced a &lt;code class=&quot;highlighter-rouge&quot;&gt;SecurityContext&lt;/code&gt; concept.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;cdi-2&quot;&gt;CDI 2&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Allows it to be used from Java SE, outside of EE. &lt;strong&gt;This is vital for
-allowing CDI to be used from Microprofile&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Portable SPI simplifications and enhancements.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;adopting-java-se-8&quot;&gt;Adopting Java SE 8&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza-se8-ee8.jpg&quot; alt=&quot;se8&quot; title=&quot;se8&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;impls&quot;&gt;Impls&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jakarta.ee/compatibility&quot;&gt;https://jakarta.ee/compatibility&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Eclipse GlassFish&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;WildFly&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Open Liberty&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;microprofile&quot;&gt;Microprofile&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://microprofile.io/&quot;&gt;https://microprofile.io/&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Jakarta EE 8 covers most of what you need in monolithic applications&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Microprofile has kept Server Side Java alive and relevant while the
-hard, no technical Jakarta EE 8 work happened.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;community-questions&quot;&gt;Community Questions&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog/assets/20190919-reza-questions.jpg&quot; alt=&quot;questions&quot; title=&quot;questions&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://bit.ly/2mhatfl&quot;&gt;http://bit.ly/2mhatfl&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;jakartaeenext&quot;&gt;JakartaEE.next&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Jakarta NoSQL&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Deprecating EJB&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;OAuth2, OpenID Connect, JWT&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ManagedServiceExecutorServiceDefinition&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Java SE alignment&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Jakarta Concurrency&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;MVC&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Other ideas.&lt;/p&gt;</content><author><name></name></author><summary type="html">Raw notes from @reza_rahman Jakarta EE Recepies.</summary></entry></feed>
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">How to add audio to a video in “Photos for Windows 10”.</summary></entry></feed>

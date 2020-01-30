@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Tips for faster iteration times developing ARM templates</title>
-  <meta name="description" content="If you found your way to this post and your first reaction is “well duh”, please leave a comment, because I’d love to know how you came upon your knowledge w...">
+  <meta name="description" content="UPDATE: 2020-01-30 export with https://resources.azure.com/">
 
   <link rel="stylesheet" href="/blog/assets/rockstar.css">
 <!--[if IE]>
@@ -82,7 +82,9 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>If you found your way to this post and your first reaction is 
+    <h2 id="update-2020-01-30-export-with-httpsresourcesazurecom">UPDATE: 2020-01-30 export with https://resources.azure.com/</h2>
+
+<p>If you found your way to this post and your first reaction is 
 “<a href="https://www.urbandictionary.com/define.php?term=Thank%20you%20Captain%20Obvious">well duh</a>”,
 please leave a comment, because I’d love to know how you came upon your
 knowledge which caused you to respond this way.  This was hard-won knowledge
@@ -155,6 +157,38 @@ feature of the portal to download the ARM template JSON file.  You may
 want to do this for each big chunk of functionality in your system, then
 stitch them together.  Iterate at the command line using the technique
 in the next tip.</p>
+
+<h3 id="use-the-resourcesazurecom">Use the resources.azure.com</h3>
+
+<p>I have observed that the “export template” feature does not always give
+you the full JSON.  For example, in the case of Application Gateway, the
+<code class="highlighter-rouge">backendAddresses</code> was empty, even though it had a pool and targets.  A
+colleague pointed out this enormously useful resource
+<a href="https://resources.azure.com/">https://resources.azure.com/</a>.</p>
+
+<p>Here is a quick sketch of how I used it to get the full JSON of a
+deployed Application Gateway.  Note, this is not an ARM template, but it
+can help a lot.</p>
+
+<ol>
+  <li>
+    <p>Visit https://resources.azure.com/</p>
+  </li>
+  <li>
+    <p>Type in the resource group in which the resource is deployed: ejb012803c</p>
+  </li>
+  <li>
+    <p>Maybe make a choice.</p>
+
+    <p>a. If offered with an autosuggest, pick the resource and you are done.</p>
+
+    <p>b. If not offered with an autosuggest.  In the left pane, expand nodes like this</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>subscriptions &gt; Your subscription &gt; resourceGroups &gt; ejb012803c &gt; Providers &gt;
+  Microsoft.Network &gt; applicationGateways &gt; ejb012803c
+</code></pre></div>    </div>
+  </li>
+</ol>
 
 <h3 id="start-with-one-of-the-templates-from-azure-quickstart-templates">Start with one of the templates from <code class="highlighter-rouge">azure-quickstart-templates</code></h3>
 

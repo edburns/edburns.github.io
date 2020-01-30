@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-01-29T11:32:26-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-01-30T18:13:18-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Flow for developing regular expressions (regex) of moderate complexity</title><link href="/blog/2020/01/29/regex-development-flow.html" rel="alternate" type="text/html" title="Flow for developing regular expressions (regex) of moderate complexity" /><published>2020-01-29T10:40:00-05:00</published><updated>2020-01-29T10:40:00-05:00</updated><id>/blog/2020/01/29/regex-development-flow</id><content type="html" xml:base="/blog/2020/01/29/regex-development-flow.html">&lt;p&gt;I recently had to add a feature to the UI for the &lt;a href=&quot;https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=weblogic%2012.2.1.3&amp;amp;page=1&quot;&gt;Azure Marketplace
 Offers for Oracle WebLogic
 Server&lt;/a&gt;.
@@ -93,7 +93,9 @@ numbers, separated by commas, disallowing a trailing comma.&lt;/p&gt;
 
 &lt;p&gt;If you need your regexs as part of an azure &lt;code class=&quot;highlighter-rouge&quot;&gt;createUiDefinition.json&lt;/code&gt;,
 save time by testing the whole thing using the &lt;a href=&quot;https://portal.azure.com/?feature.customPortal=false#blade/Microsoft_Azure_CreateUIDef/SandboxBlade&quot;&gt;Create UI Definition
-Sandbox&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I recently had to add a feature to the UI for the Azure Marketplace Offers for Oracle WebLogic Server. The UI for marketplace entries is written in JSON. As I stated in my previous post, JSON is an awful choice for a DSL for deploying things to Azure. It is also an awful choice for declaring a wizard-style UI, but at least the particular use case of building the UI for an Azure Marketplace offer allows easy incorporation of regular expressions.</summary></entry><entry><title type="html">Tips for faster iteration times developing ARM templates</title><link href="/blog/2020/01/25/arm-development-faster-iteration-time.html" rel="alternate" type="text/html" title="Tips for faster iteration times developing ARM templates" /><published>2020-01-25T14:40:00-05:00</published><updated>2020-01-25T14:40:00-05:00</updated><id>/blog/2020/01/25/arm-development-faster-iteration-time</id><content type="html" xml:base="/blog/2020/01/25/arm-development-faster-iteration-time.html">&lt;p&gt;If you found your way to this post and your first reaction is 
+Sandbox&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I recently had to add a feature to the UI for the Azure Marketplace Offers for Oracle WebLogic Server. The UI for marketplace entries is written in JSON. As I stated in my previous post, JSON is an awful choice for a DSL for deploying things to Azure. It is also an awful choice for declaring a wizard-style UI, but at least the particular use case of building the UI for an Azure Marketplace offer allows easy incorporation of regular expressions.</summary></entry><entry><title type="html">Tips for faster iteration times developing ARM templates</title><link href="/blog/2020/01/25/arm-development-faster-iteration-time.html" rel="alternate" type="text/html" title="Tips for faster iteration times developing ARM templates" /><published>2020-01-25T14:40:00-05:00</published><updated>2020-01-25T14:40:00-05:00</updated><id>/blog/2020/01/25/arm-development-faster-iteration-time</id><content type="html" xml:base="/blog/2020/01/25/arm-development-faster-iteration-time.html">&lt;h2 id=&quot;update-2020-01-30-export-with-httpsresourcesazurecom&quot;&gt;UPDATE: 2020-01-30 export with https://resources.azure.com/&lt;/h2&gt;
+
+&lt;p&gt;If you found your way to this post and your first reaction is 
 “&lt;a href=&quot;https://www.urbandictionary.com/define.php?term=Thank%20you%20Captain%20Obvious&quot;&gt;well duh&lt;/a&gt;”,
 please leave a comment, because I’d love to know how you came upon your
 knowledge which caused you to respond this way.  This was hard-won knowledge
@@ -167,6 +169,38 @@ want to do this for each big chunk of functionality in your system, then
 stitch them together.  Iterate at the command line using the technique
 in the next tip.&lt;/p&gt;
 
+&lt;h3 id=&quot;use-the-resourcesazurecom&quot;&gt;Use the resources.azure.com&lt;/h3&gt;
+
+&lt;p&gt;I have observed that the “export template” feature does not always give
+you the full JSON.  For example, in the case of Application Gateway, the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;backendAddresses&lt;/code&gt; was empty, even though it had a pool and targets.  A
+colleague pointed out this enormously useful resource
+&lt;a href=&quot;https://resources.azure.com/&quot;&gt;https://resources.azure.com/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here is a quick sketch of how I used it to get the full JSON of a
+deployed Application Gateway.  Note, this is not an ARM template, but it
+can help a lot.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Visit https://resources.azure.com/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Type in the resource group in which the resource is deployed: ejb012803c&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Maybe make a choice.&lt;/p&gt;
+
+    &lt;p&gt;a. If offered with an autosuggest, pick the resource and you are done.&lt;/p&gt;
+
+    &lt;p&gt;b. If not offered with an autosuggest.  In the left pane, expand nodes like this&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;subscriptions &amp;gt; Your subscription &amp;gt; resourceGroups &amp;gt; ejb012803c &amp;gt; Providers &amp;gt;
+  Microsoft.Network &amp;gt; applicationGateways &amp;gt; ejb012803c
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h3 id=&quot;start-with-one-of-the-templates-from-azure-quickstart-templates&quot;&gt;Start with one of the templates from &lt;code class=&quot;highlighter-rouge&quot;&gt;azure-quickstart-templates&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;My extremely helpful colleague &lt;a href=&quot;https://github.com/bmoore-msft&quot;&gt;Brian
@@ -232,7 +266,7 @@ resources&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Developing ARM templates can be very frustrating, especilaly if you are
 used to the rapid compile-edit-debug cycle that many actual programming
-languages offer.&lt;/p&gt;</content><author><name></name></author><summary type="html">If you found your way to this post and your first reaction is “well duh”, please leave a comment, because I’d love to know how you came upon your knowledge which caused you to respond this way. This was hard-won knowledge for me, but I suspect I’m missing out on some fundamental bit of training in the art of efficient ARM template development.</summary></entry><entry><title type="html">How to Check if Something in Azure Marketplace is Available in Azure Stack</title><link href="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html" rel="alternate" type="text/html" title="How to Check if Something in Azure Marketplace is Available in Azure Stack" /><published>2020-01-09T15:00:00-05:00</published><updated>2020-01-09T15:00:00-05:00</updated><id>/blog/2020/01/09/azure-stack-vs-azure-marketplace</id><content type="html" xml:base="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html">&lt;p&gt;I was recently asked if the &lt;a href=&quot;https://devblogs.microsoft.com/java/java-ee-on-azure-with-weblogic-and-linux-virtual-machines/&quot;&gt;WebLogic on Azure Virtual
+languages offer.&lt;/p&gt;</content><author><name></name></author><summary type="html">UPDATE: 2020-01-30 export with https://resources.azure.com/</summary></entry><entry><title type="html">How to Check if Something in Azure Marketplace is Available in Azure Stack</title><link href="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html" rel="alternate" type="text/html" title="How to Check if Something in Azure Marketplace is Available in Azure Stack" /><published>2020-01-09T15:00:00-05:00</published><updated>2020-01-09T15:00:00-05:00</updated><id>/blog/2020/01/09/azure-stack-vs-azure-marketplace</id><content type="html" xml:base="/blog/2020/01/09/azure-stack-vs-azure-marketplace.html">&lt;p&gt;I was recently asked if the &lt;a href=&quot;https://devblogs.microsoft.com/java/java-ee-on-azure-with-weblogic-and-linux-virtual-machines/&quot;&gt;WebLogic on Azure Virtual
 Machines&lt;/a&gt;
 Azure Marketplace Offers were available on &lt;a href=&quot;https://azure.microsoft.com/en-us/overview/azure-stack/&quot;&gt;Azure
 Stack&lt;/a&gt;.  I was

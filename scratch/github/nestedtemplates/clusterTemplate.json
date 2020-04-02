@@ -1,0 +1,502 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"_artifactsLocation": {
+			"type": "string",
+			"metadata": {
+				"description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
+			}
+		},
+		"_artifactsLocationSasToken": {
+			"type": "securestring",
+			"metadata": {
+				"description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated. Use the defaultValue if the staging location is not secured."
+			}
+		},
+		"acceptOTNLicenseAgreement": {
+			"type": "string",
+			"metadata": {
+				"description": "Do you agree to provide OTN credentials to accept OTN License Agreement? Enter Y or y to agree, else N or n"
+			}
+		},
+		"adminPasswordOrKey": {
+			"type": "securestring",
+			"metadata": {
+				"description": "SSH Key or password for the Virtual Machine. SSH key is recommended."
+			}
+		},
+		"adminUsername": {
+			"type": "string",
+			"metadata": {
+				"description": "User name for the Virtual Machine."
+			}
+		},
+		"adminVMName": {
+			"type": "string",
+			"defaultValue": "adminVM",
+			"metadata": {
+				"description": "Admin Server hosting VM name."
+			}
+		},
+		"authenticationType": {
+			"type": "string",
+			"defaultValue": "password",
+			"allowedValues": [
+				"sshPublicKey",
+				"password"
+			],
+			"metadata": {
+				"description": "Type of authentication to use on the Virtual Machine. SSH key is recommended."
+			}
+		},
+		"dnsLabelPrefix": {
+			"type": "string",
+			"metadata": {
+				"description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+			}
+		},
+		"dnsNameforApplicationGateway": {
+			"type": "string",
+			"defaultValue": "wlsclusterappgw",
+			"metadata": {
+				"description": "DNS for ApplicationGateway"
+			}
+		},
+		"enableAppGateway": {
+			"type": "bool",
+			"defaultValue": false,
+			"metadata": {
+				"description": "If true, deploy the necessary resoucres required for the App Gateway"
+			}
+		},
+		"gatewayPublicIPAddressName": {
+			"type": "string",
+			"defaultValue": "gatewayPublicIP",
+			"metadata": {
+				"description": "Public IP Name for the Application Gateway"
+			}
+		},
+		"guidValue": {
+			"type": "string",
+			"defaultValue": "[newGuid()]"
+		},
+		"linuxOSVersion": {
+			"type": "string",
+			"defaultValue": "7.4",
+			"allowedValues": [
+				"7.4",
+				"7.3"
+			],
+			"metadata": {
+				"description": "The Oracle Linux version for the VM. This will pick a fully patched image of this given Oracle Linux version."
+			}
+		},
+		"location": {
+			"type": "string",
+			"metadata": {
+				"description": "Location for all resources."
+			}
+		},
+		"managedServerPrefix": {
+			"type": "string",
+			"defaultValue": "managedServer",
+			"metadata": {
+				"description": "Provide managed server prefix names"
+			}
+		},
+		"numberOfInstances": {
+			"type": "int",
+			"defaultValue": 2,
+			"minValue": 2,
+			"maxValue": 5,
+			"metadata": {
+				"description": "Number of VMs to deploy, limit 5 since this sample is using a single storage account"
+			}
+		},
+		"otnAccountUsername": {
+			"type": "string",
+			"metadata": {
+				"description": "Username for your Oracle Technology Network account"
+			}
+		},
+		"otnAccountPassword": {
+			"type": "securestring",
+			"metadata": {
+				"description": "Password for your Oracle Technology Network account"
+			}
+		},
+		"portsToExpose": {
+			"type": "string",
+			"defaultValue": "80,443,7001-9000",
+			"metadata": {
+				"description": "Ports and port ranges to expose"
+			}
+		},
+		"vmSizeSelect": {
+			"type": "string",
+			"defaultValue": "Standard_A3",
+			"allowedValues": [
+				"Standard_A1",
+				"Standard_A2",
+				"Standard_A3",
+				"Standard_A4"
+			],
+			"metadata": {
+				"description": "Select appropriate VM Size as per requirement (Standard_A1, Standard_A2, Standard_A3, Standard_A4)"
+			}
+		},
+		"wlsDomainName": {
+			"type": "string",
+			"metadata": {
+				"description": "Provide Weblogic domain name"
+			}
+		},
+		"wlsUserName": {
+			"type": "string",
+			"metadata": {
+				"description": "Username for your Weblogic domain name"
+			}
+		},
+		"wlsPassword": {
+			"type": "securestring",
+			"metadata": {
+				"description": "Password for your Weblogic domain name"
+			}
+		}
+
+
+	},
+	"variables": {
+		"const_addressPrefix": "10.0.0.0/16",
+		"const_appGatewaySubnetPrefix": "10.0.1.0/24",
+		"const_imageOffer": "Oracle-Linux",
+		"const_imagePublisher": "Oracle",
+		"const_linuxConfiguration": {
+			"disablePasswordAuthentication": true,
+			"ssh": {
+				"publicKeys": [
+					{
+						"path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
+						"keyData": "[parameters('adminPasswordOrKey')]"
+					}
+				]
+			}
+		},
+		"const_managedVMPrefix": "[concat(parameters('managedServerPrefix'),'VM')]",
+		"const_publicIPAddressType": "Dynamic",
+		"const_requiredPortrange": ",65200-65535,5556",
+		"const_storageAccountType": "Standard_LRS",
+		"const_subnetPrefix": "10.0.0.0/24",
+		"const_vmSize": "[parameters('vmSizeSelect')]",
+		"name_appGatewaySubnet": "appGatewaySubnet",
+		"name_availabilitySet": "WLSCluster-AvailabilitySet",
+		"name_networkSecurityGroup": "[concat(parameters('dnsLabelPrefix'), '-nsg')]",
+		"name_nic": "_NIC",
+		"name_oradownScript": "oradown.sh",
+		"name_publicIPAddress": "_PublicIP",
+		"name_outputAdminHost": "[concat(parameters('adminVMName'),variables('name_publicIPAddress'))]",
+		"name_scriptFile": "setupClusterDomain.sh",
+		"name_storageAccount": "[concat(take(replace(parameters('guidValue'),'-',''),6),'olvm')]",
+		"name_subnet": "Subnet",
+		"name_virtualNetwork": "[concat(parameters('wlsDomainName'),'_VNET')]",
+		"ref_networkSecurityGroup": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('name_networkSecurityGroup'))]",
+		"ref_subnet": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('name_virtualNetwork'), variables('name_subnet'))]"
+
+	},
+	"resources": [
+		{
+			"apiVersion": "2019-10-01",
+			"name": "pid-07bfd1f7-83ff-50cd-bd74-61b00a2a6808",
+			"type": "Microsoft.Resources/deployments",
+			"properties": {
+				"mode": "Incremental",
+				"template": {
+					"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+					"contentVersion": "1.0.0.0",
+					"resources": [
+					]
+				}
+			}
+		},
+		{
+			"type": "Microsoft.Network/networkSecurityGroups",
+			"apiVersion": "2019-06-01",
+			"name": "[variables('name_networkSecurityGroup')]",
+			"location": "[parameters('location')]",
+			"properties": {
+				"securityRules": [
+					{
+						"name": "WebLogicPorts",
+						"properties": {
+							"protocol": "TCP",
+							"sourcePortRange": "*",
+							"sourceAddressPrefix": "*",
+							"destinationAddressPrefix": "*",
+							"access": "Allow",
+							"priority": 320,
+							"direction": "Inbound",
+							"destinationPortRanges": "[split(concat(parameters('portsToExpose'),variables('const_requiredPortrange')), ',')]"
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "Microsoft.Storage/storageAccounts",
+			"apiVersion": "2019-06-01",
+			"name": "[variables('name_storageAccount')]",
+			"location": "[parameters('location')]",
+			"sku": {
+				"name": "[variables('const_storageAccountType')]"
+			},
+			"kind": "Storage",
+			"properties": {
+			},
+			"dependsOn": [
+				"[variables('name_networkSecurityGroup')]"
+			]
+		},
+		{
+			"type": "Microsoft.Network/publicIPAddresses",
+			"apiVersion": "2019-11-01",
+			"name": "[parameters('gatewayPublicIPAddressName')]",
+			"condition": "[parameters('enableAppGateway')]",
+			"sku": {
+				"name": "Standard"
+			},
+			"location": "[parameters('location')]",
+			"properties": {
+				"publicIPAllocationMethod": "Static",
+				"dnsSettings": {
+					"domainNameLabel": "[concat(parameters('dnsNameforApplicationGateway'),'-',toLower(resourceGroup().name),'-',toLower(parameters('wlsDomainName')))]"
+				}
+			},
+			"dependsOn": [
+				"[variables('name_storageAccount')]"
+			]
+		},
+		{
+			"type": "Microsoft.Network/publicIPAddresses",
+			"apiVersion": "2019-11-01",
+			"name": "[if(equals(copyIndex(),0),concat(parameters('adminVMName'),variables('name_publicIPAddress')),concat(variables('const_managedVMPrefix'), copyIndex(),variables('name_publicIPAddress')))]",
+			"location": "[parameters('location')]",
+			"copy": {
+				"name": "publicIPLoop",
+				"count": "[parameters('numberOfInstances')]"
+			},
+			"properties": {
+				"publicIPAllocationMethod": "[variables('const_publicIPAddressType')]",
+				"dnsSettings": {
+					"domainNameLabel": "[concat(toLower(parameters('dnsLabelPrefix')),copyindex(),'-',take(replace(parameters('guidValue'),'-',''),10),'-',toLower(parameters('wlsDomainName')))]"
+				}
+			},
+			"dependsOn": [
+				"[variables('name_storageAccount')]"
+			]
+		},
+		{
+			"type": "Microsoft.Network/virtualNetworks",
+			"apiVersion": "2018-11-01",
+			"name": "[variables('name_virtualNetwork')]",
+			"location": "[parameters('location')]",
+			"dependsOn": [
+				"[variables('name_storageAccount')]"
+			],
+			"properties": {
+				"addressSpace": {
+					"addressPrefixes": [
+						"[variables('const_addressPrefix')]"
+					]
+				},
+				"subnets": [
+					{
+						"name": "[variables('name_subnet')]",
+						"properties": {
+							"addressPrefix": "[variables('const_subnetPrefix')]",
+							"networkSecurityGroup": {
+								"id": "[variables('ref_networkSecurityGroup')]"
+							}
+						}
+					},
+					{
+						// PENDING(edburns): Assume it is acceptable to create a subnet for the App Gateway, even if the user
+						// has not requested an App Gateway.  In support of this assumption we can note: the user may want an App 
+						// Gateway after deployment.
+						"name": "[variables('name_appGatewaySubnet')]",
+						"properties": {
+							"addressPrefix": "[variables('const_appGatewaySubnetPrefix')]",
+							"networkSecurityGroup": {
+								"id": "[variables('ref_networkSecurityGroup')]"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"type": "Microsoft.Network/networkInterfaces",
+			"apiVersion": "2018-11-01",
+			"name": "[if(equals(copyIndex(),0),concat(parameters('adminVMName'),variables('name_nic')),concat(variables('const_managedVMPrefix'), copyIndex(),variables('name_nic')))]",
+			"location": "[parameters('location')]",
+			"copy": {
+				"name": "nicLoop",
+				"count": "[parameters('numberOfInstances')]"
+			},
+			"dependsOn": [
+				"[variables('name_virtualNetwork')]",
+				"publicIPLoop"
+			],
+			"properties": {
+				"ipConfigurations": [
+					{
+						"name": "ipconfig1",
+						"properties": {
+							"privateIPAllocationMethod": "Dynamic",
+							"publicIPAddress": {
+								"id": "[resourceId('Microsoft.Network/publicIPAddresses',if(equals(copyIndex(),0),concat(parameters('adminVMName'),variables('name_publicIPAddress')),concat(variables('const_managedVMPrefix'), copyIndex(),variables('name_publicIPAddress'))))]"
+							},
+							"subnet": {
+								"id": "[variables('ref_subnet')]"
+							}
+						}
+					}
+				]
+			}
+		},
+		{
+			"apiVersion": "2019-07-01",
+			"type": "Microsoft.Compute/availabilitySets",
+			"location": "[parameters('location')]",
+			"name": "[variables('name_availabilitySet')]",
+			"properties": {
+				"platformFaultDomainCount": 2,
+				"platformUpdateDomainCount": 2
+			},
+			"dependsOn": [
+				"[variables('name_virtualNetwork')]"
+			],
+			"sku": {
+				"name": "Aligned"
+			}
+		},
+		{
+			"type": "Microsoft.Compute/virtualMachines",
+			"apiVersion": "2018-10-01",
+			"name": "[if(equals(copyIndex(),0),parameters('adminVMName'),concat(variables('const_managedVMPrefix'), copyIndex()))]",
+			"location": "[parameters('location')]",
+			"copy": {
+				"name": "virtualMachineLoop",
+				"count": "[parameters('numberOfInstances')]"
+			},
+			"dependsOn": [
+				"nicLoop",
+				"[concat('Microsoft.Compute/availabilitySets/', variables('name_availabilitySet'))]"
+			],
+			"properties": {
+				"availabilitySet": {
+					"id": "[resourceId('Microsoft.Compute/availabilitySets',variables('name_availabilitySet'))]"
+				},
+				"hardwareProfile": {
+					"vmSize": "[variables('const_vmSize')]"
+				},
+				"osProfile": {
+					"computerName": "[if(equals(copyIndex(),0),parameters('adminVMName'),concat(variables('const_managedVMPrefix'), copyIndex()))]",
+					"adminUsername": "[parameters('adminUsername')]",
+					"adminPassword": "[parameters('adminPasswordOrKey')]",
+					"linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('const_linuxConfiguration'))]"
+				},
+				"storageProfile": {
+					"imageReference": {
+						"publisher": "[variables('const_imagePublisher')]",
+						"offer": "[variables('const_imageOffer')]",
+						"sku": "[parameters('linuxOSVersion')]",
+						"version": "latest"
+					},
+					"osDisk": {
+						"createOption": "FromImage"
+					},
+					"dataDisks": [
+						{
+							"diskSizeGB": 900,
+							"lun": 0,
+							"createOption": "Empty"
+						}
+					]
+				},
+				"networkProfile": {
+					"networkInterfaces": [
+						{
+							"id": "[resourceId('Microsoft.Network/networkInterfaces',if(equals(copyIndex(),0),concat(parameters('adminVMName'),variables('name_nic')),concat(variables('const_managedVMPrefix'), copyIndex(),variables('name_nic'))))]"
+						}
+					]
+				},
+				"diagnosticsProfile": {
+					"bootDiagnostics": {
+						"enabled": true,
+						"storageUri": "[reference(resourceId('Microsoft.Storage/storageAccounts/', variables('name_storageAccount')), '2019-06-01').primaryEndpoints.blob]"
+					}
+				}
+			}
+		},
+		{
+			"type": "Microsoft.Compute/virtualMachines/extensions",
+			"name": "[if(equals(copyIndex(),0),concat(parameters('adminVMName'),'/newuserscript'),concat(variables('const_managedVMPrefix'), copyIndex(),'/newuserscript'))]",
+			"apiVersion": "2019-07-01",
+			"location": "[parameters('location')]",
+			"copy": {
+				"name": "virtualMachineExtensionLoop",
+				"count": "[parameters('numberOfInstances')]"
+			},
+			"dependsOn": [
+				"[concat('Microsoft.Compute/virtualMachines/',parameters('adminVMName'))]",
+				"virtualMachineLoop"
+			],
+			"properties": {
+				"publisher": "Microsoft.Azure.Extensions",
+				"type": "CustomScript",
+				"typeHandlerVersion": "2.0",
+				"autoUpgradeMinorVersion": true,
+				"settings": {
+					"fileUris": [
+						"[uri(parameters('_artifactsLocation'), concat('../scripts/', variables('name_scriptFile'), parameters('_artifactsLocationSasToken')))]",
+						"[uri(parameters('_artifactsLocation'), concat('../scripts/', variables('name_oradownScript'), parameters('_artifactsLocationSasToken')))]"
+					],
+					"commandToExecute": "[concat('sh',' ',variables('name_scriptFile'),' ',parameters('acceptOTNLicenseAgreement'),' ',parameters('otnAccountUsername'),' ',parameters('otnAccountPassword'),' ',parameters('wlsDomainName'),' ',parameters('wlsUserName'),' ',parameters('wlsPassword'),' ',if(equals(copyIndex(),0),'admin',concat(parameters('managedServerPrefix'), copyIndex())),' ',parameters('adminVMName'),' ',if(parameters('enableAppGateway'), reference(parameters('gatewayPublicIPAddressName'), '2019-11-01').dnsSettings.fqdn, ''))]"
+				}
+			}
+		},
+		{
+			"apiVersion": "2019-10-01",
+			"name": "pid-f05658d8-329d-55e8-9077-5761b8279b31",
+			"type": "Microsoft.Resources/deployments",
+			"properties": {
+				"mode": "Incremental",
+				"template": {
+					"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+					"contentVersion": "1.0.0.0",
+					"resources": [
+					]
+				}
+			}
+		}
+	],
+	"outputs": {
+		"adminHostName": {
+			"type": "string",
+			"value": "[reference(variables('name_outputAdminHost')).dnsSettings.fqdn]"
+		},
+		"adminConsole": {
+			"type": "string",
+			"value": "[concat('http://',reference(concat(parameters('adminVMName'),variables('name_publicIPAddress'))).dnsSettings.fqdn,':7001/console')]"
+		},
+		"adminSecuredConsole": {
+			"type": "string",
+			"value": "[concat('https://',reference(concat(parameters('adminVMName'),variables('name_publicIPAddress'))).dnsSettings.fqdn,':7002/console')]"
+		},
+		"wlsDomainLocation": {
+			"type": "string",
+			"value": "[concat('/u01/domains/', parameters('wlsDomainName'))]"
+		}
+	}
+}

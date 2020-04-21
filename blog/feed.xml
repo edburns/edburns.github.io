@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-01-30T18:13:18-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-04-21T19:14:53-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Flow for developing regular expressions (regex) of moderate complexity</title><link href="/blog/2020/01/29/regex-development-flow.html" rel="alternate" type="text/html" title="Flow for developing regular expressions (regex) of moderate complexity" /><published>2020-01-29T10:40:00-05:00</published><updated>2020-01-29T10:40:00-05:00</updated><id>/blog/2020/01/29/regex-development-flow</id><content type="html" xml:base="/blog/2020/01/29/regex-development-flow.html">&lt;p&gt;I recently had to add a feature to the UI for the &lt;a href=&quot;https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=weblogic%2012.2.1.3&amp;amp;page=1&quot;&gt;Azure Marketplace
 Offers for Oracle WebLogic
 Server&lt;/a&gt;.
@@ -127,7 +127,7 @@ to catch some stupid mistakes at authoring time, but a proper DSL
 would do a better job of it.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;You &lt;a href=&quot;https://github.com/Azure/azure-resource-manager-schemas/issues/851&quot;&gt;can’t even put comments in there&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;&lt;del&gt;You &lt;a href=&quot;https://github.com/Azure/azure-resource-manager-schemas/issues/851&quot;&gt;can’t even put comments in there&lt;/a&gt;.&lt;/del&gt; UPDATE: 2020-04-21: // comments in JSON work now.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 

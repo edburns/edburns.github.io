@@ -1,8 +1,9 @@
 ## TL;DR
 
-"White Fragility" by Robin DeAngelo is a great book about racism.  You
-should read it.  This blog post tries to get you to read it by
-extracting what I think are the best parts.  That's why it's so long.
+"[White Fragility](https://robindiangelo.com/publications/)" by [Robin
+DeAngelo](https://robindiangelo.com/publications/) is a great book about
+racism.  You should read it.  This blog post tries to get you to read it
+by extracting what I think are the best parts.  That's why it's so long.
 
 ## Details
 
@@ -141,6 +142,7 @@ been handed unearned advantage, we cling tightly to the ideology of
 individualism when asked to consider our own unearned advantages.
 
 ```
+
 The cardinal rule of individualism is: don't generalize, yet:
 
 ```
@@ -224,10 +226,10 @@ The the importance of being seen as white.
 
 ```
 
-[the American ideal is] once new immigrants learn English and adapt to American culture and
-customs, they become Americans.  In reality, only European immigrants
-were allowed to melt, or assimilate into dominant culture in the
-nineteenth and twentieth centuries, because...these immigrants were
+[the American ideal is] once new immigrants learn English and adapt to 
+American culture and customs, they become Americans.  In reality, only 
+European immigrants were allowed to melt, or assimilate into dominant culture in 
+the nineteenth and twentieth centuries, because...these immigrants were
 perceived to be white and thus could belong.
 
 ```
@@ -662,5 +664,7 @@ color), and do your homework.
 
 ```
 
-If you got this far, you have made a great start on this homework.
+I didn't start doing my homework until I was 48 years old.  I'm ashamed
+it took me that long.  On the other hand, it's never too late to start.
+If you got this far, you have made a great start on doing your homework.
 Thanks very much.

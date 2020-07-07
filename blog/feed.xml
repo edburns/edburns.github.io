@@ -1,5 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-06-10T10:55:58-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">White Fragility by Robin DiAngelo: Highlights</title><link href="/blog/2020/06/09/white-fragility-highlights.html" rel="alternate" type="text/html" title="White Fragility by Robin DiAngelo: Highlights" /><published>2020-06-09T09:20:00-04:00</published><updated>2020-06-09T09:20:00-04:00</updated><id>/blog/2020/06/09/white-fragility-highlights</id><content type="html" xml:base="/blog/2020/06/09/white-fragility-highlights.html">&lt;p&gt;Cross posted at
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-07-07T09:08:40-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Access WSL2 .vhdx on External Drive Within a Windows 10 System Image</title><link href="/blog/2020/07/07/wsl2-external-vhdx.html" rel="alternate" type="text/html" title="Access WSL2 .vhdx on External Drive Within a Windows 10 System Image" /><published>2020-07-07T08:00:00-04:00</published><updated>2020-07-07T08:00:00-04:00</updated><id>/blog/2020/07/07/wsl2-external-vhdx</id><content type="html" xml:base="/blog/2020/07/07/wsl2-external-vhdx.html">&lt;p&gt;This post documents how to hack a Windows registry entry to gain access
+to the contents of a WSL2 &lt;code class=&quot;highlighter-rouge&quot;&gt;.vhdx&lt;/code&gt; drive which resides within a Windows
+10 System Image on an external drive.&lt;/p&gt;
+
+&lt;h2 id=&quot;scenario&quot;&gt;Scenario&lt;/h2&gt;
+
+&lt;p&gt;Everyone should have a backup strategy that works for them in terms of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;hassle factor&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;capability&lt;/code&gt;: your strategy should have &lt;code class=&quot;highlighter-rouge&quot;&gt;no more hassle&lt;/code&gt;
+than you are willing to put up with to give you a &lt;code class=&quot;highlighter-rouge&quot;&gt;daily backup
+capability&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;On macOS, I use the excellent &lt;a href=&quot;https://bombich.com/&quot;&gt;Carbon Copy
+Cloner&lt;/a&gt;.  On Windows 10 I use the built-in &lt;a href=&quot;https://www.howtogeek.com/howto/4241/how-to-create-a-system-image-in-windows-7/&quot;&gt;Create
+a system
+image&lt;/a&gt;.
+In both cases, I store the backup on an external drive.  Yesterday, due
+to a stupid git rebase user error, I lost some commits on a repo that was
+stored within my WSL2 Ubuntu machine.  “No worries,” I thought.  “I’ll
+just grab the commits from my backup”.  I followed &lt;a href=&quot;https://www.logicbig.com/how-to/windows/mount-windows-10-backup.html&quot;&gt;these
+steps&lt;/a&gt;
+to mount the System Image as a local drive and navigate to the
+file…“oh wait.  The file is within the WSL image. [:sad trombone:]”.&lt;/p&gt;
+
+&lt;p&gt;With help from WSL2 Twitter celebrity &lt;a href=&quot;https://twitter.com/craigaloewen&quot;&gt;Craig
+Loewen&lt;/a&gt; I used this process to get my
+lost commits.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-access-wsl2-vhdx-on-external-drive-within-a-windows-10-system-image&quot;&gt;How to Access WSL2 .vhdx on External Drive Within a Windows 10 System Image&lt;/h2&gt;
+
+&lt;p&gt;We will edit the Windows registry to point a new Debian WSL2
+distribution to the .vhdx file on the external drive.&lt;/p&gt;
+
+&lt;h3 id=&quot;get-the-fully-qualified-path-to-the-vhdx-file&quot;&gt;Get the fully qualified path to the .vhdx file&lt;/h3&gt;
+
+&lt;p&gt;Mount the System Image that contains the &lt;code class=&quot;highlighter-rouge&quot;&gt;.vhdx&lt;/code&gt; file and capture its
+fully qualified path.  In my case this is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;K:\Users\edburns\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;create-a-fresh-wsl2-debian-distribution-so-you-can-edit-its-windows-registry-entry-without-fear-of-damaging-anything&quot;&gt;Create a fresh WSL2 Debian distribution so you can edit its Windows Registry entry without fear of damaging anything&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Make it so when you do &lt;code class=&quot;highlighter-rouge&quot;&gt;wsl -l -v&lt;/code&gt; in Windows PowerShell you do
+&lt;strong&gt;not&lt;/strong&gt; see a distribution named &lt;code class=&quot;highlighter-rouge&quot;&gt;Debian&lt;/code&gt;.  If you do see one, figure
+out how to save it aside.  We want to install a fresh Debian
+distribution.  If you already have one, you’ll need to move it aside
+so you don’t damage it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install a fresh Debian (RIP Ian Murdock) distribution from the
+Windows store.  Create a userid when asked.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Exit the Debian and shut down WSL2 with the command &lt;code class=&quot;highlighter-rouge&quot;&gt;wsl --shutdown&lt;/code&gt;
+in PowerShell.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;edit-the-windows-registry-entry-for-the-vhdx-file-of-the-fresh-debian-distribution&quot;&gt;Edit the Windows Registry entry for the .vhdx file of the fresh Debian distribution&lt;/h3&gt;
+
+&lt;p&gt;This is the secret sauce!  I use &lt;code class=&quot;highlighter-rouge&quot;&gt;regedt32&lt;/code&gt;, but you can use any other
+registry editor.  In your registry editor, navigate to this entry and
+expand it.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Lxss&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This image shows what I see under the &lt;code class=&quot;highlighter-rouge&quot;&gt;Lxss&lt;/code&gt; entry.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/assets/20200707-wsl2-registry.png&quot; alt=&quot;Entries within Lxss&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Carefully select each entry until you find the one whose
+&lt;code class=&quot;highlighter-rouge&quot;&gt;DistributionName&lt;/code&gt; sub-entry is exactly &lt;code class=&quot;highlighter-rouge&quot;&gt;Debian&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Select the &lt;code class=&quot;highlighter-rouge&quot;&gt;BasePath&lt;/code&gt; sub-entry and Modify its value.  Set the value to
+be exactly the fully qualified path to your external &lt;code class=&quot;highlighter-rouge&quot;&gt;.vhdx&lt;/code&gt; file, not
+including the filename or trailing slash.&lt;/p&gt;
+
+&lt;p&gt;Exit the Windows Registry.&lt;/p&gt;
+
+&lt;h3 id=&quot;run-the-debian-image-and-get-your-files&quot;&gt;Run the “Debian” image and get your files&lt;/h3&gt;
+
+&lt;p&gt;In Windows PowerShell, run &lt;code class=&quot;highlighter-rouge&quot;&gt;wsl -d Debian&lt;/code&gt;.  This should boot up the
+WSL2 into the &lt;code class=&quot;highlighter-rouge&quot;&gt;.vhdx&lt;/code&gt;, allowing you to get the missing files.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;PRO TIP!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The super handy &lt;code class=&quot;highlighter-rouge&quot;&gt;\\wsl$\&amp;lt;distroname&amp;gt;&lt;/code&gt; usage in Windows File Explorer
+should work also.  In my case I was able to get the files by visiting
+&lt;code class=&quot;highlighter-rouge&quot;&gt;\\wsl$\Ubuntu\home\edburns\workareas&lt;/code&gt; in Windows Explorer.&lt;/p&gt;
+
+&lt;p&gt;Thanks again to &lt;a href=&quot;https://twitter.com/craigaloewen&quot;&gt;Craig Loewen&lt;/a&gt; for
+this tip.&lt;/p&gt;</content><author><name></name></author><summary type="html">This post documents how to hack a Windows registry entry to gain access to the contents of a WSL2 .vhdx drive which resides within a Windows 10 System Image on an external drive.</summary></entry><entry><title type="html">White Fragility by Robin DiAngelo: Highlights</title><link href="/blog/2020/06/09/white-fragility-highlights.html" rel="alternate" type="text/html" title="White Fragility by Robin DiAngelo: Highlights" /><published>2020-06-09T09:20:00-04:00</published><updated>2020-06-09T09:20:00-04:00</updated><id>/blog/2020/06/09/white-fragility-highlights</id><content type="html" xml:base="/blog/2020/06/09/white-fragility-highlights.html">&lt;p&gt;Cross posted at
 &lt;a href=&quot;https://www.linkedin.com/pulse/white-fragility-robin-diangelo-highlights-ed-burns/&quot;&gt;LinkedIn&lt;/a&gt;,
 if that’s your thing.&lt;/p&gt;
 
@@ -1539,45 +1634,4 @@ the templates become available.&lt;/p&gt;
  
  
  
- &lt;/p&gt;</content><author><name></name></author><summary type="html">I’ve been very busy bringing Java EE to Azure since I joined Microsoft this June. I have devoted a fair chunk of that time to learning Azure fundamentals, getting to know the broader Java team, building the team, partnering with Oracle, and working with my Program Manager Reza Rahman to help identify and develop customers interested in Java EE on Azure. This last point is the subject of this blog post.</summary></entry><entry><title type="html">General Notes on Security Training</title><link href="/blog/2019/09/27/security-training-public-general-notes.html" rel="alternate" type="text/html" title="General Notes on Security Training" /><published>2019-09-27T10:54:00-04:00</published><updated>2019-09-27T10:54:00-04:00</updated><id>/blog/2019/09/27/security-training-public-general-notes</id><content type="html" xml:base="/blog/2019/09/27/security-training-public-general-notes.html">&lt;p&gt;I took the security training today.  Here are some general notes.  Notes
-with a classification higher than Public are on my internal blog.&lt;/p&gt;
-
-&lt;p&gt;Data Classification: Public&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;I mean this in the best way possible, because I do believe that baby
-boomers have poisoned the future with their entitlement for all of us,
-but wow, this is very millenial.  The course providers worked hard and
-successfully to make it engaging to people with little tolerance for
-dry content.  And who likes dry content?  For example:&lt;/p&gt;
-
-    &lt;p&gt;“That’s true for rashes and customer data.”&lt;/p&gt;
-
-    &lt;p&gt;“You look like a lawyer in a 90’s movie”.  Hey now.  That’s a bit ageist. :)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;It is also patronizing.  “We’re going to have a little quiz, which I
-know you’re going to great on, because we’re going to give you all the
-answers.”  Is this necessary?&lt;/p&gt;
-
-    &lt;p&gt;“Focus on the kitty.”  “What would the kitty do?”&lt;/p&gt;
-
-    &lt;p&gt;When I think of my iGen kids taking this course, I feel it is talking
-down to them.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://www.vox.com/policy-and-politics/2018/7/16/17575940/russian-election-hack-democrats-trump-putin-diagram&quot;&gt;Phishing helped give us Trump&lt;/a&gt;.
-Recognizing it is important, so I am glad this training exists.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;I still don’t like it when they refer to slashes as “whacks”.  “whack
-whack reportitnow”?  Is this more millenialism?&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;I like the ctrl-alt-n keyboard shortcut.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;This was a great use for my treadmill desk.  &lt;img src=&quot;/blog/assets/20190625-treadmill-desk.jpg&quot; alt=&quot;treadmill desk&quot; title=&quot;treadmill desk&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">I took the security training today. Here are some general notes. Notes with a classification higher than Public are on my internal blog.</summary></entry></feed>
+ &lt;/p&gt;</content><author><name></name></author><summary type="html">I’ve been very busy bringing Java EE to Azure since I joined Microsoft this June. I have devoted a fair chunk of that time to learning Azure fundamentals, getting to know the broader Java team, building the team, partnering with Oracle, and working with my Program Manager Reza Rahman to help identify and develop customers interested in Java EE on Azure. This last point is the subject of this blog post.</summary></entry></feed>

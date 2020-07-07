@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-07-07T09:08:40-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-07-07T12:58:15-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Access WSL2 .vhdx on External Drive Within a Windows 10 System Image</title><link href="/blog/2020/07/07/wsl2-external-vhdx.html" rel="alternate" type="text/html" title="Access WSL2 .vhdx on External Drive Within a Windows 10 System Image" /><published>2020-07-07T08:00:00-04:00</published><updated>2020-07-07T08:00:00-04:00</updated><id>/blog/2020/07/07/wsl2-external-vhdx</id><content type="html" xml:base="/blog/2020/07/07/wsl2-external-vhdx.html">&lt;p&gt;This post documents how to hack a Windows registry entry to gain access
-to the contents of a WSL2 &lt;code class=&quot;highlighter-rouge&quot;&gt;.vhdx&lt;/code&gt; drive which resides within a Windows
-10 System Image on an external drive.&lt;/p&gt;
+to the contents of a &lt;a href=&quot;https://aka.ms/install-wsl&quot;&gt;WSL2&lt;/a&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;.vhdx&lt;/code&gt; volume
+which resides within a Windows 10 System Image on an external disk.&lt;/p&gt;
 
 &lt;h2 id=&quot;scenario&quot;&gt;Scenario&lt;/h2&gt;
 
@@ -25,6 +25,11 @@ file…“oh wait.  The file is within the WSL image. [:sad trombone:]”.&lt;/p
 &lt;p&gt;With help from WSL2 Twitter celebrity &lt;a href=&quot;https://twitter.com/craigaloewen&quot;&gt;Craig
 Loewen&lt;/a&gt; I used this process to get my
 lost commits.&lt;/p&gt;
+
+&lt;p&gt;If you don’t already have WSL2, you should totally get it.  Get started at 
+&amp;lt;&lt;a href=&quot;https://aka.ms/install-wsl&quot;&gt;https://aka.ms/install-wsl&lt;/a&gt;&amp;gt;.  I was a Mac
+user from 2007 until I joined Microsoft in June 2019.  If not for WLS2,
+I’d still be a Mac user.&lt;/p&gt;
 
 &lt;h2 id=&quot;how-to-access-wsl2-vhdx-on-external-drive-within-a-windows-10-system-image&quot;&gt;How to Access WSL2 .vhdx on External Drive Within a Windows 10 System Image&lt;/h2&gt;
 
@@ -94,7 +99,7 @@ should work also.  In my case I was able to get the files by visiting
 &lt;code class=&quot;highlighter-rouge&quot;&gt;\\wsl$\Ubuntu\home\edburns\workareas&lt;/code&gt; in Windows Explorer.&lt;/p&gt;
 
 &lt;p&gt;Thanks again to &lt;a href=&quot;https://twitter.com/craigaloewen&quot;&gt;Craig Loewen&lt;/a&gt; for
-this tip.&lt;/p&gt;</content><author><name></name></author><summary type="html">This post documents how to hack a Windows registry entry to gain access to the contents of a WSL2 .vhdx drive which resides within a Windows 10 System Image on an external drive.</summary></entry><entry><title type="html">White Fragility by Robin DiAngelo: Highlights</title><link href="/blog/2020/06/09/white-fragility-highlights.html" rel="alternate" type="text/html" title="White Fragility by Robin DiAngelo: Highlights" /><published>2020-06-09T09:20:00-04:00</published><updated>2020-06-09T09:20:00-04:00</updated><id>/blog/2020/06/09/white-fragility-highlights</id><content type="html" xml:base="/blog/2020/06/09/white-fragility-highlights.html">&lt;p&gt;Cross posted at
+this tip.&lt;/p&gt;</content><author><name></name></author><summary type="html">This post documents how to hack a Windows registry entry to gain access to the contents of a WSL2 .vhdx volume which resides within a Windows 10 System Image on an external disk.</summary></entry><entry><title type="html">White Fragility by Robin DiAngelo: Highlights</title><link href="/blog/2020/06/09/white-fragility-highlights.html" rel="alternate" type="text/html" title="White Fragility by Robin DiAngelo: Highlights" /><published>2020-06-09T09:20:00-04:00</published><updated>2020-06-09T09:20:00-04:00</updated><id>/blog/2020/06/09/white-fragility-highlights</id><content type="html" xml:base="/blog/2020/06/09/white-fragility-highlights.html">&lt;p&gt;Cross posted at
 &lt;a href=&quot;https://www.linkedin.com/pulse/white-fragility-robin-diangelo-highlights-ed-burns/&quot;&gt;LinkedIn&lt;/a&gt;,
 if that’s your thing.&lt;/p&gt;
 

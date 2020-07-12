@@ -1,5 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-07-07T13:22:00-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Access WSL2 .vhdx on External Drive Within a Windows 10 System Image</title><link href="/blog/2020/07/07/wsl2-external-vhdx.html" rel="alternate" type="text/html" title="Access WSL2 .vhdx on External Drive Within a Windows 10 System Image" /><published>2020-07-07T08:00:00-04:00</published><updated>2020-07-07T08:00:00-04:00</updated><id>/blog/2020/07/07/wsl2-external-vhdx</id><content type="html" xml:base="/blog/2020/07/07/wsl2-external-vhdx.html">&lt;p&gt;This post documents how to hack a Windows registry entry to gain access
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-07-12T13:24:17-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Letter to the Editor: Economist 2020-07-11: Leader: The New Ideology of Race</title><link href="/blog/2020/07/12/economist-race-leader-letter-to-editor.html" rel="alternate" type="text/html" title="Letter to the Editor: Economist 2020-07-11: Leader: The New Ideology of Race" /><published>2020-07-12T12:50:00-04:00</published><updated>2020-07-12T12:50:00-04:00</updated><id>/blog/2020/07/12/economist-race-leader-letter-to-editor</id><content type="html" xml:base="/blog/2020/07/12/economist-race-leader-letter-to-editor.html">&lt;hr /&gt;
+
+&lt;p&gt;Your leader “&lt;a href=&quot;/blog/assets/20200711-economist-leader-new-ideology-of-race.pdf&quot;&gt;The New Ideology of Race&lt;/a&gt;” asserts, “Liberalism thrives on a marketplace of ideas…[and] uses facts and evidence, tested in debate, to help the weak take on the strong.”  Unfortunately, the corresponding new ideology of the American right has subverted liberalism, successfully equating it with ill-defined labels such as Antifa, and completely destroying the very concept of “facts and evidence”.  As for “debate”, that requires good faith, and the American right has defined good faith as weakness.  The proponents of the “New Ideology of Race” understand this reality.  To slow the slide toward irrelevance, “Liberalism” must understand it as well.&lt;/p&gt;
+
+&lt;p&gt;Edward Burns&lt;/p&gt;
+
+&lt;p&gt;Altamonte Springs, FL USA&lt;/p&gt;
+
+&lt;hr /&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Access WSL2 .vhdx on External Drive Within a Windows 10 System Image</title><link href="/blog/2020/07/07/wsl2-external-vhdx.html" rel="alternate" type="text/html" title="Access WSL2 .vhdx on External Drive Within a Windows 10 System Image" /><published>2020-07-07T08:00:00-04:00</published><updated>2020-07-07T08:00:00-04:00</updated><id>/blog/2020/07/07/wsl2-external-vhdx</id><content type="html" xml:base="/blog/2020/07/07/wsl2-external-vhdx.html">&lt;p&gt;This post documents how to hack a Windows registry entry to gain access
 to the contents of a &lt;a href=&quot;https://aka.ms/install-wsl&quot;&gt;WSL2&lt;/a&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;.vhdx&lt;/code&gt; volume
 which resides within a Windows 10 System Image on an external disk.&lt;/p&gt;
 
@@ -1252,7 +1260,7 @@ to see this one.&lt;/p&gt;
 &lt;h4 id=&quot;0900---1700--raum-dom-iii--hands-on-cloud-native-java-with-microprofile-emily-jiang&quot;&gt;09:00 - 17:00 | Raum Dom I+II | Hands-on cloud-native Java with MicroProfile &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/full-day-workshop-hands-on-cloud-native-java-with-microprofile&quot;&gt;Emily Jiang&lt;/a&gt;&lt;/h4&gt;
 
 &lt;p&gt;I am working on a cloud native Java thing at Microsoft.  If will be good
-to get Emily’s take.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am very blessed to have the opportunity to give keynotes at the two premiere Java conferences in Germany this year, JavaLand and JVM-CON. Of course another amazing blessing is that the former was as an Oracle employee and the latter as Microsoft, but both of them are about Java.</summary></entry><entry><title type="html">How to use quickly extract text from an image with Microsoft OneNote</title><link href="/blog/2019/11/05/windows-extract-text-from-image.html" rel="alternate" type="text/html" title="How to use quickly extract text from an image with Microsoft OneNote" /><published>2019-11-05T10:15:00-05:00</published><updated>2019-11-05T10:15:00-05:00</updated><id>/blog/2019/11/05/windows-extract-text-from-image</id><content type="html" xml:base="/blog/2019/11/05/windows-extract-text-from-image.html">&lt;p&gt;I frequently use the extract text feature on my Samsung Galaxy Note 9
+to get Emily’s take.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am very blessed to have the opportunity to give keynotes at the two premiere Java conferences in Germany this year, JavaLand and JVM-CON. Of course another amazing blessing is that the former was as an Oracle employee and the latter as Microsoft, but both of them are about Java.</summary></entry><entry><title type="html">How to quickly extract text from an image with Microsoft OneNote</title><link href="/blog/2019/11/05/windows-extract-text-from-image.html" rel="alternate" type="text/html" title="How to quickly extract text from an image with Microsoft OneNote" /><published>2019-11-05T10:15:00-05:00</published><updated>2019-11-05T10:15:00-05:00</updated><id>/blog/2019/11/05/windows-extract-text-from-image</id><content type="html" xml:base="/blog/2019/11/05/windows-extract-text-from-image.html">&lt;p&gt;I frequently use the extract text feature on my Samsung Galaxy Note 9
 phone and recently asked myself, “hey, I wonder if I can do this on
 Windows also?”  Of course you can.  Here’s how I do it.  Perhaps there’s
 an easier way.  If so, please let me know in the comments.&lt;/p&gt;
@@ -1598,45 +1606,4 @@ factor authentication.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;Then click “Open my OneDrive Folder”.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><summary type="html">How to use Microsoft OneDrive when your mac HD is Case Sensitive</summary></entry><entry><title type="html">Using Java EE? Want to explore Azure? Free POC from Reza and I</title><link href="/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft.html" rel="alternate" type="text/html" title="Using Java EE? Want to explore Azure? Free POC from Reza and I" /><published>2019-10-02T13:36:00-04:00</published><updated>2019-10-02T13:36:00-04:00</updated><id>/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft</id><content type="html" xml:base="/blog/2019/10/02/javaee-on-azure-free-poc-with-microsoft.html">&lt;p&gt;I’ve been very busy bringing Java EE to Azure since I joined Microsoft this June.  I have devoted a fair chunk of that time to learning Azure fundamentals, &lt;a href=&quot;https://blogs.microsoft.com/blog/2019/08/19/microsoft-acquires-jclarity-to-help-optimize-java-workloads-on-azure/&quot;&gt;getting to know the broader Java team&lt;/a&gt;, building the team, partnering with Oracle, and working with my Program Manager Reza Rahman to help identify and develop customers interested in Java EE on Azure.  This last point is the subject of this blog post.&lt;/p&gt;
-
-&lt;h3 id=&quot;announcing-free-gratis-high-touch-proof-of-concept-for-migrating-your-j2eejava-ee-software-to-azure&quot;&gt;Announcing: Free (Gratis) High-Touch Proof of Concept for Migrating your J2EE/Java EE Software to Azure&lt;/h3&gt;
-
-&lt;p&gt;If you’re running Java EE or J2EE in your enterprise and you want to
-explore migrating that software to Azure, we want to hear from you!
-More than that, we want to help you.&lt;br /&gt;
-&lt;a href=&quot;https://microsoft.qualtrics.com/jfe/form/SV_0OCM4TNkiQC4scJ&quot;&gt;Fill out this survey&lt;/a&gt; and
-we’ll get in touch to help build a POC of your software running on Azure.  No strings attached.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://microsoft.qualtrics.com/jfe/form/SV_0OCM4TNkiQC4scJ&quot;&gt;&lt;img src=&quot;/blog/assets/20191002-free-poc.PNG&quot; alt=&quot;Free POC&quot; title=&quot;Free POC&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;update-weblogic-server-on-azure-iaas&quot;&gt;Update WebLogic Server on Azure IaaS&lt;/h3&gt;
-
-&lt;p&gt;Back in July, I documented the state of WLS on Azure &lt;a href=&quot;https://aka.ms/NISTSays&quot;&gt;IaaS&lt;/a&gt; in a &lt;a href=&quot;/blog/2019/07/07/wls-azure-marketplace.html&quot;&gt;blog post&lt;/a&gt;.  I’m happy to say that we have made great progress since then in partnership with Oracle to update the offer, which you can read more about in Jacob Thomas’s post on &lt;a href=&quot;https://blogs.oracle.com/weblogicserver/oracle-weblogic-server-on-microsoft-azure-iaas&quot;&gt;the WebLogic Blog&lt;/a&gt;.  Here is a video walk through of the IaaS offer for WLS.&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/m7evI4lObcI&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;p&gt;Please click on the “Contact Me” link if you want to be notified when
-the templates become available.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://aka.ms/azurewls&quot;&gt;&lt;img src=&quot;/blog/assets/20191002-wls-contactme.PNG&quot; alt=&quot;contact me&quot; title=&quot;contact me&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt; 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- &lt;/p&gt;</content><author><name></name></author><summary type="html">I’ve been very busy bringing Java EE to Azure since I joined Microsoft this June. I have devoted a fair chunk of that time to learning Azure fundamentals, getting to know the broader Java team, building the team, partnering with Oracle, and working with my Program Manager Reza Rahman to help identify and develop customers interested in Java EE on Azure. This last point is the subject of this blog post.</summary></entry></feed>
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">How to use Microsoft OneDrive when your mac HD is Case Sensitive</summary></entry></feed>

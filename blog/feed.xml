@@ -1,5 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-07-12T13:24:17-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Letter to the Editor: Economist 2020-07-11: Leader: The New Ideology of Race</title><link href="/blog/2020/07/12/economist-race-leader-letter-to-editor.html" rel="alternate" type="text/html" title="Letter to the Editor: Economist 2020-07-11: Leader: The New Ideology of Race" /><published>2020-07-12T12:50:00-04:00</published><updated>2020-07-12T12:50:00-04:00</updated><id>/blog/2020/07/12/economist-race-leader-letter-to-editor</id><content type="html" xml:base="/blog/2020/07/12/economist-race-leader-letter-to-editor.html">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-07-29T15:43:01-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">WSL2 az login xdg-open and Microsoft Edge (or any other browser)</title><link href="/blog/2020/07/29/wsl2-xdg-open-edge.html" rel="alternate" type="text/html" title="WSL2 az login xdg-open and Microsoft Edge (or any other browser)" /><published>2020-07-29T15:10:00-04:00</published><updated>2020-07-29T15:10:00-04:00</updated><id>/blog/2020/07/29/wsl2-xdg-open-edge</id><content type="html" xml:base="/blog/2020/07/29/wsl2-xdg-open-edge.html">&lt;p&gt;If you ever run into a problem with &lt;code class=&quot;highlighter-rouge&quot;&gt;az login&lt;/code&gt; opening a Windows browser
+to complete the login, this blog post may help.  I ran into this today.
+When I did &lt;code class=&quot;highlighter-rouge&quot;&gt;az logout&lt;/code&gt; followed by &lt;code class=&quot;highlighter-rouge&quot;&gt;az login&lt;/code&gt; I saw the following, and
+the login did not complete succesfully.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/usr/bin/xdg-open: 851: /usr/bin/xdg-open: firefox: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: iceweasel: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: seamonkey: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: mozilla: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: epiphany: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: konqueror: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: chromium: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: chromium-browser: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: google-chrome: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: www-browser: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: links2: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: elinks: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: links: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: lynx: not found
+/usr/bin/xdg-open: 851: /usr/bin/xdg-open: w3m: not found
+xdg-open: no method available for opening 'https://login.microsoftonline.com/common/oauth2/authorize?response_type=code&amp;amp;client_id=04b07795-8ddb-461a-bbee-02f9e1bf7b46&amp;amp;redirect_uri=http://localhost:8400&amp;amp;state=jq29agg65cx8xmh3axhv&amp;amp;resource=https://management.core.windows.net/&amp;amp;prompt=select_account'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I thought:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;¯\_(ツ)_/¯
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After poking around a bit, I arrived at the following solution.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-make-an-executable-script-in-my-bin-directory-that-runs-the-browser-on-the-windows-side&quot;&gt;1. Make an executable script in my bin directory that runs the browser on the windows side&lt;/h3&gt;
+
+&lt;p&gt;See step 5 in &lt;a href=&quot;/blog/2019/08/14/emacs-edge-dev.html&quot;&gt;my previous post&lt;/a&gt;.
+Modify the script to reference your preferred browser.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-create-an-edgedesktop-file-in-the-correct-place&quot;&gt;2. Create an edge.desktop file in the correct place&lt;/h3&gt;
+
+&lt;p&gt;Make it so this file exists: &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.local/share/applications/edge.desktop&lt;/code&gt;
+and has the following content.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+NoDisplay=true
+Exec=/home/edburns/bin/runedge.sh %u
+Name=Edge
+Comment=Custom definition for Edge Beta
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You’ll need to modify the value of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Exec&lt;/code&gt; line accordingly.  Also,
+if you are using a different browser, you’ll need to change the name of
+the file to &lt;code class=&quot;highlighter-rouge&quot;&gt;whaterYourBrowser.desktop&lt;/code&gt;.  Close the file when done editing.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-use-xdg-settings-to-set-the-default-web-browser&quot;&gt;3. Use &lt;code class=&quot;highlighter-rouge&quot;&gt;xdg-settings&lt;/code&gt; to set the &lt;code class=&quot;highlighter-rouge&quot;&gt;default-web-browser&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Now that you have created &lt;code class=&quot;highlighter-rouge&quot;&gt;edge.desktop&lt;/code&gt; in the correct place, you can
+tell &lt;code class=&quot;highlighter-rouge&quot;&gt;xdg-settings&lt;/code&gt; that it is the default browser.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xdg-settings set default-web-browser edge.desktop
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The first time I ran this, it took a while, and I observed it added this
+line to the &lt;code class=&quot;highlighter-rouge&quot;&gt;edge.desktop&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can verify the setting with the following command.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xdg-settings get default-web-browser
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;4-az-login-should-pop-up-the-browser&quot;&gt;4. &lt;code class=&quot;highlighter-rouge&quot;&gt;az login&lt;/code&gt; should pop up the browser.&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;az logout
+az login
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">If you ever run into a problem with az login opening a Windows browser to complete the login, this blog post may help. I ran into this today. When I did az logout followed by az login I saw the following, and the login did not complete succesfully.</summary></entry><entry><title type="html">Letter to the Editor: Economist 2020-07-11: Leader: The New Ideology of Race</title><link href="/blog/2020/07/12/economist-race-leader-letter-to-editor.html" rel="alternate" type="text/html" title="Letter to the Editor: Economist 2020-07-11: Leader: The New Ideology of Race" /><published>2020-07-12T12:50:00-04:00</published><updated>2020-07-12T12:50:00-04:00</updated><id>/blog/2020/07/12/economist-race-leader-letter-to-editor</id><content type="html" xml:base="/blog/2020/07/12/economist-race-leader-letter-to-editor.html">&lt;hr /&gt;
 
 &lt;p&gt;Your leader “&lt;a href=&quot;/blog/assets/20200711-economist-leader-new-ideology-of-race.pdf&quot;&gt;The New Ideology of Race&lt;/a&gt;” asserts, “Liberalism thrives on a marketplace of ideas…[and] uses facts and evidence, tested in debate, to help the weak take on the strong.”  Unfortunately, the corresponding new ideology of the American right has subverted liberalism, successfully equating it with ill-defined labels such as Antifa, and completely destroying the very concept of “facts and evidence”.  As for “debate”, that requires good faith, and the American right has defined good faith as weakness.  The proponents of the “New Ideology of Race” understand this reality.  To slow the slide toward irrelevance, “Liberalism” must understand it as well.&lt;/p&gt;
 
@@ -1534,76 +1611,4 @@ Oracle WebLogic Server 12.2.1.3
 With Admin Server 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><summary type="html">I frequently use the extract text feature on my Samsung Galaxy Note 9 phone and recently asked myself, “hey, I wonder if I can do this on Windows also?” Of course you can. Here’s how I do it. Perhaps there’s an easier way. If so, please let me know in the comments.</summary></entry><entry><title type="html">How to use Microsoft OneDrive when your mac HD is Case Sensitive</title><link href="/blog/2019/10/16/macos-case-sensitive-onedrive-workaround.html" rel="alternate" type="text/html" title="How to use Microsoft OneDrive when your mac HD is Case Sensitive" /><published>2019-10-16T10:15:00-04:00</published><updated>2019-10-16T10:15:00-04:00</updated><id>/blog/2019/10/16/macos-case-sensitive-onedrive-workaround</id><content type="html" xml:base="/blog/2019/10/16/macos-case-sensitive-onedrive-workaround.html">&lt;h2 id=&quot;how-to-use-microsoft-onedrive-when-your-mac-hd-is-case-sensitive&quot;&gt;How to use Microsoft OneDrive when your mac HD is Case Sensitive&lt;/h2&gt;
-
-&lt;p&gt;As a Unix user since 1990 I know that file systems should be case
-sensitive.  So whenever I get a new Mac, I make sure to set it up with
-a case sensitive filesystem.  After doing this with my Microsoft
-supplied Mac, I was a bit surprised to learn that the Microsoft
-OneDrive macOS client does not allow you to place your OneDrive folder
-on a case sensitive volume, nor on an external volume.&lt;/p&gt;
-
-&lt;p&gt;No worries!&lt;/p&gt;
-
-&lt;p&gt;I was able to create an APFS case insensitive volume internal and put
-the OneDrive folder there.&lt;/p&gt;
-
-&lt;h3 id=&quot;part-1-create-the-volume&quot;&gt;Part 1: Create the Volume&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Start Disk Utility&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;In the left navigation pane, context click (right click) &lt;code class=&quot;highlighter-rouge&quot;&gt;Macintosh
-HD - Data&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Choose “Add APFS Volume…”&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;For Name choose &lt;code class=&quot;highlighter-rouge&quot;&gt;OneDrive&lt;/code&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;For Format choose APFS or APFS (Encrypted).  I chose Encrypted for
-added security.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/blog/assets/apfs-volume.png&quot; alt=&quot;APFS volume&quot; title=&quot;APFS volume&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Click “Size Options…”.  Choose an appropriate size.  I chose 2GB
-for Reserve and Quota Size.  Click OK.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Click “Add”.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Click “Done”.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;part-2-connect-onedrive&quot;&gt;Part 2: Connect OneDrive&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;When you start OneDrive on the Mac, it should prompt you to “Set up
-One Drive”.  Go through the login procedures, which may include two
-factor authentication.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;When you get to the “This Is Your OneDrive Folder” page, click
-“Change Location”.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;In the file browser that pops up, choose “OneDrive” then click
-“Choose this locatin”, as shown here.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;/blog/assets/onedrive-choose-location.png&quot; alt=&quot;OneDrive Choose Location&quot; title=&quot;OneDrive Choose Location&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Click “Next” then click “Next”.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Then click “Open my OneDrive Folder”.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><summary type="html">How to use Microsoft OneDrive when your mac HD is Case Sensitive</summary></entry></feed>
+&lt;/ol&gt;</content><author><name></name></author><summary type="html">I frequently use the extract text feature on my Samsung Galaxy Note 9 phone and recently asked myself, “hey, I wonder if I can do this on Windows also?” Of course you can. Here’s how I do it. Perhaps there’s an easier way. If so, please let me know in the comments.</summary></entry></feed>

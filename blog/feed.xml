@@ -1,5 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-08-28T15:19:33-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Public Key Infrastructure</title><link href="/blog/2020/08/28/public-key-infrastructure.html" rel="alternate" type="text/html" title="Public Key Infrastructure" /><published>2020-08-28T15:10:00-04:00</published><updated>2020-08-28T15:10:00-04:00</updated><id>/blog/2020/08/28/public-key-infrastructure</id><content type="html" xml:base="/blog/2020/08/28/public-key-infrastructure.html">&lt;p&gt;I needed to remind myself of how public key cryptography worked so I
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2020-10-30T13:24:51-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">File Explorer and WSL2 PWD</title><link href="/blog/2020/10/30/wslpwd.html" rel="alternate" type="text/html" title="File Explorer and WSL2 PWD" /><published>2020-10-30T13:10:00-04:00</published><updated>2020-10-30T13:10:00-04:00</updated><id>/blog/2020/10/30/wslpwd</id><content type="html" xml:base="/blog/2020/10/30/wslpwd.html">&lt;p&gt;I had long been used to doing &lt;code class=&quot;highlighter-rouge&quot;&gt;open .&lt;/code&gt; on macOS to get finder window
+open on the current directory in the shell.  I wanted something similar
+under WSL2, but this is the best I could come up with.  It copies the
+current working directory to the clipboard such that you can press
+“ctrl-l crtl-v ret” in the File Explorer and get the same effect.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;wslpwd&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; //wsl&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;Ubuntu&lt;span class=&quot;nv&quot;&gt;$PWD&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s:/:\\:g'&lt;/span&gt; | pbcopy
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Assumptions&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;pbcopy is installed&lt;/li&gt;
+  &lt;li&gt;WSL distro name is Ubuntu&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It prepends the special &lt;code class=&quot;highlighter-rouge&quot;&gt;//wsl$/Ubuntu&lt;/code&gt; string to the &lt;code class=&quot;highlighter-rouge&quot;&gt;$PWD&lt;/code&gt;, then uses &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt;
+to transform the forward slashes to backslashes, then uses &lt;code class=&quot;highlighter-rouge&quot;&gt;pbcopy&lt;/code&gt; to put
+the result on the system clipboard.&lt;/p&gt;</content><author><name></name></author><summary type="html">I had long been used to doing open . on macOS to get finder window open on the current directory in the shell. I wanted something similar under WSL2, but this is the best I could come up with. It copies the current working directory to the clipboard such that you can press “ctrl-l crtl-v ret” in the File Explorer and get the same effect.</summary></entry><entry><title type="html">Public Key Infrastructure</title><link href="/blog/2020/08/28/public-key-infrastructure.html" rel="alternate" type="text/html" title="Public Key Infrastructure" /><published>2020-08-28T15:10:00-04:00</published><updated>2020-08-28T15:10:00-04:00</updated><id>/blog/2020/08/28/public-key-infrastructure</id><content type="html" xml:base="/blog/2020/08/28/public-key-infrastructure.html">&lt;p&gt;I needed to remind myself of how public key cryptography worked so I
 looked up this excerpt I remembered writing in &lt;a href=&quot;https://www.amazon.com/Ed-Burns/e/B001ILO9Y8&quot;&gt;JSF The Complete Reference&lt;/a&gt;.  I’m saving it here for the next time I forget how this works and need to remind myself.&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -1280,76 +1300,4 @@ engineers working on the deployment.&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Anatole Tresch’s session</summary></entry><entry><title type="html">JVM-CON 2019 Picks</title><link href="/blog/2019/11/20/jvm-con-picks.html" rel="alternate" type="text/html" title="JVM-CON 2019 Picks" /><published>2019-11-20T05:37:00-05:00</published><updated>2019-11-20T05:37:00-05:00</updated><id>/blog/2019/11/20/jvm-con-picks</id><content type="html" xml:base="/blog/2019/11/20/jvm-con-picks.html">&lt;p&gt;I am very blessed to have the opportunity to give keynotes at the two
-premiere Java conferences in Germany this year,
-&lt;a href=&quot;https://www.javaland.eu/de/home/news/details/?tx_news_pi1%5Bnews%5D=1898&amp;amp;tx_news_pi1%5Bcontroller%5D=News&amp;amp;tx_news_pi1%5Baction%5D=detail&amp;amp;cHash=50964b6ba343f83b9eb803af1df039b5&quot;&gt;JavaLand&lt;/a&gt;
-and &lt;a href=&quot;https://www.jvm-con.de/speakers/#/speaker/6825-ed-burns&quot;&gt;JVM-CON&lt;/a&gt;.
-Of course another amazing blessing is that the former was as an Oracle
-employee and the latter as Microsoft, but both of them are about Java.&lt;/p&gt;
-
-&lt;p&gt;After reviewing the program, here are my picks.&lt;/p&gt;
-
-&lt;h3 id=&quot;monday-25-november-2019&quot;&gt;Monday 25 November 2019&lt;/h3&gt;
-
-&lt;p&gt;Workshop Day&lt;/p&gt;
-
-&lt;h4 id=&quot;0900---1300--ballsall-b--altanwendungen-wieder-testbar-machen-daniel-kräer&quot;&gt;09:00 - 13:00 | Ballsall B | Altanwendungen wieder testbar machen &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/altanwendungen-wieder-testbar-machen&quot;&gt;Daniel Kräer&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;As a contributor to old apps, and the testing thereof, I am happy to see
-a talk about how to continue to test them.  I wonder if the Cactus tests
-I wrote for JSF in 2004 will still work?&lt;/p&gt;
-
-&lt;h4 id=&quot;1400---1800--ballsall-a--jee-microservices-mit-quarkus-eine-einführung-dirk-weil&quot;&gt;14:00 - 18:00 | Ballsall A | JEE-Microservices mit Quarkus eine Einführung &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/jee-microservices-mit-quarkus-eine-einfuhrung&quot;&gt;Dirk Weil&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;While I would rather see Jakarta EE as the future of Enterprise Java, it
-seems Quarkus has a fair amount of buzz, RedHat sponsored or otherwise.
-This one is worth a look in.&lt;/p&gt;
-
-&lt;h3 id=&quot;tuesday-26-november-2019&quot;&gt;Tuesday 26 November 2019&lt;/h3&gt;
-
-&lt;h4 id=&quot;1030---1130--tie--ballsall-a-b--anatole-tresch-nicholas-frankel-respectively&quot;&gt;10:30 - 11:30 | Tie | Ballsall A, B | Anatole Tresch, Nicholas Frankel (respectively)&lt;/h4&gt;
-
-&lt;p&gt;Both are great speakers with wealth of real-world application
-knowledge.  Really, you can’t go wrong with either in this timeslot.&lt;/p&gt;
-
-&lt;h4 id=&quot;1140---1240--ballsall-a--the-need-for-speed--data-streaming-in-the-cloud-with-kafka-frank-pientka&quot;&gt;11:40 - 12:40 | Ballsall A | The need for speed  Data streaming in the Cloud with Kafka &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/the-need-for-speed-data-streaming-in-the-cloud-with-kafka&quot;&gt;Frank Pientka&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Kafka is one of those things everyone should know.  Take 60 minutes and
-listen to Frank about it.&lt;/p&gt;
-
-&lt;h4 id=&quot;1400---1500--ballsall-b--e-health-und-e-government-aber-sicher-mit-java-werner-keil&quot;&gt;14:00 - 15:00 | Ballsall B | E-Health und E-Government, aber „sicher” mit Java &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/n-n&quot;&gt;Werner Keil&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Werner has been around this block a few times and it is worthwhile
-hearing his insights.&lt;/p&gt;
-
-&lt;h4 id=&quot;1510---1610--ballsall-a--jakarta-ee--past-present-and-future-christian-kaltepoth&quot;&gt;15:10 - 16:10 | Ballsall A | Jakarta EE  Past, Present and Future &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/jakarta-ee-past-present-and-future&quot;&gt;Christian Kaltepoth&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;Christian has stuck with Jakarta EE for a long time, with MVC and
-JAX-RS.  I have a stake in seeing Java EE succeed, so I am biased in its
-favor.  But I can objectively say that Christian is well qualified to
-give this important talk.&lt;/p&gt;
-
-&lt;h4 id=&quot;1645---1745--ballsall-a---reacting-to-the-future-of-application-architecture-grace-jansen&quot;&gt;16:45 - 17:45 | Ballsall A |  Reacting to the future of application architecture &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/reacting-to-the-future-of-application-architecture&quot;&gt;Grace Jansen&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;This abstract is very high level, but I am interested in hearing a fresh
-take on this high level topic.&lt;/p&gt;
-
-&lt;h4 id=&quot;1755---1900--ballsall-b--graalvm-in-practice-at-the-dutch-national-police-running-r-from-scala-in-spring-boot-2-nathan-perdijk&quot;&gt;17:55 - 19:00 | Ballsall B | GraalVM in practice at the Dutch National Police: running R from Scala in Spring Boot 2 &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/graalvm-in-practice-at-the-dutch-national-police-running-r-from-scala-in-spring-boot-2&quot;&gt;Nathan Perdijk&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;The Dutch government have long been at the forefront of using enterprise
-Java.  Yes really.  I remember when they were using lots of JSF.  Heck,
-they maybe still are.  It works well, right?  Anyhow, I see the trend
-continues with Graal.  Good for them.  The Cops from the Low Countries
-are hip to the high tech.&lt;/p&gt;
-
-&lt;h4 id=&quot;1930---2130--ballsall-b--nightsession-ein-tag-in-der-ux-hölle-armin-reuter&quot;&gt;19:30 - 21:30 | Ballsall B | Nightsession: Ein Tag in der UX-Hölle &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/nightsession-tba&quot;&gt;Armin Reuter&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;As someone who bears responsibility for some UX Hölle of my own, I want
-to see this one.&lt;/p&gt;
-
-&lt;h3 id=&quot;wednesday-27-november-2019&quot;&gt;Wednesday 27 November 2019&lt;/h3&gt;
-
-&lt;h4 id=&quot;0900---1700--raum-dom-iii--hands-on-cloud-native-java-with-microprofile-emily-jiang&quot;&gt;09:00 - 17:00 | Raum Dom I+II | Hands-on cloud-native Java with MicroProfile &lt;a href=&quot;https://www.jvm-con.de/programm/#/talk/full-day-workshop-hands-on-cloud-native-java-with-microprofile&quot;&gt;Emily Jiang&lt;/a&gt;&lt;/h4&gt;
-
-&lt;p&gt;I am working on a cloud native Java thing at Microsoft.  If will be good
-to get Emily’s take.&lt;/p&gt;</content><author><name></name></author><summary type="html">I am very blessed to have the opportunity to give keynotes at the two premiere Java conferences in Germany this year, JavaLand and JVM-CON. Of course another amazing blessing is that the former was as an Oracle employee and the latter as Microsoft, but both of them are about Java.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Raw Notes from Anatole Tresch’s session</summary></entry></feed>

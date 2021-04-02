@@ -19,6 +19,7 @@
   
   
   <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -26,7 +27,7 @@
 
   ga('create', 'UA-92196982-1', 'auto');
   ga('send', 'pageview');
-
+}
 </script>
   
 
@@ -82,7 +83,7 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>In preparation for my <a href="/blog/2017/02/21/devnexus-2017-picks.html">DevNexus talk on Thursday</a> I reviewed the commit log
+    <p>In preparation for my <a href="/blog/blog/2017/02/21/devnexus-2017-picks.html">DevNexus talk on Thursday</a> I reviewed the commit log
 for the JAX-RS API for all the commits in the 2.1 cycle, to be sure I
 didn’t miss anything (See git://java.net/jax-rs-spec~api).  There are
 basically three new big ticket features in JAX-RS 2.1.</p>
@@ -134,10 +135,10 @@ bring your own reactive framework.  The following example uses
 <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></div></li>
 </ol></div>		</div>
 
-<p>The work of implementing the <code class="highlighter-rouge">RxFlowableInvokerProvider</code> on line 1 and
-the <code class="highlighter-rouge">RxFlowableInvoker</code> on line 5 is beyond the scope of this blog post,
+<p>The work of implementing the <code class="language-plaintext highlighter-rouge">RxFlowableInvokerProvider</code> on line 1 and
+the <code class="language-plaintext highlighter-rouge">RxFlowableInvoker</code> on line 5 is beyond the scope of this blog post,
 but it is expected that reactive framework providers (or third parties)
-will provide the necessary implementations of <code class="highlighter-rouge">RxInvokerProvider</code> for
+will provide the necessary implementations of <code class="language-plaintext highlighter-rouge">RxInvokerProvider</code> for
 popular frameworks.  This work was introduced in “commit f601630 Date:
 Thu Jan 12 10:31:41 2017 +0100”.</p>
 
@@ -243,33 +244,33 @@ JAX-RS 2.1.  First, a simple REST resource that implements an SSE server:</p>
 <li style="background: #fcfcfc;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
 </ol></div>		</div>
 
-<p>The constructor on line 13 receives the <code class="highlighter-rouge">Sse</code> class, formerly known as
-<code class="highlighter-rouge">SseContext</code>.  This serves as a factory for instances of
-<code class="highlighter-rouge">OutboundSseEvent</code>, as seen on lines 33 and 57 - 65.</p>
+<p>The constructor on line 13 receives the <code class="language-plaintext highlighter-rouge">Sse</code> class, formerly known as
+<code class="language-plaintext highlighter-rouge">SseContext</code>.  This serves as a factory for instances of
+<code class="language-plaintext highlighter-rouge">OutboundSseEvent</code>, as seen on lines 33 and 57 - 65.</p>
 
 <p>The method that processes GET requests starts on line 17.  This method
-receives an <code class="highlighter-rouge">SseEventSink</code> via injection.  In this simple example, the
-GET request is just made to cause the <code class="highlighter-rouge">eventSink</code> instance variable to
+receives an <code class="language-plaintext highlighter-rouge">SseEventSink</code> via injection.  In this simple example, the
+GET request is just made to cause the <code class="language-plaintext highlighter-rouge">eventSink</code> instance variable to
 be populated.</p>
 
-<p>Now the magic starts to happen.  <code class="highlighter-rouge">SseEventSink</code> is functionally a
+<p>Now the magic starts to happen.  <code class="language-plaintext highlighter-rouge">SseEventSink</code> is functionally a
 <a href="http://download.java.net/java/jdk9/docs/api/java/util/concurrent/Flow.Subscriber.html">Flow.Subscriber</a>,
 though in the Java EE 8 delivery of JAX-RS 2.1 the class will not
-actually extend <code class="highlighter-rouge">Flow.Subscriber&lt;T&gt;</code>.  The first version of JAX-RS that
+actually extend <code class="language-plaintext highlighter-rouge">Flow.Subscriber&lt;T&gt;</code>.  The first version of JAX-RS that
 does support Java SE 9 will do so.  In either case, the necessary
 methods from that interface are implemented so the API will remain
 unchanged.  The Java SE 9 Flow API is a reactive streams compliant API.
-You can see the <code class="highlighter-rouge">onNext</code> method of this interface being invoked within
-the POST processor on line 33.  The meaning of <code class="highlighter-rouge">onNext</code> is simply,
+You can see the <code class="language-plaintext highlighter-rouge">onNext</code> method of this interface being invoked within
+the POST processor on line 33.  The meaning of <code class="language-plaintext highlighter-rouge">onNext</code> is simply,
 “here’s another thing in the stream of things for you to process”.  In
 this case, the recipient of the new thing is whatever parties are
 connected to the other end of the SSE connection.</p>
 
 <p>A more advanced POST processor is found starting on line 46, for the
-path of <code class="highlighter-rouge">domains/{id}</code>.  A post to this path causes an asynchronous
-action to commence using the <code class="highlighter-rouge">ExecutorService</code>.  This example illustrates the
+path of <code class="language-plaintext highlighter-rouge">domains/{id}</code>.  A post to this path causes an asynchronous
+action to commence using the <code class="language-plaintext highlighter-rouge">ExecutorService</code>.  This example illustrates the
 process of starting an appserver domain on line 54.  Several status
-updates are sent on lines 56 - 65 and then the <code class="highlighter-rouge">eventSink</code> is closed on
+updates are sent on lines 56 - 65 and then the <code class="language-plaintext highlighter-rouge">eventSink</code> is closed on
 line 67.</p>
 
 <p>Rounding out the example, a DELETE processor simply closes the eventSink
@@ -310,8 +311,8 @@ take a look at the SSE Client API in JAX-RS 2.1.</p>
 <li style="background: #f0f0f0;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">&nbsp;</div></li>
 </ol></div>		</div>
 
-<p>As in the server case, <code class="highlighter-rouge">SseEventSource</code> is functionally equivalent to an
-instance of <code class="highlighter-rouge">Flow.Publisher&lt;InboundSseEvent&gt;</code>, and will literally be one
+<p>As in the server case, <code class="language-plaintext highlighter-rouge">SseEventSource</code> is functionally equivalent to an
+instance of <code class="language-plaintext highlighter-rouge">Flow.Publisher&lt;InboundSseEvent&gt;</code>, and will literally be one
 in the JAX-RS version that supports Java SE 9.  It does, however, have
 all necessary the methods of that interface.  In the above example, the
 subscribe() method is seen on line 15.  Here we are simply printing out
@@ -331,7 +332,7 @@ whom I had the pleasure of seeing present at
 is a way to compose client requests and cause them to be processed in
 the proper order to enable assembling the responses.  In the case of the
 Reactive Client API, these responses are asynchronous and fully reactive
-compliant.  The root interface of the API is <code class="highlighter-rouge">RxInvoker</code>.  This
+compliant.  The root interface of the API is <code class="language-plaintext highlighter-rouge">RxInvoker</code>.  This
 interface has Java methods for all of the standard HTTP methods, as well
 a generic “method” method for arbitrary methods.  The API is usually
 invoked as part of a fluid call chain.</p>
@@ -700,7 +701,8 @@ is thrown during the conversion process.</p>
       </div>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
 
   <div class="wrapper">
 
@@ -709,34 +711,11 @@ is thrown during the conversion process.</p>
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li>
-            
-              Ed Burns Blog
-            
-            </li>
-            
-        </ul>
+          <li class="p-name">Ed Burns Blog</li></ul>
       </div>
 
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          
-          <li>
-            <a href="https://github.com/edburns"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
-</span><span class="username">edburns</span></a>
-
-          </li>
-          
-
-          
-          <li>
-            <a href="https://twitter.com/edburns"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
-</span><span class="username">edburns</span></a>
-
-          </li>
-          
-        </ul>
-      </div>
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
 
       <div class="footer-col footer-col-3">
         <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.

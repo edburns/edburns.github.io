@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Blurring parts of the screen in OBS Studio, other tips</title>
+  <meta name="description" content="This blog posts captures some learning I did about OBS recently.">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2021/04/02/obs-blur.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Blurring parts of the screen in OBS Studio, other tips</h1>
+    <p class="post-meta"><time datetime="2021-04-02T16:10:00-04:00" itemprop="datePublished">Apr 2, 2021</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>This blog posts captures some learning I did about OBS recently.</p>
+
+<p>I recently invested a little time in learning the basics of <a href="https://github.com/obsproject/obs-studio">OBS Studio</a>.  OBS is one of
+those programs that seems enormously powerful, has a vast user base,
+and a correspondingly vast amount of content about it on YouTube.
+There is so much content about OBS it’s hard to tell what’s good.
+Thankfully, I stumbled upon 
+<a href="https://www.youtube.com/watch?v=ySENWFIkL7c">this 27 minute tutorial</a>
+from Kevin Stratvert.</p>
+
+<p>In addition to Mr. Stratvert’s tutorial, there are some other
+essential tips I want to capture.</p>
+
+<h2 id="blurring-during-recording">Blurring during recording</h2>
+
+<p><a href="https://www.youtube.com/watch?v=5zM3xvkb8dY">This video</a>, from a much
+more gamer-focused perspective, did give a practical tip for how
+selectively blur arbitrary portions of the screen.  I’ll outline the
+process next.</p>
+
+<ol>
+  <li>
+    <p>Add a new <strong>Display capture</strong> source.</p>
+  </li>
+  <li>
+    <p>Arrange it above your “main” <strong>Display capture</strong> source.</p>
+  </li>
+  <li>
+    <p>Add a <strong>Scaling/Aspect Ratio</strong> filter to it.</p>
+
+    <ol>
+      <li><strong>Scale Filtering</strong> Point.</li>
+      <li><strong>Resolution</strong> 640x360</li>
+    </ol>
+  </li>
+  <li>
+    <p>Drag the red grabber handles so that the new <strong>Display capture</strong>
+source completely covers the “main” display capture source.</p>
+  </li>
+  <li>
+    <p><strong>HERE IS THE IMPORTANT STEP</strong>: Hold down the alt key and re-size
+the grabbers to cover the area you want to blur.  <strong>It is very
+important you don’t move the region by dragging it.</strong> Use the
+alt-resize technique to effectively move the blur zone.</p>
+
+    <ul>
+      <li>This works because of the low resolution you set.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Repeat this process for whatever other parts of the screen you want
+to blur.  Note that you can blur/un-blur easily with the “eye” icon
+for htat <strong>Display capture</strong> source in the <strong>Sources</strong> screen.</p>
+  </li>
+</ol>
+
+<h2 id="bluring-after-recording">Bluring after recording</h2>
+
+<p>I found I missed some things on my first recording and needed to do
+additional blurring.  No problem, add a <strong>Media</strong> source and select
+the file from the first recording.  You can then play the first recording
+into another recording and add more blurring as desired. I found this
+reminded me of some of the performance aspect of <a href="https://www.youtube.com/watch?v=Sqz5YaHx26g">real time analog audio mixing</a> because I had to take cues from the media source for when to blur/un-blur certain parts of the screen.</p>
+
+<p>Note, when you add <strong>Media</strong> source, by default you cannot hear the
+audio. Turn it on with these steps.</p>
+
+<ol>
+  <li>
+    <p>In the <strong>Audio Mixer</strong> panel, in the row for <strong>Media Source</strong> select the cog icon and select <strong>Advanced Audio Properties</strong>.</p>
+  </li>
+  <li>
+    <p>In the row for <strong>Media Source</strong>, in the column for <strong>Audio Monitoring</strong>, ensure <strong>Monitor and Output</strong> is selected.</p>
+  </li>
+</ol>
+
+<h2 id="removing-click-sounds-from-your-mic-while-recording">Removing click sounds from your mic while recording</h2>
+
+<p>Add these filters to your <strong>Mic/Aux</strong> source.</p>
+
+<ol>
+  <li>
+    <p><strong>Noise Suppression</strong>: RNNoise</p>
+  </li>
+  <li>
+    <p><strong>Noise Gate</strong></p>
+
+    <ul>
+      <li>
+        <p>Close Threshold: -54.00 dB</p>
+      </li>
+      <li>
+        <p>Open Threshold: -39.00 dB</p>
+      </li>
+    </ul>
+
+    <p>Remainder at defaults.</p>
+  </li>
+</ol>
+
+
+  </div>
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

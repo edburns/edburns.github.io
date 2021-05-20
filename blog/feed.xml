@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-05-19T22:50:52-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-05-19T23:12:25-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Ed’s Microsoft Build May 2021 Session Picks</title><link href="/blog/2021/05/19/build-picks.html" rel="alternate" type="text/html" title="Ed’s Microsoft Build May 2021 Session Picks" /><published>2021-05-19T18:30:00-04:00</published><updated>2021-05-19T18:30:00-04:00</updated><id>/blog/2021/05/19/build-picks</id><content type="html" xml:base="/blog/2021/05/19/build-picks.html">&lt;p&gt;&lt;em&gt;Cross posted at &lt;a href=&quot;https://dev.to/edburns00/ed-s-microsoft-build-may-2021-session-picks-2l9e&quot;&gt;dev.to&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Ever since the end of in-person events I have not bothered to do my traditional “Ed’s session picks” posts, as I have so often in the past.  (These posts are a ride through memory lane: &lt;a href=&quot;/blog/2008/04/25/javaone-2008-picks.html&quot;&gt;2008&lt;/a&gt;, &lt;a href=&quot;/blog/2011/06/14/jazoon-2011-picks.html&quot;&gt;2011&lt;/a&gt;, &lt;a href=&quot;/blog/2011/09/28/updated-20110930-1357-ed-burns-javaone-2011-session-picks.html&quot;&gt;2011&lt;/a&gt;, &lt;a href=&quot;/blog/2014/02/18/eds-devnexus-2014-picks.html&quot;&gt;2014&lt;/a&gt;, &lt;a href=&quot;/blog/2014/03/03/eds-javaland-2014-picks.html&quot;&gt;2014&lt;/a&gt;, &lt;a href=&quot;/blog/2015/01/15/javaland-2015-conference-picks.html&quot;&gt;2015&lt;/a&gt;, &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;/blog/2017/02/27/javaland-2017-picks.html&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;/blog/2017/03/20/devoxx-us-2017-picks.html&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;/blog/2017/04/19/goto-chicago-picks.html&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;/blog/2019/03/11/javaland-2019-picks.html&quot;&gt;2019&lt;/a&gt;, &lt;a href=&quot;/blog/2019/08/26/oracle-code-one-2019-picks.html&quot;&gt;2019&lt;/a&gt;, &lt;a href=&quot;/blog/2019/11/20/jvm-con-picks.html&quot;&gt;2019&lt;/a&gt; ).  Now that Microsoft is focusing so heavily on making Java run great on Azure, it’s time to survey what Build 2021 has to offer Java developers.&lt;/p&gt;
@@ -18,7 +18,7 @@ Microsoft Build.&lt;/p&gt;
 
 &lt;h3 id=&quot;0500-edt-java-champions-talk-java-at-microsoft-interstitial-programming&quot;&gt;05:00 EDT Java Champions talk Java at Microsoft: Interstitial Programming&lt;/h3&gt;
 
-&lt;p&gt;Join Julien Dubois, Jonathan Giles and I for a sevin minute
+&lt;p&gt;Join &lt;a href=&quot;https://twitter.com/juliendubois&quot;&gt;Julien Dubois&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/JonathanGiles&quot;&gt;Jonathan Giles&lt;/a&gt; and I for a sevin minute
 interstitial programming segment talking about high velocity cloud
 native Java.&lt;/p&gt;
 
@@ -27,8 +27,8 @@ native Java.&lt;/p&gt;
 &lt;p&gt;Success at Microsoft is all about impact.  How much impact does your
 work have?  How does it achieve our vision of empowering every person
 and every organization on the planet to achieve more?  This 30 minute
-customer success focused session show the impact Java has at one of
-the leading grocery retailers in the US.  They also own Fred Meyer.&lt;/p&gt;
+customer success focused session shows the impact Java has at &lt;a href=&quot;https://twitter.com/kroger&quot;&gt;Kroger&lt;/a&gt;, one of
+the leading grocery retailers in the US.  They also own &lt;a href=&quot;https://twitter.com/Fred_Meyer&quot;&gt;Fred Meyer&lt;/a&gt;. My colleague &lt;a href=&quot;https://twitter.com/asirselvasingh&quot;&gt;Asir Selvasingh&lt;/a&gt; is instrumental in the Java work done with Kroger.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://mybuild.microsoft.com/sessions/db6c0213-d07f-4ee1-8d5c-26154d7632b6?source=sessions&quot;&gt;Content catalog link&lt;/a&gt;.&lt;/p&gt;
 
@@ -36,8 +36,8 @@ the leading grocery retailers in the US.  They also own Fred Meyer.&lt;/p&gt;
 
 &lt;h3 id=&quot;1800-edt-ask-the-java-at-microsoft-experts&quot;&gt;18:00 EDT Ask the Java at Microsoft Experts&lt;/h3&gt;
 
-&lt;p&gt;Reza Rahman, Asir Selvasingh and I are in the virtual booth and are
-excited to take your questions.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/reza_rahman&quot;&gt;Reza Rahman&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/brunoborges&quot;&gt;Bruno Borges&lt;/a&gt;, [Martijn Verburg](https://twitter.com/karianna], &lt;a href=&quot;https://twitter.com/asirselvasingh&quot;&gt;Asir Selvasingh&lt;/a&gt; and I are
+in the virtual booth and are excited to take your questions.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://mybuild.microsoft.com/sessions/aded32d6-b9e3-486c-a208-9ebcece1fbdd?source=sessions&quot;&gt;Content catalog link&lt;/a&gt;&lt;/p&gt;
 
@@ -45,7 +45,7 @@ excited to take your questions.&lt;/p&gt;
 
 &lt;h3 id=&quot;1000-edt-ask-the-experts-whats-new-for-developers-for-building-dual-screen-apps-for-the-surface-duo&quot;&gt;10:00 EDT Ask the Experts: What’s new for Developers for building Dual Screen Apps for the Surface Duo&lt;/h3&gt;
 
-&lt;p&gt;Remember the Nintendo DS (dual screen)?  The Surface Duo also has two screens, but it’s a Microsoft device and it runs Android.  That means, you can code for it using Java or Kotlin.  This one sounds really fun.&lt;/p&gt;
+&lt;p&gt;Remember the Nintendo DS (dual screen)?  The Surface Duo also has two screens, but it’s a Microsoft device and it runs Android.  That means, you can code for it using Java or Kotlin.  This one sounds really fun.  I look forward to seeing what &lt;a href=&quot;https://twitter.com/gmerin&quot;&gt;Guy Merin&lt;/a&gt; has to say.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://mybuild.microsoft.com/sessions/19b093c6-6718-4114-87f0-861baafefa65?source=sessions&quot;&gt;Content catalog link&lt;/a&gt;&lt;/p&gt;
 
@@ -53,7 +53,7 @@ excited to take your questions.&lt;/p&gt;
 
 &lt;h3 id=&quot;accelerating-enterprise-java-workloads-on-azure&quot;&gt;Accelerating enterprise Java workloads on Azure&lt;/h3&gt;
 
-&lt;p&gt;This is where we get to show off all the things we are doing with Java EE related technologies on Azure.  It’s presented by my colleague Reza Rahman.&lt;/p&gt;
+&lt;p&gt;This is where we get to show off all the things we are doing with Java EE related technologies on Azure.  It’s presented by my colleague &lt;a href=&quot;https://twitter.com/reza_rahman&quot;&gt;Reza Rahman&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://mybuild.microsoft.com/sessions/2ce6782a-a7e4-4bcf-b4b6-1c9fd5d3e58a?source=sessions&quot;&gt;Content catalog link&lt;/a&gt;&lt;/p&gt;
 
@@ -66,6 +66,8 @@ what is offered by AKS.  App Service offers a wide variety of
 pre-configured solution stacks on Java, .NET Core, Python, and Node,
 including Tomcat and Java EE JBoss EAP.  I’m not sure how much Java
 will be covered, but App Service definitely supports Java vere well.&lt;/p&gt;
+
+&lt;p&gt;Presented by &lt;a href=&quot;https://twitter.com/AzureWeekly/status/1322878013739065346&quot;&gt;Stefan Schackow&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://mybuild.microsoft.com/sessions/77d6c20f-6b37-4643-9e31-6bcd6da4dad0?source=sessions&quot;&gt;Content catalog link&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Cross posted at dev.to.</summary></entry><entry><title type="html">Blurring parts of the screen in OBS Studio, other tips</title><link href="/blog/2021/04/02/obs-blur.html" rel="alternate" type="text/html" title="Blurring parts of the screen in OBS Studio, other tips" /><published>2021-04-02T16:10:00-04:00</published><updated>2021-04-02T16:10:00-04:00</updated><id>/blog/2021/04/02/obs-blur</id><content type="html" xml:base="/blog/2021/04/02/obs-blur.html">&lt;p&gt;This blog posts captures some learning I did about OBS recently.&lt;/p&gt;
 

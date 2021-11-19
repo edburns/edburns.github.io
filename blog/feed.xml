@@ -1,5 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-06-04T09:33:08-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Ed’s Microsoft Build May 2021 Session Picks</title><link href="/blog/2021/05/19/build-picks.html" rel="alternate" type="text/html" title="Ed’s Microsoft Build May 2021 Session Picks" /><published>2021-05-19T18:30:00-04:00</published><updated>2021-05-19T18:30:00-04:00</updated><id>/blog/2021/05/19/build-picks</id><content type="html" xml:base="/blog/2021/05/19/build-picks.html">&lt;p&gt;&lt;em&gt;Cross posted at &lt;a href=&quot;https://dev.to/edburns00/ed-s-microsoft-build-may-2021-session-picks-2l9e&quot;&gt;dev.to&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2021-11-19T17:58:24-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Keynote Summary Documents: Is Paul Hughes right?</title><link href="/blog/2021/11/19/keynote-summary-documents.html" rel="alternate" type="text/html" title="Keynote Summary Documents: Is Paul Hughes right?" /><published>2021-11-19T17:45:00-05:00</published><updated>2021-11-19T17:45:00-05:00</updated><id>/blog/2021/11/19/keynote-summary-documents</id><content type="html" xml:base="/blog/2021/11/19/keynote-summary-documents.html">&lt;p&gt;I was blessed with the opportunity to take full advantage of the brief
+window of COVID-19 pandemic relaxation in early September 2021 and
+accepted the opportunity to &lt;a href=&quot;https://workshoptage.ch/jubilaeumsfeier&quot;&gt;deliver the
+keynote&lt;/a&gt; at the 30th
+Anniversary of Workshop-Tage in Zürich, Switzerland.  I decided to
+follow the advice of this guy, Paul Hughes.  He advises: After a
+Keynote Speech: Avoid this Common Mistake: &lt;a href=&quot;https://paulhugheslive.com/after-a-keynote-speech-avoid-this-common-mistake/&quot;&gt;Do not share
+slides&lt;/a&gt;.
+Mr. Hughes’s blog post is targeted at the party hiring the keynote
+speaker, but with the keynote speaker themselves as a secondary
+target.&lt;/p&gt;
+
+&lt;p&gt;Life being what it is, I’m still working on the summary document,
+three months later, but have the second draft up at &lt;a href=&quot;https://gist.github.com/edburns/cc938e58a4d42edcccb2061be071a916&quot;&gt;my
+gist&lt;/a&gt;.
+I intend to post the actual summary document as my next post here.&lt;/p&gt;</content><author><name></name></author><summary type="html">I was blessed with the opportunity to take full advantage of the brief window of COVID-19 pandemic relaxation in early September 2021 and accepted the opportunity to deliver the keynote at the 30th Anniversary of Workshop-Tage in Zürich, Switzerland. I decided to follow the advice of this guy, Paul Hughes. He advises: After a Keynote Speech: Avoid this Common Mistake: Do not share slides. Mr. Hughes’s blog post is targeted at the party hiring the keynote speaker, but with the keynote speaker themselves as a secondary target.</summary></entry><entry><title type="html">Ed’s Microsoft Build May 2021 Session Picks</title><link href="/blog/2021/05/19/build-picks.html" rel="alternate" type="text/html" title="Ed’s Microsoft Build May 2021 Session Picks" /><published>2021-05-19T18:30:00-04:00</published><updated>2021-05-19T18:30:00-04:00</updated><id>/blog/2021/05/19/build-picks</id><content type="html" xml:base="/blog/2021/05/19/build-picks.html">&lt;p&gt;&lt;em&gt;Cross posted at &lt;a href=&quot;https://dev.to/edburns00/ed-s-microsoft-build-may-2021-session-picks-2l9e&quot;&gt;dev.to&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Ever since the end of in-person events I have not bothered to do my traditional “Ed’s session picks” posts, as I have so often in the past.  (These posts are a ride through memory lane: &lt;a href=&quot;/blog/2008/04/25/javaone-2008-picks.html&quot;&gt;2008&lt;/a&gt;, &lt;a href=&quot;/blog/2011/06/14/jazoon-2011-picks.html&quot;&gt;2011&lt;/a&gt;, &lt;a href=&quot;/blog/2011/09/28/updated-20110930-1357-ed-burns-javaone-2011-session-picks.html&quot;&gt;2011&lt;/a&gt;, &lt;a href=&quot;/blog/2014/02/18/eds-devnexus-2014-picks.html&quot;&gt;2014&lt;/a&gt;, &lt;a href=&quot;/blog/2014/03/03/eds-javaland-2014-picks.html&quot;&gt;2014&lt;/a&gt;, &lt;a href=&quot;/blog/2015/01/15/javaland-2015-conference-picks.html&quot;&gt;2015&lt;/a&gt;, &lt;a href=&quot;/blog/2017/02/21/devnexus-2017-picks.html&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;/blog/2017/02/27/javaland-2017-picks.html&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;/blog/2017/03/20/devoxx-us-2017-picks.html&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;/blog/2017/04/19/goto-chicago-picks.html&quot;&gt;2017&lt;/a&gt;, &lt;a href=&quot;/blog/2019/03/11/javaland-2019-picks.html&quot;&gt;2019&lt;/a&gt;, &lt;a href=&quot;/blog/2019/08/26/oracle-code-one-2019-picks.html&quot;&gt;2019&lt;/a&gt;, &lt;a href=&quot;/blog/2019/11/20/jvm-con-picks.html&quot;&gt;2019&lt;/a&gt; ).  Now that Microsoft is focusing so heavily on making Java run great on Azure, it’s time to survey what Build 2021 has to offer Java developers.&lt;/p&gt;
 
@@ -1139,177 +1154,4 @@ numbers, separated by commas, disallowing a trailing comma.&lt;/p&gt;
 
 &lt;p&gt;If you need your regexs as part of an azure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createUiDefinition.json&lt;/code&gt;,
 save time by testing the whole thing using the &lt;a href=&quot;https://portal.azure.com/?feature.customPortal=false#blade/Microsoft_Azure_CreateUIDef/SandboxBlade&quot;&gt;Create UI Definition
-Sandbox&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I recently had to add a feature to the UI for the Azure Marketplace Offers for Oracle WebLogic Server. The UI for marketplace entries is written in JSON. As I stated in my previous post, JSON is an awful choice for a DSL for deploying things to Azure. It is also an awful choice for declaring a wizard-style UI, but at least the particular use case of building the UI for an Azure Marketplace offer allows easy incorporation of regular expressions.</summary></entry><entry><title type="html">Tips for faster iteration times developing ARM templates</title><link href="/blog/2020/01/25/arm-development-faster-iteration-time.html" rel="alternate" type="text/html" title="Tips for faster iteration times developing ARM templates" /><published>2020-01-25T14:40:00-05:00</published><updated>2020-01-25T14:40:00-05:00</updated><id>/blog/2020/01/25/arm-development-faster-iteration-time</id><content type="html" xml:base="/blog/2020/01/25/arm-development-faster-iteration-time.html">&lt;h2 id=&quot;update-2020-01-30-export-with-httpsresourcesazurecom&quot;&gt;UPDATE: 2020-01-30 export with https://resources.azure.com/&lt;/h2&gt;
-
-&lt;p&gt;If you found your way to this post and your first reaction is 
-“&lt;a href=&quot;https://www.urbandictionary.com/define.php?term=Thank%20you%20Captain%20Obvious&quot;&gt;well duh&lt;/a&gt;”,
-please leave a comment, because I’d love to know how you came upon your
-knowledge which caused you to respond this way.  This was hard-won knowledge
-for me, but I suspect I’m missing out on some fundamental bit of
-training in the art of efficient ARM template development.&lt;/p&gt;
-
-&lt;p&gt;An ARM template encodes instructions that the &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/&quot;&gt;Azure Resource
-Manager&lt;/a&gt;
-executes which result in some stuff being deployed to Azure.  As such,
-an ARM template is a
-&lt;a href=&quot;https://en.wikipedia.org/wiki/Domain-specific_language&quot;&gt;DSL&lt;/a&gt; for the
-domain of Azure.  Unfortunately, as DSLs go, it’s awful.  It’s a bigass
-JSON file, with all of the pitfalls that entails, such as:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;It’s a challenge to manage complexity.  Things can spiral out of
-control very quickly unless you are very disciplined while authoring.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;The instructions in an ARM template execute over time, in a sequence,
-imperatively, but JSON is absolutely not an imperative syntax.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;It’s very easy to make stupid mistakes at authoring time.  You can
-opt-in to using &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/use-vs-code-to-create-template&quot;&gt;some
-tooling&lt;/a&gt;
-to catch some stupid mistakes at authoring time, but a proper DSL
-would do a better job of it.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;del&gt;You &lt;a href=&quot;https://github.com/Azure/azure-resource-manager-schemas/issues/851&quot;&gt;can’t even put comments in there&lt;/a&gt;.&lt;/del&gt; UPDATE: 2020-04-21: // comments in JSON work now.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;As a DSL for Azure, I think Terraform may be a better fit.  Indeed
-&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/terraform/terraform-overview&quot;&gt;Terraform is well supported by
-Azure&lt;/a&gt;,
-but you can’t use it when authoring for the Azure marketplace.  Accept
-JSON and move on.  Here are some tips to ease your acceptance.&lt;/p&gt;
-
-&lt;h2 id=&quot;accept-json&quot;&gt;Accept JSON&lt;/h2&gt;
-
-&lt;p&gt;This blog post shares some tips I’ve developed to get faster development
-cycle times when iteratively developing ARM templates.  The cycle looks
-like this:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Get your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mainTemplate.json&lt;/code&gt; somehow.  Write it yourself, export it
-from the Azure portal, start with a quickstart, etc.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Deploy it to Azure with the Azure CLI.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Look at what happened.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I want to minimize the time between steps 2 and 3.&lt;/p&gt;
-
-&lt;h2 id=&quot;tips-for-step-1&quot;&gt;Tips for step 1&lt;/h2&gt;
-
-&lt;h3 id=&quot;use-the-export-template-feature-as-a-jump-start&quot;&gt;Use the “export template” feature as a jump start&lt;/h3&gt;
-
-&lt;p&gt;Create the system you want to have in the portal, then use the 
-&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-portal&quot;&gt;export template&lt;/a&gt; 
-feature of the portal to download the ARM template JSON file.  You may
-want to do this for each big chunk of functionality in your system, then
-stitch them together.  Iterate at the command line using the technique
-in the next tip.&lt;/p&gt;
-
-&lt;h3 id=&quot;use-the-resourcesazurecom&quot;&gt;Use the resources.azure.com&lt;/h3&gt;
-
-&lt;p&gt;I have observed that the “export template” feature does not always give
-you the full JSON.  For example, in the case of Application Gateway, the
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;backendAddresses&lt;/code&gt; was empty, even though it had a pool and targets.  A
-colleague pointed out this enormously useful resource
-&lt;a href=&quot;https://resources.azure.com/&quot;&gt;https://resources.azure.com/&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Here is a quick sketch of how I used it to get the full JSON of a
-deployed Application Gateway.  Note, this is not an ARM template, but it
-can help a lot.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Visit https://resources.azure.com/&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Type in the resource group in which the resource is deployed: ejb012803c&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Maybe make a choice.&lt;/p&gt;
-
-    &lt;p&gt;a. If offered with an autosuggest, pick the resource and you are done.&lt;/p&gt;
-
-    &lt;p&gt;b. If not offered with an autosuggest.  In the left pane, expand nodes like this&lt;/p&gt;
-
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;subscriptions &amp;gt; Your subscription &amp;gt; resourceGroups &amp;gt; ejb012803c &amp;gt; Providers &amp;gt;
-  Microsoft.Network &amp;gt; applicationGateways &amp;gt; ejb012803c
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;start-with-one-of-the-templates-from-azure-quickstart-templates&quot;&gt;Start with one of the templates from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;azure-quickstart-templates&lt;/code&gt;&lt;/h3&gt;
-
-&lt;p&gt;My extremely helpful colleague &lt;a href=&quot;https://github.com/bmoore-msft&quot;&gt;Brian
-Moore&lt;/a&gt; leads a team that curates this
-&lt;a href=&quot;https://github.com/Azure/azure-quickstart-templates&quot;&gt;vast resource of
-templates&lt;/a&gt;, and
-&lt;a href=&quot;https://github.com/Azure/azure-quickstart-templates/tree/master/test/arm-ttk&quot;&gt;tests for
-templates&lt;/a&gt;.
-The templates are organized by the kind of thing you want to deploy to
-Azure.  For example, here is one for &lt;a href=&quot;https://github.com/Azure/azure-quickstart-templates/tree/master/101-application-gateway-waf&quot;&gt;Azure Application
-Gateway&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;tips-for-step-2&quot;&gt;Tips for step 2&lt;/h2&gt;
-
-&lt;h3 id=&quot;always-use-the---debug-argument-to-commands-for-which-you-need-to-iterate--like-this&quot;&gt;Always use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--debug&lt;/code&gt; argument to commands for which you need to iterate.  Like this&lt;/h3&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;az group deployment create --debug --resource-group ejb012405c --parameters @20200124-dd-1052162-gateway-parameters.json --template-file arm-oraclelinux-wls-cluster/arm-oraclelinux-wls-cluster/src/main/arm/mainTemplate.json &amp;gt; azure.out 2&amp;gt;&amp;amp;1 &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This also causes the output to be redirected to a file, in the
-background, capturing stdout and stderr.&lt;/p&gt;
-
-&lt;h3 id=&quot;a-tale-of-two-tails&quot;&gt;A tale of two tails&lt;/h3&gt;
-
-&lt;p&gt;Use some tails to observe the output as the command runs.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Grep through the outfile for some low frequency string.&lt;/p&gt;
-
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tail -f azure.out | grep &quot;INFO: Accepted&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;In a separate terminal window, just tail the output for everything,
-so you can see if the command simply failed.&lt;/p&gt;
-
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tail -f azure.out
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;extract-the-properties-template--json-object-from-azureout-so-you-can-interpret-column-offsets-correctly&quot;&gt;Extract the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{&quot;properties&quot;: {&quot;template&quot;: &lt;/code&gt; JSON object from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;azure.out&lt;/code&gt;, so you can interpret column offsets correctly&lt;/h3&gt;
-
-&lt;p&gt;The template you pass to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;az group deployment create&lt;/code&gt; will have all
-formatting removed before Azure sees it, so when Azure gives you error
-messages, they are usually expressed like “error on line 1 column
-60299”.  You need to translate that to “line N” in your human readable
-JSON.  If you save aside the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{&quot;properties&quot;: {&quot;template&quot;: &lt;/code&gt; JSON object
-from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;azure.out&lt;/code&gt; file, you can seek to that column, and then derive
-where the error is in your human readable JSON file.&lt;/p&gt;
-
-&lt;h3 id=&quot;even-though-you-ultimately-need-to-produce-maintemplatejson-iterate-with-smaller-disjoint-files&quot;&gt;Even though you ultimately need to produce &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mainTemplate.json&lt;/code&gt; iterate with smaller, disjoint files&lt;/h3&gt;
-
-&lt;p&gt;If you are building a template that ultimately deploys an entire
-datacenter, such as with an &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/marketplace/marketplace-solution-templates&quot;&gt;Azure
-Application&lt;/a&gt;
-you should consider breaking the template into smaller nested templates,
-as described in &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/linked-templates&quot;&gt;Using linked and nested templates when deploying Azure
-resources&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-
-&lt;p&gt;Developing ARM templates can be very frustrating, especilaly if you are
-used to the rapid compile-edit-debug cycle that many actual programming
-languages offer.&lt;/p&gt;</content><author><name></name></author><summary type="html">UPDATE: 2020-01-30 export with https://resources.azure.com/</summary></entry></feed>
+Sandbox&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">I recently had to add a feature to the UI for the Azure Marketplace Offers for Oracle WebLogic Server. The UI for marketplace entries is written in JSON. As I stated in my previous post, JSON is an awful choice for a DSL for deploying things to Azure. It is also an awful choice for declaring a wizard-style UI, but at least the particular use case of building the UI for an Azure Marketplace offer allows easy incorporation of regular expressions.</summary></entry></feed>

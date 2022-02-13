@@ -18,36 +18,51 @@
 
   <body>
 
+
+<h1>Play ToD on MiSTer</h1>
+
+<h2><img src="../new.gif" /> New Content, 2022-02-13</h2>
+
+
+
+
 <H1>Play ToD on your PC</H1>
 
 <P>I use a software emulator to play ToD on my Windows.  There are quite
 a few emulators out there, and most of them are listed at <A
 HREF="http://www.99er.net/emul.shtml">http://www.99er.net/emul.shtml</A>.
-I've had the best luck with M.E.S.S..  Bryan T. Nicalek has released an
-excellent graphical front end for M.E.S.S., specific to the TI.  He has
-totally optimized the display settings for M.E.S.S. to get the best
-picture, and his system is <B>very</B> easy to use.  Plus, it comes
-standard with Tunnels of Doom.  Please check out his <B>TI System
-Interface</B> at <A
-HREF="http://www.ticomputer.net/">http://www.ticomputer.net/</A>.  It
-runs on Windows 2000, 98, and ME.</P>
+I've had the best luck with MAME.  </P>
 
-<P>Here are some tips for running ToD under M.E.S.S.</P>
+<P>Here are some tips for running ToD under MAME.</P>
 
 	<UL>
 
-	  <LI><P>If you want to start M.E.S.S. from the prompt, the
-	  command line works for me is:
-	  </P>
-<CODE><PRE>..\..\MESS\MESS.EXE ti99_4a -cart tundoomg.bin -flop tunnels.dsk -r 800x600 -nohws -sr 22050 -joy -effect scan75 -gamma 0.85 </PRE></CODE>
+	  <li><p>Install MAME using the steps at <a href="https://www.mizapf.de/en/ti99/mame/winstmame">Mizpaf's page</a>.  There are instructions for <a href="https://www.mizapf.de/de/ti99/mame/linstmame">GNU/Linux</a> but I have not tried them.
+	  </p></li>
 
-<P>These are the settings used in Bryan's front end.</P>
+
+	  <LI><P>If you want to start MAME from the prompt, the
+	  command line that works for me is:
+	  </P>
+            <CODE><PRE>mame64 ti99_4a -cart tundoomg.bin -r 800x600 -nohws -gamma 0.85 -sr 22050 -ioport peb -ioport:peb:slot2 32kmem -ioport:peb:slot8 tifdc -flop1 tunnels.dsk</PRE></CODE>
 
 </LI>
 
 	  <LI><P>When you get the <CODE>LOAD DATA FROM</CODE> menu,
 	  choose <CODE>DISK1</CODE> and type in <CODE>PENNIES</CODE>,
 	  <CODE>QUEST</CODE> or the name of your saved game.  </P></LI>
+
+
+
+</LI>
+
+
+
+</UL>
+
+<h1>Keys</h1>
+
+<ul>
 
 	  <LI><P>Here are the keys for ToD.  Note that sometimes you
 	  must use Alt instead of Shift; notably in the case of
@@ -59,12 +74,8 @@ runs on Windows 2000, 98, and ME.</P>
 </LI>
 
 
-
-</LI>
-
-
-
-	</UL>
+  
+  </ul>
 
 
 [ <A HREF="index.html">home</A> ] <BR>
@@ -73,7 +84,7 @@ runs on Windows 2000, 98, and ME.</P>
     <address><a href="mailto:Ed Burns <edburns@acm.org>"></a></address>
 <!-- Created: Mon Jan 14 12:12:37 Pacific Standard Time 2002 -->
 <!-- hhmts start -->
-Last modified: Sun Jul 31 10:12:20 Eastern Daylight Time 2005
+Last modified: Sun Feb 13 11:11:20 Eastern Daylight Time 2022
 <!-- hhmts end -->
   </body>
 </html>

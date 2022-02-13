@@ -23,7 +23,287 @@
 
 <h2><img src="../new.gif" /> New Content, 2022-02-13</h2>
 
+Much like my friend George when I was 11, my friend <a href="https://www.xing.com/profile/Werner_Punz">Werner</a> and I are interested in classic computer games.  Of course, when I was 11, they were not "classic computer games".  They were just "computer games".  Werner had long been using the MiSTer FPGA hardware emulation system. I was interested in following his lead in this, and I decided to use "Play Tunnels of Doom" as my first User Story to gain competence in the system. This section is my summary of that work.  In this section, you will learn how to go from absolute zero to equipping your dungeon crawling party using MiSTer.
 
+Let's break the tutorial into two sections.
+
+	<ol>
+
+	  <li><p>Going from zero to the 16 color boot screen of the TI-99/4a.
+	  </p></li>
+
+       	  <li><p>Going from the 16 color boot screen to equipping your party.
+	  </p></li>
+
+	</ol>
+
+<p>Let's dive in!</p>
+        
+<h3>1. from zero to the 16 color boot screen of the TI-99/4a</h3>
+
+
+	<ol>
+
+	  <li><p>Set expectations</p>
+
+	<ul>
+
+<li><p>This whole emulation scene is a community, open source, effort. Don’t expect things to work 100% all the time.</p></li>
+
+<li><p>You must be prepared for a lot of hassle.</p></li>
+
+<li><p>It is a living and dynamic hobby. Things that work at one point can stop working and you’ll have to tinker and debug.</p></li>
+
+<li><p>In my experience, there is a lot of trial and error. You must be methodical.  In my case, I have a notebook where I write notes and paste in printed FAQ segments with glue stick.</p></li>
+
+<li><p>Be ready for total information overload. There is so much information out there on Reddit, YouTube, the forums. Much of what you find will not even apply to your scenario, for reasons such as:</p></li>
+
+<ul>
+
+<li><p>“We used to do it that way, but we no one does it that way now because so-and-so uploaded a new core and this new way is better.”</p></li>
+
+<li><p>The information applies to a specific kind of hardware that you don’t have.</p></li>
+
+<li><p>The information is flat out wrong, but because there is no quality control, such mistakes are not corrected.</p></li>
+
+</ul>
+
+	  <li><p>If you are looking for a single source, top level, definitive, "start here" guide, sadly there are several.  Here are the two sources that most closely match my expectations for such a resource.
+	    </p>
+
+	<ul>
+
+          <li><p><a href="https://github.com/MiSTer-devel/Main_MiSTer/wiki">The MiSTer FPGA GitHub wiki</a>
+	  </p></li>
+
+           <li><p><a href="https://boogermann.github.io/Bible_MiSTer/getting-started/introduction/">The MiSTer FPGA Bible</a>
+	  </p></li>
+
+	</ul>
+
+<p>I intend for this guide to be self-contained. Any external instructions one might need are incorporated by value rather than by reference.  In other words (with two exceptions), you don't have to go down a hypertext rabbit hole.</p>
+
+          </li>
+
+	</ul>
+
+          </li>
+
+	  <li><p>Join a community</p>
+
+<ul>            
+            
+<li><p>Have a MiSTer Sherpa who has done it all before.  Hopefully one who knows where to get the ROMs and is willing to share them with you.  For me, this is Werner.</p></li>
+
+<li><p>Join the <a href="http://misterfpga.org/">MiSTer FPGA Forum</a>.  You will need to ask questions if you get stuck.</p></li>
+
+<li><p>There is also a Reddit community, but I have not joined it.</p></li>
+
+</ul>
+
+	  </li>
+
+	  <li><p>Understand these super-basic terms in the MiSTer context. To do anything with MiSTer you need at least one <b>Core</b> and one or more <b>ROMs</b>, and these files are organized in a hierarchical file system.</p>
+
+<ol>            
+<li><p>Core</p></li>
+
+<ol>
+
+<li><p>A piece of software that turns the MiSTer into a specific old-school computer. For example, to run TI games such as Tunnels of Doom you need the “TI Core”.</p></li>
+
+<li><p>The MiSTer community has many cores, and each one gets updated occasionally.  Therefore a Core has a version number in YY.MM.DD format. For example, this document was written using ti99 core 21.08.29.  There is probably a newer one out at time of reading.</p></li>
+
+<li><p>In my setup, I keep the Cores on the micro-SD card.</p></li>
+
+</ol>
+
+<li><p>ROM</p></li>
+
+<ol>
+
+<li><p>A piece of software that works with and is entirely specific to a Core.  For example, to run TI games such as ToD you need several ROMs, more details later.</p></li>
+
+<li><p>In my setup, I keep the ROMs on the external USB hard drive.</p></li>
+
+</ol>
+
+<li><p>File system</p></li>
+
+<ol>
+
+<li><p>The MiSTer has important conventions for the organization of the files and directories containing the Cores and the ROMs.</p></li>
+
+<li><p>You don’t usually need to know about the Core file system, but the ROMs must reside in the external HD, in a specifically named subdirectory of the games directory, at the root of the external HD.  For example, for ToD you will need files in <b>/games/TI-99_4A</b>.</p></li>
+</ol>
+
+</ol>
+</li>
+
+
+	  <li><p>Acquire the hardware</p>
+
+<ol>            
+
+<li><p>Required (in my opinion)</p></li>
+
+<ul>
+
+<li><p>Internet connection.</p></li>
+
+<li><p>Windows PC</p></li>
+
+<ul>
+
+<li><p>For setting up the SD card, including editing the <b>MiSTer.ini</b> file</p></li>
+
+<li><p>For downloading the software and storing it on the USB hard drive</p></li>
+
+</ul>
+
+<li><p>Ethernet cable</p></li>
+
+<ul>
+
+<li><p>This is necessary to run the <b>update_all.sh</b> script.</p></li>
+
+</ul>
+
+<li><p>HDMI cable</p></li>
+
+<li><p>HD TV with HDMI inputs</p></li>
+
+<li><p>MiSTer DE-10 from <a href="https://misteraddons.com/products/mister-bundles">MisterAddons</a>.</p></li>
+
+
+<ul>
+
+<li><p>Comes with 8GB micro sd card built in.  I use the micro-SD card to hold all the Cores. I keep the ROMs elsewhere.</p></li>
+
+</ul>
+
+<li><p>Some way to read/write the SD card </p></li>
+
+<li><p>USB keyboard</p></li>
+
+<li><p>250GB USB hard drive</p></li>
+
+<ul>
+
+<li><p>I use this for ROMs.</p></li>
+
+</ul>
+
+</ul>
+
+<li><p>Optional (but I have it, so I consider it required for me)</p></li>
+
+<ul>
+
+<li><p>Composite video:</p></li>
+
+<ul>
+  
+<li><p>Antonio Villena <a href="https://www.antoniovillena.es/store/product/vga-composite-s-video-adapter/">composite adapter</a></p></li>
+
+<li><p>JVC 27" NTSC <a href="http://support.jvc.com/consumer/product.jsp?modelId=MODL020660">TV AV-27D201</a></p></li>
+
+<li><p>S-video cable</p></li>
+
+<li><p>1/8” stereo headphone jack to stereo RCA</p></li>
+
+</ul>
+
+<li><p>Input</p></li>
+
+<ul>
+
+<li><p>XBox controller with USB adapter</p></li>
+
+<li><p>Serial Native Accessory Controller <a href="https://misteraddons.com/products/serial-native-accessory-converter-snac?_pos=1&_sid=7129af580&_ss=r">SNAC</a> </p></li>
+
+<li><p>DB9 Cable from <a href="https://bliss-box.net/store/Bliss-Box-Cable-cable-AKA-SNAC-cable-packs-p65613202">Blisster</a></p></li>
+</ul>
+
+</ul>
+
+</li>
+
+</ol>
+
+<li><p>Initialize the micro-SD card that came with the MiSTer DE-10.</p>
+
+<ol>
+
+<li><p>Remove the micro-SD card from the MiSTer.</p></li>
+
+<ol>
+
+<li><p>Orient the MiSTer so you are looking at the Ethernet port.</p></li>
+
+<li><p>The micro-SD card slot is on the middle board, on the underside of the board, on the left hand side. Press in on the micro-SD card to activate the spring that will push the micro-SD card out. Take note which side is up. Usually, it is the side with the metal connectors.</p></li>
+
+</ol>
+
+<li><p>Follow the steps for the Mr. Fusion installation method, as documented in the <a href="https://github.com/MiSTer-devel/Main_MiSTer/wiki/Setup-Guide#mr-fusion-installation-method-recommended">Setup Guide</a>.</p></li>
+
+<li><p>Re-insert the initialized micro-SD card in the MiSTer.</p></li>
+
+</ol>
+
+
+	  <li><p>Make connections</p>
+
+<ol>
+
+<li><p>Connect the MiSTer to the HD TV with the HDMI cable.</p></li>
+
+<li><p>Connect the USB keyboard to the MiSTer.</p></li>
+
+<li><p>Connect the Ethernet cable to the MiSTer and connect the other end to your home Internet.</p></li>
+
+</ol>
+
+</li>
+
+
+	  <li><p>Run the <b>update_all</b> script</p></li>
+
+<li><p>Power on the MiSTer</p></li>
+
+<li><p>You should see a menu called <b>Cores</b> with items like</p></li>
+
+<ol>
+
+<li><p>Arcade</p></li>
+
+<li><p>Computer</p></li>
+
+<li><p>Console</p></li>
+
+</ol>
+
+<li><p>You can press the F12 key to show or dismiss this menu at any time</p></li>
+
+<ol>
+
+<li><p>With the menu showing, you can use the Esc key to toggle between the <b>Cores</b> menu and the <b>System Settings</b> menu.</p></li>
+
+</ol>
+
+<li><p>Show the <b>System Settings</b> menu.</p></li>
+
+<li><p>Use the arrow keys to highlight <b>Scripts</b> and press Enter.</p></li>
+
+</li>
+
+<!-- START WITH "User the arrow keys to highlight Scripts and press Enter.  Step 8 in https://edburns.atlassian.net/browse/F2-894 -->
+          
+	</ol> <!-- top level -->
+
+
+
+<h3>2. from the 16 color boot screen to equipping your party</h3>
 
 
 <H1>Play ToD on your PC</H1>

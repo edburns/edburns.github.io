@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.8.0">
+  <title>Tunnels of Doom: Play ToD on an Emulator</title>
+  <link rel="stylesheet" type="text/css" href="basic.css" title=
+  "basic">
+  <link rel="shortcut icon" href="../../favicon.ico">
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+
+  </script>
+</head>
+<body>
+  <h1>Play ToD on your PC</h1>
+  <p>I use a software emulator to play ToD on my Windows. There are
+  quite a few emulators out there, and most of them are listed at
+  <a href=
+  "http://www.99er.net/emul.shtml">http://www.99er.net/emul.shtml</a>.
+  I've had the best luck with MAME.</p>
+  <p>Here are some tips for running ToD under MAME.</p>
+  <ul>
+    <li>
+      <p>Install MAME using the steps at <a href=
+      "https://www.mizapf.de/en/ti99/mame/winstmame">Mizpaf's
+      page</a>. There are instructions for <a href=
+      "https://www.mizapf.de/de/ti99/mame/linstmame">GNU/Linux</a>
+      but I have not tried them.</p>
+    </li>
+    <li>
+      <p>If you want to start MAME from the prompt, the command
+      line that works for me is:</p>
+      <pre><code>mame64 ti99_4a -cart tundoomg.bin -r 800x600 -nohws -gamma 0.85 -sr 22050 -ioport peb -ioport:peb:slot2 32kmem -ioport:peb:slot8 tifdc -flop1 tunnels.dsk</code></pre>
+    </li>
+    <li>
+      <p>When you get the <code>LOAD DATA FROM</code> menu, choose
+      <code>DISK1</code> and type in <code>PENNIES</code>,
+      <code>QUEST</code> or the name of your saved game.</p>
+    </li>
+  </ul>
+[ <a href="index.html">home</a> ]<br>
+  <hr>
+  <address>
+    <a href="mailto:Ed%20Burns%20%3Cedburns@acm.org%3E"></a>
+  </address>
+  <!-- Created: Mon Jan 14 12:12:37 Pacific Standard Time 2002 -->
+  <!-- hhmts start -->
+  Last modified: Sun Feb 13 11:11:20 Eastern Daylight Time 2022 
+  <!-- hhmts end -->
+</body>
+</html>

@@ -20,23 +20,26 @@
 </head>
 <body>
   <h1>Play ToD on MiSTer</h1>
-  <h2><img src="../new.gif"> New Content, 2022-02-13</h2>Much like
+  <h2><img src="../new.gif"> New Content, 2022-02-13</h2>
+
+  <p>Much like
   my friend George when I was 11, my friend <a href=
   "https://www.xing.com/profile/Werner_Punz">Werner</a> and I are
-  interested in classic computer games. Of course, when I was 11,
-  they were not "classic computer games". They were just "computer
+  interested in classic computer games. Of course, when I was 11, they
+  were not "classic computer games". They were just "computer
   games". Werner had long been using the MiSTer FPGA hardware
   emulation system. I was interested in following his lead in this,
-  and I decided to use "Play Tunnels of Doom" as my first User
-  Story to gain competence in the system. This section is my
-  summary of that work. In this section, you will learn how to go
-  from absolute zero to equipping your dungeon crawling party using
-  MiSTer. Let's break the tutorial into two sections.
+  and I decided to use "Play Tunnels of Doom" as my first User Story
+  to gain competence in the system. This section is my summary of that
+  work. In this section, you will learn how to go from absolute zero
+  to equipping your dungeon crawling party using MiSTer. Let's break
+  the tutorial into several sections.</p>
+  
   <ol>
     <li>
-      <p><a href="#zero-to-before-16">Going from zero to being
-      ready to see the 16 color boot screen of the TI-99/4a. (One
-      time setup)</a></p>
+        <p><a href="#zero-to-before-16">One time setup: Going from
+      zero to being ready to see the 16 color boot screen of the
+      TI-99/4a. </a></p>
     </li>
     <li>
       <p><a href="#16-to-equipping">Going from the 16 color boot
@@ -48,8 +51,9 @@
     </li>
   </ol>
   <p>Let's dive in!</p>
-  <h3 id="zero-to-before-16">1. Going from zero to the 16 color
-  boot screen of the TI-99/4a. (One time setup)</h3>
+  <h3 id="zero-to-before-16">1. One time setup: Going from
+      zero to being ready to see the 16 color boot screen of the
+      TI-99/4a.</h3>
   <ol>
     <li>
       <p>Set expectations</p>
@@ -278,9 +282,18 @@
           </ul>
         </li>
         <li>
-          <p>Optional (but I have it, so I consider it required for
-          me)</p>
-          <ul>
+            <p>Optional (but I have it, so I consider it required for
+                me)</p>
+            <!-- Photo Caption With Right Vertical Spacer -->
+            <TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+                <TR><TD BGCOLOR="#DDDDDD">
+                    <img width="300" alt="3.5mm Male to Stereo RCA Male Cable" src="images/20220220_audio_cable.png" border="1">
+                </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+                <TR><TD>
+                    <B>3.5mm Male to Stereo RCA Male Cable
+                    </B></TD></TR>
+            </TABLE>
+            <ul>
             <li>
               <p>Composite video:</p>
             </li>
@@ -289,8 +302,9 @@
                 <li>
                   <p>Antonio Villena <a href=
                   "https://www.antoniovillena.es/store/product/vga-composite-s-video-adapter/">
-                  composite adapter</a></p>
+                  composite video adapter</a></p>
                 </li>
+
                 <li>
                   <p>JVC 27" NTSC <a href=
                   "http://support.jvc.com/consumer/product.jsp?modelId=MODL020660">
@@ -302,6 +316,17 @@
                 <li>
                   <p>1/8” stereo headphone jack to stereo RCA</p>
                 </li>
+              </ul>
+            </li>
+            <li>
+              <p>Audio</p>
+            </li>
+            <li style="list-style: none; display: inline">
+              <ul>
+                <li>
+                  <p>3.5mm Male to Stereo RCA Male Cable</p>
+                </li>
+
               </ul>
             </li>
             <li>
@@ -379,6 +404,7 @@
     </li>
     <li>
       <p>Run the <b>update_all</b> script</p>
+
       <ol>
         <li>
           <p>Power on the MiSTer</p>
@@ -387,15 +413,15 @@
             <p>You should see a menu called <b>Cores</b> with items
                 such as:</p>
 
-            <!-- Photo Caption With Right Vertical Spacer -->
-            <TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
-                <TR><TD BGCOLOR="#DDDDDD">
-                    <img width="300" alt="The System settings menu" src="images/20220220_system_settings.png" border="1">
-                </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
-                <TR><TD>
-                    <B>The System settings menu
-                    </B></TD></TR>
-            </TABLE>
+<!-- Photo Caption With Right Vertical Spacer -->
+<TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+    <TR><TD BGCOLOR="#DDDDDD">
+        <img width="300" alt="The System settings menu" src="images/20220220_system_settings.png" border="1">
+    </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+    <TR><TD>
+        <B>The System settings menu
+        </B></TD></TR>
+</TABLE>
 
             <!-- Photo Caption With Right Vertical Spacer -->
 <TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
@@ -436,8 +462,6 @@
         <li>
             <p>Use the arrow keys to highlight <b>Scripts</b> and
                 press Enter.</p>
-        </li>
-
         <ol>
 
             <li><p>Because you have connected the Ethernet cable, your MiSTer is now connected to the Internet.</p></li>
@@ -458,16 +482,204 @@
               <p>If it does not, the run may not have been successful. Run it again and observe the behavior more closely.</p>
             </li>
 
-            <li><p>After update_all has run successfully, you should have the all the cores, including the TI/99-4A.</p></li>
+            <li><p>After <b>update_all</b> has run successfully, you should have the all the cores, including the TI/99-4A.</p></li>
 
-      </ol>
+
+            <!-- Photo Caption With Right Vertical Spacer -->
+            <TABLE ALIGN="LEFT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+            <TR><TD BGCOLOR="#DDDDDD">
+            <img width="300" alt="Update all success" src="images/20220220_update_all_success.png" border="1">
+            </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+            <TR><TD>
+                <B>Update all success
+                </B></TD></TR>
+            </TABLE>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+
+        </ol>
+        </li>
     </li>
-    <!-- START WITH "User the arrow keys to highlight Scripts and press Enter.  Step 8 in https://edburns.atlassian.net/browse/F2-894 -->
-  </ol><!-- top level -->
+
+    <li><p>Download the system ROM and Tunnels of Doom game ROMS to the external hard drive.</p>
+
+        <ol>
+
+            <li><p>Power off the MiSTer.
+            </p></li>
+
+            <li><p>Connect the external hard drive to a PC.
+            </p></li>
+
+            <li><p>Download <a href="bin/ti99tod.zip">this zip file</a> to
+            the root directory of the external hard drive.</p></li>
+
+            <li><p>Extract the entire zip file to the root directory
+                of the external hard drive.  This will give you a <b>/games</b> directory populated with the system ROM and all the Tunnels of Doom game ROMS from world famous Italian TI/99 User Club.  For the complete rom, see the <a href="https://www.ti99iuc.it/web/index.php?pageid=homepage&artid=194#.YfdwWb_MIvg">TI-99_Mister_Collection MegaPack</a>.
+            </p></li>
+
+            <li><p>Disconnect the external hard drive from the PC and
+            connect it to the MiSTer.
+            </p></li>
+        </ol>
+
+    </li>
+
+   <li><p>Optional: Connect the audio and video to an NTSC TV.</p>
+
+       <ol>
+
+              <li><p>With the MiSTer powered off, connect the Antonio
+              Villena composite adapter to the VGA port on the back of
+              the MiSTer.
+              </p></li>
+
+              <li><p>Connect the S-video cable to the back of the
+              Antonio Villena adapter, and connect the other end to
+              the S-video input on your NTSC TV.
+              </p></li>
+
+              <li><p>Connect the 3.5mm male end of the 3.5mm Male to
+              Stereo RCA Male Cable to the back of the MiSTer next to
+              the Antonio Villena adapter.  Connect the other end to
+              the corresponding audio port on your NTSC TV.
+              </p></li>
+
+       </ol>
+
+
+   </li>
+
+
+  </ol>
+
+  <p>You have completed the one time set up and are ready to play Tunnels of Doom on your MiSTer.</p>
+
   <h3 id="16-to-equipping">2. Going from the 16 color boot screen
   to equipping your party.</h3>
+
+  <ol>
+
+   <li><p>Ensure the connections are made as described in the
+   preceding section.
+   </p></li>
+
+   <li><p>Power on the MiSTer.</p></li>
+
+   <li><p>At the <b>Cores</b> menu select <b>Computer</b>.  Press Enter.
+   </p></li>
+
+   <li><p>Select <b>Ti994a</b> and press Enter.  You should see the familiar 16 color boot screen.</p></li>
+
+   <li><p>Press F12 to bring up the menu for the TI-99/4A core.
+   </p></li>
+
+   <li><p>Select <b>Load full or C.bin *.bin</b> and press Enter.</p></li>
+
+   <li><p>Navigate to <b>SSS_Games/Tunnels of Doom (1982) (Texas Instruments)[PHM 3042]_FULL-ROM+DISK+SPEECH</b> and press Enter.  This simulates inserting the <a href="images/cart_label.jpg">Tunnels of Doom cartridge</a> into the TI-99/4a.</p></li>
+
+   <li><p>Press ANY KEY TO BEGIN.</p></li>
+
+<!-- Photo Caption With Right Vertical Spacer -->
+<TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+    <TR><TD BGCOLOR="#DDDDDD">
+        <img width="300" alt="MiSTer ready to play Tunnels of Doom" src="images/20220212_ready_to_go.jpg" border="1">
+    </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+    <TR><TD>
+        <B>MiSTer ready to play Tunnels of Doom
+        </B></TD></TR>
+</TABLE>
+
+
+<li><p>Press 2 for Tunnels of Doom.</p>
+
+    <p>Hear that sweet sweet sound of <a href="hank_mishkoff_interview.html">Hank Mischkoff’s theme</a>.</p>
+
+</li>
+
+   <li><p>Press F12 to open the core menu.</p></li>
+
+   <li><p>Select <b>Drive 1 *.DSK</b> and press Enter.</p></li>
+
+   <li><p>Navigate to <b>DISKS/DISKS_TOD/[TI PHD TOD] Tunnels of Doom (1982) (Texas Instruments)[req. PHM 3042][QUEST & PENNIES]</b> and press Enter.</p></li>
+
+<!-- Photo Caption With Right Vertical Spacer -->
+<TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+    <TR><TD BGCOLOR="#DDDDDD">
+        <img width="300" alt="Disk selection" src="images/20220212-02-disk-select.jpg" border="1">
+    </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+    <TR><TD>
+        <B>Disk selection
+        </B></TD></TR>
+</TABLE>
+
+
+   <li><p>Press <b>2 DISK 1</b></p></li>
+
+   <li><p>In the <b>FILENAME</b> field, type <b>QUEST</b> and press Enter.</p></li>
+
+<!-- Photo Caption With Right Vertical Spacer -->
+<TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+    <TR><TD BGCOLOR="#DDDDDD">
+        <img width="300" alt="Quest for the king" src="images/20220212_03-disk-quest.jpg" border="1">
+    </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+    <TR><TD>
+        <B>Quest for the king
+        </B></TD></TR>
+</TABLE>
+
+
+   <li><p>Select <b>1 - NEW DUNGEON</b>.</p></li>
+
+<!-- Photo Caption With Right Vertical Spacer -->
+<TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+    <TR><TD BGCOLOR="#DDDDDD">
+        <img width="300" alt="New dungeon" src="images/20220212-04-new-dungeon.jpg" border="1">
+    </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+    <TR><TD>
+        <B>New dungeon
+        </B></TD></TR>
+</TABLE>
+
+
+   <li><p>Fill in the values as desired.  Note that PROC'D is Alt-6, REDO is Alt-8, Back is Alt-9.</p></li>
+
+   <li><p>When you are ready to save your game, press <b>K</b>.</p></li>
+
+   <li><p>Select <b>5</b> to save data to <b>DISK 1</b>.</p></li>
+
+   <li><p>Type a filename. I usually use today's date in YYYYMMDD format. Press Enter.</p></li>
+
+   <li><p>To continue after saving, select 3.
+   </p></li>
+
+  </ol>
+
+
   <h3 id="saving-and-restoring">3. Going from 16 color boot screen
   to restoring and resuming.</h3>
+
+ <ol>
+
+   <li><p>Do the first 15 steps of the preceding section.  Note: if you had already inserted the cartridge and disk, you don't need to do those steps again.</p></li>
+
+   <li><p>Select <b>3 CONTINUE CURRENT GAME</b>.</p></li>
+
+   <li><p>Press <b>K</b> to bring up the <b>LOAD DATA FROM/SAVE DATA TO</b> screen.</p></li>
+
+   <li><p>Press <b>2 - DISK 1</b>.</p></li>
+
+   <li><p>Type the filename you used when you saved your game before.</p></li>
+
+   <li><p>Select <b>3 - CONTINUE CURRENT GAME</b>.</p></li>
+
+
+ </ol>
+
+
   <h1>Play ToD on your PC</h1>
   <p>I use a software emulator to play ToD on my Windows. There are
   quite a few emulators out there, and most of them are listed at

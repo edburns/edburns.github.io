@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2022-02-21T17:45:33-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Ed’s JavaLand 2022 Session Picks</title><link href="/blog/2022/02/15/javaland-2022-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2022 Session Picks" /><published>2022-02-15T18:25:00-05:00</published><updated>2022-02-15T18:25:00-05:00</updated><id>/blog/2022/02/15/javaland-2022-picks</id><content type="html" xml:base="/blog/2022/02/15/javaland-2022-picks.html">&lt;p&gt;Cross posted at &lt;a href=&quot;https://dev.to/edburns00/&quot;&gt;dev.to&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2022-03-04T10:22:06-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Ed’s JavaLand 2022 Session Picks (Updated)</title><link href="/blog/2022/02/15/javaland-2022-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2022 Session Picks (Updated)" /><published>2022-02-15T18:25:00-05:00</published><updated>2022-02-15T18:25:00-05:00</updated><id>/blog/2022/02/15/javaland-2022-picks</id><content type="html" xml:base="/blog/2022/02/15/javaland-2022-picks.html">&lt;p&gt;Cross posted at &lt;a href=&quot;https://dev.to/edburns00/eds-javaland-2022-session-picks-updated-2ghj&quot;&gt;dev.to&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;In my &lt;a href=&quot;/blog/2021/05/19/build-picks.html&quot;&gt;previous&lt;/a&gt; “session picks” post I lamented, “Ever since the end of in-person events, I have not bothered to do my traditional session picks posts”.  Well, with &lt;a href=&quot;https://javaland.eu&quot;&gt;JavaLand 2022&lt;/a&gt; fast approaching, the time has come to resume the practice.&lt;/p&gt;
 
@@ -100,11 +100,15 @@ everything. Real-life horror stories included!”  Sounds great!&lt;/p&gt;
 
 &lt;h3 id=&quot;wednesday-16-march-2022&quot;&gt;Wednesday, 16 March 2022&lt;/h3&gt;
 
-&lt;h4 id=&quot;0900---0940---rotunde---state-of-the-java-metrics-libraries&quot;&gt;09:00 - 09:40 - Rotunde - State of the Java Metrics Libraries&lt;/h4&gt;
+&lt;h4 id=&quot;0900---0940---wintergarden---java-at-microsoft---behind-the-scenes&quot;&gt;09:00 - 09:40 - Wintergarden - Java at Microsoft - Behind the scenes&lt;/h4&gt;
 
-&lt;p&gt;In the java metrics library horse race, my money is on OpenTelemtry.
-This talk from &lt;a href=&quot;https://twitter.com/fstabr&quot;&gt;Fabian Stäber&lt;/a&gt; gives us
-some details on the other horses.  I think it’s worth a look.&lt;/p&gt;
+&lt;p&gt;When I first published this post, I had recommended Fabian’s talk
+titled “State of the Java Metrics Libraries” in Rotunde.  I still want
+to see this talk, but I must recommend you attend my colleagues
+&lt;a href=&quot;https://twitter.com/karianna&quot;&gt;Martijn Verburg&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/gdams&quot;&gt;George
+Adams’s&lt;/a&gt; talk about the latest entrant in
+the OpenJDK ecosystem, Microsoft. You can read more about it in this
+blog post announcing &lt;a href=&quot;https://devblogs.microsoft.com/java/microsoft-deepens-its-investments-in-java/&quot;&gt;Microsoft joining the JCP&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h4 id=&quot;1000---1040---wintergarten---increase-your-productivity-with-intellij&quot;&gt;10:00 - 10:40 - Wintergarten - Increase Your Productivity with IntelliJ&lt;/h4&gt;
 

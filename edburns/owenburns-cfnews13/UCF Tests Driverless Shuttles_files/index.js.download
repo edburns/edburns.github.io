@@ -1,0 +1,56 @@
+function isRMC (shortModelCode, brand) {
+  if (brand !== 'ram') {
+    return false;
+  }
+
+  // These are the RMC shortModelCode
+  // Currently we have this issue from backend, so when we can map correctly the codes, this code will look prettier
+  var rmcCodes = ['16', '00', '04', '06', '0', '4', '6'];
+  return rmcCodes.indexOf(shortModelCode) > -1;
+};
+
+function checkIsEFP (label) {
+  return label.indexOf('efv') > -1;
+};
+
+function getBrandIndentifier (label) {
+  if (checkIsEFP(label)) {
+    // it divides the parent label into different parts, in the first one we can access to the brand name
+    var brand = label.split('-');
+    return brand[0];
+  }
+};
+
+function whenInit () {
+  var label = window.dynamicContent.parent[0].label;
+  var isEFP = checkIsEFP(label);
+  var template = window.dynamicContent.parent[0].template;
+
+  // It chooses the right OMSCOWS feed to get the data depending on the brand
+  // if the template is End frame previewer
+  if (isEFP) {
+    var brand = getBrandIndentifier(label);
+    // Alfa Romeo brand use only OMSCOWS other brands OMSCOWS_[brand]
+    var OMSCOWS_FEED = brand === 'alfa' ? 'OMSCOWS' : 'OMSCOWS_' + brand;
+    var shortModelCode = window.dynamicContent[OMSCOWS_FEED][0].shortModelCode;
+    var brandIsRMC = isRMC(shortModelCode, brand);
+    template = brandIsRMC ? 'efp-rmc' : 'efp-' + brand;
+  };
+
+  var head = document.querySelector('head');
+  var script = document.createElement('script');
+  script.src = template + '.js';
+  head.appendChild(script);
+
+  var styles = document.createElement('link');
+  styles.rel = 'stylesheet';
+  styles.href = template + '.css';
+  head.appendChild(styles);
+};
+
+if (Enabler.isInitialized()) {
+  whenInit();
+}
+else {
+  Enabler.addEventListener(studio.events.StudioEvent.INIT, whenInit);
+}

@@ -1,0 +1,23 @@
+/*
+ jQuery ticker - v0.1 - 7/9/2011
+
+ Version: 0.1, Last updated: 7/9/2011
+ Requires: jQuery v1.3.2+
+
+ Copyright (c) 2011 Radek Pleskac www.radekpleskac.com
+ Dual licensed under the MIT and GPL licenses.
+ http://www.opensource.org/licenses/mit-license.php
+ http://www.gnu.org/licenses/gpl.html
+
+ Examples https://github.com/Plesin/jquery-ticker/blob/master/jquery.ticker.js
+ jQuery plugin to turn an unordered list <ul> into a simple ticker, displaying one list item at a time.
+
+*/
+(function(c){c.fn.ticker=function(a){c.fn.ticker.defaults={controls:!1,interval:3E3,effect:"fadeIn",duration:400};var b=c.extend({},c.fn.ticker.defaults,a);if(this.length)return this.each(function(){function d(){return g.find(".ticker-item")}function a(){var a=d(),m=a.eq(f);f++;f==a.length&&(f=0);var e=a.eq(f);if("fadeIn"==b.effect)m.fadeOut(function(){e.fadeIn()});else if("slideUp"==b.effect||"slideDown"==b.effect){a=g.height();var h="slideUp"==b.effect?1:-1;m.animate({top:-a*h+"px"},b.duration,
+function(){c(this).hide()});e.css({display:"block",top:a*h+"px"});e.animate({top:0},b.duration)}}var g=c(this),f=0,e=!1;d().not(":first").hide();if("slideUp"==b.effect||"slideDown"==b.effect)g.css("position","relative"),d().css("position","absolute");(function(){g.hover(function(){e=!0},function(){e=!1});if("undefined"!==typeof document.hidden){var b="hidden";var a="visibilitychange"}else"undefined"!==typeof document.msHidden?(b="msHidden",a="msvisibilitychange"):"undefined"!==typeof document.webkitHidden&&
+(b="webkitHidden",a="webkitvisibilitychange");document.addEventListener(a,function(){document[b]?(e=!0,c("body").addClass("tickerPaused")):(e=!1,c("body").removeClass("tickerPaused"))},!1)})();(function(){setInterval(function(){e||a()},b.interval)})()})}})(jQuery);
+(function(c){ns("News.App").AlertBar={init:function(){c(".wxAlertBar").each(News.App.AlertBar.loadAllAlerts)},loadAllAlerts:function(a,b){c(".alert-bar__raven-alerts .alert-bar__li",c(b)).each(News.App.AlertBar.loadSingleAlert)},loadSingleAlert:function(a,b){var d="",h=200,g=(new Date).getTime(),f=c(b).hasClass("alert-bar__li--weather"),e=c(b).hasClass("alert-bar__li--closings");a=localStorage.getItem("wxLocation");var l={};a&&(l={"Location-Type":"ZIPCODE","Location-Value":null==a?"":a});f?d="/services/alerts/weather/message."+
+News.core.getRavenid()+".json":e&&(d="/services/closings."+News.core.getRavenid()+".json");""!=d&&c.ajax({url:d,headers:l}).done(function(a){var k=c(b).closest(".wxAlertBar").find(".alert-bar__displayed-alerts");0<a.length?f?News.App.AlertBar.displayWeatherAlert(b,k,!0):e&&News.App.AlertBar.displayClosingsAlert(b,k):(News.App.AlertBar.alertAdded(k),f?(a=!1,ns("CQ.WCM").isEditMode&&ns("CQ.WCM").isEditMode()&&News.App.AlertBar.displayWeatherAlert(b,k,a)):e&&ns("CQ.WCM").isEditMode&&ns("CQ.WCM").isEditMode()&&
+News.App.AlertBar.displayClosingsAlert(b,k));News.App.QuantumAnalytics.quantumAnalyticsApiCall(d,h,"All_Generic_API_Call_Success",void 0,g)}).fail(function(a){c(b).remove();h=a.status;News.App.QuantumAnalytics.quantumAnalyticsApiCall(d,h,"All_Generic_API_Call_Failure",void 0,g)})},displayWeatherAlert:function(a,b,d){0!=d&&(d=c(b).find(".alert-bar__li--breaking").last(),d.is(".alert-bar__li")?c(a).insertAfter(d):c(a).prependTo(b),News.App.AlertBar.alertAdded(b))},displayClosingsAlert:function(a,b){var d=
+c(b).find(".alert-bar__li--custom").first();d.is(".alert-bar__li")?c(a).insertBefore(d):c(a).appendTo(b);News.App.AlertBar.alertAdded(b)},alertAdded:function(a){var b=c(".alert-bar__displayed-alerts .alert-bar__li"),d=b.length;1==d&&c(".wxAlertBar").is(":hidden")?(c(".wxAlertBar").show("slow"),News.App.AlertBar.setBodyClass(),b.first().show()):!c("body").hasClass("tickerStarted")&&2<=d&&(c(a).ticker(News.App.tickerConfig),c("body").addClass("tickerStarted"))},setBodyClass:function(){c("body").addClass("alerts-enabled")}};
+c(function(){try{var a=c(".alert-bar__displayed-alerts .alert-bar__li");News.App.AlertBar.init();0<a.length&&(c(".wxAlertBar").show("slow"),News.App.AlertBar.setBodyClass(),a.first().show())}catch(b){}})})(jQuery);

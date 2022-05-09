@@ -1,0 +1,5 @@
+(function(a){a(function(){if(typeof(CQ)==="undefined"&&News.region.isRegionalized()===false){var b=News.region.getPreferredRegionalization();
+if(b==window.location.href){console.error("* Error: Unable to auto-regionalize page")
+}else{window.location=b
+}}})
+})(jQuery);

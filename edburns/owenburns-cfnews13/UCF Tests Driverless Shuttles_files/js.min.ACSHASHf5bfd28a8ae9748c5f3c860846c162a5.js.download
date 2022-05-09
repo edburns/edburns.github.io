@@ -1,0 +1,985 @@
+(function($) {
+    ns("News.App").SiteHeader = {
+        init: async function() {
+            //Subscribe to current conditions callback published from wxAPIDataPublisher
+
+            $.Topic("/services/api/weather/current").subscribe(
+                News.App.SiteHeader.drawCurrentConditionsHeader
+            );
+
+            //Search processing
+            $(".empire-header-search-field").keydown(function(e) {
+                try {
+                    if (e.which == 13) {
+                        News.App.SiteHeader.processSearch($(this));
+                    }
+                } catch (err) {}
+            });
+
+            $(".site-header .header_watch + .separator").each(function() {
+                $(this).prev('.header_watch').addClass("followed-by-separator");
+            })
+
+            $('.edit').click(function() {
+                document.getElementById("edit-location-modal").style.display = "block";
+            });
+
+            var modal = document.getElementById("edit-location-modal");
+            var btn = document.getElementsByClassName("edit-weather-location")[0];
+            var span = document.getElementsByClassName("edit-location-modal-close")[0];
+            var saveBtn = document.getElementsByClassName("edit-location-save")[0];
+            var zipError = document.getElementsByClassName("zip-error-message")[0];
+
+            if(btn) {
+                btn.onclick = function() {
+                  modal.style.display = "block";
+                }
+            }
+
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+
+            saveBtn.onclick = function() {
+                let loc = document.getElementById("edit-location-zip").value;
+                let locType = "ZIPCODE"
+            	$.ajax({
+                    url: "/services/api/weather/location",
+                    headers:{
+                        "Location-Type": locType,
+                        "Location-Value": loc
+                    }
+                }).done(function(data) {
+                    if (data.city != undefined) {
+                        localStorage.setItem('wxLocation', loc);
+                        updateLatLong();
+                    } else {
+                        zipError.style.display = "block";
+                        $("#edit-location-zip").css("border", "1px solid red");
+                    }
+                })
+                .fail(function(error) {
+                    zipError.style.display = "block";
+                    $("#edit-location-zip").css("border", "1px solid red");
+                })
+
+            }
+        },
+
+        drawCurrentConditions: function(data) {
+            if (typeof data != "undefined") {
+                if (data.IconCode) {
+                    $(".site-header .wx-icon").addClass("icon-wxf-" + data.IconCode);
+                }
+                if (data.TempF) {
+                    $(".site-header .tempF").html(data.TempF + "&deg;");
+                }
+                $(".navbar-default .header_weather").addClass("display-flex");
+
+            }
+        },
+
+        drawCurrentConditionsHeader: function(data) {
+
+            if (typeof data != "undefined") {
+                if (data.IconCode) {
+                    $(".site-header .wx-icon").addClass("icon-wxf-" + data.IconCode);
+                }
+                if (data.TempF) {
+                    $(".site-header .tempF").html(data.TempF + "&deg;");
+                }
+                if (data.Location) {
+
+                    $.ajax({
+                        url: `/services/api/weather/location.json`,
+                        type: 'GET',
+                        headers: {
+                            "Location-Type": "LAT_LONG",
+                            "Location-Value": data.Location,
+                        },
+                        success: function (data) {
+                            let loc = data.zipCode;
+                            if (data.state && data.city) {
+                                loc = `${data.city}, ${data.state}`
+                            }
+
+                            $(".header_weather .city").text(loc);
+                        },
+                        error: function (error) {
+
+                        }
+                    });
+                }
+                $(".navbar-default .header_weather").addClass("display-flex");
+
+            }
+        },
+        processSearch: function($searchField) {
+            //stood this function up to later trap 'touching' magnifying glass
+            var searchText = $searchField.val(),
+                searchPageURL = $searchField.attr("data-url");
+            searchText = encodeURIComponent(searchText);
+            searchPageURL = searchPageURL + "#" + searchText + "/1/";
+            window.location.href = searchPageURL;
+        }
+    };
+
+
+    function regionalLoginBar() {
+
+        var lowerBarHeight = $(".header_social-media-login__wrapper").outerHeight();
+        var aTop = $('header').offset().top;
+        var negaTop = 0 - aTop;
+        var reducedHeight = lowerBarHeight - aTop;
+        if (aTop == 0) {
+            $(".header_region-time-weather, .header_social-media-login__wrapper").css("height", reducedHeight + "px");
+            $(".header_region-time-weather > *, .header_social-media-login__wrapper > *").css("transform", "translateY(" + negaTop + "px)");
+        }
+
+    }
+
+    function updateLatLong() {
+    	let loc = document.getElementById("edit-location-zip").value;
+        let locType = "ZIPCODE"
+        let currentWeatherApiUrl = '/services/api/weather/current.' + News.core.getRavenid() + '.json';
+        $.ajax({
+            url: currentWeatherApiUrl,
+            headers:{
+                "Location-Type": locType,
+                "Location-Value": loc
+            }
+        }).done(function(data1) {
+            if (data1[0].Location != undefined) {
+                localStorage.setItem('wxLocationLatitude', data1[0].Location.split(",")[0]);
+                localStorage.setItem('wxLocationLongitude', data1[0].Location.split(",")[1]);
+                location.reload();
+            }
+        })
+        .fail(function(error) {
+            console.log("Failed");
+            zipError.style.display = "block";
+            $("#edit-location-zip").css("border", "1px solid red");
+        })
+    }
+
+
+    $(window).scroll(function() {
+        if ($(window).width() < 1025) {
+
+            regionalLoginBar();
+        }
+    });
+    $(document).ready(function() {
+        try {
+            News.App.SiteHeader.init();
+
+        } catch (er) {}
+
+    });
+
+})(jQuery);
+
+;(function ($) {
+
+    var timeWithTz = setInterval(setFormattedAMPMTimeWithTz, 1000);
+    var lang = $('html').attr('lang');
+
+    function setFormattedAMPMTimeWithTz() {
+        $("span.header_date").html(formatDate());
+        $("span.header_time").html(formatAMPMTimeWithTz());
+    }
+
+    function formatDate() {
+        var d = new Date();
+        var months = {};
+        months.en = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+        months.es = [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ]
+
+        return (lang === 'es'? d.getDate() + " " + months[lang][d.getMonth()] +  " "  : months[lang][d.getMonth()] + " " + d.getDate() + ", ") + + d.getFullYear();
+    }
+
+    function formatAMPMTimeWithTz() {
+        var d = new Date();
+        var minutes = d.getMinutes().toString().length == 1 ? "0" + d.getMinutes() : d.getMinutes();
+        var hours = d.getHours();
+        var ampm = d.getHours() >= 12 ? "PM" : "AM";
+
+        hours = hours % 12; //convert military time to 12-hour time
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+
+        return " " + hours + ":" + minutes + ampm + " " + timeZoneAbbr();
+    }
+
+    /**
+     returns the two letter addreviated time zones given the returned three letter time zones
+     **/
+    function timeZoneAbbr() {
+
+        var abbrTzObj = {
+            EST: "ET",
+            EDT: "ET",
+            MDT: "MT",
+            MST: "MT",
+            PST: "PT",
+            PDT: "PT",
+            CDT: "CT",
+            CST: "CT",
+            HAST: "HT",
+            HADT: "HT",
+            HST: "HT",
+            AST: "AT"
+        };
+        var d = new Date(); // or whatever date you have
+        var tzName = tzAbbr(d);
+
+        /**
+         var tzName = d
+         .toLocaleString("en", {timeZoneName: "short"})
+         .split(" ")
+         .pop();
+         **/
+
+        return abbrTzObj[tzName];
+    }
+
+    /**
+     *  This will cater to the majoriy of modern browsers.
+     *  will ensure that the date string that IE and old Firefox output in a format different from
+     *  the modern browsers can be parsed for the timezone code.
+     */
+    function tzAbbr(dateInput) {
+        try {
+            var dateObject = dateInput || new Date(),
+                dateString = dateObject + "",
+                tzAbbr = (
+                    dateString.match(/\(([^\)]+)\)$/) || dateString.match(/([A-Z]+) [\d]{4}$/)
+                );
+            if (tzAbbr) {
+                tzAbbr = tzAbbr[1].match(/[A-Z]/g).join("");
+            }
+            return tzAbbr;
+        } catch (err) {
+        }
+    };
+}(jQuery));
+
+;(function ($) {
+    $(document).ready(function () {
+        //hamburger behavior
+        var hamburgerMenuButton = $(".navbar-default > button");
+        var $body = $("body");
+        hamburgerMenuButton.on('click', function (element) {
+            $body.toggleClass("mobile-nav-on");
+        });
+        $(window).bind("resize", function () {
+            if (window.matchMedia('(min-width: 1025px)').matches) {
+              $body.removeClass("mobile-nav-on");
+            }
+        });
+    });
+}(jQuery));
+
+;(function($) {
+    $(document).ready(function() {
+        function restyleContentList(){
+            var $youMightLikeContentList = $(".body-container .content-list-layout--4x1-single-column-mobile");
+                heading = $youMightLikeContentList.data('heading');
+                $youMightLikeContentList.addClass("content-list-layout--1x3").removeClass("content-list-layout--4x1-single-column-mobile");
+                $youMightLikeContentList.find("h1").text(heading || "You May Also Be Interested In");
+        }
+        try{
+            restyleContentList();
+        } catch(er) { }
+    });
+    
+})(jQuery);
+
+;(function ($) {
+
+    "use strict";
+
+    ns('News.App').Sharebar = {
+
+        elementTop: null,
+        fixedOffset: 68,
+        $shareBar: $('.share-bar-container'),
+        load: function () {
+            //check for sharebar container before 'loading'
+            if(this.$shareBar.length > 0){
+            //Potential params in button hrefs.
+            var buttonParams = {
+                "URL_TO_SHARE": window.location.href,
+                "HEADLINE": "",
+                "WEBSITE_URL": window.location.href,
+                "DESCRIPTION": "",
+                "FB_APP_ID": "531616876941642",
+                "REDIRECT_URL": window.location.href
+            };
+            //Empire only function - order is different between designs
+            News.App.Sharebar.reorderItems();
+            //Chooses mobile (iOS or Android) or desktop icon set and layout.
+            News.App.Sharebar.setUpBar();
+            //Gets article headline and description metadata.
+            News.App.Sharebar.getStoryMetadata(buttonParams);
+            //Updates dynamic parts of variables, e.g. URL_TO_SHARE
+            News.App.Sharebar.patchURLs(buttonParams);
+            //This is excluding Copy to Clipboard or "Share Link"
+            $('.share-bar-link:not(.icon-share-link)').click(function (event) {
+                var url = $(this).attr('href');
+                window.open(url);
+            });
+            //Copy to clipboard click listener
+            $('.share-bar-link.icon-share-link').click(function (event) {
+                News.App.Sharebar.copyToClipboard(event.target);
+            });
+            $(window).on('load resize scroll', function () {
+                News.App.Sharebar.setShareBarPosition();
+            });
+            }            
+        },
+        reorderItems: function () {
+            var $shareBar = this.$shareBar;
+            var $buttons = $shareBar.find('button').detach();
+            $buttons.sort(function (a, b) {
+                return $(a).attr('data-empire-order') - $(b).attr('data-empire-order');
+            });
+            $shareBar.prepend($buttons);
+        },
+        setUpBar: function () {
+            var $shareBar = this.$shareBar;
+            if (isMobile.any) {
+                $shareBar.addClass(isMobile.apple.device ? 'os-ios' : 'os-not-ios');
+            } else {
+                $shareBar.addClass('os-desktop');
+            }
+        },
+        getStoryMetadata: function (buttonParams) {
+            if (this.storyMetadata.headline) {
+                buttonParams.HEADLINE = encodeURIComponent(this.storyMetadata.headline);
+            };
+            if (this.storyMetadata.description) {
+                buttonParams.DESCRIPTION = encodeURIComponent(this.storyMetadata.description);
+            };
+        },
+        patchURLs: function (buttonParams) {
+            //Iterate all sharebar buttons regardless of what is displayed.
+            $('.share-bar-link').each(function (index, el) {
+                var keys = Object.keys(buttonParams);
+                var newVal = $(this).attr('href');
+                if (newVal) {
+                    for (var i = 0; i < keys.length; i++) {
+                        var key = keys[i];
+                        if (key === "URL_TO_SHARE") {
+                            if ($(this).attr("data-urlencode") === "true") {
+                                //Do url encoding
+                                newVal = newVal.replace(key, encodeURIComponent(buttonParams[key]));
+                            }
+                            else {
+                                //Don't do url encoding
+                                newVal = newVal.replace(key, buttonParams[key]);
+                            }
+                        } else {
+                            //Don't do url encoding
+                            newVal = newVal.replace(key, buttonParams[key]);
+                        }
+                    }
+                    $(this).attr('href', newVal);
+                }
+            });
+        },
+        copyToClipboard: function (button) {
+
+            var success = false;
+
+            //IE polyfill
+            if (/msie/.test(navigator.userAgent.toLowerCase())) {
+                success = window.clipboardData.setData('Text', button.getAttribute('href'));
+            } else {
+                var tempInput = document.createElement("input");
+                tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+                //Value of data share href is the URL_TO_SHARE + CID
+                tempInput.value = button.getAttribute('href');
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                success = document.execCommand("copy");
+                document.body.removeChild(tempInput);
+            }
+            if (success) {
+                var $copyIndicator;
+                var $copyLinkButton = $('button.icon-share-link');
+                var $otherButtons = $('button.share-bar-link:not(.icon-share-link)');
+                var $topPosition, $leftPosition;
+                if ($(window).width() > 1024) {
+                    $copyIndicator = $('div.icon-clipboard-copied-desktop');
+                    $leftPosition = $copyLinkButton.position().left + $copyLinkButton.outerWidth();
+                    $topPosition = $copyLinkButton.position().top + 12.5;
+                } else {
+                    $copyIndicator = $('div.icon-clipboard-copied-mobile');
+                    $leftPosition = $copyLinkButton.position().left - $copyIndicator.width();
+                    $topPosition = $copyLinkButton.position().top + 2.5;
+                    $otherButtons.addClass('invisible');
+                }
+                $copyIndicator
+                    .css('position', 'absolute')
+                    .css('top', $topPosition)
+                    .css('left', $leftPosition)
+                    .show();
+                setTimeout(function () {
+                    $copyIndicator.hide();
+                    $otherButtons.removeClass('invisible');
+                }, 5000);
+            }
+
+        },
+        setShareBarPosition: function (){
+            if ($(window).width() > 1024) {
+                var $shareBar = $('.share-bar-container');
+                var $articleBody = $('.article-body');
+                if ($shareBar.css('position') == 'absolute') {
+                    News.App.Sharebar.elementTop = $shareBar.offset().top;
+                    News.App.Sharebar.fixedOffset = $articleBody.offset().left - $shareBar.offset().left;
+                }
+                if ($shareBar.isAboveViewport()) {
+                    $shareBar.css('position', '').css('left', '').css('top', '');
+                } else {
+                    $shareBar.css('position', 'fixed').css('left', $articleBody.offset().left - News.App.Sharebar.fixedOffset).css('top', '0');
+                }
+            }
+        },
+        resetShareBarPosition: function () {
+            $('.share-bar-container').css('position', '').css('left', '').css('top', '');
+        }
+    };
+    $.fn.isAboveViewport = function () {
+        var elementTop = News.App.Sharebar.elementTop;
+        var viewportTop = $(window).scrollTop();
+        return elementTop > viewportTop;
+    };
+    //Story JSON metadata only exists on articles
+    News.App.Sharebar.storyMetadata = {
+        headline: document.head.querySelector("meta[name='story:headline']") ? document.head.querySelector("meta[name='story:headline']").content : "",
+        description: document.head.querySelector("meta[name='story:description']") ? document.head.querySelector("meta[name='story:description']").content : ""
+    };
+
+    News.App.Sharebar.load();
+
+})(jQuery);
+(function ($) {
+    ns('News.design').getDesignName = function() {
+        return "empire"
+    }
+})(jQuery);
+/**
+ * Publishes weather API data for use by weather widgets. Currently only publishing the current conditions because
+ * this code runs on every page (current conditions are used by Site Header and Combo widget.
+ *
+ * If we want to publish more weather data (e.g. the Hourly and Weekly services) we need a way to run it only on pages
+ * where it's actually used (e.g. via Clientlibs...component includes the clientlib).
+ *
+ * **/
+
+(function ($) {
+    ns('News.App').WxAPIDataPublisher = {
+        init: function () {
+            News.App.WxAPIDataPublisher.publishCurrentConditionsHeader();
+        },
+
+        publishCurrentConditionsHeader: async function () {
+            var wxCurrentUrl = '/services/api/weather/current.' + News.core.getRavenid() + '.json';
+
+            let loc = localStorage.getItem("wxLocation");
+            let locType = "ZIPCODE";
+            let headers = {};
+            if(loc) {
+                headers = {
+                    "Location-Type": locType,
+                    "Location-Value": loc
+                }
+            }
+            this.publishCurrentConditions(headers);
+            this.publishHourlyConditions(headers);
+        },
+
+        publishCurrentConditions: function (headers) {
+            var wxCurrentUrl = '/services/api/weather/current.' + News.core.getRavenid() + '.json';
+            $.ajax({
+                url: wxCurrentUrl,
+                headers: headers
+            })
+            .done(function(data) {
+                //Publishes for use by subscribers, e.g. Site Header and the Weather Combo Widget.
+                $.Topic("/services/api/weather/current").publish(data[0]);
+            })
+        },
+        publishHourlyConditions: function (headers) {
+            var wxHourlyUrl = '/services/api/weather/hourly.' + News.core.getRavenid() + '.json';
+            var status=200
+            var path;
+            var ajaxTime= new Date().getTime();
+
+            $.ajax({
+                url: wxHourlyUrl,
+                headers: headers
+            })
+            .done(function(data) {
+                //Publishes for use by subscribers, e.g. Site Header and the Weather Combo Widget.
+                $.Topic("/services/api/weather/hourly").publish(data);
+                News.App.QuantumAnalytics.quantumAnalyticsApiCall(wxHourlyUrl, status, "All_Generic_API_Call_Success", path, ajaxTime);
+            }).fail(function(error) {
+                    status = error.status;
+                News.App.QuantumAnalytics.quantumAnalyticsApiCall(wxHourlyUrl, status, "All_Generic_API_Call_Failure", path, ajaxTime);
+
+            })
+        }
+    };
+    $(document).ready(function () {
+        try {
+            News.App.WxAPIDataPublisher.init();
+        } catch (er) {
+        }
+    });
+})(jQuery);
+
+; (function ($) {
+    var constants = ns('News.constants')
+    var imgWidths = constants.imgWidths = constants.imgWidths || [
+        320, 568, 767, 1024, 1050, 1250
+    ];
+    var contentListImgMediaQueries = constants.contentListImgMediaQueries = constants.contentListImgMediaQueries || {
+        'default': '(max-width: 768px) 100vw, (min-width: 769px) 66.67vw',
+        '1x3': '(max-width: 768px) 100vw, (min-width: 769px) 33.3vw',
+        '2x2': '(max-width: 768px) 100vw, (min-width: 769px) 50vw',
+        '4x1-single-column-mobile': '(max-width: 768px) 100vw, (min-width: 769px) 17vw',
+        'hero': '(max-width: 768px) 100vw, (min-width: 769px) 66.67vw',
+        'article-image': '(max-width: 768px) 100vw, 100vw'
+    };
+
+    function setSrcSetString(scene7ImagePreset) {
+        var sizeWidthArray = News.constants.imgWidths;
+        var srcSetString = '';
+        for (var sizeIndex = 0; sizeIndex < sizeWidthArray.length; sizeIndex++) {
+            var imgWidth = sizeWidthArray[sizeIndex];
+            var imgHeight = Math.floor(imgWidth * (9 / 16));
+            srcSetString += '|pic-url|?wid=' + imgWidth + (scene7ImagePreset === '$wide-bg$' ? '&hei=' + imgHeight : '') + '&' + scene7ImagePreset + ' ' + imgWidth + 'w' + ((sizeWidthArray.length - 1) == sizeIndex ? '' : ', ');
+        }
+        return srcSetString;
+    }
+
+    var articleImgSrcSetString = constants.articleImgSrcSetString = constants.articleImgSrcSetString || setSrcSetString('$wide-bg$'),
+        imgSrcSetString = constants.imgSrcSetString = constants.imgSrcSetString || setSrcSetString('fit=stretch%2C+1');
+
+    $.fn.addSrcSetAndSizes = function (imgBaseSrc, srcSetString) {
+        var $thisImg = $($(this).get(0));
+        var layoutName = 'default';
+        var $layoutDiv = $($thisImg.closest('.content-list-layout'));
+        var contentListImgMediaQueries = News.constants.contentListImgMediaQueries;
+        if ($layoutDiv.length > 0) {
+            for (thisLayoutName in contentListImgMediaQueries) {
+                if ($layoutDiv.hasClass('content-list-layout--' + thisLayoutName)) {
+                    layoutName = thisLayoutName;
+                    break;
+                }
+            }
+        } else {
+            layoutName = 'article-image';
+        }
+        $thisImg.attr('sizes', contentListImgMediaQueries[layoutName]);
+        $thisImg.attr('srcset', srcSetString.split('|pic-url|').join(imgBaseSrc));
+    };
+    $.fn.setImageSrc = function () {
+        var $imagesToProcess = $(this).not('picture img.img-responsive');
+        $imagesToProcess.each(function (index, img) {
+            $img = $(img);
+            try {
+                var imageBasePath = encodeURI($img.data('src'));
+                
+                // Remove blank images
+                if (!imageBasePath || imageBasePath == "") {
+                    $img.closest('.article-image').remove()
+                    $img.remove()
+                }
+                
+                //'.article-image' on the article template is actually outside of any article tag, so we need to check for that
+                var $imgSrcSetString = $img.parents('article, .article-image').length > 0 ? News.constants.articleImgSrcSetString : News.constants.imgSrcSetString;
+                $img.addSrcSetAndSizes(imageBasePath, $imgSrcSetString);
+                $img.attr('src', imageBasePath);
+            } catch (err) {
+                console.error(err);
+            }
+            return this;
+        });
+    };
+    // call plugin on articles added after initial page load
+    $(window).on('article-append', function (e) {
+        $(e.target).find('img.img-responsive[data-src]').each(function () {
+            $(this).setImageSrc();
+        });
+    });
+    $('img.img-responsive[data-src]').on('load', function () {
+        $(this).removeClass('wide-ratio');
+    });
+    $(document).ready(function () {
+        $('img.img-responsive[data-src]').setImageSrc();
+    });
+})(jQuery);
++function($){
+    /** In Empire Article Pages, only Allow Story Rail Content List */
+        
+    ns('News.ContentList').contentListFilter = function(index, contentList) {
+        
+        // Disallow the "latest news" content list on article pages, only allow lists as part of the story rail or the article itself
+        if (News.ContentList.pageIsArticle() &&
+            !contentList.closest("#story-rail") && 
+            !contentList.closest("article")) {
+            return false
+        }
+        return true
+    }
+    
+    /** Override of getLimit to return additional items for special empire content lists **/
+    
+    ns('News.ContentList').getLimit = function(element) {
+        var limit = element.dataset.limit
+
+        // On empire articles, the story rail displays two rows of 3 articles
+        if (News.ContentList.pageIsArticle()){
+            if(element.closest("#story-rail")){
+                /* Two rows of 3 articles */
+                limit = 6 
+            }
+        }
+        
+        return limit
+    }
+    
+    /**
+     * renderLandingPageArticles
+     * 
+     * function to render landing page content lists via AJAX
+     *          
+     * @param contentList - DOM object, the current content list component
+     * @param articles - array of JSON objects returned from the service
+     * 
+     * Overrides classic landing page article render function
+     */
+    ns('News.ContentList').renderLandingPageArticles = function(contentList, articles) {
+        // Remove the current articles and add new ones
+        var articleContainer = $(contentList).find('.articles-container')
+        var displayAd = News.ContentList.getLandingPageAdDisplay(contentList) ;
+        articleContainer.children().remove();
+        
+        var canonical = News.ContentList.getLandingPageCanonical(contentList) ;
+        var pushAd = false;
+        // Render the articles on the page
+        articles.each(function(i, article){
+            if(i==4 && displayAd) {
+                News.ContentList.renderLandingPageAdHTML(articleContainer)
+                pushAd = true;
+            }
+            News.ContentList.renderArticleInLandingPageContentList(i,article,articleContainer, displayAd, canonical)
+        })
+
+        if (pushAd){
+            News.ContentList.renderGoogleDFPAd()
+        }
+
+    }
+
+
+}(jQuery)
+;(function ($) {
+    ns('News.App').wxRadarAspectSizer = {
+        resize: function () {
+            var windowWidth      = $(window).width();
+            var windowHeight     = $(window).height();
+            var $radarComponent  = $($('#wxRadar')[0]);
+            var containerWidth   = $radarComponent.parent().width();
+            var siteHeaderHeight = $('.site-header').height();
+            var NINE_SIXTEEN_ASPECT_RATIO = 0.5625;
+            var vH = 400;
+             
+            if (windowWidth > 768 ||  News.App.wxRadarAspectSizer.isLandscape()) { // checking the mobile break point
+                // apply 9/16
+                vH = Math.round(containerWidth * NINE_SIXTEEN_ASPECT_RATIO);
+            } else {
+                // apply height percentage to fill screen
+                vH = Math.round(windowHeight * ((windowHeight - siteHeaderHeight) / windowHeight)) - 100;
+            }
+            $("#wxRadar .radarWrapper").attr("style", "width:100%; height:" + vH + "px;");
+        },
+        isLandscape: function() {
+          return (typeof window.orientation !== "undefined" && Math.abs(window.orientation) === 90)
+        },
+        // checks to ensure that the changed 'dom' has the following selector $(".wxmap-react")
+        radarInjectionObserver: new MutationObserver(function (mutations) {
+            if ($(".wxmap-react")) {
+                News.App.wxRadarAspectSizer.resize();
+                News.App.wxRadarAspectSizer.radarInjectionObserver.disconnect();
+            }
+        })
+    }
+    $(document).ready(function () {
+        if ($('#wxRadar')) {
+            News.App.wxRadarAspectSizer.radarInjectionObserver.observe(document.body, { childList: true });
+            $(window).on('load resize', function () {
+                News.App.wxRadarAspectSizer.resize();
+            });
+        }
+    });
+
+})(jQuery);
+(function($) {
+    var eleWidth33 = $("#x33").width();
+    if (eleWidth33 >= 300) {
+        var eleWidth33Height = (eleWidth33 - 300) + 250;
+        $("#x33").css('height', (eleWidth33Height) + 'px');
+    }
+
+    var eleWidth35 = $("#x35").width();
+    if (eleWidth35 >= 300) {
+        var eleWidth35Height = (eleWidth35 - 300) + 250;
+        $("#x35").css('height', (eleWidth35Height) + 'px');
+    }
+
+    var eleWidth36 = $("#x36").width();
+    if (eleWidth36 >= 300) {
+        var eleWidth36Height = (eleWidth36 - 300) + 250;
+        $("#x36").css('height', (eleWidth36Height) + 'px');
+    }
+
+})(jQuery);
+
+(function($) {
+    var articleHeight = $('.article-body .text').height();
+    var x35LoadHeight = $('#x35').height();
+
+    if (x35LoadHeight == 0) {
+        var x35HeightOut = 250;
+    } else {
+        var x35HeightOut = x35LoadHeight;
+    }
+
+    if (articleHeight < x35HeightOut) {
+        $('#x35').height(x35HeightOut);
+        $('.article-body').addClass('short-article');
+    }
+})(jQuery);
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+
+dfp_ad_types = [];
+
+var ad_tag = {
+
+    init: function() {
+
+        !(function() {
+            var gads = document.createElement("script");
+            gads.async = true;
+            gads.type = "text/javascript";
+            var useSSL = "https:" == document.location.protocol;
+            gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+            var node = document.getElementsByTagName("script")[0];
+            node.parentNode.insertBefore(gads, node);
+        })();
+
+        /* Define ad object and related attributes */
+        /* 'mapping' defines the responsive ad units: as [[max_browser_width, max_browser_height], [adunit_width, adunit_height]]
+             a browser mapping of [0, 0] is a default that will map to all others */
+        dfp_ad_types.x30 = {position: 'top', adDimension:[[970, 66],[728,90]],
+            mappings: [[[1000,100],[[970,66],[728,90]]],[[768,100],[728,90]],[[0,0],[320,50]]]};
+        dfp_ad_types.x34 = {position: 'mid', adDimension:[728, 90], mappings: [[[768,100],[728,90]], [[0,0],[320,50]]]};
+        dfp_ad_types.x37 = {position: 'bottom', adDimension:[728, 90], mappings: [[[768,100],[728,90]], [[0,0],[320,50]]]};
+        dfp_ad_types.x35 = {position: 'top', adDimension:[300, 250]};
+        dfp_ad_types.x36 = {position: 'mid', adDimension:[[300, 600], [300, 250]]};
+        dfp_ad_types.x33 = {position: 'bottom', adDimension:[300, 250]};
+        dfp_ad_types.x32 = {position: 'top', adDimension:[300, 100]};
+        dfp_ad_types.x38 = {position: 'mid', adDimension:[300, 250]};
+        adPositionsConfig = [];
+        var enableAds = ($('.site-header header, .site-header .site-header-inner').data('ad-enable') === true);
+
+        if (!enableAds) {
+            //need to hide article ad containers if we're disabling ads so we don't create extra whitespace
+            $(".article-header").find(".dfp-ad-tags").each(function () {
+                $(this).parent().addClass("hidden");
+                $(this).removeClass("dfp-ad-tags");
+            });
+        }
+
+        jQuery('.dfp-ad-tags').each(function () {
+            var withinPhotoGallery = $(this).parents('.photo-gallery').length > 0;
+            var withinArticle = $(".article-body").length > 0;
+            var validAd = (enableAds || !withinArticle);
+
+            //do not fire ads that are inside the photo gallery
+            if (!withinPhotoGallery && validAd) {
+                adPositionsConfig.push({
+                    id: $(this).attr('id'),
+                    adType: $(this).attr('data-position')
+                });
+            }
+        });
+
+        if ($("#x30").length != 0) {
+            $('body').addClass('leaderboard-atf-enabled');
+            ad_tag.stickyAd();
+        }
+        ad_tag.fireAds(adPositionsConfig);
+
+    },
+
+    fireAds : function (adPositionsConfig) {
+        $(adPositionsConfig).each(function(i) {
+            var item = adPositionsConfig[i].adType;
+            var id = adPositionsConfig[i].id;
+            var width = dfp_ad_types[item].width;
+            var height = dfp_ad_types[item].height;
+            var adSize = dfp_ad_types[item].adDimension;
+            var adMapping = dfp_ad_types[item].mappings;
+
+            googletag.cmd.push(function() {
+                var adSlot =  googletag.defineSlot(ad_tag.getSitePage(), adSize, id)
+                    .setTargeting('pos', [dfp_ad_types[item].position]);
+
+                if(typeof adMapping != 'undefined') {
+                    adSlot.defineSizeMapping(adMapping);
+                }
+                adSlot.addService(googletag.pubads());
+            });
+        });
+
+        googletag.cmd.push(function() {
+            googletag.pubads().enableSingleRequest();
+            googletag.pubads().setCentering(true);
+            googletag.pubads().enableAsyncRendering();
+            googletag.pubads().collapseEmptyDivs();
+            googletag.pubads().setTargeting('kvrefd',['www.spectrumlocalnews.com']);
+            googletag.enableServices();
+
+            // C) Enable lazy loading with...
+            googletag.pubads().enableLazyLoad({
+                // Fetch slots within 5 viewports.
+                fetchMarginPercent: 500,
+                // Render slots within 2 viewports.
+                renderMarginPercent: 200,
+                // Double the above values on mobile, where viewports are smaller
+                // and users tend to scroll faster.
+                mobileScaling: 2.0
+            });
+
+            //Hide ad decoration such as the word "advertisement" if ads are turned off at the Raven level.
+            googletag.pubads().addEventListener('slotRenderEnded', function(event){
+                if (event.isEmpty) {
+                    //Hide ads
+                    $(adPositionsConfig).each(function(i){
+                        var id = adPositionsConfig[i].id ;
+                        ad_tag.hideAd(id);
+                    });
+                }
+            });
+
+        });
+        //Display ads
+        $(adPositionsConfig).each(function(i){
+            var id = adPositionsConfig[i].id ;
+            googletag.cmd.push(function() {
+                googletag.display(id);
+            });
+            ad_tag.decorateAd(id);
+        });
+    },
+
+    fireChildAds: function(el) {
+        var adPositionsConfig = [];
+
+        $(el).find('.dfp-ad-tags').each(function(){
+            adPositionsConfig.push({
+                id: $(this).attr('id'),
+                adType: $(this).attr('data-position')
+            });
+        });
+
+        ad_tag.fireAds(adPositionsConfig);
+    },
+
+    decorateAd: function(id) {
+        /* Show the "Advertisement" label and add the margins
+            Ads are backed by a default house ad so we should always have a creative returned */
+        $('#' + id).next('.icon-advertisement').removeClass('hidden');
+    },
+
+    hideAd: function(id) {
+        $('#' + id).next('.icon-advertisement').addClass('hidden');
+    },
+
+
+    getSitePage: function() {
+        let dfpSitePage = '';
+        if(typeof dfpSiteId !== 'undefined'){
+            const regionPlusVertRE = /(\/([^\/]*)){3}/;
+            const regionRE = /(\/([^\/]*)){2}/;
+            const articleRE = /(\/([^\/]*)){3}(\/\d{4}\/(\d{1,2})\/(\d{1,2})\/)/;
+            const path = location.pathname.replace('/content/news', '').replace('.html', '');
+            const articleAppender = articleRE.test(path) ? '/article':'';
+            const regionPlusVert = regionPlusVertRE.test(path)?regionPlusVertRE.exec(path)[0]:null;
+            const region = regionRE.exec(path)[0];
+            const regionWithDash = region.replace(/\//g,'-');
+            let adRegionPlusVert = regionPlusVert ? regionPlusVert.replace(region, regionWithDash):regionWithDash;
+            dfpSitePage = dfpSiteId + adRegionPlusVert + articleAppender;
+        } else {
+            return;
+        }
+        return dfpSitePage;
+    },
+
+    stickyAd: function(){
+        var enableStickyAd = ($('.site-header header, .site-header .site-header-inner').data('ad-sticky-enable') == undefined) ? false : true;
+        if(enableStickyAd){
+            var $x30wrapper = $("#x30").parent()
+
+            if(!$x30wrapper.hasClass('sticky-ad')){
+                $x30wrapper.addClass('sticky-ad');
+                $('body').addClass('sticky-leader-ad'); // Added to allow CSS to be set based on other elements in the page
+                // Eventually this should me modified to not be so reliant on body classes. Ultimately, with the number of advertising
+                // variations that we are supporting, we should be dynamically getting the header height (including alerts) on page load
+                // and then creating an element at the top of the page (but after the header/alerts) and set the height on that element
+                // This will prevent us from having to support so many variations in the CSS, and will allow for more flexibility
+
+                $x30wrapper.prepend('<div class="close-x-outer"><div class="close-x-inner"></div></div>');
+
+                $(".close-x-outer").click(function(){
+                    $x30wrapper.hide();
+                })
+            }
+        }
+    }
+};
+
+ad_tag.init();
+

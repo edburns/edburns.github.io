@@ -1,0 +1,22 @@
+/*!
+ * simple-namespace
+ * https://github.com/drzax/simple-namespace
+ *
+ * @version 0.2.0
+ * @copyright Simon Elvery
+ * @license MIT
+ * 
+ */
+(function(){var b=this;
+function a(e,c){var g,d,f;
+c=c||b;
+g=e.split(".");
+d=g.shift();
+while(d){f=c[d]||{};
+c=c[d]=f;
+d=g.shift()
+}return f
+}if(typeof define==="function"&&define.amd){define(a)
+}else{if(typeof module==="object"&&module.exports){module.exports=a
+}else{b.ns=a
+}}}());

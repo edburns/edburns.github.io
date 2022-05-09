@@ -1,0 +1,338 @@
+/* Ram 2022 T1*/
+Enabler.setProfileId(10687837);
+
+/* Ram 2022 T2*/
+// Enabler.setProfileId(10688844);
+
+/* Ram sales events 2022*/
+// Enabler.setProfileId(10687840);
+
+/* Ram Hispanic 2021 T1*/
+// Enabler.setProfileId(10558506);
+
+var devDynamicContent = {};
+var template = 'endemic';
+
+/* General */
+devDynamicContent.parent = [{}];
+devDynamicContent.parent[0]._id = 0;
+devDynamicContent.parent[0].id = "0";
+devDynamicContent.parent[0].label = "default";
+devDynamicContent.parent[0].rd_year = "default";
+devDynamicContent.parent[0].rd_model = "default";
+devDynamicContent.parent[0].rd_template = template + '-ram';
+devDynamicContent.parent[0].nameplate = "default";
+devDynamicContent.parent[0].creative_type = "default";
+devDynamicContent.parent[0].type_of_creative = 'default';
+devDynamicContent.parent[0].template = template + '-ram';
+devDynamicContent.parent[0].language = "en_US";
+devDynamicContent.parent[0].config = '';
+devDynamicContent.parent[0].config_data = '';
+devDynamicContent.parent[0].active = true;
+
+devDynamicContent.messages = [{}];
+devDynamicContent.messages[0]._id = 0;
+devDynamicContent.messages[0].id = "0";
+devDynamicContent.messages[0].label = "default";
+devDynamicContent.messages[0].ad_size = [];
+devDynamicContent.messages[0].ad_size[0] = {"Width": 300, "Height": 250};
+devDynamicContent.messages[0].rd_pillar = "default";
+
+devDynamicContent.messages[0].rd_msg_version = "V1";
+
+devDynamicContent.messages[0].rd_background = "non-applicable";
+devDynamicContent.messages[0].logo = {};
+devDynamicContent.messages[0].logo.Type = "file";
+devDynamicContent.messages[0].logo.Url = "https://s0.2mdn.net/ads/richmedia/studio/40290727/40290727_20190704113805578_logo.png";
+devDynamicContent.messages[0].logo_alt = {};
+devDynamicContent.messages[0].logo_alt.Type = "file";
+devDynamicContent.messages[0].logo_alt.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.messages[0].tab_1 = "";
+devDynamicContent.messages[0].image_1 = {};
+devDynamicContent.messages[0].image_1.Type = "file";
+devDynamicContent.messages[0].alt_image_1 = {};
+devDynamicContent.messages[0].alt_image_1.Type = "file";
+devDynamicContent.messages[0].copy_1 = "Take on the world with legendary capability and<br> iconic style";
+devDynamicContent.messages[0].alt_copy_1 = "";
+devDynamicContent.messages[0].tab_2 = "";
+devDynamicContent.messages[0].image_2 = {};
+devDynamicContent.messages[0].image_2.Type = "file";
+devDynamicContent.messages[0].alt_image_2 = {};
+devDynamicContent.messages[0].alt_image_2.Type = "file";
+devDynamicContent.messages[0].copy_2 = "";
+devDynamicContent.messages[0].alt_copy_2 = "";
+devDynamicContent.messages[0].tab_3 = "";
+devDynamicContent.messages[0].image_3 = {};
+devDynamicContent.messages[0].image_3.Type = "file";
+devDynamicContent.messages[0].alt_image_3 = {};
+devDynamicContent.messages[0].alt_image_3.Type = "file";
+devDynamicContent.messages[0].copy_3 = "";
+devDynamicContent.messages[0].alt_copy_3 = "";
+devDynamicContent.messages[0].tab_4 = "";
+devDynamicContent.messages[0].image_4 = {};
+devDynamicContent.messages[0].image_4.Type = "file";
+devDynamicContent.messages[0].alt_image_4 = {};
+devDynamicContent.messages[0].alt_image_4.Type = "file";
+devDynamicContent.messages[0].copy_4 = "";
+devDynamicContent.messages[0].alt_copy_4 = "";
+devDynamicContent.messages[0].tab_5 = "";
+devDynamicContent.messages[0].image_5 = {};
+devDynamicContent.messages[0].image_5.Type = "file";
+devDynamicContent.messages[0].alt_image_5 = {};
+devDynamicContent.messages[0].alt_image_5.Type = "file";
+devDynamicContent.messages[0].copy_5 = "";
+devDynamicContent.messages[0].alt_copy_5 = "";
+devDynamicContent.messages[0].background_exit = {};
+devDynamicContent.messages[0].background_exit.Url = "https://ramtrucks.com";
+devDynamicContent.messages[0].start_date = {};
+devDynamicContent.messages[0].start_date.RawValue = "";
+devDynamicContent.messages[0].start_date.UtcValue = 0;
+devDynamicContent.messages[0].end_date = {};
+devDynamicContent.messages[0].end_date.RawValue = "";
+devDynamicContent.messages[0].end_date.UtcValue = 0;
+devDynamicContent.messages[0].active = true;
+devDynamicContent.messages[0].config = "";
+devDynamicContent.messages[0].config_data = "";
+devDynamicContent.messages[0].override_image_1 = {};
+devDynamicContent.messages[0].override_image_1.Type = "file";
+devDynamicContent.messages[0].override_image_1.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.messages[0].override_image_3 = {};
+devDynamicContent.messages[0].override_image_3.Type = "file";
+devDynamicContent.messages[0].override_image_3.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.messages[0].format = "";
+devDynamicContent.messages[0].format_data = "";
+
+devDynamicContent.endemic_images = [{}];
+devDynamicContent.endemic_images[0]._id = 0;
+devDynamicContent.endemic_images[0].id = "0";
+devDynamicContent.endemic_images[0].label = "default_non-applicable";
+devDynamicContent.endemic_images[0].rd_color = "non-applicable";
+devDynamicContent.endemic_images[0].rd_color_version = '';
+devDynamicContent.endemic_images[0].rd_endemic_version = "non-applicable";
+devDynamicContent.endemic_images[0].endemic_jb_f = {};
+devDynamicContent.endemic_images[0].endemic_jb_f.Type = "file";
+devDynamicContent.endemic_images[0].endemic_jb_fr = {};
+devDynamicContent.endemic_images[0].endemic_jb_fr.Type = "file";
+devDynamicContent.endemic_images[0].endemic_jb_fl = {};
+devDynamicContent.endemic_images[0].endemic_jb_fl.Type = "file";
+devDynamicContent.endemic_images[0].endemic_jb_r = {};
+devDynamicContent.endemic_images[0].endemic_jb_r.Type = "file";
+devDynamicContent.endemic_images[0].endemic_jb_l = {};
+devDynamicContent.endemic_images[0].endemic_jb_l.Type = "file";
+devDynamicContent.endemic_images[0].endemic_jb_b = {};
+devDynamicContent.endemic_images[0].endemic_jb_b.Type = "file";
+devDynamicContent.endemic_images[0].endemic_jb_br = {};
+devDynamicContent.endemic_images[0].endemic_jb_br.Type = "file";
+devDynamicContent.endemic_images[0].endemic_jb_bl = {};
+devDynamicContent.endemic_images[0].endemic_jb_bl.Type = "file";
+devDynamicContent.endemic_images[0].endemic_jb_alt = {};
+devDynamicContent.endemic_images[0].endemic_jb_alt.Type = "file";
+devDynamicContent.endemic_images[0].active = true;
+devDynamicContent.endemic_images[0].config = "";
+devDynamicContent.endemic_images[0].config_data = "";
+devDynamicContent.endemic_images[0].override_image_1 = {};
+devDynamicContent.endemic_images[0].override_image_1.Type = "file";
+devDynamicContent.endemic_images[0].override_image_1.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.endemic_images[0].override_image_2 = {};
+devDynamicContent.endemic_images[0].override_image_2.Type = "file";
+devDynamicContent.endemic_images[0].override_image_2.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.endemic_images[0].override_image_3 = {};
+devDynamicContent.endemic_images[0].override_image_3.Type = "file";
+devDynamicContent.endemic_images[0].override_image_3.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.endemic_images[0].format = "";
+devDynamicContent.endemic_images[0].format_data = "";
+
+devDynamicContent.geo_background = [{}];
+devDynamicContent.geo_background[0]._id = 0;
+devDynamicContent.geo_background[0].id = "0";
+devDynamicContent.geo_background[0].label = "default";
+devDynamicContent.geo_background[0].location_code = "default";
+devDynamicContent.geo_background[0].rd_location = "default";
+devDynamicContent.geo_background[0].rd_background = "default";
+devDynamicContent.geo_background[0].background_image_160x600 = {};
+devDynamicContent.geo_background[0].background_image_160x600.Type = "file";
+devDynamicContent.geo_background[0].background_image_160x600.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.geo_background[0].background_image_300x250 = {};
+devDynamicContent.geo_background[0].background_image_300x250.Type = "file";
+devDynamicContent.geo_background[0].background_image_300x250.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.geo_background[0].background_image_728x90 = {};
+devDynamicContent.geo_background[0].background_image_728x90.Type = "file";
+devDynamicContent.geo_background[0].background_image_728x90.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.geo_background[0].background_image_300x600 = {};
+devDynamicContent.geo_background[0].background_image_300x600.Type = "file";
+devDynamicContent.geo_background[0].background_image_300x600.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.geo_background[0].active = true;
+
+devDynamicContent.ctas = [{}];
+devDynamicContent.ctas[0]._id = 0;
+devDynamicContent.ctas[0].id = "0";
+devDynamicContent.ctas[0].label = "default";
+devDynamicContent.ctas[0].rd_cta_color = "non-applicable";
+devDynamicContent.ctas[0].rd_cta_version = "V1";
+devDynamicContent.ctas[0].rd_cta_1 = "BMO";
+devDynamicContent.ctas[0].rd_cta_2 = "";
+devDynamicContent.ctas[0].text_cta_1 = "BUILD & PRICE";
+devDynamicContent.ctas[0].exit_cta_1 = {};
+devDynamicContent.ctas[0].exit_cta_1.Url = "https://ramtrucks.com";
+devDynamicContent.ctas[0].exit_cta2 = {};
+devDynamicContent.ctas[0].exit_cta2.Url = "";
+devDynamicContent.ctas[0].active = true;
+devDynamicContent.ctas[0].config = "";
+devDynamicContent.ctas[0].config_data = "";
+devDynamicContent.ctas[0].format = "";
+devDynamicContent.ctas[0].format_data = "";
+
+
+/* Only T1 */
+devDynamicContent.parent[0].config = "";
+devDynamicContent.parent[0].config_data = "";
+devDynamicContent.parent[0].rd_trim = "";
+
+/* Only T2 */
+devDynamicContent.parent[0].brand_division_code = "J";
+devDynamicContent.parent[0].year = "";
+devDynamicContent.parent[0].rd_location = "default";
+devDynamicContent.parent[0].family = "default";
+devDynamicContent.parent[0].rd_family = "default";
+devDynamicContent.parent[0].business_center = "default";
+
+/* Sales events */
+devDynamicContent.parent[0].family_code = "default";
+devDynamicContent.messages[0].rd_event = "default";
+devDynamicContent.messages[0].rd_message_version = "V1";
+devDynamicContent.messages[0].event_logo = {};
+devDynamicContent.messages[0].event_logo.Type = "file";
+devDynamicContent.messages[0].event_logo.Url = "./event-logo.png";
+devDynamicContent.messages[0].event_logo_alt = {};
+devDynamicContent.messages[0].event_logo_alt.Type = "file";
+devDynamicContent.messages[0].event_logo_alt.Url = "https://s0.2mdn.net/ads/richmedia/studio/40290727/40290727_20200617180445283_dead_pixel.png";
+devDynamicContent.messages[0].offer_background = "./event-offer-background.jpg";
+devDynamicContent.messages[0].sub_copy_1 = "";
+devDynamicContent.messages[0].sub_copy_2 = "";
+devDynamicContent.messages[0].sub_copy_3 = "";
+devDynamicContent.endemic_images[0].color_pallete = 'orange';
+devDynamicContent.OMSCOWS = [{}];
+devDynamicContent.OMSCOWS[0]._id = 0;
+devDynamicContent.OMSCOWS[0].id = "100";
+devDynamicContent.OMSCOWS[0].offerType = "default";
+devDynamicContent.OMSCOWS[0].offerTemplateName = "default";
+devDynamicContent.OMSCOWS[0].startDate = {};
+devDynamicContent.OMSCOWS[0].startDate.RawValue = "12/01/2019 00:00";
+devDynamicContent.OMSCOWS[0].startDate.UtcValue = 1575187200000;
+devDynamicContent.OMSCOWS[0].divisionCode = " ";
+devDynamicContent.OMSCOWS[0].division = " ";
+devDynamicContent.OMSCOWS[0].state = " ";
+devDynamicContent.OMSCOWS[0].bccode = " ";
+devDynamicContent.OMSCOWS[0].campaign = " ";
+devDynamicContent.OMSCOWS[0].model = " ";
+devDynamicContent.OMSCOWS[0].modelyear = " ";
+devDynamicContent.OMSCOWS[0].vehname = {};
+devDynamicContent.OMSCOWS[0].vehname.Type = "file";
+devDynamicContent.OMSCOWS[0].vehname.Url = "https://s0.2mdn.net/ads/richmedia/studio/40290727/40290727_20200617180445283_dead_pixel.png";
+devDynamicContent.OMSCOWS[0].clicktag1 = " ";
+devDynamicContent.OMSCOWS[0].clicktag2 = " ";
+devDynamicContent.OMSCOWS[0].clicktag3 = " ";
+devDynamicContent.OMSCOWS[0].clicktag4 = " ";
+devDynamicContent.OMSCOWS[0].clicktag5 = " ";
+devDynamicContent.OMSCOWS[0].clicktag6 = " ";
+devDynamicContent.OMSCOWS[0].clicktag7 = " ";
+devDynamicContent.OMSCOWS[0].displayName = " ";
+devDynamicContent.OMSCOWS[0].invoiceShortName = " ";
+devDynamicContent.OMSCOWS[0].vehShortName = " ";
+devDynamicContent.OMSCOWS[0].itemType = " ";
+devDynamicContent.OMSCOWS[0].percent = " ";
+devDynamicContent.OMSCOWS[0].months = " ";
+devDynamicContent.OMSCOWS[0].cash1 = " ";
+devDynamicContent.OMSCOWS[0].cash2 = " ";
+devDynamicContent.OMSCOWS[0].cash3 = " ";
+devDynamicContent.OMSCOWS[0].cash4 = " ";
+devDynamicContent.OMSCOWS[0].cash5 = " ";
+devDynamicContent.OMSCOWS[0].cash6 = " ";
+devDynamicContent.OMSCOWS[0].totalCash = " ";
+devDynamicContent.OMSCOWS[0].securityDeposit = " ";
+devDynamicContent.OMSCOWS[0].bonusCashDesc = " ";
+devDynamicContent.OMSCOWS[0].desc1 = " ";
+devDynamicContent.OMSCOWS[0].desc2 = " ";
+devDynamicContent.OMSCOWS[0].desc3 = " ";
+devDynamicContent.OMSCOWS[0].desc4 = " ";
+devDynamicContent.OMSCOWS[0].desc5 = " ";
+devDynamicContent.OMSCOWS[0].desc6 = " ";
+devDynamicContent.OMSCOWS[0].legal = " ";
+devDynamicContent.OMSCOWS[0].expiryDate = {};
+devDynamicContent.OMSCOWS[0].expiryDate.RawValue = "11/01/2049 23:59";
+devDynamicContent.OMSCOWS[0].expiryDate.UtcValue = 2519449140000;
+devDynamicContent.OMSCOWS[0].shortModelCode = " ";
+devDynamicContent.OMSCOWS[0].omsRotation = " ";
+devDynamicContent.OMSCOWS[0].rd_values = "default";
+devDynamicContent.OMSCOWS[0].label = "default";
+devDynamicContent.OMSCOWS[0].rd_DMA = "default";
+devDynamicContent.OMSCOWS[0].default = true;
+devDynamicContent.OMSCOWS[0].omsUrl = "";
+
+
+/* Frequently used values */
+
+/* Headlines */
+devDynamicContent.messages[0].headline1 = 'the all-new <br> 2020 gladiator';
+devDynamicContent.messages[0].headline2 = '';
+devDynamicContent.messages[0].headline_1 = 'the all-new <br> 2020 gladiator';
+devDynamicContent.messages[0].headline_2 = '';
+
+/* Logo */
+devDynamicContent.messages[0].logo.Url = template + '-logo.png';
+devDynamicContent.messages[0].logo_alt.Url = '';
+
+/* Angles */
+devDynamicContent.messages[0].rd_angle = 'fl-f-fr';
+
+/* Jellybeans */
+devDynamicContent.endemic_images[0].endemic_jb_f.Url = './endemic-jellybean-f.png';
+devDynamicContent.endemic_images[0].endemic_jb_fr.Url = './endemic-jellybean-fr.png';
+devDynamicContent.endemic_images[0].endemic_jb_fl.Url = './endemic-jellybean-fl.png';
+devDynamicContent.endemic_images[0].endemic_jb_r.Url = './endemic-jellybean-r.png';
+devDynamicContent.endemic_images[0].endemic_jb_l.Url = './endemic-jellybean-l.png';
+devDynamicContent.endemic_images[0].endemic_jb_b.Url = './endemic-jellybean-b.png';
+devDynamicContent.endemic_images[0].endemic_jb_br.Url = './endemic-jellybean-br.png';
+devDynamicContent.endemic_images[0].endemic_jb_bl.Url = './endemic-jellybean-bl.png';
+
+/* Background */
+devDynamicContent.messages[0].image_1.Url = './' + template + '-bg-1.jpg';
+devDynamicContent.messages[0].image_2.Url = './' + template + '-bg-2.jpg';
+devDynamicContent.messages[0].image_3.Url = './' + template + '-bg-3.jpg';
+
+devDynamicContent.messages[0].image_4.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.messages[0].image_5.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+
+/* AltImages */
+// devDynamicContent.messages[0].image_1.Url = './alt-image-1.png';
+devDynamicContent.messages[0].alt_image_2.Url = '';
+devDynamicContent.messages[0].alt_image_3.Url = '';
+devDynamicContent.messages[0].alt_image_4.Url = '';
+devDynamicContent.messages[0].alt_image_5.Url = '';
+
+/* Copies */
+devDynamicContent.messages[0].copy_1 = 'With available all-wheel-drive, you can weather nearly any storm';
+devDynamicContent.messages[0].copy_2 = 'Vesobum mum siou amew condoÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬mentum maem as consectetu augue MPGWO non apquet mhawemus venen na ttyss';
+devDynamicContent.messages[0].copy_3 = 'The available Uconnect 4C NAV with an 8.4-inch touchscreen will help guide you and keep you connected';
+devDynamicContent.messages[0].copy_4 = '';
+devDynamicContent.messages[0].copy_5 = '';
+
+/* Tabs */
+devDynamicContent.messages[0].tab_1 = '';
+devDynamicContent.messages[0].tab_2 = '';
+devDynamicContent.messages[0].tab_3 = '';
+
+/* CTAs */
+devDynamicContent.ctas[0].text_cta1 = 'Build & Price';
+devDynamicContent.ctas[0].text_cta2 = 'View Incentives';
+
+/* Legal */
+devDynamicContent.messages[0].legal = '\u00A92021 FCA US LLC. All Rights Reserved. Ram is a registered trademark of FCA US LLC.';
+
+/* Geo Background*/
+devDynamicContent.geo_background[0].background_image_160x600.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.geo_background[0].background_image_300x250.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.geo_background[0].background_image_728x90.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+devDynamicContent.geo_background[0].background_image_300x600.Url = "https://s0.2mdn.net/ads/richmedia/studio/pv2/46010639/dirty/dead_pixel.png";
+
+Enabler.setDevDynamicContent(devDynamicContent);

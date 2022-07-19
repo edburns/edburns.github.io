@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Using git worktree and a script to copy commits from one branch to another in the same repo</title>
+  <meta name="description" content="This brief post shows how to use git worktree to perform development work multiple branches of your local clone of a remote git repository, such as a reposit...">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2022/07/19/git-worktree.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Using git worktree and a script to copy commits from one branch to another in the same repo</h1>
+    <p class="post-meta"><time datetime="2022-07-19T09:25:00-04:00" itemprop="datePublished">Jul 19, 2022</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>This brief post shows how to use <code class="language-plaintext highlighter-rouge">git worktree</code> to perform development work multiple branches of your local clone of a remote git repository, such as a repository on GitHub.<br />
+The <code class="language-plaintext highlighter-rouge">worktree</code> git sub-command allows you to “Manage multiple working trees”. If you want to know everything there is to know about <code class="language-plaintext highlighter-rouge">worktree</code>, you can view the manual page by doing <code class="language-plaintext highlighter-rouge">man git-worktree</code>.  Yes, that’s right, the literal string <code class="language-plaintext highlighter-rouge">git-worktree</code>.  All git sub-commands have their own manual page which you can access with <code class="language-plaintext highlighter-rouge">man git-subcommandname</code>.  Try it with <code class="language-plaintext highlighter-rouge">man git-branch</code>, for example.</p>
+
+<p>The post assumes makes the following assumptions.</p>
+
+<ul>
+  <li>You have already done <code class="language-plaintext highlighter-rouge">git clone</code> of the remote repository on your local environment.</li>
+  <li>For discussion, this local clone is called <code class="language-plaintext highlighter-rouge">myrepo</code>.</li>
+  <li>Within <code class="language-plaintext highlighter-rouge">myrepo</code> you already have three branches: <code class="language-plaintext highlighter-rouge">main</code>, <code class="language-plaintext highlighter-rouge">myfeature</code>, and <code class="language-plaintext highlighter-rouge">myotherfeature</code>.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">main</code> branch is currently checked out.  This is the default behavior when you do <code class="language-plaintext highlighter-rouge">git clone</code>.</li>
+</ul>
+
+<h3 id="check-out-myfeature-using-git-worktree-add">Check out myfeature using git worktree add</h3>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">cd myrepo</code></li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git status</code> <br />
+You should see the following.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git worktree list</code> <br />
+You should see something similar to the following.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/edburns/workareas/myrepo  5bb3c2a [main]
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Now, it’s time to check out your <code class="language-plaintext highlighter-rouge">myfeature</code> branch using <code class="language-plaintext highlighter-rouge">git worktree</code>.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git worktree add --track -b myfeature ../myrepo-01 origin/myfeature
+git worktree list
+</code></pre></div>    </div>
+
+    <p>You should see something similar to the following.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/edburns/workareas/myrepo  5bb3c2a [main]
+/home/edburns/workareas/myrepo-01  49336e1 [myfeature]
+</code></pre></div>    </div>
+
+    <p><strong>IMPORTANT:</strong> With <code class="language-plaintext highlighter-rouge">git worktree</code>, you only have one <code class="language-plaintext highlighter-rouge">.git</code> directory, in this case <code class="language-plaintext highlighter-rouge">myrepo/.git</code>.  If you do <code class="language-plaintext highlighter-rouge">ls -la</code> in <code class="language-plaintext highlighter-rouge">myrepo-01</code>, you will see a <code class="language-plaintext highlighter-rouge">.git</code> <strong>file</strong>.  It’s name the same, but it is a file, not a directory.  So, even though you have two checked out branches you are not using twice as much disk space because the <code class="language-plaintext highlighter-rouge">myrepo-01</code> directory only has the most recent files of the checked out branch.</p>
+  </li>
+</ol>
+
+<h3 id="check-out-myotherfeature-using-git-worktree-add">Check out myotherfeature using git worktree add</h3>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">cd myrepo</code></li>
+  <li>
+    <p>Now, it’s time to check out your <code class="language-plaintext highlighter-rouge">myotherfeature</code> branch using <code class="language-plaintext highlighter-rouge">git worktree</code>.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git worktree add --track -b myotherfeature ../myrepo-02 origin/myotherfeature
+git worktree list
+</code></pre></div>    </div>
+
+    <p>You should see something similar to the following.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/edburns/workareas/myrepo  5bb3c2a [main]
+/home/edburns/workareas/myrepo-01  49336e1 [myfeature]
+/home/edburns/workareas/myrepo-02  52059ba [myotherfeature]
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="copy-commits-from-myotherfeature-to-myfeature">Copy commits from myotherfeature to myfeature</h3>
+
+<p>Now comes the interesting part, how to to copy commits from <code class="language-plaintext highlighter-rouge">myotherfeature</code> to <code class="language-plaintext highlighter-rouge">myfeature</code>.</p>
+
+<p>The following script, which I suggest you save as <code class="language-plaintext highlighter-rouge">~/bin/copyLastNWorktreeCommits.sh</code>, copies the last N commits from one worktree branch to another.  The script makes the simplifying assumption that the commits you want to copy are the most recent N commits.  If the commits you want to copy are not the most recent N commits, you can use <code class="language-plaintext highlighter-rouge">git rebase -i</code> to re-order the commits as described in this <a href="https://www.atlassian.com/git/tutorials/rewriting-history#git-rebase-i">decent tutorial from Atlassian</a>.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># pwd has the dest branch checked out</span>
+<span class="c"># first argument is relative path to source branch, checked out with worktree</span>
+<span class="c"># second argument is dest branch</span>
+<span class="c"># third argument is num commits</span>
+<span class="nv">ontoValue</span><span class="o">=</span><span class="sb">`</span>git rev-parse HEAD<span class="sb">`</span>
+<span class="nv">sourceBranch</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">destBranch</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">numLastCommitsOnPrivateBranch</span><span class="o">=</span><span class="nv">$3</span>
+
+<span class="nb">pushd</span> <span class="nb">.</span>
+<span class="nb">cd</span> <span class="nv">$1</span>
+<span class="nv">startingCommit</span><span class="o">=</span><span class="sb">`</span>git rev-parse HEAD<span class="sb">`</span>
+<span class="nv">endingCommit</span><span class="o">=</span><span class="sb">`</span>git rev-parse HEAD~<span class="k">${</span><span class="nv">numLastCommitsOnPrivateBranch</span><span class="k">}</span><span class="sb">`</span>
+
+<span class="nb">popd
+
+</span>git rebase <span class="nt">--onto</span> <span class="k">${</span><span class="nv">ontoValue</span><span class="k">}</span> <span class="k">${</span><span class="nv">endingCommit</span><span class="k">}</span> <span class="k">${</span><span class="nv">startingCommit</span><span class="k">}</span>
+git rebase HEAD <span class="k">${</span><span class="nv">destBranch</span><span class="k">}</span>
+</code></pre></div></div>
+
+<p>Let’s say we want to copy the last 3 commits from <code class="language-plaintext highlighter-rouge">myotherfeature</code> to <code class="language-plaintext highlighter-rouge">myfeature</code>.  Assuming <code class="language-plaintext highlighter-rouge">copyLastNWorktreeCommits.sh</code> is in your <code class="language-plaintext highlighter-rouge">~/bin</code> directory and is on your path, as described in the appendix, the following commands will accomplish this.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">cd myrepo-01</code></li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git status</code></p>
+
+    <p>You should see something similar to the following.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch myfeature
+Your branch is up to date with 'origin/myfeature.
+
+nothing to commit, working tree clean
+</code></pre></div>    </div>
+
+    <p>Verify that you are in the correct directory. The script treats the current directory as the destination directory.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">copyLastNWorktreeCommits.sh ../myrepo-02 myfeature 3</code></p>
+
+    <p>You should see output similar to the following.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First, rewinding <span class="nb">head </span>to replay your work on top of it...
+Applying: my change 01
+Applying: my change 02
+Applying: my change 03
+First, rewinding <span class="nb">head </span>to replay your work on top of it...
+Fast-forwarded main to HEAD.
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Verify that the commits have been copied.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log -3
+</code></pre></div>    </div>
+
+    <p>You should see output similar to the following.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>commit 9f1116063f0ce1c097e3118fc096a764d678798e (HEAD -&gt; main)
+Author: Ed Burns &lt;email@address.com&gt;
+Date:   Tue Jul 19 14:23:41 2022 -0400
+
+    my change 03
+
+commit 072da86c6b8e360120aab1f2a6fd87368c64fc3d
+Author: Ed Burns &lt;email@address.com&gt;
+Date:   Tue Jul 19 14:23:27 2022 -0400
+
+    my change 02
+
+commit 38036c3d4a4597b2ac070d32c236adc7b6106ae2
+Author: Ed Burns &lt;email@address.com&gt;
+Date:   Tue Jul 19 14:23:16 2022 -0400
+
+    my change 01
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Verify that the commits are ready to be pushed.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+On branch myfeature
+Your branch is ahead of 'origin/myfeature' by 3 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+</code></pre></div>    </div>
+
+    <p>Don’t be thrown off by the “nothing to commit”.  Yes, it’s true, you have nothing to commit to <code class="language-plaintext highlighter-rouge">myfeature</code>, because those three changes were already committed on <code class="language-plaintext highlighter-rouge">myotherfeature</code>.  So while you have nothing to commit, you <strong>do</strong> have something to push.</p>
+  </li>
+  <li>If you want, you can push those changes now, but doing so is an exercise for the reader.</li>
+</ol>
+
+<h3 id="summary">Summary</h3>
+
+<p>In this post we learned how to use <code class="language-plaintext highlighter-rouge">git worktree</code> to have three branches checked out at the same time, each in their own directories, conveniently located as siblings in the filesystem.  We learned how to copy commits from one branch to another in this arranchement.</p>
+
+<h3 id="appendix-bash-basics-preconditions">Appendix: bash basics preconditions</h3>
+
+<p>This appendix describes how to make it so you can call the script shown in the post from the command line.  As with everything in GNU/Linux, <a href="/blog/2010/03/03/perils-8220there8217s-more-one-way-do-it8221.html">there is more than one way to do it</a>.  I’m not even sure this is the best way. This is just how I do it.</p>
+
+<ol>
+  <li>Make sure you have a <code class="language-plaintext highlighter-rouge">bin</code> directory in your home directory.</li>
+  <li>Save the script to a file in that <code class="language-plaintext highlighter-rouge">bin</code> directory.  As stated in the post, I recommend naming the file <code class="language-plaintext highlighter-rouge">copyLastNWorktreeCommits.sh</code>.</li>
+  <li>Make sure the file has executable permissions. <br />
+<code class="language-plaintext highlighter-rouge">chmod ugo+x ~/bin/copyLastNWorktreeCommits.sh</code>.</li>
+  <li>Make sure your <code class="language-plaintext highlighter-rouge">bin</code> directory in your home directory is in your <code class="language-plaintext highlighter-rouge">$PATH</code> environment variable.
+    <ul>
+      <li>There are lots of ways to do this.  This one seems pretty reasonable: <a href="https://linuxize.com/post/how-to-add-directory-to-path-in-linux/">https://linuxize.com/post/how-to-add-directory-to-path-in-linux/</a>.</li>
+    </ul>
+  </li>
+</ol>
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

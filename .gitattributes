@@ -3,3 +3,4 @@
 *.wav filter=lfs diff=lfs merge=lfs -text
 edburns/1990-coh-video/20200320-1990-coh-end-of-year-video.mp4 filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text

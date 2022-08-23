@@ -115,6 +115,20 @@ lost commits.</p>
 user from 2007 until I joined Microsoft in June 2019.  If not for WLS2,
 I’d still be a Mac user.</p>
 
+<h2 id="update-2022-08-23">Update 2022-08-23</h2>
+
+<p>New from <a href="https://twitter.com/craigaloewen">Craig Loewen</a>.</p>
+
+<p>If you are using the “Store” version of WSL2, that is, installed from https://aka.ms/wslstorepage, you can use the <code class="language-plaintext highlighter-rouge">--import</code> and <code class="language-plaintext highlighter-rouge">--export</code> commands for <code class="language-plaintext highlighter-rouge">wsl</code> in PowerShell.</p>
+
+<ol>
+  <li>In a PowerShell (maybe elevated for good measure, not sure if it’s necessary), shut down wsl.  <code class="language-plaintext highlighter-rouge">wsl --shutdown</code>.</li>
+  <li>Get the distro name of the distro whose VHD you want to export. <code class="language-plaintext highlighter-rouge">wsl -l -v</code>.</li>
+  <li>Export the distro to a .vhdx file. <code class="language-plaintext highlighter-rouge">wsl --export &lt;your distro name&gt; .\yourDistroName.vhdx</code> This will be a large file.</li>
+  <li>Move the <code class="language-plaintext highlighter-rouge">.vhdx</code> file to your new machine.</li>
+  <li>Import the vhd. <code class="language-plaintext highlighter-rouge">wsl --import --vhd &lt;your distro name&gt; &lt;Install Location&gt; .\yourDistroName.vhdx</code> .</li>
+</ol>
+
 <h2 id="how-to-access-wsl2-vhdx-on-external-drive-within-a-windows-10-system-image">How to Access WSL2 .vhdx on External Drive Within a Windows 10 System Image</h2>
 
 <p>We will edit the Windows registry to point a new Debian WSL2

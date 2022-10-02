@@ -118,11 +118,11 @@
               The MiSTer FPGA Bible</a></p>
             </li>
           </ul>
-          <p>I intend for this guide to be self-contained. Any
-          external instructions one might need are incorporated by
-          value rather than by reference. In other words (with two
-          exceptions), you don't have to go down a hypertext rabbit
-          hole.</p>
+          <p>I intend for this guide to be self-contained, but limited
+          in scope to playing Tunnels of Doom. Any external
+          instructions one might need are incorporated by value rather
+          than by reference. In other words (with two exceptions), you
+          don't have to go down a hypertext rabbit hole.</p>
         </li>
       </ul>
     </li>
@@ -141,15 +141,14 @@
           stuck.</p>
         </li>
         <li>
-          <p>There is also a Reddit community, but I have not
-          joined it.</p>
+            <p>There is also a Reddit community, <a href="https://www.reddit.com/r/MiSTerFPGA/">r/MiSTerFPGA</a> but I have not joined it.</p>
         </li>
       </ul>
     </li>
     <li>
       <p>Understand these super-basic terms in the MiSTer context.
       To do anything with MiSTer you need at least one <b>Core</b>
-      and one or more <b>ROMs</b>, and these files are organized in
+      and one or more <b>ROMs</b>.  These files are organized in
       a hierarchical file system.</p>
       <ol>
         <li>
@@ -165,7 +164,7 @@
               <p>The MiSTer community has many cores, and each one
               gets updated occasionally. Therefore a Core has a
               version number in YY.MM.DD format. For example, this
-              document was written using ti99 core 21.08.29. There
+              document was written using ti99 core 22.02.20. There
               is probably a newer one out at time of reading.</p>
             </li>
             <li>
@@ -195,7 +194,7 @@
             <li>
               <p>The MiSTer has important conventions for the
               organization of the files and directories containing
-              the Cores and the ROMs.</p>
+              the Cores and the ROMs. These instructions take the naming conventions into account.</p>
             </li>
             <li>
               <p>You don’t usually need to know about the Core file
@@ -519,8 +518,7 @@
             <li><p>Download <a href="https://github.com/edburns/edburns.github.io/raw/master/edburns/classic-gaming/tunnels/bin/ti99tod.zip">this zip file</a> to
             the root directory of the external hard drive.</p></li>
 
-            <li><p>Extract the entire zip file to the root directory
-                of the external hard drive.  This will give you a <b>/games</b> directory populated with the system ROM and all the Tunnels of Doom game ROMS from world famous Italian TI/99 User Club.  For the complete rom, see the <a href="https://www.ti99iuc.it/web/index.php?pageid=homepage&artid=194#.YfdwWb_MIvg">TI-99_Mister_Collection MegaPack</a>.
+            <li><p>Extract the entire zip file to the root directory of the external hard drive.  This will give you a <b>/games</b> directory populated with the system ROM and all the Tunnels of Doom game ROMS from world famous Italian TI/99 User Club.  This zip is a subset of the complete bundle of all TI-99/4a software. See the <a href="https://www.ti99iuc.it/web/index.php?pageid=homepage&artid=194#.YfdwWb_MIvg">TI-99_Mister_Collection MegaPack</a> if you want the full zip.
             </p></li>
 
             <li><p>Disconnect the external hard drive from the PC and
@@ -554,6 +552,200 @@
 
 
    </li>
+
+   <li>
+
+       <details>
+
+           <summary>
+
+               <p>Configure the TI-99/4a core with the hardware roms.</p>
+
+           </summary>
+
+           <ol>
+               
+               <li><p>Ensure the HDMI HD TV is powered on. This step does not
+                   work with composite video out.</p>
+               </li>
+
+               <li><p>Power on the MiSTer.
+               </p></li>
+
+               <li><p>At the <b>Cores</b> menu select <b>Computer</b>.  Press Enter.
+               </p></li>
+
+               <li><p>Select <b>Ti994a</b> and press Enter.</p></li>
+
+               <li><p>Select <b>Hardware</b> and press Enter.</p>
+
+                   <img src="images/20221001_151041-core-hardware.jpg" width="300" alt="Hardware menu" border="1" />
+
+               </li>
+
+               <details>
+
+                   <summary>
+
+                       <p>You must do this step for each of the hardware modules that comprise the TI-99/4a core.</p>
+
+                   </summary>
+
+                   <ol type="A">
+
+                       <li><p>Select <b>Select System Grom *.BIN</b> and press Enter.</p>
+
+                           <img src="images/20221001_151053-core-hardware-select-system-grom.jpg" width="300" alt="Select system grom" border="1" />
+
+                           <details>
+                               <summary>
+
+                                   <p>Navigate to where the desired file is on the HDD.</p>
+
+                               </summary>
+
+                               <ol>
+
+                                   <li>Go to the top of the list and select dot dot (UNIX for "parent directory of the current directory"). Press Enter.</li>
+
+                                   <img src="images/20221001_151126-core-hardware-dot-dot.jpg" width="300" alt="dot dot" border="1" />
+
+                                   <li>Find "DSR-ROMS" and press Enter.</li>
+
+                                   <img src="images/20221001_151159-core-hardware-DSR-ROMS.jpg" width="300" alt="DSR-ROMS" border="1" />
+
+                                   <li>Find "TI99 Originals BIOS" and press Enter.</li>
+
+                                   <img src="images/20221001_151423-core-hardware-TI99-Originals.jpg" width="300" alt="TI99 Originals BIOS" border="1" />
+
+                                   <li>Find "994AGROM" and press Enter. The screen may reset. This is normal.</li>
+
+                                   <img src="images/20221001_151504-core-hardware-TI99-grom.jpg" width="300" alt="994AGROM" border="1" />
+
+                                   <li><p>Press F12.</p></li>
+
+                               </ol>
+
+                           </details>
+                       </li>
+
+                       <li><p>Select <b>Select System Rom *.BIN</b> and press Enter.</p>
+
+                           <img src="images/20221001_151540-core-hardware-select-system-rom.jpg" width="300" alt="Select system rom" border="1" />
+
+                           <details>
+                               <summary>
+
+                                   <p>Navigate to where the desired file is on the HDD.</p>
+
+                               </summary>
+
+                               <ol>
+
+                                   <li>Go to the top of the list and select dot dot (UNIX for "parent directory of the current directory"). Press Enter.</li>
+
+                                   <img src="images/20221001_151126-core-hardware-dot-dot.jpg" width="300" alt="dot dot" border="1" />
+
+                                   <li>Find "DSR-ROMS" and press Enter.</li>
+
+                                   <img src="images/20221001_151159-core-hardware-DSR-ROMS.jpg" width="300" alt="DSR-ROMS" border="1" />
+
+                                   <li>Find "TI99 Originals BIOS" and press Enter.</li>
+
+                                   <img src="images/20221001_151423-core-hardware-TI99-Originals.jpg" width="300" alt="TI99 Originals BIOS" border="1" />
+
+                                   <li>Find "994AROM" and press Enter. The screen may reset. This is normal. At this point you should see the color bars on the HDMI TV and CRT, if you have one.  <b>If you do not see the color bars, troubleshoot the problem before continuing.</b></li>
+
+                                   <img src="images/20221001_151504-core-hardware-TI99-grom.jpg" width="300" alt="994AGROM" border="1" />
+
+                                   <li><p>Press F12.</p></li>
+
+                               </ol>
+
+                           </details>
+
+                       </li>
+
+                       <li><p>Select <b>Select Speech Rom *.BIN</b> and press Enter.</p>
+
+                           <img src="images/20221001_151627-core-hardware-select-speech.jpg" width="300" alt="Select Speech rom" border="1" />
+
+                           <details>
+                               <summary>
+
+                                   <p>Navigate to where the desired file is on the HDD.</p>
+
+                               </summary>
+
+                               <ol>
+
+                                   <li>Go to the top of the list and select dot dot (UNIX for "parent directory of the current directory"). Press Enter.</li>
+
+                                   <img src="images/20221001_151126-core-hardware-dot-dot.jpg" width="300" alt="dot dot" border="1" />
+
+                                   <li>Find "DSR-ROMS" and press Enter.</li>
+
+                                   <img src="images/20221001_151159-core-hardware-DSR-ROMS.jpg" width="300" alt="DSR-ROMS" border="1" />
+
+                                   <li>Find "Speech ROM" and press Enter.</li>
+
+                                   <img src="images/20221001_151705-core-hardware-speech-rom.jpg" width="300" alt="Disk DSR" border="1" />
+
+                                   <li><p>Press F12.</p></li>
+
+                               </ol>
+
+                           </details>
+
+                       </li>
+
+                       <li><p>Select <b>Select Disk DSR *.BIN</b> and press Enter.</p>
+
+                           <details>
+                               <summary>
+
+                                   <p>Navigate to where the desired file is on the HDD.</p>
+
+                               </summary>
+
+                               <ol>
+
+                                   <li>Go to the top of the list and select dot dot (UNIX for "parent directory of the current directory"). Press Enter.</li>
+
+                                   <img src="images/20221001_151126-core-hardware-dot-dot.jpg" width="300" alt="dot dot" border="1" />
+
+                                   <li>Find "DSR-ROMS" and press Enter.</li>
+
+                                   <img src="images/20221001_151159-core-hardware-DSR-ROMS.jpg" width="300" alt="DSR-ROMS" border="1" />
+
+                                   <li>Find "Disk ROM" and press Enter.</li>
+
+                                   <img src="images/20221002_141624-core-hardware-disk-dsr.jpg" width="300" alt="Disk DSR" border="1" />
+
+                                   <li><p>Press F12.</p></li>
+
+                               </ol>
+
+                           </details>
+
+                       </li>
+
+
+                   </ol>
+
+               </details>
+
+       </details>
+
+   </li>
+           
+       </ol>
+ 
+
+
+
+   </li>
+
 
 
   </ol>

@@ -53,520 +53,723 @@
   <p>Let's dive in!</p>
   <h3 id="zero-to-before-16">1. One time setup: Going from zero to being ready to see the 16 color boot screen of the TI-99/4a.</h3>
   <details>
-  <summary></summary>
-  <ol>
-    <li>
-      <p>Set expectations</p>
-      <ul>
-        <li>
-          <p>This whole emulation scene is a community, open
-          source, effort. Don’t expect things to work 100% all the
-          time.</p>
-        </li>
-        <li>
-          <p>You must be prepared for a lot of hassle.</p>
-        </li>
-        <li>
-          <p>It is a living and dynamic hobby. Things that worked at
-          one point can stop working and you’ll have to tinker and
-          debug.</p>
-        </li>
-        <li>
-          <p>In my experience, there is a lot of trial and error.
-          You must be methodical. In my case, I have a notebook
-          where I write notes and paste in printed FAQ segments
-          with glue stick.</p>
-        </li>
-        <li>
-          <p>Be ready for total information overload. There is so
-          much information out there on Reddit, YouTube, the
-          forums. Much of what you find will not even apply to your
-          scenario, for reasons such as:</p>
-        </li>
-        <li style="list-style: none; display: inline">
-          <ul>
-            <li>
-              <p>“We used to do it that way, but no one does it
-              that way now because so-and-so uploaded a new core
-              and this new way is better.”</p>
-            </li>
-            <li>
-              <p>The information applies to a specific kind of
-              hardware that you don’t have.</p>
-            </li>
-            <li>
-              <p>The information is flat out wrong, but because
-              there is no quality control, such mistakes are seldom, if ever,
-              corrected.</p>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <p>If you are looking for a single source, top level,
-          definitive, "start here" guide, sadly there are several.
-          Here are the two sources that most closely match my
-          expectations for such a resource.</p>
-          <ul>
-            <li>
-              <p><a href=
-              "https://github.com/MiSTer-devel/Main_MiSTer/wiki">The
-              MiSTer FPGA GitHub wiki</a></p>
-            </li>
-            <li>
-              <p><a href=
-              "https://boogermann.github.io/Bible_MiSTer/getting-started/introduction/">
-              The MiSTer FPGA Bible</a></p>
-            </li>
-          </ul>
-          <p>I intend for this guide to be self-contained. Any
-          external instructions one might need are incorporated by
-          value rather than by reference. In other words (with two
-          exceptions), you don't have to go down a hypertext rabbit
-          hole.</p>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <p>Join a community</p>
-      <ul>
-        <li>
-          <p>Have a MiSTer Sherpa who has done it all before.
-          Hopefully one who knows where to get the ROMs and is
-          willing to share them with you. For me, this is
-          Werner.</p>
-        </li>
-        <li>
-          <p>Join the <a href="http://misterfpga.org/">MiSTer FPGA
-          Forum</a>. You will need to ask questions if you get
-          stuck.</p>
-        </li>
-        <li>
-          <p>There is also a Reddit community, but I have not
-          joined it.</p>
-        </li>
-      </ul>
-    </li>
-    <li>
-      <p>Understand these super-basic terms in the MiSTer context.
-      To do anything with MiSTer you need at least one <b>Core</b>
-      and one or more <b>ROMs</b>, and these files are organized in
-      a hierarchical file system.</p>
+      <summary>Expand the triangle to see this section.</summary>
       <ol>
-        <li>
-          <p>Core</p>
-          <ol>
-            <li>
-              <p>A piece of software that turns the MiSTer into a
-              specific old-school computer. For example, to run TI
-              games such as Tunnels of Doom you need the “TI
-              Core”.</p>
-            </li>
-            <li>
-              <p>The MiSTer community has many cores, and each one
-              gets updated occasionally. Therefore a Core has a
-              version number in YY.MM.DD format. For example, this
-              document was written using ti99 core 21.08.29. There
-              is probably a newer one out at time of reading.</p>
-            </li>
-            <li>
-              <p>In my setup, I keep the Cores on the micro-SD
-              card.</p>
-            </li>
-          </ol>
-        </li>
-        <li>
-          <p>ROM</p>
-          <ol>
-            <li>
-              <p>A piece of software that works with and is
-              entirely specific to a Core. For example, to run TI
-              games such as ToD you need several ROMs, more details
-              later.</p>
-            </li>
-            <li>
-              <p>In my setup, I keep the ROMs on the external USB
-              hard drive.</p>
-            </li>
-          </ol>
-        </li>
-        <li>
-          <p>File system</p>
-          <ol>
-            <li>
-              <p>The MiSTer has important conventions for the
-              organization of the files and directories containing
-              the Cores and the ROMs.</p>
-            </li>
-            <li>
-              <p>You don’t usually need to know about the Core file
-              system, but the ROMs must reside in the external HD,
-              in a specifically named subdirectory of the games
-              directory, at the root of the external HD. For
-              example, for ToD you will need files in
-              <b>/games/TI-99_4A</b>.</p>
-            </li>
-          </ol>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <p>Acquire the hardware</p>
-      <ol>
-        <li>
-          <p>Required (in my opinion)</p>
-          <ul>
-            <li>
-              <p>Internet connection.</p>
-            </li>
-            <li>
-              <p>Windows PC</p>
-            </li>
-            <li style="list-style: none; display: inline">
+          <li>
+              <p>Set expectations</p>
               <ul>
-                <li>
-                  <p>For setting up the SD card, including editing
-                  the <b>MiSTer.ini</b> file</p>
-                </li>
-                <li>
-                  <p>For downloading the software and storing it on
-                  the USB hard drive</p>
-                </li>
+                  <li>
+                      <p>This whole emulation scene is a community, open
+                          source, effort. Don’t expect things to work 100% all the
+                          time.</p>
+                  </li>
+                  <li>
+                      <p>You must be prepared for a lot of hassle.</p>
+                  </li>
+                  <li>
+                      <p>It is a living and dynamic hobby. Things that worked at
+                          one point can stop working and you’ll have to tinker and
+                          debug.</p>
+                  </li>
+                  <li>
+                      <p>In my experience, there is a lot of trial and error.
+                          You must be methodical. In my case, I have a notebook
+                          where I write notes and paste in printed FAQ segments
+                          with glue stick.</p>
+                  </li>
+                  <li>
+                      <p>Be ready for total information overload. There is so
+                          much information out there on Reddit, YouTube, the
+                          forums. Much of what you find will not even apply to your
+                          scenario, for reasons such as:</p>
+                  </li>
+                  <li style="list-style: none; display: inline">
+                      <ul>
+                          <li>
+                              <p>“We used to do it that way, but no one does it
+                                  that way now because so-and-so uploaded a new core
+                                  and this new way is better.”</p>
+                          </li>
+                          <li>
+                              <p>The information applies to a specific kind of
+                                  hardware that you don’t have.</p>
+                          </li>
+                          <li>
+                              <p>The information is flat out wrong, but because
+                                  there is no quality control, such mistakes are seldom, if ever,
+                                  corrected.</p>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <p>If you are looking for a single source, top level,
+                          definitive, "start here" guide, sadly there are several.
+                          Here are the two sources that most closely match my
+                          expectations for such a resource.</p>
+                      <ul>
+                          <li>
+                              <p><a href=
+                                         "https://github.com/MiSTer-devel/Main_MiSTer/wiki">The
+                                  MiSTer FPGA GitHub wiki</a></p>
+                          </li>
+                          <li>
+                              <p><a href=
+                                         "https://boogermann.github.io/Bible_MiSTer/getting-started/introduction/">
+                                  The MiSTer FPGA Bible</a></p>
+                          </li>
+                      </ul>
+                      <p>I intend for this guide to be self-contained, but limited
+                          in scope to playing Tunnels of Doom. Any external
+                          instructions one might need are incorporated by value rather
+                          than by reference. In other words (with two exceptions), you
+                          don't have to go down a hypertext rabbit hole.</p>
+                  </li>
               </ul>
-            </li>
-            <li>
-              <p>Ethernet cable</p>
-            </li>
-            <li style="list-style: none; display: inline">
+          </li>
+          <li>
+              <p>Join a community</p>
               <ul>
-                <li>
-                  <p>This is necessary to run the
-                  <b>update_all.sh</b> script.</p>
-                </li>
+                  <li>
+                      <p>Have a MiSTer Sherpa who has done it all before.
+                          Hopefully one who knows where to get the ROMs and is
+                          willing to share them with you. For me, this is
+                          Werner.</p>
+                  </li>
+                  <li>
+                      <p>Join the <a href="http://misterfpga.org/">MiSTer FPGA
+                          Forum</a>. You will need to ask questions if you get
+                          stuck.</p>
+                  </li>
+                  <li>
+                      <p>There is also a Reddit community, <a href="https://www.reddit.com/r/MiSTerFPGA/">r/MiSTerFPGA</a> but I have not joined it.</p>
+                  </li>
               </ul>
-            </li>
-            <li>
-              <p>HDMI cable</p>
-            </li>
-            <li>
-              <p>HD TV with HDMI inputs</p>
-            </li>
-            <li>
-              <p>MiSTer DE-10 from <a href=
-              "https://misteraddons.com/products/mister-bundles">MisterAddons</a>.</p>
-            </li>
-            <li style="list-style: none; display: inline">
-              <ul>
-                <li>
-                  <p>Comes with 8GB micro sd card built in. I use
-                  the micro-SD card to hold all the Cores. I keep
-                  the ROMs elsewhere.</p>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <p>Some way to read/write the SD card</p>
-            </li>
-            <li>
-              <p>USB keyboard</p>
-            </li>
-            <li>
-              <p>250GB USB hard drive</p>
-            </li>
-            <li style="list-style: none; display: inline">
-              <ul>
-                <li>
-                  <p>I use this for ROMs.</p>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-            <p>Optional (but I have it, so I consider it required for
-                me)</p>
-            <!-- Photo Caption With Right Vertical Spacer -->
-            <TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
-                <TR><TD BGCOLOR="#DDDDDD">
-                    <img width="300" alt="3.5mm Male to Stereo RCA Male Cable" src="images/20220220_audio_cable.png" border="1">
-                </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
-                <TR><TD>
-                    <B>3.5mm Male to Stereo RCA Male Cable
-                    </B></TD></TR>
-            </TABLE>
-            <ul>
-            <li>
-              <p>Composite video:</p>
-            </li>
-            <li style="list-style: none; display: inline">
-              <ul>
-                <li>
-                  <p>Antonio Villena <a href=
-                  "https://www.antoniovillena.es/store/product/vga-composite-s-video-adapter/">
-                  composite video adapter</a></p>
-                </li>
+          </li>
+          <li>
+              <p>Understand these super-basic terms in the MiSTer context.
+                  To do anything with MiSTer you need at least one <b>Core</b>
+                  and one or more <b>ROMs</b>.  These files are organized in
+                  a hierarchical file system.</p>
+              <ol>
+                  <li>
+                      <p>Core</p>
+                      <ol>
+                          <li>
+                              <p>A piece of software that turns the MiSTer into a
+                                  specific old-school computer. For example, to run TI
+                                  games such as Tunnels of Doom you need the “TI
+                                  Core”.</p>
+                          </li>
+                          <li>
+                              <p>The MiSTer community has many cores, and each one
+                                  gets updated occasionally. Therefore a Core has a
+                                  version number in YY.MM.DD format. For example, this
+                                  document was written using ti99 core 22.02.20. There
+                                  is probably a newer one out at time of reading.</p>
+                          </li>
+                          <li>
+                              <p>In my setup, I keep the Cores on the micro-SD
+                                  card.</p>
+                          </li>
+                      </ol>
+                  </li>
+                  <li>
+                      <p>ROM</p>
+                      <ol>
+                          <li>
+                              <p>A piece of software that works with and is
+                                  entirely specific to a Core. For example, to run TI
+                                  games such as ToD you need several ROMs, more details
+                                  later.</p>
+                          </li>
+                          <li>
+                              <p>In my setup, I keep the ROMs on the external USB
+                                  hard drive.</p>
+                          </li>
+                      </ol>
+                  </li>
+                  <li>
+                      <p>File system</p>
+                      <ol>
+                          <li>
+                              <p>The MiSTer has important conventions for the
+                                  organization of the files and directories containing
+                                  the Cores and the ROMs. These instructions take the naming conventions into account.</p>
+                          </li>
+                          <li>
+                              <p>You don’t usually need to know about the Core file
+                                  system, but the ROMs must reside in the external HD,
+                                  in a specifically named subdirectory of the games
+                                  directory, at the root of the external HD. For
+                                  example, for ToD you will need files in
+                                  <b>/games/TI-99_4A</b>.</p>
+                          </li>
+                      </ol>
+                  </li>
+              </ol>
+          </li>
+          <li>
+              <p>Acquire the hardware</p>
+              <ol>
+                  <li>
+                      <p>Required (in my opinion)</p>
+                      <ul>
+                          <li>
+                              <p>Internet connection.</p>
+                          </li>
+                          <li>
+                              <p>Windows PC</p>
+                          </li>
+                          <li style="list-style: none; display: inline">
+                              <ul>
+                                  <li>
+                                      <p>For setting up the SD card, including editing
+                                          the <b>MiSTer.ini</b> file</p>
+                                  </li>
+                                  <li>
+                                      <p>For downloading the software and storing it on
+                                          the USB hard drive</p>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                              <p>Ethernet cable</p>
+                          </li>
+                          <li style="list-style: none; display: inline">
+                              <ul>
+                                  <li>
+                                      <p>This is necessary to run the
+                                          <b>update_all.sh</b> script.</p>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                              <p>HDMI cable</p>
+                          </li>
+                          <li>
+                              <p>HD TV with HDMI inputs</p>
+                          </li>
+                          <li>
+                              <p>MiSTer DE-10 from <a href=
+                                                           "https://misteraddons.com/products/mister-bundles">MisterAddons</a>.</p>
+                          </li>
+                          <li style="list-style: none; display: inline">
+                              <ul>
+                                  <li>
+                                      <p>Comes with 8GB micro sd card built in. I use
+                                          the micro-SD card to hold all the Cores. I keep
+                                          the ROMs elsewhere.</p>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                              <p>Some way to read/write the SD card</p>
+                          </li>
+                          <li>
+                              <p>USB keyboard</p>
+                          </li>
+                          <li>
+                              <p>250GB USB hard drive</p>
+                          </li>
+                          <li style="list-style: none; display: inline">
+                              <ul>
+                                  <li>
+                                      <p>I use this for ROMs.</p>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
+                      <p>Optional (but I have it, so I consider it required for
+                          me)</p>
+                      <!-- Photo Caption With Right Vertical Spacer -->
+                      <TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+                          <TR><TD BGCOLOR="#DDDDDD">
+                              <img width="300" alt="3.5mm Male to Stereo RCA Male Cable" src="images/20220220_audio_cable.png" border="1">
+                          </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+                          <TR><TD>
+                              <B>3.5mm Male to Stereo RCA Male Cable
+                              </B></TD></TR>
+                      </TABLE>
+                      <ul>
+                          <li>
+                              <p>Composite video:</p>
+                          </li>
+                          <li style="list-style: none; display: inline">
+                              <ul>
+                                  <li>
+                                      <p>Antonio Villena <a href=
+                                                                 "https://www.antoniovillena.es/store/product/vga-composite-s-video-adapter/">
+                                          composite video adapter</a></p>
+                                  </li>
 
-                <li>
-                  <p>JVC 27" NTSC <a href=
-                  "http://support.jvc.com/consumer/product.jsp?modelId=MODL020660">
-                  TV AV-27D201</a></p>
-                </li>
-                <li>
-                  <p>S-video cable</p>
-                </li>
-                <li>
-                  <p>1/8” stereo headphone jack to stereo RCA</p>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <p>Audio</p>
-            </li>
-            <li style="list-style: none; display: inline">
-              <ul>
-                <li>
-                  <p>3.5mm Male to Stereo RCA Male Cable</p>
-                </li>
+                                  <li>
+                                      <p>JVC 27" NTSC <a href=
+                                                              "http://support.jvc.com/consumer/product.jsp?modelId=MODL020660">
+                                          TV AV-27D201</a></p>
+                                  </li>
+                                  <li>
+                                      <p>S-video cable</p>
+                                  </li>
+                                  <li>
+                                      <p>1/8” stereo headphone jack to stereo RCA</p>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                              <p>Audio</p>
+                          </li>
+                          <li style="list-style: none; display: inline">
+                              <ul>
+                                  <li>
+                                      <p>3.5mm Male to Stereo RCA Male Cable</p>
+                                  </li>
 
-              </ul>
-            </li>
-            <li>
-              <p>Input</p>
-            </li>
-            <li style="list-style: none; display: inline">
-              <ul>
-                <li>
-                  <p>XBox controller with USB adapter</p>
-                </li>
-                <li>
-                  <p>Serial Native Accessory Controller <a href=
-                  "https://misteraddons.com/products/serial-native-accessory-converter-snac?_pos=1&amp;_sid=7129af580&amp;_ss=r">
-                  SNAC</a></p>
-                </li>
-                <li>
-                  <p>DB9 Cable from <a href=
-                  "https://bliss-box.net/store/Bliss-Box-Cable-cable-AKA-SNAC-cable-packs-p65613202">
-                  Blisster</a></p>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <p>Initialize the micro-SD card that came with the MiSTer
-      DE-10.</p>
-      <ol>
-        <li>
-          <p>Remove the micro-SD card from the MiSTer.</p>
-          <ol>
-            <li>
-              <p>Orient the MiSTer so you are looking at the
-              Ethernet port.</p>
-            </li>
-            <li>
-              <p>The micro-SD card slot is on the middle board, on
-              the underside of the board, on the left hand side.
-              Press in on the micro-SD card to activate the spring
-              that will push the micro-SD card out. Take note which
-              side is up. Usually, it is the side with the metal
-              connectors.</p>
-            </li>
-          </ol>
-        </li>
-        <li>
-          <p>Follow the steps for the Mr. Fusion installation
-          method, as documented in the <a href=
-          "https://github.com/MiSTer-devel/Main_MiSTer/wiki/Setup-Guide#mr-fusion-installation-method-recommended">
-          Setup Guide</a>.</p>
-        </li>
-        <li>
-          <p>Re-insert the initialized micro-SD card in the
-          MiSTer.</p>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <p>Make connections</p>
-      <ol>
-        <li>
-          <p>Connect the MiSTer to the HD TV with the HDMI
-          cable.</p>
-        </li>
-        <li>
-          <p>Connect the USB keyboard to the MiSTer.</p>
-        </li>
-        <li>
-          <p>Connect the Ethernet cable to the MiSTer and connect
-          the other end to your home Internet.</p>
-        </li>
-      </ol>
-    </li>
-    <li>
-      <p>Run the <b>update_all</b> script</p>
+                              </ul>
+                          </li>
+                          <li>
+                              <p>Input</p>
+                          </li>
+                          <li style="list-style: none; display: inline">
+                              <ul>
+                                  <li>
+                                      <p>XBox controller with USB adapter</p>
+                                  </li>
+                                  <li>
+                                      <p>Serial Native Accessory Controller <a href=
+                                                                                    "https://misteraddons.com/products/serial-native-accessory-converter-snac?_pos=1&amp;_sid=7129af580&amp;_ss=r">
+                                          SNAC</a></p>
+                                  </li>
+                                  <li>
+                                      <p>DB9 Cable from <a href=
+                                                                "https://bliss-box.net/store/Bliss-Box-Cable-cable-AKA-SNAC-cable-packs-p65613202">
+                                          Blisster</a></p>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+              </ol>
+          </li>
+          <li>
+              <p>Initialize the micro-SD card that came with the MiSTer
+                  DE-10.</p>
+              <ol>
+                  <li>
+                      <p>Remove the micro-SD card from the MiSTer.</p>
+                      <ol>
+                          <li>
+                              <p>Orient the MiSTer so you are looking at the
+                                  Ethernet port.</p>
+                          </li>
+                          <li>
+                              <p>The micro-SD card slot is on the middle board, on
+                                  the underside of the board, on the left hand side.
+                                  Press in on the micro-SD card to activate the spring
+                                  that will push the micro-SD card out. Take note which
+                                  side is up. Usually, it is the side with the metal
+                                  connectors.</p>
+                          </li>
+                      </ol>
+                  </li>
+                  <li>
+                      <p>Follow the steps for the Mr. Fusion installation
+                          method, as documented in the <a href=
+                                                               "https://github.com/MiSTer-devel/Main_MiSTer/wiki/Setup-Guide#mr-fusion-installation-method-recommended">
+                          Setup Guide</a>.</p>
+                  </li>
+                  <li>
+                      <p>Re-insert the initialized micro-SD card in the
+                          MiSTer.</p>
+                  </li>
+              </ol>
+          </li>
+          <li>
+              <p>Make connections</p>
+              <ol>
+                  <li>
+                      <p>Connect the MiSTer to the HD TV with the HDMI
+                          cable.</p>
+                  </li>
+                  <li>
+                      <p>Connect the USB keyboard to the MiSTer.</p>
+                  </li>
+                  <li>
+                      <p>Connect the Ethernet cable to the MiSTer and connect
+                          the other end to your home Internet.</p>
+                  </li>
+              </ol>
+          </li>
+          <li>
+              <p>Run the <b>update_all</b> script</p>
 
-      <ol>
-        <li>
-          <p>Power on the MiSTer</p>
-        </li>
-        <li>
-            <p>You should see a menu called <b>Cores</b> with items
-                such as:</p>
+              <ol>
+                  <li>
+                      <p>Power on the MiSTer</p>
+                  </li>
+                  <li>
+                      <p>You should see a menu called <b>Cores</b> with items
+                          such as:</p>
 
-<!-- Photo Caption With Right Vertical Spacer -->
-<TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
-    <TR><TD BGCOLOR="#DDDDDD">
-        <img width="300" alt="The System settings menu" src="images/20220220_system_settings.png" border="1">
-    </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
-    <TR><TD>
-        <B>The System settings menu
-        </B></TD></TR>
-</TABLE>
+                      <!-- Photo Caption With Right Vertical Spacer -->
+                      <TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+                          <TR><TD BGCOLOR="#DDDDDD">
+                              <img width="300" alt="The System settings menu" src="images/20220220_system_settings.png" border="1">
+                          </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+                          <TR><TD>
+                              <B>The System settings menu
+                              </B></TD></TR>
+                      </TABLE>
 
-            <!-- Photo Caption With Right Vertical Spacer -->
-<TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
-<TR><TD BGCOLOR="#DDDDDD">
-<img width="300" alt="The Cores menu" src="images/20220220_cores.png" border="1">
-</TD><TD ROWSPAN="3">&nbsp;</TD></TR>
-<TR><TD>
-<B>The Cores menu
-</B></TD></TR>
-</TABLE>
+                      <!-- Photo Caption With Right Vertical Spacer -->
+                      <TABLE ALIGN="RIGHT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+                          <TR><TD BGCOLOR="#DDDDDD">
+                              <img width="300" alt="The Cores menu" src="images/20220220_cores.png" border="1">
+                          </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+                          <TR><TD>
+                              <B>The Cores menu
+                              </B></TD></TR>
+                      </TABLE>
 
-          <ol>
-            <li>
-              <p>Arcade</p>
-            </li>
-            <li>
-              <p>Computer</p>
-            </li>
-            <li>
-              <p>Console</p>
-            </li>
-          </ol>
-        </li>
-        <li>
-          <p>You can press the F12 key to show or dismiss this menu
-          at any time.</p>
-          <ol>
-            <li>
-              <p>With the menu showing, you can use the Esc key to
-              toggle between the <b>Cores</b> menu and the
-              <b>System Settings</b> menu.</p>
-            </li>
-          </ol>
-        </li>
-        <li>
-          <p>Show the <b>System Settings</b> menu.</p>
-        </li>
-        <li>
-            <p>Use the arrow keys to highlight <b>Scripts</b> and
-                press Enter.</p>
-        <ol>
+                      <ol>
+                          <li>
+                              <p>Arcade</p>
+                          </li>
+                          <li>
+                              <p>Computer</p>
+                          </li>
+                          <li>
+                              <p>Console</p>
+                          </li>
+                      </ol>
+                  </li>
+                  <li>
+                      <p>You can press the F12 key to show or dismiss this menu
+                          at any time.</p>
+                      <ol>
+                          <li>
+                              <p>With the menu showing, you can use the Esc key to
+                                  toggle between the <b>Cores</b> menu and the
+                                  <b>System Settings</b> menu.</p>
+                          </li>
+                      </ol>
+                  </li>
+                  <li>
+                      <p>Show the <b>System Settings</b> menu.</p>
+                  </li>
+                  <li>
+                      <p>Use the arrow keys to highlight <b>Scripts</b> and
+                          press Enter.</p>
+                      <ol>
 
-            <li><p>Because you have connected the Ethernet cable, your MiSTer is now connected to the Internet.</p></li>
+                          <li><p>Because you have connected the Ethernet cable, your MiSTer is now connected to the Internet.</p></li>
 
-           <li><p>Use the arrow keys to highlight <b>update_all.sh</b> and press Enter.</p></li>
+                          <li><p>Use the arrow keys to highlight <b>update_all.sh</b> and press Enter.</p></li>
 
-            <li><p>Accept the defaults and allow the script to run. It will take a long time, even with a fast Internet connection.  The script should be able to run unattended.</p></li>
+                          <li><p>Accept the defaults and allow the script to run. It will take a long time, even with a fast Internet connection.  The script should be able to run unattended.</p></li>
 
-            <li><p>When the script completes running you will be taken back to the MiSTer menu. This menu times out so if you come back to the TV and find only static, press F12 to bring back the menu.</p></li>
+                          <li><p>When the script completes running you will be taken back to the MiSTer menu. This menu times out so if you come back to the TV and find only static, press F12 to bring back the menu.</p></li>
 
-            <li><p>If you want to verify the script ran successfully, put the sd card back in your PC and inspect the Scripts/.config/downloader/downloader1.log file. It should contain the lines</p>
+                          <li><p>If you want to verify the script ran successfully, put the sd card back in your PC and inspect the Scripts/.config/downloader/downloader1.log file. It should contain the lines</p>
 
-              <p>
-              <code><pre>
+                              <p>
+                                  <code><pre>
               Errors:
               none
-              </pre></code>
-              </p>
+                                  </pre></code>
+                              </p>
 
-              <p>If it does not, the run may not have been successful. Run it again and observe the behavior more closely.</p>
-            </li>
+                              <p>If it does not, the run may not have been successful. Run it again and observe the behavior more closely.</p>
+                          </li>
 
-            <li><p>After <b>update_all</b> has run successfully, you should have the all the cores, including the TI/99-4A.</p></li>
-
-
-            <!-- Photo Caption With Right Vertical Spacer -->
-            <TABLE ALIGN="LEFT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
-            <TR><TD BGCOLOR="#DDDDDD">
-            <img width="300" alt="Update all success" src="images/20220220_update_all_success.png" border="1">
-            </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
-            <TR><TD>
-                <B>Update all success
-                </B></TD></TR>
-            </TABLE>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-
-        </ol>
-        </li>
-    </li>
-
-    <li><p>Download the system ROM and Tunnels of Doom game ROMS to the external hard drive.</p>
-
-        <ol>
-
-            <li><p>Power off the MiSTer.
-            </p></li>
-
-            <li><p>Connect the external hard drive to a PC.
-            </p></li>
-
-            <li><p>Download <a href="https://github.com/edburns/edburns.github.io/raw/master/edburns/classic-gaming/tunnels/bin/ti99tod.zip">this zip file</a> to
-            the root directory of the external hard drive.</p></li>
-
-            <li><p>Extract the entire zip file to the root directory
-                of the external hard drive.  This will give you a <b>/games</b> directory populated with the system ROM and all the Tunnels of Doom game ROMS from world famous Italian TI/99 User Club.  For the complete rom, see the <a href="https://www.ti99iuc.it/web/index.php?pageid=homepage&artid=194#.YfdwWb_MIvg">TI-99_Mister_Collection MegaPack</a>.
-            </p></li>
-
-            <li><p>Disconnect the external hard drive from the PC and
-            connect it to the MiSTer.
-            </p></li>
-        </ol>
-
-    </li>
-
-   <li><p>Optional: Connect the audio and video to an NTSC TV.</p>
-
-       <ol>
-
-              <li><p>With the MiSTer powered off, connect the Antonio
-              Villena composite adapter to the VGA port on the back of
-              the MiSTer.
-              </p></li>
-
-              <li><p>Connect the S-video cable to the back of the
-              Antonio Villena adapter, and connect the other end to
-              the S-video input on your NTSC TV.
-              </p></li>
-
-              <li><p>Connect the 3.5mm male end of the 3.5mm Male to
-              Stereo RCA Male Cable to the back of the MiSTer next to
-              the Antonio Villena adapter.  Connect the other end to
-              the corresponding audio port on your NTSC TV.
-              </p></li>
-
-       </ol>
+                          <li><p>After <b>update_all</b> has run successfully, you should have the all the cores, including the TI/99-4A.</p></li>
 
 
-   </li>
+                          <!-- Photo Caption With Right Vertical Spacer -->
+                          <TABLE ALIGN="LEFT" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+                              <TR><TD BGCOLOR="#DDDDDD">
+                                  <img width="300" alt="Update all success" src="images/20220220_update_all_success.png" border="1">
+                              </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+                              <TR><TD>
+                                  <B>Update all success
+                                  </B></TD></TR>
+                          </TABLE>
+                          <p>&nbsp;</p>
+                          <p>&nbsp;</p>
+                          <p>&nbsp;</p>
+                          <p>&nbsp;</p>
+                          <p>&nbsp;</p>
+
+                      </ol>
+                  </li>
+          </li>
+
+          <li><p>Download the system ROM and Tunnels of Doom game ROMS to the external hard drive.</p>
+
+              <ol>
+
+                  <li><p>Power off the MiSTer.
+                  </p></li>
+
+                  <li><p>Connect the external hard drive to a PC.
+                  </p></li>
+
+                  <li><p>Download <a href="https://github.com/edburns/edburns.github.io/raw/master/edburns/classic-gaming/tunnels/bin/ti99tod.zip">this zip file</a> to
+                      the root directory of the external hard drive.</p></li>
+
+                  <li><p>Extract the entire zip file to the root directory of the external hard drive.  This will give you a <b>/games</b> directory populated with the system ROM and all the Tunnels of Doom game ROMS from world famous Italian TI/99 User Club.  This zip is a subset of the complete bundle of all TI-99/4a software. See the <a href="https://www.ti99iuc.it/web/index.php?pageid=homepage&artid=194#.YfdwWb_MIvg">TI-99_Mister_Collection MegaPack</a> if you want the full zip.
+                  </p></li>
+
+              </ol>
+
+          </li>
+
+          <li>
+              <p>Copy the virtual floppy disk so you can store your saves.</p>
+
+              <ol>
+
+                  <li><p>In File explorer or similar, navigate to <code>\games\TI-99_4A\DISKS\DISKS_Empty_Disks</code></p>
+
+                      <img src="images/empty-disks.png" width="600" alt="Hardware menu" border="1" />
+
+                  </li>
+
+                  <li><p>Select <b><code>[TI DISK] DSSD Empty Disk.dsk</code></b>, open the context menu and select <b>Copy</b>.</p></li>
+
+                  <li><p>Perform the paste action into the current directory.</p></li>
+
+                  <li><p>Rename the newly copied file something easy to type in the MiSTer UI. For example, <code>20221007-tod-saves</code>. Leave the "file extension" unchanged.</p></li>
+                  
+                  <li>
+                      <p>Disconnect the external hard drive from the PC and connect it to the MiSTer.</p>
+                  </li>
+                  
+
+              </ol>
+              
+
+          </li>
+             
+
+          <li><p>Optional: Connect the audio and video to an NTSC TV.</p>
+
+              <ol>
+
+                  <li><p>With the MiSTer powered off, connect the Antonio
+                      Villena composite adapter to the VGA port on the back of
+                      the MiSTer.
+                  </p></li>
+
+                  <li><p>Connect the S-video cable to the back of the
+                      Antonio Villena adapter, and connect the other end to
+                      the S-video input on your NTSC TV.
+                  </p></li>
+
+                  <li><p>Connect the 3.5mm male end of the 3.5mm Male to
+                      Stereo RCA Male Cable to the back of the MiSTer next to
+                      the Antonio Villena adapter.  Connect the other end to
+                      the corresponding audio port on your NTSC TV.
+                  </p></li>
+
+              </ol>
 
 
-  </ol>
+          </li>
 
-  <p>You have completed the one time set up and are ready to play Tunnels of Doom on your MiSTer.</p>
+          <li>
+
+              <details>
+
+                  <summary>Configure the TI-99/4a core with the hardware roms.</summary>
+
+                  <ol>
+                      
+                      <li><p>Ensure the HDMI HD TV is powered on. This step does not
+                          work with composite video out.</p>
+                      </li>
+                      
+                      <li><p>Power on the MiSTer.
+                      </p></li>
+                      
+                      <li><p>At the <b>Cores</b> menu select <b>Computer</b>.  Press Enter.
+                      </p></li>
+                      
+                      <li><p>Select <b>Ti994a</b> and press Enter.</p></li>
+                      
+                      <li><p>Select <b>Hardware</b> and press Enter.</p>
+                          
+                          <img src="images/20221001_151041-core-hardware.jpg" width="300" alt="Hardware menu" border="1" />
+                          
+                      </li>
+                      
+                      <details>
+                          
+                          <summary>You must do this step for each of the hardware modules that comprise the TI-99/4a core.</summary>
+                          
+                          <ol type="A">
+                              
+                              <li><p>Select <b>Select System Grom *.BIN</b> and press Enter.</p>
+                                  
+                                  <img src="images/20221001_151053-core-hardware-select-system-grom.jpg" width="300" alt="Select system grom" border="1" />
+
+                                  <details>
+                                      <summary>
+
+                                          <p>Navigate to where the desired file is on the HDD.</p>
+
+                                      </summary>
+
+                                      <ol>
+
+                                          <li>Go to the top of the list and select dot dot (UNIX for "parent directory of the current directory"). Press Enter.</li>
+
+                                          <img src="images/20221001_151126-core-hardware-dot-dot.jpg" width="300" alt="dot dot" border="1" />
+
+                                          <li>Find "DSR-ROMS" and press Enter.</li>
+
+                                          <img src="images/20221001_151159-core-hardware-DSR-ROMS.jpg" width="300" alt="DSR-ROMS" border="1" />
+
+                                          <li>Find "TI99 Originals BIOS" and press Enter.</li>
+
+                                          <img src="images/20221001_151423-core-hardware-TI99-Originals.jpg" width="300" alt="TI99 Originals BIOS" border="1" />
+
+                                          <li>Find "994AGROM" and press Enter. The screen may reset. This is normal.</li>
+
+                                          <img src="images/20221001_151504-core-hardware-TI99-grom.jpg" width="300" alt="994AGROM" border="1" />
+
+                                          <li><p>Press F12.</p></li>
+
+                                      </ol>
+
+                                  </details>
+                              </li>
+
+                              <li><p>Select <b>Select System Rom *.BIN</b> and press Enter.</p>
+
+                                  <img src="images/20221001_151540-core-hardware-select-system-rom.jpg" width="300" alt="Select system rom" border="1" />
+
+                                  <details>
+                                      <summary>
+
+                                          <p>Navigate to where the desired file is on the HDD.</p>
+
+                                      </summary>
+
+                                      <ol>
+
+                                          <li>Go to the top of the list and select dot dot (UNIX for "parent directory of the current directory"). Press Enter.</li>
+
+                                          <img src="images/20221001_151126-core-hardware-dot-dot.jpg" width="300" alt="dot dot" border="1" />
+
+                                          <li>Find "DSR-ROMS" and press Enter.</li>
+
+                                          <img src="images/20221001_151159-core-hardware-DSR-ROMS.jpg" width="300" alt="DSR-ROMS" border="1" />
+
+                                          <li>Find "TI99 Originals BIOS" and press Enter.</li>
+
+                                          <img src="images/20221001_151423-core-hardware-TI99-Originals.jpg" width="300" alt="TI99 Originals BIOS" border="1" />
+
+                                          <li>Find "994AROM" and press Enter. The screen may reset. This is normal. At this point you should see the color bars on the HDMI TV and CRT, if you have one.  <b>If you do not see the color bars, troubleshoot the problem before continuing.</b></li>
+
+                                          <img src="images/20221001_151504-core-hardware-TI99-grom.jpg" width="300" alt="994AGROM" border="1" />
+
+                                          <li><p>Press F12.</p></li>
+
+                                      </ol>
+
+                                  </details>
+
+                              </li>
+
+                              <li><p>Select <b>Select Speech Rom *.BIN</b> and press Enter.</p>
+
+                                  <img src="images/20221001_151627-core-hardware-select-speech.jpg" width="300" alt="Select Speech rom" border="1" />
+
+                                  <details>
+                                      <summary>
+
+                                          <p>Navigate to where the desired file is on the HDD.</p>
+
+                                      </summary>
+
+                                      <ol>
+
+                                          <li>Go to the top of the list and select dot dot (UNIX for "parent directory of the current directory"). Press Enter.</li>
+
+                                          <img src="images/20221001_151126-core-hardware-dot-dot.jpg" width="300" alt="dot dot" border="1" />
+
+                                          <li>Find "DSR-ROMS" and press Enter.</li>
+
+                                          <img src="images/20221001_151159-core-hardware-DSR-ROMS.jpg" width="300" alt="DSR-ROMS" border="1" />
+
+                                          <li>Find "Speech ROM" and press Enter.</li>
+
+                                          <img src="images/20221001_151705-core-hardware-speech-rom.jpg" width="300" alt="Disk DSR" border="1" />
+
+                                          <li><p>Press F12.</p></li>
+
+                                      </ol>
+
+                                  </details>
+
+                              </li>
+
+                              <li><p>Select <b>Select Disk DSR *.BIN</b> and press Enter.</p>
+
+                                  <details>
+                                      <summary>
+
+                                          <p>Navigate to where the desired file is on the HDD.</p>
+
+                                      </summary>
+
+                                      <ol>
+
+                                          <li>Go to the top of the list and select dot dot (UNIX for "parent directory of the current directory"). Press Enter.</li>
+
+                                          <img src="images/20221001_151126-core-hardware-dot-dot.jpg" width="300" alt="dot dot" border="1" />
+
+                                          <li>Find "DSR-ROMS" and press Enter.</li>
+
+                                          <img src="images/20221001_151159-core-hardware-DSR-ROMS.jpg" width="300" alt="DSR-ROMS" border="1" />
+
+                                          <li>Find "Disk ROM" and press Enter.</li>
+
+                                          <img src="images/20221002_141624-core-hardware-disk-dsr.jpg" width="300" alt="Disk DSR" border="1" />
+
+                                          <li><p>Press F12.</p></li>
+
+                                      </ol>
+
+                                  </details>
+
+                                  <p>The remaining items in the hardware menu are unnecessary for playing ToD. We will ignore them.  Select <b>back</b> to return to the main menu for the TI-99/4a core.</p>
+
+                              </li>
+
+                          </ol>
+
+                      </details>
+
+              </details>
+
+          </li>
+                  </ol>
+                  
+  </li>
+
+              </ol>
+
+              <p>You have completed the one time set up and are ready to play Tunnels of Doom on your MiSTer.</p>
   </details>
 
   <h3 id="16-to-equipping">2. Going from the 16 color boot screen
       to equipping your party.</h3>
 
   <details>
-  <summary>
-  </summary>
+  <summary>Expand the triangle to see this section.</summary>
   <ol>
 
    <li><p>Ensure the connections are made as described in the
@@ -583,9 +786,20 @@
    <li><p>Press F12 to bring up the menu for the TI-99/4A core.
    </p></li>
 
-   <li><p>Select <b>Load full or C.bin *.bin</b> and press Enter.</p></li>
+   <li><p>Select <b>Load Full Cart *.M99, BIN</b> and press Enter.</p>
 
-   <li><p>Navigate to <b>SSS_Games/Tunnels of Doom (1982) (Texas Instruments)[PHM 3042]_FULL-ROM+DISK+SPEECH</b> and press Enter.  This simulates inserting the <a href="images/cart_label.jpg">Tunnels of Doom cartridge</a> into the TI-99/4a.</p></li>
+       <img src="images/20221008_124253.jpg" width="300" alt="Load M99" border="1" />
+
+   </li>
+
+   <li>
+
+       <p>Navigate to <b>SSS_Games/M99 Format/Tunnels of Doom Games/Quest Of the King - Tunnels of Doom (1982)(Texas Instruments)(PHM 3042)_[C+G].M99</b> and press Enter.  This simulates inserting the <a href="images/cart_label.jpg">Tunnels of Doom cartridge</a> into the TI-99/4a with the "Quest of the King" game pre-loaded. This was never possible with the original hardware. You had to do a separate step to load the Quest of the King game.</p>
+
+       <img src="images/20221001_195356.jpg" width="300" alt="Quest of the King M99" border="1" />
+       
+       <p>Here is the really exciting part! You can also play all of the other games made for the Tunnels of Doom game engine!  The zip file you downloaded in a preceding step has a text file describing all these games. The file is located at <code>games/TI-99_4A/SSS_Games/M99 Format/Tunnels of Doom Games/_Quest Descriptions_.txt</code></p>
+</li>
 
    <li><p>Press ANY KEY TO BEGIN.</p></li>
 
@@ -600,42 +814,38 @@
 </TABLE>
 
 
-<li><p>Press 2 for Tunnels of Doom.</p>
+<li><p>Press 2 for Quest of the King.</p>
 
     <p>Hear that sweet sweet sound of <a href="hank_mishkoff_interview.html">Hank Mischkoff’s theme</a>.</p>
 
 </li>
 
-   <li><p>Press F12 to open the core menu.</p></li>
+   <li>Load a disk to so you can save your game.
 
-   <li><p>Select <b>Drive 1 *.DSK</b> and press Enter.</p></li>
+       <ol>
 
-   <li><p>Navigate to <b>DISKS/DISKS_TOD/[TI PHD TOD] Tunnels of Doom (1982) (Texas Instruments)[req. PHM 3042][QUEST & PENNIES]</b> and press Enter.</p></li>
-
-<!-- Photo Caption With Right Vertical Spacer -->
-<TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
-    <TR><TD BGCOLOR="#DDDDDD">
-        <img width="300" alt="Disk selection" src="images/20220212-02-disk-select.jpg" border="1">
-    </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
-    <TR><TD>
-        <B>Disk selection
-        </B></TD></TR>
-</TABLE>
-
-
-   <li><p>Press <b>2 DISK 1</b></p></li>
-
-   <li><p>In the <b>FILENAME</b> field, type <b>QUEST</b> and press Enter.</p></li>
-
-<!-- Photo Caption With Right Vertical Spacer -->
-<TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
-    <TR><TD BGCOLOR="#DDDDDD">
-        <img width="300" alt="Quest for the king" src="images/20220212_03-disk-quest.jpg" border="1">
-    </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
-    <TR><TD>
-        <B>Quest for the king
-        </B></TD></TR>
-</TABLE>
+           <li><p>Press F12 to open the core menu.</p></li>
+           
+           <li>
+               
+               <p>Select <b>Drive 1 *.DSK</b> and press Enter.</p>
+               
+               <img src="images/20221008_130301.jpg" width="300" alt="Disk DSR" border="1" />
+               
+           </li>
+           
+           <li><p>Navigate to <b>DISKS/Disks_Empty_Disks/&lt;your save file name from above&gt;</b> and press Enter.</p></li>
+           
+           <!-- Photo Caption With Right Vertical Spacer -->
+           <TABLE ALIGN="CENTER" WIDTH="300" BORDER="0" HSPACE="0" VSPACE="0" CELLSPACING="0" CELLPADDING="3" VALIGN="TOP">
+               <TR><TD BGCOLOR="#DDDDDD">
+                   <img width="300" alt="Disk selection" src="images/20221008_131012.jpg" border="1">
+               </TD><TD ROWSPAN="3">&nbsp;</TD></TR>
+               <TR><TD>
+                   <B>Disk selection for saves</B></TD></TR>
+           </TABLE>
+           
+       </ol>
 
 
    <li><p>Select <b>1 - NEW DUNGEON</b>.</p></li>
@@ -669,8 +879,7 @@
       to restoring and resuming.</h3>
 
   <details>
-  <summary>
-  </summary>
+  <summary>Expand the triangle to see this section.</summary>
  <ol>
 
    <li><p>Do the first 15 steps of the preceding section.  Note: if you had already inserted the cartridge and disk, you don't need to do those steps again.</p></li>

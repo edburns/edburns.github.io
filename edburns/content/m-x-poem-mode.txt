@@ -1,0 +1,36 @@
+M-x Poem-Mode -- by Ed Burns (1994)
+
+                            I like emacs,
+                           a large amount.
+                             I run emacs
+                         on my Sparc account.
+
+                             I run emacs
+                         each and every day.
+                         And if you asked me,
+                           I'd have to say,
+
+                            as editors go,
+                            emacs is king.
+                           By running emacs
+                         you can do anything.
+
+                  You can cruise the World Wide Web,
+                           create C++ code
+                           read Usenet news
+                    edit your thesis in TeX mode!
+
+                          email is a breeze
+                          in the mode of VM
+                       I swear I'll never ever
+                          use "mail" again.
+
+                            Learning emacs
+                         can take some time.
+                       Those control characters
+                       sure can make one whine.
+
+                             But when all
+                         the learning's done,
+                     you'll find your emacs world
+                           has just begun.

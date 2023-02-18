@@ -1,5 +1,967 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2022-08-23T18:14:38-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Using git worktree and a script to copy commits from one branch to another in the same repo</title><link href="/blog/2022/07/19/git-worktree.html" rel="alternate" type="text/html" title="Using git worktree and a script to copy commits from one branch to another in the same repo" /><published>2022-07-19T09:25:00-04:00</published><updated>2022-07-19T09:25:00-04:00</updated><id>/blog/2022/07/19/git-worktree</id><content type="html" xml:base="/blog/2022/07/19/git-worktree.html">&lt;p&gt;This brief post shows how to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git worktree&lt;/code&gt; to perform development work multiple branches of your local clone of a remote git repository, such as a repository on GitHub.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-02-18T18:14:49-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Notes from watching Ivar Grimstad Devoxx Belgium 2022 Jakarta EE 10 presentation</title><link href="/blog/2023/02/18/booty-duke.html" rel="alternate" type="text/html" title="Notes from watching Ivar Grimstad Devoxx Belgium 2022 Jakarta EE 10 presentation" /><published>2023-02-18T17:10:00-05:00</published><updated>2023-02-18T17:10:00-05:00</updated><id>/blog/2023/02/18/booty-duke</id><content type="html" xml:base="/blog/2023/02/18/booty-duke.html">&lt;p&gt;50 minutes https://www.youtube.com/watch?v=8ke0kPrg9qc&lt;/p&gt;
+
+&lt;p&gt;Simplicity for Modern and Lightweight Cloud Applications&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Out on 2022-09-22.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Community driven, modernized, simplified, lightweight.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Specs and Impls&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Spec, API, TCK&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Compatibile Impls&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;We need at least one open source impl.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Other impls can be fine, not open source.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;There is no “official” “reference implementation”&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Lots of specs, more than half received updates in EE 10&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;About half of these have a “.0” version number. In our impl of
+SemVer, the .0 means it may have potentially breaking changes.&lt;/p&gt;
+
+        &lt;p&gt;Also a bit of marketing to signal there are big noteworthy
+changes. (I like this idea)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Authorization 2.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Activation 2.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Batch 2.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Connectors 2.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Mail 2.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Messaging 3.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Authentication 3.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Concurrency 3.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CDI 4.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;EL 5.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CDI 4.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Faces 4.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Security 3.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Servlet 6.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(J)STL 3.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(J)SP 3.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;(JPA)Persistence 3.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;WebSocket 2.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Restful Web Services 3.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JSONP 2.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JSONB 3.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Annotations 2.1&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Interceptors 2.1&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Net new&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;But not really new.  Because it’s a part of CDI, or a sub spec.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CDI Lite 4.0&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Not updated&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;EJB 4.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Bean Validation 3.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Debugging support 2.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;EJB Lite 4.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Managed Beans 2.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Transactions 2.0&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;DI 2.0&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We don’t need to update every spec every time.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ivar subtracts the “enterprisy” and you are left with the “Web
+Profile”.  We’ve had a web profile since EE6. Nothing new.&lt;/p&gt;
+
+    &lt;p&gt;Useful as a smaller platform.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Auth&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Concurrency&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CDI&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;EL&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Faces&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Security&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Servlet&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;STL&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Persistence&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JSP&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;WebSocket&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;BeanVal&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Debugging&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;EJB lite&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Managed beans&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JTA&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JAX-RS&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JSONP&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JSONB&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Annotations&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Interceptors&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;DI&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CDI Lite&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Take away the Webby specs, you get Core Profile. Brand new. EE10.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Enables impls to be certified as EE compatible&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Headless services, or microservices, if you like.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JAX-RS&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JSONP&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;JSONB&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Annotations&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Interceptors&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;DI&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CDI Lite 4.0&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Raise the API source level from 8 to 11&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Why not go further?&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;There were not many specs that needed Java features beyond SE 11.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;This allows us to have a broader appeal.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;TCK runs on 11 or 17.&lt;/strong&gt;&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Security 3.0&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;https://jakarta.ee/specifications/security/&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Add support for OPenID Connect!&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Updates to Jakarta Authorization, and Authentication&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;This is a foundation for future work (Q.2 Should this be in the
+EE11 talk?)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;07:22 Code example for OpenID Connect Authentication. It’s an
+annotation. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OpenIdAuthenticationMechanismDefinition&lt;/code&gt; (love the
+long name, very precise)&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;Where do you put the annotation?&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Persistence 3.1&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;https://jakarta.ee/specifications/persistence/&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Small work interetsed by the community&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Add UUIDs as a basic java data type!&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenerationType=UUID&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;JAX RS 3.1&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;https://jakarta.ee/specifications/restful-ws/&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Community features, requested a long time.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Initially wanted a 4.0 release. But went with 3.1 for now.
+Planning a 4.0 release for EE 11 (Q.3 this seems definitely like
+what we want in the talk).&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Multipart form data support.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;RestEASY has this.  JAX-RS catches up now.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Java SE Bootstrap API&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Lets us run JAX-RS outside of an app server.  (Q.4: this seems
+like a great thing to show with App Service Java SE! What about
+functions?)&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;09:51 Ivar shows a demo https://github.com/ivargrimstad/jakartaee-duke&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;booty-duke https://soundcloud.com/edburns00/booty-duke-m4a&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Note that we have explicit dependencies on API and
+IMPL. There is no concept of “provided” scope, where you can
+just depend on the API.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Uses Maven Assembly plugin&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Needs a main method.&lt;/p&gt;
+
+                &lt;ol&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Add some configuration: 11:33. Port and root
+path. That’s the minimum. There are sensible defaults.
+Other options available.&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Instantiate the app.&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Start it. 12:21&lt;/p&gt;
+
+                    &lt;ul&gt;
+                      &lt;li&gt;
+                        &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SeBootstrap.start()&lt;/code&gt;&lt;/p&gt;
+
+                        &lt;ul&gt;
+                          &lt;li&gt;
+                            &lt;p&gt;Pass in app and config.&lt;/p&gt;
+                          &lt;/li&gt;
+                          &lt;li&gt;
+                            &lt;p&gt;`thenAccept’&lt;/p&gt;
+                          &lt;/li&gt;
+                        &lt;/ul&gt;
+                      &lt;/li&gt;
+                      &lt;li&gt;
+                        &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Thread.currentThread().join()&lt;/code&gt;&lt;/p&gt;
+                      &lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/li&gt;
+                &lt;/ol&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Run it locally.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Core Profile&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Reason: target smaller runtimes.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Limit the amount of specs required to implement it.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;3 compatible impls&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Open Liberty&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Payara&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;WildFly&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Potentially compatible impls&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Helidon&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Quarkus&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Micronaut&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Helidon and Quarkus have said they will apply for core profile
+compatibility Q.5: What can I say about this in the talk?)&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;CDI Lite&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Enables CDI to be used in GraalVM.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Make CDI dynamic at build time, not run time.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Create a new extensions API. Portable extensions is too late.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Changes how the empty &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;beans.xml&lt;/code&gt; behaves.&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;Prior: empty beans.xml turns on CDI. Everything is injectable.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Now: beans.xml with only top level XML turns on CDI, but
+Only things that that have the Injectable annotation are
+injectable.&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;17:10 Taking a step back.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;To EE8, how to get to 9.1 and 10.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;If going from 8 to 10, do take the 9 step in between. You don’t
+need to go to prod with the 9 version, but it’s good to suss out
+problems: new namespace.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;8 -&amp;gt; 9 big thing: namespace change&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;javax.* to jakarta.*&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Why do I care? Because all the things: Spring, Tomcat, Jetty,
+Hibernate, are moving to jakarta namespace.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;It’s usually just a import change.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Tools: Changes the bytecode for you. Can use it at build time
+or runtime. Not recommended to go to th long time.&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;Eclipse transformer&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Apache Tomcat Migration Tool&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Tools: IDE help&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;IntelliJ Idea has a Java EE to Jakarta EE thing.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;A bit smarter than just a regexp action.&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Manual 20:26&lt;/p&gt;
+
+            &lt;ol&gt;
+              &lt;li&gt;
+                &lt;p&gt;Update Jakarta EE version in pom.xml&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Fix the imports&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;XML schema namespaces&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Rename properties prefixed with javax.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Rename bootstrapping files&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Verify data and dynamic content&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ol&gt;
+
+            &lt;p&gt;See https://github.com/ivargrimstad/jakartaee-duke/blob/master/complete-duke/README.adoc&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;This is a three tier helloworld, to show the migration steps.&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;Starts with EE and SE 8 apis.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Adds EE 8 and 9 to the classpath.  Both of them!&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;App is the same as the booty-duke.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Rest resource.  “hello” path, produces message. Is a
+stateless bean. 23:00&lt;/p&gt;
+
+                &lt;ul&gt;
+                  &lt;li&gt;Finds first message from injected stateful session bean,
+if not there, hard codes the message value.&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Stateful session bean uses the entity manager from
+Persistence.&lt;/p&gt;
+
+                &lt;ul&gt;
+                  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;findAll&lt;/code&gt; method creates a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CriteriaQuery&lt;/code&gt; that basically
+does &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT * FROM GREETINGTABLE&lt;/code&gt;.&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Entity DukesGreeting&lt;/code&gt; 23:30&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;There is a CDI extension.  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Dukes&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DukesExtension
+implements Extension&lt;/code&gt;.&lt;/p&gt;
+
+                &lt;ul&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;processAnnotatedType(@Observes
+@WithAnnotations(Dukes.class)...&lt;/code&gt;&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Prints out a message to the logger for every such
+annotated class.&lt;/p&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;24:10 Now does the namespace change&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;Uses the aforementioned IntelliJ Idea tool support.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;&lt;strong&gt;This is why he added the EE 9 and EE8 jars both.&lt;/strong&gt;&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Once he ran the tool, he can remove the EE8 jars.&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;24:50 That’s steps 1 and 2.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;If you are using XML config, you have to pay attention to that.&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;He has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;persistence.xml&lt;/code&gt;.  Uses the JCP namespace.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;23:58 Replace &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcp.org&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jakarta.ee&lt;/code&gt;.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Also change the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;schemaLocation&lt;/code&gt;&lt;/p&gt;
+
+                &lt;ul&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;version number&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jcp.org&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jakarta.ee&lt;/code&gt;&lt;/p&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;version number in xml &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;version&lt;/code&gt; attribute.&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;ol&gt;
+              &lt;li&gt;Properties&lt;/li&gt;
+            &lt;/ol&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;he has these in his &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;persistence.xml&lt;/code&gt; file.  In his case
+this is for drop and create of the table.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;ol&gt;
+              &lt;li&gt;Rename bootstrapping files&lt;/li&gt;
+            &lt;/ol&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;CDI bootstrapping file
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;META-INF/services/javax.enterprise.inject.spi.Extension&lt;/code&gt;&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Rename the file to jakarta.enterprise….&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;ol&gt;
+              &lt;li&gt;Verify data and dynamic content. 28:00  Runs it in GlassFish 6
+(EE9) In his case, it’s the text in the database. He updates
+the database using some table editor in IntelliJ Idea. Reloads
+the page.&lt;/li&gt;
+            &lt;/ol&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;EE9 supports Java 17.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Updates the pom.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Let’s use some Java 17 features as well.&lt;/p&gt;
+
+                &lt;ul&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;How about records? 31:27&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Lets us avoid exposing our database architecture in the
+API.&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Creates &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DukesGreetingRecord&lt;/code&gt;. 31:49&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;In the business logic, use a mapper, map it from the
+greeting to a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new DukesGreetingRecord&lt;/code&gt; populates using
+the getters.&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Are we done? 33:29.  No.  It’ came up empty.  Why?&lt;/p&gt;
+
+                    &lt;ul&gt;
+                      &lt;li&gt;
+                        &lt;p&gt;JSON Binding is expecting a Java Bean.&lt;/p&gt;
+                      &lt;/li&gt;
+                      &lt;li&gt;
+                        &lt;p&gt;It must have a getter.  Records don’t have
+getters. Records are not Java Beans.&lt;/p&gt;
+                      &lt;/li&gt;
+                      &lt;li&gt;
+                        &lt;p&gt;Simplest thing is to change the name of the fields in
+the record: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getDate&lt;/code&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMessage&lt;/code&gt;.&lt;/p&gt;
+                      &lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Let’s upgrade it to EE 10.&lt;/p&gt;
+
+                &lt;ul&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Very simple.&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;Update the pom dependency from 9 to 10.&lt;/p&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;But is it? No. When running he got a servlet exception.&lt;/p&gt;
+
+                    &lt;ul&gt;
+                      &lt;li&gt;
+                        &lt;p&gt;Has to do with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;beans.xml&lt;/code&gt; stuff.&lt;/p&gt;
+                      &lt;/li&gt;
+                      &lt;li&gt;
+                        &lt;p&gt;Adds a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;beans.xml&lt;/code&gt;. Make sure it’s
+version 4. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bean-discovery-mode&lt;/code&gt; should be
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;annotated&lt;/code&gt;.  This is the default, so you can remove
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bean-discovory-mode&lt;/code&gt;.&lt;/p&gt;
+                      &lt;/li&gt;
+                      &lt;li&gt;
+                        &lt;p&gt;Must also update the schema namespace version.&lt;/p&gt;
+                      &lt;/li&gt;
+                    &lt;/ul&gt;
+                  &lt;/li&gt;
+                  &lt;li&gt;
+                    &lt;p&gt;37:44 So great! Can remove the ugly hack we did with the record.  Set
+record fields back to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;message&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;date&lt;/code&gt;.&lt;/p&gt;
+                  &lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;If you are relying on the “no beans.xml” or “empty beans.xml”
+behavior, then you must take the action.  If you have a
+beans.xml, have it set at annotated, you’re fine.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;38:37 the core profile.&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Takes this application, strips away a bit&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Removes database&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Makes the CDI extension “build compatibile” rather than
+“portable” extension.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;39:12.  Implements the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spi.Extension&lt;/code&gt; interface. Has
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;processAnnotatedType&lt;/code&gt; method.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;New API in core has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spi.BuildCompatibileExtension&lt;/code&gt;&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;Annotations for the different lifecycle events.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;40:11 Recommendation. If you are running your app in a
+thing that supports full CDI, stick to the portable
+extension. Only if you are running in a CDI lite
+environment should you consider this kind of extension.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Enhancement&lt;/code&gt; annotation.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;Have
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;META-INF/services/jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension&lt;/code&gt;
+identify the extension. This is the package name of the
+interface, so you don’t have to remember the long name.&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Runs it in WildFly 27.0.0.Alpha1&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Payara Cloud 42:07&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Upload the application, run it.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Gives the PaaS value prop: someone else manages the complexity of
+Kubernetes.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;44:30 We’re now thinking of Jakarta EE 11 Q.6&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;Discussion: what Java SE level should we base Jakarta EE 11 on?&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Raise to 17?&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Raise to 21?&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;How to handle the removal of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SecurityManager&lt;/code&gt;.&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Users will not notice.&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Impls will have to change.&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;New spec: Jakarta Config (finally!)&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;https://jakarta.ee/specifications/config/&lt;/p&gt;
+
+            &lt;ul&gt;
+              &lt;li&gt;
+                &lt;p&gt;More or less based on MicroProfile Config.  Will be
+compatible with it.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;When Jakarta Config comes out, MicroProfile Config will
+probably be retired.&lt;/p&gt;
+              &lt;/li&gt;
+              &lt;li&gt;
+                &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ConfigProperty&lt;/code&gt;&lt;/p&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Possible New spec: Jakarta MVC&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;https://jakarta.ee/specifications/mvc/&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Server side rendering&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Runs on WildFly, GlassFish, anything with Jersey&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Possible new spec: Jakarta NoSQL&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;https://jakarta.ee/specifications/nosql/&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Possible new spec: Jakarta RPC&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Standardizes gRPC within Jakarta EE&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;https://jakarta.ee/specifications/rpc/&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Possible new spec: Jakarta Data&lt;/p&gt;
+
+        &lt;ul&gt;
+          &lt;li&gt;
+            &lt;p&gt;Standardizes the repository pattern for data access&lt;/p&gt;
+          &lt;/li&gt;
+          &lt;li&gt;
+            &lt;p&gt;Spring Data, but for Jakarta EE&lt;/p&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;Cloud functions?&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Summary 48:00&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">50 minutes https://www.youtube.com/watch?v=8ke0kPrg9qc</summary></entry><entry><title type="html">Using git worktree and a script to copy commits from one branch to another in the same repo</title><link href="/blog/2022/07/19/git-worktree.html" rel="alternate" type="text/html" title="Using git worktree and a script to copy commits from one branch to another in the same repo" /><published>2022-07-19T09:25:00-04:00</published><updated>2022-07-19T09:25:00-04:00</updated><id>/blog/2022/07/19/git-worktree</id><content type="html" xml:base="/blog/2022/07/19/git-worktree.html">&lt;p&gt;This brief post shows how to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git worktree&lt;/code&gt; to perform development work multiple branches of your local clone of a remote git repository, such as a repository on GitHub.&lt;br /&gt;
 The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;worktree&lt;/code&gt; git sub-command allows you to “Manage multiple working trees”. If you want to know everything there is to know about &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;worktree&lt;/code&gt;, you can view the manual page by doing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;man git-worktree&lt;/code&gt;.  Yes, that’s right, the literal string &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git-worktree&lt;/code&gt;.  All git sub-commands have their own manual page which you can access with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;man git-subcommandname&lt;/code&gt;.  Try it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;man git-branch&lt;/code&gt;, for example.&lt;/p&gt;
 
 &lt;p&gt;The post assumes makes the following assumptions.&lt;/p&gt;
@@ -1033,12 +1995,4 @@ line to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;e
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;az logout
 az login
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">If you ever run into a problem with az login opening a Windows browser to complete the login, this blog post may help. I ran into this today. When I did az logout followed by az login I saw the following, and the login did not complete succesfully.</summary></entry><entry><title type="html">Letter to the Editor: Economist 2020-07-11: Leader: The New Ideology of Race</title><link href="/blog/2020/07/12/economist-race-leader-letter-to-editor.html" rel="alternate" type="text/html" title="Letter to the Editor: Economist 2020-07-11: Leader: The New Ideology of Race" /><published>2020-07-12T12:50:00-04:00</published><updated>2020-07-12T12:50:00-04:00</updated><id>/blog/2020/07/12/economist-race-leader-letter-to-editor</id><content type="html" xml:base="/blog/2020/07/12/economist-race-leader-letter-to-editor.html">&lt;hr /&gt;
-
-&lt;p&gt;Your leader “&lt;a href=&quot;/blog/assets/20200711-economist-leader-new-ideology-of-race.pdf&quot;&gt;The New Ideology of Race&lt;/a&gt;” asserts, “Liberalism thrives on a marketplace of ideas…[and] uses facts and evidence, tested in debate, to help the weak take on the strong.”  Unfortunately, the corresponding new ideology of the American right has subverted liberalism, successfully equating it with ill-defined labels such as Antifa, and completely destroying the very concept of “facts and evidence”.  As for “debate”, that requires good faith, and the American right has defined good faith as weakness.  The proponents of the “New Ideology of Race” understand this reality.  To slow the slide toward irrelevance, “Liberalism” must understand it as well.&lt;/p&gt;
-
-&lt;p&gt;Edward Burns&lt;/p&gt;
-
-&lt;p&gt;Altamonte Springs, FL USA&lt;/p&gt;
-
-&lt;hr /&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">If you ever run into a problem with az login opening a Windows browser to complete the login, this blog post may help. I ran into this today. When I did az logout followed by az login I saw the following, and the login did not complete succesfully.</summary></entry></feed>

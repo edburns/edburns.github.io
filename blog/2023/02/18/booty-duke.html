@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Notes from watching Ivar Grimstad Devoxx Belgium 2022 Jakarta EE 10 presentation</title>
+  <meta name="description" content="50 minutes https://www.youtube.com/watch?v=8ke0kPrg9qc">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2023/02/18/booty-duke.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Notes from watching Ivar Grimstad Devoxx Belgium 2022 Jakarta EE 10 presentation</h1>
+    <p class="post-meta"><time datetime="2023-02-18T17:10:00-05:00" itemprop="datePublished">Feb 18, 2023</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>50 minutes https://www.youtube.com/watch?v=8ke0kPrg9qc</p>
+
+<p>Simplicity for Modern and Lightweight Cloud Applications</p>
+
+<ul>
+  <li>
+    <p>Out on 2022-09-22.</p>
+
+    <ul>
+      <li>Community driven, modernized, simplified, lightweight.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Specs and Impls</p>
+
+    <ul>
+      <li>
+        <p>Spec, API, TCK</p>
+      </li>
+      <li>
+        <p>Compatibile Impls</p>
+      </li>
+      <li>
+        <p>We need at least one open source impl.</p>
+      </li>
+      <li>
+        <p>Other impls can be fine, not open source.</p>
+      </li>
+      <li>
+        <p>There is no “official” “reference implementation”</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Lots of specs, more than half received updates in EE 10</p>
+
+    <ul>
+      <li>
+        <p>About half of these have a “.0” version number. In our impl of
+SemVer, the .0 means it may have potentially breaking changes.</p>
+
+        <p>Also a bit of marketing to signal there are big noteworthy
+changes. (I like this idea)</p>
+      </li>
+      <li>
+        <p>Authorization 2.1</p>
+      </li>
+      <li>
+        <p>Activation 2.1</p>
+      </li>
+      <li>
+        <p>Batch 2.1</p>
+      </li>
+      <li>
+        <p>Connectors 2.1</p>
+      </li>
+      <li>
+        <p>Mail 2.1</p>
+      </li>
+      <li>
+        <p>Messaging 3.1</p>
+      </li>
+      <li>
+        <p>Authentication 3.0</p>
+      </li>
+      <li>
+        <p>Concurrency 3.0</p>
+      </li>
+      <li>
+        <p>CDI 4.0</p>
+      </li>
+      <li>
+        <p>EL 5.0</p>
+      </li>
+      <li>
+        <p>CDI 4.0</p>
+      </li>
+      <li>
+        <p>Faces 4.0</p>
+      </li>
+      <li>
+        <p>Security 3.0</p>
+      </li>
+      <li>
+        <p>Servlet 6.0</p>
+      </li>
+      <li>
+        <p>(J)STL 3.0</p>
+      </li>
+      <li>
+        <p>(J)SP 3.1</p>
+      </li>
+      <li>
+        <p>(JPA)Persistence 3.1</p>
+      </li>
+      <li>
+        <p>WebSocket 2.1</p>
+      </li>
+      <li>
+        <p>Restful Web Services 3.1</p>
+      </li>
+      <li>
+        <p>JSONP 2.1</p>
+      </li>
+      <li>
+        <p>JSONB 3.0</p>
+      </li>
+      <li>
+        <p>Annotations 2.1</p>
+      </li>
+      <li>
+        <p>Interceptors 2.1</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Net new</p>
+
+    <ul>
+      <li>
+        <p>But not really new.  Because it’s a part of CDI, or a sub spec.</p>
+      </li>
+      <li>
+        <p>CDI Lite 4.0</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Not updated</p>
+
+    <ul>
+      <li>
+        <p>EJB 4.0</p>
+      </li>
+      <li>
+        <p>Bean Validation 3.0</p>
+      </li>
+      <li>
+        <p>Debugging support 2.0</p>
+      </li>
+      <li>
+        <p>EJB Lite 4.0</p>
+      </li>
+      <li>
+        <p>Managed Beans 2.0</p>
+      </li>
+      <li>
+        <p>Transactions 2.0</p>
+      </li>
+      <li>
+        <p>DI 2.0</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>We don’t need to update every spec every time.</p>
+  </li>
+  <li>
+    <p>Ivar subtracts the “enterprisy” and you are left with the “Web
+Profile”.  We’ve had a web profile since EE6. Nothing new.</p>
+
+    <p>Useful as a smaller platform.</p>
+
+    <ul>
+      <li>
+        <p>Auth</p>
+      </li>
+      <li>
+        <p>Concurrency</p>
+      </li>
+      <li>
+        <p>CDI</p>
+      </li>
+      <li>
+        <p>EL</p>
+      </li>
+      <li>
+        <p>Faces</p>
+      </li>
+      <li>
+        <p>Security</p>
+      </li>
+      <li>
+        <p>Servlet</p>
+      </li>
+      <li>
+        <p>STL</p>
+      </li>
+      <li>
+        <p>Persistence</p>
+      </li>
+      <li>
+        <p>JSP</p>
+      </li>
+      <li>
+        <p>WebSocket</p>
+      </li>
+      <li>
+        <p>BeanVal</p>
+      </li>
+      <li>
+        <p>Debugging</p>
+      </li>
+      <li>
+        <p>EJB lite</p>
+      </li>
+      <li>
+        <p>Managed beans</p>
+      </li>
+      <li>
+        <p>JTA</p>
+      </li>
+      <li>
+        <p>JAX-RS</p>
+      </li>
+      <li>
+        <p>JSONP</p>
+      </li>
+      <li>
+        <p>JSONB</p>
+      </li>
+      <li>
+        <p>Annotations</p>
+      </li>
+      <li>
+        <p>Interceptors</p>
+      </li>
+      <li>
+        <p>DI</p>
+      </li>
+      <li>
+        <p>CDI Lite</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Take away the Webby specs, you get Core Profile. Brand new. EE10.</p>
+
+    <ul>
+      <li>
+        <p>Enables impls to be certified as EE compatible</p>
+      </li>
+      <li>
+        <p>Headless services, or microservices, if you like.</p>
+      </li>
+      <li>
+        <p>JAX-RS</p>
+      </li>
+      <li>
+        <p>JSONP</p>
+      </li>
+      <li>
+        <p>JSONB</p>
+      </li>
+      <li>
+        <p>Annotations</p>
+      </li>
+      <li>
+        <p>Interceptors</p>
+      </li>
+      <li>
+        <p>DI</p>
+      </li>
+      <li>
+        <p>CDI Lite 4.0</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Raise the API source level from 8 to 11</p>
+
+    <ul>
+      <li>
+        <p>Why not go further?</p>
+      </li>
+      <li>
+        <p>There were not many specs that needed Java features beyond SE 11.</p>
+      </li>
+      <li>
+        <p>This allows us to have a broader appeal.</p>
+      </li>
+      <li>
+        <p><strong>TCK runs on 11 or 17.</strong></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Security 3.0</p>
+
+    <ul>
+      <li>
+        <p>https://jakarta.ee/specifications/security/</p>
+      </li>
+      <li>
+        <p>Add support for OPenID Connect!</p>
+      </li>
+      <li>
+        <p>Updates to Jakarta Authorization, and Authentication</p>
+      </li>
+      <li>
+        <p>This is a foundation for future work (Q.2 Should this be in the
+EE11 talk?)</p>
+      </li>
+      <li>
+        <p>07:22 Code example for OpenID Connect Authentication. It’s an
+annotation. <code class="language-plaintext highlighter-rouge">OpenIdAuthenticationMechanismDefinition</code> (love the
+long name, very precise)</p>
+
+        <ul>
+          <li>Where do you put the annotation?</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Persistence 3.1</p>
+
+    <ul>
+      <li>
+        <p>https://jakarta.ee/specifications/persistence/</p>
+      </li>
+      <li>
+        <p>Small work interetsed by the community</p>
+      </li>
+      <li>
+        <p>Add UUIDs as a basic java data type!</p>
+
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">GenerationType=UUID</code></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>JAX RS 3.1</p>
+
+    <ul>
+      <li>
+        <p>https://jakarta.ee/specifications/restful-ws/</p>
+      </li>
+      <li>
+        <p>Community features, requested a long time.</p>
+      </li>
+      <li>
+        <p>Initially wanted a 4.0 release. But went with 3.1 for now.
+Planning a 4.0 release for EE 11 (Q.3 this seems definitely like
+what we want in the talk).</p>
+      </li>
+      <li>
+        <p>Multipart form data support.</p>
+
+        <ul>
+          <li>RestEASY has this.  JAX-RS catches up now.</li>
+        </ul>
+      </li>
+      <li>
+        <p>Java SE Bootstrap API</p>
+
+        <ul>
+          <li>
+            <p>Lets us run JAX-RS outside of an app server.  (Q.4: this seems
+like a great thing to show with App Service Java SE! What about
+functions?)</p>
+          </li>
+          <li>
+            <p>09:51 Ivar shows a demo https://github.com/ivargrimstad/jakartaee-duke</p>
+
+            <ul>
+              <li>
+                <p>booty-duke https://soundcloud.com/edburns00/booty-duke-m4a</p>
+              </li>
+              <li>
+                <p>Note that we have explicit dependencies on API and
+IMPL. There is no concept of “provided” scope, where you can
+just depend on the API.</p>
+              </li>
+              <li>
+                <p>Uses Maven Assembly plugin</p>
+              </li>
+              <li>
+                <p>Needs a main method.</p>
+
+                <ol>
+                  <li>
+                    <p>Add some configuration: 11:33. Port and root
+path. That’s the minimum. There are sensible defaults.
+Other options available.</p>
+                  </li>
+                  <li>
+                    <p>Instantiate the app.</p>
+                  </li>
+                  <li>
+                    <p>Start it. 12:21</p>
+
+                    <ul>
+                      <li>
+                        <p><code class="language-plaintext highlighter-rouge">SeBootstrap.start()</code></p>
+
+                        <ul>
+                          <li>
+                            <p>Pass in app and config.</p>
+                          </li>
+                          <li>
+                            <p>`thenAccept’</p>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <p><code class="language-plaintext highlighter-rouge">Thread.currentThread().join()</code></p>
+                      </li>
+                    </ul>
+                  </li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Run it locally.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Core Profile</p>
+
+    <ul>
+      <li>
+        <p>Reason: target smaller runtimes.</p>
+      </li>
+      <li>
+        <p>Limit the amount of specs required to implement it.</p>
+      </li>
+      <li>
+        <p>3 compatible impls</p>
+
+        <ul>
+          <li>
+            <p>Open Liberty</p>
+          </li>
+          <li>
+            <p>Payara</p>
+          </li>
+          <li>
+            <p>WildFly</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Potentially compatible impls</p>
+
+        <ul>
+          <li>
+            <p>Helidon</p>
+          </li>
+          <li>
+            <p>Quarkus</p>
+          </li>
+          <li>
+            <p>Micronaut</p>
+          </li>
+          <li>
+            <p>Helidon and Quarkus have said they will apply for core profile
+compatibility Q.5: What can I say about this in the talk?)</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>CDI Lite</p>
+
+        <ul>
+          <li>
+            <p>Enables CDI to be used in GraalVM.</p>
+          </li>
+          <li>
+            <p>Make CDI dynamic at build time, not run time.</p>
+          </li>
+          <li>
+            <p>Create a new extensions API. Portable extensions is too late.</p>
+          </li>
+          <li>
+            <p>Changes how the empty <code class="language-plaintext highlighter-rouge">beans.xml</code> behaves.</p>
+
+            <ul>
+              <li>
+                <p>Prior: empty beans.xml turns on CDI. Everything is injectable.</p>
+              </li>
+              <li>
+                <p>Now: beans.xml with only top level XML turns on CDI, but
+Only things that that have the Injectable annotation are
+injectable.</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>17:10 Taking a step back.</p>
+
+    <ul>
+      <li>
+        <p>To EE8, how to get to 9.1 and 10.</p>
+      </li>
+      <li>
+        <p>If going from 8 to 10, do take the 9 step in between. You don’t
+need to go to prod with the 9 version, but it’s good to suss out
+problems: new namespace.</p>
+      </li>
+      <li>
+        <p>8 -&gt; 9 big thing: namespace change</p>
+
+        <ul>
+          <li>
+            <p>javax.* to jakarta.*</p>
+          </li>
+          <li>
+            <p>Why do I care? Because all the things: Spring, Tomcat, Jetty,
+Hibernate, are moving to jakarta namespace.</p>
+          </li>
+          <li>
+            <p>It’s usually just a import change.</p>
+          </li>
+          <li>
+            <p>Tools: Changes the bytecode for you. Can use it at build time
+or runtime. Not recommended to go to th long time.</p>
+
+            <ul>
+              <li>
+                <p>Eclipse transformer</p>
+              </li>
+              <li>
+                <p>Apache Tomcat Migration Tool</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>Tools: IDE help</p>
+
+            <ul>
+              <li>
+                <p>IntelliJ Idea has a Java EE to Jakarta EE thing.</p>
+              </li>
+              <li>
+                <p>A bit smarter than just a regexp action.</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>Manual 20:26</p>
+
+            <ol>
+              <li>
+                <p>Update Jakarta EE version in pom.xml</p>
+              </li>
+              <li>
+                <p>Fix the imports</p>
+              </li>
+              <li>
+                <p>XML schema namespaces</p>
+              </li>
+              <li>
+                <p>Rename properties prefixed with javax.</p>
+              </li>
+              <li>
+                <p>Rename bootstrapping files</p>
+              </li>
+              <li>
+                <p>Verify data and dynamic content</p>
+              </li>
+            </ol>
+
+            <p>See https://github.com/ivargrimstad/jakartaee-duke/blob/master/complete-duke/README.adoc</p>
+          </li>
+          <li>
+            <p>This is a three tier helloworld, to show the migration steps.</p>
+
+            <ul>
+              <li>
+                <p>Starts with EE and SE 8 apis.</p>
+              </li>
+              <li>
+                <p>Adds EE 8 and 9 to the classpath.  Both of them!</p>
+              </li>
+              <li>
+                <p>App is the same as the booty-duke.</p>
+              </li>
+              <li>
+                <p>Rest resource.  “hello” path, produces message. Is a
+stateless bean. 23:00</p>
+
+                <ul>
+                  <li>Finds first message from injected stateful session bean,
+if not there, hard codes the message value.</li>
+                </ul>
+              </li>
+              <li>
+                <p>Stateful session bean uses the entity manager from
+Persistence.</p>
+
+                <ul>
+                  <li><code class="language-plaintext highlighter-rouge">findAll</code> method creates a <code class="language-plaintext highlighter-rouge">CriteriaQuery</code> that basically
+does <code class="language-plaintext highlighter-rouge">SELECT * FROM GREETINGTABLE</code>.</li>
+                </ul>
+              </li>
+              <li>
+                <p><code class="language-plaintext highlighter-rouge">@Entity DukesGreeting</code> 23:30</p>
+              </li>
+              <li>
+                <p>There is a CDI extension.  <code class="language-plaintext highlighter-rouge">@Dukes</code>. <code class="language-plaintext highlighter-rouge">DukesExtension
+implements Extension</code>.</p>
+
+                <ul>
+                  <li>
+                    <p><code class="language-plaintext highlighter-rouge">processAnnotatedType(@Observes
+@WithAnnotations(Dukes.class)...</code></p>
+                  </li>
+                  <li>
+                    <p>Prints out a message to the logger for every such
+annotated class.</p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>24:10 Now does the namespace change</p>
+
+            <ul>
+              <li>
+                <p>Uses the aforementioned IntelliJ Idea tool support.</p>
+              </li>
+              <li>
+                <p><strong>This is why he added the EE 9 and EE8 jars both.</strong></p>
+              </li>
+              <li>
+                <p>Once he ran the tool, he can remove the EE8 jars.</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>24:50 That’s steps 1 and 2.</p>
+          </li>
+          <li>
+            <p>If you are using XML config, you have to pay attention to that.</p>
+
+            <ul>
+              <li>
+                <p>He has a <code class="language-plaintext highlighter-rouge">persistence.xml</code>.  Uses the JCP namespace.</p>
+              </li>
+              <li>
+                <p>23:58 Replace <code class="language-plaintext highlighter-rouge">jcp.org</code> with <code class="language-plaintext highlighter-rouge">jakarta.ee</code>.</p>
+              </li>
+              <li>
+                <p>Also change the <code class="language-plaintext highlighter-rouge">schemaLocation</code></p>
+
+                <ul>
+                  <li>
+                    <p>version number</p>
+                  </li>
+                  <li>
+                    <p><code class="language-plaintext highlighter-rouge">jcp.org</code> to <code class="language-plaintext highlighter-rouge">jakarta.ee</code></p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>version number in xml <code class="language-plaintext highlighter-rouge">version</code> attribute.</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <ol>
+              <li>Properties</li>
+            </ol>
+
+            <ul>
+              <li>he has these in his <code class="language-plaintext highlighter-rouge">persistence.xml</code> file.  In his case
+this is for drop and create of the table.</li>
+            </ul>
+          </li>
+          <li>
+            <ol>
+              <li>Rename bootstrapping files</li>
+            </ol>
+
+            <ul>
+              <li>
+                <p>CDI bootstrapping file
+<code class="language-plaintext highlighter-rouge">META-INF/services/javax.enterprise.inject.spi.Extension</code></p>
+              </li>
+              <li>
+                <p>Rename the file to jakarta.enterprise….</p>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <ol>
+              <li>Verify data and dynamic content. 28:00  Runs it in GlassFish 6
+(EE9) In his case, it’s the text in the database. He updates
+the database using some table editor in IntelliJ Idea. Reloads
+the page.</li>
+            </ol>
+
+            <ul>
+              <li>
+                <p>EE9 supports Java 17.</p>
+              </li>
+              <li>
+                <p>Updates the pom.</p>
+              </li>
+              <li>
+                <p>Let’s use some Java 17 features as well.</p>
+
+                <ul>
+                  <li>
+                    <p>How about records? 31:27</p>
+                  </li>
+                  <li>
+                    <p>Lets us avoid exposing our database architecture in the
+API.</p>
+                  </li>
+                  <li>
+                    <p>Creates <code class="language-plaintext highlighter-rouge">DukesGreetingRecord</code>. 31:49</p>
+                  </li>
+                  <li>
+                    <p>In the business logic, use a mapper, map it from the
+greeting to a <code class="language-plaintext highlighter-rouge">new DukesGreetingRecord</code> populates using
+the getters.</p>
+                  </li>
+                  <li>
+                    <p>Are we done? 33:29.  No.  It’ came up empty.  Why?</p>
+
+                    <ul>
+                      <li>
+                        <p>JSON Binding is expecting a Java Bean.</p>
+                      </li>
+                      <li>
+                        <p>It must have a getter.  Records don’t have
+getters. Records are not Java Beans.</p>
+                      </li>
+                      <li>
+                        <p>Simplest thing is to change the name of the fields in
+the record: <code class="language-plaintext highlighter-rouge">getDate</code> <code class="language-plaintext highlighter-rouge">getMessage</code>.</p>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>Let’s upgrade it to EE 10.</p>
+
+                <ul>
+                  <li>
+                    <p>Very simple.</p>
+                  </li>
+                  <li>
+                    <p>Update the pom dependency from 9 to 10.</p>
+                  </li>
+                  <li>
+                    <p>But is it? No. When running he got a servlet exception.</p>
+
+                    <ul>
+                      <li>
+                        <p>Has to do with the <code class="language-plaintext highlighter-rouge">beans.xml</code> stuff.</p>
+                      </li>
+                      <li>
+                        <p>Adds a <code class="language-plaintext highlighter-rouge">beans.xml</code>. Make sure it’s
+version 4. <code class="language-plaintext highlighter-rouge">bean-discovery-mode</code> should be
+<code class="language-plaintext highlighter-rouge">annotated</code>.  This is the default, so you can remove
+<code class="language-plaintext highlighter-rouge">bean-discovory-mode</code>.</p>
+                      </li>
+                      <li>
+                        <p>Must also update the schema namespace version.</p>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <p>37:44 So great! Can remove the ugly hack we did with the record.  Set
+record fields back to <code class="language-plaintext highlighter-rouge">message</code> and <code class="language-plaintext highlighter-rouge">date</code>.</p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>If you are relying on the “no beans.xml” or “empty beans.xml”
+behavior, then you must take the action.  If you have a
+beans.xml, have it set at annotated, you’re fine.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>38:37 the core profile.</p>
+
+    <ul>
+      <li>
+        <p>Takes this application, strips away a bit</p>
+
+        <ul>
+          <li>
+            <p>Removes database</p>
+          </li>
+          <li>
+            <p>Makes the CDI extension “build compatibile” rather than
+“portable” extension.</p>
+          </li>
+          <li>
+            <p>39:12.  Implements the <code class="language-plaintext highlighter-rouge">spi.Extension</code> interface. Has
+<code class="language-plaintext highlighter-rouge">processAnnotatedType</code> method.</p>
+          </li>
+          <li>
+            <p>New API in core has <code class="language-plaintext highlighter-rouge">spi.BuildCompatibileExtension</code></p>
+
+            <ul>
+              <li>
+                <p>Annotations for the different lifecycle events.</p>
+              </li>
+              <li>
+                <p>40:11 Recommendation. If you are running your app in a
+thing that supports full CDI, stick to the portable
+extension. Only if you are running in a CDI lite
+environment should you consider this kind of extension.</p>
+              </li>
+              <li>
+                <p>Use the <code class="language-plaintext highlighter-rouge">@Enhancement</code> annotation.</p>
+              </li>
+              <li>
+                <p>Have
+<code class="language-plaintext highlighter-rouge">META-INF/services/jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension</code>
+identify the extension. This is the package name of the
+interface, so you don’t have to remember the long name.</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Runs it in WildFly 27.0.0.Alpha1</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Payara Cloud 42:07</p>
+
+    <ul>
+      <li>
+        <p>Upload the application, run it.</p>
+      </li>
+      <li>
+        <p>Gives the PaaS value prop: someone else manages the complexity of
+Kubernetes.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>44:30 We’re now thinking of Jakarta EE 11 Q.6</p>
+
+    <ul>
+      <li>
+        <p>Discussion: what Java SE level should we base Jakarta EE 11 on?</p>
+
+        <ul>
+          <li>
+            <p>Raise to 17?</p>
+          </li>
+          <li>
+            <p>Raise to 21?</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>How to handle the removal of the <code class="language-plaintext highlighter-rouge">SecurityManager</code>.</p>
+
+        <ul>
+          <li>
+            <p>Users will not notice.</p>
+          </li>
+          <li>
+            <p>Impls will have to change.</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>New spec: Jakarta Config (finally!)</p>
+
+        <ul>
+          <li>
+            <p>https://jakarta.ee/specifications/config/</p>
+
+            <ul>
+              <li>
+                <p>More or less based on MicroProfile Config.  Will be
+compatible with it.</p>
+              </li>
+              <li>
+                <p>When Jakarta Config comes out, MicroProfile Config will
+probably be retired.</p>
+              </li>
+              <li>
+                <p><code class="language-plaintext highlighter-rouge">@ConfigProperty</code></p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Possible New spec: Jakarta MVC</p>
+
+        <ul>
+          <li>
+            <p>https://jakarta.ee/specifications/mvc/</p>
+          </li>
+          <li>
+            <p>Server side rendering</p>
+          </li>
+          <li>
+            <p>Runs on WildFly, GlassFish, anything with Jersey</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Possible new spec: Jakarta NoSQL</p>
+
+        <ul>
+          <li>https://jakarta.ee/specifications/nosql/</li>
+        </ul>
+      </li>
+      <li>
+        <p>Possible new spec: Jakarta RPC</p>
+
+        <ul>
+          <li>
+            <p>Standardizes gRPC within Jakarta EE</p>
+          </li>
+          <li>
+            <p>https://jakarta.ee/specifications/rpc/</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Possible new spec: Jakarta Data</p>
+
+        <ul>
+          <li>
+            <p>Standardizes the repository pattern for data access</p>
+          </li>
+          <li>
+            <p>Spring Data, but for Jakarta EE</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>Cloud functions?</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Summary 48:00</p>
+  </li>
+</ul>
+
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

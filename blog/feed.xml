@@ -1,5 +1,174 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-07-01T22:40:34-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Deploy Jakarta EE 10 and MicroProfile 6 on Azure with IBM Liberty on Azure Kubernetes Service (AKS)</title><link href="/blog/2023/05/26/liberty-aks-ee10-mp6.html" rel="alternate" type="text/html" title="Deploy Jakarta EE 10 and MicroProfile 6 on Azure with IBM Liberty on Azure Kubernetes Service (AKS)" /><published>2023-05-26T13:10:00-04:00</published><updated>2023-05-26T13:10:00-04:00</updated><id>/blog/2023/05/26/liberty-aks-ee10-mp6</id><content type="html" xml:base="/blog/2023/05/26/liberty-aks-ee10-mp6.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/deploy-jakarta-ee-10-and-microprofile-6-on-azure-with-ibm-liberty-on-azure-kubernetes-service-aks-5d63">dev.to</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-07-24T17:30:14-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Diagnose outbound database connection problems with Liberty on Azure</title><link href="/blog/2023/07/24/tcpdump-liberty-aks.html" rel="alternate" type="text/html" title="Diagnose outbound database connection problems with Liberty on Azure" /><published>2023-07-24T13:10:00-04:00</published><updated>2023-07-24T13:10:00-04:00</updated><id>/blog/2023/07/24/tcpdump-liberty-aks</id><content type="html" xml:base="/blog/2023/07/24/tcpdump-liberty-aks.html"><![CDATA[<p>Cross posted at <a href="">dev.to</a>.</p>
+
+<p>This self-contained blog post shows how you to use <code class="language-plaintext highlighter-rouge">tcpdump</code> to troubleshoot and diagnose outbound network connections from a local Liberty server to an Azure SQL Database.</p>
+
+<p>I was working on validating the steps in <a href="https://learn.microsoft.com/en-us/azure/aks/howto-deploy-java-liberty-app">Deploy a Java application with Open Liberty or WebSphere Liberty on an Azure Kubernetes Service (AKS) cluster</a> for use in an upcoming conference workshop. The workshop students would be given access to their own Ubuntu VMs and also their own Azure credits to execute the steps of the workshop. This is a very common pattern I have used many times in the past.</p>
+
+<p>While preparing the VM, the hosting environment for the VM started having trouble connecting to the external Internet, and thus could not access the Azure SQL Database. When starting <code class="language-plaintext highlighter-rouge">mvn liberty:run</code>, I observed this error.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>INFO] <span class="o">[</span>ERROR   <span class="o">]</span> CWWJP0015E: An error occurred <span class="k">in </span>the org.eclipse.persistence.jpa.PersistenceProvider persistence provider when it attempted to create the container entity manager factory <span class="k">for </span>the coffees persistence unit. The following error occurred: Exception <span class="o">[</span>EclipseLink-4002] <span class="o">(</span>Eclipse Persistence Services - 2.7.11.v20220804-52dea2a3c0<span class="o">)</span>: org.eclipse.persistence.exceptions.DatabaseException
+<span class="o">[</span>INFO] Internal Exception: java.sql.SQLException: The TCP/IP connection to the host rwo010720nxf.database.windows.net, port 1433 has failed. Error: <span class="s2">"Connect timed out. Verify the connection properties. Make sure that an instance of SQL Server is running on the host and accepting TCP/IP connections at the port. Make sure that TCP connections to the port are not blocked by a firewall."</span><span class="nb">.</span> DSRA0010E: SQL State <span class="o">=</span> 08S01, Error Code <span class="o">=</span> 0
+<span class="o">[</span>INFO] Error Code: 0
+</code></pre></div></div>
+
+<p>However, when I ran <code class="language-plaintext highlighter-rouge">mvn liberty:run</code> on my local laptop with the same sample app code, I observed it was able to successfully connect to the database. Before concluding it was <a href="https://hitchhikers.fandom.com/wiki/Somebody_Else%27s_Problem_Field">Somebody Else’s Problem</a>, I wanted to rule out any local firewall configuration on the VM.</p>
+
+<p>This was a matter of asking <code class="language-plaintext highlighter-rouge">firewall-cmd</code> to <code class="language-plaintext highlighter-rouge">--list-all</code> rules.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># firewall-cmd --list-all</span>
+  target: default
+  icmp-block-inversion: no
+  interfaces: ens192
+  sources: 
+  services: cockpit dhcpv6-client ssh
+  ports: 
+  protocols: 
+  forward: no
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules: 
+</code></pre></div></div>
+
+<p>Looks like no rules at all. That’s not it.</p>
+
+<p>Let’s look at outbound traffic on TCP port 1433.</p>
+
+<p>I forget where I found this tip, so I am recording it in this blog post for my own later referral. Yes, it’s obvious: <code class="language-plaintext highlighter-rouge">tcpdump</code>. There are probably better and more efficient ways to do this. But I work on so many different things at so many different levels of abstraction, I can’t remember the specifics. I have learned from rock star programmers I know: they accept their limitations and write things down.</p>
+
+<h3 id="tcpdump-on-the-vm">tcpdump on the VM</h3>
+
+<p>First we need to identify the network interface name. That’s <code class="language-plaintext highlighter-rouge">ifconfig -a</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>ibmuser@student java-app]<span class="nv">$ </span>ifconfig <span class="nt">-a</span>
+docker0: <span class="nv">flags</span><span class="o">=</span>4099&lt;UP,BROADCAST,MULTICAST&gt;  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:14:3c:39:f9  txqueuelen 0  <span class="o">(</span>Ethernet<span class="o">)</span>
+        RX packets 0  bytes 0 <span class="o">(</span>0.0 B<span class="o">)</span>
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 <span class="o">(</span>0.0 B<span class="o">)</span>
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens192: <span class="nv">flags</span><span class="o">=</span>4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 10.0.10.2  netmask 255.255.255.0  broadcast 10.0.10.255
+        inet6 fe80::250:56ff:feb4:550c  prefixlen 64  scopeid 0x20&lt;<span class="nb">link</span><span class="o">&gt;</span>
+        ether 00:50:56:b4:55:0c  txqueuelen 1000  <span class="o">(</span>Ethernet<span class="o">)</span>
+        RX packets 591136  bytes 846561034 <span class="o">(</span>807.3 MiB<span class="o">)</span>
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 21664  bytes 2609977 <span class="o">(</span>2.4 MiB<span class="o">)</span>
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: <span class="nv">flags</span><span class="o">=</span>73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+        loop  txqueuelen 1000  <span class="o">(</span>Local Loopback<span class="o">)</span>
+        RX packets 41  bytes 2429 <span class="o">(</span>2.3 KiB<span class="o">)</span>
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 41  bytes 2429 <span class="o">(</span>2.3 KiB<span class="o">)</span>
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre></div></div>
+
+<p>Good news, that one is obvious. It must be <code class="language-plaintext highlighter-rouge">ens192</code>.</p>
+
+<p>Then, run the magic <code class="language-plaintext highlighter-rouge">tcpdump -i ens192 port 1433</code>. This will hang indefinitely. This will show nothing untill some traffic appears on port 1433.</p>
+
+<p>In a separate terminal, restart the app with <code class="language-plaintext highlighter-rouge">mvn liberty:run</code>. This caused the following output to appear in the <code class="language-plaintext highlighter-rouge">tcpdump</code> window.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tcpdump <span class="nt">-i</span> ens192 port 1433
+dropped privs to tcpdump
+tcpdump: verbose output suppressed, use <span class="nt">-v</span> or <span class="nt">-vv</span> <span class="k">for </span>full protocol decode
+listening on ens192, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>, capture size 262144 bytes
+12:43:36.963152 IP student.51002 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>2117028828, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330981707 ecr 0,nop,wscale 7], length 0
+12:43:37.563057 IP student.51008 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>3629156152, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330982307 ecr 0,nop,wscale 7], length 0
+12:43:38.626345 IP student.51008 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>3629156152, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330983371 ecr 0,nop,wscale 7], length 0
+12:43:40.674361 IP student.51008 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>3629156152, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330985419 ecr 0,nop,wscale 7], length 0
+12:43:41.521620 IP student.51012 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>384691879, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330986266 ecr 0,nop,wscale 7], length 0
+12:43:42.530322 IP student.51012 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>384691879, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330987275 ecr 0,nop,wscale 7], length 0
+12:43:44.578290 IP student.51012 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>384691879, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330989323 ecr 0,nop,wscale 7], length 0
+12:43:48.610335 IP student.51012 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>384691879, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330993355 ecr 0,nop,wscale 7], length 0
+12:43:49.431704 IP student.44964 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>824660250, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330994176 ecr 0,nop,wscale 7], length 0
+12:43:50.466320 IP student.44964 <span class="o">&gt;</span> 40.79.153.12.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>824660250, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330995211 ecr 0,nop,wscale 7], length 0
+</code></pre></div></div>
+
+<h3 id="tcpdump-on-the-local-laptop">tcpdump on the local laptop</h3>
+
+<p>Same story, I need to get the network interface name. <code class="language-plaintext highlighter-rouge">ifconfig -a</code> shows a lot more stuff, but I believe it’s this one.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>en7: <span class="nv">flags</span><span class="o">=</span>8963&lt;UP,BROADCAST,SMART,RUNNING,PROMISC,SIMPLEX,MULTICAST&gt; mtu 1500
+	<span class="nv">options</span><span class="o">=</span>404&lt;VLAN_MTU,CHANNEL_IO&gt;
+	ether f8:e4:3b:59:02:a0
+	inet6 fe80::886:47f3:c373:4803%en7 prefixlen 64 secured scopeid 0x16
+	inet 192.168.1.160 netmask 0xffffff00 broadcast 192.168.1.255
+	inet6 2600:1700:1590:2270:481:7264:b2ac:29dc prefixlen 64 autoconf secured
+	inet6 2600:1700:1590:2270:3ce9:3b2:e9b2:7672 prefixlen 64 autoconf temporary
+	inet6 2600:1700:1590:2270::1d prefixlen 64 dynamic
+	nd6 <span class="nv">options</span><span class="o">=</span>201&lt;PERFORMNUD,DAD&gt;
+	media: autoselect <span class="o">(</span>1000baseT &lt;full-duplex&gt;<span class="o">)</span>
+	status: active
+</code></pre></div></div>
+
+<p>There are several other interfaces, but this one shows <code class="language-plaintext highlighter-rouge">status: active</code> and has a reasonable looking local IP address. I bet it’s that one.</p>
+
+<p>Now I can run <code class="language-plaintext highlighter-rouge">sudo tcpdump -i en7 port 1433</code> and wait for output.</p>
+
+<p>Run <code class="language-plaintext highlighter-rouge">mvn liberty:run</code> in a separate terminal and you’ll see this output.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tcpdump: verbose output suppressed, use <span class="nt">-v</span><span class="o">[</span>v]... <span class="k">for </span>full protocol decode
+listening on en7, link-type EN10MB <span class="o">(</span>Ethernet<span class="o">)</span>, snapshot length 524288 bytes
+16:48:30.579463 IP edwards-mbp.attlocal.net.51776 <span class="o">&gt;</span> 40.78.225.32.ms-sql-s: Flags <span class="o">[</span>S], <span class="nb">seq </span>1887813996, win 65535, options <span class="o">[</span>mss 1460,nop,wscale 6,nop,nop,TS val 4041241742 ecr 0,sackOK,eol], length 0
+16:48:30.610481 IP 40.78.225.32.ms-sql-s <span class="o">&gt;</span> edwards-mbp.attlocal.net.51776: Flags <span class="o">[</span>S.], <span class="nb">seq </span>81912948, ack 1887813997, win 65535, options <span class="o">[</span>mss 1440,nop,wscale 8,nop,nop,sackOK], length 0
+16:48:30.610608 IP edwards-mbp.attlocal.net.51776 <span class="o">&gt;</span> 40.78.225.32.ms-sql-s: Flags <span class="o">[</span>.], ack 1, win 4096, length 0
+16:48:30.633758 IP edwards-mbp.attlocal.net.51776 <span class="o">&gt;</span> 40.78.225.32.ms-sql-s: Flags <span class="o">[</span>P.], <span class="nb">seq </span>1:68, ack 1, win 4096, length 67
+16:48:30.665583 IP 40.78.225.32.ms-sql-s <span class="o">&gt;</span> edwards-mbp.attlocal.net.51776: Flags <span class="o">[</span>P.], <span class="nb">seq </span>1:32, ack 68, win 2052, length 31
+16:48:30.665711 IP edwards-mbp.attlocal.net.51776 <span class="o">&gt;</span> 40.78.225.32.ms-sql-s: Flags <span class="o">[</span>.], ack 32, win 4095, length 0
+16:48:30.766804 IP edwards-mbp.attlocal.net.51776 <span class="o">&gt;</span> 40.78.225.32.ms-sql-s: Flags <span class="o">[</span>P.], <span class="nb">seq </span>68:582, ack 32, win 4096, length 514
+16:48:30.800942 IP 40.78.225.32.ms-sql-s <span class="o">&gt;</span> edwards-mbp.attlocal.net.51776: Flags <span class="o">[</span>.], <span class="nb">seq </span>32:1492, ack 582, win 2050, length 1460
+16:48:30.801040 IP edwards-mbp.attlocal.net.51776 <span class="o">&gt;</span> 40.78.225.32.ms-sql-s: Flags <span class="o">[</span>.], ack 1492, win 4073, length 0
+16:48:30.801767 IP 40.78.225.32.ms-sql-s <span class="o">&gt;</span> edwards-mbp.attlocal.net.51776: Flags <span class="o">[</span>.], <span class="nb">seq </span>1492:2952, ack 582, win 2050, length 1460
+16:48:30.801795 IP edwards-mbp.attlocal.net.51776 <span class="o">&gt;</span> 40.78.225.32.ms-sql-s: Flags <span class="o">[</span>.], ack 2952, win 4073, length 0
+16:48:30.801948 IP 40.78.225.32.ms-sql-s <span class="o">&gt;</span> edwards-mbp.attlocal.net.51776: Flags <span class="o">[</span>P.], <span class="nb">seq </span>2952:4128, ack 582, win 2050, length 1176
+</code></pre></div></div>
+
+<h3 id="comparing-the-two-different-tcpdump-outputs">Comparing the two different tcpdump outputs.</h3>
+
+<p>Let’s strip out extraneous information from the two <code class="language-plaintext highlighter-rouge">tcpdump</code> outputs for easier comparison.</p>
+
+<p><strong>Output from the VM.</strong> This is the one where the connection failed.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12:43:36 Flags <span class="o">[</span>S], <span class="nb">seq </span>2117028828, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330981707 ecr 0,nop,wscale 7], length 0
+12:43:37 Flags <span class="o">[</span>S], <span class="nb">seq </span>3629156152, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330982307 ecr 0,nop,wscale 7], length 0
+12:43:38 Flags <span class="o">[</span>S], <span class="nb">seq </span>3629156152, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330983371 ecr 0,nop,wscale 7], length 0
+12:43:40 Flags <span class="o">[</span>S], <span class="nb">seq </span>3629156152, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330985419 ecr 0,nop,wscale 7], length 0
+12:43:41 Flags <span class="o">[</span>S], <span class="nb">seq </span>384691879, win 29200, options <span class="o">[</span>mss 1460,sackOK,TS val 2330986266 ecr 0,nop,wscale 7], length 0
+</code></pre></div></div>
+
+<p><strong>Output from the local laptop.</strong> This is the one where the connection succeeded.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>16:48:30.57 Flags <span class="o">[</span>S], <span class="nb">seq </span>1887813996, win 65535, options <span class="o">[</span>mss 1460,nop,wscale 6,nop,nop,TS val 4041241742 ecr 0,sackOK,eol], length 0
+16:48:30.61 Flags <span class="o">[</span>S.], <span class="nb">seq </span>81912948, ack 1887813997, win 65535, options <span class="o">[</span>mss 1440,nop,wscale 8,nop,nop,sackOK], length 0
+16:48:30.61 Flags <span class="o">[</span>.], ack 1, win 4096, length 0
+16:48:30.63 Flags <span class="o">[</span>P.], <span class="nb">seq </span>1:68, ack 1, win 4096, length 67
+16:48:30.66 Flags <span class="o">[</span>P.], <span class="nb">seq </span>1:32, ack 68, win 2052, length 31
+16:48:30.66 Flags <span class="o">[</span>.], ack 32, win 4095, length 0
+</code></pre></div></div>
+
+<p>We can see right away there are differences. Apparently the app running on the VM is unable to complete the TCP handshake, while the one from the VM is not. This old mozilla doc describes the TCP handshake well <a href="https://developer.mozilla.org/en-US/docs/Glossary/TCP_handshake">TCP handshake</a>.</p>
+
+<p>In the <code class="language-plaintext highlighter-rouge">tcpdump</code> output, there is a line for each TCP packet.  In the first three lines, we can see the three packets for the TCP handshake.</p>
+
+<p>In the local laptop output:</p>
+
+<ol>
+  <li>At <code class="language-plaintext highlighter-rouge">16:48:30.57</code> we see the <code class="language-plaintext highlighter-rouge">SYN</code> packet going from the VM to the Azure SQL Database.</li>
+  <li>At <code class="language-plaintext highlighter-rouge">16:48:30.61</code> we see the reply <code class="language-plaintext highlighter-rouge">SYN-ACK</code> packet coming back from the Azure SQL Database.</li>
+  <li>At <code class="language-plaintext highlighter-rouge">16:48:30.61</code> we see the <code class="language-plaintext highlighter-rouge">ACK</code> packet going from the VM to the Azure SQL Database.</li>
+</ol>
+
+<p>In the VM output we just see unanswered <code class="language-plaintext highlighter-rouge">SYN</code> packets.</p>
+
+<p>If there is no firewall rule, and the <code class="language-plaintext highlighter-rouge">tcpdump</code> output shows unanswered TCP handshake packets, the most likely cause is some other network problem outside of the VM.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Cross posted at dev.to.]]></summary></entry><entry><title type="html">Deploy Jakarta EE 10 and MicroProfile 6 on Azure with IBM Liberty on Azure Kubernetes Service (AKS)</title><link href="/blog/2023/05/26/liberty-aks-ee10-mp6.html" rel="alternate" type="text/html" title="Deploy Jakarta EE 10 and MicroProfile 6 on Azure with IBM Liberty on Azure Kubernetes Service (AKS)" /><published>2023-05-26T13:10:00-04:00</published><updated>2023-05-26T13:10:00-04:00</updated><id>/blog/2023/05/26/liberty-aks-ee10-mp6</id><content type="html" xml:base="/blog/2023/05/26/liberty-aks-ee10-mp6.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/deploy-jakarta-ee-10-and-microprofile-6-on-azure-with-ibm-liberty-on-azure-kubernetes-service-aks-5d63">dev.to</a>.</p>
 
 <p>This self-contained blog post shows how you to quickly and easily deploy a cloud native Java microservice on Azure Kubernetes Service (AKS) directly from the Azure Portal. The app uses a tightly-focused selection of technologies from <a href="https://jakarta.ee/specifications/coreprofile/10/jakarta-coreprofile-spec-10.0.html">Jakarta EE 10</a> and <a href="https://github.com/eclipse/microprofile/releases/tag/6.0.">MicroProfile 6</a> By using a tightly-focused selection of technologies from open standards, developers minimize maintenance cost and time to MVP and maximize skill portability and fun. For more of the benefits, see <a href="https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices#what-are-microservices">What are microservices</a>.</p>
 
@@ -2029,24 +2198,4 @@ audio. Turn it on with these steps.</p>
 
     <p>Remainder at defaults.</p>
   </li>
-</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[This blog posts captures some learning I did about OBS recently.]]></summary></entry><entry><title type="html">File Explorer and WSL2 PWD</title><link href="/blog/2020/10/30/wslpwd.html" rel="alternate" type="text/html" title="File Explorer and WSL2 PWD" /><published>2020-10-30T13:10:00-04:00</published><updated>2020-10-30T13:10:00-04:00</updated><id>/blog/2020/10/30/wslpwd</id><content type="html" xml:base="/blog/2020/10/30/wslpwd.html"><![CDATA[<p>I had long been used to doing <code class="language-plaintext highlighter-rouge">open .</code> on macOS to get finder window
-open on the current directory in the shell.  I wanted something similar
-under WSL2, but this is the best I could come up with.  It copies the
-current working directory to the clipboard such that you can press
-“ctrl-l crtl-v ret” in the File Explorer and get the same effect.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>wslpwd<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">echo</span> //wsl<span class="nv">$/</span>Ubuntu<span class="nv">$PWD</span> | <span class="nb">sed</span> <span class="s1">'s:/:\\:g'</span> | pbcopy
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Assumptions</p>
-
-<ul>
-  <li>pbcopy is installed</li>
-  <li>WSL distro name is Ubuntu</li>
-</ul>
-
-<p>It prepends the special <code class="language-plaintext highlighter-rouge">//wsl$/Ubuntu</code> string to the <code class="language-plaintext highlighter-rouge">$PWD</code>, then uses <code class="language-plaintext highlighter-rouge">sed</code>
-to transform the forward slashes to backslashes, then uses <code class="language-plaintext highlighter-rouge">pbcopy</code> to put
-the result on the system clipboard.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[I had long been used to doing open . on macOS to get finder window open on the current directory in the shell. I wanted something similar under WSL2, but this is the best I could come up with. It copies the current working directory to the clipboard such that you can press “ctrl-l crtl-v ret” in the File Explorer and get the same effect.]]></summary></entry></feed>
+</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[This blog posts captures some learning I did about OBS recently.]]></summary></entry></feed>

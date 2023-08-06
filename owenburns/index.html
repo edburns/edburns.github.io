@@ -18,30 +18,200 @@
 
             <p>I am a 3<sup>rd</sup> year undergraduate in the honors
                 Bachelor of Science in Computer Science program at
-                University of Central Florida. Here are a few points
-                about my hands-on experience with machine learning and
-                natural language processing.</p>
+                University of Central Florida. This page makes the
+                case that I would be a great internship hire and
+                provides links to my CV. Expand each section for more.</p>
+            
+            <details>
 
-            <p>I first became interested in machine learning during
-            the pandemic, during my junior and senior year of high
-            school. I took several online courses to get familiar with
-            the subject and subsequently conducted my AP research
-            project on reinforcement learning.</p>
+                <summary>
+                    
+                    <p>Here are a few points about my hands-on
+                        experience with machine learning and natural
+                        language processing.</p>
+
+                </summary>
+                
+                
+                <p>I first became interested in machine learning
+                    during the pandemic, during my junior and senior
+                    year of high school. At that time, I took several
+                    online courses to get familiar with the subject
+                    and subsequently conducted my AP research project
+                    on reinforcement learning. Since then, I have
+                    delivered several professional solutions for a
+                    number of different employers across several
+                    domains, as detailed here.</p>
+
+                <ul>
+
+                    <li><p>At UCF I joined the <a
+                                                   href="https://www.cs.ucf.edu/research/natural-language-processing-group/">deep
+                        learning lab</a> and my primary project was
+                        developing a self supervised reinforcement
+                        learning architecture to improve the performance
+                        and RL agents at knowledge graph query
+                        answering. The idea is that before training with
+                        RL, we train the agent with SL by calculating all
+                        the possible routes from the agent's current
+                        position to the answer and taking the cross
+                        entropy between the agent's probability
+                        distribution and a perfect probability
+                        distribution that representing all actions that
+                        can lead to the right answer having equal
+                        probability and all others having zero. The agent
+                        was able to outperform SOTA (at the time) and
+                        achieved better performance than the same agent
+                        without the SL pretraining. Theoretically, this
+                        pre training helped the agent by exposing them to
+                        knowledge of more possible paths than it would
+                        learn on its own, helping it generalize to harder
+                        queries. I also wrote several sections of the
+                        paper, available for download at
+                        &lt;<a href="20230801-F3-750-T-ASL-10090-2023_Proof_hi.pdf">https://bit.ly/kg-reasoning-rl</a>&gt;.
+                    </p></li>
+                    
+                    <li><p>At <a href="https://www.vian.ai/">VianAI</a>
+                        I was tasked with creating an RL agent that
+                        could, based on the amount of money currently
+                        in an ATM and other factors such as the time
+                        of year, determine when and how much to refill
+                        the ATM, taking into account when workers were
+                        on holiday and unable to make the
+                        replenishment. I built the environment and
+                        network architecture in PyTorch and was able
+                        to achieve solid performance by the end of the
+                        summer. </p></li>
+
+                    <li><p>As a side job, I assisted one of my
+                        research professor's colleagues with a project
+                        to predict which route a trash truck should
+                        take to most efficiently and safely visit all
+                        the houses on its assigned route. The project
+                        is on pause for the summer, but I developed a
+                        graph convolutional network and environment
+                        using openstreetmap to solve the problem. </p></li>
+                    
+                    <li><p>I was hired by <a href="https://forthepeople.com/">Morgan and Morgan</a> after
+                        placing second in their AI/LLM hackathon to expand
+                        their AI capabilities. In my time there I
+                        developed the backend of a chatbot using langchain
+                        to put the documents associated with a legal case
+                        in pinecone and then answer questions about
+                        them. After that was complete, I was tasked with
+                        developing a model that can predict the value of
+                        legal cases; I have finished collecting and
+                        cleaning the dataset and have trained the model to
+                        accuracy within 5 figures, though I am aiming for
+                        4. </p></li>
+
+                    <li><p>My business partner and I submitted an entry in the <a href="https://pinecone-hackathon.devpost.com/project-gallery">Pinecone Hackathon</a>. Our entry, <a href="https://devpost.com/software/ideasleuth">IdeaSleuth</a>, generates an Intellectual Property/Existing Patent Briefing based on an idea that you have. 
+                    </p></li>
+                    
+
+                    <li><p>At my own startup, <a href="https://toolcharm.com/">ToolCharm</a>,
+                        my business partner and I have developed a
+                        chatbot that can perform actions in shopify,
+                        twilio, and google drive using our own fork of
+                        LangChain that we have adapted for the
+                        purpose. We will be continuing to add new
+                        services, which will be easy thanks to a
+                        proprietary graph encoding for SaaS
+                        documentation that we developed which allows
+                        the agent to quickly learn how to perform a
+                        task.
+                    </p></li>                
+
+                </ul>
+                
+            </details>
+
+            <details>
+
+                <summary>
+
+                    <p>I have some research experience in quantum computing.</p>
+                    
+                </summary>
+
+                <p>In addition to my work at UCF's deep learning and
+                    autonomous vehicles labs, I participated in a research
+                    internship at the University of Tennessee this summer
+                    where I developed a quantum convolutional network to
+                    predict whether an ecg record was indicative of an
+                    arrhythmia. The poster from that internship can be downloaded from
+                    &lt;<a
+                            href="20230801-F3-750-Research-Poster.pdf">https://bit.ly/quantum-cnn-ecg</a>&gt;
+                    The corresponding research paper is under peer review.</p> 
+                
+            </details>
+
+            <details>
+
+                <summary>
+
+                    <p>Here are some of my experiences working on computer vision.</p>
+                    
+                </summary>
+
+                 <ul>
+
+                     <li><p>At UCF's <a href="https://cavrel.ece.ucf.edu/">connected and autonomous vehicle research lab</a>,
+                         I implemented Aydin Ayanzadeh's methodology
+                         as a ROS node on our test cars to detect the
+                         lanes on a running track and calculate how
+                         far off the car was from the centerline
+                         between the two lanes. For details on the
+                         methodology, see
+                         <a href="https://github.com/Ayanzadeh93/Udacity-Advance-Lane-detection-of-the-road">GitHub</a>.</p>
+
+                         <p>I was profiled on Spectrum News 13 for
+                             this work. See the video at &lt;<a href="https://www.ridingthecrest.com/edburns/owenburns-cfnews13/">https://www.ridingthecrest.com/edburns/owenburns-cfnews13/</a>&gt;.</p>
+                         
+                     </li>
+
+                     
+                 </ul>
+                
+            </details>
+
+            <details>
+
+                <summary>
+
+                    <p>I have experience with popular machine learning and data science packages such as PyTorch, TensorFlow, Numpy, Scipy, and Sklearn.</p>
+                    
+                </summary>
+
+
+                <ul>
+
+                    <li><p>I used both PyTorch and Tensorflow in my work with UCF's deep learning laboratory, but primarily use Pytorch. I generally also use Sklearn during feature selection when I'm performing recursive feature elimination as it's so easy to just use model.fit instead of writing out a training loop for that part of the process. I have used PyTorch and numpy almost daily for around a year and a half.
+                    </p></li>
+
+                </ul>
+
+            </details>
+
+            <h2>Resumes</h2>
 
             <ul>
+                
+                <li>
 
-                <li><p>At UCF I joined the deep learning lab and my primary project was developing a self supervised reinforcement learning architecture to improve the performance and RL agents at knowledge graph query answering. The idea is that before training with RL, we train the agent with SL by calculating all the possible routes from the agent's current position to the answer and taking the cross entropy between the agent's probability distribution and a perfect probability distribution that representing all actions that can lead to the right answer having equal probability and all others having zero. The agent was able to outperform SOTA (at the time) and achieved better performance than the same agent without the SL pretraining. Theoretically, this pre training helped the agent by exposing them to knowledge of more possible paths than it would learn on its own, helping it generalize to harder queries. I also wrote several sections of the paper, which is currently in peer review and is attached to this email.</p></li>
+                    <p>Resume for private sector positions. <a href="20230801-F3-750-OB_resume_industry.pdf">PDF</a></p>
 
-                <li><p>At VianAI I was tasked with creating an RL agent that could, based on the amount of money currently in an ATM and other factors such as the time of year, determine when and how much to refill the ATM, taking into account when workers were on holiday and unable to make the replenishment. I built the environment and network architecture in PyTorch and was able to achieve solid performance by the end of the summer.</p></li>
+                </li>
 
-                <li><p>As a side job, I assisted one of my research professor's colleagues with a project to predict which route a trash truck should take to most efficiently and safely hit all the houses that it needs to hit. The project is on pause for the summer, but I developed a graph convolutional network and environment using openstreetmap to solve the problem.</p></li>
+                <li>
 
-                <li><p>I was hired by Morgan and Morgan after placing second in their AI/LLM hackathon to expand their AI capabilities. In my time there I developed the backend of a chatbot using langchain to put the documents associated with a legal case in pinecone and then answer questions about them. After that was complete, I was tasked with developing a model that can predict the value of legal cases; I have finished collecting and cleaning the dataset and have trained the model to accuracy within 5 figures, though I am aiming for 4.</p></li>
+                    <p>Resume for research positions. <a href="20230801-F3-750-OB_resume_research.pdf">PDF</a></p>
 
-                <li><p>At my own startup, ToolCharm, my business partner and I have developed a chatbot that can perform actions in shopify, twilio, and google drive using our own fork of LangChain that we have adapted for the purpose. We will be continuing to add new services, which will be easy thanks to a proprietary graph encoding for SaaS documentation that we developed which allows the agent to quickly learn how to perform a task.</p></li>                
-
+                </li>
+                
             </ul>
             
+
             
         </main>
         

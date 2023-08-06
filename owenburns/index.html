@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Owen Burns one pager</title>
+        <link rel="stylesheet" href="simple.min.css">
+    </head>
+    <body>
+        <header>
+            <h1>Owen Burns</h1>
+            <p>Professional overview, 2023-08</p>
+        </header>
+        
+        <main>
+
+            <h2>About me</h2>
+
+            <p>I am a 3<sup>rd</sup> year undergraduate in the honors
+                Bachelor of Science in Computer Science program at
+                University of Central Florida. Here are a few points
+                about my hands-on experience with machine learning and
+                natural language processing.</p>
+
+            <p>I first became interested in machine learning during
+            the pandemic, during my junior and senior year of high
+            school. I took several online courses to get familiar with
+            the subject and subsequently conducted my AP research
+            project on reinforcement learning.</p>
+
+            <ul>
+
+                <li><p>At UCF I joined the deep learning lab and my primary project was developing a self supervised reinforcement learning architecture to improve the performance and RL agents at knowledge graph query answering. The idea is that before training with RL, we train the agent with SL by calculating all the possible routes from the agent's current position to the answer and taking the cross entropy between the agent's probability distribution and a perfect probability distribution that representing all actions that can lead to the right answer having equal probability and all others having zero. The agent was able to outperform SOTA (at the time) and achieved better performance than the same agent without the SL pretraining. Theoretically, this pre training helped the agent by exposing them to knowledge of more possible paths than it would learn on its own, helping it generalize to harder queries. I also wrote several sections of the paper, which is currently in peer review and is attached to this email.</p></li>
+
+                <li><p>At VianAI I was tasked with creating an RL agent that could, based on the amount of money currently in an ATM and other factors such as the time of year, determine when and how much to refill the ATM, taking into account when workers were on holiday and unable to make the replenishment. I built the environment and network architecture in PyTorch and was able to achieve solid performance by the end of the summer.</p></li>
+
+                <li><p>As a side job, I assisted one of my research professor's colleagues with a project to predict which route a trash truck should take to most efficiently and safely hit all the houses that it needs to hit. The project is on pause for the summer, but I developed a graph convolutional network and environment using openstreetmap to solve the problem.</p></li>
+
+                <li><p>I was hired by Morgan and Morgan after placing second in their AI/LLM hackathon to expand their AI capabilities. In my time there I developed the backend of a chatbot using langchain to put the documents associated with a legal case in pinecone and then answer questions about them. After that was complete, I was tasked with developing a model that can predict the value of legal cases; I have finished collecting and cleaning the dataset and have trained the model to accuracy within 5 figures, though I am aiming for 4.</p></li>
+
+                <li><p>At my own startup, ToolCharm, my business partner and I have developed a chatbot that can perform actions in shopify, twilio, and google drive using our own fork of LangChain that we have adapted for the purpose. We will be continuing to add new services, which will be easy thanks to a proprietary graph encoding for SaaS documentation that we developed which allows the agent to quickly learn how to perform a task.</p></li>                
+
+            </ul>
+            
+            
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 Owen Burns. CSS by <a href="https://simplecss.org">simplecss.org</a>.</p>
+        </footer>
+    </body>
+</html>

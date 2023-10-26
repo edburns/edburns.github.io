@@ -12,3 +12,4 @@ edburns/Music/Phish/20210814-atlantic-city/phish-01-funky-llama.m4a filter=lfs d
 edburns/Music/Guitaura/20230812-youtube/Wots-uh-the-deal.m4a filter=lfs diff=lfs merge=lfs -text
 edburns/Music/20220423-atlantic-babel-haidt-2022-05.m4a filter=lfs diff=lfs merge=lfs -text
 edburns/Music/jugendorchester.ch/Die_Kuh_Auf_Dem_Eis/01_Dene_Wos_Guet_Geit.m4a filter=lfs diff=lfs merge=lfs -text
+edburns/Music/Cornelius/20181006-cornelius-mellow-waves.zip filter=lfs diff=lfs merge=lfs -text

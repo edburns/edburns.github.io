@@ -1,5 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-08-07T16:22:21-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Diagnose outbound database connection problems with Liberty on Azure</title><link href="/blog/2023/07/24/tcpdump-liberty-aks.html" rel="alternate" type="text/html" title="Diagnose outbound database connection problems with Liberty on Azure" /><published>2023-07-24T13:10:00-04:00</published><updated>2023-07-24T13:10:00-04:00</updated><id>/blog/2023/07/24/tcpdump-liberty-aks</id><content type="html" xml:base="/blog/2023/07/24/tcpdump-liberty-aks.html"><![CDATA[<p>Cross posted at <a href="">dev.to</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-10-26T12:32:09-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">macOS Catalina Zoom does not prompt for mic or camera permissions Solved</title><link href="/blog/2023/10/24/macos-zoom-mic-camera-permissions-reset.html" rel="alternate" type="text/html" title="macOS Catalina Zoom does not prompt for mic or camera permissions Solved" /><published>2023-10-24T12:10:00-04:00</published><updated>2023-10-24T12:10:00-04:00</updated><id>/blog/2023/10/24/macos-zoom-mic-camera-permissions-reset</id><content type="html" xml:base="/blog/2023/10/24/macos-zoom-mic-camera-permissions-reset.html"><![CDATA[<h2 id="problem-statement">Problem statement</h2>
+
+<p>Somewhere along the line, Zoom on macOS Catalina asked me for permission to use the mic or camera and I may have accidentally said no. How do I get it to prompt me again?</p>
+
+<p>I tried the usual measures of <code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code> but this returned a failure message. What’s going on?</p>
+
+<p>This blog post is my record of what I did to resolve the problem on macOS Catalina. Results are not guaranteed.</p>
+
+<h2 id="root-cause">Root cause</h2>
+
+<p>In my case, the root cause was the ownership of the <code class="language-plaintext highlighter-rouge">/Users/edburns/Library/Application Support/com.apple.TCC/TCC.db</code> file was incorrect. This file must be owned by me. Instead it was owned by some other user number. I remember making some bulk ownership changes somewhere along the line.</p>
+
+<h2 id="nutshell-solution">Nutshell solution</h2>
+
+<ol>
+  <li>Do all the stuff that allows you to modify <code class="language-plaintext highlighter-rouge">TCC.db</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">chown</code> the <code class="language-plaintext highlighter-rouge">TCC.db</code> to me.</li>
+  <li>Restore all the stuff that prevents you from modifying <code class="language-plaintext highlighter-rouge">TCC.db</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code></li>
+  <li>Perform the action in Zoom that caused it to prompt for permission.</li>
+  <li>Say <strong>Yes</strong>.</li>
+</ol>
+
+<h3 id="detailed-solution">Detailed solution</h3>
+
+<h4 id="temporarily-disable-system-integrity-protection-sip">Temporarily disable System Integrity Protection (SIP)</h4>
+
+<ol>
+  <li>Shut down and reboot in “Recovery mode”.
+    <ol>
+      <li>Shut down.</li>
+      <li>Hold down Command R while powering on.</li>
+      <li>Release when the Apple logo appears.</li>
+    </ol>
+  </li>
+  <li>When you get a menu bar, in the <strong>Utilities menu</strong> select <strong>Terminal</strong>.</li>
+  <li>The terminal should open as root.</li>
+  <li><code class="language-plaintext highlighter-rouge">csrutil disable</code>.</li>
+  <li>Exit the terminal and quit the <strong>Terminal</strong> app.</li>
+  <li>Restart.</li>
+</ol>
+
+<h4 id="ensure-the-tccdb-has-the-correct-ownership">Ensure the TCC.db has the correct ownership</h4>
+
+<p>For an apparently very helpful resource on <code class="language-plaintext highlighter-rouge">TCC.db</code> see <a href="https://www.rainforestqa.com/blog/macos-tcc-db-deep-dive">A deep dive into macOS TCC.db</a>.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">cd ~Library/Application\ Support/com.apple.TCC</code>
+If you can’t do this, grant “Full disk access” to your terminal program. Look elsewhere for how to do that.</li>
+  <li><code class="language-plaintext highlighter-rouge">chown</code> the <code class="language-plaintext highlighter-rouge">TCC.db</code> file to your userid.</li>
+  <li><code class="language-plaintext highlighter-rouge">cd</code> to get back to your home directory.</li>
+</ol>
+
+<h4 id="run-the-tccutil-command">Run the tccutil command</h4>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code>. If you want to reset other permissions, there is a big schema of names.  To reset everything replace <code class="language-plaintext highlighter-rouge">Microphone</code> with <code class="language-plaintext highlighter-rouge">All</code>. Case is sensitive.</li>
+  <li>You should see a message that indicates success.</li>
+</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[Problem statement]]></summary></entry><entry><title type="html">Diagnose outbound database connection problems with Liberty on Azure</title><link href="/blog/2023/07/24/tcpdump-liberty-aks.html" rel="alternate" type="text/html" title="Diagnose outbound database connection problems with Liberty on Azure" /><published>2023-07-24T13:10:00-04:00</published><updated>2023-07-24T13:10:00-04:00</updated><id>/blog/2023/07/24/tcpdump-liberty-aks</id><content type="html" xml:base="/blog/2023/07/24/tcpdump-liberty-aks.html"><![CDATA[<p>Cross posted at <a href="">dev.to</a>.</p>
 
 <p>This self-contained blog post shows how you to use <code class="language-plaintext highlighter-rouge">tcpdump</code> to troubleshoot and diagnose outbound network connections from a local Liberty server to an Azure SQL Database.</p>
 
@@ -2100,102 +2158,4 @@ will be covered, but App Service definitely supports Java vere well.</p>
 
 <p>Presented by <a href="https://twitter.com/AzureWeekly/status/1322878013739065346">Stefan Schackow</a>.</p>
 
-<p><a href="https://mybuild.microsoft.com/sessions/77d6c20f-6b37-4643-9e31-6bcd6da4dad0?source=sessions">Content catalog link</a></p>]]></content><author><name></name></author><summary type="html"><![CDATA[Cross posted at dev.to.]]></summary></entry><entry><title type="html">Blurring parts of the screen in OBS Studio, other tips</title><link href="/blog/2021/04/02/obs-blur.html" rel="alternate" type="text/html" title="Blurring parts of the screen in OBS Studio, other tips" /><published>2021-04-02T16:10:00-04:00</published><updated>2021-04-02T16:10:00-04:00</updated><id>/blog/2021/04/02/obs-blur</id><content type="html" xml:base="/blog/2021/04/02/obs-blur.html"><![CDATA[<p>This blog posts captures some learning I did about OBS recently.</p>
-
-<p>I recently invested a little time in learning the basics of <a href="https://github.com/obsproject/obs-studio">OBS Studio</a>.  OBS is one of
-those programs that seems enormously powerful, has a vast user base,
-and a correspondingly vast amount of content about it on YouTube.
-There is so much content about OBS it’s hard to tell what’s good.
-Thankfully, I stumbled upon 
-<a href="https://www.youtube.com/watch?v=ySENWFIkL7c">this 27 minute tutorial</a>
-from Kevin Stratvert.</p>
-
-<p>In addition to Mr. Stratvert’s tutorial, there are some other
-essential tips I want to capture.</p>
-
-<h2 id="blurring-during-recording">Blurring during recording</h2>
-
-<p><a href="https://www.youtube.com/watch?v=5zM3xvkb8dY">This video</a>, from a much
-more gamer-focused perspective, did give a practical tip for how
-selectively blur arbitrary portions of the screen.  I’ll outline the
-process next.</p>
-
-<ol>
-  <li>
-    <p>Add a new <strong>Display capture</strong> source.</p>
-  </li>
-  <li>
-    <p>Arrange it above your “main” <strong>Display capture</strong> source.</p>
-  </li>
-  <li>
-    <p>Add a <strong>Scaling/Aspect Ratio</strong> filter to it.</p>
-
-    <ol>
-      <li><strong>Scale Filtering</strong> Point.</li>
-      <li><strong>Resolution</strong> 640x360</li>
-    </ol>
-  </li>
-  <li>
-    <p>Drag the red grabber handles so that the new <strong>Display capture</strong>
-source completely covers the “main” display capture source.</p>
-  </li>
-  <li>
-    <p><strong>HERE IS THE IMPORTANT STEP</strong>: Hold down the alt key and re-size
-the grabbers to cover the area you want to blur.  <strong>It is very
-important you don’t move the region by dragging it.</strong> Use the
-alt-resize technique to effectively move the blur zone.</p>
-
-    <ul>
-      <li>This works because of the low resolution you set.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Repeat this process for whatever other parts of the screen you want
-to blur.  Note that you can blur/un-blur easily with the “eye” icon
-for that <strong>Display capture</strong> source in the <strong>Sources</strong> screen.</p>
-  </li>
-</ol>
-
-<h2 id="bluring-after-recording">Bluring after recording</h2>
-
-<p>I found I missed some things on my first recording and needed to do
-additional blurring.  No problem, add a <strong>Media</strong> source and select
-the file from the first recording.  You can then play the first recording
-into another recording and add more blurring as desired. I found this
-reminded me of some of the performance aspect of <a href="https://www.youtube.com/watch?v=Sqz5YaHx26g">real time analog audio mixing</a> because I had to take cues from the media source for when to blur/un-blur certain parts of the screen.</p>
-
-<p>Note, when you add <strong>Media</strong> source, by default you cannot hear the
-audio. Turn it on with these steps.</p>
-
-<ol>
-  <li>
-    <p>In the <strong>Audio Mixer</strong> panel, in the row for <strong>Media Source</strong> select the cog icon and select <strong>Advanced Audio Properties</strong>.</p>
-  </li>
-  <li>
-    <p>In the row for <strong>Media Source</strong>, in the column for <strong>Audio Monitoring</strong>, ensure <strong>Monitor and Output</strong> is selected.</p>
-  </li>
-</ol>
-
-<h2 id="removing-click-sounds-from-your-mic-while-recording">Removing click sounds from your mic while recording</h2>
-
-<p>Add these filters to your <strong>Mic/Aux</strong> source.</p>
-
-<ol>
-  <li>
-    <p><strong>Noise Suppression</strong>: RNNoise</p>
-  </li>
-  <li>
-    <p><strong>Noise Gate</strong></p>
-
-    <ul>
-      <li>
-        <p>Close Threshold: -54.00 dB</p>
-      </li>
-      <li>
-        <p>Open Threshold: -39.00 dB</p>
-      </li>
-    </ul>
-
-    <p>Remainder at defaults.</p>
-  </li>
-</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[This blog posts captures some learning I did about OBS recently.]]></summary></entry></feed>
+<p><a href="https://mybuild.microsoft.com/sessions/77d6c20f-6b37-4643-9e31-6bcd6da4dad0?source=sessions">Content catalog link</a></p>]]></content><author><name></name></author><summary type="html"><![CDATA[Cross posted at dev.to.]]></summary></entry></feed>

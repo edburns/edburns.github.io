@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>macOS Catalina Zoom does not prompt for mic or camera permissions Solved</title>
+  <meta name="description" content="Problem statement">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2023/10/24/macos-zoom-mic-camera-permissions-reset.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">macOS Catalina Zoom does not prompt for mic or camera permissions Solved</h1>
+    <p class="post-meta"><time datetime="2023-10-24T12:10:00-04:00" itemprop="datePublished">Oct 24, 2023</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="problem-statement">Problem statement</h2>
+
+<p>Somewhere along the line, Zoom on macOS Catalina asked me for permission to use the mic or camera and I may have accidentally said no. How do I get it to prompt me again?</p>
+
+<p>I tried the usual measures of <code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code> but this returned a failure message. What’s going on?</p>
+
+<p>This blog post is my record of what I did to resolve the problem on macOS Catalina. Results are not guaranteed.</p>
+
+<h2 id="root-cause">Root cause</h2>
+
+<p>In my case, the root cause was the ownership of the <code class="language-plaintext highlighter-rouge">/Users/edburns/Library/Application Support/com.apple.TCC/TCC.db</code> file was incorrect. This file must be owned by me. Instead it was owned by some other user number. I remember making some bulk ownership changes somewhere along the line.</p>
+
+<h2 id="nutshell-solution">Nutshell solution</h2>
+
+<ol>
+  <li>Do all the stuff that allows you to modify <code class="language-plaintext highlighter-rouge">TCC.db</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">chown</code> the <code class="language-plaintext highlighter-rouge">TCC.db</code> to me.</li>
+  <li>Restore all the stuff that prevents you from modifying <code class="language-plaintext highlighter-rouge">TCC.db</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code></li>
+  <li>Perform the action in Zoom that caused it to prompt for permission.</li>
+  <li>Say <strong>Yes</strong>.</li>
+</ol>
+
+<h3 id="detailed-solution">Detailed solution</h3>
+
+<h4 id="temporarily-disable-system-integrity-protection-sip">Temporarily disable System Integrity Protection (SIP)</h4>
+
+<ol>
+  <li>Shut down and reboot in “Recovery mode”.
+    <ol>
+      <li>Shut down.</li>
+      <li>Hold down Command R while powering on.</li>
+      <li>Release when the Apple logo appears.</li>
+    </ol>
+  </li>
+  <li>When you get a menu bar, in the <strong>Utilities menu</strong> select <strong>Terminal</strong>.</li>
+  <li>The terminal should open as root.</li>
+  <li><code class="language-plaintext highlighter-rouge">csrutil disable</code>.</li>
+  <li>Exit the terminal and quit the <strong>Terminal</strong> app.</li>
+  <li>Restart.</li>
+</ol>
+
+<h4 id="ensure-the-tccdb-has-the-correct-ownership">Ensure the TCC.db has the correct ownership</h4>
+
+<p>For an apparently very helpful resource on <code class="language-plaintext highlighter-rouge">TCC.db</code> see <a href="https://www.rainforestqa.com/blog/macos-tcc-db-deep-dive">A deep dive into macOS TCC.db</a>.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">cd ~Library/Application\ Support/com.apple.TCC</code>
+If you can’t do this, grant “Full disk access” to your terminal program. Look elsewhere for how to do that.</li>
+  <li><code class="language-plaintext highlighter-rouge">chown</code> the <code class="language-plaintext highlighter-rouge">TCC.db</code> file to your userid.</li>
+  <li><code class="language-plaintext highlighter-rouge">cd</code> to get back to your home directory.</li>
+</ol>
+
+<h4 id="run-the-tccutil-command">Run the tccutil command</h4>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code>. If you want to reset other permissions, there is a big schema of names.  To reset everything replace <code class="language-plaintext highlighter-rouge">Microphone</code> with <code class="language-plaintext highlighter-rouge">All</code>. Case is sensitive.</li>
+  <li>You should see a message that indicates success.</li>
+</ol>
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

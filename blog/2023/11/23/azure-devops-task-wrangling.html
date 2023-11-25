@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Azure DevOps cross organization daily task wrangling</title>
+  <meta name="description" content="Problem statement">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2023/11/23/azure-devops-task-wrangling.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Azure DevOps cross organization daily task wrangling</h1>
+    <p class="post-meta"><time datetime="2023-11-23T23:10:00-05:00" itemprop="datePublished">Nov 23, 2023</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="problem-statement">Problem statement</h2>
+
+<p>My employer has standardized on Azure DevOps Boards as the issue tracking system of record. I have become fond of this system and immensely respect its capabilities.  Due to my role, I end up with a very large number of work items assigned to me across a very diverse number of different Azure DevOps organizations. While an extension exists to support <a href="https://marketplace.visualstudio.com/items?itemName=ms-eswm.crossaccountquery&amp;targetId=5a766efb-e568-41d7-a401-fc09ace9b116&amp;utm_source=vstsproduct&amp;utm_medium=ExtHubManageList">Cross Account Query</a>, it has a significant and insurmountable limitation that the accounts being queried must have a uniform “schema” for Iteration Path and Area Path. This limitation is a fact of life in my role.</p>
+
+<p>This blog post shows my workaround that gives me the ability:</p>
+
+<ul>
+  <li>To see a comprehensive dashboard across the many different Azure DevOps organizations that contain work items assigned to me, so I can know which ones I need to work on in any given day.</li>
+  <li>To check them off task by task when I have done all I intend to do on that particular task today.</li>
+  <li>To reset the “done for today” status so I get a fresh dashboard the next day.</li>
+</ul>
+
+<p>It is not very elegant, but works for me. I’m open to suggestions for improvements. Please leave a comment if you have any ideas.</p>
+
+<h2 id="solution">Solution</h2>
+
+<ol>
+  <li>
+    <p>For each Azure DevOps organization, write and save a query that shows the work items assigned to me.
+Here are a screen grabs of two such queries.</p>
+
+    <p><img src="/blog/assets/20231124-dd-query.png" alt="Azure DevOps query in the dd board" /></p>
+
+    <p><img src="/blog/assets/20231124-em-query.png" alt="Azure DevOps query in the em board" /></p>
+
+    <p>Some things to note about these queries:</p>
+
+    <ul>
+      <li>The <strong>Area Path</strong> values vary and are specific to the organization.</li>
+      <li>The <strong>Iteration Path</strong> values vary, but both have <strong>@CurrentIteration</strong>.</li>
+      <li>The <strong>State</strong> values vary and are specific to the organization.</li>
+      <li>They both have a funny <strong>Tags</strong> value: <strong>Does Not Contain</strong> <code class="language-plaintext highlighter-rouge">edburns_done-for-today</code>. This tag is obviously named.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Write an anologous set of queries, but for the last clause the <strong>Tags</strong> value is  <strong>Contains</strong> <code class="language-plaintext highlighter-rouge">edburns_done-for-today</code>.</p>
+  </li>
+  <li>
+    <p>Use the Daily Links chrome extension to cause all the saved queries in a new browser tab. Install the Daily Links extension from the <a href="https://chrome.google.com/webstore/detail/bpmiffipgillbacdfnbkicndliejockp">Chrome web store</a>. This also works in Edge.</p>
+
+    <p><img src="/blog/assets/20231124-daily-links.png" alt="Azure DevOps queries loaded by Daily Links extension" /></p>
+  </li>
+</ol>
+
+<h2 id="daily-wrangling">Daily wrangling</h2>
+
+<ol>
+  <li>
+    <p>Start of day process.</p>
+
+    <ol>
+      <li>
+        <p>Select the <strong>Daily Links</strong> button in the browser.</p>
+      </li>
+      <li>
+        <p>For each tab:</p>
+
+        <ol>
+          <li>
+            <p>Decide which of the tasks you will <strong>NOT</strong>* be able to work on today.</p>
+          </li>
+          <li>
+            <p>Apply the <code class="language-plaintext highlighter-rouge">edburns_done-for-today</code> tag to those issues.</p>
+          </li>
+          <li>
+            <p>Re-run the query.</p>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>End of day process.</p>
+
+    <ol>
+      <li>
+        <p>Select the <strong>Daily Links</strong> button in the browser.</p>
+      </li>
+      <li>
+        <p>For each tab:</p>
+
+        <ol>
+          <li>
+            <p>Run the analogous “Contains done for today” query for that tab.</p>
+          </li>
+          <li>
+            <p>Use the multi-issue edit feature to remove that tag.</p>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="problems-with-this-solution">Problems with this solution</h2>
+
+<ul>
+  <li>
+    <p>You have to write 2N queries.</p>
+  </li>
+  <li>
+    <p>You pollute the tagspace with information that is only relevant to you.</p>
+  </li>
+  <li>
+    <p>The act of resetting the “done for today” tag is high effort. I suspect there is a way to make a batch process that just does this with one action, but I have not invested in learning how.</p>
+  </li>
+  <li>
+    <p>The quality of the queries regarding their ability to convey the context of each task is up to the query author. In my implementation, I simply include <strong>Parent</strong> next te <strong>Title</strong> in the <strong>Column options</strong>.</p>
+  </li>
+</ul>
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -136,12 +136,30 @@ If you can’t do this, grant “Full disk access” to your terminal program. L
   <li><code class="language-plaintext highlighter-rouge">cd</code> to get back to your home directory.</li>
 </ol>
 
+<h4 id="re-enable-system-integrity-protection-sip">Re-enable System Integrity Protection (SIP)</h4>
+
+<ol>
+  <li>Shut down and reboot in “Recovery mode”.
+    <ol>
+      <li>Shut down.</li>
+      <li>Hold down Command R while powering on.</li>
+      <li>Release when the Apple logo appears.</li>
+    </ol>
+  </li>
+  <li>When you get a menu bar, in the <strong>Utilities menu</strong> select <strong>Terminal</strong>.</li>
+  <li>The terminal should open as root.</li>
+  <li><code class="language-plaintext highlighter-rouge">csrutil enable</code>.</li>
+  <li>Exit the terminal and quit the <strong>Terminal</strong> app.</li>
+  <li>Restart.</li>
+</ol>
+
 <h4 id="run-the-tccutil-command">Run the tccutil command</h4>
 
 <ol>
   <li><code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code>. If you want to reset other permissions, there is a big schema of names.  To reset everything replace <code class="language-plaintext highlighter-rouge">Microphone</code> with <code class="language-plaintext highlighter-rouge">All</code>. Case is sensitive.</li>
   <li>You should see a message that indicates success.</li>
 </ol>
+
 
   </div>
 

@@ -198,3 +198,7 @@ padding-left: 5px;
 tr.tableheader {
 background: #d2d2d2;
 }
+
+strong {
+    font-weight: bold;
+}

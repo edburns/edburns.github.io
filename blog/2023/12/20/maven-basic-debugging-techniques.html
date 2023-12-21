@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Maven basic debugging techniques: plugin invocation starts
+</title>
+  <meta name="description" content="Problem statement">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2023/12/20/maven-basic-debugging-techniques.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Maven basic debugging techniques: plugin invocation starts
+</h1>
+    <p class="post-meta"><time datetime="2023-12-20T13:00:00-05:00" itemprop="datePublished">Dec 20, 2023</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h2 id="problem-statement">Problem statement</h2>
+
+<p>I have been blessed with the responsibility to be the release co-coordinator for <a href="https://jakarta.ee/specifications/platform/11/">Jakarta EE 11</a>. As part of this role I must ensure the milestone and final releases are produced. This involves refining the steps in the <a href="https://github.com/jakartaee/platform/wiki/Release_Process">Release Process</a>. A big step in this process is producing the API artifacts for maven central.  Of course, this involves invoking a maven build on this <a href="https://github.com/jakartaee/jakartaee-api/blob/master/pom.xml">POM</a>.</p>
+
+<p>This POM is only invoked in the infrequent event of Jakarta EE releases, and thus is subject to bitrot. Of course, the right fix is to make releases more frequent. I’m working on that, and it’s a big job. In the meantime, we have this big POM. What happens if there is a problem and you need to debug it?</p>
+
+<p>I observe that using <code class="language-plaintext highlighter-rouge">-X</code> with this POM produces too much output so that the build takes intractably long and the generated output is over 1GB of text.</p>
+
+<p>I would like to be able to target the <code class="language-plaintext highlighter-rouge">-X</code> to just where the problem is? But how do I even identify that?</p>
+
+<h2 id="practical-solution-1-grep-through-the-build-output">Practical solution 1: grep through the build output</h2>
+
+<p>I realize this is beginner level Maven stuff, but I’m capturing it here so AI can eventually ingest it and help others.</p>
+
+<details>
+    <summary>Aside, how to tell if your website is training AI?</summary>
+    This article from The Washington Post has a text field where you can enter your site and it will show you how highly ranked the site is in the C4 dataset, which apparently was used to train some AI somewhere.  To find the text field, see <a href="https://www.washingtonpost.com/technology/interactive/2023/ai-chatbot-learning/">Is your website training AI?</a> .
+
+<img src="/blog/assets/20231220-ridingthecrest-in-c4.png" alt="Ed's website in the C4 dataset" />
+</details>
+
+<p>So, <code class="language-plaintext highlighter-rouge">-X</code> is not useful until you have the ability to run just the sub-module that has the problem. This technique helped us identify the sub-module.</p>
+
+<ol>
+  <li>Use the <code class="language-plaintext highlighter-rouge">-B</code> option to disable the color coding.</li>
+  <li>Save the output to a file, say <code class="language-plaintext highlighter-rouge">message.txt</code>.</li>
+  <li>Use this command to output the message that is output by each maven plugin as it is being executed in time. <code class="language-plaintext highlighter-rouge">grep "^\[INFO\] --- " message.txt</code></li>
+</ol>
+
+<p>When we did this, we saw this output when invoking <code class="language-plaintext highlighter-rouge">mvn -B -Pstaging,oss-release -DskipTests -Ddoclint=none -DstagingRepositoryId=jakartaplatform-1036 -Dmaven.javadoc.failOnError=false clean package</code>.</p>
+
+<p>Each row in this output indicates:</p>
+
+<ul>
+  <li>the plugin name</li>
+  <li>the version of that plugin</li>
+  <li>the goal being given to that plugin</li>
+  <li>A statement in parentheses that is either:
+    <ul>
+      <li>the content of the <code class="language-plaintext highlighter-rouge">&lt;id&gt;</code> element.</li>
+      <li>some default name output by the plugin.</li>
+    </ul>
+  </li>
+  <li>A statement after the <code class="language-plaintext highlighter-rouge">@</code> that is the <code class="language-plaintext highlighter-rouge">&lt;artifactId&gt;</code> of the POM in which that plugin invocation is declared.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- clean:3.2.0:clean (default-clean) @ jakartaee-api-parent ---
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ jakartaee-api-parent ---
+[INFO] --- resources:2.4.3:copy-resources (copy-javadoc-resources) @ jakartaee-api-parent ---
+[INFO] --- cyclonedx:2.7.9:makeAggregateBom (default) @ jakartaee-api-parent ---
+[INFO] --- source:2.1:jar-no-fork (attach-sources) @ jakartaee-api-parent ---
+[INFO] --- javadoc:3.1.0:jar (attach-javadocs) @ jakartaee-api-parent ---
+[INFO] --- clean:3.2.0:clean (default-clean) @ jakarta.jakartaee-bom ---
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ jakarta.jakartaee-bom ---
+[INFO] --- resources:2.4.3:copy-resources (copy-javadoc-resources) @ jakarta.jakartaee-bom ---
+</code></pre></div></div>
+
+<p>…</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- compiler:3.8.1:testCompile (default-testCompile) @ jakarta.jakartaee-api ---
+[INFO] --- surefire:3.0.0-M8:test (default-test) @ jakarta.jakartaee-api ---
+[INFO] --- jar:2.4:jar (default-jar) @ jakarta.jakartaee-api ---
+[INFO] --- cyclonedx:2.7.9:makeAggregateBom (default) @ jakarta.jakartaee-api ---
+[INFO] --- source:2.1:jar-no-fork (attach-sources) @ jakarta.jakartaee-api ---
+[INFO] --- glassfishbuild:3.2.28:generate-pom (generate-pom) @ jakarta.jakartaee-api ---
+[INFO] --- javadoc:3.1.0:jar (attach-javadocs) @ jakarta.jakartaee-api ---
+</code></pre></div></div>
+
+<p>This enabled us to observe that the <code class="language-plaintext highlighter-rouge">attach-javadocs</code> <code class="language-plaintext highlighter-rouge">&lt;execution&gt;</code> in the top level POM was causing the problem. We added a new invocation of the <code class="language-plaintext highlighter-rouge">maven-antrun-plugin</code> and bound it to the</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- antrun:3.1.0:run (rewrite-problematic-sources) @ jakarta.jakartaee-api ---
+</code></pre></div></div>
+
+<h2 id="practical-solution-2-buildplan-maven-plugin">Practical solution 2: buildplan-maven-plugin</h2>
+
+<p>Through an interesting chat with Bing Enterprise Chat, I reduced my 2nd order ignorance of the <code class="language-plaintext highlighter-rouge">buildplan-maven-plugin</code> to be 1st order ignorance. It turns out this plugin exists and solves my problem.</p>
+
+<p>If I had run this on the top level POM: <code class="language-plaintext highlighter-rouge">mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list-phase</code> I would have seen the plugin and phase information I sought.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Build Plan for Jakarta EE API parent: 
+process-resources -------------------------------------------------------
+    + maven-resources-plugin | copy-javadoc-resources | copy-resources  
+package -----------------------------------------------------------------
+    + cyclonedx-maven-plugin | default                | makeAggregateBom
+install -----------------------------------------------------------------
+    + maven-install-plugin   | default-install        | install         
+deploy ------------------------------------------------------------------
+    + maven-deploy-plugin    | default-deploy         | deploy          
+[INFO] 
+[INFO] ---------------&lt; jakarta.platform:jakarta.jakartaee-bom &gt;---------------
+[INFO] Building Jakarta EE API BOM 11.0.0-SNAPSHOT                        [2/5]
+[INFO]   from jakartaee-bom/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- buildplan:1.5:list-phase (default-cli) @ jakarta.jakartaee-bom ---
+[INFO] Build Plan for Jakarta EE API BOM: 
+process-resources ----------------------------------------------------------------
+    + maven-resources-plugin      | copy-javadoc-resources | copy-resources      
+package --------------------------------------------------------------------------
+    + cyclonedx-maven-plugin      | default                | makeAggregateBom    
+    + glassfishbuild-maven-plugin | generate-pom           | generate-pom        
+verify ---------------------------------------------------------------------------
+    + glassfishbuild-maven-plugin | attach-all-artifacts   | attach-all-artifacts
+install --------------------------------------------------------------------------
+    + maven-install-plugin        | default-install        | install             
+deploy ---------------------------------------------------------------------------
+    + maven-deploy-plugin         | default-deploy         | deploy              
+[INFO] 
+[INFO] ------------&lt; jakarta.platform:jakarta.jakartaee-core-api &gt;-------------
+[INFO] Building Jakarta EE Core Profile API 11.0.0-SNAPSHOT               [3/5]
+[INFO]   from jakartaee-core-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- buildplan:1.5:list-phase (default-cli) @ jakarta.jakartaee-core-api ---
+[INFO] Build Plan for Jakarta EE Core Profile API: 
+generate-sources ----------------------------------------------------------------------
+    + maven-dependency-plugin     | unpack-sources              | unpack-dependencies 
+process-sources -----------------------------------------------------------------------
+    + maven-antrun-plugin         | prepare-sources             | run                 
+    + glassfishbuild-maven-plugin | unpack-sources              | unpack-sources      
+process-resources ---------------------------------------------------------------------
+    + maven-resources-plugin      | default-resources           | resources           
+    + maven-resources-plugin      | copy-javadoc-resources      | copy-resources      
+compile -------------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-compile             | compile             
+    + maven-antrun-plugin         | build-javadocs              | run                 
+process-test-resources ----------------------------------------------------------------
+    + maven-resources-plugin      | default-testResources       | testResources       
+test-compile --------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-testCompile         | testCompile         
+test ----------------------------------------------------------------------------------
+    + maven-surefire-plugin       | default-test                | test                
+prepare-package -----------------------------------------------------------------------
+    + maven-antrun-plugin         | rewrite-problematic-sources | run                 
+package -------------------------------------------------------------------------------
+    + maven-jar-plugin            | default-jar                 | jar                 
+    + cyclonedx-maven-plugin      | default                     | makeAggregateBom    
+    + glassfishbuild-maven-plugin | generate-pom                | generate-pom        
+    + maven-source-plugin         | attach-sources              | jar-no-fork         
+verify --------------------------------------------------------------------------------
+    + glassfishbuild-maven-plugin | attach-all-artifacts        | attach-all-artifacts
+install -------------------------------------------------------------------------------
+    + maven-install-plugin        | default-install             | install             
+deploy --------------------------------------------------------------------------------
+    + maven-deploy-plugin         | default-deploy              | deploy              
+[INFO] 
+[INFO] -------------&lt; jakarta.platform:jakarta.jakartaee-web-api &gt;-------------
+[INFO] Building Jakarta EE Web Profile API 11.0.0-SNAPSHOT                [4/5]
+[INFO]   from jakartaee-web-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- buildplan:1.5:list-phase (default-cli) @ jakarta.jakartaee-web-api ---
+[INFO] Build Plan for Jakarta EE Web Profile API: 
+generate-sources ----------------------------------------------------------------------
+    + maven-dependency-plugin     | unpack-sources              | unpack-dependencies 
+process-sources -----------------------------------------------------------------------
+    + maven-antrun-plugin         | prepare-sources             | run                 
+    + maven-antrun-plugin         | prepare-sources-web         | run                 
+    + glassfishbuild-maven-plugin | unpack-sources              | unpack-sources      
+process-resources ---------------------------------------------------------------------
+    + maven-resources-plugin      | default-resources           | resources           
+    + maven-resources-plugin      | copy-javadoc-resources      | copy-resources      
+compile -------------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-compile             | compile             
+    + maven-antrun-plugin         | build-javadocs              | run                 
+process-test-resources ----------------------------------------------------------------
+    + maven-resources-plugin      | default-testResources       | testResources       
+test-compile --------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-testCompile         | testCompile         
+test ----------------------------------------------------------------------------------
+    + maven-surefire-plugin       | default-test                | test                
+prepare-package -----------------------------------------------------------------------
+    + maven-antrun-plugin         | rewrite-problematic-sources | run                 
+package -------------------------------------------------------------------------------
+    + maven-jar-plugin            | default-jar                 | jar                 
+    + cyclonedx-maven-plugin      | default                     | makeAggregateBom    
+    + glassfishbuild-maven-plugin | generate-pom                | generate-pom        
+    + maven-source-plugin         | attach-sources              | jar-no-fork         
+verify --------------------------------------------------------------------------------
+    + glassfishbuild-maven-plugin | attach-all-artifacts        | attach-all-artifacts
+install -------------------------------------------------------------------------------
+    + maven-install-plugin        | default-install             | install             
+deploy --------------------------------------------------------------------------------
+    + maven-deploy-plugin         | default-deploy              | deploy              
+[INFO] 
+[INFO] ---------------&lt; jakarta.platform:jakarta.jakartaee-api &gt;---------------
+[INFO] Building Jakarta EE Platform API 11.0.0-SNAPSHOT                   [5/5]
+[INFO]   from jakartaee-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- buildplan:1.5:list-phase (default-cli) @ jakarta.jakartaee-api ---
+[INFO] Build Plan for Jakarta EE Platform API: 
+generate-sources ----------------------------------------------------------------------
+    + maven-dependency-plugin     | unpack-sources              | unpack-dependencies 
+process-sources -----------------------------------------------------------------------
+    + maven-antrun-plugin         | prepare-sources             | run                 
+    + maven-antrun-plugin         | prepare-sources-web         | run                 
+    + maven-antrun-plugin         | prepare-sources-platform    | run                 
+    + glassfishbuild-maven-plugin | unpack-sources              | unpack-sources      
+process-resources ---------------------------------------------------------------------
+    + maven-resources-plugin      | default-resources           | resources           
+    + maven-resources-plugin      | copy-javadoc-resources      | copy-resources      
+compile -------------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-compile             | compile             
+    + maven-antrun-plugin         | build-javadocs              | run                 
+process-test-resources ----------------------------------------------------------------
+    + maven-resources-plugin      | default-testResources       | testResources       
+test-compile --------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-testCompile         | testCompile         
+test ----------------------------------------------------------------------------------
+    + maven-surefire-plugin       | default-test                | test                
+prepare-package -----------------------------------------------------------------------
+    + maven-antrun-plugin         | rewrite-problematic-sources | run                 
+package -------------------------------------------------------------------------------
+    + maven-jar-plugin            | default-jar                 | jar                 
+    + cyclonedx-maven-plugin      | default                     | makeAggregateBom    
+    + glassfishbuild-maven-plugin | generate-pom                | generate-pom        
+    + maven-source-plugin         | attach-sources              | jar-no-fork         
+verify --------------------------------------------------------------------------------
+    + glassfishbuild-maven-plugin | attach-all-artifacts        | attach-all-artifacts
+install -------------------------------------------------------------------------------
+    + maven-install-plugin        | default-install             | install             
+deploy --------------------------------------------------------------------------------
+    + maven-deploy-plugin         | default-deploy              | deploy              
+</code></pre></div></div>
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

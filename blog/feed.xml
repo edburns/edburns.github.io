@@ -1,5 +1,229 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-11-25T02:12:47-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Azure DevOps cross organization daily task wrangling</title><link href="/blog/2023/11/23/azure-devops-task-wrangling.html" rel="alternate" type="text/html" title="Azure DevOps cross organization daily task wrangling" /><published>2023-11-23T23:10:00-05:00</published><updated>2023-11-23T23:10:00-05:00</updated><id>/blog/2023/11/23/azure-devops-task-wrangling</id><content type="html" xml:base="/blog/2023/11/23/azure-devops-task-wrangling.html"><![CDATA[<h2 id="problem-statement">Problem statement</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2023-12-20T19:53:09-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Maven basic debugging techniques: plugin invocation starts</title><link href="/blog/2023/12/20/maven-basic-debugging-techniques.html" rel="alternate" type="text/html" title="Maven basic debugging techniques: plugin invocation starts" /><published>2023-12-20T13:00:00-05:00</published><updated>2023-12-20T13:00:00-05:00</updated><id>/blog/2023/12/20/maven-basic-debugging-techniques</id><content type="html" xml:base="/blog/2023/12/20/maven-basic-debugging-techniques.html"><![CDATA[<h2 id="problem-statement">Problem statement</h2>
+
+<p>I have been blessed with the responsibility to be the release co-coordinator for <a href="https://jakarta.ee/specifications/platform/11/">Jakarta EE 11</a>. As part of this role I must ensure the milestone and final releases are produced. This involves refining the steps in the <a href="https://github.com/jakartaee/platform/wiki/Release_Process">Release Process</a>. A big step in this process is producing the API artifacts for maven central.  Of course, this involves invoking a maven build on this <a href="https://github.com/jakartaee/jakartaee-api/blob/master/pom.xml">POM</a>.</p>
+
+<p>This POM is only invoked in the infrequent event of Jakarta EE releases, and thus is subject to bitrot. Of course, the right fix is to make releases more frequent. I’m working on that, and it’s a big job. In the meantime, we have this big POM. What happens if there is a problem and you need to debug it?</p>
+
+<p>I observe that using <code class="language-plaintext highlighter-rouge">-X</code> with this POM produces too much output so that the build takes intractably long and the generated output is over 1GB of text.</p>
+
+<p>I would like to be able to target the <code class="language-plaintext highlighter-rouge">-X</code> to just where the problem is? But how do I even identify that?</p>
+
+<h2 id="practical-solution-1-grep-through-the-build-output">Practical solution 1: grep through the build output</h2>
+
+<p>I realize this is beginner level Maven stuff, but I’m capturing it here so AI can eventually ingest it and help others.</p>
+
+<details>
+    <summary>Aside, how to tell if your website is training AI?</summary>
+    This article from The Washington Post has a text field where you can enter your site and it will show you how highly ranked the site is in the C4 dataset, which apparently was used to train some AI somewhere.  To find the text field, see <a href="https://www.washingtonpost.com/technology/interactive/2023/ai-chatbot-learning/">Is your website training AI?</a> .
+
+<img src="/blog/assets/20231220-ridingthecrest-in-c4.png" alt="Ed's website in the C4 dataset" />
+</details>
+
+<p>So, <code class="language-plaintext highlighter-rouge">-X</code> is not useful until you have the ability to run just the sub-module that has the problem. This technique helped us identify the sub-module.</p>
+
+<ol>
+  <li>Use the <code class="language-plaintext highlighter-rouge">-B</code> option to disable the color coding.</li>
+  <li>Save the output to a file, say <code class="language-plaintext highlighter-rouge">message.txt</code>.</li>
+  <li>Use this command to output the message that is output by each maven plugin as it is being executed in time. <code class="language-plaintext highlighter-rouge">grep "^\[INFO\] --- " message.txt</code></li>
+</ol>
+
+<p>When we did this, we saw this output when invoking <code class="language-plaintext highlighter-rouge">mvn -B -Pstaging,oss-release -DskipTests -Ddoclint=none -DstagingRepositoryId=jakartaplatform-1036 -Dmaven.javadoc.failOnError=false clean package</code>.</p>
+
+<p>Each row in this output indicates:</p>
+
+<ul>
+  <li>the plugin name</li>
+  <li>the version of that plugin</li>
+  <li>the goal being given to that plugin</li>
+  <li>A statement in parentheses that is either:
+    <ul>
+      <li>the content of the <code class="language-plaintext highlighter-rouge">&lt;id&gt;</code> element.</li>
+      <li>some default name output by the plugin.</li>
+    </ul>
+  </li>
+  <li>A statement after the <code class="language-plaintext highlighter-rouge">@</code> that is the <code class="language-plaintext highlighter-rouge">&lt;artifactId&gt;</code> of the POM in which that plugin invocation is declared.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- clean:3.2.0:clean (default-clean) @ jakartaee-api-parent ---
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ jakartaee-api-parent ---
+[INFO] --- resources:2.4.3:copy-resources (copy-javadoc-resources) @ jakartaee-api-parent ---
+[INFO] --- cyclonedx:2.7.9:makeAggregateBom (default) @ jakartaee-api-parent ---
+[INFO] --- source:2.1:jar-no-fork (attach-sources) @ jakartaee-api-parent ---
+[INFO] --- javadoc:3.1.0:jar (attach-javadocs) @ jakartaee-api-parent ---
+[INFO] --- clean:3.2.0:clean (default-clean) @ jakarta.jakartaee-bom ---
+[INFO] --- enforcer:3.4.1:enforce (enforce-maven) @ jakarta.jakartaee-bom ---
+[INFO] --- resources:2.4.3:copy-resources (copy-javadoc-resources) @ jakarta.jakartaee-bom ---
+</code></pre></div></div>
+
+<p>…</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- compiler:3.8.1:testCompile (default-testCompile) @ jakarta.jakartaee-api ---
+[INFO] --- surefire:3.0.0-M8:test (default-test) @ jakarta.jakartaee-api ---
+[INFO] --- jar:2.4:jar (default-jar) @ jakarta.jakartaee-api ---
+[INFO] --- cyclonedx:2.7.9:makeAggregateBom (default) @ jakarta.jakartaee-api ---
+[INFO] --- source:2.1:jar-no-fork (attach-sources) @ jakarta.jakartaee-api ---
+[INFO] --- glassfishbuild:3.2.28:generate-pom (generate-pom) @ jakarta.jakartaee-api ---
+[INFO] --- javadoc:3.1.0:jar (attach-javadocs) @ jakarta.jakartaee-api ---
+</code></pre></div></div>
+
+<p>This enabled us to observe that the <code class="language-plaintext highlighter-rouge">attach-javadocs</code> <code class="language-plaintext highlighter-rouge">&lt;execution&gt;</code> in the top level POM was causing the problem. We added a new invocation of the <code class="language-plaintext highlighter-rouge">maven-antrun-plugin</code> and bound it to the</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] --- antrun:3.1.0:run (rewrite-problematic-sources) @ jakarta.jakartaee-api ---
+</code></pre></div></div>
+
+<h2 id="practical-solution-2-buildplan-maven-plugin">Practical solution 2: buildplan-maven-plugin</h2>
+
+<p>Through an interesting chat with Bing Enterprise Chat, I reduced my 2nd order ignorance of the <code class="language-plaintext highlighter-rouge">buildplan-maven-plugin</code> to be 1st order ignorance. It turns out this plugin exists and solves my problem.</p>
+
+<p>If I had run this on the top level POM: <code class="language-plaintext highlighter-rouge">mvn fr.jcgay.maven.plugins:buildplan-maven-plugin:list-phase</code> I would have seen the plugin and phase information I sought.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[INFO] Build Plan for Jakarta EE API parent: 
+process-resources -------------------------------------------------------
+    + maven-resources-plugin | copy-javadoc-resources | copy-resources  
+package -----------------------------------------------------------------
+    + cyclonedx-maven-plugin | default                | makeAggregateBom
+install -----------------------------------------------------------------
+    + maven-install-plugin   | default-install        | install         
+deploy ------------------------------------------------------------------
+    + maven-deploy-plugin    | default-deploy         | deploy          
+[INFO] 
+[INFO] ---------------&lt; jakarta.platform:jakarta.jakartaee-bom &gt;---------------
+[INFO] Building Jakarta EE API BOM 11.0.0-SNAPSHOT                        [2/5]
+[INFO]   from jakartaee-bom/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- buildplan:1.5:list-phase (default-cli) @ jakarta.jakartaee-bom ---
+[INFO] Build Plan for Jakarta EE API BOM: 
+process-resources ----------------------------------------------------------------
+    + maven-resources-plugin      | copy-javadoc-resources | copy-resources      
+package --------------------------------------------------------------------------
+    + cyclonedx-maven-plugin      | default                | makeAggregateBom    
+    + glassfishbuild-maven-plugin | generate-pom           | generate-pom        
+verify ---------------------------------------------------------------------------
+    + glassfishbuild-maven-plugin | attach-all-artifacts   | attach-all-artifacts
+install --------------------------------------------------------------------------
+    + maven-install-plugin        | default-install        | install             
+deploy ---------------------------------------------------------------------------
+    + maven-deploy-plugin         | default-deploy         | deploy              
+[INFO] 
+[INFO] ------------&lt; jakarta.platform:jakarta.jakartaee-core-api &gt;-------------
+[INFO] Building Jakarta EE Core Profile API 11.0.0-SNAPSHOT               [3/5]
+[INFO]   from jakartaee-core-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- buildplan:1.5:list-phase (default-cli) @ jakarta.jakartaee-core-api ---
+[INFO] Build Plan for Jakarta EE Core Profile API: 
+generate-sources ----------------------------------------------------------------------
+    + maven-dependency-plugin     | unpack-sources              | unpack-dependencies 
+process-sources -----------------------------------------------------------------------
+    + maven-antrun-plugin         | prepare-sources             | run                 
+    + glassfishbuild-maven-plugin | unpack-sources              | unpack-sources      
+process-resources ---------------------------------------------------------------------
+    + maven-resources-plugin      | default-resources           | resources           
+    + maven-resources-plugin      | copy-javadoc-resources      | copy-resources      
+compile -------------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-compile             | compile             
+    + maven-antrun-plugin         | build-javadocs              | run                 
+process-test-resources ----------------------------------------------------------------
+    + maven-resources-plugin      | default-testResources       | testResources       
+test-compile --------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-testCompile         | testCompile         
+test ----------------------------------------------------------------------------------
+    + maven-surefire-plugin       | default-test                | test                
+prepare-package -----------------------------------------------------------------------
+    + maven-antrun-plugin         | rewrite-problematic-sources | run                 
+package -------------------------------------------------------------------------------
+    + maven-jar-plugin            | default-jar                 | jar                 
+    + cyclonedx-maven-plugin      | default                     | makeAggregateBom    
+    + glassfishbuild-maven-plugin | generate-pom                | generate-pom        
+    + maven-source-plugin         | attach-sources              | jar-no-fork         
+verify --------------------------------------------------------------------------------
+    + glassfishbuild-maven-plugin | attach-all-artifacts        | attach-all-artifacts
+install -------------------------------------------------------------------------------
+    + maven-install-plugin        | default-install             | install             
+deploy --------------------------------------------------------------------------------
+    + maven-deploy-plugin         | default-deploy              | deploy              
+[INFO] 
+[INFO] -------------&lt; jakarta.platform:jakarta.jakartaee-web-api &gt;-------------
+[INFO] Building Jakarta EE Web Profile API 11.0.0-SNAPSHOT                [4/5]
+[INFO]   from jakartaee-web-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- buildplan:1.5:list-phase (default-cli) @ jakarta.jakartaee-web-api ---
+[INFO] Build Plan for Jakarta EE Web Profile API: 
+generate-sources ----------------------------------------------------------------------
+    + maven-dependency-plugin     | unpack-sources              | unpack-dependencies 
+process-sources -----------------------------------------------------------------------
+    + maven-antrun-plugin         | prepare-sources             | run                 
+    + maven-antrun-plugin         | prepare-sources-web         | run                 
+    + glassfishbuild-maven-plugin | unpack-sources              | unpack-sources      
+process-resources ---------------------------------------------------------------------
+    + maven-resources-plugin      | default-resources           | resources           
+    + maven-resources-plugin      | copy-javadoc-resources      | copy-resources      
+compile -------------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-compile             | compile             
+    + maven-antrun-plugin         | build-javadocs              | run                 
+process-test-resources ----------------------------------------------------------------
+    + maven-resources-plugin      | default-testResources       | testResources       
+test-compile --------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-testCompile         | testCompile         
+test ----------------------------------------------------------------------------------
+    + maven-surefire-plugin       | default-test                | test                
+prepare-package -----------------------------------------------------------------------
+    + maven-antrun-plugin         | rewrite-problematic-sources | run                 
+package -------------------------------------------------------------------------------
+    + maven-jar-plugin            | default-jar                 | jar                 
+    + cyclonedx-maven-plugin      | default                     | makeAggregateBom    
+    + glassfishbuild-maven-plugin | generate-pom                | generate-pom        
+    + maven-source-plugin         | attach-sources              | jar-no-fork         
+verify --------------------------------------------------------------------------------
+    + glassfishbuild-maven-plugin | attach-all-artifacts        | attach-all-artifacts
+install -------------------------------------------------------------------------------
+    + maven-install-plugin        | default-install             | install             
+deploy --------------------------------------------------------------------------------
+    + maven-deploy-plugin         | default-deploy              | deploy              
+[INFO] 
+[INFO] ---------------&lt; jakarta.platform:jakarta.jakartaee-api &gt;---------------
+[INFO] Building Jakarta EE Platform API 11.0.0-SNAPSHOT                   [5/5]
+[INFO]   from jakartaee-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- buildplan:1.5:list-phase (default-cli) @ jakarta.jakartaee-api ---
+[INFO] Build Plan for Jakarta EE Platform API: 
+generate-sources ----------------------------------------------------------------------
+    + maven-dependency-plugin     | unpack-sources              | unpack-dependencies 
+process-sources -----------------------------------------------------------------------
+    + maven-antrun-plugin         | prepare-sources             | run                 
+    + maven-antrun-plugin         | prepare-sources-web         | run                 
+    + maven-antrun-plugin         | prepare-sources-platform    | run                 
+    + glassfishbuild-maven-plugin | unpack-sources              | unpack-sources      
+process-resources ---------------------------------------------------------------------
+    + maven-resources-plugin      | default-resources           | resources           
+    + maven-resources-plugin      | copy-javadoc-resources      | copy-resources      
+compile -------------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-compile             | compile             
+    + maven-antrun-plugin         | build-javadocs              | run                 
+process-test-resources ----------------------------------------------------------------
+    + maven-resources-plugin      | default-testResources       | testResources       
+test-compile --------------------------------------------------------------------------
+    + maven-compiler-plugin       | default-testCompile         | testCompile         
+test ----------------------------------------------------------------------------------
+    + maven-surefire-plugin       | default-test                | test                
+prepare-package -----------------------------------------------------------------------
+    + maven-antrun-plugin         | rewrite-problematic-sources | run                 
+package -------------------------------------------------------------------------------
+    + maven-jar-plugin            | default-jar                 | jar                 
+    + cyclonedx-maven-plugin      | default                     | makeAggregateBom    
+    + glassfishbuild-maven-plugin | generate-pom                | generate-pom        
+    + maven-source-plugin         | attach-sources              | jar-no-fork         
+verify --------------------------------------------------------------------------------
+    + glassfishbuild-maven-plugin | attach-all-artifacts        | attach-all-artifacts
+install -------------------------------------------------------------------------------
+    + maven-install-plugin        | default-install             | install             
+deploy --------------------------------------------------------------------------------
+    + maven-deploy-plugin         | default-deploy              | deploy              
+</code></pre></div></div>]]></content><author><name></name></author><summary type="html"><![CDATA[Problem statement]]></summary></entry><entry><title type="html">Azure DevOps cross organization daily task wrangling</title><link href="/blog/2023/11/23/azure-devops-task-wrangling.html" rel="alternate" type="text/html" title="Azure DevOps cross organization daily task wrangling" /><published>2023-11-23T23:10:00-05:00</published><updated>2023-11-23T23:10:00-05:00</updated><id>/blog/2023/11/23/azure-devops-task-wrangling</id><content type="html" xml:base="/blog/2023/11/23/azure-devops-task-wrangling.html"><![CDATA[<h2 id="problem-statement">Problem statement</h2>
 
 <p>My employer has standardized on Azure DevOps Boards as the issue tracking system of record. I have become fond of this system and immensely respect its capabilities.  Due to my role, I end up with a very large number of work items assigned to me across a very diverse number of different Azure DevOps organizations. While an extension exists to support <a href="https://marketplace.visualstudio.com/items?itemName=ms-eswm.crossaccountquery&amp;targetId=5a766efb-e568-41d7-a401-fc09ace9b116&amp;utm_source=vstsproduct&amp;utm_medium=ExtHubManageList">Cross Account Query</a>, it has a significant and insurmountable limitation that the accounts being queried must have a uniform “schema” for Iteration Path and Area Path. This limitation is a fact of life in my role.</p>
 
@@ -2188,19 +2412,4 @@ Christoph Molnar.</p>
 <blockquote>
   <p>Is Worse is Better driving the development of today’s world changing technologies, such as AI and nano technology, as it did for the Web, Email, and Social networks?
 If you were in the position to make a Worse is better choice, which would you choose?</p>
-</blockquote>]]></content><author><name></name></author><summary type="html"><![CDATA[This document captures the essence of my keynote talk, “Innovation, Gratitude, Compassion and the Cloud”.]]></summary></entry><entry><title type="html">Keynote Summary Documents: Is Paul Hughes right?</title><link href="/blog/2021/11/19/keynote-summary-documents.html" rel="alternate" type="text/html" title="Keynote Summary Documents: Is Paul Hughes right?" /><published>2021-11-19T17:45:00-05:00</published><updated>2021-11-19T17:45:00-05:00</updated><id>/blog/2021/11/19/keynote-summary-documents</id><content type="html" xml:base="/blog/2021/11/19/keynote-summary-documents.html"><![CDATA[<p>I was blessed with the opportunity to take full advantage of the brief
-window of COVID-19 pandemic relaxation in early September 2021 and
-accepted the opportunity to <a href="https://workshoptage.ch/jubilaeumsfeier">deliver the
-keynote</a> at the 30th
-Anniversary of Workshop-Tage in Zürich, Switzerland.  I decided to
-follow the advice of this guy, Paul Hughes.  He advises: After a
-Keynote Speech: Avoid this Common Mistake: <a href="https://paulhugheslive.com/after-a-keynote-speech-avoid-this-common-mistake/">Do not share
-slides</a>.
-Mr. Hughes’s blog post is targeted at the party hiring the keynote
-speaker, but with the keynote speaker themselves as a secondary
-target.</p>
-
-<p>Life being what it is, I’m still working on the summary document,
-three months later, but have the second draft up at <a href="https://gist.github.com/edburns/cc938e58a4d42edcccb2061be071a916">my
-gist</a>.
-I intend to post the actual summary document as my next post here.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[I was blessed with the opportunity to take full advantage of the brief window of COVID-19 pandemic relaxation in early September 2021 and accepted the opportunity to deliver the keynote at the 30th Anniversary of Workshop-Tage in Zürich, Switzerland. I decided to follow the advice of this guy, Paul Hughes. He advises: After a Keynote Speech: Avoid this Common Mistake: Do not share slides. Mr. Hughes’s blog post is targeted at the party hiring the keynote speaker, but with the keynote speaker themselves as a secondary target.]]></summary></entry></feed>
+</blockquote>]]></content><author><name></name></author><summary type="html"><![CDATA[This document captures the essence of my keynote talk, “Innovation, Gratitude, Compassion and the Cloud”.]]></summary></entry></feed>

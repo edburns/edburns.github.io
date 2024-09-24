@@ -1,5 +1,295 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2024-07-17T12:18:14-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Ed’s JavaLand 2024 Session Picks</title><link href="/blog/2024/03/02/javaland-2024-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2024 Session Picks" /><published>2024-03-02T20:20:00-05:00</published><updated>2024-03-02T20:20:00-05:00</updated><id>/blog/2024/03/02/javaland-2024-picks</id><content type="html" xml:base="/blog/2024/03/02/javaland-2024-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns/eds-javaland-2024-session-picks-23cd">dev.to</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2024-09-24T15:33:39-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">How well did Jakarta EE 11 respond to the needs of developers?</title><link href="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html" rel="alternate" type="text/html" title="How well did Jakarta EE 11 respond to the needs of developers?" /><published>2024-09-23T16:15:00-04:00</published><updated>2024-09-23T16:15:00-04:00</updated><id>/blog/2024/09/23/jakarta-ee-11-incorporating-feedback</id><content type="html" xml:base="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns/">dev.to</a>.</p>
+
+<h3 id="executive-summary">Executive Summary</h3>
+
+<p>The <a href="https://jakarta.ee/committees/steering/">Jakarta Steering Committee</a> chartered the <a href="https://jakartaee.github.io/platform/">Jakarta Platform project</a> with the goal of incorporating developer feedback in the development of EE 11. This blog post reviews the performance of the Platform Project and awards a <a href="https://gpacalculator.io/how-to-calculate-gpa/">GPA</a> of 3.43 on a 4 point scale of achieving this goal.</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>I am humbled and honored to find myself in a position of helping to deliver the next iteration of Jakarta EE. I’ve held many roles in J2EE/Java EE/Jakarta EE over the decades: implementer, spec lead, advocate, author, tester, and more. My current role, however, is a new one for me release co-coordinator.</p>
+
+<p>In this role, I co-lead (along with Arjan Tijms) the Jakarta Platform project, which is responsible for delivering the finished Jakarta EE specification (and component specifications), the corresponding TCK, and at least on ratifying compatible implementation for all of the specifications. Importantly, there need not be one single monolithic implementation that satisfies all the component TCKs at the same time, but there must be one single monolithic implementation that passes the Platform TCK.</p>
+
+<p>In the spirit of transparency that I was fortunate enough to start over <a href="https://www.ridingthecrest.com/blog/2004/06/28/welcome-javaserver-tm-faces-implementation-project.html">two decades ago</a>, this blog post examines how well the <a href="https://jakartaee.github.io/platform/">Jakarta Platform project</a> did during EE 11 in meeting one of the goals set for the Platform project by the <a href="https://jakarta.ee/committees/steering/">Steering Committee</a>: incorporate developer feedback.</p>
+
+<h3 id="underpromise-and-overdeliver">Underpromise and overdeliver</h3>
+
+<p>Institutional memory is the way groups of humans learn from mistakes and avoid repeating them. By that definition, I hope we can all agree that institutional memory is important and worth preserving. Because software is <a href="https://www.routledge.com/The-Laws-of-Software-Process-A-New-Model-for-the-Production-and-Management-of-Software/Armour/p/book/9780849314896">executable knowledge</a>, a very long running open-source software project is a special kind of institutional memory. A project that is a long running ecosystem of long running open-source projects is pretty much the pinnacle of special. With all that specialness in mind, what does it mean to incorporate developer feedback?</p>
+
+<p>It is far easier to show responsiveness to developer feedback when the possible costs of a committing a mistake are contained within a single project. In light of the high possible costs, the Jakarta EE 11 platform project was intentionally modest with our goals for incorporating developer feedback. This is our implementation of the tried and true strategy of “underpromise and overdeliver”.</p>
+
+<p>Let’s review the <a href="https://docs.google.com/document/d/1m-dkvbL0iFFzitO4vt1SVq6GGSJyFdCDM2NU_FzGS10/edit#heading=h.il1isyaqw4eb">modest goals</a> set out by the Steering Committee and see how we did in EE 11.</p>
+
+<h3 id="underpromise">Underpromise</h3>
+
+<ul>
+  <li>
+    <p>Jakarta Data</p>
+  </li>
+  <li>
+    <p>Jakarta NoSQL</p>
+  </li>
+  <li>
+    <p>Adopt Java SE 11, 17, 21 new features and Breaking Changes</p>
+  </li>
+  <li>
+    <p>Virtual Threads</p>
+  </li>
+  <li>
+    <p>TCK Refactoring</p>
+  </li>
+  <li>
+    <p>CDI Centric</p>
+
+    <ul>
+      <li>
+        <p>CDI replacing managed beans</p>
+      </li>
+      <li>
+        <p>CDI repleacing EJB</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Resolve redundant HTTP stacks: Servlet and REST</p>
+  </li>
+  <li>
+    <p>MicroProfile and Jakarta Alignment</p>
+  </li>
+  <li>
+    <p>CORS support</p>
+  </li>
+  <li>
+    <p>Jakarta Config</p>
+  </li>
+  <li>
+    <p>Make it easier to migrate from one vendor to another</p>
+  </li>
+</ul>
+
+<h3 id="mixed-delivery">Mixed delivery</h3>
+
+<p>I’m going to group the delivery in four buckets: over-delivered, delivered, somewhat delivered, did not deliver.</p>
+
+<h4 id="over-delivered">Over-delivered</h4>
+
+<ul>
+  <li>Jakarta Persistence - programmatic configuration instead of persistence.xml and a lot more <a href="https://gavinking.substack.com/p/a-summary-of-jakarta-persistence">Gavin King blog post</a></li>
+  <li>Jakarta Security - dynamically choose an authentication mechanism <a href="https://github.com/jakartaee/security/issues/311">security-311</a></li>
+</ul>
+
+<h4 id="delivered">Delivered</h4>
+
+<ul>
+  <li>
+    <p>Jakarta Data</p>
+
+    <ul>
+      <li>Yes, this new specification is present in the platform.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Adopt Java SE 11, 17, 21 new features and Breaking Changes.</p>
+
+    <ul>
+      <li>Yes, there are numerous specs that take advantage of new language features from 11 - 21.</li>
+    </ul>
+  </li>
+  <li>
+    <p>TCK Refactoring (we will deliver this. We’re holding the release for it).</p>
+
+    <ul>
+      <li>The Jakarta EE Platform TCK is a vital software component for delivering the value proposition of IT investment stability on the scale of decades. The software of the TCK has been accruing technical debt due to lack of maintenance investment. In Jakarta EE 11 we are bringing the TCK up to date with the state of the art of testing tools. This investment will enable better compatibility testing and lower the barrier to adding more tests as the Jakarta EE platform evolves.</li>
+    </ul>
+  </li>
+  <li>
+    <p>API Flexibility, i.e. no more Umbrella JARs.</p>
+    <ul>
+      <li>No more questions like “do I have to wait for Jakarta EE xx” to have this feature?</li>
+      <li>Jakarta EE Platform APIs are now just a collection of default APIs.</li>
+      <li>Individual specs can be excluded or upgraded by the users as they wish,</li>
+      <li>New specs can be added as well.</li>
+      <li>This makes Jakarta EE platform as flexible as Spring Boot, but without having the implementation baggage in your application, the best of both worlds!</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="somewhat-delivered">Somewhat delivered</h4>
+
+<ul>
+  <li>
+    <p>Virtual Threads</p>
+
+    <ul>
+      <li>The concurrency specification has rigorously specified annotation attribute that requires implementations to take advantage of virtual threads if it is available in the runtime. If you’re running on Java 21 or higher, you get virtual threads when you use the annotation attribute. If you’re running on 17, you don’t.</li>
+    </ul>
+  </li>
+  <li>
+    <p>CDI Centric</p>
+
+    <ul>
+      <li>
+        <p>CDI replacing managed beans.</p>
+
+        <ul>
+          <li>
+            <p>We did</p>
+
+            <ul>
+              <li>
+                <p>remove the <code class="language-plaintext highlighter-rouge">@ManagedBean</code> annotation.</p>
+              </li>
+              <li>
+                <p>Move the “integration” parts of CDI from the CDI spec to the platform spec.</p>
+              </li>
+              <li>Jakarta Concurrency adds scheduling to the <code class="language-plaintext highlighter-rouge">@Asynchronous</code> annotation to replace the <code class="language-plaintext highlighter-rouge">@Scheduled</code> annotation on EJBs <a href="https://github.com/jakartaee/concurrency/pull/271">concurrency-271</a></li>
+              <li>
+                <p>Injecting Concurrency resources into CDI beans instead of using <code class="language-plaintext highlighter-rouge">@Resource</code> in an EJB <a href="https://github.com/jakartaee/concurrency/pull/348">concurrency-348</a>.</p>
+              </li>
+              <li>
+                <p>Removed managed beans support in Jakarta REST.</p>
+              </li>
+              <li>Qualifiers for persistence units in Persistence - allow injecting persistence context in a CDI-idiomatic way.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>New Java features</p>
+
+    <ul>
+      <li>
+        <p>records as embeddables and IDs in Jakarta Persistence.</p>
+      </li>
+      <li>
+        <p>records in Expression Language.</p>
+      </li>
+      <li>
+        <p>records in Validation (formerly Bean Validation) <a href="https://github.com/jakartaee/validation-spec/pull/275">validation-275</a>.</p>
+      </li>
+      <li>
+        <p>Flow API in Concurrency <a href="https://github.com/jakartaee/concurrency/pull/368">concurreny-368</a>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>MicroProfile and Jakarta Alignment</p>
+
+    <ul>
+      <li>
+        <p>We did</p>
+
+        <ul>
+          <li>Create the Jakarta Security MicroProfile Security bridge spec.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="did-not-deliver">Did not deliver</h4>
+
+<ul>
+  <li>
+    <p>Jakarta NoSQL</p>
+
+    <ul>
+      <li>This did not pass the ballot at the beginning of the EE 11 development cycle. In my opinion, the reasons were non-technical, and therefore can be resolved for EE 12.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Resolve redundant HTTP stacks: Servlet and REST</p>
+
+    <ul>
+      <li>This is a very big one. In my opinion, it would take a major vendor standing behind this idea and dedicating significant resources to make it happen, likely with donating work to competitors so they could also do the same.</li>
+    </ul>
+  </li>
+  <li>
+    <p>CORS support</p>
+
+    <ul>
+      <li>This one did not even emerge on my radar.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Jakarta Config</p>
+
+    <ul>
+      <li>This one seems to be stuck in a “MicroProfile Config is good enough”, and thus is falling between the cracks. I think we’d have to convince the MicroProfile project to allow this to move from MicroProfile to the Jakarta EE Core Profile specification.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Make it easier to migrate from one vendor to another</p>
+
+    <ul>
+      <li>This one is antithetical to the business interests of each vendor, so I don’t see this one getting much attention.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>Let’s get quantitative. For each item in the <strong>Underpromise</strong> list, I’ll give us a letter grade. A for over-delivered or delivered, B for somewhat delivered, D for did not deliver.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Feedback to incorporate</td>
+      <td>Grade</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Jakarta Data</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>Jakarta NoSQL</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>Adopt Java SE 11, 17, 21 new features and Breaking Changes</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>Virtual Threads</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>TCK Refactoring</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>CDI Centric</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>Resolve redundant HTTP stacks: Servlet and REST</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>MicroProfile and Jakarta Alignment</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <td>CORS support</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>Jakarta Config</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>Make it easier to migrate from one vendor to another</td>
+      <td>D</td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>With this list, we only scored a 2.54 GPA. Not so great. If we strike from the list the developer feedback requests that I judge are not realistic to include (CORS, Redundant HTTP stacks, Jakarta Config, Make it easier to migrate from one vendor to another), we get a better grade: 3.43. Not bad, but we have room to grow.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Cross posted at dev.to.]]></summary></entry><entry><title type="html">Ed’s JavaLand 2024 Session Picks</title><link href="/blog/2024/03/02/javaland-2024-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2024 Session Picks" /><published>2024-03-02T20:20:00-05:00</published><updated>2024-03-02T20:20:00-05:00</updated><id>/blog/2024/03/02/javaland-2024-picks</id><content type="html" xml:base="/blog/2024/03/02/javaland-2024-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns/eds-javaland-2024-session-picks-23cd">dev.to</a>.</p>
 
 <p>I’m very blessed to have the opportunity to speak at the 10th anniversary JavaLand conference. It will be very different to not be at PhantasiaLand this year, but I am so fortunate to have been there all the previous years. It’s just as well since I was starting to not be able to handle the Black Mamba roller coaster anymore.  Also, I’m hoping it takes less time to walk between sessions at this <a href="https://thevendry.com/venue/197499/nurburgring-nurburg-germany">new venue</a>.</p>
 
@@ -1997,187 +2287,4 @@ nothing to commit, working tree clean
       <li>There are lots of ways to do this.  This one seems pretty reasonable: <a href="https://linuxize.com/post/how-to-add-directory-to-path-in-linux/">https://linuxize.com/post/how-to-add-directory-to-path-in-linux/</a>.</li>
     </ul>
   </li>
-</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[This brief post shows how to use git worktree to perform development work multiple branches of your local clone of a remote git repository, such as a repository on GitHub. The worktree git sub-command allows you to “Manage multiple working trees”. If you want to know everything there is to know about worktree, you can view the manual page by doing man git-worktree. Yes, that’s right, the literal string git-worktree. All git sub-commands have their own manual page which you can access with man git-subcommandname. Try it with man git-branch, for example.]]></summary></entry><entry><title type="html">Ed’s JavaLand 2022 Session Picks (Updated)</title><link href="/blog/2022/02/15/javaland-2022-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2022 Session Picks (Updated)" /><published>2022-02-15T18:25:00-05:00</published><updated>2022-02-15T18:25:00-05:00</updated><id>/blog/2022/02/15/javaland-2022-picks</id><content type="html" xml:base="/blog/2022/02/15/javaland-2022-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/eds-javaland-2022-session-picks-updated-2ghj">dev.to</a>.</p>
-
-<p>In my <a href="/blog/2021/05/19/build-picks.html">previous</a> “session picks” post I lamented, “Ever since the end of in-person events, I have not bothered to do my traditional session picks posts”.  Well, with <a href="https://javaland.eu">JavaLand 2022</a> fast approaching, the time has come to resume the practice.</p>
-
-<p>All times in local timezone in JavaLand.  See <a href="https://www.javaland.eu/de/programm/">the program</a> for more details on each session.</p>
-
-<h3 id="monday-14-march-2022">Monday, 14 March 2022</h3>
-
-<h4 id="1700---1900-dambali-matamba---pattern-matching-mit-java">17:00 - 19:00 Dambali (Matamba) - Pattern matching mit Java</h4>
-
-<p>The day before JavaLand is usually reserved for JavaLand kids activities, but with Coronavirus I have not heard about any such plans.  What I do see on the schedule is one talk from German Java conference veteran <a href="https://twitter.com/sippsack">Falk Sippach</a> and newcomer <a href="https://twitter.com/MBoegie">Merlin Bögershausen</a> about pattern matching in Java.  Nope, it’s not regular expressions they’re talking about.  They are talking about language level features such as pattern matching in switch statements, records, and arrays, as described in this authoritative blog post from <a href="https://blogs.oracle.com/javamagazine/post/java-project-amber-lambda-loom-panama-valhalla">Andrew Binstock</a>.  The talk is in German, but well worth a look.  It’s also the only scheduled talk on Monday.</p>
-
-<h3 id="tuesday-15-march-2022">Tuesday, 15 March 2022</h3>
-
-<h4 id="0830---0910-schauspielhaus---unittesting-für-jakarta-ee---das-vernachlässigte-wesen">08:30 - 09:10 Schauspielhaus - Unittesting für Jakarta EE - das vernachlässigte Wesen</h4>
-
-<p>After many years of working mainly with the arrangement of boxes on architecture diagrams, and the JSON it takes to connect those boxes, I look forward to looking deep inside a single box at the humble Unit Test. Join <a href="https://github.com/guhilling/">Gunnar Hilling</a> for this Jakarta EE focused look at this neglected discipline.</p>
-
-<p>I also close out my conference picks with a talk about assertions.</p>
-
-<h4 id="0930---1000---silverado---begrüßung">09:30 - 10:00 - Silverado - Begrüßung</h4>
-
-<p>I’ve been to every JavaLand ever, and I can attest that Fried’s energetic greetings are not to be missed. I am sure it will be especially emotional after we’ve all been through two years of pandemic hardship. If you are interested in my take on being thankful to be at a conference after two years of pandemic hardship, check out <a href="/blog/2021/11/22/workshoptage-keynote-summary-document.html">this previous post</a>.</p>
-
-<h4 id="1000---1040---silverado---common-misunderstandings-in-software-architecture">10:00 - 10:40 - Silverado - Common Misunderstandings in Software Architecture</h4>
-
-<p>I am unfamiliar with <a href="https://twitter.com/Cairolali">Dr. Carola Lilienthal</a>, but her book “Sustainable Software Architecture” looks excellent. This talk is likely a distillation of the lessons in the book.</p>
-
-<h4 id="1100---1040---schauspielhaus---quarkus-a-bliss-for-developers">11:00 - 10:40 - Schauspielhaus - Quarkus: a Bliss for Developers</h4>
-
-<p>Alex Soto Bueno is delivering a talk on Red Hat’s flagship, post-monolith,
-cloud-native, enterprise Java developer runtime. I’m confident it will
-be true to the legacy of excellent talks from the legendary Burr
-Sutter.  Even though this talk competes with Ivar Grimstad’s Jakarta
-EE 10 talk, I prioritize this one because I see Quarkus as delivery
-vehicle for some Jakarta EE specs.  Look at it this way: EE10 is the
-future, and some of the EE10 specs will eventually show up in Quarkus.</p>
-
-<h4 id="1200---1240---wintergarden---low-cost-cloud-native-open-standard-java-on-azure-kubernetes-service">12:00 - 12:40 - Wintergarden - Low Cost, Cloud Native, Open Standard Java on Azure Kubernetes Service</h4>
-
-<p>My biased opinion recommends my own session.  <a href="https://twitter.com/emilyfhjiang">Emily Jiang</a> and will observe that customers have made it clear: they want Kubernetes, but they want it easy and affordable. It is possible to address these two competing concerns by using open source runtimes on commodity hardware. This lecture shows how to use the EPLv1 licensed Open Liberty runtime on vanilla Azure Kubernetes Service.</p>
-
-<p>If I wasn’t giving this talk, I would attend <a href="https://twitter.com/johanjanssen42">Johan Janssen’s</a>
-“Why and How to Upgrade to Java 17” in Silverado.  I find an in-person conference is really great for these “one stop shop” sessions.</p>
-
-<h4 id="1300---1340---silverado---the-project-that-changed-my-mind-on-java-modules">13:00 - 13:40 - Silverado - The Project that Changed my Mind on Java Modules</h4>
-
-<p>Java modules is the feature that should have been in JDK 1.0, but for
-many extremely valid reasons did not show up until eleven years
-later. Most of the trouble people have had using Java modules in
-practice can be traced to necessary decisions projects have had to
-make in the absence of such a core feature in the JDK.  The problem of
-modularity is fundamental to computer science, and the Java module
-system is one answer to that problem for the Java platform.  The
-abstract for <a href="https://twitter.com/JaapCoomans">Jaap Coomans’s</a> talk
-states, “That’s when the box of Pandora really opened up.” Yep, that
-is the most common experience of people trying to use Java modules in
-practice. I am very curious to see Jaap’s answer.</p>
-
-<h4 id="1400---1440---silverado---debugging-distributed-systems">14:00 - 14:40 - Silverado - Debugging Distributed Systems</h4>
-
-<p>This topic is solid gold.  In my lexicon “debugging” is the same thing
-as “deeply understanding”. If you can’t debug a system, you can’t
-claim to deeply understand it.  I expect Java Champion <a href="https://twitter.com/bjschrijver">Bert Jan
-Schrijver</a> will leave you with
-actionable lessons on this essential skill.</p>
-
-<h4 id="1500---1540---rotunde---jvm-ergonomics-and-the-container-deep-dive">15:00 - 15:40 - Rotunde - JVM Ergonomics and the Container: Deep Dive</h4>
-
-<p>The first thing that popped into my mind when reading <a href="https://twitter.com/Tommy1199">Sascha Selzer’s</a> abstract for “JVM Ergonomics and the Container: Deep Dive” was Martin Thompson’s 2017 JavaLand Keynote about <a href="https://www.javaland.eu/de/home/news/details/?tx_news_pi1%5Bnews%5D=1327&amp;tx_news_pi1%5Bcontroller%5D=News&amp;tx_news_pi1%5Baction%5D=detail&amp;cHash=bb7d83b09cba83204cb0c902d1700990">Mechanical Sympathy</a>.  Martin’s concept is all about understanding the relationship between the hardware and the software running on top of it.  Given the complete centrality of containerized workloads to our current practice, this talk seems essential.</p>
-
-<h4 id="1600---1640---rotunde---observing-cloud-native-java-apps-using-opentelemetry-on-aws-gcp-and-azure">16:00 - 16:40 - Rotunde - Observing Cloud Native Java Apps Using OpenTelemetry on AWS, GCP and Azure</h4>
-
-<p>Sticking with the operations angle, this talk covers OpenTelemetry.  I’d say that OpenTelemetry will do for observability what the Servlet API did for CGI-BIN: make it standard for all Java apps.  Check this talk by <a href="https://www.xing.com/profile/Bernhard_Lubomski/cv">Bernhard Lubomski</a> out.</p>
-
-<h4 id="1700---1740---wintergarten---openid-connect-support-in-jakarta-ee-10">17:00 - 17:40 - Wintergarten - OpenId Connect Support in Jakarta EE 10</h4>
-
-<p><a href="https://twitter.com/rdebusscher">Rudy De Bunsscher</a> is a driving
-force behind Payara and also an active Jakarta EE contributor. This
-talk demonstrates the continued vitality of Jakarta EE by showing how
-the OpenId Connect standard is supported in Jakarta EE 10.  From a
-historical perspective, the Security API, introduced by David Blevins
-in Jakarta EE 8, is a great foundation for OpenId Connect.  I am curious to see if Spring adopts the Security spec or continues in their
-<a href="https://www.youtube.com/watch?v=VZAJMBFq85s">go your own way</a>
-approach when it comes to the “invent vs adopt” decision.</p>
-
-<h4 id="1800---1840---silverado---how-to-survive-a-live-coding-session">18:00 - 18:40 - Silverado - How to Survive a Live Coding Session</h4>
-
-<p>I have observed the world-master of live coding, Dr. Venkat
-Subramaniam, and wondered, “how does he do it?” This meta-session
-about live coding sessions from <a href="https://twitter.com/rucek">Jacek
-Kunicki</a> offers, “tips and tricks [to] help
-you feel more comfortable and prepared for (almost)
-everything. Real-life horror stories included!”  Sounds great!</p>
-
-<h4 id="1900---1940---quantum-12---die-neue-gesprächskultur-ganz-wie-in-panama">19:00 - 19:40 - Quantum 1+2 - Die neue Gesprächskultur: ganz wie in Panama</h4>
-
-<p>I’m glad to see my JSF expert group old colleague <a href="https://www.goodreads.com/review/show/378749161">Bernd Müller</a> is still doing new and exciting different things in the Java world.  This particular topic of native-Java interaction (but not the GraalVM kind) is close to my heart, having worked with JNI over <a href="https://www-archive.mozilla.org/oji/">20 years ago</a>.</p>
-
-<h3 id="wednesday-16-march-2022">Wednesday, 16 March 2022</h3>
-
-<h4 id="0900---0940---wintergarden---java-at-microsoft---behind-the-scenes">09:00 - 09:40 - Wintergarden - Java at Microsoft - Behind the scenes</h4>
-
-<p>When I first published this post, I had recommended Fabian’s talk
-titled “State of the Java Metrics Libraries” in Rotunde.  I still want
-to see this talk, but I must recommend you attend my colleagues
-<a href="https://twitter.com/karianna">Martijn Verburg</a> and <a href="https://twitter.com/gdams_">George
-Adams’s</a> talk about the latest entrant in
-the OpenJDK ecosystem, Microsoft. You can read more about it in this
-blog post announcing <a href="https://devblogs.microsoft.com/java/microsoft-deepens-its-investments-in-java/">Microsoft joining the JCP</a>.</p>
-
-<h4 id="1000---1040---wintergarten---increase-your-productivity-with-intellij">10:00 - 10:40 - Wintergarten - Increase Your Productivity with IntelliJ</h4>
-
-<p>My own interviews with <a href="https://ridingthecrest.com/">Rockstar Programmers</a> support the observation that mastery of tools is the single most important skill in the Rockstar programmer’s toolbox. This session from <a href="https://twitter.com/BoukeNijhuis">Bouke Nijhuis</a>, gives you tips for mastery of the most masterful Java IDE.</p>
-
-<h4 id="1100---1140---wintergarten---from-zero-to-spring-boot-hero-with-github-codespaces">11:00 - 11:40 - Wintergarten - From Zero to Spring Boot Hero with GitHub Codespaces</h4>
-
-<p>Have you heard of GitHub codespaces? Well, <a href="https://twitter.com/sKriemhild">Sandra Ahlgrimm</a> is a past master of this transformative developer technology.  She joins forces with <a href="http://twitter.com/martinlippert">Martin Lippert</a> to show how to become super productive with CodeSpaces and Spring Boot.</p>
-
-<h4 id="1200---1240---stocks---der-application-server-ist-tot----es-lebe-jakarta-ee">12:00 - 12:40 - Stock’s - Der Application Server ist tot (?) - es lebe Jakarta EE!</h4>
-
-<p>My main job at Microsoft is to ensure Java EE application server
-workloads have a great home on Azure.  I have seen irrefutable Azure
-revenue numbers that prove the Java EE app server is far from dead.
-I’m looking forward to an outside perspective from <a href="https://twitter.com/dirkweil">Dirk Weil</a> on this same question.</p>
-
-<h4 id="1300---1340---wintergarten---die-all-stars-der-software-bugs--und-was-wir-von-ihnen-lernen-können">13:00 - 13:40 - Wintergarten - Die All-Stars der Software-Bugs – und was wir von ihnen lernen können</h4>
-
-<p>I have seen many different anthropomorphisms for software bugs, but “all star team” is a new one. <a href="https://twitter.com/perdian_de">Christian Seifert</a> brings this entertaining perspective on a fact of life for practicing developers.</p>
-
-<h4 id="1400---1440---schauspielhaus---feminism-for-geeks--a-gentle-introduction">14:00 - 14:40 - Schauspielhaus - Feminism for Geeks – A Gentle Introduction</h4>
-
-<p>I vehemently challenge anyone who asserts that being “woke” or
-“anti-fascist” is a bad thing.  The same thing goes for anyone who
-feels that masculinity is somehow under attack. It’s not, and if you
-believe it is, you believe so in spite of reams of empirical evidence.
-I applaud the conference committee for accepting this talk from Wenny
-Susanto-Berky and urge you not to miss it.</p>
-
-<h4 id="1500---1540---silverado---hilfe-ich-will-meinen-monolithen-zurück">15:00 - 15:40 - Silverado - Hilfe, ich will meinen Monolithen zurück!</h4>
-
-<p>Here we are, roughly seven years since Sam Newman’s seminal book
-“Building Microservices” and I’m starting to see talks like <a href="https://twitter.com/mobilelarson">Lars Röwekamp’s</a> “Help, I want my
-monolith back”.  This view is not mere contrarianism. There are
-definitely aspects of the monolith that should be preserved, even in a
-microservices based architecture.  I’m sure Lars will break it down
-for us.</p>
-
-<h4 id="1600---1640---schauspielhaus---der-java-werkzeugkasten--die-praktischen-kommandozeilentools-des-jdk">16:00 - 16:40 - Schauspielhaus - Der Java-Werkzeugkasten – Die praktischen Kommandozeilentools des JDK</h4>
-
-<p>All of us have been installing JDKs on machines for years and years, but how many know about all the command line tools that get installed in that package? <a href="https://twitter.com/mesirii">Michael Hunger</a> shows you how to get more from what you already have.</p>
-
-<h4 id="1700---1740---quantum-34---im-dutzend-billiger-kanns-eine-assertion-mehr-sein-mit-assertj-zum-testerfolg">17:00 - 17:40 - Quantum 3+4 - Im Dutzend billiger. Kann’s eine Assertion mehr sein? Mit AssertJ zum Testerfolg</h4>
-
-<p>There is a whole track on testing at JavaLand, but this is only the second testing talk I’ve selected. I assure you, this is not because testing is unimportant. Rather, my role as Principal Architect at Microsoft has me working at a higher level of abstraction.  However, I am fascinated by the journey of the humble assertion over time.  The <code class="language-plaintext highlighter-rouge">assert</code> keyword was added to Java in 2002, but since then the entire practice of CI/CD has evolved.  This talk from <a href="https://twitter.com/bikratz">Birgit Kratz</a> shows how the concept of assertions is compatible with our contemporary highly-automated development practice.</p>
-
-<h3 id="thursday-17-march-2022">Thursday, 17 March 2022</h3>
-
-<h4 id="0900---1700----bambuti-matamba---modern-jakarta-ee-and-microprofile-on-azure-open-liberty-jboss-eap-and-weblogic">09:00 - 17:00 -  Bambuti (Matamba) - Modern Jakarta EE and Microprofile on Azure: Open Liberty, JBoss EAP, and WebLogic</h4>
-
-<p>I’m just going to recommend my own workshop with Sandra Ahlgrimm.
-Here’s the snappy abstract I wrote.</p>
-
-<blockquote>
-  <p>You may have heard of the saying, “software is eating the
-world”. You may have heard of the concept of “digital
-transformation”.  You may be, or know, someone who must implement
-both of these things by moving an existing system to a public cloud.
-Talk about a full stack job! Join Java veteran Ed Burns and Senior
-Developor Advocate Sandra Ahlgrimm for an educational and
-informative deep dive into how to build for Microsoft Azure. This
-workshop will teach Azure concepts by the example of how to easily
-stand up an Azure Kubernetes Service (AKS) and run a Java EE
-application inside of it.</p>
-</blockquote>
-
-<blockquote>
-  <p>Participants will explore Oracle WebLogic Server, IBM Open Liberty
-and JBoss EAP as the Java EE runtimes.  We will run the first two of
-these Java EE environments on AKS and the third on Azure App
-Service. As we go along, we will look under the hood at the
-Microsoft, Oracle IBM and Red Hat technologies that enable it all to
-work.</p>
-</blockquote>]]></content><author><name></name></author><summary type="html"><![CDATA[Cross posted at dev.to.]]></summary></entry></feed>
+</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[This brief post shows how to use git worktree to perform development work multiple branches of your local clone of a remote git repository, such as a repository on GitHub. The worktree git sub-command allows you to “Manage multiple working trees”. If you want to know everything there is to know about worktree, you can view the manual page by doing man git-worktree. Yes, that’s right, the literal string git-worktree. All git sub-commands have their own manual page which you can access with man git-subcommandname. Try it with man git-branch, for example.]]></summary></entry></feed>

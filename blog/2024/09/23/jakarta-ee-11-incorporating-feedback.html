@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How well did Jakarta EE 11 respond to the needs of developers?</title>
+  <meta name="description" content="Cross posted at dev.to.">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">How well did Jakarta EE 11 respond to the needs of developers?</h1>
+    <p class="post-meta"><time datetime="2024-09-23T16:15:00-04:00" itemprop="datePublished">Sep 23, 2024</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Cross posted at <a href="https://dev.to/edburns/">dev.to</a>.</p>
+
+<h3 id="executive-summary">Executive Summary</h3>
+
+<p>The <a href="https://jakarta.ee/committees/steering/">Jakarta Steering Committee</a> chartered the <a href="https://jakartaee.github.io/platform/">Jakarta Platform project</a> with the goal of incorporating developer feedback in the development of EE 11. This blog post reviews the performance of the Platform Project and awards a <a href="https://gpacalculator.io/how-to-calculate-gpa/">GPA</a> of 3.43 on a 4 point scale of achieving this goal.</p>
+
+<h3 id="introduction">Introduction</h3>
+
+<p>I am humbled and honored to find myself in a position of helping to deliver the next iteration of Jakarta EE. I’ve held many roles in J2EE/Java EE/Jakarta EE over the decades: implementer, spec lead, advocate, author, tester, and more. My current role, however, is a new one for me release co-coordinator.</p>
+
+<p>In this role, I co-lead (along with Arjan Tijms) the Jakarta Platform project, which is responsible for delivering the finished Jakarta EE specification (and component specifications), the corresponding TCK, and at least on ratifying compatible implementation for all of the specifications. Importantly, there need not be one single monolithic implementation that satisfies all the component TCKs at the same time, but there must be one single monolithic implementation that passes the Platform TCK.</p>
+
+<p>In the spirit of transparency that I was fortunate enough to start over <a href="https://www.ridingthecrest.com/blog/2004/06/28/welcome-javaserver-tm-faces-implementation-project.html">two decades ago</a>, this blog post examines how well the <a href="https://jakartaee.github.io/platform/">Jakarta Platform project</a> did during EE 11 in meeting one of the goals set for the Platform project by the <a href="https://jakarta.ee/committees/steering/">Steering Committee</a>: incorporate developer feedback.</p>
+
+<h3 id="underpromise-and-overdeliver">Underpromise and overdeliver</h3>
+
+<p>Institutional memory is the way groups of humans learn from mistakes and avoid repeating them. By that definition, I hope we can all agree that institutional memory is important and worth preserving. Because software is <a href="https://www.routledge.com/The-Laws-of-Software-Process-A-New-Model-for-the-Production-and-Management-of-Software/Armour/p/book/9780849314896">executable knowledge</a>, a very long running open-source software project is a special kind of institutional memory. A project that is a long running ecosystem of long running open-source projects is pretty much the pinnacle of special. With all that specialness in mind, what does it mean to incorporate developer feedback?</p>
+
+<p>It is far easier to show responsiveness to developer feedback when the possible costs of a committing a mistake are contained within a single project. In light of the high possible costs, the Jakarta EE 11 platform project was intentionally modest with our goals for incorporating developer feedback. This is our implementation of the tried and true strategy of “underpromise and overdeliver”.</p>
+
+<p>Let’s review the <a href="https://docs.google.com/document/d/1m-dkvbL0iFFzitO4vt1SVq6GGSJyFdCDM2NU_FzGS10/edit#heading=h.il1isyaqw4eb">modest goals</a> set out by the Steering Committee and see how we did in EE 11.</p>
+
+<h3 id="underpromise">Underpromise</h3>
+
+<ul>
+  <li>
+    <p>Jakarta Data</p>
+  </li>
+  <li>
+    <p>Jakarta NoSQL</p>
+  </li>
+  <li>
+    <p>Adopt Java SE 11, 17, 21 new features and Breaking Changes</p>
+  </li>
+  <li>
+    <p>Virtual Threads</p>
+  </li>
+  <li>
+    <p>TCK Refactoring</p>
+  </li>
+  <li>
+    <p>CDI Centric</p>
+
+    <ul>
+      <li>
+        <p>CDI replacing managed beans</p>
+      </li>
+      <li>
+        <p>CDI repleacing EJB</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Resolve redundant HTTP stacks: Servlet and REST</p>
+  </li>
+  <li>
+    <p>MicroProfile and Jakarta Alignment</p>
+  </li>
+  <li>
+    <p>CORS support</p>
+  </li>
+  <li>
+    <p>Jakarta Config</p>
+  </li>
+  <li>
+    <p>Make it easier to migrate from one vendor to another</p>
+  </li>
+</ul>
+
+<h3 id="mixed-delivery">Mixed delivery</h3>
+
+<p>I’m going to group the delivery in four buckets: over-delivered, delivered, somewhat delivered, did not deliver.</p>
+
+<h4 id="over-delivered">Over-delivered</h4>
+
+<ul>
+  <li>Jakarta Persistence - programmatic configuration instead of persistence.xml and a lot more <a href="https://gavinking.substack.com/p/a-summary-of-jakarta-persistence">Gavin King blog post</a></li>
+  <li>Jakarta Security - dynamically choose an authentication mechanism <a href="https://github.com/jakartaee/security/issues/311">security-311</a></li>
+</ul>
+
+<h4 id="delivered">Delivered</h4>
+
+<ul>
+  <li>
+    <p>Jakarta Data</p>
+
+    <ul>
+      <li>Yes, this new specification is present in the platform.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Adopt Java SE 11, 17, 21 new features and Breaking Changes.</p>
+
+    <ul>
+      <li>Yes, there are numerous specs that take advantage of new language features from 11 - 21.</li>
+    </ul>
+  </li>
+  <li>
+    <p>TCK Refactoring (we will deliver this. We’re holding the release for it).</p>
+
+    <ul>
+      <li>The Jakarta EE Platform TCK is a vital software component for delivering the value proposition of IT investment stability on the scale of decades. The software of the TCK has been accruing technical debt due to lack of maintenance investment. In Jakarta EE 11 we are bringing the TCK up to date with the state of the art of testing tools. This investment will enable better compatibility testing and lower the barrier to adding more tests as the Jakarta EE platform evolves.</li>
+    </ul>
+  </li>
+  <li>
+    <p>API Flexibility, i.e. no more Umbrella JARs.</p>
+    <ul>
+      <li>No more questions like “do I have to wait for Jakarta EE xx” to have this feature?</li>
+      <li>Jakarta EE Platform APIs are now just a collection of default APIs.</li>
+      <li>Individual specs can be excluded or upgraded by the users as they wish,</li>
+      <li>New specs can be added as well.</li>
+      <li>This makes Jakarta EE platform as flexible as Spring Boot, but without having the implementation baggage in your application, the best of both worlds!</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="somewhat-delivered">Somewhat delivered</h4>
+
+<ul>
+  <li>
+    <p>Virtual Threads</p>
+
+    <ul>
+      <li>The concurrency specification has rigorously specified annotation attribute that requires implementations to take advantage of virtual threads if it is available in the runtime. If you’re running on Java 21 or higher, you get virtual threads when you use the annotation attribute. If you’re running on 17, you don’t.</li>
+    </ul>
+  </li>
+  <li>
+    <p>CDI Centric</p>
+
+    <ul>
+      <li>
+        <p>CDI replacing managed beans.</p>
+
+        <ul>
+          <li>
+            <p>We did</p>
+
+            <ul>
+              <li>
+                <p>remove the <code class="language-plaintext highlighter-rouge">@ManagedBean</code> annotation.</p>
+              </li>
+              <li>
+                <p>Move the “integration” parts of CDI from the CDI spec to the platform spec.</p>
+              </li>
+              <li>Jakarta Concurrency adds scheduling to the <code class="language-plaintext highlighter-rouge">@Asynchronous</code> annotation to replace the <code class="language-plaintext highlighter-rouge">@Scheduled</code> annotation on EJBs <a href="https://github.com/jakartaee/concurrency/pull/271">concurrency-271</a></li>
+              <li>
+                <p>Injecting Concurrency resources into CDI beans instead of using <code class="language-plaintext highlighter-rouge">@Resource</code> in an EJB <a href="https://github.com/jakartaee/concurrency/pull/348">concurrency-348</a>.</p>
+              </li>
+              <li>
+                <p>Removed managed beans support in Jakarta REST.</p>
+              </li>
+              <li>Qualifiers for persistence units in Persistence - allow injecting persistence context in a CDI-idiomatic way.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>New Java features</p>
+
+    <ul>
+      <li>
+        <p>records as embeddables and IDs in Jakarta Persistence.</p>
+      </li>
+      <li>
+        <p>records in Expression Language.</p>
+      </li>
+      <li>
+        <p>records in Validation (formerly Bean Validation) <a href="https://github.com/jakartaee/validation-spec/pull/275">validation-275</a>.</p>
+      </li>
+      <li>
+        <p>Flow API in Concurrency <a href="https://github.com/jakartaee/concurrency/pull/368">concurreny-368</a>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>MicroProfile and Jakarta Alignment</p>
+
+    <ul>
+      <li>
+        <p>We did</p>
+
+        <ul>
+          <li>Create the Jakarta Security MicroProfile Security bridge spec.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="did-not-deliver">Did not deliver</h4>
+
+<ul>
+  <li>
+    <p>Jakarta NoSQL</p>
+
+    <ul>
+      <li>This did not pass the ballot at the beginning of the EE 11 development cycle. In my opinion, the reasons were non-technical, and therefore can be resolved for EE 12.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Resolve redundant HTTP stacks: Servlet and REST</p>
+
+    <ul>
+      <li>This is a very big one. In my opinion, it would take a major vendor standing behind this idea and dedicating significant resources to make it happen, likely with donating work to competitors so they could also do the same.</li>
+    </ul>
+  </li>
+  <li>
+    <p>CORS support</p>
+
+    <ul>
+      <li>This one did not even emerge on my radar.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Jakarta Config</p>
+
+    <ul>
+      <li>This one seems to be stuck in a “MicroProfile Config is good enough”, and thus is falling between the cracks. I think we’d have to convince the MicroProfile project to allow this to move from MicroProfile to the Jakarta EE Core Profile specification.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Make it easier to migrate from one vendor to another</p>
+
+    <ul>
+      <li>This one is antithetical to the business interests of each vendor, so I don’t see this one getting much attention.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>Let’s get quantitative. For each item in the <strong>Underpromise</strong> list, I’ll give us a letter grade. A for over-delivered or delivered, B for somewhat delivered, D for did not deliver.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Feedback to incorporate</td>
+      <td>Grade</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Jakarta Data</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>Jakarta NoSQL</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>Adopt Java SE 11, 17, 21 new features and Breaking Changes</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>Virtual Threads</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>TCK Refactoring</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>CDI Centric</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <td>Resolve redundant HTTP stacks: Servlet and REST</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>MicroProfile and Jakarta Alignment</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <td>CORS support</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>Jakarta Config</td>
+      <td>D</td>
+    </tr>
+    <tr>
+      <td>Make it easier to migrate from one vendor to another</td>
+      <td>D</td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>With this list, we only scored a 2.54 GPA. Not so great. If we strike from the list the developer feedback requests that I judge are not realistic to include (CORS, Redundant HTTP stacks, Jakarta Config, Make it easier to migrate from one vendor to another), we get a better grade: 3.43. Not bad, but we have room to grow.</p>
+
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

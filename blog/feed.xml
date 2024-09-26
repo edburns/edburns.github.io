@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2024-09-24T15:33:39-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2024-09-26T17:07:08-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">How well did Jakarta EE 11 respond to the needs of developers?</title><link href="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html" rel="alternate" type="text/html" title="How well did Jakarta EE 11 respond to the needs of developers?" /><published>2024-09-23T16:15:00-04:00</published><updated>2024-09-23T16:15:00-04:00</updated><id>/blog/2024/09/23/jakarta-ee-11-incorporating-feedback</id><content type="html" xml:base="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns/">dev.to</a>.</p>
 
 <h3 id="executive-summary">Executive Summary</h3>
@@ -19,7 +19,7 @@
 
 <p>It is far easier to show responsiveness to developer feedback when the possible costs of a committing a mistake are contained within a single project. In light of the high possible costs, the Jakarta EE 11 platform project was intentionally modest with our goals for incorporating developer feedback. This is our implementation of the tried and true strategy of “underpromise and overdeliver”.</p>
 
-<p>Let’s review the <a href="https://docs.google.com/document/d/1m-dkvbL0iFFzitO4vt1SVq6GGSJyFdCDM2NU_FzGS10/edit#heading=h.il1isyaqw4eb">modest goals</a> set out by the Steering Committee and see how we did in EE 11.</p>
+<p>Leading up to Jakarta EE 11, we conducted an open community discussion on requirements for Jakarta EE 11 and captured them in this <a href="https://docs.google.com/document/d/1m-dkvbL0iFFzitO4vt1SVq6GGSJyFdCDM2NU_FzGS10/edit#heading=h.il1isyaqw4eb">Jakarta EE 11 Discussion</a> document. Let’s review the community input we received, which was primarily developer-driven, and see how we did in EE11.</p>
 
 <h3 id="underpromise">Underpromise</h3>
 

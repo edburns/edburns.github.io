@@ -1,0 +1,11 @@
+/**/ typeof AdIntelGetIP === 'function' && AdIntelGetIP({
+  "ip": "104.188.188.164",
+  "hostname": "104-188-188-164.lightspeed.dybhfl.sbcglobal.net",
+  "city": "Orlando",
+  "region": "Florida",
+  "country": "US",
+  "loc": "28.5803,-81.4396",
+  "org": "AS7018 AT&T Services, Inc.",
+  "postal": "32808",
+  "timezone": "America/New_York"
+});

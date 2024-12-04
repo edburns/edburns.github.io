@@ -1,5 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2024-09-27T13:01:34-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">How well did Jakarta EE 11 respond to the needs of developers?</title><link href="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html" rel="alternate" type="text/html" title="How well did Jakarta EE 11 respond to the needs of developers?" /><published>2024-09-23T16:15:00-04:00</published><updated>2024-09-23T16:15:00-04:00</updated><id>/blog/2024/09/23/jakarta-ee-11-incorporating-feedback</id><content type="html" xml:base="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns/how-well-did-jakarta-ee-11-respond-to-the-needs-of-developers-1824">dev.to</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2024-12-04T13:50:53-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Using the tmate GitHub Action from Max Schmitt to aid debugging GitHub Actions workflows</title><link href="/blog/2024/12/04/tmate-github-actions-debug.html" rel="alternate" type="text/html" title="Using the tmate GitHub Action from Max Schmitt to aid debugging GitHub Actions workflows" /><published>2024-12-04T13:30:00-05:00</published><updated>2024-12-04T13:30:00-05:00</updated><id>/blog/2024/12/04/tmate-github-actions-debug</id><content type="html" xml:base="/blog/2024/12/04/tmate-github-actions-debug.html"><![CDATA[<h3 id="executive-summary">Executive Summary</h3>
+
+<p>This post shows how to use the <a href="https://github.com/mxschmitt/action-tmate">action-tmate</a> GitHub Action to allow you to SSH into the runner for your GitHub Actions workflow.</p>
+
+<h3 id="details">Details</h3>
+
+<h4 id="prerequisites">Prerequisites</h4>
+
+<ul>
+  <li>
+    <p>You have an existing GitHub Actions workflow that runs, at least somewhat.</p>
+  </li>
+  <li>
+    <p>You have set up your SSH key with GitHub and can use it to push commits to the repo which has the GitHub Actions workflow.</p>
+  </li>
+</ul>
+
+<h4 id="steps">Steps</h4>
+
+<ol>
+  <li>Put these lines in your GitHub Actions workflow. Personally I always have a <code class="language-plaintext highlighter-rouge">preflight</code> job that sets up some very basic things. I put the below lines as the first thing in the first job <strong>after</strong> <code class="language-plaintext highlighter-rouge">preflight</code>.</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      after-preflight:
+          needs: preflight
+          runs-on: ubuntu-latest
+          steps:
+              - name: Setup tmate session
+                uses: mxschmitt/action-tmate@v3
+                timeout-minutes: 120
+                with:
+                  detached: true
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>When the workflow reaches the <code class="language-plaintext highlighter-rouge">after-preflight</code> job, you’ll see a bunch of tmate related stuff in the job log, something like:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run mxschmitt/action-tmate@v3
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [142 B]
+Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
+Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Get:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease [3632 B]
+Get:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Get:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main armhf Packages [15.7 kB]
+Get:9 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main arm64 Packages [40.2 kB]
+Get:10 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main amd64 Packages [172 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [2180 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1177 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [11.5 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1956 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [957 kB]
+Fetched 6897 kB in 1s (6399 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+xz-utils is already the newest version (5.2.5-2ubuntu1).
+openssh-client is already the newest version (1:8.9p1-3ubuntu0.10).
+0 upgraded, 0 newly installed, 0 to remove and 38 not upgraded.
+ssh redacted@nyc1.tmate.io
+
+Notice: SSH: ssh redacted@nyc1.tmate.io
+Notice: or: ssh -i &lt;path-to-private-SSH-key&gt; redacted@nyc1.tmate.io
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Here’s where the magic happens. Max Schmitt’s tmate action somehow uses the SSH key you configured as the SSH key for the connection. So when you run either of those two commands, the ssh “just works” and you are able to get into the runner. I find this is useful to be able to poke around and debug things.</p>
+  </li>
+</ol>
+
+<p>Thanks of course to <a href="https://github.com/mxschmitt">Max Schmitt</a> for creating and maintaining the software and to my colleagues <a href="https://github.com/majguo">Jianguo</a> and <a href="https://github.com/backwind1233/">Zhihao</a> for reducing my <a href="https://aka.ms/rockstarignorance/">2nd order ignorance</a> about it.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Executive Summary]]></summary></entry><entry><title type="html">How well did Jakarta EE 11 respond to the needs of developers?</title><link href="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html" rel="alternate" type="text/html" title="How well did Jakarta EE 11 respond to the needs of developers?" /><published>2024-09-23T16:15:00-04:00</published><updated>2024-09-23T16:15:00-04:00</updated><id>/blog/2024/09/23/jakarta-ee-11-incorporating-feedback</id><content type="html" xml:base="/blog/2024/09/23/jakarta-ee-11-incorporating-feedback.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns/how-well-did-jakarta-ee-11-respond-to-the-needs-of-developers-1824">dev.to</a>.</p>
 
 <h3 id="executive-summary">Executive Summary</h3>
 
@@ -2100,191 +2173,4 @@ probably be retired.</p>
   <li>
     <p>Summary 48:00</p>
   </li>
-</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[50 minutes https://www.youtube.com/watch?v=8ke0kPrg9qc]]></summary></entry><entry><title type="html">Using git worktree and a script to copy commits from one branch to another in the same repo</title><link href="/blog/2022/07/19/git-worktree.html" rel="alternate" type="text/html" title="Using git worktree and a script to copy commits from one branch to another in the same repo" /><published>2022-07-19T09:25:00-04:00</published><updated>2022-07-19T09:25:00-04:00</updated><id>/blog/2022/07/19/git-worktree</id><content type="html" xml:base="/blog/2022/07/19/git-worktree.html"><![CDATA[<p>This brief post shows how to use <code class="language-plaintext highlighter-rouge">git worktree</code> to perform development work multiple branches of your local clone of a remote git repository, such as a repository on GitHub.<br />
-The <code class="language-plaintext highlighter-rouge">worktree</code> git sub-command allows you to “Manage multiple working trees”. If you want to know everything there is to know about <code class="language-plaintext highlighter-rouge">worktree</code>, you can view the manual page by doing <code class="language-plaintext highlighter-rouge">man git-worktree</code>.  Yes, that’s right, the literal string <code class="language-plaintext highlighter-rouge">git-worktree</code>.  All git sub-commands have their own manual page which you can access with <code class="language-plaintext highlighter-rouge">man git-subcommandname</code>.  Try it with <code class="language-plaintext highlighter-rouge">man git-branch</code>, for example.</p>
-
-<p>The post assumes makes the following assumptions.</p>
-
-<ul>
-  <li>You have already done <code class="language-plaintext highlighter-rouge">git clone</code> of the remote repository on your local environment.</li>
-  <li>For discussion, this local clone is called <code class="language-plaintext highlighter-rouge">myrepo</code>.</li>
-  <li>Within <code class="language-plaintext highlighter-rouge">myrepo</code> you already have three branches: <code class="language-plaintext highlighter-rouge">main</code>, <code class="language-plaintext highlighter-rouge">myfeature</code>, and <code class="language-plaintext highlighter-rouge">myotherfeature</code>.</li>
-  <li>The <code class="language-plaintext highlighter-rouge">main</code> branch is currently checked out.  This is the default behavior when you do <code class="language-plaintext highlighter-rouge">git clone</code>.</li>
-</ul>
-
-<h3 id="check-out-myfeature-using-git-worktree-add">Check out myfeature using git worktree add</h3>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">cd myrepo</code></li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">git status</code> <br />
-You should see the following.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch main
-Your branch is up to date with 'origin/main'.
-
-nothing to commit, working tree clean
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">git worktree list</code> <br />
-You should see something similar to the following.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/edburns/workareas/myrepo  5bb3c2a [main]
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Now, it’s time to check out your <code class="language-plaintext highlighter-rouge">myfeature</code> branch using <code class="language-plaintext highlighter-rouge">git worktree</code>.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git worktree add --track -b myfeature ../myrepo-01 origin/myfeature
-git worktree list
-</code></pre></div>    </div>
-
-    <p>You should see something similar to the following.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/edburns/workareas/myrepo  5bb3c2a [main]
-/home/edburns/workareas/myrepo-01  49336e1 [myfeature]
-</code></pre></div>    </div>
-
-    <p><strong>IMPORTANT:</strong> With <code class="language-plaintext highlighter-rouge">git worktree</code>, you only have one <code class="language-plaintext highlighter-rouge">.git</code> directory, in this case <code class="language-plaintext highlighter-rouge">myrepo/.git</code>.  If you do <code class="language-plaintext highlighter-rouge">ls -la</code> in <code class="language-plaintext highlighter-rouge">myrepo-01</code>, you will see a <code class="language-plaintext highlighter-rouge">.git</code> <strong>file</strong>.  It’s name the same, but it is a file, not a directory.  So, even though you have two checked out branches you are not using twice as much disk space because the <code class="language-plaintext highlighter-rouge">myrepo-01</code> directory only has the most recent files of the checked out branch.</p>
-  </li>
-</ol>
-
-<h3 id="check-out-myotherfeature-using-git-worktree-add">Check out myotherfeature using git worktree add</h3>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">cd myrepo</code></li>
-  <li>
-    <p>Now, it’s time to check out your <code class="language-plaintext highlighter-rouge">myotherfeature</code> branch using <code class="language-plaintext highlighter-rouge">git worktree</code>.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git worktree add --track -b myotherfeature ../myrepo-02 origin/myotherfeature
-git worktree list
-</code></pre></div>    </div>
-
-    <p>You should see something similar to the following.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/edburns/workareas/myrepo  5bb3c2a [main]
-/home/edburns/workareas/myrepo-01  49336e1 [myfeature]
-/home/edburns/workareas/myrepo-02  52059ba [myotherfeature]
-</code></pre></div>    </div>
-  </li>
-</ol>
-
-<h3 id="copy-commits-from-myotherfeature-to-myfeature">Copy commits from myotherfeature to myfeature</h3>
-
-<p>Now comes the interesting part, how to to copy commits from <code class="language-plaintext highlighter-rouge">myotherfeature</code> to <code class="language-plaintext highlighter-rouge">myfeature</code>.</p>
-
-<p>The following script, which I suggest you save as <code class="language-plaintext highlighter-rouge">~/bin/copyLastNWorktreeCommits.sh</code>, copies the last N commits from one worktree branch to another.  The script makes the simplifying assumption that the commits you want to copy are the most recent N commits.  If the commits you want to copy are not the most recent N commits, you can use <code class="language-plaintext highlighter-rouge">git rebase -i</code> to re-order the commits as described in this <a href="https://www.atlassian.com/git/tutorials/rewriting-history#git-rebase-i">decent tutorial from Atlassian</a>.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># pwd has the dest branch checked out</span>
-<span class="c"># first argument is relative path to source branch, checked out with worktree</span>
-<span class="c"># second argument is dest branch</span>
-<span class="c"># third argument is num commits</span>
-<span class="nv">ontoValue</span><span class="o">=</span><span class="sb">`</span>git rev-parse HEAD<span class="sb">`</span>
-<span class="nv">sourceBranch</span><span class="o">=</span><span class="nv">$1</span>
-<span class="nv">destBranch</span><span class="o">=</span><span class="nv">$2</span>
-<span class="nv">numLastCommitsOnPrivateBranch</span><span class="o">=</span><span class="nv">$3</span>
-
-<span class="nb">pushd</span> <span class="nb">.</span>
-<span class="nb">cd</span> <span class="nv">$1</span>
-<span class="nv">startingCommit</span><span class="o">=</span><span class="sb">`</span>git rev-parse HEAD<span class="sb">`</span>
-<span class="nv">endingCommit</span><span class="o">=</span><span class="sb">`</span>git rev-parse HEAD~<span class="k">${</span><span class="nv">numLastCommitsOnPrivateBranch</span><span class="k">}</span><span class="sb">`</span>
-
-<span class="nb">popd
-
-</span>git rebase <span class="nt">--onto</span> <span class="k">${</span><span class="nv">ontoValue</span><span class="k">}</span> <span class="k">${</span><span class="nv">endingCommit</span><span class="k">}</span> <span class="k">${</span><span class="nv">startingCommit</span><span class="k">}</span>
-git rebase HEAD <span class="k">${</span><span class="nv">destBranch</span><span class="k">}</span>
-</code></pre></div></div>
-
-<p>Let’s say we want to copy the last 3 commits from <code class="language-plaintext highlighter-rouge">myotherfeature</code> to <code class="language-plaintext highlighter-rouge">myfeature</code>.  Assuming <code class="language-plaintext highlighter-rouge">copyLastNWorktreeCommits.sh</code> is in your <code class="language-plaintext highlighter-rouge">~/bin</code> directory and is on your path, as described in the appendix, the following commands will accomplish this.</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">cd myrepo-01</code></li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">git status</code></p>
-
-    <p>You should see something similar to the following.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>On branch myfeature
-Your branch is up to date with 'origin/myfeature.
-
-nothing to commit, working tree clean
-</code></pre></div>    </div>
-
-    <p>Verify that you are in the correct directory. The script treats the current directory as the destination directory.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">copyLastNWorktreeCommits.sh ../myrepo-02 myfeature 3</code></p>
-
-    <p>You should see output similar to the following.</p>
-
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First, rewinding <span class="nb">head </span>to replay your work on top of it...
-Applying: my change 01
-Applying: my change 02
-Applying: my change 03
-First, rewinding <span class="nb">head </span>to replay your work on top of it...
-Fast-forwarded main to HEAD.
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Verify that the commits have been copied.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git log -3
-</code></pre></div>    </div>
-
-    <p>You should see output similar to the following.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>commit 9f1116063f0ce1c097e3118fc096a764d678798e (HEAD -&gt; main)
-Author: Ed Burns &lt;email@address.com&gt;
-Date:   Tue Jul 19 14:23:41 2022 -0400
-
-    my change 03
-
-commit 072da86c6b8e360120aab1f2a6fd87368c64fc3d
-Author: Ed Burns &lt;email@address.com&gt;
-Date:   Tue Jul 19 14:23:27 2022 -0400
-
-    my change 02
-
-commit 38036c3d4a4597b2ac070d32c236adc7b6106ae2
-Author: Ed Burns &lt;email@address.com&gt;
-Date:   Tue Jul 19 14:23:16 2022 -0400
-
-    my change 01
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Verify that the commits are ready to be pushed.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
-On branch myfeature
-Your branch is ahead of 'origin/myfeature' by 3 commits.
-  (use "git push" to publish your local commits)
-
-nothing to commit, working tree clean
-</code></pre></div>    </div>
-
-    <p>Don’t be thrown off by the “nothing to commit”.  Yes, it’s true, you have nothing to commit to <code class="language-plaintext highlighter-rouge">myfeature</code>, because those three changes were already committed on <code class="language-plaintext highlighter-rouge">myotherfeature</code>.  So while you have nothing to commit, you <strong>do</strong> have something to push.</p>
-  </li>
-  <li>If you want, you can push those changes now, but doing so is an exercise for the reader.</li>
-</ol>
-
-<h3 id="summary">Summary</h3>
-
-<p>In this post we learned how to use <code class="language-plaintext highlighter-rouge">git worktree</code> to have three branches checked out at the same time, each in their own directories, conveniently located as siblings in the filesystem.  We learned how to copy commits from one branch to another in this arranchement.</p>
-
-<h3 id="appendix-bash-basics-preconditions">Appendix: bash basics preconditions</h3>
-
-<p>This appendix describes how to make it so you can call the script shown in the post from the command line.  As with everything in GNU/Linux, <a href="/blog/2010/03/03/perils-8220there8217s-more-one-way-do-it8221.html">there is more than one way to do it</a>.  I’m not even sure this is the best way. This is just how I do it.</p>
-
-<ol>
-  <li>Make sure you have a <code class="language-plaintext highlighter-rouge">bin</code> directory in your home directory.</li>
-  <li>Save the script to a file in that <code class="language-plaintext highlighter-rouge">bin</code> directory.  As stated in the post, I recommend naming the file <code class="language-plaintext highlighter-rouge">copyLastNWorktreeCommits.sh</code>.</li>
-  <li>Make sure the file has executable permissions. <br />
-<code class="language-plaintext highlighter-rouge">chmod ugo+x ~/bin/copyLastNWorktreeCommits.sh</code>.</li>
-  <li>Make sure your <code class="language-plaintext highlighter-rouge">bin</code> directory in your home directory is in your <code class="language-plaintext highlighter-rouge">$PATH</code> environment variable.
-    <ul>
-      <li>There are lots of ways to do this.  This one seems pretty reasonable: <a href="https://linuxize.com/post/how-to-add-directory-to-path-in-linux/">https://linuxize.com/post/how-to-add-directory-to-path-in-linux/</a>.</li>
-    </ul>
-  </li>
-</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[This brief post shows how to use git worktree to perform development work multiple branches of your local clone of a remote git repository, such as a repository on GitHub. The worktree git sub-command allows you to “Manage multiple working trees”. If you want to know everything there is to know about worktree, you can view the manual page by doing man git-worktree. Yes, that’s right, the literal string git-worktree. All git sub-commands have their own manual page which you can access with man git-subcommandname. Try it with man git-branch, for example.]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[50 minutes https://www.youtube.com/watch?v=8ke0kPrg9qc]]></summary></entry></feed>

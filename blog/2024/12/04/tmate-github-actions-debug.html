@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Using the tmate GitHub Action from Max Schmitt to aid debugging GitHub Actions workflows</title>
+  <meta name="description" content="Executive Summary">
+
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<!--[if IE]>
+  <link rel="stylesheet" href="/blog/assets/rockstar.css">
+<![endif]-->
+  <link rel="stylesheet" href="/blog/assets/main.css">
+  <link rel="canonical" href="/blog/2024/12/04/tmate-github-actions-debug.html">
+  <link rel="alternate" type="application/rss+xml" title="Ed Burns Blog" href="/blog/feed.xml">
+  
+  
+  <script>
+if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-92196982-1', 'auto');
+  ga('send', 'pageview');
+}
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="https://ridingthecrest.com">Home</a>  <a class="site-title" href="/blog/">Ed Burns Blog</a>
+
+    <nav class="site-nav">
+      <span class="menu-icon">
+        <svg viewBox="0 0 18 15" width="18px" height="15px">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </span>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/blog/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="jekyll-wrapper">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Using the tmate GitHub Action from Max Schmitt to aid debugging GitHub Actions workflows</h1>
+    <p class="post-meta"><time datetime="2024-12-04T13:30:00-05:00" itemprop="datePublished">Dec 4, 2024</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h3 id="executive-summary">Executive Summary</h3>
+
+<p>This post shows how to use the <a href="https://github.com/mxschmitt/action-tmate">action-tmate</a> GitHub Action to allow you to SSH into the runner for your GitHub Actions workflow.</p>
+
+<h3 id="details">Details</h3>
+
+<h4 id="prerequisites">Prerequisites</h4>
+
+<ul>
+  <li>
+    <p>You have an existing GitHub Actions workflow that runs, at least somewhat.</p>
+  </li>
+  <li>
+    <p>You have set up your SSH key with GitHub and can use it to push commits to the repo which has the GitHub Actions workflow.</p>
+  </li>
+</ul>
+
+<h4 id="steps">Steps</h4>
+
+<ol>
+  <li>Put these lines in your GitHub Actions workflow. Personally I always have a <code class="language-plaintext highlighter-rouge">preflight</code> job that sets up some very basic things. I put the below lines as the first thing in the first job <strong>after</strong> <code class="language-plaintext highlighter-rouge">preflight</code>.</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      after-preflight:
+          needs: preflight
+          runs-on: ubuntu-latest
+          steps:
+              - name: Setup tmate session
+                uses: mxschmitt/action-tmate@v3
+                timeout-minutes: 120
+                with:
+                  detached: true
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>When the workflow reaches the <code class="language-plaintext highlighter-rouge">after-preflight</code> job, you’ll see a bunch of tmate related stuff in the job log, something like:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Run mxschmitt/action-tmate@v3
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [142 B]
+Hit:2 http://azure.archive.ubuntu.com/ubuntu jammy InRelease
+Hit:6 https://packages.microsoft.com/repos/azure-cli jammy InRelease
+Get:3 http://azure.archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Get:7 https://packages.microsoft.com/ubuntu/22.04/prod jammy InRelease [3632 B]
+Get:4 http://azure.archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Get:8 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main armhf Packages [15.7 kB]
+Get:9 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main arm64 Packages [40.2 kB]
+Get:10 https://packages.microsoft.com/ubuntu/22.04/prod jammy/main amd64 Packages [172 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [2180 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1177 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu jammy-updates/multiverse Translation-en [11.5 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [1956 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [957 kB]
+Fetched 6897 kB in 1s (6399 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+xz-utils is already the newest version (5.2.5-2ubuntu1).
+openssh-client is already the newest version (1:8.9p1-3ubuntu0.10).
+0 upgraded, 0 newly installed, 0 to remove and 38 not upgraded.
+ssh redacted@nyc1.tmate.io
+
+Notice: SSH: ssh redacted@nyc1.tmate.io
+Notice: or: ssh -i &lt;path-to-private-SSH-key&gt; redacted@nyc1.tmate.io
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Here’s where the magic happens. Max Schmitt’s tmate action somehow uses the SSH key you configured as the SSH key for the connection. So when you run either of those two commands, the ssh “just works” and you are able to get into the runner. I find this is useful to be able to poke around and debug things.</p>
+  </li>
+</ol>
+
+<p>Thanks of course to <a href="https://github.com/mxschmitt">Max Schmitt</a> for creating and maintaining the software and to my colleagues <a href="https://github.com/majguo">Jianguo</a> and <a href="https://github.com/backwind1233/">Zhihao</a> for reducing my <a href="https://aka.ms/rockstarignorance/">2nd order ignorance</a> about it.</p>
+
+  </div>
+
+
+
+  
+
+   
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function () {
+      this.page.url = '';
+      this.page.identifier = '';
+    };
+
+    (function() {
+      var d = document, s = d.createElement('script');
+
+      s.src = 'https://edburns-blog.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  
+
+  
+  
+</article>
+
+      </div>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Ed Burns Blog</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Ed Burns Blog</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg> <span class="username">edburns</span></a></li><li><a href="https://www.twitter.com/edburns"><svg class="svg-icon"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">edburns</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

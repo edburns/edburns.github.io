@@ -1,5 +1,227 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2024-12-04T13:50:53-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Using the tmate GitHub Action from Max Schmitt to aid debugging GitHub Actions workflows</title><link href="/blog/2024/12/04/tmate-github-actions-debug.html" rel="alternate" type="text/html" title="Using the tmate GitHub Action from Max Schmitt to aid debugging GitHub Actions workflows" /><published>2024-12-04T13:30:00-05:00</published><updated>2024-12-04T13:30:00-05:00</updated><id>/blog/2024/12/04/tmate-github-actions-debug</id><content type="html" xml:base="/blog/2024/12/04/tmate-github-actions-debug.html"><![CDATA[<h3 id="executive-summary">Executive Summary</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2025-02-25T19:40:42-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Ed’s JavaLand 2025 Session Picks</title><link href="/blog/2025/02/25/javaland-2025-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2025 Session Picks" /><published>2025-02-25T15:50:00-05:00</published><updated>2025-02-25T15:50:00-05:00</updated><id>/blog/2025/02/25/javaland-2025-picks</id><content type="html" xml:base="/blog/2025/02/25/javaland-2025-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns/eds-javaland-2025-session-picks">dev.to</a>.</p>
+
+<p>I’m very blessed to have the opportunity to speak at the 11th anniversary <a href="https://javaland.eu/">JavaLand conference</a>. This is the second year the conference will be held at <a href="https://thevendry.com/venue/197499/nurburgring-nurburg-germany">Nürburgring</a>. It turns out it took even more time to walk between sessions. Maybe this year will be better.</p>
+
+<p>Here are my previous session picks posts.</p>
+
+<ul>
+  <li><a href="/blog/2024/03/02/javaland-2024-picks.html">2024</a></li>
+  <li><a href="/blog/2022/02/15/javaland-2022-picks.html">2022</a></li>
+  <li><a href="/blog/2019/03/11/javaland-2019-picks.html">2019</a></li>
+  <li><a href="/blog/2018/03/12/javaland-holly-cummins.html">2018</a></li>
+  <li><a href="/blog/2017/02/27/javaland-2017-picks.html">2017</a></li>
+  <li><a href="/blog/2015/01/15/javaland-2015-conference-picks.html">2015</a></li>
+  <li><a href="/blog/2014/03/03/eds-javaland-2014-picks.html">2014</a></li>
+</ul>
+
+<p>All times in local time zone in JavaLand.  The program can change so please see <a href="https://meine.doag.org/events/javaland/2025/agenda/#eventDay.all">the program</a> for more details on each session.</p>
+
+<h3 id="monday-31-march-2025-community-day">Monday, 31 March 2025 Community day</h3>
+
+<p>There is also an Unconference on Community day from 15:00 - 18:30 in the Coca-Cola business°lounge 1. It’s impossible to list an Unconference in a session picks blog post because I have no idea what the content will be.</p>
+
+<h4 id="1500---1700-lindner-congress-hotel-grid-4---architektur-kata">15:00 - 17:00 Lindner Congress Hotel Grid 4 - Architektur Kata</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5376">Program link</a></p>
+
+<p><a href="https://www.linkedin.com/in/sebastian-rose-9b0617ab/">Sebastian Rose</a> and <a href="https://www.ahus1.de/">Alexander Schwartz</a> are promising an interesting learning opportunity about software architecture. The idea is to build feedback gathering into your design process so it happens as early as possible. It seems like common sense, but I suspect there is a lot about the way they propose to do it that is novel and new. I think it’s worth a look.</p>
+
+<h4 id="1715---1830-lindner-congress-hotel-grid-4---easily-illustrate-impactful-flipcharts">17:15 - 18:30 Lindner Congress Hotel Grid 4 - Easily illustrate impactful flipcharts</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5383">Program link</a></p>
+
+<p>I haven’t used flipcharts much, but they do seem very accessible and durable. I think I should learn more about how to use them. Sebastian and Alexander present a session inspired by the lessons from the book <a href="https://www.amazon.com/Flipchart-Coach-Profi-Tipps-Visualisieren-Pr%C3%A4sentieren-Flipchart/dp/3941965948">Der Flipchart Coach</a>. Because I have become a huge fan of the book <a href="https://www.amazon.com/Presentation-Patterns-Techniques-Crafting-Presentations/dp/0321820800/">Presentation Patterns</a>, I appreciate the power of a session that is based on a book. As I enter the third decade of my career, it’s high time I learn how to use flipcharts to make impact.</p>
+
+<h3 id="tuesday-1-april-2025">Tuesday 1 April 2025</h3>
+
+<h4 id="tuesday-0830---1010-ringkino---deserialization-exploits-in-java-why-should-i-care">Tuesday 08:30 - 10:10 ring°kino - Deserialization exploits in Java: why should I care?</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5333">Program link</a></p>
+
+<p>This talk has several things going for it. First and foremost, the speaker, <a href="https://brianvermeer.nl/">Brian Vermeer</a> is a seasoned veteran with a stellar track record of engaging talks. Second the topic. I’m familiar with deserialization attacks back from my JSF days: client side state saving at one time used something like serialization.  But this talk goes beyond Java to also XML, JSON, and YAML serialization. An attack vector as old as seralization attacks means the prior art for attackers is vast. This one is important.</p>
+
+<h4 id="tuesday-1000---1040-ringarena---fried-begrüßung-and-adam-bien-keynote">Tuesday 10:00 - 10:40 ring°arena - Fried Begrüßung and Adam Bien Keynote</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5162">Program link</a></p>
+
+<p>Fried’s Begrüßung is always entertaining. In a bold statement of the German identity of JavaLand, Adam Bien’s keynote will be delivered in German. This is fine for me, but it does mark a first for the big stage keynote. In any case, Adam Bien is a Java legend. I had a personal hand in creating some of the acronyms he mentions, so I expect to love this one.</p>
+
+<h4 id="tuesday-1100---1140-bitburger-event-center-teil-a---building-ai-powered-applications-in-java">Tuesday 11:00 - 11:40 Bitburger Event Center Teil A - Building AI powered applications in Java</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5163">Program link</a></p>
+
+<p>There is no question that powerful forces in our industry have bet the future AI and are doing everything they can to make that future happen. I look to my old friend and former PowerPoint karaoke sparring partner <a href="https://andresalmiray.com/">Andres Almiray</a> to sort the hype from the reality.</p>
+
+<h4 id="tuesday-1200---1240">Tuesday 12:00 - 12:40</h4>
+
+<p>Because these two sessions are so very different, I have no problem recommending them both.</p>
+
+<h5 id="ringarena">ring°arena</h5>
+
+<p>If you want a soft skills session at this time, go with <a href="https://www.linkedin.com/in/sophie-k%C3%BCster-1901b4149/">Sophie Küster</a>’s <a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5164">One of the Lads - Things I’m tired of hearing about women in tech</a>. First, let me appeal to your self-interest. By learning about workplace concerns are important to a cohort including a large and growing segment of the workforce, you’l improve your workplace effectiveness. Second, Sophie is an excellent and engaging speaker.</p>
+
+<h5 id="bitburger-event-center-teil-b">Bitburger Event Center Teil B</h5>
+
+<p>If you want a technical sesion at this time go with <a href="https://developer-sam.de/">Samuel Nitsche</a>’s <a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5171">Code Reading - Die unterschätzte Superkraft</a>. Given that AI is so great at parsing text, but not so great at reasoning about it, I believe having this skill in your head will give you a big edge.</p>
+
+<h4 id="tuesday-1300---1340-coca-cola-businesslounge-7---bergwerk-sboms-die-stückliste-für-sichere-softwarearchitektur">Tuesday 13:00 - 13:40 Coca-Cola business°lounge 7 - Bergwerk SBOMs: Die Stückliste für sichere Softwarearchitektur</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5212">Program link</a></p>
+
+<p>I am choosing to highlight this session from <a href="https://www.linkedin.com/in/richard-attermeyer/">Richard Attermeyer</a> because ensuring all your software produces SBOMs is a great way to be a part of the solution for building world less prone to hacking. Sooner or later, all of us will be victims. We as software professionals have a duty to make things better, or at least atone for some of the damage we have already caused.</p>
+
+<h4 id="tuesday-1400---1440-ringarena---no-dependencies-pure-java-aillm-integration">Tuesday 14:00 - 14:40 ring°arena - No Dependencies: Pure Java AI/LLM integration</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5166">Program link</a></p>
+
+<p>The legendary <a href="https://adam-bien.com">Adam Bien</a> comes to JavaLand. Adam’s approach for decades has been to show how you can accomplish most of what you need in an enterprise software stack with a minimum of external dependencies. As the previous session from Richard Attermeyer showed, every dependency you introduce is a security risk (that’s why everything needs an SBOM, just so you can check.) While this is true, it’s even better to minimize your dependencies as much as possible. Don’t miss this one!</p>
+
+<h4 id="tuesday-1500---1540-bmw-m-showroom---learning-genaillm-programming-with-langchain4j-and-testcontainers">Tuesday 15:00 - 15:40 BMW M Showroom - Learning GenAI/LLM programming with langchain4j and Testcontainers</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5207">Program link</a></p>
+
+<p>Mr. Testcontainer himself, <a href="https://wittek.dev/">Kevin Wittek</a> is an experienced speaker, software developer, and <a href="https://www.youtube.com/watch?v=LfbDw8f-AbM">musician</a>. Given the centrality of testing to all software development in the past and future, and the centrality of AI to all software development in the present and future, this combination will be very important to understand. Kevin will show you how.</p>
+
+<h4 id="tuesday-1600---1640-coca-cola-businesslounge-6-a-survey-of-cloud-readiness-for-jakarta-ee-11">Tuesday 16:00 - 16:40 Coca-Cola business°lounge 6 A survey of cloud readiness for Jakarta EE 11</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5208">Program link</a></p>
+
+<p>The first of my three sessions is in this time slot. If you’re interested in Jakarta EE 11, I ask you to consider it.</p>
+
+<p>My session will teach:</p>
+<ul>
+  <li>What’s new in Jakarta EE 11 and why it’s interesting to Java developers.</li>
+  <li>An overview of how to run Jakarta EE 11 on Azure, Google, and AWS.</li>
+  <li>A deep dive in how to run Jakarta EE 11 on Azure Container Apps.</li>
+</ul>
+
+<p>Otherwise, you may want to check out this one.</p>
+
+<h5 id="bitburger-event-center-teil-a---walking-skeleton---softwarearchitektur-ohne-fleisch">Bitburger Event-Center Teil A - Walking Skeleton - Softwarearchitektur ohne Fleisch?</h5>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5175">Program link</a></p>
+
+<p>I had the extreme pleasure of seeing Alastair Cockburn give a keynote when I presented at <a href="https://web.archive.org/web/20060925101953/http://www.jaoo.dk/speakers/show_speaker.jsp?oid=27">Jaoo 2006</a>. Apparently this is one of Alastair Cockburn’s more recent ideas on the further evolution of agile development. <a href="https://www.sippsack.de/">Falk Sippach</a> is an experienced speaker, JUG leader, and iJUG contributor. I look forward to this talk.</p>
+
+<h4 id="tuesday-1700---1740-bitburger-event-center-teil-b---boost-your-performance-and-developer-productivity-with-jakarta-ee-11">Tuesday 17:00 - 17:40 Bitburger Event-Center Teil B - Boost Your Performance and Developer Productivity with Jakarta EE 11</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5169">Program link</a></p>
+
+<p>My colleague <a href="https://www.linkedin.com/in/ivargrimstad">Ivar Grimstad</a> gives the productivity angle on the latest iteration of the standard for enterprise Java.</p>
+
+<h4 id="tuesday-1800---1840-bitburger-event-center-teil-b---what-is-new-in-microprofile">Tuesday 18:00 - 18:40 Bitburger Event-Center Teil B - What is New in MicroProfile?</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5320">Program link</a></p>
+
+<p>In a perfect complement to Ivar’s session, my colleague <a href="https://www.linkedin.com/in/emilyfhjiang/">Emily Jiang</a> gives an overview in the latest version of MicroProfile. MicroProfile sits alongside Jakarta EE as a collection of standards adopted by multiple vendors for enterprise Java.</p>
+
+<h4 id="tuesday-1900---1940-lindner-congress-hotel-grid-4---from-zero-to-secured-live-coding-a-jakarta-ee-rest-app-with-microprofile--jwt">Tuesday 19:00 - 19:40 Lindner Congress Hotel Grid 4 - From Zero to Secured: Live-Coding a Jakarta EE REST App with MicroProfile &amp; JWT</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5225">Program link</a></p>
+
+<p>As Adam Bien has long shown, the power of combining open standard specifications in an a la carte fashion tends to help delivering maintainable enterprise software on schedule and within budget. This session is another example:</p>
+
+<ul>
+  <li>Live-coding a RESTful app from scratch using the latest versions of JAX-RS, JPA, and MicroProfile.</li>
+  <li>Implementing JWT-based authentication.</li>
+  <li>Documenting REST endpoints with OpenAPI.</li>
+  <li>Creating a responsive frontend with Angular and connecting it to the REST app.</li>
+</ul>
+
+<h3 id="wednesday-02-april-2025">Wednesday, 02 April 2025</h3>
+
+<h4 id="0900---0940-bitburger-event-center-teil-a---technische-und-soziale-muster-für-teamübergreifende-integration">09:00 - 09:40 Bitburger Event-Center Teil A - Technische und soziale Muster für teamübergreifende Integration</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5244">Program link</a></p>
+
+<p>I’ve been working and leading distributed teams for two decades, but there is always something new to learn. This intriguing session from <a href="https://twitter.com/alexksbr">Alexander Kaserbacher</a> seems to use a pattern language to ease the problem of cross-team colaboration.</p>
+
+<h4 id="1000---1040-bitburger-event-center-teil-a---high-performance-serverless-java-on-aws">10:00 - 10:40 Bitburger Event-Center Teil A - High performance Serverless Java on AWS</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5245">Program link</a></p>
+
+<p>Even though my own employer’s serverless compute offer supports Java very well, it’s always useful to see another vendor’s take on the problem set. <a href="https://www.linkedin.com/in/vadymkazulkin/">Vadym Kazulkin</a> seems to have a solid command of the space, so let’s check him out.</p>
+
+<!--
+
+#### 11:00 - 11:40 ring°arena Die unsichtbare Hand im Code
+
+Of course [Hendrik Ebbers](https://twitter.com/hendrikEbbers) and [Sandra Parsick](https://twitter.com/SandraParsick) will do an amazing job with the community keynote. I don't know how they are going to follow-up [last year's impactful installment](https://www.doag.org/de/home/news/javaland-2023-community-keynote-teilt-eure-geschichte/), which dealt with some weighty topics. As an insider at one of these IT-Giganten, I'll be curious to see what they think is really happening inside our "Geheime Räte" (hint, at least for my employer, it is always customer obsession).
+
+-->
+
+<h4 id="1200---1240-business-center---bergwerk---how-to-get-trustworthy-ai-in-your-favorite-ide">12:00 - 12:40 Business Center - Bergwerk - How to get trustworthy AI in your favorite IDE</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5292">Program link</a></p>
+
+<p>I’m very excited about this session where I get to talk about my teammate’s amazing work in making GitHub Copilot available in IntelliJ IDEA and Eclipse. I’ll weave this work into my talk about how Microsoft is making AI fun and safe for you to use at work.</p>
+
+<h4 id="1300---1340-bitburger-event-center-teil-b---validating-llms---a-true-story">13:00 - 13:40 Bitburger Event-Center Teil B - Validating LLMs - a true story</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5239">Program link</a></p>
+
+<p>Having ony recently discovered the concept of <a href="https://www.swebench.com/">SWE-bench</a> and the notion that LLMs can compete against eachother for supremacy, this talk from <a href="https://www.linkedin.com/in/emilyfhjiang/">Emily Jiang</a> seems very timely.</p>
+
+<h4 id="1400---1440-coca-cola-businesslounge-6---von-java-ee-6-zu-quarkus-eine-migrationsreise-mit-openrewrite">14:00 - 14:40 Coca-Cola business°lounge 6 - Von Java EE 6 zu Quarkus: Eine Migrationsreise mit OpenRewrite</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5303">Program link</a></p>
+
+<p>I’m always excited to see what becomes of old JSF apps. This talk from <a href="https://www.linkedin.com/in/christian-gruemme/">Christian Grümme</a> should be fun.</p>
+
+<h4 id="1500---1540-bitburger-event-center-teil-b---technical-enshittification-why-it-is-broken-and-how-to-fix-it">15:00 - 15:40 Bitburger Event-Center Teil B - Technical Enshittification: Why IT is Broken and How to Fix It</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5241">Program link</a></p>
+
+<p>I was delighted to see my old pal <a href="https://twitter.com/jbaruch">Baruch Sadogursky</a> on the program. The provocative term in his title was coined by American malcontent Cory Doctorow to describe how unchecked exponential monetization leads to progressively worse user experiences. The causes of Cory Doctorow’s problem are well understood and almost impossible to improve. I hope Baruch’s analysis is more hopeful.</p>
+
+<h4 id="1600---1640-bitburger-event-center-teil-b---jakarta-ee-community-panel">16:00 - 16:40 Bitburger Event-Center Teil B - Jakarta EE Community Panel</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5242">Program link</a></p>
+
+<p>I’m very happy to participate in this panel. Come ask me anything about Jakarta EE.</p>
+
+<h4 id="1700---1740-coca-cola-businesslounge-1---82-bugs-i-collected-in-a-year-you-wont-believe-made-it-to-production">17:00 - 17:40 Coca-Cola business°lounge 1 - 82 Bugs I Collected in a Year You Won’t Believe Made It to Production</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5270">Program link</a></p>
+
+<p>The idea of taking a birding approach to software bugs is very novel. Let’s see what <a href="https://linkedin.com/in/fran%C3%A7oismartin">Francois Martin</a> has to say about it.</p>
+
+<h3 id="thursday-03-april-2025">Thursday, 03 April 2025</h3>
+
+<h4 id="0900---1700-lindner-congres-hotel-grid-3---java-with-al-on-azure-container-apps-and-kubernetes">09:00 - 17:00 Lindner Congres Hotel Grid 3 - Java with Al on Azure Container Apps and Kubernetes</h4>
+
+<p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5364">Program link</a></p>
+
+<p>Azure Container Apps is the premiere cloud environment for Java workloads on
+Azure. It combines the power, scale, and reliability of infrastructure-as-a-service offerings such as Kubernetes with the ease-of-use of a platform-as-a-service offering.</p>
+
+<p>Azure Kubernetes Service is the premier cloud environment for advanced enterprise workloads on Azure, including Java. It is the industry standard Kubernetes on the hyperscale Azure cloud.</p>
+
+<p>Azure Developer CLI is a tool for quickly standing up Azure infrastructure to run your application. This workshop will cover three common Java scenarios: Spring, and Quarkus on Azure Container Apps, and Jakarta EE on Azure Kubernetes Service.</p>
+
+<p>All three scenarios are enabled by Azure Developer CLI. The AI aspect will be run through the scenarios in two dimensions:</p>
+
+<ol>
+  <li>
+    <p>AI for the act of writing software and</p>
+  </li>
+  <li>
+    <p>AI for use in the actual domain of the software. The Spring and Quarkus scenarios will show a microservice application in the domain of a localized weather forecasting service.</p>
+  </li>
+</ol>
+
+<p>The AI in this domain is a conversational chat about the localized weather forecast.</p>
+
+<p>The Jakarta EE scenario will show a monolithic application, CargoTracker, running on Azure Kubernetes service.</p>
+
+<p>The AI in this domain is a shortest-path calculation for routing cargo.</p>
+
+<p>A USD $50 Azure credit for use in the workshop and afterward is provided to all participants.</p>
+
+<p>Bonus:</p>
+
+<p>Every participant is entitled to a 30-minute 1:1 career counseling session teleconference with Ed, scheduled at their convenience. For Ed’s credentials in this domain, see his abstract from JavaLand last year https://meine.doag.org/events/javaland/2024/agenda/#agendaId.3689 .</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Cross posted at dev.to.]]></summary></entry><entry><title type="html">Using the tmate GitHub Action from Max Schmitt to aid debugging GitHub Actions workflows</title><link href="/blog/2024/12/04/tmate-github-actions-debug.html" rel="alternate" type="text/html" title="Using the tmate GitHub Action from Max Schmitt to aid debugging GitHub Actions workflows" /><published>2024-12-04T13:30:00-05:00</published><updated>2024-12-04T13:30:00-05:00</updated><id>/blog/2024/12/04/tmate-github-actions-debug</id><content type="html" xml:base="/blog/2024/12/04/tmate-github-actions-debug.html"><![CDATA[<h3 id="executive-summary">Executive Summary</h3>
 
 <p>This post shows how to use the <a href="https://github.com/mxschmitt/action-tmate">action-tmate</a> GitHub Action to allow you to SSH into the runner for your GitHub Actions workflow.</p>
 
@@ -1211,966 +1433,4 @@ listening on en7, link-type EN10MB <span class="o">(</span>Ethernet<span class="
   <li>
     <p><a href="https://www.youtube.com/watch?v=o1wuW24Nv4E&amp;t=56s">0:56</a> - <a href="https://www.youtube.com/watch?v=o1wuW24Nv4E&amp;t=71s">01:11</a> We spend a luxurious fifteen seconds (20% of the total run time of the video) on a silly origami Octocat animation.</p>
   </li>
-</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[I strongly prefer Azure DevOps Boards for prodution quality project management, however, it’s very hard to beat gratis. For this reason, the Jakarta EE project is using GitHub Projects &amp; Issues. As the release co-coordinator for Jakarta EE 11, I need to gain mastery of GitHub Projects &amp; Issues. So, I set out to understand this 71 second long video. How hard can it be? It’s only one minute!]]></summary></entry><entry><title type="html">Notes from watching Ivar Grimstad Devoxx Belgium 2022 Jakarta EE 10 presentation</title><link href="/blog/2023/02/18/booty-duke.html" rel="alternate" type="text/html" title="Notes from watching Ivar Grimstad Devoxx Belgium 2022 Jakarta EE 10 presentation" /><published>2023-02-18T17:10:00-05:00</published><updated>2023-02-18T17:10:00-05:00</updated><id>/blog/2023/02/18/booty-duke</id><content type="html" xml:base="/blog/2023/02/18/booty-duke.html"><![CDATA[<p>50 minutes https://www.youtube.com/watch?v=8ke0kPrg9qc</p>
-
-<p>Simplicity for Modern and Lightweight Cloud Applications</p>
-
-<ul>
-  <li>
-    <p>Out on 2022-09-22.</p>
-
-    <ul>
-      <li>Community driven, modernized, simplified, lightweight.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Specs and Impls</p>
-
-    <ul>
-      <li>
-        <p>Spec, API, TCK</p>
-      </li>
-      <li>
-        <p>Compatibile Impls</p>
-      </li>
-      <li>
-        <p>We need at least one open source impl.</p>
-      </li>
-      <li>
-        <p>Other impls can be fine, not open source.</p>
-      </li>
-      <li>
-        <p>There is no “official” “reference implementation”</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Lots of specs, more than half received updates in EE 10</p>
-
-    <ul>
-      <li>
-        <p>About half of these have a “.0” version number. In our impl of
-SemVer, the .0 means it may have potentially breaking changes.</p>
-
-        <p>Also a bit of marketing to signal there are big noteworthy
-changes. (I like this idea)</p>
-      </li>
-      <li>
-        <p>Authorization 2.1</p>
-      </li>
-      <li>
-        <p>Activation 2.1</p>
-      </li>
-      <li>
-        <p>Batch 2.1</p>
-      </li>
-      <li>
-        <p>Connectors 2.1</p>
-      </li>
-      <li>
-        <p>Mail 2.1</p>
-      </li>
-      <li>
-        <p>Messaging 3.1</p>
-      </li>
-      <li>
-        <p>Authentication 3.0</p>
-      </li>
-      <li>
-        <p>Concurrency 3.0</p>
-      </li>
-      <li>
-        <p>CDI 4.0</p>
-      </li>
-      <li>
-        <p>EL 5.0</p>
-      </li>
-      <li>
-        <p>CDI 4.0</p>
-      </li>
-      <li>
-        <p>Faces 4.0</p>
-      </li>
-      <li>
-        <p>Security 3.0</p>
-      </li>
-      <li>
-        <p>Servlet 6.0</p>
-      </li>
-      <li>
-        <p>(J)STL 3.0</p>
-      </li>
-      <li>
-        <p>(J)SP 3.1</p>
-      </li>
-      <li>
-        <p>(JPA)Persistence 3.1</p>
-      </li>
-      <li>
-        <p>WebSocket 2.1</p>
-      </li>
-      <li>
-        <p>Restful Web Services 3.1</p>
-      </li>
-      <li>
-        <p>JSONP 2.1</p>
-      </li>
-      <li>
-        <p>JSONB 3.0</p>
-      </li>
-      <li>
-        <p>Annotations 2.1</p>
-      </li>
-      <li>
-        <p>Interceptors 2.1</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Net new</p>
-
-    <ul>
-      <li>
-        <p>But not really new.  Because it’s a part of CDI, or a sub spec.</p>
-      </li>
-      <li>
-        <p>CDI Lite 4.0</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Not updated</p>
-
-    <ul>
-      <li>
-        <p>EJB 4.0</p>
-      </li>
-      <li>
-        <p>Bean Validation 3.0</p>
-      </li>
-      <li>
-        <p>Debugging support 2.0</p>
-      </li>
-      <li>
-        <p>EJB Lite 4.0</p>
-      </li>
-      <li>
-        <p>Managed Beans 2.0</p>
-      </li>
-      <li>
-        <p>Transactions 2.0</p>
-      </li>
-      <li>
-        <p>DI 2.0</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>We don’t need to update every spec every time.</p>
-  </li>
-  <li>
-    <p>Ivar subtracts the “enterprisy” and you are left with the “Web
-Profile”.  We’ve had a web profile since EE6. Nothing new.</p>
-
-    <p>Useful as a smaller platform.</p>
-
-    <ul>
-      <li>
-        <p>Auth</p>
-      </li>
-      <li>
-        <p>Concurrency</p>
-      </li>
-      <li>
-        <p>CDI</p>
-      </li>
-      <li>
-        <p>EL</p>
-      </li>
-      <li>
-        <p>Faces</p>
-      </li>
-      <li>
-        <p>Security</p>
-      </li>
-      <li>
-        <p>Servlet</p>
-      </li>
-      <li>
-        <p>STL</p>
-      </li>
-      <li>
-        <p>Persistence</p>
-      </li>
-      <li>
-        <p>JSP</p>
-      </li>
-      <li>
-        <p>WebSocket</p>
-      </li>
-      <li>
-        <p>BeanVal</p>
-      </li>
-      <li>
-        <p>Debugging</p>
-      </li>
-      <li>
-        <p>EJB lite</p>
-      </li>
-      <li>
-        <p>Managed beans</p>
-      </li>
-      <li>
-        <p>JTA</p>
-      </li>
-      <li>
-        <p>JAX-RS</p>
-      </li>
-      <li>
-        <p>JSONP</p>
-      </li>
-      <li>
-        <p>JSONB</p>
-      </li>
-      <li>
-        <p>Annotations</p>
-      </li>
-      <li>
-        <p>Interceptors</p>
-      </li>
-      <li>
-        <p>DI</p>
-      </li>
-      <li>
-        <p>CDI Lite</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Take away the Webby specs, you get Core Profile. Brand new. EE10.</p>
-
-    <ul>
-      <li>
-        <p>Enables impls to be certified as EE compatible</p>
-      </li>
-      <li>
-        <p>Headless services, or microservices, if you like.</p>
-      </li>
-      <li>
-        <p>JAX-RS</p>
-      </li>
-      <li>
-        <p>JSONP</p>
-      </li>
-      <li>
-        <p>JSONB</p>
-      </li>
-      <li>
-        <p>Annotations</p>
-      </li>
-      <li>
-        <p>Interceptors</p>
-      </li>
-      <li>
-        <p>DI</p>
-      </li>
-      <li>
-        <p>CDI Lite 4.0</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Raise the API source level from 8 to 11</p>
-
-    <ul>
-      <li>
-        <p>Why not go further?</p>
-      </li>
-      <li>
-        <p>There were not many specs that needed Java features beyond SE 11.</p>
-      </li>
-      <li>
-        <p>This allows us to have a broader appeal.</p>
-      </li>
-      <li>
-        <p><strong>TCK runs on 11 or 17.</strong></p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Security 3.0</p>
-
-    <ul>
-      <li>
-        <p>https://jakarta.ee/specifications/security/</p>
-      </li>
-      <li>
-        <p>Add support for OPenID Connect!</p>
-      </li>
-      <li>
-        <p>Updates to Jakarta Authorization, and Authentication</p>
-      </li>
-      <li>
-        <p>This is a foundation for future work (Q.2 Should this be in the
-EE11 talk?)</p>
-      </li>
-      <li>
-        <p>07:22 Code example for OpenID Connect Authentication. It’s an
-annotation. <code class="language-plaintext highlighter-rouge">OpenIdAuthenticationMechanismDefinition</code> (love the
-long name, very precise)</p>
-
-        <ul>
-          <li>Where do you put the annotation?</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Persistence 3.1</p>
-
-    <ul>
-      <li>
-        <p>https://jakarta.ee/specifications/persistence/</p>
-      </li>
-      <li>
-        <p>Small work interetsed by the community</p>
-      </li>
-      <li>
-        <p>Add UUIDs as a basic java data type!</p>
-
-        <ul>
-          <li><code class="language-plaintext highlighter-rouge">GenerationType=UUID</code></li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>JAX RS 3.1</p>
-
-    <ul>
-      <li>
-        <p>https://jakarta.ee/specifications/restful-ws/</p>
-      </li>
-      <li>
-        <p>Community features, requested a long time.</p>
-      </li>
-      <li>
-        <p>Initially wanted a 4.0 release. But went with 3.1 for now.
-Planning a 4.0 release for EE 11 (Q.3 this seems definitely like
-what we want in the talk).</p>
-      </li>
-      <li>
-        <p>Multipart form data support.</p>
-
-        <ul>
-          <li>RestEASY has this.  JAX-RS catches up now.</li>
-        </ul>
-      </li>
-      <li>
-        <p>Java SE Bootstrap API</p>
-
-        <ul>
-          <li>
-            <p>Lets us run JAX-RS outside of an app server.  (Q.4: this seems
-like a great thing to show with App Service Java SE! What about
-functions?)</p>
-          </li>
-          <li>
-            <p>09:51 Ivar shows a demo https://github.com/ivargrimstad/jakartaee-duke</p>
-
-            <ul>
-              <li>
-                <p>booty-duke https://soundcloud.com/edburns00/booty-duke-m4a</p>
-              </li>
-              <li>
-                <p>Note that we have explicit dependencies on API and
-IMPL. There is no concept of “provided” scope, where you can
-just depend on the API.</p>
-              </li>
-              <li>
-                <p>Uses Maven Assembly plugin</p>
-              </li>
-              <li>
-                <p>Needs a main method.</p>
-
-                <ol>
-                  <li>
-                    <p>Add some configuration: 11:33. Port and root
-path. That’s the minimum. There are sensible defaults.
-Other options available.</p>
-                  </li>
-                  <li>
-                    <p>Instantiate the app.</p>
-                  </li>
-                  <li>
-                    <p>Start it. 12:21</p>
-
-                    <ul>
-                      <li>
-                        <p><code class="language-plaintext highlighter-rouge">SeBootstrap.start()</code></p>
-
-                        <ul>
-                          <li>
-                            <p>Pass in app and config.</p>
-                          </li>
-                          <li>
-                            <p>`thenAccept’</p>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <p><code class="language-plaintext highlighter-rouge">Thread.currentThread().join()</code></p>
-                      </li>
-                    </ul>
-                  </li>
-                </ol>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>Run it locally.</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Core Profile</p>
-
-    <ul>
-      <li>
-        <p>Reason: target smaller runtimes.</p>
-      </li>
-      <li>
-        <p>Limit the amount of specs required to implement it.</p>
-      </li>
-      <li>
-        <p>3 compatible impls</p>
-
-        <ul>
-          <li>
-            <p>Open Liberty</p>
-          </li>
-          <li>
-            <p>Payara</p>
-          </li>
-          <li>
-            <p>WildFly</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>Potentially compatible impls</p>
-
-        <ul>
-          <li>
-            <p>Helidon</p>
-          </li>
-          <li>
-            <p>Quarkus</p>
-          </li>
-          <li>
-            <p>Micronaut</p>
-          </li>
-          <li>
-            <p>Helidon and Quarkus have said they will apply for core profile
-compatibility Q.5: What can I say about this in the talk?)</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>CDI Lite</p>
-
-        <ul>
-          <li>
-            <p>Enables CDI to be used in GraalVM.</p>
-          </li>
-          <li>
-            <p>Make CDI dynamic at build time, not run time.</p>
-          </li>
-          <li>
-            <p>Create a new extensions API. Portable extensions is too late.</p>
-          </li>
-          <li>
-            <p>Changes how the empty <code class="language-plaintext highlighter-rouge">beans.xml</code> behaves.</p>
-
-            <ul>
-              <li>
-                <p>Prior: empty beans.xml turns on CDI. Everything is injectable.</p>
-              </li>
-              <li>
-                <p>Now: beans.xml with only top level XML turns on CDI, but
-Only things that that have the Injectable annotation are
-injectable.</p>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>17:10 Taking a step back.</p>
-
-    <ul>
-      <li>
-        <p>To EE8, how to get to 9.1 and 10.</p>
-      </li>
-      <li>
-        <p>If going from 8 to 10, do take the 9 step in between. You don’t
-need to go to prod with the 9 version, but it’s good to suss out
-problems: new namespace.</p>
-      </li>
-      <li>
-        <p>8 -&gt; 9 big thing: namespace change</p>
-
-        <ul>
-          <li>
-            <p>javax.* to jakarta.*</p>
-          </li>
-          <li>
-            <p>Why do I care? Because all the things: Spring, Tomcat, Jetty,
-Hibernate, are moving to jakarta namespace.</p>
-          </li>
-          <li>
-            <p>It’s usually just a import change.</p>
-          </li>
-          <li>
-            <p>Tools: Changes the bytecode for you. Can use it at build time
-or runtime. Not recommended to go to th long time.</p>
-
-            <ul>
-              <li>
-                <p>Eclipse transformer</p>
-              </li>
-              <li>
-                <p>Apache Tomcat Migration Tool</p>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <p>Tools: IDE help</p>
-
-            <ul>
-              <li>
-                <p>IntelliJ Idea has a Java EE to Jakarta EE thing.</p>
-              </li>
-              <li>
-                <p>A bit smarter than just a regexp action.</p>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <p>Manual 20:26</p>
-
-            <ol>
-              <li>
-                <p>Update Jakarta EE version in pom.xml</p>
-              </li>
-              <li>
-                <p>Fix the imports</p>
-              </li>
-              <li>
-                <p>XML schema namespaces</p>
-              </li>
-              <li>
-                <p>Rename properties prefixed with javax.</p>
-              </li>
-              <li>
-                <p>Rename bootstrapping files</p>
-              </li>
-              <li>
-                <p>Verify data and dynamic content</p>
-              </li>
-            </ol>
-
-            <p>See https://github.com/ivargrimstad/jakartaee-duke/blob/master/complete-duke/README.adoc</p>
-          </li>
-          <li>
-            <p>This is a three tier helloworld, to show the migration steps.</p>
-
-            <ul>
-              <li>
-                <p>Starts with EE and SE 8 apis.</p>
-              </li>
-              <li>
-                <p>Adds EE 8 and 9 to the classpath.  Both of them!</p>
-              </li>
-              <li>
-                <p>App is the same as the booty-duke.</p>
-              </li>
-              <li>
-                <p>Rest resource.  “hello” path, produces message. Is a
-stateless bean. 23:00</p>
-
-                <ul>
-                  <li>Finds first message from injected stateful session bean,
-if not there, hard codes the message value.</li>
-                </ul>
-              </li>
-              <li>
-                <p>Stateful session bean uses the entity manager from
-Persistence.</p>
-
-                <ul>
-                  <li><code class="language-plaintext highlighter-rouge">findAll</code> method creates a <code class="language-plaintext highlighter-rouge">CriteriaQuery</code> that basically
-does <code class="language-plaintext highlighter-rouge">SELECT * FROM GREETINGTABLE</code>.</li>
-                </ul>
-              </li>
-              <li>
-                <p><code class="language-plaintext highlighter-rouge">@Entity DukesGreeting</code> 23:30</p>
-              </li>
-              <li>
-                <p>There is a CDI extension.  <code class="language-plaintext highlighter-rouge">@Dukes</code>. <code class="language-plaintext highlighter-rouge">DukesExtension
-implements Extension</code>.</p>
-
-                <ul>
-                  <li>
-                    <p><code class="language-plaintext highlighter-rouge">processAnnotatedType(@Observes
-@WithAnnotations(Dukes.class)...</code></p>
-                  </li>
-                  <li>
-                    <p>Prints out a message to the logger for every such
-annotated class.</p>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <p>24:10 Now does the namespace change</p>
-
-            <ul>
-              <li>
-                <p>Uses the aforementioned IntelliJ Idea tool support.</p>
-              </li>
-              <li>
-                <p><strong>This is why he added the EE 9 and EE8 jars both.</strong></p>
-              </li>
-              <li>
-                <p>Once he ran the tool, he can remove the EE8 jars.</p>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <p>24:50 That’s steps 1 and 2.</p>
-          </li>
-          <li>
-            <p>If you are using XML config, you have to pay attention to that.</p>
-
-            <ul>
-              <li>
-                <p>He has a <code class="language-plaintext highlighter-rouge">persistence.xml</code>.  Uses the JCP namespace.</p>
-              </li>
-              <li>
-                <p>23:58 Replace <code class="language-plaintext highlighter-rouge">jcp.org</code> with <code class="language-plaintext highlighter-rouge">jakarta.ee</code>.</p>
-              </li>
-              <li>
-                <p>Also change the <code class="language-plaintext highlighter-rouge">schemaLocation</code></p>
-
-                <ul>
-                  <li>
-                    <p>version number</p>
-                  </li>
-                  <li>
-                    <p><code class="language-plaintext highlighter-rouge">jcp.org</code> to <code class="language-plaintext highlighter-rouge">jakarta.ee</code></p>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <p>version number in xml <code class="language-plaintext highlighter-rouge">version</code> attribute.</p>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <ol>
-              <li>Properties</li>
-            </ol>
-
-            <ul>
-              <li>he has these in his <code class="language-plaintext highlighter-rouge">persistence.xml</code> file.  In his case
-this is for drop and create of the table.</li>
-            </ul>
-          </li>
-          <li>
-            <ol>
-              <li>Rename bootstrapping files</li>
-            </ol>
-
-            <ul>
-              <li>
-                <p>CDI bootstrapping file
-<code class="language-plaintext highlighter-rouge">META-INF/services/javax.enterprise.inject.spi.Extension</code></p>
-              </li>
-              <li>
-                <p>Rename the file to jakarta.enterprise….</p>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <ol>
-              <li>Verify data and dynamic content. 28:00  Runs it in GlassFish 6
-(EE9) In his case, it’s the text in the database. He updates
-the database using some table editor in IntelliJ Idea. Reloads
-the page.</li>
-            </ol>
-
-            <ul>
-              <li>
-                <p>EE9 supports Java 17.</p>
-              </li>
-              <li>
-                <p>Updates the pom.</p>
-              </li>
-              <li>
-                <p>Let’s use some Java 17 features as well.</p>
-
-                <ul>
-                  <li>
-                    <p>How about records? 31:27</p>
-                  </li>
-                  <li>
-                    <p>Lets us avoid exposing our database architecture in the
-API.</p>
-                  </li>
-                  <li>
-                    <p>Creates <code class="language-plaintext highlighter-rouge">DukesGreetingRecord</code>. 31:49</p>
-                  </li>
-                  <li>
-                    <p>In the business logic, use a mapper, map it from the
-greeting to a <code class="language-plaintext highlighter-rouge">new DukesGreetingRecord</code> populates using
-the getters.</p>
-                  </li>
-                  <li>
-                    <p>Are we done? 33:29.  No.  It’ came up empty.  Why?</p>
-
-                    <ul>
-                      <li>
-                        <p>JSON Binding is expecting a Java Bean.</p>
-                      </li>
-                      <li>
-                        <p>It must have a getter.  Records don’t have
-getters. Records are not Java Beans.</p>
-                      </li>
-                      <li>
-                        <p>Simplest thing is to change the name of the fields in
-the record: <code class="language-plaintext highlighter-rouge">getDate</code> <code class="language-plaintext highlighter-rouge">getMessage</code>.</p>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <p>Let’s upgrade it to EE 10.</p>
-
-                <ul>
-                  <li>
-                    <p>Very simple.</p>
-                  </li>
-                  <li>
-                    <p>Update the pom dependency from 9 to 10.</p>
-                  </li>
-                  <li>
-                    <p>But is it? No. When running he got a servlet exception.</p>
-
-                    <ul>
-                      <li>
-                        <p>Has to do with the <code class="language-plaintext highlighter-rouge">beans.xml</code> stuff.</p>
-                      </li>
-                      <li>
-                        <p>Adds a <code class="language-plaintext highlighter-rouge">beans.xml</code>. Make sure it’s
-version 4. <code class="language-plaintext highlighter-rouge">bean-discovery-mode</code> should be
-<code class="language-plaintext highlighter-rouge">annotated</code>.  This is the default, so you can remove
-<code class="language-plaintext highlighter-rouge">bean-discovory-mode</code>.</p>
-                      </li>
-                      <li>
-                        <p>Must also update the schema namespace version.</p>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <p>37:44 So great! Can remove the ugly hack we did with the record.  Set
-record fields back to <code class="language-plaintext highlighter-rouge">message</code> and <code class="language-plaintext highlighter-rouge">date</code>.</p>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>If you are relying on the “no beans.xml” or “empty beans.xml”
-behavior, then you must take the action.  If you have a
-beans.xml, have it set at annotated, you’re fine.</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>38:37 the core profile.</p>
-
-    <ul>
-      <li>
-        <p>Takes this application, strips away a bit</p>
-
-        <ul>
-          <li>
-            <p>Removes database</p>
-          </li>
-          <li>
-            <p>Makes the CDI extension “build compatibile” rather than
-“portable” extension.</p>
-          </li>
-          <li>
-            <p>39:12.  Implements the <code class="language-plaintext highlighter-rouge">spi.Extension</code> interface. Has
-<code class="language-plaintext highlighter-rouge">processAnnotatedType</code> method.</p>
-          </li>
-          <li>
-            <p>New API in core has <code class="language-plaintext highlighter-rouge">spi.BuildCompatibileExtension</code></p>
-
-            <ul>
-              <li>
-                <p>Annotations for the different lifecycle events.</p>
-              </li>
-              <li>
-                <p>40:11 Recommendation. If you are running your app in a
-thing that supports full CDI, stick to the portable
-extension. Only if you are running in a CDI lite
-environment should you consider this kind of extension.</p>
-              </li>
-              <li>
-                <p>Use the <code class="language-plaintext highlighter-rouge">@Enhancement</code> annotation.</p>
-              </li>
-              <li>
-                <p>Have
-<code class="language-plaintext highlighter-rouge">META-INF/services/jakarta.enterprise.inject.build.compatible.spi.BuildCompatibleExtension</code>
-identify the extension. This is the package name of the
-interface, so you don’t have to remember the long name.</p>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>Runs it in WildFly 27.0.0.Alpha1</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Payara Cloud 42:07</p>
-
-    <ul>
-      <li>
-        <p>Upload the application, run it.</p>
-      </li>
-      <li>
-        <p>Gives the PaaS value prop: someone else manages the complexity of
-Kubernetes.</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>44:30 We’re now thinking of Jakarta EE 11 Q.6</p>
-
-    <ul>
-      <li>
-        <p>Discussion: what Java SE level should we base Jakarta EE 11 on?</p>
-
-        <ul>
-          <li>
-            <p>Raise to 17?</p>
-          </li>
-          <li>
-            <p>Raise to 21?</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>How to handle the removal of the <code class="language-plaintext highlighter-rouge">SecurityManager</code>.</p>
-
-        <ul>
-          <li>
-            <p>Users will not notice.</p>
-          </li>
-          <li>
-            <p>Impls will have to change.</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>New spec: Jakarta Config (finally!)</p>
-
-        <ul>
-          <li>
-            <p>https://jakarta.ee/specifications/config/</p>
-
-            <ul>
-              <li>
-                <p>More or less based on MicroProfile Config.  Will be
-compatible with it.</p>
-              </li>
-              <li>
-                <p>When Jakarta Config comes out, MicroProfile Config will
-probably be retired.</p>
-              </li>
-              <li>
-                <p><code class="language-plaintext highlighter-rouge">@ConfigProperty</code></p>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>Possible New spec: Jakarta MVC</p>
-
-        <ul>
-          <li>
-            <p>https://jakarta.ee/specifications/mvc/</p>
-          </li>
-          <li>
-            <p>Server side rendering</p>
-          </li>
-          <li>
-            <p>Runs on WildFly, GlassFish, anything with Jersey</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>Possible new spec: Jakarta NoSQL</p>
-
-        <ul>
-          <li>https://jakarta.ee/specifications/nosql/</li>
-        </ul>
-      </li>
-      <li>
-        <p>Possible new spec: Jakarta RPC</p>
-
-        <ul>
-          <li>
-            <p>Standardizes gRPC within Jakarta EE</p>
-          </li>
-          <li>
-            <p>https://jakarta.ee/specifications/rpc/</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>Possible new spec: Jakarta Data</p>
-
-        <ul>
-          <li>
-            <p>Standardizes the repository pattern for data access</p>
-          </li>
-          <li>
-            <p>Spring Data, but for Jakarta EE</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>Cloud functions?</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Summary 48:00</p>
-  </li>
-</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[50 minutes https://www.youtube.com/watch?v=8ke0kPrg9qc]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[I strongly prefer Azure DevOps Boards for prodution quality project management, however, it’s very hard to beat gratis. For this reason, the Jakarta EE project is using GitHub Projects &amp; Issues. As the release co-coordinator for Jakarta EE 11, I need to gain mastery of GitHub Projects &amp; Issues. So, I set out to understand this 71 second long video. How hard can it be? It’s only one minute!]]></summary></entry></feed>

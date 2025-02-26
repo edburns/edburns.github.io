@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2025-02-25T19:55:02-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2025-02-25T22:23:57-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Ed’s JavaLand 2025 Session Picks</title><link href="/blog/2025/02/25/javaland-2025-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2025 Session Picks" /><published>2025-02-25T15:50:00-05:00</published><updated>2025-02-25T15:50:00-05:00</updated><id>/blog/2025/02/25/javaland-2025-picks</id><content type="html" xml:base="/blog/2025/02/25/javaland-2025-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/eds-javaland-2025-session-picks-3p2i">dev.to</a>.</p>
 
 <p>I’m very blessed to have the opportunity to speak at the 11th anniversary <a href="https://javaland.eu/">JavaLand conference</a>. This is the second year the conference will be held at <a href="https://thevendry.com/venue/197499/nurburgring-nurburg-germany">Nürburgring</a>. It turns out it took even more time to walk between sessions. Maybe this year will be better.</p>
@@ -120,7 +120,7 @@
 
 <p><a href="https://meine.doag.org/events/javaland/2025/agenda/#agendaId.5225">Program link</a></p>
 
-<p>As Adam Bien has long shown, the power of combining open standard specifications in an a la carte fashion tends to help delivering maintainable enterprise software on schedule and within budget. This session is another example:</p>
+<p>As Adam Bien has long shown, the power of combining open standard specifications in an a la carte fashion tends to help delivering maintainable enterprise software on schedule and within budget. This session from <a href="https://hanno.codes">Hanno Embregts</a> is another example:</p>
 
 <ul>
   <li>Live-coding a RESTful app from scratch using the latest versions of JAX-RS, JPA, and MicroProfile.</li>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2025-02-27T17:31:44-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2025-02-28T09:00:45-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Ed’s JUG tour around JavaLand 2025</title><link href="/blog/2025/02/27/javaland-2025-jug-tour.html" rel="alternate" type="text/html" title="Ed’s JUG tour around JavaLand 2025" /><published>2025-02-27T15:50:00-05:00</published><updated>2025-02-27T15:50:00-05:00</updated><id>/blog/2025/02/27/javaland-2025-jug-tour</id><content type="html" xml:base="/blog/2025/02/27/javaland-2025-jug-tour.html"><![CDATA[<p>I’m very excited to do my typical JUG tour around JavaLand. Here are my planned stops this year. I hope we can meet in person somewhere on the road.</p>
 
 <ol>
@@ -12,7 +12,7 @@
     <p>JUG Braunschweig 26 March - <a href="https://www.jug-ostfalen.de/event/2025/03/26/langchain4j.html">Java and AI with LangChain4j</a></p>
   </li>
   <li>
-    <p>JUG Bielefeld 27 March - Java and AI with LangChain4j</p>
+    <p>JUG Bielefeld 27 March - <a href="https://www.meetup.com/java-user-group-bielefeld/events/306454726/">Java and AI with LangChain4j</a></p>
   </li>
   <li>
     <p>JUG Darmstadt 8 April - Java and AI with LangChain4j</p>

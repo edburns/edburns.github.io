@@ -99,6 +99,7 @@
 | LiebespaerchenPolka | EgerlaenderBlasmusik |
 | Made In Bavaria | Florian Fesl |
 | Man Ist Nur Einmal 50 (1980) | Slavko Avsenik |
+| Mei Hitsch | De Randfichten |
 | Mein Grossvater war ein Musikant | Schlerwind |
 | Michl Michl | De Randflichten |
 | Mit guten Freunden | Wolfito Vetter und deine Blasmusik |

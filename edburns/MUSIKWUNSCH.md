@@ -68,6 +68,7 @@
 | Hamburger Veermaster. |
 | Heavymetallandler | gEorg Ringswandl |
 | Heidi | Gitti und Erika |
+| Heidi | Original Siegener Stadtmusikanten |
 | Heile Heile Gänsje | Margit Sponheimer |
 | Heiterbach Boarische | HolzfreiBoehmische |
 | Heut Kommt Mein Herz Zu Dir | Uschi Bauer |

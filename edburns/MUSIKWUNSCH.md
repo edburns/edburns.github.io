@@ -89,6 +89,7 @@
 | Ja, so warns, de oidn Rittersleit | Karl Valentin |
 | Jetzt gehts los | Takeo Ischi |
 | Kalimba, Kalimba | Rex Gildo |
+| Kein Schoener Land | Nena | 
 | Klarinetten Pumuckl | Pete Tex |
 | Kleine weisse Möve | Cuxhavener Lotsenchor |
 | Klotrompete | Grazer Spatzen |

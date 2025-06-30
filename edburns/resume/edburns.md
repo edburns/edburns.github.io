@@ -1,153 +1,149 @@
 # Edward J. Burns
 
-edburns@acm.org
-URL: [http://purl.oclc.org/NET/edburns/resume](http://purl.oclc.org/NET/edburns/resume) 
+**Email:** [edburns@acm.org](mailto:edburns@acm.org)  
+**URL:** [http://purl.oclc.org/NET/edburns/resume](http://purl.oclc.org/NET/edburns/resume)  
+Formats available: [PDF](edburns.pdf), [MS Word](edburns.docx), [Libre/Open/Star Office](edburns.odt), [ASCII](edburns.md)  
+[Address Information](address.html)
 
-# OBJECTIVE
+---
 
-Put my experience and education to work in a creatively challenging
-organization dedicated to producing world-class software through
-efficient application of software engineering practices.
+### **OBJECTIVE**
 
-# EXPERIENCE
+Put my experience and education to work in a creatively challenging organization dedicated to producing world-class software through efficient application of software engineering practices.
 
-I have developed my career with proven distinctions in three related
-core competencies: software development, technical writer, and
-training/developer relations.  
+---
 
-# Software Development
+### **EXPERIENCE**
 
-## Oracle America, Inc.
+I have developed my career with proven distinctions in three related core competencies:  
+[Software Development](#software-development), [Technical Writer](#technical-writer), and [Trainer/Developer Relations](#trainer-and-developer-relations)
 
-### 2017-06 — present, Consulting Member of the Technical Staff, Santa Clara, CA
+#### **Software Development**
 
-#### Cloud Collections State Service
-* Team member working on upcoming addition to Oracle's public cloud: tentatively called Cloud Collections State Service. This technology brings the power of Oracle Coherence to the Oracle public cloud. Cloud Collections is delivered as Kubernetes-orchestrated Docker containers and has gRPC enabled language bindings for Go, Java, JavaScript, Python and Swift.
-* On the Cloud Collections team, I work in development on the Java, JavaScript, and Go clients and also as a technical writer.
+**Microsoft**
 
-### 2016-07 — 2017-05, Consulting Member of the Technical Staff, Santa Clara, CA
+- **2025-05 – Present**, *Principal Architect*, Home assigned  
+  **App Modernization for Java**  
+  - Create AI-driven application modernization tools to help bring Java apps to Azure.
 
-#### Etcd on Oracle Coherence
-* I worked on a project to build an Etcd implementation on top of Oracle Coherence, a high performance distributed key/value store.
+- **2019-06 – 2025-05**, *Principal Architect*, Home assigned  
+  **Jakarta EE on Azure**  
+  - Partnered with Oracle, IBM, Red Hat to run Jakarta EE on Azure.  
+  - Led a team in DevDiv China to build Azure marketplace offers.  
+  - Directed content development for [Microsoft Learn](https://aka.ms/java/ee).  
+  - Consulted internally at Microsoft to solve Jakarta EE on Azure challenges.
 
-#### Jakarta EE
-* Help to transition JavaServer Faces (JSF) to the Eclipse Foundation for continued evolution by the community.
-* Mentor Beijing team responsible for continued maintenance of Oracle's JSF implementation before and after transition to Eclipse.
+- **2023-05 – 2025-05**, *Principal Architect*, Home assigned  
+  **Lead Release Coordinator for Jakarta EE 11**  
+  - Led Jakarta EE 11 delivery, with significant technical debt reduction.  
+  - Oversaw the TCK refactoring project: [Jakarta EE 11](https://jakarta.ee/specifications/platform/11/)
 
-### 2015-09 — 2016-06, Consulting Member of the Technical Staff, Santa Clara, CA
+**Oracle America, Inc.**
 
-#### Microservices Development Project
-* At the dawn of the microservices boom, I worked on a project to create a successor to Java EE for the microservices world. This service would be Java powered, Docker based, and cloud ready. It was built on Apache Mesos/Marathon and featured support for many microservices best practices, including: blue-green deployments, canary testing, circuit breakers, service regiestires, and API discovery.
+- **2017-06 – 2018-12**, *Consulting MTS*, Home assigned  
+  **Cloud Collections State Service**  
+  - Developed Java/JavaScript/Go clients for gRPC-based cloud collection service.  
+  - Acted as technical writer for the project.
 
-### 2013-06 — 2015-08, Consulting Member of the Technical Staff, Santa Clara, CA
+- **2016-07 – 2017-05**, *Consulting MTS*, Home assigned  
+  **Etcd on Oracle Coherence**  
+  - Built an Etcd-like store on top of Coherence.
 
-#### Java EE 8
-* Co-Specification Lead for Java Servlet 4.0
-* Co-Specification Lead for JSF 2.3
+- **Jakarta EE contributions**
+  - Transitioned JSF to Eclipse.  
+  - Mentored Beijing-based JSF team.
 
-### 2010-08 — 2013-05, Consulting Member of the Technical Staff, Santa Clara, CA
+- **2015-09 – 2016-06**, *Consulting MTS*, Home assigned  
+  **Microservices Development Project**  
+  - Designed microservices platform using Mesos/Marathon.  
+  - Focused on deployments, testing, and service registries.
 
-#### Java EE 7
-* Co-Specification Lead for JSF 2.2
+- **2013-06 – 2015-08**, *Consulting MTS*, Home assigned  
+  **Java EE 8**  
+  - Co-spec lead: [Servlet 4.0](https://jcp.org/en/jsr/detail?id=369), [JSF 2.3](https://jcp.org/en/jsr/detail?id=372)
 
-## Sun Microsystems, Inc.
+- **2010-08 – 2013-05**, *Consulting MTS*, Home assigned  
+  **Java EE 7**  
+  - Co-spec lead: [JSF 2.2](https://jcp.org/en/jsr/detail?id=344)
 
-### 2002-10 — 2010-07, Senior Staff Engineer, Santa Clara, CA
+**Sun Microsystems, Inc.**
 
-#### Java EE 6
-* Specification lead for JSF 2.0.
-* Was instrumental in promoting JSF by writing books, teaching classes and giving frequent conference presentations.
-* Help lead a team of industry experts from leading companies such as IBM, BEA, Sun, and Oracle in developing the specification for JSF.
-* Pioneered and patented techniques for using JSF and AJAX together (US 8,533,291 B1, US 7,788,341 B1).
+- **2002-10 – 2010-07**, *Senior Staff Engineer*, Home assigned  
+  **Java EE 6**  
+  - Spec lead: [JSF 2.0](https://jcp.org/en/jsr/detail?id=314)  
+  - JSF promotion via books, classes, and presentations.  
+  - JSF + AJAX patents: [US8533291](https://patents.google.com/patent/US8533291), [US7788341](https://patents.google.com/patent/US7788341B1)
 
-### 2001-09 — 2002-09, Staff Engineer, Santa Clara, CA
-* Team leader for JSF web application framework since early days of project. Leveraged extreme programming concepts to lead a three person team in tackling an ambitious, highly visible, project on an aggressive schedule. 
+- **2001-09 – 2002-09**, *Staff Engineer*, Santa Clara, CA  
+  - JSF team lead, used XP practices, led 3-person team.
 
-### 1997-01 — 2001-08, Staff Engineer, Santa Clara, CA
-* Lead engineer for Java integration in the Netscape 6 web browser. Netscape 6 is several million lines of open source code. Deep knowledge of C++, Win32 internals, XPCOM, GNU/Linux, JNI, and Java.
-* Designed and implemented an open source Java API to web browsing functionality. The API has implementations rooted in Netscape 6, ICE, and Internet Explorer. Several customers are using the webclient API in their custom products. The API also ships standard with Netscape 6.01 for Solaris.
-* Was instrumental in conceiving and implementing a grass-roots CASE tool to gather software requirements. Utilized XML, XSL and servlet technologies to provide a web front end.
-* Lead engineer for front end of 100% Pure Java multi-dimensional spreadsheet application.
+- **1997-01 – 2001-08**, *Staff Engineer*, Santa Clara, CA  
+  - Led Java integration for Netscape 6.  
+  - Designed Java web browsing API.  
+  - XML/XSL CASE tool, Java spreadsheet frontend.
 
-## Silicon Graphics: 1995-06 — 1997-01, Core Engineer for Web Authoring Tool, Mountain View, CA
+**Silicon Graphics**
 
-* Collaborated on a self-started two person team to design, implement and maintain a C++ web transport library. Drove the library from inception through two major releases. This library provides the foundation for SGI's web applications and ships on every SGI computer since IRIX 6.2.
-* Integrated the web transport library into CosmoCreate to enable viewing and authoring pages over the web. This provided experience in extending legacy code well past initial requirements.
+- **1995-06 – 1997-01**, *Core Engineer*, Mountain View, CA  
+  - Designed/maintained C++ web transport library.  
+  - Integrated with [CosmoCreate](http://www.sgi.com/software/cosmo/create.html)
 
-## National Center for Supercomputing Applications: 1994-08 — 1995-06, Developer for Mosaic for X, Champaign, IL
+**NCSA**
 
-* Implemented enabling features for browsing and posting to the Common Client Interface (CCI) library. Added Perl interface to CCI, enabling perl programs to become web active.
-* Conceived and implemented WebCast, a collaborative muticast (MBONE) program that enables sharing of web pages between Mosaic's all over the world using the CCI and the reliable Multicast Protocol (RMP) library.
+- **1994-08 – 1995-06**, *Mosaic for X Developer*, Champaign, IL  
+  - Developed [CCI Perl interface](http://www.ncsa.uiuc.edu/SDG/Software/XMosaic/CCI/cci-perl.html)  
+  - Created [WebCast](http://archive.ncsa.uiuc.edu/SDG/Software/XMosaic/CCI/webcast.html)
 
-## International Business Machines: 1992-01 — 1994-05, Networking Systems division, Research Triangle Park, NC
+**IBM**
 
-* Contributed to CallPath Server digital telephony software for AIX and OS/2.
-* Designed and implemented OS/2 based CASE system for automated System Testing.
+- **1992-01 – 1994-05**, *Networking Systems Division*, RTP, NC  
+  - Developed [CallPath](https://www.edn.com/electronics-news/4340010/Alcatel-Subsidiary-To-Acquire-IBM-s-CallPath-Technology) digital telephony for AIX/OS2.  
+  - Built OS/2 based CASE test system.
 
-# Technical Writer
+#### **Technical Writer**
 
-Published Books with McGraw-Hill Professional
+**Books (McGraw-Hill Professional)**
 
-* Hudson Continuous Integration in Practice. Published: September 4th 2013 ISBN: 9780071804288
+- *[Hudson Continuous Integration in Practice](https://www.mhprofessional.com/9780071804288-usa-hudson-continuous-in-practice-group)* (2013)  
+- *[JavaServer Faces 2.0: The Complete Reference](https://www.mhprofessional.com/9780071625098-usa-javaserver-faces-20-the-complete-reference-group)* (2009)  
+- *[Secrets of the Rock Star Programmers](https://www.mhprofessional.com/9780071490832-usa-secrets-of-the-rock-star-programmers-riding-the-it-crest)* (2008)  
+- *[JavaServer Faces: The Complete Reference](https://www.mhprofessional.com/9780072262407-usa-javaserver-faces-the-complete-reference-group)* (2006)
 
-    * My most recent book is a practical guide to implementing continuous integration using Hudson, one of the pioneering tools in the field.
+**Blog**
 
-* JavaServer Faces 2.0, The Complete Reference. Published: November 2nd 2009 ISBN: 9780071625104
+- [http://ridingthecrest.com/blog/](http://ridingthecrest.com/blog/)
 
-    * JSF 2.0 was a blockbuster release and introduced a large number of new and powerful features. This book was much more than an update of the first edition. More than two thirds of the content was brand new, documenting all of the new features.
+#### **Trainer and Developer Relations**
 
-* Secrets of the Rock Star Programmers: Riding the IT Crest. Published: February 21st 2008 ISBN: 9780071490832
+- Two decades of global speaking/training.  
+- Topics: JSF, J2EE, Docker, Kubernetes, Cloud, AI.  
+- Session list: [Speaking Engagements](http://purl.oclc.org/NET/edburns/speaking-engagements/)
 
-    * This book is a collection of incisive interviews I conducted with some of the top practicing programmers of the day. I tried to discover and share the secrets of their professional success in technical, business, career, and personal domains. I continue to evolve this idea as a lecture, including new interviews with an expanding cadre of contemporary rock star programmers.
+---
 
-* JavaServer Faces: The Complete Reference. Published: August 25th 2006, ISBN: 9780071710480
+### **EDUCATION**
 
-    * My first book, at over 800 printed pages, is true to its title. It introduces JSF and provides a complete reference to all of its capabilities.
+**University of Illinois at Urbana-Champaign**  
+B.S. in Computer Science  
+Minor: Germanic Studies (Emphasis: Computer Music)  
+**Graduated:** Spring 1995, **GPA:** 4.3/5.0
 
-## Technical Blog
+---
 
-    http://ridingthecrest.com/blog/
+### **PROGRAMMING LANGUAGES; TOOLS; RELATED COURSES**
 
-Starting in 2004, My blog covers topics of interest to the practicing
-programmer, mostly in Java, but also with higher level topics such as
-REST, architecture, and industry analysis.
+Java, Java EE, HTTP/2, Go, Python, Swift, Kubernetes, Helm, Docker,  
+Etcd, Redis, Ansible, Mesos/Marathon, AJAX, SOA, JNI, C++, C, Perl, UML,  
+XSL, XML, SOAP, J2EE, Struts, CSS, HTML, CGI, Fortify, Git, Mercurial,  
+svn, SQL, JavaScript, NodeJS, JAX/RS, Jenkins, GitLab CI, JSON,  
+Swagger/OpenAPI, Objective C, Fortran, Assembly, LISP, Rexx, COM, Emacs,  
+Purify, gdb, dbx, performance analyzers, TDD, SE, OS, Networking,  
+Sun Certified Java 2 Architect
 
-# Trainer and Developer Relations
+---
 
-I have over thirteen years of extensive international conference
-speaking and training experience, having developed and delivered a broad
-range of conference sessions and full day training workshops on a wide
-array of software topics. I started with sessions and trainings on JSF
-and J2EE in 2005 and continue in the present day with Docker,
-Kubernetes, and cloud technologies.
+### **REFERENCES**
 
-A complete list of my sessions and training is at
-<http://purl.oclc.org/NET/edburns/speaking-engagements/>
-
-# EDUCATION
-
-University of Illinois at Urbana-Champaign, College of Engineering Co-Op
-program, Computer Science Curriculum. Bachelor of Science in Computer
-Science with International minor in Germanic Studies, emphasis on
-computer music. Degree Date: Spring 1995. GPA: 4.3/5.0
-
-# PROGRAMMING LANGUAGES; TOOLS; RELATED COURSES
-
-Java, Java EE, HTTP/2, Go, Python, Swift, Kubernetes, Helm, Docker,
-Etcd, Redis, Ansible, Mesos/Maraton, AJAX, SOA, JNI, C++, C, Perl, UML,
-XSL, XML, SOAP, J2EE, Struts, CSS, HTML, CGI, Fortify, Git, Mercurial,
-svn, SQL, JavaScript, NodeJS, JAX/RS, Continuous Integration
-(Jenkins/GitLab), JSON, swagger/OpenAPI, Objective C, Fortran, Assembly,
-LISP, Rexx; COM, Emacs, Purify, gdb, dbx, performance analyzers, test
-driven development; Software Engineering, Operating Systems, Distributed
-Networks, Sun Certified Java 2 Architect
-
-# REFERENCES
-
-Alan Braverman
-
-Doug Beeferman
-
-James Gosling
-
-Created: 13 August 1995 Last modified: 11 October 2018
+- [Alan Braverman](https://www.crunchbase.com/person/alan-braverman)  
+- [Doug Beeferman](https://www.linkedin.com/in/doug-beeferman-671131/)  
+- [James Gosling](https://www.linkedin.com/in/jamesgosling/)

@@ -88,6 +88,7 @@
 | In Johnnys Kneipe | Seemanschor |
 | Ja, Mir San Mitm Radl Da | Die Drei Lustigen Moosacher |
 | Ja, so warns, de oidn Rittersleit | Karl Valentin |
+| Jamaica Farewell | Walter Scholz |
 | Jetzt gehts los | Takeo Ischi |
 | Kalimba, Kalimba | Rex Gildo |
 | Kein Schoener Land | Nena | 

@@ -49,6 +49,7 @@
 | Die alten Rittersleut | Hot Dogs |
 | Drei Gesellen | Holzfrei Boemisch |
 | Du bist Staerker als du glaubst | Heino |
+| Durch Die Nacht| Die Jungen Zillertaler |
 | Duesseldorfer Girl 10 Jahre Danach | Die Paldauer |
 | Ein Heimatloses Bier | Münchner Stadtmisukanten |
 | Ein Hoch Dem Slavko Avsenik | Engelbert Stubinger + Seine Karawanken |

@@ -156,6 +156,7 @@
 | Sunnastern | Boarische Almmusi |
 | Talismann | Geschwister Hofmann |
 | Tulpen Aus Amsterdam |  |
+| Und Die Sonne Wird Wieder Scheinen | Eberhard Hertl |
 | Umpa Bumpa Polka | Auner Alpenspektakel |
 | Unschlagbar |  |
 | Unser Oide Kath | Gesangsgruppe Eberwein |

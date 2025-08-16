@@ -47,6 +47,7 @@
 | Die Pfaffenwinkler |
 | Die Schoenheitskoenigin Von Schneizelreuth | Bally Prell |
 | Die alten Rittersleut | Hot Dogs |
+| Die Zeit Hat Viel Zu Wenig Zeit | Astrid Harzbecker |
 | Drei Gesellen | Holzfrei Boemisch |
 | Du bist Staerker als du glaubst | Heino |
 | Durch Die Nacht| Die Jungen Zillertaler |
@@ -57,6 +58,7 @@
 | Fang dir die Sonne | Stimmen der Berge |
 | Faul sein | Casanovas aus dem Zillertal |
 | Felbernpfeiferl | Fredl Fesl |
+| foer die liebe nit | lupo |
 | Freunde | Faeaschtbaenkler |
 | Froh gelaunt ist halb gewonnen | |
 | Fuchsgraben Polka | Wetterloch Blas |
@@ -169,16 +171,14 @@
 | Wenn du nicht lachst, dann lebst du nicht | Stefan Mross |
 | Wien bleibt wien | Happy Polka Baum |
 | Wir Sehen Uns Wieder | Faeschtbaenkler |
+| Wo Die Nordseewellen | Heino |
 | Wirtshausmarsch | Stubaier Freitagsmusig |
 | Wm Landler | Die Seckauer |
-| Wo Die Nordseewellen | Heino |
 | Wochenend | Zwoa Moi Zwoi |
 | Zehn Zazottlte Zigeuner | die seckauer |
 | Zwuesched Stuel Ond Baenk | Geschwister Kueng |
 | Zwüsched Stül Ond Bänk | Geschwister Kueng |
-| foer die liebe nit | lupo |
-| strid Harzbecker |
-| wini wini | Wildecker Herzbuben |
+| Wini wini | Wildecker Herzbuben |
 
 
 # Vokabeln

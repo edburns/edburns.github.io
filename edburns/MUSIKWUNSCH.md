@@ -82,6 +82,7 @@
 | Hübsche Girls Sind Selten Frei | Slavko Avsenik |
 | I hob koa geld | Sonni |
 | Ich Hab An Alten Wein Im Keller Gefunden | Karl Moik |
+| Ich ho de Gripp | De Randfichten |
 | Ich lass mich überraschen | Peter Sebastian |
 | Ich leb jeden tag neu | Birgit Langer |
 | In Den Taschen Keinen Euro | Die Schaefer |

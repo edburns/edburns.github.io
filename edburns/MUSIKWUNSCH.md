@@ -56,6 +56,7 @@
 | Ein Hoch Dem Slavko Avsenik | Engelbert Stubinger + Seine Karawanken |
 | Einmal nach Bombay | Cuxhavener Lotsenchor |
 | Fang dir die Sonne | Stimmen der Berge |
+| Father and sons| Tony Marshall |
 | Faul sein | Casanovas aus dem Zillertal |
 | Felbernpfeiferl | Fredl Fesl |
 | foer die liebe nit | lupo |

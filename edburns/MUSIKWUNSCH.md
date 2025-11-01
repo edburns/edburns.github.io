@@ -71,6 +71,7 @@
 | HAENDE HOCH | DIE LICHTENSTEINER |
 | Hamburger Veermaster. |
 | Heavymetallandler | gEorg Ringswandl |
+| Halli Galli | Die Mayerhofer |
 | Heidi | Gitti und Erika |
 | Heidi | Original Siegener Stadtmusikanten |
 | Heile Heile Gänsje | Margit Sponheimer |
@@ -157,6 +158,7 @@
 | Sunnastern | Boarische Almmusi |
 | Talismann | Geschwister Hofmann |
 | Tulpen Aus Amsterdam |  |
+| Trucker wie Papa | Amigos | 
 | Und Die Sonne Wird Wieder Scheinen | Eberhard Hertl |
 | Umpa Bumpa Polka | Auner Alpenspektakel |
 | Unschlagbar |  |

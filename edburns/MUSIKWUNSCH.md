@@ -89,7 +89,7 @@
 | Ich leb jeden tag neu | Birgit Langer |
 | In Den Taschen Keinen Euro | Die Schaefer |
 | In Hamburg sind die Nächte lang | Rolf Simons |
-| In Haven von New York | Shantychor Varel |
+| In Hafen von New York | Shantychor Varel |
 | In Johnnys Kneipe | Seemanschor |
 | Ja, Mir San Mitm Radl Da | Die Drei Lustigen Moosacher |
 | Ja, so warns, de oidn Rittersleit | Karl Valentin |

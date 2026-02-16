@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2026-02-15T00:31:18-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2026-02-16T18:39:25-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
 </subtitle><entry><title type="html">Ed’s JavaLand 2026 Session Picks</title><link href="/blog/2026/02/13/javaland-2026-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2026 Session Picks" /><published>2026-02-13T14:30:00-05:00</published><updated>2026-02-13T14:30:00-05:00</updated><id>/blog/2026/02/13/javaland-2026-picks</id><content type="html" xml:base="/blog/2026/02/13/javaland-2026-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/eds-javaland-2026-session-picks">dev.to</a>.</p>
 
 <p>I can hardly believe I’m writing my session picks for the 12th JavaLand conference!</p>
@@ -58,7 +58,7 @@
 
 <p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6879">Program link</a></p>
 
-<p>My colleague <a href="https://mastodon.social/@ivar_grimstad">Ivar Grimstad</a> delivers what promises to be an authoritative look at where Enterprise Java has been and where it’s going. As someone who has been working with Enterprise Java since the J2EE 1.2 days, I’m very interested in Ivar’s perspective on our collective journey and future direction.</p>
+<p>My colleague <a href="https://mastodon.social/@ivar_grimstad">Ivar Grimstad</a> delivers what promises to be an authoritative look at where Enterprise Java has been and where it’s going. As someone who has been working with Enterprise Java since the J2EE 1.2 days, I’m very interested in Ivar’s perspective on our collective journey and future direction. eb: fun fact, the first time I gave a talk with the “Past, Present, and the Future of [something]” was <a href="https://javaee.github.io/javaserverfaces/presentations/w-jax-keynote-de-en.pdf">W-JAX 2005</a>. Of course, I wasn’t the first to originate that title pattern.</p>
 
 <h4 id="tie-1300---1340-sanssouci---modern-java---ask-me-anything">Tie: 13:00 - 13:40 Sanssouci - Modern Java - Ask Me Anything</h4>
 
@@ -70,7 +70,7 @@
 
 <p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6880">Program link</a></p>
 
-<p>Ingo Eichhorst’s provocatively titled talk about modern software architecture in the age of AI looks fascinating. The metaphor alone is worth attending for, but I expect the content will deliver substantive insights into how AI is changing our approach to architecture.</p>
+<p>Ingo Eichhorst’s provocatively titled talk about modern software architecture in the age of AI looks fascinating. The metaphor alone is worth attending for, but I expect the content will deliver substantive insights into how AI is changing our approach to architecture. eb: I’m very curious to see how well what the author says about the extent of hallucinations holds up. As was documented in this <a href="https://x.com/mattshumer_/status/2021256989876109403">famous</a> (and <a href="https://minutes.substack.com/p/tool-shaped-objects">famous for being famous</a>) essay, and as confirmed in my own lived experience, hallucinations are much less of a problem in models since Claude Sonnet 4.5.</p>
 
 <h4 id="1500---1540-sanssouci---reset-fürs-lernen--warum-ki-uns-zwingt-weiterbildung-neu-zu-erfinden">15:00 - 15:40 Sanssouci - Reset fürs Lernen – Warum KI uns zwingt, Weiterbildung neu zu erfinden</h4>
 
@@ -88,7 +88,7 @@
 
 <p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6834">Program link</a></p>
 
-<p>eb: Panel sessions always depend on the quality of the panelists, and the panelists for this session are not listed. However, I know <a href="https://ixchelruiz.com">Ixchel</a> and she has a great network and attracts talent. With her at the helm, this is sure to be copelling.</p>
+<p>eb: Panel sessions always depend on the quality of the panelists, and the panelists for this session are not listed. However, I know <a href="https://ixchelruiz.com">Ixchel</a> and she has a great network and attracts talent. With her at the helm, this is sure to be compelling.</p>
 
 <h3 id="wednesday-11-march-2026">Wednesday, 11 March 2026</h3>
 
@@ -98,13 +98,13 @@
 
 <p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6905">Program link</a></p>
 
-<p><a href="https://www.linkedin.com/in/thorbenjanssen/">Thorben Janssen</a> is an expert on Jakarta EE and persistence technologies. Jakarta Data promises to reduce boilerplate code in data access layers, and I’m eager to see how this specification will help developers.</p>
+<p><a href="https://www.linkedin.com/in/thorbenjanssen/">Thorben Janssen</a> is an expert on Jakarta EE and persistence technologies. Jakarta Data promises to reduce boilerplate code in data access layers, and I’m eager to see how this specification will help developers. eb: As the co-release coordinator for Jakarta EE 11, which includes Jakarta Data, I can’t wait to find out how popular it is becomming.</p>
 
 <h4 id="tie-0900---0940-dome---observing-project-valhalla">Tie: 09:00 - 09:40 Dome - Observing Project Valhalla</h4>
 
 <p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6919">Program link</a></p>
 
-<p>My old friend <a href="https://foojay.social/@cayhorstmann">Cay Horstmann</a> takes on Project Valhalla, one of the most ambitious projects in Java’s history. Cay has been a fixture in the Java community for decades, and his educational expertise makes him the perfect person to explain these complex concepts. Valhalla’s value types and primitive classes will fundamentally change how we write high-performance Java code.</p>
+<p>My old friend <a href="https://foojay.social/@cayhorstmann">Cay Horstmann</a> takes on Project Valhalla, one of the most ambitious projects in Java’s history. Cay has been a fixture in the Java community for decades, and his educational expertise makes him the perfect person to explain these complex concepts. Valhalla’s value types and primitive classes will fundamentally change how we write high-performance Java code. eb: Cay is an experienced teacher and lecturer, you’ll learn a lot.</p>
 
 <h4 id="1000---1040-circuscelebration---legacy-architecture-refactoring-mit-archunit">10:00 - 10:40 CircusCelebration - Legacy Architecture Refactoring mit ArchUnit</h4>
 
@@ -118,17 +118,17 @@
 
 <p>My colleague <a href="https://mastodon.social/@brunoborges">Bruno Borges</a> covers performance tuning for Java on Kubernetes, including Project Leyden. Bruno and I worked together back when he was with Oracle, and I’ve always appreciated his deep technical knowledge combined with practical applicability.</p>
 
-<h4 id="1400---1440-das-studio---top-10-spring-boot-hacks--pragmatismus-statt-magie">14:00 - 14:40 Das Studio - Top 10 Spring Boot Hacks – Pragmatismus statt Magie</h4>
+<h4 id="1400---1440-dome---the-evolution-of-design-patterns-in-the-age-of-ai">14:00 - 14:40 Dome - The Evolution of Design Patterns in the Age of AI</h4>
 
-<p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6965">Program link</a></p>
+<p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6971">Program link</a></p>
 
-<p>Julius Mischok’s pragmatic approach to Spring Boot looks excellent. The subtitle “Pragmatism over Magic” speaks to me – understanding what your framework is actually doing is always better than treating it as a black box.</p>
+<p>eb: I fondly remember the days when the pace of change of the practice of development was such that there was time for experts to come together and write books about the practice of development. Books such as “Design Patterns”. Those days appear to be gone, and are likely not to return. But that doesn’t stop Miro! Miro is undaunted and brings the pattern of doing a talk about design patterns to the domain of contemporary software development. I’m very curious.</p>
 
-<h4 id="1500---1540-dome---die-all-stars-der-software-bugs---und-was-wir-von-ihnen-lernen-können-staffel-2">15:00 - 15:40 Dome - Die All Stars der Software Bugs - und was wir von ihnen lernen können, Staffel 2</h4>
+<h4 id="1500---1540-das-studio---aws-vs-azure-the-key-differences-that-matter">15:00 - 15:40 Das Studio - AWS vs Azure: The Key Differences That Matter</h4>
 
-<p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6972">Program link</a></p>
+<p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6966">Program link</a></p>
 
-<p><a href="https://www.linkedin.com/in/cn-seifert/">Christian Seifert</a> returns with season 2 of his software bugs series. Learning from bugs is one of the most effective ways to improve as a developer.</p>
+<p>eb: I must tread carefully with this session. Because I’ve been working for the last six years, and given many talks, here and elsewhere, about my work to make Azure the best cloud for Java developers, I’m very curious to see what <a href="https://www.linkedin.com/in/artunsubasi/">Artun Subasi</a> has to say. From the abstract, it seems language agnostic.</p>
 
 <h4 id="1600---1640-dome---from-crud-to-cognitive-modernizing-legacy-java-apps-with-embedded-ai">16:00 - 16:40 Dome - From CRUD to Cognitive: Modernizing Legacy Java Apps with Embedded AI</h4>
 
@@ -136,7 +136,7 @@
 
 <p>This is my own session where I explore how to modernize traditional CRUD applications by embedding AI capabilities. I’ll show practical approaches to taking existing Java EE/Jakarta EE applications and adding intelligent features without complete rewrites.</p>
 
-<p>If I wasn’t presenting at this time, I’d definitely attend <strong>Sanssouci: Der Code ist nur die halbe Wahrheit - Warum gute Dokumentation dazugehört</strong> from Samuel Nitsche. Documentation is often neglected, but it’s crucial for long-term maintenance.</p>
+<p>eb: If I wasn’t presenting at this time, I’d definitely attend <a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6955">Hilfe, ich habe den KI-Hype verpasst! Alles was man wissen muss in 105 Minuten</a> from Florian Sommer.</p>
 
 <h4 id="1700---1740-circuscelebration---deterministische-unit-tests-für-multi-threaded-java">17:00 - 17:40 CircusCelebration - Deterministische Unit Tests für Multi-Threaded Java</h4>
 
@@ -187,13 +187,14 @@
 
 <p>After Claude created the initial draft, I reviewed and iterated. It got a bunch of stuff wrong, but it was definitely helpful.</p>
 
-<p>Stuff we got wrong included:</p>
+<p>Stuff it got wrong included:</p>
 
 <ul>
   <li>It’s not in Nürburgring. It’s in Rust.</li>
   <li>I asked it to scrape the socials, excluding X, for all speakers and update references accordingly. Again, the browser integration just worked.</li>
   <li>The reference to the 2025 post was incorrect. Had to fix it.</li>
   <li>I did not constrain it to only selecting one session per timeslot.</li>
+  <li>I only found one wholesale hallucinated session. “Der Code ist nur die halbe Wahrheit - Warum gute Dokumentation dazugehört** from Samuel Nitsche.” Mr. Nitsche did speak last year, but does not appear in the conference program this year. I could find no evidence of this talk with simple web searching.</li>
 </ul>
 
 <p>Stuff it got right and which is kinda scary:</p>

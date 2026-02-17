@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2026-02-16T18:39:25-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Ed’s JavaLand 2026 Session Picks</title><link href="/blog/2026/02/13/javaland-2026-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2026 Session Picks" /><published>2026-02-13T14:30:00-05:00</published><updated>2026-02-13T14:30:00-05:00</updated><id>/blog/2026/02/13/javaland-2026-picks</id><content type="html" xml:base="/blog/2026/02/13/javaland-2026-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/eds-javaland-2026-session-picks">dev.to</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2026-02-16T19:21:58-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Ed’s JavaLand 2026 Session Picks</title><link href="/blog/2026/02/13/javaland-2026-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2026 Session Picks" /><published>2026-02-13T14:30:00-05:00</published><updated>2026-02-13T14:30:00-05:00</updated><id>/blog/2026/02/13/javaland-2026-picks</id><content type="html" xml:base="/blog/2026/02/13/javaland-2026-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/eds-javaland-2026-session-picks-7ni">dev.to</a>.</p>
 
 <p>I can hardly believe I’m writing my session picks for the 12th JavaLand conference!</p>
 
@@ -148,9 +148,7 @@
 
 <p><a href="https://meine.doag.org/events/javaland/2026/agenda/#agendaId.6992">Program link</a></p>
 
-<p><a href="https://mastodon.social/@mehmandarov">Rustam Mehmandarov</a> challenges our assumptions about APIs. Given how many developers conflate REST with HTTP and miss the broader API landscape (GraphQL, gRPC, etc.), this session should provide valuable perspective.</p>
-
-<h3 id="thursday-12-march-2026---schulungstag">Thursday, 12 March 2026 - Schulungstag</h3>
+<p><a href="https://mastodon.social/@mehmandarov">Rustam Mehmandarov</a> challenges our assumptions about APIs. Given how many developers conflate REST with HTTP and miss the broader API landscape (GraphQL, gRPC, etc.), this session should provide valuable perspective. eb: good to see HATEOAS (which I like pronouncing HATE ee Ohs to rhyme with Cheerios) getting some attention in 2026.</p>
 
 <p>See you in Rust in March!</p>
 

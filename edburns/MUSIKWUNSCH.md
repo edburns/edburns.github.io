@@ -18,7 +18,7 @@
 | Auf der Heide blühen die Letzte Rose | Willy Schneider |
 | Auf der Reeperbahn |
 | Bariton Zwerg | Grazer Spatzen |
-| Barthelmarktzeit | Böhmischen |	
+| Barthelmarktzeit | Die Kaiserlich Böhmischen |	
 | Bergromanze | Margot Hellwig |
 | Bring mich Heim | Astrid Harzbecker |
 | Cafe au lait | Rudy Giovannini |

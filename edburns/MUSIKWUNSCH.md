@@ -24,6 +24,7 @@
 | Bring mich Heim | Astrid Harzbecker |
 | Cafe au lait | Rudy Giovannini |
 | Dangellied | Die Kern Buam |
+| Da Russ | Biermoesl Blosn |
 | Das Gibts Nur Auf Der Reeper | Freddy Quinn Und Heidi Kabel |
 | Das Kann Doch Einen Seemann Nicht | Cuxhavener Lotsenchor |
 | Das Kommt Gut | Stimmen Der Berge |

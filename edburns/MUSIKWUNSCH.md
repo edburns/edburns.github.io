@@ -161,6 +161,7 @@
 | Stimmungspolka | Jungen Zellberger |
 | Sunnastern | Boarische Almmusi |
 | Talismann | Geschwister Hofmann |
+| Tuba Sepp | Die Jungen Zillertaler |
 | Tulpen Aus Amsterdam |  |
 | Trucker wie Papa | Amigos | 
 | Und Die Sonne Wird Wieder Scheinen | Eberhard Hertl |

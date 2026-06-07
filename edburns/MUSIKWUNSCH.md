@@ -46,6 +46,7 @@
 | Die Balade vom Raeuber | Gunter Emmerlich |
 | Die Goass is Weg | Die lustige moosacher |
 | Die Liebe Ist Die Beste Medizin | Saso Avsenik Und Seine Oberkrainer |
+| De Lustigen Holzhackerleit | De Randfichten |
 | Die Musikanten Aus Dem Zillertal | Die Mayrhofner |
 | Die Pfaffenwinkler |
 | Die Schoenheitskoenigin Von Schneizelreuth | Bally Prell |

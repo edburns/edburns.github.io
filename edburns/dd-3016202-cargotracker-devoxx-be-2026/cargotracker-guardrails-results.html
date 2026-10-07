@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cargotracker guardrails experiment: results for Devoxx slides</title>
+<style>
+:root{
+  --paper:#FCFDFE; --ink:#18212E; --text:#2B3644; --muted:#5F6B79; --rule:#D8DEE6; --band:#F1F4F8;
+  --g1:#E3E7EB; --g2:#D2D7DD; --g3:#BFC5CC; --g4:#A6AEB8; --rv:#2F6FDB; --ok:#2E7D5B;
+  --serif:"Charter","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#12161C; --ink:#EEF1F5; --text:#D3D9E1; --muted:#98A3B1; --rule:#2C333D; --band:#1A2029;
+  --g1:#2B323C; --g2:#38404B; --g3:#47505C; --g4:#5B6572; --rv:#5A8FEA; --ok:#5DBB8F;}}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;color:var(--text);font:17px/1.62 var(--serif);font-feature-settings:"onum" 1}
+.wrap{max-width:74rem;margin:0 auto;padding:3.5rem 1.5rem 5rem;display:grid;grid-template-columns:1fr;gap:2rem}
+@media (min-width:1100px){.wrap{grid-template-columns:13rem minmax(0,46rem);gap:4rem}}
+nav.toc{font:14px/1.5 var(--sans);color:var(--muted)}
+@media (min-width:1100px){nav.toc{position:sticky;top:3.5rem;align-self:start;padding-top:9.2rem}}
+@media (max-width:1099px){nav.toc{display:none}}
+nav.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule)}
+nav.toc li{margin:0}
+nav.toc a{display:block;padding:.3rem 0 .3rem .9rem;color:inherit;text-decoration:none;margin-left:-2px;border-left:2px solid transparent}
+nav.toc a:hover{color:var(--ink);border-left-color:var(--rv)}
+a:focus-visible{outline:2px solid var(--rv);outline-offset:2px}
+main{min-width:0}
+header h1{font:600 2.35rem/1.12 var(--sans);letter-spacing:-.018em;color:var(--ink);margin:0 0 .8rem;max-width:22ch}
+.byline{font:15px/1.4 var(--sans);color:var(--muted);margin:0 0 2.8rem}
+h2{font:600 1.32rem/1.3 var(--sans);color:var(--ink);margin:3.4rem 0 .9rem;letter-spacing:-.005em;scroll-margin-top:1.5rem}
+p{margin:0 0 1.05rem;max-width:68ch}
+.lead{font-size:1.06em;color:var(--ink)}
+strong{color:var(--ink);font-weight:650}
+code{font:.84em/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;background:var(--band);padding:.12em .32em;border-radius:3px;white-space:nowrap}
+ol.claims{padding-left:1.6rem;margin:0 0 1.2rem}
+ol.claims li{margin:0 0 .7rem;padding-left:.3rem}
+ol.claims li::marker{font:600 .95em var(--sans);color:var(--rv)}
+ul{padding-left:1.3rem;margin:0 0 1.2rem}
+ul li{margin:0 0 .55rem}
+.tbl{overflow-x:auto;margin:1.2rem 0 1.4rem;border-top:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font:14.5px/1.45 var(--sans);font-variant-numeric:tabular-nums lining-nums}
+th{text-align:left;font-weight:600;color:var(--ink);padding:.6rem .7rem;border-bottom:1px solid var(--rule);vertical-align:bottom}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th.n,td.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:650;color:var(--ink);border-bottom:2px solid var(--ink)}
+td:first-child,th:first-child{padding-left:0}
+.note{font:14px/1.5 var(--sans);color:var(--muted)}
+figure{margin:1.6rem 0 1.6rem;padding:1.1rem 1rem .7rem;border:1px solid var(--rule);border-radius:6px}
+figure .chart{width:100%;height:auto;display:block}
+figcaption{font:13px/1.4 var(--sans);color:var(--muted);margin-top:.4rem;padding-left:.4rem}
+.chart text{font-family:var(--sans)}
+.ct{font-size:16px;font-weight:600;fill:var(--ink)}
+.cs,.cl{font-size:12px;fill:var(--muted)}
+.cr{font-size:12.5px;fill:var(--ink)}
+.cv{font-size:12px;fill:var(--ink)}
+.cv.on-blue{fill:#fff}
+.g1{fill:var(--g1)}.g2{fill:var(--g2)}.g3{fill:var(--g3)}.g4{fill:var(--g4)}.rv{fill:var(--rv)}
+rect.seg{stroke:var(--paper);stroke-width:1.5}
+ul.resolved{list-style:none;padding:0}
+ul.resolved li{position:relative;padding-left:1.9rem;margin-bottom:.95rem}
+ul.resolved li::before{content:"";position:absolute;left:0;top:.32em;width:1.05rem;height:1.05rem;border-radius:3px;background:var(--ok)}
+ul.resolved li::after{content:"";position:absolute;left:.36rem;top:.48em;width:.28rem;height:.55rem;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg)}
+@media print{nav.toc{display:none}.wrap{display:block;max-width:none;padding:0}figure{break-inside:avoid}h2{break-after:avoid}}
+
+</style></head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="Contents"><ol>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#compared">What was compared</a></li>
+<li><a href="#caught">Where each defect was first caught</a></li>
+<li><a href="#classes">Defect classes across arms</a></li>
+<li><a href="#cost">Cost to converge</a></li>
+<li><a href="#symptoms">Symptom scorecard</a></li>
+<li><a href="#caveats">Caveats to disclose on stage</a></li>
+<li><a href="#resolved">Resolved checks</a></li>
+<li><a href="#method">Method</a></li>
+</ol></nav>
+<main>
+<header>
+<h1>Cargotracker guardrails experiment: results for Devoxx slides</h1>
+<p class="byline">Ed Burns, October 4, 2026</p>
+</header>
+
+<section id="summary">
+<h2>Summary</h2>
+<p class="lead">With one control run and two treatment runs, the results support a case study, not a statistical comparison. Five claims hold up against the data:</p>
+<ol class="claims">
+<li><strong>Behavioral defects still reached code review in both arms.</strong> Control: 1 of 1 caught by Copilot Code Review. Treatment: 3 of 4 caught by review, 1 caught earlier by a CI unit test.</li>
+<li><strong>Guardrails add their own failure class.</strong> The treatment's test-inventory check failed 4 times across the two runs. These are obligations the guardrail creates, so the control has no equivalent.</li>
+<li><strong>Agents never produce formatted code.</strong> Spotless runs in both arms and failed in every run (3, 2 and 4 times). Two treatment violations came from fix commits made during review.</li>
+<li><strong>Some failure modes repeat exactly, in every run, in both arms.</strong> The same 16-line duplicated dialog code, out-of-scope Maven Wrapper files, and the same invalid <code>gh</code> flag combinations appear in all three runs.</li>
+<li><strong>The treatment costs more.</strong> Mean AIU is 25% higher (1,101 vs 881) and recorded session time is 86% higher (4h&nbsp;14m vs 2h&nbsp;16m).</li>
+</ol>
+<p>Every open item is now resolved, and none changed these claims.</p>
+</section>
+
+<section id="compared">
+<h2>What was compared</h2>
+<p>Both arms share the project layout, Spotless formatting and a Maven build that runs tests; the treatment adds deeper CI guardrails on top, plus a stricter test section in its plan and 20 production files already reformatted and fixed for its gates (see Caveats).</p>
+<div class="tbl"><table>
+<thead><tr><th>Run</th><th>Arm</th><th>Repository</th><th>Ran (UTC)</th><th>Active time</th><th class="n">Sessions</th></tr></thead>
+<tbody>
+<tr><td>control-run-01</td><td>Control</td><td>dd-3072973-cargotracker-control-01</td><td>Oct 3, 00:42 to 14:40</td><td>13h 58m elapsed, including a 10h 49m idle gap</td><td class="n">10</td></tr>
+<tr><td>treatment-run-03</td><td>Treatment</td><td>dd-3072707-tricket-out-cargotracker-run-03</td><td>Oct 2, 14:14 to 21:11</td><td>5h 31m, plus a 1h 27m gap before #6 was retried</td><td class="n">11</td></tr>
+<tr><td>treatment-run-04</td><td>Treatment</td><td>dd-3072797-tricked-out-cargotracker-run-04</td><td>Oct 2, 19:02 to Oct 3, 01:29</td><td>5h 23m, plus a 1h 05m gap before #6</td><td class="n">10</td></tr>
+</tbody></table></div>
+<p><strong>CI checks in both arms:</strong> <code>formatting</code> (Spotless) and a Maven <code>build</code>. Tests run by default (<code>skipTests=false</code>), the code lives in <code>demo/</code>, and the compiler targets Java 17 via <code>maven.compiler.release</code>.</p>
+<p><strong>Added in the treatment only:</strong> a <code>source-gates</code> check, plus 43 more CI steps. The ones that can fail a build:</p>
+<ul>
+<li>Test inventory, build contract, and the Java 17 / Java EE 7 contract</li>
+<li>Unit and Arquillian test-count assertions</li>
+<li>SpotBugs</li>
+<li>A dependency security gate</li>
+<li>OpenTelemetry acceptance with negative controls</li>
+<li>A bounded performance comparison</li>
+</ul>
+<p><strong>Held constant in all three runs:</strong> Shepherd 1.0.4, Copilot CLI 1.0.91, model <code>gpt-5.6-sol</code> at reasoning level <code>medium</code>, lesson propagation off, and the same three skill name hashes. Skill content lengths match exactly (27,427, 25,715 and 4,423 characters); content hashes were not captured.</p>
+</section>
+
+<section id="caught">
+<h2>Where each defect was first caught</h2>
+<p class="lead">In every run, at least 67% of defects were caught before code review. The treatment's extra gates moved one behavioral defect earlier.</p>
+<figure>
+<svg viewBox="0 0 760 290" role="img" aria-labelledby="ch-t ch-d" class="chart">
+<title id="ch-t">Most defects were caught before code review in both arms</title>
+<desc id="ch-d">Stacked bars per run showing product defects by the gate that first detected them.</desc>
+<text x="40" y="30" class="ct">Most defects were caught before code review in both arms</text>
+<text x="40" y="52" class="cs">Product defects per run, by the gate that first detected them, in pipeline order</text>
+<rect x="40.0" y="70" width="12" height="12" class="g1"/><text x="57.0" y="80" class="cl">CI: formatting</text>
+<rect x="155.6" y="70" width="12" height="12" class="g2"/><text x="172.6" y="80" class="cl">CI: build contract</text>
+<rect x="296.8" y="70" width="12" height="12" class="g3"/><text x="313.8" y="80" class="cl">CI: unit tests</text>
+<rect x="412.4" y="70" width="12" height="12" class="g4"/><text x="429.4" y="80" class="cl">Shepherd stage-30 gate</text>
+<rect x="579.2" y="70" width="12" height="12" class="rv"/><text x="596.2" y="80" class="cl">Code review (CCRA)</text>
+<g><text x="40" y="129.0" class="cr">Control run-01</text>
+<rect x="170.0" y="108" width="95.0" height="34" class="g1 seg"><title>Control run-01, CI: formatting: 3</title></rect><text x="217.5" y="129.0" text-anchor="middle" class="cv">3</text>
+<rect x="265.0" y="108" width="63.3" height="34" class="g4 seg"><title>Control run-01, Shepherd stage-30 gate: 2</title></rect><text x="296.7" y="129.0" text-anchor="middle" class="cv">2</text>
+<rect x="328.3" y="108" width="31.7" height="34" class="rv seg"><title>Control run-01, Code review (CCRA): 1</title></rect><text x="344.2" y="129.0" text-anchor="middle" class="cv on-blue">1</text>
+<text x="370.0" y="129.0" class="cs">5 of 6 before review (83%)</text></g>
+<g><text x="40" y="187.0" class="cr">Treatment run-03</text>
+<rect x="170.0" y="166" width="63.3" height="34" class="g1 seg"><title>Treatment run-03, CI: formatting: 2</title></rect><text x="201.7" y="187.0" text-anchor="middle" class="cv">2</text>
+<rect x="233.3" y="166" width="95.0" height="34" class="g2 seg"><title>Treatment run-03, CI: build contract: 3</title></rect><text x="280.8" y="187.0" text-anchor="middle" class="cv">3</text>
+<rect x="328.3" y="166" width="158.3" height="34" class="g4 seg"><title>Treatment run-03, Shepherd stage-30 gate: 5</title></rect><text x="407.5" y="187.0" text-anchor="middle" class="cv">5</text>
+<rect x="486.7" y="166" width="31.7" height="34" class="rv seg"><title>Treatment run-03, Code review (CCRA): 1</title></rect><text x="502.5" y="187.0" text-anchor="middle" class="cv on-blue">1</text>
+<text x="528.3" y="187.0" class="cs">10 of 11 before review (91%)</text></g>
+<g><text x="40" y="245.0" class="cr">Treatment run-04</text>
+<rect x="170.0" y="224" width="126.7" height="34" class="g1 seg"><title>Treatment run-04, CI: formatting: 4</title></rect><text x="233.3" y="245.0" text-anchor="middle" class="cv">4</text>
+<rect x="296.7" y="224" width="31.7" height="34" class="g2 seg"><title>Treatment run-04, CI: build contract: 1</title></rect><text x="312.5" y="245.0" text-anchor="middle" class="cv">1</text>
+<rect x="328.3" y="224" width="31.7" height="34" class="g3 seg"><title>Treatment run-04, CI: unit tests: 1</title></rect><text x="344.2" y="245.0" text-anchor="middle" class="cv">1</text>
+<rect x="360.0" y="224" width="63.3" height="34" class="g4 seg"><title>Treatment run-04, Shepherd stage-30 gate: 2</title></rect><text x="391.7" y="245.0" text-anchor="middle" class="cv">2</text>
+<rect x="423.3" y="224" width="126.7" height="34" class="rv seg"><title>Treatment run-04, Code review (CCRA): 4</title></rect><text x="486.7" y="245.0" text-anchor="middle" class="cv on-blue">4</text>
+<text x="560.0" y="245.0" class="cs">8 of 12 before review (67%)</text></g>
+</svg>
+<figcaption>Evaluator 0.4.4 <code>defects.csv</code> for each run, plus two scope violations classified by hand and two double-counted requests removed.</figcaption>
+</figure>
+<p>Behavioral defects are the comparison that matters. Copilot Code Review found the control's single behavioral defect, treatment run-03's single one, and two of treatment run-04's three. The third, in run-04 task #4, failed a CI unit test first. That CI step exists only in the treatment.</p>
+<p>Two of run-04's formatting failures happened after review: the fix commits for review comments were not formatted.</p>
+</section>
+
+<section id="classes">
+<h2>Defect classes across arms</h2>
+<p>Only behavioral defects, formatting and out-of-scope changes can be compared between arms; test-inventory failures exist only because the treatment checks for them.</p>
+<div class="tbl"><table>
+<thead><tr><th>Defect class</th><th>Comparable across arms?</th><th class="n">Control run-01</th><th class="n">Treatment run-03</th><th class="n">Treatment run-04</th></tr></thead>
+<tbody>
+<tr><td>Behavioral (code does the wrong thing)</td><td>Yes</td><td class="n">1</td><td class="n">1</td><td class="n">3</td></tr>
+<tr><td>Formatting (Spotless or review)</td><td>Yes, both arms run Spotless</td><td class="n">3</td><td class="n">2</td><td class="n">6†</td></tr>
+<tr><td>Out-of-scope file changes</td><td>Yes, caught by the same Shepherd gate</td><td class="n">2*</td><td class="n">4</td><td class="n">1*</td></tr>
+<tr><td>Missing requirement or evidence</td><td>Yes, caught by the same Shepherd gate</td><td class="n">0</td><td class="n">1</td><td class="n">1</td></tr>
+<tr><td>Test inventory not updated</td><td>No, treatment-only check</td><td class="n">0</td><td class="n">3</td><td class="n">1</td></tr>
+<tr class="total"><td>Total</td><td></td><td class="n">6</td><td class="n">11</td><td class="n">12</td></tr>
+</tbody></table></div>
+<p class="note">* Includes one scope violation the evaluator left unclassified and I classified by hand from its excerpt (see Method). † Includes two review findings on run-04's issue #3 that its post-mortem describes as unrelated formatting; the evaluator had labeled them behavioral.</p>
+<p>The out-of-scope changes are the same in every run: the agent adds <code>demo/mvnw</code>, <code>demo/mvnw.cmd</code> and the two <code>.mvn/wrapper</code> files. That happens in both arms, so it comes from the project setup, not from the guardrails.</p>
+<p>The two treatment runs differ widely: run-04 had three behavioral defects to run-03's one. With one control run, that spread is larger than any difference between the arms.</p>
+</section>
+
+<section id="cost">
+<h2>Cost to converge</h2>
+<p>The treatment used 25% more AIU and 28% more input tokens, and its sessions ran 86% longer. The likely cause is waiting on a CI pipeline with 43 more steps; the data does not break session time down by wait type.</p>
+<div class="tbl"><table>
+<thead><tr><th>Measure</th><th class="n">Control run-01</th><th class="n">Treatment run-03</th><th class="n">Treatment run-04</th><th class="n">Treatment mean vs control</th></tr></thead>
+<tbody>
+<tr><td>AIU</td><td class="n">880.6</td><td class="n">1,051.1</td><td class="n">1,151.4</td><td class="n">+25%</td></tr>
+<tr><td>Premium requests</td><td class="n">10</td><td class="n">11</td><td class="n">10</td><td class="n">+5%</td></tr>
+<tr><td>Input tokens (incl. cache)</td><td class="n">10.47M</td><td class="n">11.88M</td><td class="n">14.93M</td><td class="n">+28%</td></tr>
+<tr><td>Output tokens</td><td class="n">111,826</td><td class="n">133,291</td><td class="n">132,627</td><td class="n">+19%</td></tr>
+<tr><td>Recorded session time</td><td class="n">2h 16m</td><td class="n">4h 13m</td><td class="n">4h 14m</td><td class="n">+86%</td></tr>
+<tr><td>Model calls</td><td class="n">230</td><td class="n">255</td><td class="n">284</td><td class="n">+17%</td></tr>
+<tr><td>Tool calls</td><td class="n">337</td><td class="n">399</td><td class="n">405</td><td class="n">+19%</td></tr>
+<tr><td>Nonzero tool exits</td><td class="n">22</td><td class="n">20</td><td class="n">35</td><td class="n">+25%</td></tr>
+<tr><td>CI runs (distinct head SHAs)</td><td class="n">8</td><td class="n">10</td><td class="n">11</td><td class="n">+31%</td></tr>
+<tr><td>Code review rounds</td><td class="n">6</td><td class="n">6</td><td class="n">7</td><td class="n">+8%</td></tr>
+<tr><td>Fix commits after review</td><td class="n">1</td><td class="n">1</td><td class="n">5</td><td class="n">+200%</td></tr>
+<tr><td>Stage-30 change requests</td><td class="n">3</td><td class="n">5</td><td class="n">3</td><td class="n">+33%</td></tr>
+<tr><td>Task attempts that failed</td><td class="n">0</td><td class="n">1 (#6)</td><td class="n">1 (#5)</td><td class="n"></td></tr>
+</tbody></table></div>
+<p>Elapsed wall-clock time is not comparable. The control sat idle for 10h 49m between stage 30 and stage 40 of task #4 while its Dev Box slept, and both treatment runs were split into two directories with a gap of 1h 05m to 1h 27m.</p>
+<p>The tokens cover local Shepherd sessions only. The remote coding agent and the review agent run on GitHub, and their costs are not in the artifacts.</p>
+</section>
+
+<section id="symptoms">
+<h2>Symptom scorecard</h2>
+<p>Five of the eight measured symptoms appeared, and only token cost differed clearly between arms.</p>
+<div class="tbl"><table>
+<thead><tr><th>Symptom (H2)</th><th>What the runs show</th><th>Difference between arms</th></tr></thead>
+<tbody>
+<tr><td>Non-determinism</td><td>Defect totals vary from 6 to 12 per run. The code itself barely varies: PR #7 is +116/−82 lines in two runs and +112/−82 in the third.</td><td>None visible; the two treatment runs differ more than either differs from the control</td></tr>
+<tr><td>Hallucinated APIs and dependencies</td><td>Zero in product code. Tooling misuse occurs in every run (8, 6, 7 events), mostly the same invalid <code>gh</code> flag combinations, plus one capability hallucination: run-04's shepherd decided a working <code>gh</code> feature was unsupported</td><td>None</td></tr>
+<tr><td>DRY violations</td><td>The same 16-line block in <code>ChangeArrivalDeadlineDateDialog.java</code> (lines 19–34) is copied from <code>ChangeDestinationDialog.java</code> in all three runs</td><td>None: no treatment gate runs a duplicate-code check</td></tr>
+<tr><td>Token cost</td><td>See Cost to converge</td><td>Treatment +25% AIU, +28% input tokens</td></tr>
+<tr><td>Unreviewable code</td><td>Each PR touches 2–4 files and at most 303 added lines</td><td>None visible per PR. The treatment's campaign totals include harness repair commits, so they are not compared</td></tr>
+<tr><td>Failure to converge</td><td>Two failed attempts, both in the treatment: run-03 task #6, where the coding agent stopped pushing fixes, and run-04 task #5, where the shepherd stopped on a false tooling conclusion. No review-cap, timeout or idle-kill events</td><td>Too few events to compare</td></tr>
+<tr><td>Test tampering</td><td>Control: 4 test files changed, 36 assertions added, none removed or disabled</td><td>None in either arm. Treatment PRs added 76 assertions and removed none; agents edited the gate files 4 times, only to register new tests</td></tr>
+<tr><td>Stale and deprecated APIs</td><td>Zero new deprecation or removal warnings in any run (JDK 17, <code>-Xlint:deprecation,removal</code>)</td><td>None</td></tr>
+</tbody></table></div>
+<p>Scope creep was on the literature-only list, but the runs measured it: out-of-scope Maven Wrapper files appeared in all three runs, and Shepherd's stage-30 gate caught every case.</p>
+</section>
+
+<section id="caveats">
+<h2>Caveats to disclose on stage</h2>
+<p>The sample is one control run and two treatment runs, so every difference above is anecdotal.</p>
+<ul>
+<li><strong>The arms differ by deep guardrails only.</strong> Formatting and a test-running build exist in both arms by design, because both repos derive from a project that already had these basics. The experiment measures what the extra 43 CI steps add on top of them, not guardrails versus none.</li>
+<li><strong>The runs overlapped.</strong> Treatment run-03 and run-04 ran concurrently for about 2h 09m. Control run-01 and the resumed part of run-04 both started at 00:42:08 UTC on Oct 3 and overlapped for 47m. All three used the same GitHub account.</li>
+<li><strong>The control's idle gap broke its prompt cache.</strong> The control's uncached input was 298,285 tokens; each treatment run had under 1,000. Most likely the cache expired while the control's Dev Box slept for 10h 49m, which inflates the control's cost slightly and makes the treatment's cost increase look smaller.</li>
+<li><strong>The treatment also got a stricter plan and different starting code.</strong> Compared against control-run-01's start (<code>325b7e1</code>), the treatment's plan requires running <code>BookingServiceTest</code> under Open Liberty with all five tests passing; the control's plan only requires the tests to compile. Shepherd's stage-30 gate checks these criteria, so the treatment gate asked for more evidence. The treatment plan also says to keep the Java 7 source level, contradicting its own POM (<code>release 17</code>). Twenty production files also differ at the start, all from four treatment commits: Spotless reformatting, SpotBugs and compiler fixes (serialVersionUID fields, a per-call SimpleDateFormat instead of a shared static one, an unused field and getter removed), an access log for observability, and removal of the GlassFish descriptor. No feature behavior changed. The files include <code>ChangeDestinationDialog.java</code> and <code>BookingBackingBean.java</code>, which the feature touches. Both treatment runs used the identical plan. By design, the stricter plan is part of the guardrail package, so results describe the package as a whole rather than the CI checks alone.</li>
+<li><strong>The evaluator could not classify every event.</strong> It left 7, 10 and 23 events unclassified in the three runs. I reviewed them by hand: two were scope violations, now counted; the rest are check-status polls, skipped jobs, and agent tool or script errors.</li>
+<li><strong>Both treatment runs stopped once and needed manual help to finish.</strong> Run-03's last task merged only after the maintainer ran its acceptance tests by hand and added the evidence to the PR. Run-04 stopped when the shepherd wrongly concluded GitHub CLI couldn't request a Copilot review. Harness repair commits went onto the base branch between the two directories of each run. They didn't change the guardrails, but they add about 130,000 lines to the treatment's start-to-final diff, so campaign-level diff and test-integrity numbers for the treatment are left out.</li>
+</ul>
+</section>
+
+<section id="resolved">
+<h2>Resolved checks</h2>
+<p>All items are resolved; none changed the summary claims.</p>
+<ul class="resolved">
+<li><strong>The mid-campaign base-branch changes were harness repairs, and the agents didn't tamper with tests.</strong> Each treatment run has one repair commit (run-03 <code>f586a46</code>, run-04 <code>c94b49f</code>), named after the interrupted campaign directory. Neither touches a workflow, CI script, POM, config or source file; together they account for about 130,000 lines in the evaluator's start-to-final totals, so the treatment's campaign diff size and its "test execution reduced" flag are not agent results. Checked per PR, all ten treatment PRs delete no test files, disable nothing, add no skip flags, and add 76 assertions while removing none. Four PRs edited the guardrail files, but only to register new test classes and raise the expected counts (active tests 8→9→10; unit tests 27→34). None removed a check or lowered a count.</li>
+<li><strong>The 20 production files are the treatment's own gate fixes.</strong> All changes come from four treatment commits: Spotless reformatting, SpotBugs and compiler fixes, an observability access log, and making Open Liberty the only runtime. Run-04 started from identical production code.</li>
+<li><strong>Control task #5 had no convergence failure.</strong> Every <code>SHEPHERD FAILED</code> line in that transcript is part of a script's text, either the skill's instructions or a command's own failure branch (line 1115). None is command output. The command that contains the matched line printed its normal result, and the session's four nonzero exits (lines 1296, 1643, 1838 and 2535) belong to other commands. The evaluator matched the string inside the command rather than in its output, so the control had zero failed attempts.</li>
+<li><strong>Run-04's unit-test detection counts as a guardrail detection.</strong> In the treatment, unit tests run in CI only in treatment-only steps (<code>Run focused unit tests</code>, <code>Assert unit test count</code>); the control's tests run inside its own <code>Build with Maven</code> step, which the treatment doesn't have.</li>
+<li><strong>Why the runs paused.</strong> The control's 10h 49m gap during task #4 happened because the Dev Box running it went to sleep. Run-03 stopped when the coding agent pushed no remediation; run-04 stopped when the shepherd wrongly concluded GitHub CLI couldn't request a Copilot review. Both were restarted by hand; see Caveats.</li>
+<li><strong>Control task #2 had one stage-30 request, not two; the control total is 6.</strong> Shepherd posted two change requests on PR #7. At 00:58:55 UTC it requested a fix for the Maven Wrapper scope violation plus a wrong test reload path (one request, two items). At 01:05:13 UTC it requested a formatting fix after CI failed. The evaluator's "missing requirement" defect at 01:05:07 is that formatting request, mislabeled and double-counted. Corrected: one formatting defect and one scope violation with two items.</li>
+<li><strong>Run-04 had one missing-requirement defect, not two; its total is 12.</strong> Task #3 had three requests: the Maven Wrapper scope violation, a formatting fix and a test-inventory fix. The evaluator's "missing requirement" at 20:01:48 UTC is the inventory request counted a second time. Task #5's request is genuine: the plan requires the Update action to refresh the Administration view after a successful close, and CCA's first version didn't.</li>
+</ul>
+</section>
+
+<section id="method">
+<h2>Method</h2>
+<p>All three runs were scored by <code>shepherd-task-evaluator</code> 0.4.4 at commit <code>f76ebf2</code>, from a clean worktree, on October 4.</p>
+<ul>
+<li><strong>Sources:</strong> each run's <code>findings.json</code>, <code>defects.csv</code>, <code>summary.csv</code> and <code>unclassified.md</code>. Treatment runs use the combined output, which merges the two campaign directories into one record.</li>
+<li><strong>Manual adjudication:</strong> two unclassified stage-30 change requests had headings the evaluator didn't recognize ("Scope violation: four disallowed Maven wrapper files" in the control, "Focused diff gate failure: unrelated Maven Wrapper files" in run-04). I counted both as scope violations. I also removed two evaluator defects that were other requests counted a second time: control #2's "missing requirement" (its formatting request) and run-04 #3's (its test-inventory request). Comparing with the runs' post-mortems led to three more corrections: run-04 issue #3's two review findings are counted as formatting rather than behavioral (based on the post-mortem's description, not yet checked against PR #8's comments), review rounds come from the post-mortems' per-task tables, and run-04's task #5 stop counts as a failed attempt. Every other count is the evaluator's own.</li>
+<li><strong>Tokens:</strong> the last cumulative OTEL export per metric series. Input tokens include cache reads and writes.</li>
+<li><strong>Time to fix:</strong> one treatment defect (run-04, #5) has a fix timestamped 57 seconds before its detection. It is flagged as an anomaly and left out of timing claims.</li>
+<li><strong>Raw transcripts:</strong> I checked treatment run-03 against its raw transcripts in an earlier review. For the control and run-04, I checked the evaluator's outputs plus the transcript passages and git history cited under Resolved checks.</li>
+</ul>
+</section>
+</main>
+</div>
+
+</body></html>

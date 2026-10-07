@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campaign Evidence Matrix</title>
+<style>
+:root{
+  --paper:#FCFDFE; --ink:#18212E; --text:#2B3644; --muted:#5F6B79; --rule:#D8DEE6; --band:#F1F4F8;
+  --g1:#E3E7EB; --g2:#D2D7DD; --g3:#BFC5CC; --g4:#A6AEB8; --rv:#2F6FDB; --ok:#2E7D5B;
+  --serif:"Charter","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#12161C; --ink:#EEF1F5; --text:#D3D9E1; --muted:#98A3B1; --rule:#2C333D; --band:#1A2029;
+  --g1:#2B323C; --g2:#38404B; --g3:#47505C; --g4:#5B6572; --rv:#5A8FEA; --ok:#5DBB8F;}}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;color:var(--text);font:17px/1.62 var(--serif);font-feature-settings:"onum" 1}
+.wrap{max-width:74rem;margin:0 auto;padding:3.5rem 1.5rem 5rem;display:grid;grid-template-columns:1fr;gap:2rem}
+@media (min-width:1100px){.wrap{grid-template-columns:13rem minmax(0,46rem);gap:4rem}}
+nav.toc{font:14px/1.5 var(--sans);color:var(--muted)}
+@media (min-width:1100px){nav.toc{position:sticky;top:3.5rem;align-self:start;padding-top:9.2rem}}
+@media (max-width:1099px){nav.toc{display:none}}
+nav.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule)}
+nav.toc li{margin:0}
+nav.toc a{display:block;padding:.3rem 0 .3rem .9rem;color:inherit;text-decoration:none;margin-left:-2px;border-left:2px solid transparent}
+nav.toc a:hover{color:var(--ink);border-left-color:var(--rv)}
+a:focus-visible{outline:2px solid var(--rv);outline-offset:2px}
+main{min-width:0}
+header h1{font:600 2.35rem/1.12 var(--sans);letter-spacing:-.018em;color:var(--ink);margin:0 0 .8rem;max-width:22ch}
+.byline{font:15px/1.4 var(--sans);color:var(--muted);margin:0 0 2.8rem}
+h2{font:600 1.32rem/1.3 var(--sans);color:var(--ink);margin:3.4rem 0 .9rem;letter-spacing:-.005em;scroll-margin-top:1.5rem}
+p{margin:0 0 1.05rem;max-width:68ch}
+.lead{font-size:1.06em;color:var(--ink)}
+strong{color:var(--ink);font-weight:650}
+code{font:.84em/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;background:var(--band);padding:.12em .32em;border-radius:3px;white-space:nowrap}
+ol.claims{padding-left:1.6rem;margin:0 0 1.2rem}
+ol.claims li{margin:0 0 .7rem;padding-left:.3rem}
+ol.claims li::marker{font:600 .95em var(--sans);color:var(--rv)}
+ul{padding-left:1.3rem;margin:0 0 1.2rem}
+ul li{margin:0 0 .55rem}
+.tbl{overflow-x:auto;margin:1.2rem 0 1.4rem;border-top:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font:14.5px/1.45 var(--sans);font-variant-numeric:tabular-nums lining-nums}
+th{text-align:left;font-weight:600;color:var(--ink);padding:.6rem .7rem;border-bottom:1px solid var(--rule);vertical-align:bottom}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th.n,td.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:650;color:var(--ink);border-bottom:2px solid var(--ink)}
+td:first-child,th:first-child{padding-left:0}
+.note{font:14px/1.5 var(--sans);color:var(--muted)}
+figure{margin:1.6rem 0 1.6rem;padding:1.1rem 1rem .7rem;border:1px solid var(--rule);border-radius:6px}
+figure .chart{width:100%;height:auto;display:block}
+figcaption{font:13px/1.4 var(--sans);color:var(--muted);margin-top:.4rem;padding-left:.4rem}
+.chart text{font-family:var(--sans)}
+.ct{font-size:16px;font-weight:600;fill:var(--ink)}
+.cs,.cl{font-size:12px;fill:var(--muted)}
+.cr{font-size:12.5px;fill:var(--ink)}
+.cv{font-size:12px;fill:var(--ink)}
+.cv.on-blue{fill:#fff}
+.g1{fill:var(--g1)}.g2{fill:var(--g2)}.g3{fill:var(--g3)}.g4{fill:var(--g4)}.rv{fill:var(--rv)}
+rect.seg{stroke:var(--paper);stroke-width:1.5}
+ul.resolved{list-style:none;padding:0}
+ul.resolved li{position:relative;padding-left:1.9rem;margin-bottom:.95rem}
+ul.resolved li::before{content:"";position:absolute;left:0;top:.32em;width:1.05rem;height:1.05rem;border-radius:3px;background:var(--ok)}
+ul.resolved li::after{content:"";position:absolute;left:.36rem;top:.48em;width:.28rem;height:.55rem;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg)}
+@media print{nav.toc{display:none}.wrap{display:block;max-width:none;padding:0}figure{break-inside:avoid}h2{break-after:avoid}}
+
+
+h3{font:600 1.08rem/1.35 var(--sans);color:var(--ink);margin:2.4rem 0 .7rem;scroll-margin-top:1.5rem}
+main a{color:var(--rv);text-underline-offset:2px}
+ul ul{margin:.45rem 0 .2rem}
+td code,li code{white-space:normal;overflow-wrap:anywhere}
+pre{background:var(--band);border-radius:6px;padding:1rem 1.1rem;overflow-x:auto;margin:1rem 0 1.4rem;font:13.5px/1.5 ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+pre code{background:none;padding:0;white-space:pre;font:inherit}
+table.wide{min-width:92rem}
+table.wide td{min-width:9rem}
+table.wide td:first-child{min-width:8rem}
+</style></head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="Contents"><ol>
+<li><a href="#field-definitions">Field definitions</a></li>
+<li><a href="#update-rules">Update rules</a></li>
+<li><a href="#summary-matrix">Summary matrix</a></li>
+<li><a href="#issue-specific-evidence-log">Issue-specific evidence log</a></li>
+<li><a href="#appendix-i-human-observations">Appendix I: Human observations</a></li>
+</ol></nav>
+<main>
+<header>
+<h1>Campaign Evidence Matrix</h1>
+</header>
+<p>Campaign: <code>1-trick-out-01-remove-before-merge</code></p>
+<p>This document records what the campaign actually demonstrates about the ten
+boring reasons from the talk abstract. It begins with hypotheses and
+<code>Not exercised</code> classifications. Implementation issues must replace those
+initial values only when durable campaign evidence exists.</p>
+<p>The ignorance-reduction plan and generated implementation issues define the
+mandatory update timing and completion gates. In particular, the current
+issue's evidence must be recorded and merged before the next serial issue
+begins.</p>
+<h2 id="field-definitions">Field definitions</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reason</td>
+<td>The ordered reason from the abstract</td>
+</tr>
+<tr>
+<td>Agentic failure mode</td>
+<td>The weakness it is meant to constrain</td>
+</tr>
+<tr>
+<td>Repository mechanism</td>
+<td>Compiler, Maven, test, analyzer, workflow, telemetry, or deployment control</td>
+</tr>
+<tr>
+<td>Implementation task</td>
+<td>The trick-out issue and PR that introduce, exercise, or verify it</td>
+</tr>
+<tr>
+<td>Observed campaign event</td>
+<td>A concrete success, failure, correction, or non-event</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>CI run, log, PR, review, trace, JFR, screenshot, or post-mortem</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>Strong</code>, <code>Moderate</code>, <code>Weak</code>, <code>Unsupported</code>, or <code>Not exercised</code></td>
+</tr>
+<tr>
+<td>Slide implication</td>
+<td><code>Main slide</code>, <code>Brief mention</code>, <code>Appendix</code>, <code>Cut</code>, or <code>TBD</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="update-rules">Update rules</h2>
+<ol class="claims">
+<li>Preserve the reason numbering and ordering.</li>
+<li>Treat the failure modes and mechanisms below as initial hypotheses, not
+evidence.</li>
+<li>Update every applicable summary row after implementation, validation, and
+review-feedback resolution for an issue.</li>
+<li>Identify implementation work with exact issue and PR numbers.</li>
+<li>Link or name durable artifacts precisely: commit SHA, GitHub Actions run and
+job, check name, repository-relative artifact path, log, trace, profile,
+screenshot, or post-mortem section.</li>
+<li>Distinguish a mechanism being installed from being executed, detecting a
+problem, preventing a problem, or materially improving the work.</li>
+<li>Record silent or negative results. If the work did not exercise a reason,
+leave or set its confidence to <code>Not exercised</code> and explain the non-event.</li>
+<li>Do not invent evidence or upgrade confidence because a tool merely passed.</li>
+<li>Do not delete earlier evidence. Update the summary and append a dated
+issue-specific entry to the evidence log.</li>
+<li>Put reusable implementation guidance in <code>campaign-lessons.md</code>, not here.</li>
+</ol>
+<h2 id="summary-matrix">Summary matrix</h2>
+<div class="tbl"><table class="wide">
+<thead>
+<tr>
+<th>Reason</th>
+<th>Agentic failure mode</th>
+<th>Repository mechanism</th>
+<th>Implementation task</th>
+<th>Observed campaign event</th>
+<th>Artifact</th>
+<th>Confidence</th>
+<th>Slide implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Type system</td>
+<td>Hallucinated APIs, incompatible values, invalid generics, and domain or layer leakage</td>
+<td>Java compiler and Maven compiler configuration</td>
+<td>Issue #4 / PR #12; Issue #5 / PR #13</td>
+<td>Issue #5 compiled 95 main and 11 test sources with <code>-Xlint:all -Werror</code>; a controlled nonexistent-method fixture failed with javac's <code>cannot find symbol</code> diagnostic. Hosted <code>source-gates</code> also passed on the tested SHA.</td>
+<td>Tested SHA <code>b19c8c9f2a67822ff5c3abc4a7de888dee353e79</code>; successful Main Build <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610">run #36804048610</a>, <code>source-gates</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185685393">110185685393</a>; <code>source-gates</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/artifacts/11136618790">11136618790</a>, digest <code>sha256:fdfd048be3d64bde3462a70ab6a289cb4abf49f8ada206abae821265e636942e</code>; supporting files <code>compiler.log</code>, <code>test-compiler.log</code>, and <code>compiler-negative.log</code></td>
+<td>Strong hosted and local implementation evidence</td>
+<td>Brief mention</td>
+</tr>
+<tr>
+<td>2. Testing ecosystem</td>
+<td>Behavior that compiles but is incomplete, incorrect, or regressive</td>
+<td>JUnit, Arquillian, Open Liberty integration tests, architecture tests, and acceptance checks</td>
+<td>Issue #2 / PR #9; Issue #6 / PR #14; fixture baseline repair</td>
+<td>The safety-net implementation adds a reproducible inventory (8 active test classes, 3 dormant, 0 removed), two facade/DTO boundary tests, and a compiled-dependency DDD layer baseline. On the exact primary merge SHA, the canonical unit tier passed 27/27 with zero skipped tests, the managed Open Liberty tier passed 4/4 with zero skipped tests, all negative controls passed, and the production-WAR acceptance lifecycle passed root, Administration dashboard, seeded detail, and REST JSON contracts while proving cleanup. The later fixture baseline repair replaced the brittle exact-four-test assertion with a named-method and zero-failure contract that still passes the feature-free four-test suite and permits a valid fifth test.</td>
+<td>Primary merge SHA <code>0858b99c14e6d47649008716116504dcdab3bced</code>; successful Main Build <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36818583169">run #36818583169</a>, <code>formatting</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36818583169/job/110228986496">110228986496</a>, <code>source-gates</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36818583169/job/110229082017">110229082017</a>, and <code>build</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36818583169/job/110229409615">110229409615</a>; fixture baseline repair SHA <code>94950cfceefc85edaec68eb6b61a16e0e6779ecc</code>, successful Main Build <a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505">run #36956818505</a>, <code>formatting</code> job/check <a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505/job/110681507992">110681507992</a>, <code>source-gates</code> job/check <a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505/job/110681594814">110681594814</a>, <code>build</code> job/check <a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505/job/110681940309">110681940309</a>, and <code>test-reports-liberty</code> artifact <a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505/artifacts/11206483198">11206483198</a>, digest <code>sha256:19b0c9c08136763bbb8f947581e35680c6770717d0a82cf7a89311578ea4af53</code></td>
+<td>Strong exact-SHA hosted evidence plus repository implementation evidence</td>
+<td>Brief mention</td>
+</tr>
+<tr>
+<td>3. Backwards compatibility culture</td>
+<td>Accidental migration away from Java 17, Java EE 7, <code>javax.*</code>, existing contracts, or established runtime behavior</td>
+<td>Compiler release, dependency and API constraints, compatibility tests, and repository instructions</td>
+<td>Issue #4 / PR #12</td>
+<td>The focused contract passed for Java 17, Java EE 7 provided API, WAR identity, Liberty feature/deployment, and production <code>javax.*</code> source; all seven isolated negative controls rejected their intended boundary. The packaged WAR reached <code>/cargo-tracker/rest/cargo</code> with seeded <code>ABC123</code> over Open Liberty and stopped cleanly. Hosted formatting and build jobs passed on the validated implementation HEAD and uploaded the compatibility report and runtime evidence.</td>
+<td>Validated implementation HEAD <code>a3bee8d24ec54e6b3587ccf0cec443969d0609bd</code>; successful Main Build <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821">run #36801557821</a>, <code>formatting</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821/job/110176804872">110176804872</a>, <code>build</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821/job/110176909417">110176909417</a>, and compatibility-contract artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821/artifacts/11135847970">11135847970</a>, digest <code>sha256:1de927b096f1ceaef7c1a3aae9c9f1bb2cafcbcc9ee53b5b3ae4ef1324f2018f</code></td>
+<td>Strong hosted implementation evidence plus runtime proof</td>
+<td>Main slide</td>
+</tr>
+<tr>
+<td>4. Deep static analysis</td>
+<td>Defects, architectural violations, maintainability problems, or security findings not rejected by compilation</td>
+<td>Static analyzers, architecture rules, and security-oriented source analysis selected by the resolved plan</td>
+<td>Issue #5 / PR #13</td>
+<td>SpotBugs 4.10.4 with Max effort and Low threshold reported zero selected production findings after correcting five shared <code>SimpleDateFormat</code> instances, the null booking result, and the unwritten route field. A temporary null dereference failed as priority-1 <code>NP_ALWAYS_NULL</code>. Hosted <code>source-gates</code> also passed on the tested SHA.</td>
+<td>Tested SHA <code>b19c8c9f2a67822ff5c3abc4a7de888dee353e79</code>; successful Main Build <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610">run #36804048610</a>, <code>source-gates</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185685393">110185685393</a>; <code>source-gates</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/artifacts/11136618790">11136618790</a>, digest <code>sha256:fdfd048be3d64bde3462a70ab6a289cb4abf49f8ada206abae821265e636942e</code>; supporting files <code>spotbugs.xml</code>, <code>spotbugs.tsv</code>, and <code>analyzer-negative.log</code>; configuration/source <code>demo/config/spotbugs-exclude.xml</code>, <code>demo/scripts/ci/verify-source-gates.sh</code></td>
+<td>Strong hosted and local implementation evidence</td>
+<td>Brief mention</td>
+</tr>
+<tr>
+<td>5. Build system maturity and dependency management</td>
+<td>Dependency sprawl, version drift, non-reproducible builds, plugin drift, or unapproved repositories</td>
+<td>Maven dependency management, Enforcer rules, convergence checks, plugin controls, and dependency/security analysis</td>
+<td>Issue #3 / PR #10; Issue #4 / PR #12</td>
+<td>Issue #3 established the authoritative dependency gate. Issue #4 added direct Jakarta/framework/runtime dependency rejection, validated true project-level negative fixtures, and added schema/hash-checked compatibility artifact metadata.</td>
+<td>Issue #3 PR Main Build <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36792676155">run 36792676155</a> and exact-SHA push <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36793581535">run 36793581535</a>; Issue #4 validated implementation HEAD <code>a3bee8d24ec54e6b3587ccf0cec443969d0609bd</code>, successful Main Build <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821">run #36801557821</a>, <code>build</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821/job/110176909417">110176909417</a>, compatibility-contract artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821/artifacts/11135847970">11135847970</a></td>
+<td>Strong hosted dependency and compatibility enforcement evidence</td>
+<td>Brief mention</td>
+</tr>
+<tr>
+<td>6. Code formatting and style enforcement</td>
+<td>Noisy diffs and inconsistent independently generated code</td>
+<td>Spotless and any additional narrowly justified style checks</td>
+<td>Issue #3 / PR #10; Issue #5 / PR #13</td>
+<td>Issue #5 preserved the historical ratchet and the formatting-first job; the controlled malformed Java fixture failed Spotless with the remediation command. Hosted <code>formatting</code> and <code>source-gates</code> jobs also passed on the tested SHA.</td>
+<td>Tested SHA <code>b19c8c9f2a67822ff5c3abc4a7de888dee353e79</code>; successful Main Build <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610">run #36804048610</a>, <code>formatting</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185574947">110185574947</a>, <code>source-gates</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185685393">110185685393</a>; <code>source-gates</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/artifacts/11136618790">11136618790</a>, digest <code>sha256:fdfd048be3d64bde3462a70ab6a289cb4abf49f8ada206abae821265e636942e</code>; supporting file <code>formatting-negative.log</code> plus <code>demo/scripts/ci/verify-source-gates.sh</code></td>
+<td>Strong hosted and local implementation evidence</td>
+<td>Brief mention</td>
+</tr>
+<tr>
+<td>7. Virtual threads and structured concurrency</td>
+<td>Ad hoc concurrency, unmanaged task lifetimes, and unnecessary platform-thread complexity</td>
+<td>A bounded Java 21-or-later spike isolated from the Java 17 Cargo Tracker baseline</td>
+<td>Unassigned</td>
+<td>Not yet exercised; the primary application baseline is Java 17</td>
+<td>None yet</td>
+<td>Not exercised</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>8. Observability stack</td>
+<td>Opaque runtime failures and insufficient evidence for diagnosis</td>
+<td>Structured logs, metrics, traces, correlation, OpenTelemetry artifacts, and JVM/process diagnostics</td>
+<td>Issue #7 / PR #16; Issue #8 / PR #17</td>
+<td>On final reviewed SHA <code>87d6768d9eed2a29efee6357107f383a00c0ab5e</code>, the successful Main Build correlated both fixed-ID requests across transcript, server spans, and Liberty access logs; exported nonempty JVM metrics; and passed negative controls for unavailable Collector, incompatible instrumentation, missing telemetry, broken correlation, unsafe exemplar/cargo data, secret-like content, and an invalid request without a diagnostic signal. Separately, issue #8 captured per-launch JVM flags, GC logs, JFR summaries, RSS/CPU samples, startup/request/cleanup outcomes for the hosted Java/<code>jaz</code> comparison; this adds diagnostic coverage without changing issue #7's evidence.</td>
+<td>Issue #7: run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274">36839380274</a>, <code>build</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274/job/110295058827">110295058827</a>; <code>otel-telemetry</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274/artifacts/11151111829">11151111829</a>, digest <code>sha256:e5e180578fb5f31f8fe53a9a96f371bb1ddd86c697f68b3d3016842878dfbf21</code>; <code>liberty-logs</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274/artifacts/11151376069">11151376069</a>, digest <code>sha256:928e88ef86f80ae017256cf6d9e4b1662238a668e0722c9d9799d745bae9c3a6</code>; supporting files <code>traces.json</code>, <code>metrics.json</code>, <code>request-transcript.jsonl</code>, <code>redaction-check.txt</code>, <code>observability-access.log</code>, <code>messages.log</code>, and <code>observability-negative-controls.txt</code>. Issue #8: run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972">36918453972</a>, comparison artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/artifacts/11191258963">11191258963</a>, digest <code>sha256:a0a221a61cbae90e63a5c792e70cc723817920ba64d4c5fd8551651d959d1461</code>; <code>status.txt</code>, <code>run-order.tsv</code>, <code>mode-summary.tsv</code>, and <code>paired-comparison.tsv</code></td>
+<td>Strong: issue #7 exact-SHA hosted observability and redaction gates passed; issue #8 exact-head hosted job published JVM/process/JFR/GC diagnostics for all 15 launches.</td>
+<td>Main slide</td>
+</tr>
+<tr>
+<td>9. JVM performance tuning</td>
+<td>Poor heap sizing, garbage-collector choices, startup behavior, or resource utilization under container limits</td>
+<td>Repeatable workload, JVM/process diagnostics, JFR, GC evidence, and <code>java</code> versus <code>jaz</code> comparison</td>
+<td>Issue #8 / PR #17</td>
+<td>The hosted five-cycle comparison completed all 15 launches across direct Java, bypassed <code>jaz</code>, and tuned <code>jaz</code>; all passed functional, diagnostic, resource, and cleanup gates. Resolved tuned JVM settings and launcher integration were recorded. Ordinary measurements remain diagnostic only; no performance winner is claimed.</td>
+<td>Implementation HEAD <code>3e141c26cfbd6e5469aeebd2b627b620b28ab725</code>; Main Build run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972">36918453972</a> (attempt 1; PR merge-test SHA <code>8ce8b6e0bfaaa8c40d5951ffd7e1c7d5d867bd14</code>), <code>formatting</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558201739">110558201739</a>, <code>source-gates</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558380614">110558380614</a>, and <code>build</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558962626">110558962626</a>; four immutable artifacts and SHA-256 digests are recorded in the Issue #8 evidence log below.</td>
+<td>Strong hosted evidence that the bounded workload and three launcher modes passed functional, diagnostic, resource, and cleanup gates on one runner; measurements do not justify selecting a performance winner or establish AKS-limit behavior.</td>
+<td>Brief mention</td>
+</tr>
+<tr>
+<td>10. Breadth of deployment options</td>
+<td>Environment-coupled code or packaging that cannot move between realistic runtime targets</td>
+<td>Repeatable deployment of the same Cargo Tracker artifact or container to Azure execution models</td>
+<td>Unassigned</td>
+<td>Not yet exercised</td>
+<td>None yet</td>
+<td>Not exercised</td>
+<td>TBD</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="issue-specific-evidence-log">Issue-specific evidence log</h2>
+<p>Append one subsection for every implementation issue, even when it produces no
+meaningful evidence. Keep entries in serial issue order.</p>
+<h3 id="issue-2-establish-the-open-liberty-only-baseline">Issue #2: Establish the Open Liberty-only baseline</h3>
+<ul>
+<li><strong>PR:</strong> #9</li>
+<li><strong>Implementation commit:</strong> <code>bc6c3e387ccf5b3cab5e14b5ab4d91d512ef426b</code> (pre-merge; do not treat as a future merge commit)</li>
+<li><strong>Completed:</strong> 2026-09-30 UTC</li>
+<li><strong>Reasons expected to be exercised:</strong> 2, 3, 5, 6</li>
+<li><strong>Reasons actually exercised:</strong> 2, 3, 5, 6</li>
+<li><strong>Implementation result:</strong> Removed Payara/Cargo/GlassFish runtime paths and guidance; retained Open Liberty as the sole active-by-default profile to preserve the resolved Maven validation tiers. Preserved Java 17, Java EE 7, <code>javax.*</code>, WAR packaging, and <code>cargo-tracker.war</code>.</li>
+<li><strong>Observed events:</strong>
+<ul>
+<li>Spotless passed; the clean package passed all 28 tests (including four managed Open Liberty tests).</li>
+<li>The production-WAR lifecycle deployed the WAR, started Liberty with the 90-second bound, observed server/application readiness, and received HTTP 200 <code>application/json</code> containing seeded <code>ABC123</code>; the EXIT cleanup invoked <code>liberty:stop</code> successfully.</li>
+<li>The canonical profile-excluded compile and 24-test unit tiers passed; the explicit Liberty integration tier passed four tests; canonical package produced the WAR without a Liberty runtime directory.</li>
+<li>A temporary unsupported-server fixture was found by the same search that returned no unsupported-server guidance in the demo.</li>
+<li>Main Build push run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36754101720">#36754101720</a>, attempt 2, passed for implementation commit <code>bc6c3e387ccf5b3cab5e14b5ab4d91d512ef426b</code>: <code>formatting</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36754101720/job/110022167006">110022167006</a> and <code>build</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36754101720/job/110022310098">110022310098</a> both succeeded. The run has no artifacts.</li>
+<li>The evidence-matrix update commit <code>bb9a8f033ac14935a235cd0710aed95efd1014d0</code> also passed Main Build push run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36754242738">#36754242738</a>, attempt 2: <code>formatting</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36754242738/job/110022156492">110022156492</a> and <code>build</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36754242738/job/110022342235">110022342235</a> both succeeded. This run has no artifacts.</li>
+</ul>
+</li>
+<li><strong>Durable artifacts:</strong>
+<ul>
+<li>Local deployable WAR identity: <code>demo/target/cargo-tracker.war</code>, 8,232,335 bytes, SHA-256 <code>93b8fc97ab3b8afcd44b1a062cbada335af79f5a764865a2e1fe2ed47e0c5419</code>. This was produced and deployed locally; it is not represented as a hosted workflow artifact.</li>
+<li>Supporting configuration/source: <code>demo/pom.xml</code>, <code>demo/src/main/liberty/config/server.xml</code>, <code>demo/src/test/resources/arquillian.xml</code>, and <code>demo/src/main/java/org/eclipse/cargotracker/interfaces/booking/socket/RealtimeCargoTrackingService.java</code>.</li>
+<li>Hosted CI evidence: implementation push run #29 / ID <code>36754101720</code> on commit <code>bc6c3e387ccf5b3cab5e14b5ab4d91d512ef426b</code>, with successful <code>formatting</code> job/check ID <code>110022167006</code> and <code>build</code> job/check ID <code>110022310098</code>; current evidence update push run #31 / ID <code>36754242738</code> on commit <code>bb9a8f033ac14935a235cd0710aed95efd1014d0</code>, with successful <code>formatting</code> job/check ID <code>110022156492</code> and <code>build</code> job/check ID <code>110022342235</code>. Both runs have no artifacts.</li>
+</ul>
+</li>
+<li><strong>Evidence assessment:</strong> Strong for hosted formatting/build and local unit/integration/runtime lifecycle. The hosted workflow verifies formatting and Maven build; the production HTTP readiness assertion and guaranteed Liberty shutdown were verified locally, not by hosted acceptance CI.</li>
+<li><strong>Candidate reusable lessons:</strong> Keep the <code>openliberty</code> profile excludable while canonical fast tiers use <code>-P!openliberty</code>; flattening the plugin into the main build would change those commands.</li>
+</ul>
+<h3 id="issue-3-make-ci-authoritative-and-establish-the-maven-dependency-foundation">Issue #3: Make CI authoritative and establish the Maven/dependency foundation</h3>
+<ul>
+<li><strong>PR:</strong> #10</li>
+<li><strong>Implementation commit:</strong> <code>c98096d70caad040bd8c3613a630c7c064cc13e2</code></li>
+<li><strong>Merged commit:</strong> <code>ff40701729cbfac46e2bcb6cd17fcd14a5dfeff0</code></li>
+<li><strong>Completed:</strong> 2026-09-30 UTC</li>
+<li><strong>Reasons expected to be exercised:</strong> 5, 6</li>
+<li><strong>Reasons actually exercised:</strong> 5, 6</li>
+<li><strong>Implementation result:</strong> Established serial formatting-first CI, Maven Enforcer governance, reproducible dependency inventories, advisory delta gating, negative controls, and immutable build/dependency artifacts.</li>
+<li><strong>Observed events:</strong>
+<ul>
+<li>Successful Main Build PR run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36792676155">36792676155</a>, attempt 1, validated synthetic merge SHA <code>37099baee55ca89517a83a3a555b436ffe1f4387</code> for implementation HEAD <code>c98096d70caad040bd8c3613a630c7c064cc13e2</code>.</li>
+<li>PR <code>formatting</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36792676155/job/110148953240">110148953240</a> and <code>build</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36792676155/job/110149060803">110149060803</a> passed in serial order.</li>
+<li>PR #10 merged as primary merge SHA <code>ff40701729cbfac46e2bcb6cd17fcd14a5dfeff0</code>.</li>
+<li>Successful Main Build push run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36793581535">36793581535</a>, attempt 1, validated that exact SHA on <code>edburns/dd-3016202-cargotracker-devoxx-be-2026-experiment</code>.</li>
+<li><code>formatting</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36793581535/job/110151794413">110151794413</a> and <code>build</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36793581535/job/110151881020">110151881020</a> passed in serial order.</li>
+<li>Required negative controls rejected Java range, Maven range, unversioned plugin, duplicate dependency, banned dependency, unauthorized repository, dependency convergence, malformed formatting, corrupted WAR checksum, and known-vulnerable Log4j advisory fixtures.</li>
+<li>Current and baseline inventories each contained 108 resolved coordinates; the full-coordinate delta was empty and no matching new HIGH/CRITICAL advisories were returned.</li>
+</ul>
+</li>
+<li><strong>Durable artifacts:</strong>
+<ul>
+<li>PR <code>build-contract</code> artifact ID <code>11133305135</code>, <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36792676155/artifacts/11133305135">URL</a>, digest <code>sha256:d3219a3cdb329839b8aadc1229132c4402b4b24917be45d4db8c8f0e4b53aec1</code>.</li>
+<li>PR <code>dependency-reports</code> artifact ID <code>11132736102</code>, <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36792676155/artifacts/11132736102">URL</a>, digest <code>sha256:70ef51f9e344ea1c1d7e77dd7f2ae07bb0a06bdfb4e01ca2fcb00388f70ee690</code>.</li>
+<li><code>build-contract</code> artifact ID <code>11132333582</code>, <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36793581535/artifacts/11132333582">URL</a>, digest <code>sha256:62a97f70663473867dc7f4646b79e0632da775ddfe82dfa1a01df8682070fc72</code>; supporting files <code>enforcer-negative-controls.txt</code>, <code>war-inventory.txt</code>, <code>war.sha256</code>, and <code>artifact-metadata.json</code>.</li>
+<li><code>dependency-reports</code> artifact ID <code>11132333587</code>, <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36793581535/artifacts/11132333587">URL</a>, digest <code>sha256:7b1f547c05280d8c5b270b38e00c95192112514bab64de41d780fe1e8bd8e7aa</code>; supporting files <code>effective-pom.xml</code>, <code>dependency-tree.txt</code>, <code>resolved-plugins.txt</code>, <code>vulnerability-report.json</code>, <code>vulnerability-report.txt</code>, and <code>artifact-metadata.json</code>.</li>
+</ul>
+</li>
+<li><strong>Evidence assessment:</strong> Strong for both the final PR synthetic-merge validation and the authoritative exact-SHA experiment-branch push run with immutable artifacts.</li>
+<li><strong>Candidate reusable lessons:</strong> Keep formatting first, retain the historical Spotless ratchet, and record synthetic-merge SHA separately from implementation HEAD.</li>
+</ul>
+<h3 id="issue-4-enforce-the-java-17-and-java-ee-7-compatibility-contract">Issue #4: Enforce the Java 17 and Java EE 7 compatibility contract</h3>
+<ul>
+<li><strong>PR:</strong> #12</li>
+<li><strong>Implementation commit:</strong> <code>a3bee8d24ec54e6b3587ccf0cec443969d0609bd</code> (validated implementation HEAD)</li>
+<li><strong>Completed:</strong> 2026-10-01 UTC</li>
+<li><strong>Reasons expected to be exercised:</strong> 1, 3, 5</li>
+<li><strong>Reasons actually exercised:</strong> 1, 3, 5</li>
+<li><strong>Implementation result:</strong> Added focused POM, Liberty, and production-source assertions; isolated negative fixtures; repository agent instructions; and a single deployed Open Liberty acceptance lifecycle with bounded evidence.</li>
+<li><strong>Observed events:</strong>
+<ul>
+<li>Local compatibility validation passed for compiler release 17, <code>javax:javaee-api:7.0</code> in provided scope, WAR packaging/final name, <code>javaee-7.0</code>, WAR location, and <code>/cargo-tracker</code>.</li>
+<li>Negative fixtures rejected a Jakarta import, Jakarta dependency, release 21, JAR packaging, renamed WAR, Spring dependency, and removed <code>javaee-7.0</code>, each naming the violated boundary.</li>
+<li>The packaged WAR deployed and returned seeded <code>ABC123</code> from <code>/cargo-tracker/rest/cargo</code>; the acceptance script captured deploy/start/readiness/stop evidence and stopped Liberty cleanly.</li>
+<li>Hosted Main Build run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821">#36801557821</a> passed on validated implementation HEAD <code>a3bee8d24ec54e6b3587ccf0cec443969d0609bd</code>; <code>formatting</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821/job/110176804872">110176804872</a> and <code>build</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821/job/110176909417">110176909417</a> both succeeded.</li>
+<li>Direct Jakarta and Spring dependencies were rejected from the project-level dependency list, and compatibility metadata passed required-field, file-size, and SHA-256 verification.</li>
+</ul>
+</li>
+<li><strong>Durable artifacts:</strong>
+<ul>
+<li><code>demo/scripts/ci/verify-compatibility-contract.sh</code></li>
+<li><code>demo/scripts/ci/run-openliberty-acceptance.sh</code></li>
+<li><code>demo/ci-artifacts/compatibility-contract/compatibility-report.txt</code>, <code>negative-controls.txt</code>, <code>liberty-deploy.log</code>, <code>liberty-start.log</code>, <code>liberty-stop.log</code>, <code>readiness.json</code> from local validation</li>
+<li><code>demo/ci-artifacts/compatibility-contract/liberty-messages-excerpt.txt</code> and compatibility-specific <code>artifact-metadata.json</code></li>
+<li><code>.github/workflows/main.yml</code> compatibility-contract upload with 90-day retention</li>
+</ul>
+</li>
+<li><strong>Hosted artifact:</strong> <code>compatibility-contract</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36801557821/artifacts/11135847970">11135847970</a>, digest <code>sha256:1de927b096f1ceaef7c1a3aae9c9f1bb2cafcbcc9ee53b5b3ae4ef1324f2018f</code>.</li>
+<li><strong>Evidence assessment:</strong> Strong for the validated implementation HEAD hosted contract, negative controls, artifact evidence, and deployed runtime lifecycle.</li>
+<li><strong>Candidate reusable lessons:</strong> Keep repository assertions narrow and let the packaged WAR, rather than a managed test-only deployment, define the Open Liberty acceptance boundary.</li>
+</ul>
+<h3 id="issue-5-strengthen-formatting-compiler-type-and-static-analysis-gates">Issue #5: Strengthen formatting, compiler, type, and static-analysis gates</h3>
+<ul>
+<li><strong>PR:</strong> #13</li>
+<li><strong>Implementation commit:</strong> <code>64e2cbd</code></li>
+<li><strong>Completed:</strong> 2026-10-01 UTC</li>
+<li><strong>Reasons expected to be exercised:</strong> 1, 4, 6</li>
+<li><strong>Reasons actually exercised:</strong> 1, 4, 6</li>
+<li><strong>Implementation result:</strong> Preserved the Spotless ratchet, enabled <code>-Xlint:all -Werror</code> for main and test compilation, fixed the 14 compiler warnings, and added the focused SpotBugs 4.10.4 gate with a 90-day <code>source-gates</code> artifact.</li>
+<li><strong>Observed events:</strong>
+<ul>
+<li>Local formatting passed after applying the historical ratchet; the malformed formatting fixture failed with Spotless's <code>spotless:apply</code> remediation.</li>
+<li>Main and test compilation passed independently with Java 17 and <code>-Werror</code>; the invented API fixture failed with a file/line <code>cannot find symbol</code> diagnostic. Hosted <code>source-gates</code> job/check <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185685393">110185685393</a> passed on tested SHA <code>b19c8c9f2a67822ff5c3abc4a7de888dee353e79</code>.</li>
+<li>SpotBugs passed with zero selected production findings after fixing five shared <code>SimpleDateFormat</code> hazards, the permanently null booking result, and the unwritten route field. The null-dereference fixture failed as priority 1 <code>NP_ALWAYS_NULL</code> with a source line.</li>
+<li>Source-gate commands disabled the active Open Liberty profile and did not run deployment, readiness, or acceptance lifecycle steps. The successful hosted <code>formatting</code>, <code>source-gates</code>, and <code>build</code> jobs were independently attributable: <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185574947">formatting 110185574947</a>, <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185685393">source-gates 110185685393</a>, and <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110186078979">build 110186078979</a>, all on tested SHA <code>b19c8c9f2a67822ff5c3abc4a7de888dee353e79</code>.</li>
+</ul>
+</li>
+<li><strong>Durable artifacts:</strong>
+<ul>
+<li><code>demo/pom.xml</code>, <code>demo/config/spotbugs-exclude.xml</code>, and <code>demo/scripts/ci/verify-source-gates.sh</code></li>
+<li><code>demo/ci-artifacts/source-gates/</code> generated by the source-gates job, including <code>formatting-negative.log</code>, <code>compiler.log</code>, <code>test-compiler.log</code>, <code>compiler-negative.log</code>, <code>spotbugs.xml</code>, <code>spotbugs.tsv</code>, <code>analyzer-negative.log</code>, <code>durations.tsv</code>, and <code>artifact-metadata.json</code></li>
+<li>Hosted <code>source-gates</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/artifacts/11136618790">11136618790</a>, digest <code>sha256:fdfd048be3d64bde3462a70ab6a289cb4abf49f8ada206abae821265e636942e</code>; successful Main Build <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610">run #36804048610</a> tested SHA <code>b19c8c9f2a67822ff5c3abc4a7de888dee353e79</code></li>
+<li><code>.github/workflows/main.yml</code> <code>formatting</code> <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185574947">job/check 110185574947</a>, <code>source-gates</code> <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110185685393">job/check 110185685393</a>, and <code>build</code> <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36804048610/job/110186078979">job/check 110186078979</a></li>
+<li><strong>Evidence assessment:</strong> Strong for hosted formatting, compiler, test-compiler, SpotBugs, and controlled-failure evidence on tested SHA <code>b19c8c9f2a67822ff5c3abc4a7de888dee353e79</code>; the local transcript demonstrates the same mechanisms independently.</li>
+</ul>
+</li>
+<li><strong>Candidate reusable lessons:</strong> Keep the compiler and analyzer source gates profile-excluded so they cannot repeat the Open Liberty acceptance lifecycle; keep future SpotBugs suppressions class-and-pattern-specific.</li>
+</ul>
+<h3 id="issue-7-add-ci-observability-and-diagnostic-artifacts">Issue #7: Add CI observability and diagnostic artifacts</h3>
+<ul>
+<li><strong>PR:</strong> #16</li>
+<li><strong>Implementation commit:</strong> <code>87d6768d9eed2a29efee6357107f383a00c0ab5e</code></li>
+<li><strong>Completed:</strong> 2026-10-01 UTC</li>
+<li><strong>Reasons expected to be exercised:</strong> 8</li>
+<li><strong>Reasons actually exercised:</strong> 8</li>
+<li><strong>Implementation result:</strong> Added pinned local OpenTelemetry Java-agent and Collector instrumentation to the existing bounded Liberty acceptance lifecycle, with correlated trace/metric exports, artifact redaction gates, and immutable diagnostic artifacts.</li>
+<li><strong>Observed events:</strong>
+<ul>
+<li>Main Build run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274">36839380274</a> succeeded on final reviewed SHA <code>87d6768d9eed2a29efee6357107f383a00c0ab5e</code>; the <code>build</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274/job/110295058827">110295058827</a> completed observability acceptance and all negative controls.</li>
+<li>Both fixed-ID requests were correlated across <code>request-transcript.jsonl</code>, server spans in <code>traces.json</code>, and <code>observability-access.log</code>; <code>metrics.json</code> contained nonempty JVM/runtime metrics.</li>
+<li>Negative controls explicitly rejected collector unavailability, incompatible instrumentation, missing telemetry, broken correlation, an unsafe query-bearing exemplar with seeded cargo data, secret-like artifact content, and an invalid request without a diagnostic signal. The final artifact scan passed before metadata and artifact upload.</li>
+<li>The workflow uploaded <code>otel-telemetry</code> and <code>liberty-logs</code> as separate immutable artifacts with schema-1 metadata and inventories.</li>
+</ul>
+</li>
+<li><strong>Durable artifacts:</strong>
+<ul>
+<li>Successful Main Build run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274">36839380274</a>, final reviewed SHA <code>87d6768d9eed2a29efee6357107f383a00c0ab5e</code>, <code>build</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274/job/110295058827">110295058827</a>.</li>
+<li><code>otel-telemetry</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274/artifacts/11151111829">11151111829</a>, digest <code>sha256:e5e180578fb5f31f8fe53a9a96f371bb1ddd86c697f68b3d3016842878dfbf21</code>; supporting files <code>traces.json</code>, <code>metrics.json</code>, <code>request-transcript.jsonl</code>, <code>artifact-metadata.json</code>, and <code>redaction-check.txt</code>.</li>
+<li><code>liberty-logs</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36839380274/artifacts/11151376069">11151376069</a>, digest <code>sha256:928e88ef86f80ae017256cf6d9e4b1662238a668e0722c9d9799d745bae9c3a6</code>; supporting files <code>observability-access.log</code>, <code>messages.log</code>, and <code>artifact-metadata.json</code>.</li>
+<li>The uploaded <code>compatibility-contract</code> artifact from the same run contains <code>demo/ci-artifacts/compatibility-contract/observability-negative-controls.txt</code>.</li>
+<li>Implementation sources: <code>demo/observability/otel-collector-config.yaml</code>, <code>demo/scripts/ci/verify-observability.py</code>, <code>demo/scripts/ci/redact-artifacts.sh</code>, <code>demo/scripts/ci/run-observability-check.sh</code>, and <code>demo/scripts/ci/run-observability-negative-controls.sh</code>.</li>
+</ul>
+</li>
+<li><strong>Evidence assessment:</strong> Strong: exact-SHA hosted CI passed the full relevant lifecycle and diagnostics, checked final redaction, and published artifacts with recorded IDs and digests. This demonstrates the configured diagnostic path and its exercised failure controls, not external telemetry services or production-wide observability.</li>
+<li><strong>Candidate reusable lessons:</strong> Keep telemetry local and artifact-bound; correlate requests with fixed IDs across transcript, spans, and filtered runtime logs, and enforce redaction at both Collector and final-upload boundaries.</li>
+</ul>
+<h3 id="issue-8-add-bounded-jvm-performance-and-jaz-evidence">Issue #8: Add bounded JVM performance and <code>jaz</code> evidence</h3>
+<ul>
+<li><strong>PR:</strong> #17</li>
+<li><strong>Implementation HEAD:</strong> <code>3e141c26cfbd6e5469aeebd2b627b620b28ab725</code> (validated pre-merge PR head)</li>
+<li><strong>Hosted PR merge-test SHA:</strong> <code>8ce8b6e0bfaaa8c40d5951ffd7e1c7d5d867bd14</code> (artifact metadata; distinct from the implementation HEAD)</li>
+<li><strong>Completed:</strong> 2026-10-01 UTC</li>
+<li><strong>Reasons expected to be exercised:</strong> 9</li>
+<li><strong>Reasons actually exercised:</strong> 8 (additional JVM/process diagnostics) and 9</li>
+<li><strong>Implementation result:</strong> Added the shared non-containerized workload and performed the five-cycle direct Java, bypassed <code>jaz</code>, and tuned <code>jaz</code> comparison with JVM/process/JFR/GC diagnostics and immutable evidence artifacts. Hosted measurements are diagnostic evidence, not a performance ranking.</li>
+<li><strong>Observed events:</strong>
+<ul>
+<li>Successful Main Build run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972">36918453972</a>, attempt 1, tested implementation HEAD <code>3e141c26cfbd6e5469aeebd2b627b620b28ab725</code>. The PR merge-test SHA in artifact metadata is <code>8ce8b6e0bfaaa8c40d5951ffd7e1c7d5d867bd14</code>; it is not the implementation HEAD.</li>
+<li>The <code>formatting</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558201739">110558201739</a>, <code>source-gates</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558380614">110558380614</a>, and <code>build</code> job <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558962626">110558962626</a> succeeded. The build ran all 15 repetitions, verified every retained JFR, generated checksummed metadata, passed final performance redaction, and uploaded all four performance artifacts.</li>
+<li><code>performance-comparison/status.txt</code> reports all 15 launcher-mode repetitions passed functional, diagnostic, resource, and cleanup gates; <code>run-order.tsv</code> records the complete required five-cycle order. <code>mode-summary.tsv</code> and <code>paired-comparison.tsv</code> preserve descriptive results; no winner is selected from hosted-runner variation.</li>
+<li>Supporting per-mode evidence includes <code>artifact-metadata.json</code>, per-run GC logs, JFR summaries, selected JVM flags, and, for tuned <code>jaz</code>, the <code>JAZ_DRY_RUN=1</code> output. The logs verify launcher modes, workload equivalence, JVM diagnostics, and cleanup.</li>
+<li>Stage 40 Copilot review identified that the JFC transformation changed an event attribute instead of its child <code>enabled</code> setting. The correction unconditionally disables all five sensitive event types and requires a zero-count check on every recording before upload; see <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/pull/17#discussion_r4158179007">review thread</a>.</li>
+<li>A follow-up review found that resource sampling began only after readiness. The correction distinguishes Liberty status helpers from the server JVM and samples the unique server PID during startup while retaining strict identity checks; see <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/pull/17#discussion_r4158414950">review thread</a>.</li>
+<li>The next review found that artifact metadata was generated after the upload redaction boundary and that post-run gate failures retained a zero exit status. Upload now requires a final scan of the complete artifact directories, and summaries set <code>exitStatus</code> to <code>1</code> when post-run gates fail; see <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/pull/17#discussion_r4158623918">review thread</a>.</li>
+<li>A further review found that failed runs could retain unverified recordings and identified related measurement-integrity gaps. The workflow now rejects any retained JFR with sensitive events; summaries select the server-PID GC log; direct/bypass initial and maximum heap evidence is required and compared; compiler-count tuning is rejected; each repetition has a cleanup-reserving watchdog; and immutable inputs are rehashed before every launch. See <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/pull/17#discussion_r4158922639">review thread</a>.</li>
+<li>The subsequent zero-finding review surfaced two missed no-user-tuning cases. The harness now also rejects <code>-Xint</code>, <code>-Xcomp</code>, and tuning inside quoted <code>server.env</code> assignments before launch; see <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/pull/17#pullrequestreview-5384007681">review</a>.</li>
+<li>The final implementation review expanded compiler-override rejection and found persistent Derby state outside the Liberty server snapshot. The validated harness rejects batch/tiered/background/threshold compiler controls, restores and hashes an empty database baseline before every launch, and preserves any pre-existing local database; see <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/pull/17#discussion_r4159467149">review thread</a>.</li>
+<li>The final remediation rejects active Liberty before touching Derby state and rejects String Deduplication from every JVM option source; see <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/pull/17#discussion_r4159867795">database preflight</a> and <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/pull/17#discussion_r4159867871">tuning</a> review threads.</li>
+</ul>
+</li>
+<li><strong>Durable artifacts:</strong>
+<ul>
+<li>Main Build run <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972">36918453972</a>, attempt 1, implementation HEAD <code>3e141c26cfbd6e5469aeebd2b627b620b28ab725</code>; merge-test SHA <code>8ce8b6e0bfaaa8c40d5951ffd7e1c7d5d867bd14</code>; jobs <code>formatting</code> <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558201739">110558201739</a>, <code>source-gates</code> <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558380614">110558380614</a>, and <code>build</code> <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/job/110558962626">110558962626</a>.</li>
+<li><code>performance-java</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/artifacts/11191254069">11191254069</a>, digest <code>sha256:b670c2f03802f8589ab78c900d268225e0ca1d715de0ea96de20644241a65232</code>; supporting <code>artifact-metadata.json</code>, per-run GC logs, JFR summaries, and selected JVM flags.</li>
+<li><code>performance-jaz-bypassed</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/artifacts/11190869300">11190869300</a>, digest <code>sha256:9cdedb105579884724484721a7e5a4ad7de8a604ad9916e0ed99190fcd869023</code>; supporting <code>artifact-metadata.json</code>, per-run GC logs, JFR summaries, and selected JVM flags.</li>
+<li><code>performance-jaz-tuned</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/artifacts/11191029124">11191029124</a>, digest <code>sha256:d5e8568c611aa17d308c3457727264183372d88eb63ea7cc9c25e8d68eb8d662</code>; supporting <code>artifact-metadata.json</code>, per-run GC logs, JFR summaries, selected JVM flags, and tuned <code>JAZ_DRY_RUN=1</code> output.</li>
+<li><code>performance-comparison</code> artifact <a href="https://github.com/edburns/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36918453972/artifacts/11191258963">11191258963</a>, digest <code>sha256:a0a221a61cbae90e63a5c792e70cc723817920ba64d4c5fd8551651d959d1461</code>; supporting <code>artifact-metadata.json</code>, <code>status.txt</code>, <code>run-order.tsv</code>, <code>mode-summary.tsv</code>, and <code>paired-comparison.tsv</code>.</li>
+<li>Implementation and workload contract: <code>demo/performance/README.md</code> and <code>demo/performance/</code>.</li>
+</ul>
+</li>
+<li><strong>Evidence assessment:</strong> Strong for the bounded hosted comparison, functional equivalence, diagnostics, resource envelope, and cleanup across all 15 launches, with immutable artifacts and checksummed inventories. It supports launcher integration and descriptive measurement only; it does not establish a performance winner or AKS-limit behavior.</li>
+<li><strong>Candidate reusable lessons:</strong> Treat hosted JVM measurements as diagnostic evidence; retain per-run workload and launch metadata, and do not rank modes based on noisy runner measurements.</li>
+</ul>
+<p>Use this template:</p>
+<pre><code class="language-markdown">### Issue #&lt;number&gt;: &lt;title&gt;
+
+- **PR:** #&lt;number&gt;
+- **Merged commit:** `&lt;full SHA&gt;`
+- **Completed:** `&lt;UTC timestamp&gt;`
+- **Reasons expected to be exercised:** &lt;reason numbers&gt;
+- **Reasons actually exercised:** &lt;reason numbers or `None`&gt;
+- **Implementation result:** &lt;concise factual summary&gt;
+- **Observed events:**
+  - &lt;what happened, including failures, corrections, and meaningful non-events&gt;
+- **Durable artifacts:**
+  - &lt;exact run URL, job/check name, repository-relative path, log, trace,
+    profile, screenshot, review thread, or post-mortem section&gt;
+- **Evidence assessment:** &lt;why the resulting confidence is Strong, Moderate,
+  Weak, Unsupported, or Not exercised&gt;
+- **Candidate reusable lessons:** &lt;candidate guidance, or `None`; validated
+  reusable guidance belongs in campaign-lessons.md&gt;
+</code></pre>
+<p>No implementation issue is complete until its subsection has been appended
+and the corresponding summary rows have been updated.</p>
+<h3 id="fixture-baseline-repair-extensible-bookingservicetest-ci-gate">Fixture baseline repair: extensible <code>BookingServiceTest</code> CI gate</h3>
+<ul>
+<li><strong>Implementation commit:</strong> <code>94950cfceefc85edaec68eb6b61a16e0e6779ecc</code></li>
+<li><strong>Completed:</strong> 2026-10-02 UTC</li>
+<li><strong>Reason exercised:</strong> 2</li>
+<li><strong>Implementation result:</strong> Replaced the exact <code>BookingServiceTest</code> count of
+four with a contract that requires the historical four named methods,
+requires zero failures, errors, and skipped tests, and permits additional
+valid tests.</li>
+<li><strong>Observed events:</strong>
+<ul>
+<li>The exact local Open Liberty integration tier passed four tests with zero
+failures, errors, or skipped tests.</li>
+<li>The revised assertion passed the real four-test Surefire report.</li>
+<li>A derived five-test report containing <code>testChangeDeadline</code> passed the same
+assertion, proving the gate no longer rejects the fixture's required fifth
+test merely because the suite grew.</li>
+<li>Hosted Main Build passed formatting, source gates, the full build and
+acceptance pipeline, and artifact publication on the exact implementation
+SHA.</li>
+</ul>
+</li>
+<li><strong>Durable artifacts:</strong>
+<ul>
+<li>Main Build <a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505">run #36956818505</a>;
+<code>formatting</code> job/check
+<a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505/job/110681507992">110681507992</a>,
+<code>source-gates</code> job/check
+<a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505/job/110681594814">110681594814</a>,
+and <code>build</code> job/check
+<a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505/job/110681940309">110681940309</a>.</li>
+<li><code>test-reports-liberty</code> artifact
+<a href="https://github.com/azure-javaee/dd-3016202-cargotracker-devoxx-be-2026/actions/runs/36956818505/artifacts/11206483198">11206483198</a>,
+digest
+<code>sha256:19b0c9c08136763bbb8f947581e35680c6770717d0a82cf7a89311578ea4af53</code>.</li>
+</ul>
+</li>
+<li><strong>Evidence assessment:</strong> Strong exact-SHA hosted evidence plus direct local
+proof that both the feature-free four-test suite and the planned five-test
+suite satisfy the repaired contract.</li>
+<li><strong>Candidate reusable lesson:</strong> Prefer named required tests and
+zero-failure/error/skip invariants over a brittle exact suite cardinality
+when a planned feature intentionally adds tests.</li>
+</ul>
+<h2 id="appendix-i-human-observations">Appendix I: Human observations</h2>
+<ul>
+<li>While filling out the ignorance reduction plan, I was frequently guided toward narrowing the possible paths the agents could go. See &quot;1.6 — Executable Java 17 and Java EE 7 compatibility contract&quot;. Without narrowing it down, the agents might want to upgrade the system forward: javax → jakarta for example. By explicitly disallowing that, we close down that possible wandering path.</li>
+</ul>
+</main>
+</div>
+</body></html>

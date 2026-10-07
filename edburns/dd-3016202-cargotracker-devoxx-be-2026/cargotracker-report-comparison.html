@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two views of one experiment: evaluator results versus agent self-evaluation</title>
+<style>
+:root{
+  --paper:#FCFDFE; --ink:#18212E; --text:#2B3644; --muted:#5F6B79; --rule:#D8DEE6; --band:#F1F4F8;
+  --g1:#E3E7EB; --g2:#D2D7DD; --g3:#BFC5CC; --g4:#A6AEB8; --rv:#2F6FDB; --ok:#2E7D5B;
+  --serif:"Charter","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#12161C; --ink:#EEF1F5; --text:#D3D9E1; --muted:#98A3B1; --rule:#2C333D; --band:#1A2029;
+  --g1:#2B323C; --g2:#38404B; --g3:#47505C; --g4:#5B6572; --rv:#5A8FEA; --ok:#5DBB8F;}}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;color:var(--text);font:17px/1.62 var(--serif);font-feature-settings:"onum" 1}
+.wrap{max-width:74rem;margin:0 auto;padding:3.5rem 1.5rem 5rem;display:grid;grid-template-columns:1fr;gap:2rem}
+@media (min-width:1100px){.wrap{grid-template-columns:13rem minmax(0,46rem);gap:4rem}}
+nav.toc{font:14px/1.5 var(--sans);color:var(--muted)}
+@media (min-width:1100px){nav.toc{position:sticky;top:3.5rem;align-self:start;padding-top:9.2rem}}
+@media (max-width:1099px){nav.toc{display:none}}
+nav.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule)}
+nav.toc li{margin:0}
+nav.toc a{display:block;padding:.3rem 0 .3rem .9rem;color:inherit;text-decoration:none;margin-left:-2px;border-left:2px solid transparent}
+nav.toc a:hover{color:var(--ink);border-left-color:var(--rv)}
+a:focus-visible{outline:2px solid var(--rv);outline-offset:2px}
+main{min-width:0}
+header h1{font:600 2.35rem/1.12 var(--sans);letter-spacing:-.018em;color:var(--ink);margin:0 0 .8rem;max-width:22ch}
+.byline{font:15px/1.4 var(--sans);color:var(--muted);margin:0 0 2.8rem}
+h2{font:600 1.32rem/1.3 var(--sans);color:var(--ink);margin:3.4rem 0 .9rem;letter-spacing:-.005em;scroll-margin-top:1.5rem}
+p{margin:0 0 1.05rem;max-width:68ch}
+.lead{font-size:1.06em;color:var(--ink)}
+strong{color:var(--ink);font-weight:650}
+code{font:.84em/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;background:var(--band);padding:.12em .32em;border-radius:3px;white-space:nowrap}
+ol.claims{padding-left:1.6rem;margin:0 0 1.2rem}
+ol.claims li{margin:0 0 .7rem;padding-left:.3rem}
+ol.claims li::marker{font:600 .95em var(--sans);color:var(--rv)}
+ul{padding-left:1.3rem;margin:0 0 1.2rem}
+ul li{margin:0 0 .55rem}
+.tbl{overflow-x:auto;margin:1.2rem 0 1.4rem;border-top:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font:14.5px/1.45 var(--sans);font-variant-numeric:tabular-nums lining-nums}
+th{text-align:left;font-weight:600;color:var(--ink);padding:.6rem .7rem;border-bottom:1px solid var(--rule);vertical-align:bottom}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th.n,td.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:650;color:var(--ink);border-bottom:2px solid var(--ink)}
+td:first-child,th:first-child{padding-left:0}
+.note{font:14px/1.5 var(--sans);color:var(--muted)}
+figure{margin:1.6rem 0 1.6rem;padding:1.1rem 1rem .7rem;border:1px solid var(--rule);border-radius:6px}
+figure .chart{width:100%;height:auto;display:block}
+figcaption{font:13px/1.4 var(--sans);color:var(--muted);margin-top:.4rem;padding-left:.4rem}
+.chart text{font-family:var(--sans)}
+.ct{font-size:16px;font-weight:600;fill:var(--ink)}
+.cs,.cl{font-size:12px;fill:var(--muted)}
+.cr{font-size:12.5px;fill:var(--ink)}
+.cv{font-size:12px;fill:var(--ink)}
+.cv.on-blue{fill:#fff}
+.g1{fill:var(--g1)}.g2{fill:var(--g2)}.g3{fill:var(--g3)}.g4{fill:var(--g4)}.rv{fill:var(--rv)}
+rect.seg{stroke:var(--paper);stroke-width:1.5}
+ul.resolved{list-style:none;padding:0}
+ul.resolved li{position:relative;padding-left:1.9rem;margin-bottom:.95rem}
+ul.resolved li::before{content:"";position:absolute;left:0;top:.32em;width:1.05rem;height:1.05rem;border-radius:3px;background:var(--ok)}
+ul.resolved li::after{content:"";position:absolute;left:.36rem;top:.48em;width:.28rem;height:.55rem;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg)}
+@media print{nav.toc{display:none}.wrap{display:block;max-width:none;padding:0}figure{break-inside:avoid}h2{break-after:avoid}}
+
+</style></head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="Contents"><ol>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#reports">The two reports</a></li>
+<li><a href="#coverage">How much each report sees</a></li>
+<li><a href="#agree">Where they agree</a></li>
+<li><a href="#disagree">Where they disagree</a></li>
+<li><a href="#only">What only one report sees</a></li>
+<li><a href="#corrections">Corrections to the results report</a></li>
+<li><a href="#talk">What this means for the talk</a></li>
+<li><a href="#method">Method</a></li>
+</ol></nav>
+<main>
+<header>
+<h1>Two views of one experiment</h1>
+<p class="byline">The evaluator's results compared with the agents' own post-mortems. Ed Burns, October 4, 2026</p>
+</header>
+
+<section id="summary">
+<h2>Summary</h2>
+<p class="lead">The two reports agree on outcomes, timing and requests, but disagree on what went wrong. Each one caught errors in the other.</p>
+<ol class="claims">
+<li><strong>The post-mortems mention only 9 of the evaluator's 29 product defects.</strong> They report what code review found and almost nothing the stage-30 gate or CI caught in the treatment runs. The agents summarize gates they passed as passed, not as problems fixed.</li>
+<li><strong>The post-mortems correct the evaluator in three places.</strong> Run-04's stop was an agent error, not a harness problem. Two of run-04's "behavioral" review findings were formatting. And the evaluator undercounted code review rounds.</li>
+<li><strong>The evaluator corrects the post-mortems in three places.</strong> Token counts the agents called unavailable or redacted were recoverable. Run-04's PR #10 merged, which no post-mortem records. And the duplicated dialog code, repeated tooling misuse and test-integrity results never appear in the agents' reports.</li>
+<li><strong>Both agree on the headline facts:</strong> session time, wall clock, premium requests, the run-03 failure, and that every review finding was resolved before merge.</li>
+<li><strong>For the talk, neither report is reliable alone.</strong> The agents' self-evaluation misses most of what went wrong, and an evaluator built with an agent misclassified events the agents described correctly. Cross-checking the two found errors in both.</li>
+</ol>
+</section>
+
+<section id="reports">
+<h2>The two reports</h2>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Results report</th><th>Self-evaluation report</th></tr></thead>
+<tbody>
+<tr><td>File</td><td><code>cargotracker-guardrails-results.html</code></td><td><code>cargotracker-agent-self-evaluation.html</code></td></tr>
+<tr><td>Source</td><td>Evaluator 0.4.4 output, plus transcript and git checks during review</td><td>The five post-mortems only</td></tr>
+<tr><td>Written by</td><td>An evaluator Copilot built, reviewed by hand against raw data</td><td>A post-mortem agent at the end of each run, reading that run's artifacts</td></tr>
+<tr><td>Knows the arms</td><td>Yes: control versus guardrail treatment</td><td>No: every run calls itself a lesson-propagation control</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="coverage">
+<h2>How much each report sees</h2>
+<p class="lead">The post-mortems mention 9 of 29 product defects: half of the control's, and under a fifth of treatment run-03's.</p>
+<figure>
+<svg viewBox="0 0 760 280" role="img" aria-labelledby="c-t c-d" class="chart">
+<title id="c-t">The post-mortems mention a fraction of the defects the evaluator found</title>
+<desc id="c-d">For each campaign, the evaluator's product-defect total and how many of those defects the run's post-mortems mention.</desc>
+<text x="40" y="30" class="ct">The post-mortems mention a fraction of the defects the evaluator found</text>
+<text x="40" y="52" class="cs">Product defects per campaign: evaluator total, and how many of them the post-mortems mention</text>
+<rect x="40" y="68" width="12" height="12" class="g3"/><text x="57" y="78" class="cl">Found by the evaluator only</text>
+<rect x="250" y="68" width="12" height="12" class="rv"/><text x="267" y="78" class="cl">Also mentioned in a post-mortem</text>
+<text x="40" y="123.0" class="cr">Control run-01</text>
+<rect x="170" y="104" width="105.0" height="30" class="rv seg"><title>Control run-01: 3 mentioned in a post-mortem</title></rect>
+<text x="222.5" y="123.0" text-anchor="middle" class="cv on-blue">3</text>
+<rect x="275.0" y="104" width="105.0" height="30" class="g3 seg"><title>Control run-01: 3 found by the evaluator only</title></rect>
+<text x="327.5" y="123.0" text-anchor="middle" class="cv">3</text>
+<text x="390.0" y="123.0" class="cs">3 of 6 (50%)</text>
+<text x="40" y="179.0" class="cr">Treatment run-03</text>
+<rect x="170" y="160" width="70.0" height="30" class="rv seg"><title>Treatment run-03: 2 mentioned in a post-mortem</title></rect>
+<text x="205.0" y="179.0" text-anchor="middle" class="cv on-blue">2</text>
+<rect x="240.0" y="160" width="315.0" height="30" class="g3 seg"><title>Treatment run-03: 9 found by the evaluator only</title></rect>
+<text x="397.5" y="179.0" text-anchor="middle" class="cv">9</text>
+<text x="565.0" y="179.0" class="cs">2 of 11 (18%)</text>
+<text x="40" y="235.0" class="cr">Treatment run-04</text>
+<rect x="170" y="216" width="140.0" height="30" class="rv seg"><title>Treatment run-04: 4 mentioned in a post-mortem</title></rect>
+<text x="240.0" y="235.0" text-anchor="middle" class="cv on-blue">4</text>
+<rect x="310.0" y="216" width="280.0" height="30" class="g3 seg"><title>Treatment run-04: 8 found by the evaluator only</title></rect>
+<text x="450.0" y="235.0" text-anchor="middle" class="cv">8</text>
+<text x="600.0" y="235.0" class="cs">4 of 12 (33%)</text>
+</svg>
+<figcaption>Evaluator totals from the results report's class table. A defect counts as mentioned when a post-mortem describes the same problem on the same task.</figcaption>
+</figure>
+<p>All four of run-04's mentions are code review findings. In run-03, the post-mortems mention the review finding on #4 and the missing evidence on #6, but none of the nine problems the stage-30 gate and CI caught on #2 to #5: four scope violations, two formatting failures and three test-inventory failures. Only the control's report names any pre-review problem, the scope violation and formatting failure on issue #5.</p>
+<p>The gap is largest exactly where the treatment added guardrails. The agents treat a gate failure that was fixed before review as part of passing validation, so the guardrails' main effect, catching problems earlier, is invisible in their self-evaluation.</p>
+</section>
+
+<section id="agree">
+<h2>Where they agree</h2>
+<div class="tbl"><table>
+<thead><tr><th>Measure</th><th>Both reports</th></tr></thead>
+<tbody>
+<tr><td>Recorded session time</td><td>2h 16m, 4h 13m, 4h 14m</td></tr>
+<tr><td>Wall clock, including gaps</td><td>13h 58m, 5h 31m, 5h 23m; the control's 10h 49m gap during task #4</td></tr>
+<tr><td>Premium requests</td><td>10, 11, 10</td></tr>
+<tr><td>Run-03 AIU</td><td>1,051.1</td></tr>
+<tr><td>Code review findings</td><td>1, 1 and 4, all resolved before merge</td></tr>
+<tr><td>Run-03, issue #6</td><td>Failed in stage 30; the coding agent's remediation cycle pushed nothing</td></tr>
+<tr><td>Control, issue #5</td><td>Out-of-scope Maven Wrapper files and a formatting failure, fixed before review</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="disagree">
+<h2>Where they disagree</h2>
+<p class="lead">On six points the reports conflict: the post-mortems are better supported on three, the evaluator on two, and one needs both.</p>
+<div class="tbl"><table>
+<thead><tr><th>Point</th><th>Results report</th><th>Post-mortems</th><th>More likely right</th></tr></thead>
+<tbody>
+<tr><td>Why run-04 stopped after task #5</td><td>A harness failure, repaired by hand</td><td>The shepherd wrongly concluded <code>gh</code> couldn't request a Copilot review, contradicting three successful requests in the same run</td><td>Post-mortems: a specific, evidenced agent error</td></tr>
+<tr><td>Run-04, issue #3 review findings</td><td>Two behavioral defects</td><td>Two low-severity findings about unrelated file-wide formatting</td><td>Post-mortems: the evaluator labels every review finding behavioral</td></tr>
+<tr><td>Code review rounds</td><td>3, 6, 2</td><td>6, 6, 7</td><td>Post-mortems: every merged PR was reviewed at least once, so the control can't have had only 3</td></tr>
+<tr><td>Token counts</td><td>Measured for all three campaigns</td><td>Unavailable or redacted in three of five reports</td><td>Results: the token metrics are readable even though span attributes are redacted</td></tr>
+<tr><td>Run-04, PR #10</td><td>Merged</td><td>Left draft; never recorded as reviewed or merged</td><td>Results: the evaluator found its merge commit</td></tr>
+<tr><td>How run-03's #6 was recovered</td><td>Harness repair committed between directories</td><td>The maintainer ran the acceptance tests by hand and added the evidence to the PR</td><td>Both: the post-mortem adds that a human did the agent's acceptance work</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="only">
+<h2>What only one report sees</h2>
+<p><strong>Only the results report:</strong></p>
+<ul>
+<li>The guardrail arms and every comparison between them.</li>
+<li>Most stage-30 and CI detections: formatting failures in every run, test-inventory failures, scope violations in the treatment runs, and the unit-test failure in run-04.</li>
+<li>The 16-line duplicated dialog code, present in all three runs.</li>
+<li>Repeated tooling misuse: 21 events, mostly the same invalid <code>gh</code> flag combinations. The post-mortems mention one.</li>
+<li>Test integrity: no tests deleted or disabled in any PR, and the four legitimate edits to gate files.</li>
+<li>Zero new deprecation warnings, and model and tool call counts for all runs.</li>
+</ul>
+<p><strong>Only the post-mortems:</strong></p>
+<ul>
+<li>What each review finding was about: null-date handling, missing-cargo handling, strict-date parsing that took two fixes, and the formatting findings.</li>
+<li>The capability false negative that stopped run-04, and the post-mortem's own judgment that the error message misled the user.</li>
+<li>A review that reported zero findings while calling one observation "previously missed".</li>
+<li>That a maintainer, not an agent, produced the evidence that let run-03's last task merge.</li>
+<li>Test counts at each gate, and a consistent set of process recommendations, led by per-stage outcome records.</li>
+</ul>
+</section>
+
+<section id="corrections">
+<h2>Corrections to the results report</h2>
+<p class="lead">The comparison surfaced four errors in the results report, and the results report now includes these corrections. None changes its cost or formatting claims, but two change the behavioral-defect claim.</p>
+<div class="tbl"><table>
+<thead><tr><th>Item</th><th>Before</th><th>After</th></tr></thead>
+<tbody>
+<tr><td>Run-04 behavioral defects</td><td>5 (4 by review, 1 by CI)</td><td>3 (2 by review, 1 by CI); the other 2 review findings are formatting</td></tr>
+<tr><td>Summary claim 1, treatment</td><td>5 of 6 behavioral defects caught by review</td><td>3 of 4 caught by review, 1 earlier by a CI unit test</td></tr>
+<tr><td>Code review rounds</td><td>3, 6, 2</td><td>6, 6, 7, from the post-mortems' per-task tables</td></tr>
+<tr><td>Failed task attempts</td><td>0, 1, 0</td><td>0, 1, 1; run-04's task #5 stopped on the agent's capability error</td></tr>
+</tbody></table></div>
+<p>The harness caveat changed too. Run-03 needed a maintainer to do the acceptance testing; run-04 needed a restart after an agent error. Neither was a guardrail change, but neither was purely a harness repair either.</p>
+</section>
+
+<section id="talk">
+<h2>What this means for the talk</h2>
+<ul>
+<li><strong>Agent self-evaluation supports H1.</strong> The post-mortems describe gates as passed and miss most of what those gates caught. An agent that can't say what went wrong in its own run doesn't "know" the codebase or the process the way a reviewer does.</li>
+<li><strong>A capability hallucination is a strong H2 example.</strong> Run-04's shepherd decided a working tool was unsupported, against evidence from earlier in the same run, and the whole campaign stopped.</li>
+<li><strong>Guardrail effects are invisible to the agents.</strong> The treatment's earlier detections show up only in the external evaluation. If you judged the arms by the agents' own reports, the guardrails would appear to do nothing.</li>
+<li><strong>Cross-checking is the method worth showing.</strong> The evaluator, built with an agent, also erred: it labeled formatting findings as behavioral and undercounted review rounds. Only comparing the two reports, and checking disagreements against the raw data, produced numbers you can stand behind.</li>
+</ul>
+</section>
+
+<section id="method">
+<h2>Method</h2>
+<ul>
+<li><strong>Sources:</strong> the two HTML reports, and for disagreements, the post-mortem text and evaluator data they were built from.</li>
+<li><strong>Matching defects:</strong> a post-mortem mentions a defect when it describes the same problem on the same task. Control: issue #4's null-date finding and issue #5's scope and formatting problems. Run-03: issue #4's missing-cargo finding and issue #6's missing evidence. Run-04: the four review findings on issues #3 and #4.</li>
+<li><strong>Not yet verified:</strong> the reclassification of run-04's two issue #3 findings rests on the post-mortem's description. A look at review comments on PR #8 in that repository would confirm it.</li>
+</ul>
+</section>
+</main>
+</div>
+
+</body></html>

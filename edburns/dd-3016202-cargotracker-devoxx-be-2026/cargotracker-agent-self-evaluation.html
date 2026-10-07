@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the agents evaluated themselves: Cargotracker guardrails experiment post-mortems</title>
+<style>
+:root{
+  --paper:#FCFDFE; --ink:#18212E; --text:#2B3644; --muted:#5F6B79; --rule:#D8DEE6; --band:#F1F4F8;
+  --g1:#E3E7EB; --g2:#D2D7DD; --g3:#BFC5CC; --g4:#A6AEB8; --rv:#2F6FDB; --ok:#2E7D5B;
+  --serif:"Charter","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#12161C; --ink:#EEF1F5; --text:#D3D9E1; --muted:#98A3B1; --rule:#2C333D; --band:#1A2029;
+  --g1:#2B323C; --g2:#38404B; --g3:#47505C; --g4:#5B6572; --rv:#5A8FEA; --ok:#5DBB8F;}}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;color:var(--text);font:17px/1.62 var(--serif);font-feature-settings:"onum" 1}
+.wrap{max-width:74rem;margin:0 auto;padding:3.5rem 1.5rem 5rem;display:grid;grid-template-columns:1fr;gap:2rem}
+@media (min-width:1100px){.wrap{grid-template-columns:13rem minmax(0,46rem);gap:4rem}}
+nav.toc{font:14px/1.5 var(--sans);color:var(--muted)}
+@media (min-width:1100px){nav.toc{position:sticky;top:3.5rem;align-self:start;padding-top:9.2rem}}
+@media (max-width:1099px){nav.toc{display:none}}
+nav.toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule)}
+nav.toc li{margin:0}
+nav.toc a{display:block;padding:.3rem 0 .3rem .9rem;color:inherit;text-decoration:none;margin-left:-2px;border-left:2px solid transparent}
+nav.toc a:hover{color:var(--ink);border-left-color:var(--rv)}
+a:focus-visible{outline:2px solid var(--rv);outline-offset:2px}
+main{min-width:0}
+header h1{font:600 2.35rem/1.12 var(--sans);letter-spacing:-.018em;color:var(--ink);margin:0 0 .8rem;max-width:22ch}
+.byline{font:15px/1.4 var(--sans);color:var(--muted);margin:0 0 2.8rem}
+h2{font:600 1.32rem/1.3 var(--sans);color:var(--ink);margin:3.4rem 0 .9rem;letter-spacing:-.005em;scroll-margin-top:1.5rem}
+p{margin:0 0 1.05rem;max-width:68ch}
+.lead{font-size:1.06em;color:var(--ink)}
+strong{color:var(--ink);font-weight:650}
+code{font:.84em/1 ui-monospace,"SF Mono",Menlo,Consolas,monospace;background:var(--band);padding:.12em .32em;border-radius:3px;white-space:nowrap}
+ol.claims{padding-left:1.6rem;margin:0 0 1.2rem}
+ol.claims li{margin:0 0 .7rem;padding-left:.3rem}
+ol.claims li::marker{font:600 .95em var(--sans);color:var(--rv)}
+ul{padding-left:1.3rem;margin:0 0 1.2rem}
+ul li{margin:0 0 .55rem}
+.tbl{overflow-x:auto;margin:1.2rem 0 1.4rem;border-top:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font:14.5px/1.45 var(--sans);font-variant-numeric:tabular-nums lining-nums}
+th{text-align:left;font-weight:600;color:var(--ink);padding:.6rem .7rem;border-bottom:1px solid var(--rule);vertical-align:bottom}
+td{padding:.55rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+th.n,td.n{text-align:right;white-space:nowrap}
+tr.total td{font-weight:650;color:var(--ink);border-bottom:2px solid var(--ink)}
+td:first-child,th:first-child{padding-left:0}
+.note{font:14px/1.5 var(--sans);color:var(--muted)}
+figure{margin:1.6rem 0 1.6rem;padding:1.1rem 1rem .7rem;border:1px solid var(--rule);border-radius:6px}
+figure .chart{width:100%;height:auto;display:block}
+figcaption{font:13px/1.4 var(--sans);color:var(--muted);margin-top:.4rem;padding-left:.4rem}
+.chart text{font-family:var(--sans)}
+.ct{font-size:16px;font-weight:600;fill:var(--ink)}
+.cs,.cl{font-size:12px;fill:var(--muted)}
+.cr{font-size:12.5px;fill:var(--ink)}
+.cv{font-size:12px;fill:var(--ink)}
+.cv.on-blue{fill:#fff}
+.g1{fill:var(--g1)}.g2{fill:var(--g2)}.g3{fill:var(--g3)}.g4{fill:var(--g4)}.rv{fill:var(--rv)}
+rect.seg{stroke:var(--paper);stroke-width:1.5}
+ul.resolved{list-style:none;padding:0}
+ul.resolved li{position:relative;padding-left:1.9rem;margin-bottom:.95rem}
+ul.resolved li::before{content:"";position:absolute;left:0;top:.32em;width:1.05rem;height:1.05rem;border-radius:3px;background:var(--ok)}
+ul.resolved li::after{content:"";position:absolute;left:.36rem;top:.48em;width:.28rem;height:.55rem;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg)}
+@media print{nav.toc{display:none}.wrap{display:block;max-width:none;padding:0}figure{break-inside:avoid}h2{break-after:avoid}}
+
+.cn{font-size:10.5px;fill:var(--muted)}
+.cv.on-dark,.cn.on-dark{fill:#fff}
+.st-clean{fill:var(--g1)} .st-fixed{fill:var(--rv)}
+.st-recovered{fill:var(--warn)} .st-unreported{fill:var(--paper);stroke:var(--bad);stroke-width:1.5;stroke-dasharray:4 3}
+:root{--warn:#F1D9A6;--bad:#B4483C}
+@media (prefers-color-scheme:dark){:root{--warn:#6B5428;--bad:#D9786B}}
+
+</style></head>
+<body>
+<div class="wrap">
+<nav class="toc" aria-label="Contents"><ol>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#sources">The five post-mortems</a></li>
+<li><a href="#outcomes">Task outcomes as reported</a></li>
+<li><a href="#numbers">Self-reported numbers</a></li>
+<li><a href="#failures">How the agents explained their failures</a></li>
+<li><a href="#consistency">How consistent the self-evaluations are</a></li>
+<li><a href="#gaps">What the post-mortems leave out</a></li>
+<li><a href="#recommend">What the agents recommend</a></li>
+<li><a href="#method">Method</a></li>
+</ol></nav>
+<main>
+<header>
+<h1>How the agents evaluated themselves</h1>
+<p class="byline">Cargotracker guardrails experiment post-mortems, read without the evaluator. Ed Burns, October 4, 2026</p>
+</header>
+
+<section id="summary">
+<h2>Summary</h2>
+<p class="lead">Each Shepherd run ends with a post-mortem written by an agent from that run's own artifacts. Read on their own, the five post-mortems support six conclusions:</p>
+<ol class="claims">
+<li><strong>Only the control finished in one run.</strong> It merged 5 of 5 tasks and exited 0. Both treatment campaigns stopped once and needed a second run for the last task.</li>
+<li><strong>Both stops were agent errors, and the post-mortems say so plainly.</strong> In run-03, the coding agent finished a remediation cycle that changed nothing. In run-04, the local shepherd decided from help text that GitHub CLI couldn't request a Copilot review, although the same run had already done so three times.</li>
+<li><strong>The agents rate review convergence as strong in every report, including the failed runs.</strong> Self-reported Copilot Code Review findings were 1, 1 and 4 per campaign, and every report says all findings were resolved before merge.</li>
+<li><strong>The self-evaluations don't agree with each other on method.</strong> Given the same kinds of artifacts, the reports call token counts unavailable, measured, or redacted, and they mix UTC and Eastern time.</li>
+<li><strong>All five ask for the same fix:</strong> a machine-readable outcome record per stage, so the next post-mortem doesn't have to reconstruct metrics from transcripts.</li>
+<li><strong>The post-mortems can't see the experiment.</strong> All five describe their run as a "control" because lesson propagation was off. None mentions guardrails, and none records how PR #10 in run-04 was merged.</li>
+</ol>
+</section>
+
+<section id="sources">
+<h2>The five post-mortems</h2>
+<p>Each campaign directory holds one post-mortem per run. The treatment campaigns each ran twice, so there are five reports for three campaigns.</p>
+<div class="tbl"><table>
+<thead><tr><th>Campaign</th><th>Run directory ends</th><th>Report generated</th><th>Tasks in run</th><th class="n">Exit code</th></tr></thead>
+<tbody>
+<tr><td>Control run-01</td><td><code>-20261003-0042</code></td><td>Oct 3, 14:40 UTC</td><td>#2 to #6</td><td class="n">0</td></tr>
+<tr><td>Treatment run-03</td><td><code>-20261002-1414</code></td><td>Oct 2, 19:32 UTC</td><td>#2 to #6</td><td class="n">1</td></tr>
+<tr><td>Treatment run-03</td><td><code>-20261002-2058</code></td><td>Oct 2, 21:11 UTC</td><td>#6</td><td class="n">0</td></tr>
+<tr><td>Treatment run-04</td><td><code>-20261002-1502</code></td><td>Oct 2, 19:37 EDT</td><td>#2 to #6</td><td class="n">1</td></tr>
+<tr><td>Treatment run-04</td><td><code>-20261002-2042</code></td><td>Oct 2, 21:29 ET</td><td>#6</td><td class="n">0</td></tr>
+</tbody></table></div>
+<p class="note">Arm labels come from the repository names (<code>cargotracker-control-01</code>, <code>tricket-out</code> and <code>tricked-out</code>). The post-mortems themselves call every run a control run.</p>
+</section>
+
+<section id="outcomes">
+<h2>Task outcomes as reported</h2>
+<p class="lead">By their own accounts, the agents merged 14 of 15 tasks. The fifteenth, run-04's issue #5, stopped before review, and no post-mortem says what happened to it afterward.</p>
+<figure>
+<svg viewBox="0 0 760 345" role="img" aria-labelledby="g-t g-d" class="chart">
+<title id="g-t">Every task outcome as the post-mortems report it</title>
+<desc id="g-d">A grid of three campaigns by five issues, showing each task outcome and its code review rounds as self-reported.</desc>
+<text x="40" y="30" class="ct">Each task's outcome, as the post-mortems report it</text>
+<text x="40" y="52" class="cs">Issues #2 to #6 per campaign, with Copilot Code Review rounds and findings from each report</text>
+<rect x="40" y="70" width="12" height="12" class="st-clean"/><text x="57" y="80" class="cl">Clean first review</text>
+<rect x="185.2" y="70" width="12" height="12" class="st-fixed"/><text x="202.2" y="80" class="cl">Merged after review fix</text>
+<rect x="362.4" y="70" width="12" height="12" class="st-recovered"/><text x="379.4" y="80" class="cl">Merged in recovery run</text>
+<rect x="533.2" y="70" width="12" height="12" class="st-unreported"/><text x="550.2" y="80" class="cl">Stopped; merge unreported</text>
+<text x="225" y="110" text-anchor="middle" class="cl">Issue #2</text>
+<text x="341" y="110" text-anchor="middle" class="cl">Issue #3</text>
+<text x="457" y="110" text-anchor="middle" class="cl">Issue #4</text>
+<text x="573" y="110" text-anchor="middle" class="cl">Issue #5</text>
+<text x="689" y="110" text-anchor="middle" class="cl">Issue #6</text>
+<text x="40" y="155.0" class="cr">Control run-01</text>
+<g><rect x="170" y="120" width="110" height="62" rx="4" class="st-clean"><title>Control run-01, issue #2: Clean first review; 1 round, 0 findings</title></rect><text x="225.0" y="147.5" text-anchor="middle" class="cv">1 round</text><text x="225.0" y="162.5" text-anchor="middle" class="cv">0 findings</text></g>
+<g><rect x="286" y="120" width="110" height="62" rx="4" class="st-clean"><title>Control run-01, issue #3: Clean first review; 1 round, 0 findings</title></rect><text x="341.0" y="147.5" text-anchor="middle" class="cv">1 round</text><text x="341.0" y="162.5" text-anchor="middle" class="cv">0 findings</text></g>
+<g><rect x="402" y="120" width="110" height="62" rx="4" class="st-fixed"><title>Control run-01, issue #4: Merged after review fix; 2 rounds, 1 finding</title></rect><text x="457.0" y="147.5" text-anchor="middle" class="cv on-dark">2 rounds</text><text x="457.0" y="162.5" text-anchor="middle" class="cv on-dark">1 finding</text></g>
+<g><rect x="518" y="120" width="110" height="62" rx="4" class="st-clean"><title>Control run-01, issue #5: Clean first review; 1 round, 0 findings; pre-review fixes</title></rect><text x="573.0" y="140.0" text-anchor="middle" class="cv">1 round</text><text x="573.0" y="155.0" text-anchor="middle" class="cv">0 findings</text><text x="573.0" y="170.0" text-anchor="middle" class="cn">pre-review fixes</text></g>
+<g><rect x="634" y="120" width="110" height="62" rx="4" class="st-clean"><title>Control run-01, issue #6: Clean first review; 1 round, 0 findings</title></rect><text x="689.0" y="147.5" text-anchor="middle" class="cv">1 round</text><text x="689.0" y="162.5" text-anchor="middle" class="cv">0 findings</text></g>
+<text x="40" y="227.0" class="cr">Treatment run-03</text>
+<g><rect x="170" y="192" width="110" height="62" rx="4" class="st-clean"><title>Treatment run-03, issue #2: Clean first review; 1 round, 0 findings</title></rect><text x="225.0" y="219.5" text-anchor="middle" class="cv">1 round</text><text x="225.0" y="234.5" text-anchor="middle" class="cv">0 findings</text></g>
+<g><rect x="286" y="192" width="110" height="62" rx="4" class="st-clean"><title>Treatment run-03, issue #3: Clean first review; 1 round, 0 findings</title></rect><text x="341.0" y="219.5" text-anchor="middle" class="cv">1 round</text><text x="341.0" y="234.5" text-anchor="middle" class="cv">0 findings</text></g>
+<g><rect x="402" y="192" width="110" height="62" rx="4" class="st-fixed"><title>Treatment run-03, issue #4: Merged after review fix; 2 rounds, 1 finding</title></rect><text x="457.0" y="219.5" text-anchor="middle" class="cv on-dark">2 rounds</text><text x="457.0" y="234.5" text-anchor="middle" class="cv on-dark">1 finding</text></g>
+<g><rect x="518" y="192" width="110" height="62" rx="4" class="st-clean"><title>Treatment run-03, issue #5: Clean first review; 1 round, 0 findings</title></rect><text x="573.0" y="219.5" text-anchor="middle" class="cv">1 round</text><text x="573.0" y="234.5" text-anchor="middle" class="cv">0 findings</text></g>
+<g><rect x="634" y="192" width="110" height="62" rx="4" class="st-recovered"><title>Treatment run-03, issue #6: Merged in recovery run; 1 round, 0 findings; failed first run</title></rect><text x="689.0" y="212.0" text-anchor="middle" class="cv">1 round</text><text x="689.0" y="227.0" text-anchor="middle" class="cv">0 findings</text><text x="689.0" y="242.0" text-anchor="middle" class="cn">failed first run</text></g>
+<text x="40" y="299.0" class="cr">Treatment run-04</text>
+<g><rect x="170" y="264" width="110" height="62" rx="4" class="st-clean"><title>Treatment run-04, issue #2: Clean first review; 1 round, 0 findings</title></rect><text x="225.0" y="291.5" text-anchor="middle" class="cv">1 round</text><text x="225.0" y="306.5" text-anchor="middle" class="cv">0 findings</text></g>
+<g><rect x="286" y="264" width="110" height="62" rx="4" class="st-fixed"><title>Treatment run-04, issue #3: Merged after review fix; 2 rounds, 2 findings</title></rect><text x="341.0" y="291.5" text-anchor="middle" class="cv on-dark">2 rounds</text><text x="341.0" y="306.5" text-anchor="middle" class="cv on-dark">2 findings</text></g>
+<g><rect x="402" y="264" width="110" height="62" rx="4" class="st-fixed"><title>Treatment run-04, issue #4: Merged after review fix; 3 rounds, 2 findings</title></rect><text x="457.0" y="291.5" text-anchor="middle" class="cv on-dark">3 rounds</text><text x="457.0" y="306.5" text-anchor="middle" class="cv on-dark">2 findings</text></g>
+<g><rect x="518" y="264" width="110" height="62" rx="4" class="st-unreported"><title>Treatment run-04, issue #5: Stopped; merge unreported; never reviewed; halted at stage 40</title></rect><text x="573.0" y="291.5" text-anchor="middle" class="cv">never reviewed</text><text x="573.0" y="306.5" text-anchor="middle" class="cn">halted at stage 40</text></g>
+<g><rect x="634" y="264" width="110" height="62" rx="4" class="st-clean"><title>Treatment run-04, issue #6: Clean first review; 1 round, 0 findings; second run</title></rect><text x="689.0" y="284.0" text-anchor="middle" class="cv">1 round</text><text x="689.0" y="299.0" text-anchor="middle" class="cv">0 findings</text><text x="689.0" y="314.0" text-anchor="middle" class="cn">second run</text></g>
+</svg>
+<figcaption>Compiled from the per-task tables and narratives of the five post-mortems. Treatment campaigns combine both runs.</figcaption>
+</figure>
+<p>Only one post-mortem reports problems fixed before review: the control's stage 30 caught out-of-scope Maven Wrapper files and a formatting failure on issue #5. The other four reports describe stage 30 only as validation that passed, so they either saw no such problems or didn't report them. The post-mortems alone can't tell which.</p>
+</section>
+
+<section id="numbers">
+<h2>Self-reported numbers</h2>
+<p>These are the numbers as each post-mortem states them, summed across a campaign's runs where it had two. A blank cell means no post-mortem for that campaign reported the figure.</p>
+<div class="tbl"><table>
+<thead><tr><th>Measure</th><th class="n">Control run-01</th><th class="n">Treatment run-03</th><th class="n">Treatment run-04</th></tr></thead>
+<tbody>
+<tr><td>Tasks merged, as reported</td><td class="n">5 of 5</td><td class="n">5 of 5</td><td class="n">4 of 5</td></tr>
+<tr><td>Runs needed</td><td class="n">1</td><td class="n">2</td><td class="n">2</td></tr>
+<tr><td>Code review rounds</td><td class="n">6</td><td class="n">6</td><td class="n">7</td></tr>
+<tr><td>Code review findings</td><td class="n">1</td><td class="n">1</td><td class="n">4</td></tr>
+<tr><td>First review clean</td><td class="n">4 of 5</td><td class="n">4 of 5</td><td class="n">2 of 4</td></tr>
+<tr><td>Recorded session time</td><td class="n">2h 16m 34s</td><td class="n">4h 13m 16s</td><td class="n">4h 14m 19s</td></tr>
+<tr><td>Wall clock</td><td class="n">13h 57m 55s</td><td class="n">5h 30m 35s</td><td class="n">5h 22m 55s</td></tr>
+<tr><td>Premium requests</td><td class="n">10</td><td class="n">11</td><td class="n">10</td></tr>
+<tr><td>AIU</td><td class="n"></td><td class="n">1,051.084</td><td class="n"></td></tr>
+<tr><td>Input tokens</td><td class="n"></td><td class="n">1,224,194 (second run only)</td><td class="n">11,942,007 (first run only)</td></tr>
+<tr><td>Output tokens</td><td class="n"></td><td class="n">13,399 (second run only)</td><td class="n">107,534 (first run only)</td></tr>
+</tbody></table></div>
+<p>Two of the treatment figures cover only part of a campaign, because the other run's post-mortem reported tokens as unavailable. Token totals can't be compared across campaigns from these reports.</p>
+<p>The control's wall clock includes a 10h 49m 16s interval between stage 30 and stage 40 of issue #4. Its post-mortem says the cause is "not observable locally" and declines to guess.</p>
+</section>
+
+<section id="failures">
+<h2>How the agents explained their failures</h2>
+<p class="lead">Both terminal failures were attributed to agent behavior, not to the code under change, and both post-mortems call the shepherd's fail-closed stop correct.</p>
+<div class="tbl"><table>
+<thead><tr><th>Event</th><th>Self-reported cause</th><th>Self-assessment</th></tr></thead>
+<tbody>
+<tr><td>Run-03, issue #6, stage 30 (terminal)</td><td>PR #11 lacked the required browser and runtime evidence. After a change request, the coding agent ran a full work cycle (19:06:35 to 19:13:40 UTC) that changed neither the commit nor the PR body.</td><td>An "acceptance-evidence delivery failure", not an implementation defect. The report judges an 80% merge rate preferable to merging without proof.</td></tr>
+<tr><td>Run-03, recovery run</td><td>A maintainer manually ran the tests and the Open Liberty runtime path, and added screenshots and evidence to the PR body. The unchanged commit then passed.</td><td>"Short, deterministic, and successful." The report says the recovery confirms the original failure classification.</td></tr>
+<tr><td>Run-04, issue #5, stage 40 (terminal)</td><td>The shepherd decided that GitHub CLI 2.100.0 couldn't request <code>@copilot</code> reviews, because <code>gh pr edit --help</code> doesn't mention that token.</td><td>A "false-negative capability preflight", contradicted by the same run's three successful <code>@copilot</code> review requests. The report also faults the error message for telling the user to install a different <code>gh</code>.</td></tr>
+<tr><td>Run-04, issue #4, code review</td><td>Two successive strict-date defects. The first fix still allowed overlong years.</td><td>Converged after three rounds; all findings resolved.</td></tr>
+<tr><td>Run-04, issue #6, stage 30 (recovered)</td><td>A readiness command passed <code>--jq --arg</code> to <code>gh run list</code>, which rejected it.</td><td>A tooling misuse; the shepherd reran the gate correctly.</td></tr>
+<tr><td>Control, issue #4, code review</td><td>The second review reported zero findings but called one observation "previously missed".</td><td>Flagged as a mixed signal that tooling should record explicitly.</td></tr>
+</tbody></table></div>
+<p>The run-04 post-mortem is the most self-critical of the five: its own section headed "What failed" lists the wrong capability conclusion, the ignored contrary evidence and the misleading error message. It also estimates that without the error the run would likely have merged four tasks instead of three, which is the report's speculation.</p>
+</section>
+
+<section id="consistency">
+<h2>How consistent the self-evaluations are</h2>
+<p class="lead">The same agent, reading the same kinds of artifacts, reached different conclusions about what the artifacts contain.</p>
+<div class="tbl"><table>
+<thead><tr><th>Report</th><th>Token counts</th><th>Token method</th><th>Time zone</th><th>Describes its arm as</th></tr></thead>
+<tbody>
+<tr><td>Control run-01</td><td>Unavailable</td><td></td><td>UTC</td><td>Control (lessons off)</td></tr>
+<tr><td>Run-03, first run</td><td>Unavailable</td><td></td><td>UTC</td><td>Control (lessons off)</td></tr>
+<tr><td>Run-03, recovery run</td><td>Measured from OTEL</td><td>Final cumulative value per session</td><td>UTC</td><td>Control (lessons off)</td></tr>
+<tr><td>Run-04, first run</td><td>Measured from OTEL</td><td>Maximum cumulative value per session</td><td>EDT</td><td>Control (lessons off)</td></tr>
+<tr><td>Run-04, second run</td><td>"[REDACTED]", so unavailable</td><td></td><td>ET</td><td>"Control treatment" (lessons off)</td></tr>
+</tbody></table></div>
+<p>Small arithmetic disagreements also appear inside single reports. The control post-mortem gives its session total as 2h 16m 34s in one table and 2h 16m 29s in another; run-04's second report gives 41m 01s and 41m 02s.</p>
+<p>The level of detail varies too. The control report lists each pre-review remediation; the treatment reports mostly summarize stage 30 as passed validation. That makes the reports a weak basis for comparing stage-30 activity between arms.</p>
+</section>
+
+<section id="gaps">
+<h2>What the post-mortems leave out</h2>
+<ul>
+<li><strong>The experiment's variable.</strong> No report mentions guardrails. Each frames its run as a lesson-propagation control and suggests comparing against a future "campaign" lesson mode.</li>
+<li><strong>PR #10 in run-04.</strong> The first run left it draft and unreviewed; the second run targeted only issue #6. No post-mortem records #10 being reviewed or merged.</li>
+<li><strong>How run-04 resumed.</strong> Run-03's recovery report documents the maintainer's manual evidence work. Run-04's second report doesn't say what changed between runs.</li>
+<li><strong>Remote agent cost.</strong> Every report notes that coding-agent and review-agent credits are absent from the local artifacts.</li>
+<li><strong>The control's 10h 49m gap.</strong> Reported as an observability limitation with no cause.</li>
+</ul>
+</section>
+
+<section id="recommend">
+<h2>What the agents recommend</h2>
+<p class="lead">The recommendations are remarkably uniform: the agents mostly ask for better records of their own work.</p>
+<div class="tbl"><table>
+<thead><tr><th>Recommendation</th><th class="n">Reports</th></tr></thead>
+<tbody>
+<tr><td>Write a machine-readable outcome file per stage (issue, PR, head, review IDs, findings, merge SHA, usage, failure signature)</td><td class="n">5 of 5</td></tr>
+<tr><td>Record token and credit telemetry in the session result</td><td class="n">4 of 5</td></tr>
+<tr><td>Timestamp orchestration waits between sessions</td><td class="n">3 of 5</td></tr>
+<tr><td>Make runtime evidence a structured PR checklist, not prose in the issue</td><td class="n">2 of 5</td></tr>
+<tr><td>Detect a no-op remediation (unchanged commit and PR body) immediately</td><td class="n">2 of 5</td></tr>
+<tr><td>Keep the fail-closed, exact-head review and exact-base merge gates</td><td class="n">3 of 5</td></tr>
+<tr><td>Probe capabilities by trying the operation, not by reading help text; cache success</td><td class="n">1 of 5</td></tr>
+<tr><td>Pipe <code>gh --json</code> to standalone <code>jq</code> instead of combining <code>--jq</code> with <code>--arg</code></td><td class="n">1 of 5</td></tr>
+</tbody></table></div>
+<p>The first run-03 report's top-priority action was to resume issue #6 after adding the missing evidence to PR #11. The recovery report shows that this is what happened.</p>
+</section>
+
+<section id="method">
+<h2>Method</h2>
+<ul>
+<li><strong>Source:</strong> only the five <code>*-post-mortem.md</code> files in <code>post-mortems.zip</code>. No evaluator output, transcripts or repository data were used.</li>
+<li><strong>Combining runs:</strong> where a campaign has two post-mortems, counts and durations are summed as each report states them. Nothing was re-derived.</li>
+<li><strong>Classification:</strong> outcome categories in the chart follow each report's own description of the task. The "first review clean" counts include only tasks a report says were reviewed.</li>
+<li><strong>Trust:</strong> each post-mortem was written by an agent from its own run's artifacts. This report checks the post-mortems against each other, not against those artifacts.</li>
+</ul>
+</section>
+</main>
+</div>
+
+</body></html>

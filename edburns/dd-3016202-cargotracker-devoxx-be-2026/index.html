@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cargotracker experiment reports</title>
+<style>
+:root{
+  --paper:#FCFDFE; --ink:#18212E; --text:#2B3644; --muted:#5F6B79; --rule:#D8DEE6; --band:#F1F4F8;
+  --rv:#2F6FDB;
+  --serif:"Charter","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Avenir Next","Avenir","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#12161C; --ink:#EEF1F5; --text:#D3D9E1; --muted:#98A3B1; --rule:#2C333D; --band:#1A2029;
+  --rv:#5A8FEA;
+}}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;color:var(--text);font:17px/1.62 var(--serif)}
+.wrap{max-width:74rem;margin:0 auto;padding:3.5rem 1.5rem 5rem}
+main{max-width:46rem;margin:0 auto}
+h1{font:600 2.35rem/1.12 var(--sans);letter-spacing:-.018em;color:var(--ink);margin:0 0 .8rem;max-width:22ch}
+.intro{color:var(--muted);margin:0 0 2.8rem;max-width:60ch}
+ol{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink);counter-reset:reports}
+li{counter-increment:reports;border-bottom:1px solid var(--rule)}
+a{display:grid;grid-template-columns:2.2rem minmax(0,1fr) 1.5rem;gap:.9rem;align-items:start;padding:1.2rem 0;color:inherit;text-decoration:none}
+a::before{content:counter(reports,decimal-leading-zero);font:600 .9rem/1.7 var(--sans);color:var(--muted)}
+a::after{content:"↗";font:1.15rem/1.4 var(--sans);color:var(--rv);text-align:right}
+a:hover strong{color:var(--rv)}
+a:focus-visible{outline:2px solid var(--rv);outline-offset:4px;border-radius:2px}
+strong{display:block;color:var(--ink);font:600 1.05rem/1.4 var(--sans);transition:color .15s ease}
+small{display:block;margin-top:.25rem;color:var(--muted);font:14px/1.5 var(--sans)}
+@media (max-width:480px){.wrap{padding:2.5rem 1.25rem 3.5rem}h1{font-size:2rem}a{grid-template-columns:1.8rem minmax(0,1fr) 1rem;gap:.6rem}}
+@media print{.wrap{max-width:none;padding:0 1rem}a{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<main>
+<header>
+<h1>Cargotracker experiment reports</h1>
+<p class="intro">Analysis of the Cargotracker guardrails experiment, its evidence, and the agents' own evaluations.</p>
+</header>
+<nav aria-label="Reports">
+<ol>
+<li><a href="cargotracker-agent-self-evaluation.html"><span><strong>How the agents evaluated themselves</strong><small>A close reading of the five campaign post-mortems.</small></span></a></li>
+<li><a href="cargotracker-evidence-matrix.html"><span><strong>Campaign evidence matrix</strong><small>Issue-level evidence and confidence for the experiment's claims.</small></span></a></li>
+<li><a href="cargotracker-guardrails-results.html"><span><strong>Cargotracker guardrails experiment results</strong><small>Results and caveats for the Devoxx slides.</small></span></a></li>
+<li><a href="cargotracker-report-comparison.html"><span><strong>Two views of one experiment</strong><small>The evaluator's results compared with the agents' self-evaluations.</small></span></a></li>
+</ol>
+</nav>
+</main>
+</div>
+</body>
+</html>

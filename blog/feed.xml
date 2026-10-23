@@ -1,5 +1,301 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2026-02-16T19:21:58-05:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
-</subtitle><entry><title type="html">Ed’s JavaLand 2026 Session Picks</title><link href="/blog/2026/02/13/javaland-2026-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2026 Session Picks" /><published>2026-02-13T14:30:00-05:00</published><updated>2026-02-13T14:30:00-05:00</updated><id>/blog/2026/02/13/javaland-2026-picks</id><content type="html" xml:base="/blog/2026/02/13/javaland-2026-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/eds-javaland-2026-session-picks-7ni">dev.to</a>.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="/blog/feed.xml" rel="self" type="application/atom+xml" /><link href="/blog/" rel="alternate" type="text/html" /><updated>2026-10-23T15:32:01-04:00</updated><id>/blog/feed.xml</id><title type="html">Ed Burns Blog</title><subtitle>Ed Burns blogs here, mostly about Java and software, but sometimes about other random things.
+</subtitle><entry><title type="html">Using GitHub Copilot to stand up Shaarli on Azure Container Apps and patch the PHP2Shell vuln</title><link href="/blog/2026/10/22/copilot-shaarli-azure-container-apps-php2shell.html" rel="alternate" type="text/html" title="Using GitHub Copilot to stand up Shaarli on Azure Container Apps and patch the PHP2Shell vuln" /><published>2026-10-22T18:00:00-04:00</published><updated>2026-10-22T18:00:00-04:00</updated><id>/blog/2026/10/22/copilot-shaarli-azure-container-apps-php2shell</id><content type="html" xml:base="/blog/2026/10/22/copilot-shaarli-azure-container-apps-php2shell.html"><![CDATA[<h2 id="executive-summary">Executive summary</h2>
+
+<p>I used GitHub Copilot to help deploy my own <a href="https://github.com/shaarli/Shaarli">Shaarli</a> bookmark manager on <a href="https://learn.microsoft.com/en-us/azure/container-apps/overview">Azure Container Apps</a>. Several weeks later, the PHP runtime in that container needed an urgent security update. This post tells both parts of the story: getting something useful running, and taking responsibility for keeping it running safely.</p>
+
+<p>The code is in <a href="https://github.com/edburns/F3-2666-shaarli">edburns/F3-2666-shaarli</a>. The mitigation is captured in <a href="https://github.com/edburns/F3-2666-shaarli/commit/a095c1eb8a992ea5c0a011e752266bc0ca37fdcb">commit a095c1e</a>.</p>
+
+<p>As with my <a href="/blog/2026/02/13/javaland-2026-picks.html">JavaLand 2026 picks post</a>, I also used AI to help draft this post from the conversation logs. The interesting part is not that AI can write Bash. It is what happened when we ran the Bash, what we had to correct, and what evidence we collected afterward.</p>
+
+<h2 id="problem-statement-the-shaarli-lifestyle">Problem statement: the Shaarli lifestyle</h2>
+
+<p>I had 4,611 bookmarks to move out of Diigo. I wanted to preserve tags and have a convenient way to save the page I was reading. There was a substantial detour through Instapaper import formats and APIs, but that is another story. Here I want to concentrate on the self-hosted option.</p>
+
+<p>On August 29, 2026, I gave Copilot this assignment:</p>
+
+<blockquote>
+  <p>In this session I want to create durable scripts in this current branch of this current repository to bootstrap myself into what I will call “The Shaarli lifestyle”.</p>
+</blockquote>
+
+<p>The requirements were deliberately modest:</p>
+
+<ul>
+  <li>A private bookmark manager, reachable over the public Internet, for one user.</li>
+  <li>Azure Container Apps, without a Kubernetes cluster for me to administer.</li>
+  <li>No custom DNS. An opaque <code class="language-plaintext highlighter-rouge">azurecontainerapps.io</code> hostname was fine.</li>
+  <li>Persistent bookmarks and configuration.</li>
+  <li>Scale-to-zero. I did not want to pay for a constantly running replica.</li>
+  <li>Scripts to create, clone, and delete an instance.</li>
+</ul>
+
+<p>The opaque hostname was a convenience, not an access-control mechanism. Authentication still had to do the actual work.</p>
+
+<h2 id="standing-it-up">Standing it up</h2>
+
+<h3 id="the-architecture">The architecture</h3>
+
+<p>Copilot produced four Bash files: <code class="language-plaintext highlighter-rouge">create-shaarli.sh</code>, <code class="language-plaintext highlighter-rouge">clone-shaarli.sh</code>, <code class="language-plaintext highlighter-rouge">delete-shaarli.sh</code>, and the shared <code class="language-plaintext highlighter-rouge">lib-shaarli.sh</code>.</p>
+
+<p>Each logical instance gets its own resource group, Container Apps environment, Container App, Azure Storage account, Azure Files share, and Microsoft Entra app registration. The logical name <code class="language-plaintext highlighter-rouge">personal</code> maps to the resource group <code class="language-plaintext highlighter-rouge">rg-shaarli-personal</code>; resource-group tags tell the scripts which randomly named resources belong to it.</p>
+
+<p>The request path looks like this:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Browser
+  -&gt; Container Apps HTTPS ingress
+  -&gt; Microsoft Entra authentication, restricted to one principal
+  -&gt; Shaarli's web server and PHP-FPM
+  -&gt; Azure Files mounted at /var/www/shaarli/data
+</code></pre></div></div>
+
+<p>Container Apps’ <a href="https://learn.microsoft.com/en-us/azure/container-apps/authentication">built-in authentication</a>, often called Easy Auth, provided the outer gate. Shaarli retained its own login as a second layer. The provisioning script created the app with internal ingress, configured authentication and the principal allow-list, and only then enabled public HTTPS ingress.</p>
+
+<p>The replica bounds were zero to one, with single-revision mode. The persistent share was the important part: configuration and the bookmark datastore must outlive a replica. Cache and temporary files could remain ephemeral.</p>
+
+<p>The user-facing commands were pleasantly small:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./scripts/create-shaarli.sh personal
+./scripts/clone-shaarli.sh personal personal-copy
+./scripts/delete-shaarli.sh personal
+</code></pre></div></div>
+
+<p>Those are three separate lifecycle operations, not a sequence to copy and run! The last one deletes the instance and its data.</p>
+
+<h3 id="the-first-deployment-did-not-work">The first deployment did not work</h3>
+
+<p>The initial Container App name was too long. Azure had already created the resource group, storage, and environment when it rejected the app name.</p>
+
+<p>Static Bash checks had passed. Azure still said no.</p>
+
+<p>We shortened the random suffix to 11 bytes, giving a 30-character app name, removed the incomplete estate, and reran creation. We also made restarting the private revision after installing the authentication secret part of provisioning.</p>
+
+<p>I mention this because “Copilot wrote the scripts” and “the scripts successfully deployed the system” are different milestones. We reached the second one by looking at the failure and correcting the implementation.</p>
+
+<h3 id="getting-the-bookmarks-in">Getting the bookmarks in</h3>
+
+<p>A Pocket-style HTML file that another importer accepted was rejected by Shaarli. Copilot converted it to Netscape bookmark HTML, preserving titles, timestamps, and tags, and marking every bookmark private.</p>
+
+<p>The useful evidence was the importer result:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>4611 bookmarks imported, 0 bookmarks overwritten, 0 bookmarks skipped.
+</code></pre></div></div>
+
+<p>The generated import file contained personal and internal URLs, so it was locally excluded from Git. Application data did not belong in the infrastructure repository.</p>
+
+<h3 id="getting-the-bookmarklets-right">Getting the bookmarklets right</h3>
+
+<p>In September I tried the built-in bookmarklet and observed a URL beginning with <code class="language-plaintext highlighter-rouge">https://admin/shaare</code>. That ain’t right.</p>
+
+<p>Behind the Container Apps ingress and authentication layer, Shaarli was not deriving the external root URL correctly. We added <code class="language-plaintext highlighter-rouge">set-root-url.sh</code> to repair <code class="language-plaintext highlighter-rouge">general.root_url</code> in the persisted <code class="language-plaintext highlighter-rouge">config.json.php</code>. For future instances, the library computes the public URL from the app name and the environment’s default domain, then seeds the configuration before first boot.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./scripts/set-root-url.sh personal <span class="nt">--show</span>
+./scripts/set-root-url.sh personal
+</code></pre></div></div>
+
+<p>The argument is the logical instance name, not the full hostname. I managed to get that wrong too.</p>
+
+<p>After repairing the root URL, I deleted and re-created the bookmarklets. Dragging them from the Tools page avoided another problem: copying the link address had percent-encoded the JavaScript quotes. On September 6 I confirmed that both bookmarklets worked.</p>
+
+<h3 id="keeping-scale-to-zero">Keeping scale-to-zero</h3>
+
+<p>I was explicit about the trade-off:</p>
+
+<blockquote>
+  <p>I do want to keep scale-to-0. I do not want to pay for a constantly running replica. I don’t mind a bit of cold-start time. But I’d like to minimize it.</p>
+</blockquote>
+
+<p>We raised the resource allocation from 0.25 vCPU and 0.5 GiB to 0.5 vCPU and 1 GiB, and selected <code class="language-plaintext highlighter-rouge">none</code> for thumbnails. We left the replica bounds alone. This was not a claim that the whole installation was free; storage and other Azure charges still apply.</p>
+
+<p>Some proposed performance improvements did not survive scrutiny. In particular, moving compiled templates to Azure Files would put more reads on network storage. We left them local rather than treating every cache as something that must be persisted.</p>
+
+<p>There was also a useful measurement lesson: an unauthenticated <code class="language-plaintext highlighter-rouge">curl</code> returning 401 might only be measuring Easy Auth. To measure a Shaarli cold start, I needed an authenticated request that actually reached the application.</p>
+
+<h2 id="then-came-php2shell">Then came PHP2Shell</h2>
+
+<p>On October 22, 2026, I came back with a different problem: this system uses PHP, and the newly disclosed PHP2Shell vulnerabilities might apply to it.</p>
+
+<p>The two PHP advisories, published October 21, describe critical remote-code-execution vulnerabilities:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Vulnerability</th>
+      <th>Advisory</th>
+      <th>Fixed version for our PHP branch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CVE-2026-109618</td>
+      <td><a href="https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w">RCE via out-of-memory corruption</a></td>
+      <td>PHP 8.4.27</td>
+    </tr>
+    <tr>
+      <td>CVE-2026-109619</td>
+      <td><a href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp">RCE via stale global state</a></td>
+      <td>PHP 8.4.27</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The stale-state advisory includes a validated PHP-FPM path, although exploitation depends on suitable application behavior and subsequent requests reaching the same worker. The out-of-memory advisory describes FPM as susceptible based on source analysis, but does not claim a demonstrated complete FPM exploit. Those distinctions matter. “Uses PHP” is a reason to investigate and patch, not proof that somebody has exploited this particular app.</p>
+
+<p>The <a href="https://github.com/shaarli/Shaarli/issues/2297">Shaarli maintainer discussion in shaarli/Shaarli#2297</a> and the <a href="https://github.com/shaarli/Shaarli/releases/tag/v0.16.10">v0.16.10 release notes</a> identified the rebuilt container containing the fixes.</p>
+
+<h3 id="an-authentication-gate-is-not-a-runtime-patch">An authentication gate is not a runtime patch</h3>
+
+<p>Our public endpoint still returned HTTP 401, and the configuration still required Entra authentication with one allowed principal. That was good news: an arbitrary anonymous request was not getting through to PHP.</p>
+
+<p>But it did not establish that PHP was patched.</p>
+
+<p>Nor was Shaarli’s own login an adequate reason to ignore a runtime vulnerability. The PHP advisories concern request processing and worker state, not just application operations after login. We kept Easy Auth and patched the container.</p>
+
+<h3 id="a-mutable-tag-is-not-evidence">A mutable tag is not evidence</h3>
+
+<p>The original deployment used:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ghcr.io/shaarli/shaarli:release
+</code></pre></div></div>
+
+<p>By the time we investigated, that tag pointed to a rebuilt image. That still did not tell us which bytes an existing replica had started with.</p>
+
+<p>We changed to an explicit version and immutable image digest:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ghcr.io/shaarli/shaarli:v0.16.10@sha256:48a1a8962c58c74c5c36d4927a7c2dcb5bf191a93b83dc480d9827f383ada903
+</code></pre></div></div>
+
+<p>Earlier in the performance discussion, the assistant had backed away from digest pinning because its cold-start benefit was speculative. Here the reason was different: I needed to identify exactly what we deployed. That was worth the obligation to deliberately update the pin next time.</p>
+
+<h2 id="patching-the-running-instance">Patching the running instance</h2>
+
+<p>The live mitigation changed the container image, not the storage account, file share, mount path, authentication, or replica bounds. The resulting revision ended in <code class="language-plaintext highlighter-rouge">--0000002</code>; it became healthy and latest-ready, and the two older revisions were inactive and stopped.</p>
+
+<p>The repository now has two additional scripts:</p>
+
+<ul>
+  <li><a href="https://github.com/edburns/F3-2666-shaarli/blob/a095c1eb8a992ea5c0a011e752266bc0ca37fdcb/scripts/update-shaarli-image.sh"><code class="language-plaintext highlighter-rouge">update-shaarli-image.sh</code></a>, which requires an immutable digest, checks authentication, snapshots the data share before an image change, and waits for the rollout.</li>
+  <li><a href="https://github.com/edburns/F3-2666-shaarli/blob/a095c1eb8a992ea5c0a011e752266bc0ca37fdcb/scripts/attest-shaarli-security.sh"><code class="language-plaintext highlighter-rouge">attest-shaarli-security.sh</code></a>, which reports the deployment and authentication state and can check the PHP runtime and internal HTTP endpoint.</li>
+</ul>
+
+<p>The intended workflow for subsequent updates is:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./scripts/update-shaarli-image.sh personal
+</code></pre></div></div>
+
+<p>Then sign in through the browser to wake the application if it has scaled to zero, and run this from an interactive terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./scripts/attest-shaarli-security.sh personal <span class="nt">--runtime</span>
+</code></pre></div></div>
+
+<p>The interactive-terminal requirement was another lived-experience correction. <code class="language-plaintext highlighter-rouge">az containerapp exec</code> failed in non-TTY execution. During this session we used macOS’s <code class="language-plaintext highlighter-rouge">script</code> command to provide a pseudo-terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script <span class="nt">-q</span> /dev/null az containerapp <span class="nb">exec</span> <span class="se">\</span>
+  <span class="nt">--name</span> <span class="s2">"</span><span class="nv">$APP</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">--resource-group</span> <span class="s2">"</span><span class="nv">$RG</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">--command</span> <span class="s1">'php84 --version'</span>
+</code></pre></div></div>
+
+<p>The remote container reported:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PHP 8.4.27 (cli) (built: Oct 21 2026 16:38:20) (NTS)
+</code></pre></div></div>
+
+<p>We also caught a bug in our rollout-wait logic: it incorrectly read Azure CLI’s multi-value TSV output. Querying the latest and latest-ready revision names separately fixed it. Again, a successful update and a working verification script are different things.</p>
+
+<h2 id="what-about-my-data">What about my data?</h2>
+
+<p>During the mitigation I added an explicit requirement:</p>
+
+<blockquote>
+  <p>Make sure the data in the current Shaarli instance is not damaged in any way. The system must remain usable without any loss of data after the mitigation is complete.</p>
+</blockquote>
+
+<p>We compared the old and new revision definitions. Both mounted the same Azure Files volume at <code class="language-plaintext highlighter-rouge">/var/www/shaarli/data</code>.</p>
+
+<p>We then took a safety snapshot, downloaded the snapshot and live share independently, and compared every file by relative path, size, and SHA-256 digest. We repeated the comparison after the internal HTTP check.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>files=7
+bytes=1677883
+byteForByteMatch=true
+</code></pre></div></div>
+
+<p>Azure Files metadata showed that the only file with a modification timestamp at or after rollout was <code class="language-plaintext highlighter-rouge">lastupdatecheck.txt</code>, a seven-byte update-check file. The other persistent files retained their pre-rollout modification timestamps.</p>
+
+<p><strong>An important qualification:</strong> the recorded snapshot was taken at 18:34:01 UTC, after the new revision was created at 18:19:30 UTC. It was not a pre-upgrade backup, and a comparison against it cannot prove the entire pre-upgrade state was identical. The unchanged mounts and file metadata are additional evidence, not a substitute for a before-image.</p>
+
+<p>We corrected the durable upgrade script to take its snapshot <em>before</em> future image changes. For an active application, I would also coordinate a quiet period and check restoreability rather than assume that any snapshot proves an application-consistent backup.</p>
+
+<p>We did not create or delete test bookmarks during the incident validation. The application check was deliberately read-only.</p>
+
+<h2 id="how-can-i-convince-a-skeptic">How can I convince a skeptic?</h2>
+
+<p>That was my next question to Copilot. I wanted evidence a person other than the assistant could reproduce.</p>
+
+<p>From the repository directory, these commands identify the instance without embedding my subscription or tenant identifiers:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">RG</span><span class="o">=</span>rg-shaarli-personal
+<span class="nv">APP</span><span class="o">=</span><span class="si">$(</span>az group show <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$RG</span><span class="s2">"</span> <span class="nt">--query</span> tags.shaarliAppName <span class="nt">-o</span> tsv<span class="si">)</span>
+
+az account show <span class="nt">--query</span> <span class="s1">'{name:name,id:id,tenantId:tenantId}'</span> <span class="nt">-o</span> json
+
+az containerapp show <span class="nt">-g</span> <span class="s2">"</span><span class="nv">$RG</span><span class="s2">"</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$APP</span><span class="s2">"</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'{image:properties.template.containers[0].image,latest:properties.latestRevisionName,ready:properties.latestReadyRevisionName}'</span> <span class="se">\</span>
+  <span class="nt">-o</span> json
+
+az containerapp revision list <span class="nt">-g</span> <span class="s2">"</span><span class="nv">$RG</span><span class="s2">"</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$APP</span><span class="s2">"</span> <span class="nt">--all</span> <span class="se">\</span>
+  <span class="nt">--query</span> <span class="s1">'[].{name:name,active:properties.active,health:properties.healthState,running:properties.runningState,image:properties.template.containers[0].image}'</span> <span class="se">\</span>
+  <span class="nt">-o</span> table
+</code></pre></div></div>
+
+<p>Checking the Azure context first is not busywork. Early in our investigation, the CLI was authenticated to a different tenant and could not see the instance.</p>
+
+<p>The registry side can be checked without starting a local Shaarli container:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker buildx imagetools inspect ghcr.io/shaarli/shaarli:v0.16.10
+</code></pre></div></div>
+
+<p>The chain of evidence is:</p>
+
+<ol>
+  <li>The upstream PHP advisories identify the fixed versions.</li>
+  <li>Shaarli’s release notes identify the rebuilt release.</li>
+  <li>The registry digest identifies the reviewed image.</li>
+  <li>Azure’s revision configuration identifies that same digest, with the older revisions inactive.</li>
+  <li>An exec session into the named Azure revision reports the patched PHP CLI version.</li>
+  <li>The public authentication gate still rejects anonymous traffic.</li>
+  <li>A request inside the remote container receives a successful HTTP response.</li>
+</ol>
+
+<p>There are limits to this evidence. <code class="language-plaintext highlighter-rouge">php84 --version</code> checks the CLI binary, not independently the PHP-FPM worker. For a stronger attestation, inspect <code class="language-plaintext highlighter-rouge">php84-fpm</code>’s installed package version and the FPM executable/process as well. An internal HTTP response is not a complete authenticated browser workflow or a write/restore test. And patching these two vulnerabilities does not establish that the system was never previously compromised.</p>
+
+<p>Those are reasons to describe the evidence precisely, not reasons to prefer a dangerous exploit test against the live bookmark store. A failed exploit attempt could simply mean its prerequisites were not met.</p>
+
+<p>The <a href="https://github.com/edburns/F3-2666-shaarli/blob/a095c1eb8a992ea5c0a011e752266bc0ca37fdcb/security/2026-10-22-php2shell/live-post-change-attestation.md">committed live attestation</a> records what we observed. The <a href="https://github.com/edburns/F3-2666-shaarli/tree/a095c1eb8a992ea5c0a011e752266bc0ca37fdcb/security/2026-10-22-php2shell">assessment and implementation plan</a> capture the broader work.</p>
+
+<h2 id="what-i-learned">What I learned</h2>
+
+<p>Copilot helped me cross several boundaries I do not work at every day: PHP packaging, Container Apps authentication, Azure Files, and remote runtime inspection. It also made mistakes at those boundaries. I had to keep asking whether a command checked the thing we actually cared about.</p>
+
+<p>The biggest improvement was not a clever prompt. It was turning the work into artifacts: scripts, an immutable deployment identity, a data snapshot, and a written record with explicit limits.</p>
+
+<p>I now have a useful bookmark manager and a more repeatable way to update it. I also have one more reminder that operating software does not end when the first deployment succeeds.</p>
+
+<h3 id="appendix-prompts-worth-keeping">Appendix: prompts worth keeping</h3>
+
+<p>These are the short prompts I would reuse, with the application and vulnerability names changed as appropriate:</p>
+
+<blockquote>
+  <p>Research the vuln, the extent to which my Shaarli instance is vulnerable to it, and make a plan for patching it so that the instance is no longer vulnerable.</p>
+</blockquote>
+
+<blockquote>
+  <p>Make sure the data in the current Shaarli instance is not damaged in any way.</p>
+</blockquote>
+
+<blockquote>
+  <p>How can I convince a skeptic that the PHP2Shell vulns have actually been successfully mitigated?</p>
+</blockquote>
+
+<p>Keep the raw operational logs private until they have been reviewed and redacted. They can contain credentials and application data. A blog post needs the relevant commands and evidence, not an unfiltered transcript.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Executive summary]]></summary></entry><entry><title type="html">Ed’s JavaLand 2026 Session Picks</title><link href="/blog/2026/02/13/javaland-2026-picks.html" rel="alternate" type="text/html" title="Ed’s JavaLand 2026 Session Picks" /><published>2026-02-13T14:30:00-05:00</published><updated>2026-02-13T14:30:00-05:00</updated><id>/blog/2026/02/13/javaland-2026-picks</id><content type="html" xml:base="/blog/2026/02/13/javaland-2026-picks.html"><![CDATA[<p>Cross posted at <a href="https://dev.to/edburns00/eds-javaland-2026-session-picks-7ni">dev.to</a>.</p>
 
 <p>I can hardly believe I’m writing my session picks for the 12th JavaLand conference!</p>
 
@@ -1741,79 +2037,4 @@ Here are a screen grabs of two such queries.</p>
   <li>
     <p>The quality of the queries regarding their ability to convey the context of each task is up to the query author. In my implementation, I simply include <strong>Parent</strong> next te <strong>Title</strong> in the <strong>Column options</strong>.</p>
   </li>
-</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[Problem statement]]></summary></entry><entry><title type="html">macOS Catalina Zoom does not prompt for mic or camera permissions Solved</title><link href="/blog/2023/10/24/macos-zoom-mic-camera-permissions-reset.html" rel="alternate" type="text/html" title="macOS Catalina Zoom does not prompt for mic or camera permissions Solved" /><published>2023-10-24T12:10:00-04:00</published><updated>2023-10-24T12:10:00-04:00</updated><id>/blog/2023/10/24/macos-zoom-mic-camera-permissions-reset</id><content type="html" xml:base="/blog/2023/10/24/macos-zoom-mic-camera-permissions-reset.html"><![CDATA[<h2 id="problem-statement">Problem statement</h2>
-
-<p>Somewhere along the line, Zoom on macOS Catalina asked me for permission to use the mic or camera and I may have accidentally said no. How do I get it to prompt me again?</p>
-
-<p>I tried the usual measures of <code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code> but this returned a failure message. What’s going on?</p>
-
-<p>This blog post is my record of what I did to resolve the problem on macOS Catalina. Results are not guaranteed.</p>
-
-<h2 id="root-cause">Root cause</h2>
-
-<p>In my case, the root cause was the ownership of the <code class="language-plaintext highlighter-rouge">/Users/edburns/Library/Application Support/com.apple.TCC/TCC.db</code> file was incorrect. This file must be owned by me. Instead it was owned by some other user number. I remember making some bulk ownership changes somewhere along the line.</p>
-
-<h2 id="nutshell-solution">Nutshell solution</h2>
-
-<ol>
-  <li>Do all the stuff that allows you to modify <code class="language-plaintext highlighter-rouge">TCC.db</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">chown</code> the <code class="language-plaintext highlighter-rouge">TCC.db</code> to me.</li>
-  <li>Restore all the stuff that prevents you from modifying <code class="language-plaintext highlighter-rouge">TCC.db</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code></li>
-  <li>Perform the action in Zoom that caused it to prompt for permission.</li>
-  <li>Say <strong>Yes</strong>.</li>
-</ol>
-
-<h3 id="detailed-solution">Detailed solution</h3>
-
-<h4 id="temporarily-disable-system-integrity-protection-sip">Temporarily disable System Integrity Protection (SIP)</h4>
-
-<ol>
-  <li>Shut down and reboot in “Recovery mode”.
-    <ol>
-      <li>Shut down.</li>
-      <li>Hold down Command R while powering on.</li>
-      <li>Release when the Apple logo appears.</li>
-    </ol>
-  </li>
-  <li>When you get a menu bar, in the <strong>Utilities menu</strong> select <strong>Terminal</strong>.</li>
-  <li>The terminal should open as root.</li>
-  <li><code class="language-plaintext highlighter-rouge">csrutil disable</code>.</li>
-  <li>Exit the terminal and quit the <strong>Terminal</strong> app.</li>
-  <li>Restart.</li>
-</ol>
-
-<h4 id="ensure-the-tccdb-has-the-correct-ownership">Ensure the TCC.db has the correct ownership</h4>
-
-<p>For an apparently very helpful resource on <code class="language-plaintext highlighter-rouge">TCC.db</code> see <a href="https://www.rainforestqa.com/blog/macos-tcc-db-deep-dive">A deep dive into macOS TCC.db</a>.</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">cd ~Library/Application\ Support/com.apple.TCC</code>
-If you can’t do this, grant “Full disk access” to your terminal program. Look elsewhere for how to do that.</li>
-  <li><code class="language-plaintext highlighter-rouge">chown</code> the <code class="language-plaintext highlighter-rouge">TCC.db</code> file to your userid.</li>
-  <li><code class="language-plaintext highlighter-rouge">cd</code> to get back to your home directory.</li>
-</ol>
-
-<h4 id="re-enable-system-integrity-protection-sip">Re-enable System Integrity Protection (SIP)</h4>
-
-<ol>
-  <li>Shut down and reboot in “Recovery mode”.
-    <ol>
-      <li>Shut down.</li>
-      <li>Hold down Command R while powering on.</li>
-      <li>Release when the Apple logo appears.</li>
-    </ol>
-  </li>
-  <li>When you get a menu bar, in the <strong>Utilities menu</strong> select <strong>Terminal</strong>.</li>
-  <li>The terminal should open as root.</li>
-  <li><code class="language-plaintext highlighter-rouge">csrutil enable</code>.</li>
-  <li>Exit the terminal and quit the <strong>Terminal</strong> app.</li>
-  <li>Restart.</li>
-</ol>
-
-<h4 id="run-the-tccutil-command">Run the tccutil command</h4>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">tccutil reset Microphone</code>. If you want to reset other permissions, there is a big schema of names.  To reset everything replace <code class="language-plaintext highlighter-rouge">Microphone</code> with <code class="language-plaintext highlighter-rouge">All</code>. Case is sensitive.</li>
-  <li>You should see a message that indicates success.</li>
-</ol>]]></content><author><name></name></author><summary type="html"><![CDATA[Problem statement]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><summary type="html"><![CDATA[Problem statement]]></summary></entry></feed>

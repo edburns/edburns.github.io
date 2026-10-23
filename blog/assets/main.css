@@ -670,7 +670,7 @@ table td {
   /* white-space: nowrap; */
   display: block;
 }
-.site-title, .site-title:visited {
+.site-title, .site-title:link, .site-title:visited, .site-title:hover, .site-title:focus, .site-title:active {
   color: #ffffff;
 }
 
